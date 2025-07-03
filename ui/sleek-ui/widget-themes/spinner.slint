@@ -1,0 +1,15 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct USpinnerTheme {
+	size: length,
+	color: brush,
+}
+
+
+export global USpinnerThemes {
+    out property <USpinnerTheme> default: {
+        size: UAppTheme.icon-size-base,
+        color: UAppTheme.primary,
+    };
+}

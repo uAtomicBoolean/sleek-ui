@@ -1,0 +1,48 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct UInputTheme {
+	background: brush,
+	background-active: brush,
+	background-error: brush,
+	background-disabled: brush,
+	border-width: length,
+	border-radius: length,
+	border-color: brush,
+	border-color-error: brush,
+	border-color-active: brush,
+	border-color-disabled: brush,
+	text-color: brush,
+	text-color-disabled: brush,
+	font-size: length,
+	font-weight: int,
+	placeholder-color: brush,
+	icon-size: length,
+	icon-color: brush,
+	padding-vertical: length,
+	padding-horizontal: length,
+}
+
+
+export global UInputThemes {
+    out property <UInputTheme> default: {
+        background: UAppTheme.bg-elevated,
+        background-active: UAppTheme.bg-elevated,
+        background-error: UAppTheme.bg-elevated,
+        background-disabled: UAppTheme.color-fill-quaternary,
+        border-width: 1px * UAppTheme.scale-factor,
+        border-radius: UAppTheme.radius-base,
+        border-color: UAppTheme.border,
+        border-color-active: UAppTheme.primary-active,
+        border-color-error: UAppTheme.danger,
+        border-color-disabled: UAppTheme.border-secondary,
+        text-color: UAppTheme.text,
+        text-color-disabled: UAppTheme.text-disabled,
+        font-size: UAppTheme.font-size-base,
+        placeholder-color: UAppTheme.text-disabled,
+        icon-size: UAppTheme.icon-size-base,
+        icon-color: UAppTheme.text-secondary,
+        padding-vertical: UAppTheme.padding-vertical,
+        padding-horizontal: UAppTheme.padding-horizontal / 2,
+    };
+}

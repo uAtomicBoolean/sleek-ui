@@ -1,0 +1,53 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+
+import { UText } from "text.slint";
+import { UIcon } from "icon.slint";
+
+import { UBreadcrumbTheme, UBreadcrumbThemes } from "../widget-themes/breadcrumb.slint";
+
+
+export component UBreadcrumb inherits Rectangle {
+    in-out property <UBreadcrumbTheme> theme: UBreadcrumbThemes.default;
+    in-out property <[string]> steps: [];
+    callback step-clicked(step: string);
+    VerticalLayout {
+        alignment: center;
+        HorizontalLayout {
+            spacing: theme.spacing;
+            for step[idx] in steps: HorizontalLayout {
+                spacing: theme.spacing;
+                ButtonInterface {
+                    UText {
+                        text: step;
+                        color: idx == steps.length - 1 ? theme.active-text-color : theme.text-color;
+                        font-size: idx == steps.length - 1 ? theme.active-font-size : theme.font-size;
+                        font-weight: idx == steps.length - 1 ? theme.active-font-weight : theme.font-weight;
+                        animate color { duration: 200ms; }
+                        states [
+                            hover when parent.has-hover && idx != steps.length - 1: {
+                                color: theme.hover-text-color;
+                                font-size: theme.hover-font-size;
+                                font-weight: theme.hover-font-weight;
+                            }
+                        ]
+                    }
+
+                    clicked => {
+                        step-clicked(step);
+                    }
+                }
+
+                if idx != steps.length - 1: VerticalLayout {
+                    alignment: center;
+                    height: 100%;
+                    UIcon {
+                        source: theme.icon-separator;
+                        size: theme.separator-size;
+                        colorize: theme.separator-color;
+                    }
+                }
+            }
+        }
+    }
+}

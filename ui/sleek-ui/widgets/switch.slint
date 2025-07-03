@@ -1,0 +1,49 @@
+import { UAppTheme } from "../app-theme.slint";
+
+import { USwitchTheme, USwitchThemes } from "../widget-themes/switch.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+
+
+export component USwitch inherits ButtonInterface {
+	// Accessability properties
+	accessible-role: switch;
+    accessible-checkable: true;
+    accessible-checked: true;
+    accessible-action-default => {
+        self.clicked();
+    }
+	// Regular properties
+    in-out property <USwitchTheme> theme: USwitchThemes.default;
+    in-out property <bool> checked: true;
+    background: checked ? theme.background-checked : theme.background-unchecked;
+    width: theme.size;
+    height: theme.size / 2;
+    border-radius: theme.radius;
+    border-width: root.has-focus ? UAppTheme.focus-border-width : 0;
+    border-color: root.has-focus ? UAppTheme.focus-color : transparent;
+    circle := Rectangle {
+        x: checked ? root.height + 2px : 2px;
+        width: root.height - 4px;
+        height: root.height - 4px;
+        background: checked ? theme.foreground-checked : theme.foreground-unchecked;
+        border-radius: UAppTheme.radius-circle;
+        animate x {
+            easing: ease;
+            duration: 300ms;
+        }
+    }
+
+    clicked => {
+        checked = !checked;
+    }
+
+    states [
+        disabled when !root.enabled: {
+            background: checked ? theme.background-checked-disabled : theme.background-unchecked-disabled;
+            circle.background: checked ? theme.foreground-checked-disabled : theme.foreground-unchecked-disabled;
+        }
+        hover when root.has-hover: {
+            background: checked ? theme.background-checked-hover : theme.background-unchecked-hover;
+        }
+    ]
+}

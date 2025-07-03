@@ -1,0 +1,139 @@
+import { UAppTheme } from "../app-theme.slint";
+
+import { USelectTheme, USelectThemes } from "../widget-themes/select.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+import { USelectOption } from "../utils/structs.slint";
+
+import { UPopover } from "popover.slint";
+import { UText } from "text.slint";
+import { UIcon } from "icon.slint";
+
+import { ScrollView } from "std-widgets.slint";
+
+
+export component USelect inherits ButtonInterface {
+	// Accessability properties
+	accessible-role: combobox;
+    accessible-expandable: true;
+    accessible-value: self.selected-text;
+    accessible-item-count: self.options.length;
+    accessible-action-default => {
+        self.clicked();
+    }
+	// Regular properties
+    in-out property <USelectTheme> theme: USelectThemes.default;
+    in-out property <int> current-index: -1;
+    in-out property <[USelectOption]> options;
+    private property <string> selected-text;
+    private property <length> full-options-height: theme.option-height * options.length + theme.padding-popover * 2;
+    callback selected-changed(new-index: int);
+    background: theme.background;
+    border-width: self.has-focus ? UAppTheme.focus-border-width : theme.border-width;
+    border-color: self.has-focus ? UAppTheme.focus-color : theme.border-color;
+    border-radius: theme.border-radius;
+    clicked => {
+        popup.show();
+    }
+    HorizontalLayout {
+        alignment: space-between;
+        spacing: UAppTheme.spacing-base;
+        padding-top: theme.padding-vertical;
+        padding-bottom: theme.padding-vertical;
+        padding-left: theme.padding-horizontal;
+        padding-right: theme.padding-horizontal;
+        VerticalLayout {
+            alignment: center;
+            text-obj := UText {
+                text: current-index != -1 ? options[current-index].text : "";
+                overflow: elide;
+                font-size: theme.font-size;
+                color: theme.text-color;
+            }
+        }
+
+        VerticalLayout {
+            alignment: center;
+            UIcon {
+                source: @image-url("../assets/icons/chevron-up-down.svg");
+                size: theme.icon-size;
+                colorize: theme.icon-color;
+            }
+        }
+    }
+
+    popup := UPopover {
+        close-policy: close-on-click-outside;
+        width: root.width;
+        height: root.full-options-height > theme.popup-max-height ? theme.popup-max-height : root.full-options-height;
+        y: root.y + root.height + 1px;
+        ScrollView {
+            height: parent.height;
+            list-contents := VerticalLayout {
+                padding: theme.padding-popover;
+                for option[index] in root.options: select-item := Rectangle {
+					// List item accessability
+					accessible-role: list-item;
+                    accessible-item-selectable: true;
+                    accessible-item-selected: options[current-index].value == option.value;
+                    accessible-value: option.text;
+                    accessible-action-default => {
+                        touch.clicked();
+                    }
+					// Item contents and properties.
+					height: theme.option-height;
+                    border-radius: popup.default-border-radius;
+                    width: 100%;
+                    VerticalLayout {
+                        alignment: center;
+                        padding-left: theme.padding-horizontal;
+                        padding-right: theme.padding-horizontal;
+                        UText {
+                            text: option.text;
+                            font-size: theme.font-size;
+                            overflow: elide;
+                            wrap: no-wrap;
+                            states [
+                                disabled when !option.enabled: {
+                                    color: theme.option-text-disabled-color;
+                                }
+                                selected when options[current-index].value == option.value: {
+                                    color: theme.option-text-selected-color;
+                                }
+                            ]
+                        }
+                    }
+
+                    touch := TouchArea {
+                        enabled: option.enabled;
+                        mouse-cursor: pointer;
+                        clicked => {
+                            current-index = index;
+                            selected-changed(index);
+                            popup.close();
+                        }
+                    }
+
+                    animate background { duration: 200ms; }
+                    states [
+                        selected when options[current-index].value == option.value && option.enabled: {
+                            background: theme.option-bg-selected;
+                        }
+                        hover when touch.has-hover && option.enabled: {
+                            background: theme.option-bg-fill;
+                        }
+                    ]
+                }
+            }
+        }
+    }
+
+    states [
+        disabled when !self.enabled: {
+            border-color: theme.border-color-disabled;
+            text-obj.color: theme.text-color-disabled;
+        }
+        hover when self.has-hover: {
+            border-color: self.has-focus ? black : theme.border-color-hover;
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+import { UAppTheme } from "../app-theme.slint";
+
+import { UCardTheme, UCardThemes } from "card.slint";
+import { UTitleTheme, UTitleThemes } from "title.slint";
+import { UIconButtonTheme, UIconButtonThemes } from "icon-button.slint";
+import { UButtonTheme, UButtonThemes } from "button.slint";
+
+export struct UModalTheme {
+	blurred-background-color: brush,
+	title-horizontal-padding: length,
+	title-vertical-padding: length,
+	content-horizontal-padding: length,
+	content-vertical-padding: length,
+	buttons-horizontal-padding: length,
+	buttons-vertical-padding: length,
+	buttons-spacing: length,
+	card-theme: UCardTheme,
+	title-theme: UTitleTheme,
+	close-button-theme: UIconButtonTheme,
+	cancel-button-theme: UButtonTheme,
+	accept-button-theme: UButtonTheme,
+}
+
+
+export global UModalThemes {
+    out property <UModalTheme> default: {
+        blurred-background-color: rgba(0, 0, 0, 0.2),
+        title-horizontal-padding: UAppTheme.padding-big,
+        title-vertical-padding: UAppTheme.padding-medium,
+        content-horizontal-padding: UAppTheme.padding-big,
+        content-vertical-padding: UAppTheme.padding-medium,
+        buttons-horizontal-padding: UAppTheme.padding-big,
+        buttons-vertical-padding: UAppTheme.padding-medium,
+        buttons-spacing: UAppTheme.padding-medium,
+        card-theme: UCardThemes.default,
+        title-theme: UTitleThemes.level-6,
+        close-button-theme: UIconButtonThemes.text,
+        cancel-button-theme: UButtonThemes.default,
+        accept-button-theme: UButtonThemes.primary,
+    };
+}

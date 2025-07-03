@@ -1,0 +1,16 @@
+import { UDividerTheme, UDividerThemes } from "../widget-themes/divider.slint";
+
+
+export component UDivider inherits Rectangle {
+    in-out property <UDividerTheme> theme: UDividerThemes.default;
+    in property <Orientation> orientation: horizontal;
+    background: theme.color;
+	// Using init so that the divider takes all the space by default.
+	init => {
+        if orientation == Orientation.horizontal {
+            root.height = root.theme.thickness;
+        } else {
+            root.width = root.theme.thickness;
+        }
+    }
+}
