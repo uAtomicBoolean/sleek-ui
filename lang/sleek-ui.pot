@@ -1,0 +1,109 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2025-05-29 10:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ui/sleek-ui/widgets/collapse.slint:14
+msgctxt "UCollapse"
+msgid "A collapse hiding widgets when closed and showing them when opened."
+msgstr ""
+
+#: ui/sleek-ui/widgets/collapse.slint:57
+msgctxt "UCollapse"
+msgid "Title for the collapse"
+msgstr ""
+
+#: ui/sleek-ui/widgets/link.slint:12
+msgctxt "ULink"
+msgid "A link that opens an URL or window when clicked"
+msgstr ""
+
+#: ui/sleek-ui/widgets/spinner.slint:6
+msgctxt "USpinner"
+msgid "Loading spinner."
+msgstr ""
+
+#: ui/sleek-ui/widgets/alert.slint:58
+msgctxt "UAlert"
+msgid "Close button for alert"
+msgstr ""
+
+#: ui/sleek-ui/widgets/input-number.slint:63
+msgctxt "UInputNumber"
+msgid "Decrease number input value."
+msgstr ""
+
+#: ui/sleek-ui/widgets/input-number.slint:149
+msgctxt "UInputNumber"
+msgid "Increase number input value."
+msgstr ""
+
+#: ui/sleek-ui/widgets/input.slint:92
+msgctxt "UInput"
+msgid "Clear input."
+msgstr ""
+
+#: ui/sleek-ui/widgets/input.slint:114
+msgctxt "UInput"
+msgid "Show password input content."
+msgstr ""
+
+#: ui/sleek-ui/widgets/modal.slint:18
+msgctxt "UModal"
+msgid "Done"
+msgstr ""
+
+#: ui/sleek-ui/widgets/modal.slint:19
+msgctxt "UModal"
+msgid "Cancel"
+msgstr ""
+
+#: ui/sleek-ui/widgets/modal.slint:65
+msgctxt "UModal"
+msgid "Background panel for modal."
+msgstr ""
+
+#: ui/sleek-ui/widgets/modal.slint:66
+msgctxt "UModal"
+msgid "Close the modal if is is enabled."
+msgstr ""
+
+#: ui/sleek-ui/widgets/modal.slint:102
+msgctxt "UModal"
+msgid "Title for the modal"
+msgstr ""
+
+#: ui/sleek-ui/widgets/modal.slint:114
+msgctxt "UModal"
+msgid "Close button for modal."
+msgstr ""
+
+#: ui/sleek-ui/widgets/modal.slint:149
+msgctxt "UModal"
+msgid "Cancel or refuse button for modal."
+msgstr ""
+
+#: ui/sleek-ui/widgets/modal.slint:163
+msgctxt "UModal"
+msgid "Accept or done button for modal."
+msgstr ""
+
+#: ui/sleek-ui/widgets/notification.slint:61
+msgctxt "UNotification"
+msgid "Close button for notification"
+msgstr ""
+
+#: ui/sleek-ui/widgets/notification.slint:84
+msgctxt "UNotification"
+msgid "Notification content"
+msgstr ""
+

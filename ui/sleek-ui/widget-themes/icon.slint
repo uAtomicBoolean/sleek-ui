@@ -1,0 +1,15 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct UIconTheme {
+	size: length,
+	color: brush,
+}
+
+
+export global UIconThemes {
+    out property <UIconTheme> default: {
+        size: UAppTheme.icon-size-base,
+        color: UAppTheme.text,
+    };
+}

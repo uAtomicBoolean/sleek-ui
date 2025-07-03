@@ -1,0 +1,96 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+
+import { UText } from "./text.slint";
+
+import { URadioButtonTheme, URadioButtonThemes } from "../widget-themes/radio-button.slint";
+
+
+
+export component URadioButton {
+    in-out property <URadioButtonTheme> theme: URadioButtonThemes.default;
+    in-out property <[string]> options;
+    in-out property <string> selected-value: options[0];
+    callback selected(value: string);
+
+    HorizontalLayout {
+        for option[idx] in root.options: ButtonInterface {
+            background: theme.background;
+            border-width: theme.border-width;
+            border-color: theme.border-color;
+            init => {
+                if idx == 0 {
+                    self.border-top-left-radius = theme.border-radius;
+                    self.border-bottom-left-radius = theme.border-radius;
+                } else if idx == options.length - 1 {
+                    self.border-top-right-radius = theme.border-radius;
+                    self.border-bottom-right-radius = theme.border-radius;
+                }
+            }
+            clicked => {
+                selected-value = option;
+                root.selected(option);
+            }
+            HorizontalLayout {
+                alignment: center;
+                padding-top: theme.padding-vertical;
+                padding-bottom: theme.padding-vertical;
+                padding-left: theme.padding-horizontal;
+                padding-right: theme.padding-horizontal;
+                VerticalLayout {
+                    alignment: center;
+                    option-text := UText {
+                        text: option;
+                        color: theme.text-color;
+                        font-size: theme.font-size;
+                    }
+                }
+            }
+
+            states [
+                focus-not-selected-hover when self.has-focus && selected-value != option && self.has-hover: {
+                    border-width: UAppTheme.focus-border-width;
+                    border-color: UAppTheme.focus-color;
+                    background: theme.background-hover;
+                    option-text.color: theme.text-color-hover;
+                }
+                focus-selected-hover when self.has-focus && selected-value == option && self.has-hover: {
+                    border-width: UAppTheme.focus-border-width;
+                    border-color: UAppTheme.focus-color;
+                    background: theme.background-selected-hover;
+                    option-text.color: theme.text-color-selected-hover;
+                }
+                focus-selected when self.has-focus && selected-value == option: {
+                    border-width: UAppTheme.focus-border-width;
+                    border-color: UAppTheme.focus-color;
+                    background: theme.background-selected;
+                    option-text.color: theme.text-color-selected;
+                }
+                focus when self.has-focus: {
+                    border-width: UAppTheme.focus-border-width;
+                    border-color: UAppTheme.focus-color;
+                }
+                active-selected when self.pressed && selected-value == option: {
+                    background: theme.background-selected-active;
+                    border-color: theme.border-color-selected-active;
+                    option-text.color: theme.text-color-selected-active;
+                }
+                hover-not-selected when self.has-hover && selected-value != option: {
+                    background: theme.background-hover;
+                    border-color: theme.border-color-hover;
+                    option-text.color: theme.text-color-hover;
+                }
+                hover-selected when self.has-hover && selected-value == option: {
+                    background: theme.background-selected-hover;
+                    border-color: theme.border-color-selected-hover;
+                    option-text.color: theme.text-color-selected-hover;
+                }
+                selected when selected-value == option: {
+                    background: theme.background-selected;
+                    border-color: theme.border-color-selected;
+                    option-text.color: theme.text-color-selected;
+                }
+            ]
+        }
+    }
+}

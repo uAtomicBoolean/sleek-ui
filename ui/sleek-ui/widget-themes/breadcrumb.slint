@@ -1,0 +1,34 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct UBreadcrumbTheme {
+	spacing: length,
+	icon-separator: image,
+	separator-size: length,
+	separator-color: brush,
+	text-color: brush,
+	font-size: length,
+	font-weight: int,
+	hover-text-color: brush,
+	hover-font-size: length,
+	hover-font-weight: int,
+	active-text-color: brush,
+	active-font-size: length,
+	active-font-weight: int,
+}
+
+
+export global UBreadcrumbThemes {
+    out property <UBreadcrumbTheme> default: {
+        spacing: UAppTheme.spacing-medium,
+        icon-separator: @image-url("../assets/icons/chevron-right.svg"),
+        separator-size: UAppTheme.icon-size-base,
+        separator-color: UAppTheme.text-secondary,
+        text-color: UAppTheme.text-secondary,
+        font-size: UAppTheme.font-size-base,
+        hover-text-color: UAppTheme.text-disabled,
+        hover-font-size: UAppTheme.font-size-base,
+        active-text-color: UAppTheme.primary,
+        active-font-size: UAppTheme.font-size-base,
+    };
+}

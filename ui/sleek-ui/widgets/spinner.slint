@@ -1,0 +1,18 @@
+import { USpinnerTheme, USpinnerThemes } from "../widget-themes/spinner.slint";
+
+
+export component USpinner inherits Image {
+    accessible-role: image;
+    accessible-label: @tr("Loading spinner.");
+    in-out property <USpinnerTheme> theme: USpinnerThemes.default;
+    in property <length> size: theme.size;
+    colorize: theme.color;
+    width: size;
+    height: size;
+    source: @image-url("../assets/icons/loader-circle.svg");
+    rotation-angle: 240deg * animation-tick() / 1s;
+    animate rotation-angle {
+        easing: ease-in-out;
+        iteration-count: -1;
+    }
+}

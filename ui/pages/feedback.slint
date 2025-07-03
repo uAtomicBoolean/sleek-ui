@@ -1,0 +1,121 @@
+import {
+	UAlert,
+	UButton,
+	UNotification,
+	UPopover,
+	UText,
+	UTitle
+} from "../sleek-ui/widgets.slint";
+import { UAlertThemes, UNotificationThemes, UTitleThemes } from "../sleek-ui/widget-themes.slint";
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { ScrollView } from "std-widgets.slint";
+
+export component Feedback {
+    callback open-modal <=> open-modal-btn.clicked;
+    ScrollView {
+        VerticalLayout {
+            alignment: start;
+            padding: 10px * UAppTheme.scale-factor;
+            HorizontalLayout {
+                alignment: start;
+                padding-bottom: 36px * UAppTheme.scale-factor;
+                UTitle {
+                    theme: UTitleThemes.level-4;
+                    text: "Feedback";
+                }
+            }
+
+            UText {
+                text: "Alert";
+                font-weight: 600;
+            }
+
+            VerticalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                UAlert {
+                    message: "This is a basic alert.";
+                }
+
+                UAlert {
+                    theme: UAlertThemes.success;
+                    display-close-button: true;
+                    message: "It can come with a close button.";
+                }
+            }
+
+            UText {
+                text: "Notification";
+                font-weight: 600;
+            }
+
+            VerticalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                UNotification {
+                    title: "New message";
+                    message: "You have 5 new messages";
+                    width: 400px * UAppTheme.scale-factor;
+                }
+
+                UNotification {
+                    theme: UNotificationThemes.warning;
+                    title: "New message";
+                    message: "A notification can also represent a warning or an error. And a message can take multiple lines in the notification.";
+                    width: 400px * UAppTheme.scale-factor;
+                    single-line-message: false;
+                }
+            }
+
+            UText {
+                text: "Modal";
+                font-weight: 600;
+            }
+
+            HorizontalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                open-modal-btn := UButton {
+                    text: "Open modal";
+                }
+            }
+
+            UText {
+                text: "Popover";
+                font-weight: 600;
+            }
+
+            HorizontalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                popover-btn := UButton {
+                    text: "Open popover";
+                    clicked => {
+                        popover.show();
+                    }
+                }
+
+                popover := UPopover {
+                    x: popover-btn.x;
+                    y: popover-btn.y + popover-btn.height;
+                    width: popover-btn.width;
+                    close-policy: close-on-click-outside;
+                    VerticalLayout {
+                        padding: UAppTheme.padding-base;
+                        UText {
+                            text: "Popover opened";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

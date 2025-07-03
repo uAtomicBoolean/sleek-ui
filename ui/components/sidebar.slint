@@ -1,0 +1,170 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UDivider, UText, UTitle } from "../sleek-ui/widgets.slint";
+import { UTitleThemes } from "../sleek-ui/widget-themes.slint";
+
+
+export global SidebarLogic {
+    in-out property <string> current-page: "Controls";
+}
+
+export component Sidebar inherits Rectangle {
+    width: 200px;
+    HorizontalLayout {
+        VerticalLayout {
+            alignment: start;
+            horizontal-stretch: 1;
+            HorizontalLayout {
+                padding: UAppTheme.padding-base;
+                padding-top: UAppTheme.padding-big;
+                UTitle {
+                    horizontal-alignment: center;
+                    theme: UTitleThemes.level-5;
+                    text: "Sleek-ui Widgets Gallery";
+                    font-weight: 600;
+                    wrap: word-wrap;
+                }
+            }
+
+            Rectangle {
+                height: 40px;
+            }
+
+            HorizontalLayout {
+                padding: UAppTheme.padding-small;
+                Rectangle {
+                    border-radius: UAppTheme.radius-base;
+                    HorizontalLayout {
+                        padding: 6px;
+                        UText {
+                            text: "Controls";
+                            states [
+                                active when SidebarLogic.current-page == "Controls": {
+                                    color: UAppTheme.primary;
+                                }
+                            ]
+                        }
+                    }
+
+                    ctrls-touch := TouchArea {
+                        clicked => {
+                            SidebarLogic.current-page = "Controls";
+                        }
+                    }
+
+                    states [
+                        active when SidebarLogic.current-page == "Controls": {
+                            background: UAppTheme.primary-selected;
+                        }
+                        hover when ctrls-touch.has-hover: {
+                            background: UAppTheme.color-fill-tertiary;
+                        }
+                    ]
+                }
+            }
+
+            HorizontalLayout {
+                padding: UAppTheme.padding-small;
+                Rectangle {
+                    border-radius: UAppTheme.radius-base;
+                    HorizontalLayout {
+                        padding: 6px;
+                        UText {
+                            text: "Data display";
+                            states [
+                                active when SidebarLogic.current-page == "Data display": {
+                                    color: UAppTheme.primary;
+                                }
+                            ]
+                        }
+                    }
+
+                    dd-touch := TouchArea {
+                        clicked => {
+                            SidebarLogic.current-page = "Data display";
+                        }
+                    }
+
+                    states [
+                        active when SidebarLogic.current-page == "Data display": {
+                            background: UAppTheme.primary-selected;
+                        }
+                        hover when dd-touch.has-hover: {
+                            background: UAppTheme.color-fill-tertiary;
+                        }
+                    ]
+                }
+            }
+
+            HorizontalLayout {
+                padding: UAppTheme.padding-small;
+                Rectangle {
+                    border-radius: UAppTheme.radius-base;
+                    HorizontalLayout {
+                        padding: 6px;
+                        UText {
+                            text: "Feedback";
+                            states [
+                                active when SidebarLogic.current-page == "Feedback": {
+                                    color: UAppTheme.primary;
+                                }
+                            ]
+                        }
+                    }
+
+                    fb-touch := TouchArea {
+                        clicked => {
+                            SidebarLogic.current-page = "Feedback";
+                        }
+                    }
+
+                    states [
+                        active when SidebarLogic.current-page == "Feedback": {
+                            background: UAppTheme.primary-selected;
+                        }
+                        hover when fb-touch.has-hover: {
+                            background: UAppTheme.color-fill-tertiary;
+                        }
+                    ]
+                }
+            }
+
+            HorizontalLayout {
+                padding: UAppTheme.padding-small;
+                Rectangle {
+                    border-radius: UAppTheme.radius-base;
+                    HorizontalLayout {
+                        padding: 6px;
+                        UText {
+                            text: "About";
+                            states [
+                                active when SidebarLogic.current-page == "About": {
+                                    color: UAppTheme.primary;
+                                }
+                            ]
+                        }
+                    }
+
+                    about-touch := TouchArea {
+                        clicked => {
+                            SidebarLogic.current-page = "About";
+                        }
+                    }
+
+                    states [
+                        active when SidebarLogic.current-page == "About": {
+                            background: UAppTheme.primary-selected;
+                        }
+                        hover when about-touch.has-hover: {
+                            background: UAppTheme.color-fill-tertiary;
+                        }
+                    ]
+                }
+            }
+        }
+
+        UDivider {
+            orientation: vertical;
+            height: 100%;
+        }
+    }
+}

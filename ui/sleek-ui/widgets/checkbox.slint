@@ -1,0 +1,109 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+import { IconTextPlacement } from "../utils/structs.slint";
+import { UCheckboxTheme, UCheckboxThemes } from "../widget-themes/checkbox.slint";
+import { UText } from "text.slint";
+
+
+export component UCheckbox inherits ButtonInterface {
+	// Accessability properties
+	accessible-role: AccessibleRole.checkbox;
+    accessible-checkable: true;
+    accessible-checked: self.checked;
+    accessible-action-default => {
+        self.clicked()
+    }
+	// Regular properties
+    in-out property <UCheckboxTheme> theme: UCheckboxThemes.primary;
+    in-out property <bool> checked: false;
+    in-out property <string> text;
+    in-out property <IconTextPlacement> text-placement: start;
+    border-radius: theme.border-radius;
+
+    HorizontalLayout {
+        alignment: theme.alignment;
+        spacing: theme.text-spacing;
+        if text-placement == IconTextPlacement.start: VerticalLayout {
+            alignment: center;
+            UText {
+                text: text;
+                color: theme.text-color;
+                states [
+                    disabled when !root.enabled: {
+                        color: theme.text-color-disabled;
+                    }
+                ]
+            }
+        }
+
+        VerticalLayout {
+            alignment: center;
+            Rectangle {
+                background: theme.background-unchecked;
+                border-width: theme.border-width;
+                border-radius: theme.border-radius;
+                border-color: theme.border-color;
+                width: theme.size;
+                height: theme.size;
+                VerticalLayout {
+                    alignment: center;
+                    HorizontalLayout {
+                        alignment: center;
+                        Image {
+                            source: @image-url("../assets/icons/check.svg");
+                            colorize: theme.check-icon-color;
+                            width: checked ? theme.check-icon-size : 0px;
+                            height: checked ? theme.check-icon-size : 0px;
+                            animate width, height { duration: 200ms; }
+                        }
+                    }
+                }
+
+                states [
+                    disabled-checked when !root.enabled && root.checked: {
+                        border-color: theme.border-color-disabled;
+                        background: theme.background-disabled-checked;
+                    }
+                    disabled-unchecked when !root.enabled && !root.checked: {
+                        border-color: theme.border-color-disabled;
+                        background: theme.background-disabled-unchecked;
+                    }
+                    hover-unchecked when root.has-hover && !checked: {
+                        border-color: theme.border-color-hover;
+                    }
+                    hover-checked when root.has-hover && checked: {
+                        background: theme.background-checked-hover;
+                        border-color: theme.background-checked-hover;
+                    }
+                    checked when checked: {
+                        background: theme.background-checked;
+                        border-color: theme.background-checked;
+                    }
+                ]
+            }
+        }
+
+        if text-placement == IconTextPlacement.end: VerticalLayout {
+            alignment: center;
+            UText {
+                text: text;
+                color: theme.text-color;
+                states [
+                    disabled when !root.enabled: {
+                        color: theme.text-color-disabled;
+                    }
+                ]
+            }
+        }
+    }
+
+    clicked => {
+        checked = !checked;
+    }
+    states [
+        focused when root.has-focus: {
+            border-width: UAppTheme.focus-border-width;
+            border-color: UAppTheme.focus-color;
+        }
+    ]
+}

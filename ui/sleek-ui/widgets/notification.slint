@@ -1,0 +1,88 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+
+import { UIcon } from "icon.slint";
+import { UText } from "text.slint";
+import { UIconButton } from "icon-button.slint";
+
+import { UIconButtonThemes } from "../widget-themes/icon-button.slint";
+import { UNotificationTheme, UNotificationThemes } from "../widget-themes/notification.slint";
+
+
+export component UNotification inherits ButtonInterface {
+    in-out property <UNotificationTheme> theme: UNotificationThemes.info;
+    in-out property <string> title;
+    in-out property <string> message;
+    in-out property <bool> single-line-message: true;
+    callback close <=> close-button.clicked;
+    min-width: 300px * UAppTheme.scale-factor;
+    background: theme.background;
+    border-radius: theme.border-radius;
+    border-width: root.has-focus ? UAppTheme.focus-border-width : theme.border-width;
+    border-color: root.has-focus ? UAppTheme.focus-color : theme.border-color;
+    drop-shadow-blur: theme.drop-shadow-blur;
+    drop-shadow-color: theme.drop-shadow-color;
+    drop-shadow-offset-y: theme.drop-shadow-offset-y;
+    VerticalLayout {
+        padding: UAppTheme.padding-base;
+        HorizontalLayout {
+            padding-top: theme.title-vertical-padding;
+            padding-bottom: theme.title-vertical-padding;
+            padding-left: theme.title-horizontal-padding;
+            padding-right: theme.title-horizontal-padding;
+            VerticalLayout {
+                alignment: center;
+                padding-right: UAppTheme.padding-medium;
+                UIcon {
+                    source: theme.icon-image;
+                    colorize: theme.icon-color;
+                    size: theme.icon-size;
+                    accessible-role: none;
+                }
+            }
+
+            VerticalLayout {
+                alignment: center;
+                horizontal-stretch: 1;
+                padding-top: -2px; // Offset text to have it correctly centered.
+				UText {
+                    text: title;
+                    wrap: no-wrap;
+                    overflow: elide;
+                    font-size: theme.title-font-size;
+                }
+            }
+
+            VerticalLayout {
+                alignment: center;
+                close-button := UIconButton {
+                    theme: theme.close-button-theme;
+                    icon: @image-url("../assets/icons/x.svg");
+                    accessible-label: @tr("Close button for notification");
+                    accessible-action-default => {
+                        self.clicked();
+                    }
+                }
+            }
+        }
+
+        if message != "": HorizontalLayout {
+            padding-top: theme.content-padding-top;
+            padding-bottom: theme.content-padding-bottom;
+            padding-left: theme.content-padding-left;
+            padding-right: theme.content-padding-right;
+            alignment: start;
+            UText {
+                init => {
+                    if root.single-line-message {
+                        self.overflow = TextOverflow.elide;
+                    } else {
+                        self.wrap = TextWrap.word-wrap;
+                    }
+                }
+                text: root.message;
+                accessible-label: @tr("Notification content");
+            }
+        }
+    }
+}

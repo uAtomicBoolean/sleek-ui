@@ -1,0 +1,69 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+
+import { UIcon } from "icon.slint";
+import { UText } from "text.slint";
+import { UIconButton } from "icon-button.slint";
+
+import { UIconButtonThemes } from "../widget-themes/icon-button.slint";
+import { UAlertTheme, UAlertThemes } from "../widget-themes/alert.slint";
+
+
+export component UAlert inherits Rectangle {
+    in-out property <UAlertTheme> theme: UAlertThemes.info;
+    in-out property <string> message;
+    in-out property <bool> display-close-button: false;
+    callback close();
+    min-width: 300px * UAppTheme.scale-factor;
+    background: theme.background;
+    border-radius: theme.border-radius;
+    border-color: theme.border-color;
+    border-width: theme.border-width;
+    VerticalLayout {
+        padding-top: theme.vertical-padding;
+        padding-bottom: theme.vertical-padding;
+        padding-left: theme.horizontal-padding;
+        padding-right: theme.horizontal-padding;
+        HorizontalLayout {
+            VerticalLayout {
+                alignment: center;
+                padding-right: UAppTheme.padding-big;
+                UIcon {
+                    source: theme.icon-image;
+                    colorize: theme.icon-color;
+                    size: theme.icon-size;
+                    accessible-role: none;
+                }
+            }
+
+            VerticalLayout {
+                alignment: center;
+                horizontal-stretch: 1;
+                padding-top: UAppTheme.padding-vertical;
+                padding-bottom: UAppTheme.padding-vertical;
+                UText {
+                    text: message;
+                    wrap: no-wrap;
+                    overflow: elide;
+                    color: theme.text-color;
+                    font-size: theme.text-font-size;
+                }
+            }
+
+            if display-close-button: VerticalLayout {
+                alignment: center;
+                close-button := UIconButton {
+                    theme: theme.close-button-theme;
+                    icon: @image-url("../assets/icons/x.svg");
+                    accessible-label: @tr("Close button for alert");
+                    accessible-action-default => {
+                        self.clicked();
+                    }
+                    clicked => {
+                        root.close();
+                    }
+                }
+            }
+        }
+    }
+}

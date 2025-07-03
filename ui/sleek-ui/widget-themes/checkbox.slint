@@ -1,0 +1,45 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct UCheckboxTheme {
+	size: length,
+	alignment: LayoutAlignment,
+	text-spacing: length,
+	text-color: brush,
+	text-color-disabled: brush,
+	background-checked: brush,
+	background-checked-hover: brush,
+	background-unchecked: brush,
+	background-disabled-checked: brush,
+	background-disabled-unchecked: brush,
+	border-width: length,
+	border-radius: length,
+	border-color: brush,
+	border-color-hover: brush,
+	border-color-disabled: brush,
+	check-icon-size: length,
+	check-icon-color: brush,
+}
+
+
+export global UCheckboxThemes {
+    out property <UCheckboxTheme> primary: {
+        size: UAppTheme.font-size-base * 1.2,
+        alignment: LayoutAlignment.space-between,
+        text-spacing: UAppTheme.spacing-base,
+        text-color: UAppTheme.text,
+        text-color-disabled: UAppTheme.text-disabled,
+        background-checked: UAppTheme.primary,
+        background-checked-hover: UAppTheme.primary-hover,
+        background-unchecked: Colors.transparent,
+        background-disabled-checked: UAppTheme.primary-disabled,
+        background-disabled-unchecked: UAppTheme.color-fill-tertiary,
+        border-width: 1px * UAppTheme.scale-factor,
+        border-radius: UAppTheme.radius-base,
+        border-color: UAppTheme.border,
+        border-color-hover: UAppTheme.primary-hover,
+        border-color-disabled: UAppTheme.border,
+        check-icon-size: UAppTheme.font-size-base * 0.8,
+        check-icon-color: Colors.white,
+    };
+}

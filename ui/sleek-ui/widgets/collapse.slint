@@ -1,0 +1,75 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+
+import { UIcon } from "icon.slint";
+import { UText } from "text.slint";
+
+import { UCollapseTheme, UCollapseThemes } from "../widget-themes/collapse.slint";
+
+
+export component UCollapse inherits ButtonInterface {
+	// Accessability properties
+	accessible-role: button;
+    accessible-label: self.title;
+    accessible-description: @tr("A collapse hiding widgets when closed and showing them when opened.");
+    accessible-expandable: true;
+    accessible-expanded: self.collapse-open;
+    accessible-action-default => {
+        self.clicked()
+    }
+	// Regular properties
+    in-out property <UCollapseTheme> theme: UCollapseThemes.default;
+    in-out property <string> title <=> collapse-title.text;
+    in-out property <bool> collapse-open: false;
+    in-out property <length> content-width <=> collapse-content.width;
+    in-out property <length> content-height: 100px * UAppTheme.scale-factor;
+    background: theme.background;
+    border-width: theme.border-width;
+    border-color: theme.border-color;
+    border-radius: theme.border-radius;
+
+    clicked => {
+        collapse-open = !collapse-open;
+    }
+
+    VerticalLayout {
+        alignment: start;
+        HorizontalLayout {
+            alignment: start;
+            spacing: UAppTheme.spacing-base;
+            UIcon {
+                size: root.theme.icon-size;
+                colorize: root.theme.icon-color;
+                source: @image-url("../assets/icons/chevron-down.svg");
+                rotation-angle: root.collapse-open ? 180deg : 0deg;
+                animate rotation-angle {
+                    easing: ease;
+                    duration: 200ms;
+                }
+            }
+
+            VerticalLayout {
+                alignment: center;
+                collapse-title := UText {
+                    color: root.theme.text-color;
+                    font-size: root.theme.font-size;
+                    font-weight: root.theme.font-weight;
+                    accessible-label: @tr("Title for the collapse");
+                }
+            }
+        }
+
+        collapse-content := Rectangle {
+            z: -10;
+            clip: true;
+            height: root.collapse-open ? root.content-height : 0px;
+
+            animate height {
+                easing: ease;
+                duration: 200ms;
+            }
+
+            @children
+        }
+    }
+}

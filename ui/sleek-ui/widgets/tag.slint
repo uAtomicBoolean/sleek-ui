@@ -1,0 +1,44 @@
+import { UIcon } from "icon.slint";
+import { UText } from "text.slint";
+import { UTagTheme, UTagThemes } from "../widget-themes/tag.slint";
+import { IconTextPlacement } from "../utils/structs.slint";
+
+
+export component UTag inherits Rectangle {
+	// Accessability properties
+	accessible-role: AccessibleRole.text;
+    accessible-label: self.text;
+	// Regular properties
+    in-out property <UTagTheme> theme: UTagThemes.primary;
+    in-out property <color> text-color: theme.text-color;
+    in-out property <color> background-color: theme.background;
+    in-out property <string> text <=> badge-text.text;
+    in-out property <image> icon;
+    in-out property <IconTextPlacement> icon-placement: hidden;
+    background: background-color;
+    border-width: theme.border-width;
+    border-radius: theme.border-radius;
+    border-color: theme.border-color;
+    HorizontalLayout {
+        spacing: theme.content-spacing;
+        padding-top: theme.padding-vertical;
+        padding-bottom: theme.padding-vertical;
+        padding-left: theme.padding-horizontal;
+        padding-right: theme.padding-horizontal;
+        if icon-placement == IconTextPlacement.start: UIcon {
+            source: icon;
+            size: theme.icon-size;
+            colorize: theme.text-color;
+        }
+        badge-text := UText {
+            font-size: theme.text-size;
+            color: text-color;
+        }
+
+        if icon-placement == IconTextPlacement.end: UIcon {
+            source: icon;
+            size: theme.icon-size;
+            colorize: theme.text-color;
+        }
+    }
+}

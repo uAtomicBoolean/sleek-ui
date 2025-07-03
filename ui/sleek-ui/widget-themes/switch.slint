@@ -1,0 +1,35 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct USwitchTheme {
+	foreground-checked: brush,
+	foreground-checked-disabled: brush,
+	background-checked: brush,
+	background-checked-hover: brush,
+	background-checked-disabled: brush,
+	foreground-unchecked: brush,
+	foreground-unchecked-disabled: brush,
+	background-unchecked: brush,
+	background-unchecked-hover: brush,
+	background-unchecked-disabled: brush,
+	radius: length,
+	size: length,
+}
+
+
+export global USwitchThemes {
+    out property <USwitchTheme> default: {
+        foreground-checked: Colors.white,
+        foreground-checked-disabled: UAppTheme.color-fill-plus,
+        background-checked: UAppTheme.primary,
+        background-checked-hover: UAppTheme.primary-hover,
+        background-checked-disabled: UAppTheme.primary-disabled,
+        foreground-unchecked: Colors.white,
+        foreground-unchecked-disabled: UAppTheme.color-fill-plus,
+        background-unchecked: UAppTheme.color-fill,
+        background-unchecked-hover: UAppTheme.color-fill-plus,
+        background-unchecked-disabled: UAppTheme.color-fill-secondary,
+        radius: UAppTheme.radius-round,
+        size: 40px * UAppTheme.scale-factor,
+    };
+}

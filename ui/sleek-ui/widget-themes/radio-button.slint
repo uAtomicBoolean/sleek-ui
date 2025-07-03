@@ -1,0 +1,66 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct URadioButtonTheme {
+	background: brush,
+	background-hover: brush,
+	background-selected: brush,
+	background-selected-hover: brush,
+	background-selected-active: brush,
+	border-width: length,
+	border-radius: length,
+	border-color: brush,
+	border-color-hover: brush,
+	border-color-selected: brush,
+	border-color-selected-hover: brush,
+	border-color-selected-active: brush,
+	text-color: brush,
+	text-color-hover: brush,
+	text-color-selected: brush,
+	text-color-selected-hover: brush,
+	text-color-selected-active: brush,
+	font-size: length,
+	padding-vertical: length,
+	padding-horizontal: length,
+}
+
+
+export global URadioButtonThemes {
+    out property <URadioButtonTheme> default: {
+        border-width: 1px * UAppTheme.scale-factor,
+        border-radius: UAppTheme.radius-base,
+        border-color: UAppTheme.border,
+        border-color-hover: UAppTheme.border,
+        border-color-selected: UAppTheme.primary,
+        border-color-selected-hover: UAppTheme.primary-hover,
+        border-color-selected-active: UAppTheme.primary-active,
+        text-color: UAppTheme.text,
+        text-color-hover: UAppTheme.primary,
+        text-color-selected: UAppTheme.primary,
+        text-color-selected-hover: UAppTheme.primary-hover,
+        text-color-selected-active: UAppTheme.primary-active,
+        font-size: UAppTheme.font-size-base,
+        padding-vertical: UAppTheme.padding-vertical,
+        padding-horizontal: UAppTheme.padding-horizontal
+    };
+    out property <URadioButtonTheme> primary: {
+        background-selected: UAppTheme.primary,
+        background-selected-hover: UAppTheme.primary-hover,
+        background-selected-active: UAppTheme.primary-active,
+        border-width: 1px * UAppTheme.scale-factor,
+        border-radius: UAppTheme.radius-base,
+        border-color: UAppTheme.border,
+        border-color-hover: UAppTheme.border,
+        border-color-selected: UAppTheme.primary,
+        border-color-selected-hover: UAppTheme.primary-hover,
+        border-color-selected-active: UAppTheme.primary-active,
+        text-color: UAppTheme.text,
+        text-color-hover: UAppTheme.primary,
+        text-color-selected: Colors.white,
+        text-color-selected-hover: Colors.white,
+        text-color-selected-active: Colors.white,
+        font-size: UAppTheme.font-size-base,
+        padding-vertical: UAppTheme.padding-vertical,
+        padding-horizontal: UAppTheme.padding-horizontal
+    };
+}

@@ -1,0 +1,21 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct UCardTheme {
+	background: brush,
+	border-radius: length,
+	drop-shadow-blur: length,
+	drop-shadow-color: color,
+	drop-shadow-offset-y: length,
+}
+
+
+export global UCardThemes {
+    out property <UCardTheme> default: {
+        background: UAppTheme.bg-elevated,
+        border-radius: UAppTheme.radius-base,
+        drop-shadow-blur: UAppTheme.shadow-blur,
+        drop-shadow-color: UAppTheme.shadow-color,
+        drop-shadow-offset-y: UAppTheme.shadow-y-offset,
+    };
+}

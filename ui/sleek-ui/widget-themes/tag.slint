@@ -1,0 +1,59 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct UTagTheme {
+	background: brush,
+	text-size: length,
+	text-color: brush,
+	icon-size: length,
+	border-width: length,
+	border-color: brush,
+	border-radius: length,
+	padding-vertical: length,
+	padding-horizontal: length,
+	content-spacing: length,
+}
+
+
+export global UTagThemes {
+    out property <UTagTheme> primary: {
+        background: UAppTheme.primary-selected,
+        text-size: UAppTheme.font-size-small,
+        icon-size: UAppTheme.font-size-base,
+        text-color: UAppTheme.primary,
+        border-radius: UAppTheme.radius-base,
+        padding-vertical: UAppTheme.padding-vertical / 1.5,
+        padding-horizontal: UAppTheme.padding-horizontal / 1.5,
+        content-spacing: UAppTheme.spacing-small,
+    };
+    out property <UTagTheme> danger: {
+        background: UAppTheme.danger-selected,
+        text-size: UAppTheme.font-size-small,
+        icon-size: UAppTheme.font-size-base,
+        text-color: UAppTheme.danger,
+        border-radius: UAppTheme.radius-base,
+        padding-vertical: UAppTheme.padding-vertical / 1.5,
+        padding-horizontal: UAppTheme.padding-horizontal / 1.5,
+        content-spacing: UAppTheme.spacing-small,
+    };
+    out property <UTagTheme> warning: {
+        background: UAppTheme.warning-selected,
+        text-size: UAppTheme.font-size-small,
+        icon-size: UAppTheme.font-size-base,
+        text-color: UAppTheme.warning,
+        border-radius: UAppTheme.radius-base,
+        padding-vertical: UAppTheme.padding-vertical / 1.5,
+        padding-horizontal: UAppTheme.padding-horizontal / 1.5,
+        content-spacing: UAppTheme.spacing-small,
+    };
+    out property <UTagTheme> success: {
+        background: UAppTheme.success-selected,
+        text-size: UAppTheme.font-size-small,
+        icon-size: UAppTheme.font-size-base,
+        text-color: UAppTheme.success,
+        border-radius: UAppTheme.radius-base,
+        padding-vertical: UAppTheme.padding-vertical / 1.5,
+        padding-horizontal: UAppTheme.padding-horizontal / 1.5,
+        content-spacing: UAppTheme.spacing-small,
+    };
+}

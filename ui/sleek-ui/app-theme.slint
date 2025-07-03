@@ -1,0 +1,105 @@
+import { ThemeColors, ThemeColorsVariants } from "theme-colors.slint";
+import { Palette } from "std-widgets.slint";
+
+export global UAppTheme {
+    in-out property <ThemeColors> light-theme: ThemeColorsVariants.light-theme;
+    in-out property <ThemeColors> dark-theme: ThemeColorsVariants.dark-theme;
+    in-out property <ThemeColors> theme: Palette.color-scheme == ColorScheme.dark ? dark-theme : light-theme;
+    in-out property <float> scale-factor: 1;
+
+    // Primary color.
+    in-out property <color> primary: theme.primary;
+    in-out property <color> primary-hover: theme.primary-hover;
+    in-out property <color> primary-active: theme.primary-active;
+    in-out property <color> primary-disabled: theme.primary-disabled;
+    in-out property <color> primary-selected: theme.primary-selected;
+
+    // Success color.
+    in-out property <color> success: theme.success;
+    in-out property <color> success-hover: theme.success-hover;
+    in-out property <color> success-active: theme.success-active;
+    in-out property <color> success-disabled: theme.success-disabled;
+    in-out property <color> success-selected: theme.success-selected;
+
+    // Warning color.
+    in-out property <color> warning: theme.warning;
+    in-out property <color> warning-hover: theme.warning-hover;
+    in-out property <color> warning-active: theme.warning-active;
+    in-out property <color> warning-disabled: theme.warning-disabled;
+    in-out property <color> warning-selected: theme.warning-selected;
+
+    // Danger color.
+    in-out property <color> danger: theme.danger;
+    in-out property <color> danger-hover: theme.danger-hover;
+    in-out property <color> danger-active: theme.danger-active;
+    in-out property <color> danger-disabled: theme.danger-disabled;
+    in-out property <color> danger-selected: theme.danger-selected;
+	
+	// Background color
+    in-out property <color> bg-container: theme.bg-container;
+    in-out property <color> bg-elevated: theme.bg-elevated;
+    in-out property <color> bg-layout: theme.bg-layout;
+
+	// Color fill
+    in-out property <color> color-fill-plus: theme.color-fill-plus;
+    in-out property <color> color-fill: theme.color-fill;
+    in-out property <color> color-fill-secondary: theme.color-fill-secondary;
+    in-out property <color> color-fill-tertiary: theme.color-fill-tertiary;
+    in-out property <color> color-fill-quaternary: theme.color-fill-quaternary;
+	
+    // Shadow
+    in-out property <length> shadow-blur: 16px * scale-factor;
+    in-out property <color> shadow-color: theme.shadow-color;
+    in-out property <length> shadow-x-offset: 0px * scale-factor;
+    in-out property <length> shadow-y-offset: 6px * scale-factor;
+
+	// Text color
+    in-out property <color> inverse-text: theme.inverse-text;
+    in-out property <color> text: theme.text;
+    in-out property <color> text-secondary: theme.text-secondary;
+    in-out property <color> text-heading: theme.text-heading;
+    in-out property <color> text-disabled: theme.text-disabled;
+
+    // Font size
+    in-out property <length> font-size-smaller: 10px * scale-factor;
+    in-out property <length> font-size-small: 12px * scale-factor;
+    in-out property <length> font-size-base: 14px * scale-factor;
+    in-out property <length> font-size-medium: 16px * scale-factor;
+    in-out property <length> font-size-big: 18px * scale-factor;
+    in-out property <length> font-size-bigger: 20px * scale-factor;
+
+	// Focus display
+    in-out property <color> focus-color: theme.focus-color;
+    in-out property <length> focus-border-width: 2px * scale-factor;
+
+    // Borders
+    in-out property <color> border: theme.border;
+    in-out property <color> border-secondary: theme.border-secondary;
+    in-out property <color> separator: theme.separator;
+
+    // Icons
+    in-out property <length> icon-size-base: 16px * scale-factor;
+
+    // Padding
+    in-out property <length> padding-vertical: 5px * scale-factor;
+    in-out property <length> padding-horizontal: 14px * scale-factor;
+    in-out property <length> padding-small: 2px * scale-factor;
+    in-out property <length> padding-base: 4px * scale-factor;
+    in-out property <length> padding-medium: 8px * scale-factor;
+    in-out property <length> padding-big: 12px * scale-factor;
+    in-out property <length> padding-bigger: 16px * scale-factor;
+
+    // Spacing
+    in-out property <length> spacing-small: 2px * scale-factor;
+    in-out property <length> spacing-base: 4px * scale-factor;
+    in-out property <length> spacing-medium: 8px * scale-factor;
+    in-out property <length> spacing-big: 12px * scale-factor;
+    in-out property <length> spacing-bigger: 16px * scale-factor;
+
+    // Radius
+    in-out property <length> radius-small: 2px * scale-factor;
+    in-out property <length> radius-base: 4px * scale-factor;
+    in-out property <length> radius-large: 8px * scale-factor;
+    in-out property <length> radius-round: 20px * scale-factor;
+    in-out property <length> radius-circle: 9999px;
+}

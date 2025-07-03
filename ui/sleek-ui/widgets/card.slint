@@ -1,0 +1,12 @@
+import { UCardTheme, UCardThemes } from "../widget-themes/card.slint";
+
+
+export component UCard inherits Rectangle {
+    in-out property <UCardTheme> theme: UCardThemes.default;
+    background: theme.background;
+    border-radius: theme.border-radius;
+    drop-shadow-blur: theme.drop-shadow-blur;
+    drop-shadow-color: theme.drop-shadow-color;
+    drop-shadow-offset-y: theme.drop-shadow-offset-y;
+    @children
+}

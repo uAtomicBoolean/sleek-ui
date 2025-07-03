@@ -1,0 +1,26 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
+export struct UCollapseTheme {
+	background: brush,
+	border-width: length,
+	border-color: brush,
+	border-radius: length,
+	text-color: brush,
+	font-size: length,
+	font-weight: int,
+	icon-size: length,
+	icon-color: brush,
+}
+
+
+export global UCollapseThemes {
+    out property <UCollapseTheme> default: {
+        background: Colors.transparent,
+        border-width: 0px,
+        text-color: UAppTheme.primary,
+        font-size: UAppTheme.font-size-base,
+        icon-size: 20px * UAppTheme.scale-factor,
+        icon-color: UAppTheme.primary,
+    };
+}

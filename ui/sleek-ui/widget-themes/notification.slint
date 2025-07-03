@@ -1,0 +1,97 @@
+import { UAppTheme } from "../app-theme.slint";
+
+import { UIconButtonTheme, UIconButtonThemes } from "icon-button.slint";
+
+
+export struct UNotificationTheme {
+	icon-image: image,
+	icon-color: brush,
+	icon-size: length,
+	title-font-size: length,
+	title-horizontal-padding: length,
+	title-vertical-padding: length,
+	content-padding-top: length,
+	content-padding-bottom: length,
+	content-padding-left: length,
+	content-padding-right: length,
+	background: brush,
+	border-radius: length,
+	border-width: length,
+	border-color: brush,
+	drop-shadow-blur: length,
+	drop-shadow-color: color,
+	drop-shadow-offset-y: length,
+	close-button-theme: UIconButtonTheme,
+}
+
+
+export global UNotificationThemes {
+    out property <UNotificationTheme> info: {
+        icon-image: @image-url("../assets/icons/info.svg"),
+        icon-color: UAppTheme.primary,
+        icon-size: UAppTheme.font-size-big,
+        title-font-size: UAppTheme.font-size-medium,
+        title-horizontal-padding: UAppTheme.padding-big,
+        title-vertical-padding: UAppTheme.padding-medium,
+        content-padding-bottom: UAppTheme.padding-medium,
+        content-padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base,
+        content-padding-right: UAppTheme.padding-big,
+        background: UAppTheme.bg-elevated,
+        border-radius: UAppTheme.radius-base,
+        drop-shadow-blur: UAppTheme.shadow-blur,
+        drop-shadow-color: UAppTheme.shadow-color,
+        drop-shadow-offset-y: UAppTheme.shadow-y-offset,
+        close-button-theme: UIconButtonThemes.text,
+    };
+    out property <UNotificationTheme> success: {
+        icon-image: @image-url("../assets/icons/circle-check.svg"),
+        icon-color: UAppTheme.success,
+        icon-size: UAppTheme.font-size-big,
+        title-font-size: UAppTheme.font-size-medium,
+        title-horizontal-padding: UAppTheme.padding-big,
+        title-vertical-padding: UAppTheme.padding-medium,
+        content-padding-bottom: UAppTheme.padding-medium,
+        content-padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base,
+        content-padding-right: UAppTheme.padding-big,
+        background: UAppTheme.bg-elevated,
+        border-radius: UAppTheme.radius-base,
+        drop-shadow-blur: UAppTheme.shadow-blur,
+        drop-shadow-color: UAppTheme.shadow-color,
+        drop-shadow-offset-y: UAppTheme.shadow-y-offset,
+        close-button-theme: UIconButtonThemes.text,
+    };
+    out property <UNotificationTheme> warning: {
+        icon-image: @image-url("../assets/icons/info.svg"),
+        icon-color: UAppTheme.warning,
+        icon-size: UAppTheme.font-size-big,
+        title-font-size: UAppTheme.font-size-medium,
+        title-horizontal-padding: UAppTheme.padding-big,
+        title-vertical-padding: UAppTheme.padding-medium,
+        content-padding-bottom: UAppTheme.padding-medium,
+        content-padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base,
+        content-padding-right: UAppTheme.padding-big,
+        background: UAppTheme.bg-elevated,
+        border-radius: UAppTheme.radius-base,
+        drop-shadow-blur: UAppTheme.shadow-blur,
+        drop-shadow-color: UAppTheme.shadow-color,
+        drop-shadow-offset-y: UAppTheme.shadow-y-offset,
+        close-button-theme: UIconButtonThemes.text,
+    };
+    out property <UNotificationTheme> danger: {
+        icon-image: @image-url("../assets/icons/circle-x.svg"),
+        icon-color: UAppTheme.danger,
+        icon-size: UAppTheme.font-size-big,
+        title-font-size: UAppTheme.font-size-medium,
+        title-horizontal-padding: UAppTheme.padding-big,
+        title-vertical-padding: UAppTheme.padding-medium,
+        content-padding-bottom: UAppTheme.padding-medium,
+        content-padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base,
+        content-padding-right: UAppTheme.padding-big,
+        background: UAppTheme.bg-elevated,
+        border-radius: UAppTheme.radius-base,
+        drop-shadow-blur: UAppTheme.shadow-blur,
+        drop-shadow-color: UAppTheme.shadow-color,
+        drop-shadow-offset-y: UAppTheme.shadow-y-offset,
+        close-button-theme: UIconButtonThemes.text,
+    };
+}

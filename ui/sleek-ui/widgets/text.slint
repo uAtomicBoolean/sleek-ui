@@ -1,0 +1,22 @@
+import { UTextTheme, UTextThemes } from "../widget-themes/text.slint";
+
+export component UText inherits Text {
+	// Accessability properties
+	accessible-role: text;
+    accessible-value: self.text;
+	// Regular properties
+	in-out property <UTextTheme> theme: UTextThemes.default;
+    color: theme.color;
+    font-size: theme.font-size;
+    font-weight: theme.font-weight;
+    font-family: theme.font-family;
+    font-italic: theme.font-italic;
+    horizontal-alignment: theme.horizontal-alignment;
+    letter-spacing: theme.letter-spacing;
+    overflow: theme.overflow;
+    vertical-alignment: theme.vertical-alignment;
+    wrap: theme.wrap;
+    stroke: theme.stroke;
+    stroke-width: theme.stroke-width;
+    stroke-style: theme.stroke-style;
+}

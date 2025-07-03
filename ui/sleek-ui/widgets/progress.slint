@@ -1,0 +1,115 @@
+import { UAppTheme } from "../app-theme.slint";
+import { UProgressTheme, UProgressThemes } from "../widget-themes/progress.slint";
+
+
+enum ProgressAlignment {
+	start,
+	end,
+}
+
+
+export component ULinearProgress inherits Rectangle {
+	// Accessability properties
+	accessible-role: progress-indicator;
+    accessible-value-minimum: 0;
+    accessible-value-maximum: 100;
+	// Regular properties
+    in-out property <UProgressTheme> theme: UProgressThemes.primary;
+    in property <Orientation> orientation: horizontal;
+    in property <ProgressAlignment> alignment: start;
+    in-out property <percent> progress: indeterminate ? 30% : 0%;
+    in-out property <bool> indeterminate: false;
+    in-out property <brush> progress-color: theme.progress-color;
+    callback reset-x();
+    background: theme.background;
+    border-radius: theme.radius;
+    clip: true;
+    height: theme.default-size;
+    width: theme.default-size;
+    changed progress => {
+        if indeterminate {
+            progress = 30%;
+        }
+    }
+    changed indeterminate => {
+        if indeterminate {
+            progress = 30%;
+        }
+    }
+
+    if orientation == Orientation.horizontal: Rectangle {
+        property <length> x-pos: 0;
+        function get-x-pos() -> length {
+            if indeterminate {
+                return x-pos;
+            }
+            if alignment == ProgressAlignment.end {
+                return root.width - self.width;
+            }
+            return 0;
+        }
+        x: get-x-pos();
+        background: progress-color;
+        border-radius: theme.radius;
+        width: clamp(progress, 0%, 100%);
+        animate width {
+            easing: ease-in-out;
+            duration: 350ms;
+        }
+        Timer {
+            running: indeterminate;
+            interval: 10ms;
+            triggered => {
+                if alignment == ProgressAlignment.start {
+                    parent.x-pos += 1px * UAppTheme.scale-factor;
+                    if parent.x-pos > root.width {
+                        parent.x-pos = -parent.width;
+                    }
+                } else {
+                    parent.x-pos -= 1px * UAppTheme.scale-factor;
+                    if parent.x-pos < -parent.width {
+                        parent.x-pos = root.width - parent.width;
+                    }
+                }
+            }
+        }
+    }
+
+    if orientation == Orientation.vertical: Rectangle {
+        property <length> y-pos: 0;
+        function get-y-pos() -> length {
+            if indeterminate {
+                return y-pos;
+            }
+            if alignment == ProgressAlignment.end {
+                return root.height - self.height;
+            }
+            return 0;
+        }
+        y: get-y-pos();
+        background: progress-color;
+        border-radius: theme.radius;
+        height: clamp(progress, 0%, 100%);
+        animate height {
+            easing: ease-in-out;
+            duration: 350ms;
+        }
+        Timer {
+            running: indeterminate;
+            interval: 10ms;
+            triggered => {
+                if alignment == ProgressAlignment.start {
+                    parent.y-pos += 1px * UAppTheme.scale-factor;
+                    if parent.y-pos > root.height {
+                        parent.y-pos = -parent.height;
+                    }
+                } else {
+                    parent.y-pos -= 1px * UAppTheme.scale-factor;
+                    if parent.y-pos < -parent.height {
+                        parent.y-pos = root.height;
+                    }
+                }
+            }
+        }
+    }
+}
