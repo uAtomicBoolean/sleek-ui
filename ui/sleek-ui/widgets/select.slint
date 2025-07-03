@@ -90,12 +90,14 @@ export component USelect inherits ButtonInterface {
                         UText {
                             text: option.text;
                             font-size: theme.font-size;
+                            overflow: elide;
+                            wrap: no-wrap;
                             states [
                                 disabled when !option.enabled: {
                                     color: theme.option-text-disabled-color;
                                 }
                                 selected when options[current-index].value == option.value: {
-                                    font-weight: theme.option-text-selected-weight;
+                                    color: theme.option-text-selected-color;
                                 }
                             ]
                         }
