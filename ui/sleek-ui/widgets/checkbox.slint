@@ -17,7 +17,7 @@ export component UCheckbox inherits ButtonInterface {
     in-out property <UCheckboxTheme> theme: UCheckboxThemes.primary;
     in-out property <bool> checked: false;
     in-out property <string> text;
-    in-out property <IconTextPlacement> text-placement: start;
+    in-out property <IconTextPlacement> text-placement: text != "" ? start : hidden;
     border-radius: theme.border-radius;
 
     HorizontalLayout {
