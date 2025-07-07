@@ -4,8 +4,6 @@ import { ButtonInterface } from "../utils/button-interface.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 
-import { UCollapseTheme, UCollapseThemes } from "../widget-themes/collapse.slint";
-
 
 export component UCollapse inherits ButtonInterface {
 	// Accessability properties
@@ -17,29 +15,36 @@ export component UCollapse inherits ButtonInterface {
     accessible-action-default => {
         self.clicked()
     }
+	// Theming properties
+	in-out property <brush> t-background:Colors.transparent;
+    in-out property <length> t-border-width;
+    in-out property <brush> t-border-color;
+    in-out property <length> t-border-radius;
+    in-out property <brush> t-text-color: UAppTheme.primary;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <int> t-font-weight;
+    in-out property <length> t-icon-size: 20px * UAppTheme.scale-factor;
+    in-out property <brush> t-icon-color: UAppTheme.primary;
 	// Regular properties
-    in-out property <UCollapseTheme> theme: UCollapseThemes.default;
     in-out property <string> title <=> collapse-title.text;
     in-out property <bool> collapse-open: false;
     in-out property <length> content-width <=> collapse-content.width;
     in-out property <length> content-height: 100px * UAppTheme.scale-factor;
-    background: theme.background;
-    border-width: theme.border-width;
-    border-color: theme.border-color;
-    border-radius: theme.border-radius;
-
+    background: t-background;
+    border-width: t-border-width;
+    border-color: t-border-color;
+    border-radius: t-border-radius;
     clicked => {
         collapse-open = !collapse-open;
     }
-
     VerticalLayout {
         alignment: start;
         HorizontalLayout {
             alignment: start;
             spacing: UAppTheme.spacing-base;
             UIcon {
-                size: root.theme.icon-size;
-                colorize: root.theme.icon-color;
+                size: root.t-icon-size;
+                colorize: root.t-icon-color;
                 source: @image-url("../assets/icons/chevron-down.svg");
                 rotation-angle: root.collapse-open ? 180deg : 0deg;
                 animate rotation-angle {
@@ -51,9 +56,9 @@ export component UCollapse inherits ButtonInterface {
             VerticalLayout {
                 alignment: center;
                 collapse-title := UText {
-                    color: root.theme.text-color;
-                    font-size: root.theme.font-size;
-                    font-weight: root.theme.font-weight;
+                    color: root.t-text-color;
+                    font-size: root.t-font-size;
+                    font-weight: root.t-font-weight;
                     accessible-label: @tr("Title for the collapse");
                 }
             }
@@ -63,12 +68,10 @@ export component UCollapse inherits ButtonInterface {
             z: -10;
             clip: true;
             height: root.collapse-open ? root.content-height : 0px;
-
             animate height {
                 easing: ease;
                 duration: 200ms;
             }
-
             @children
         }
     }

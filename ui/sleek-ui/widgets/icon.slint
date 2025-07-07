@@ -1,10 +1,10 @@
-import { UIconTheme, UIconThemes } from "../widget-themes/icon.slint";
+import { UAppTheme } from "../app-theme.slint";
 
 
 export component UIcon inherits Image {
-    in-out property <UIconTheme> theme: UIconThemes.default;
-    in property <length> size: theme.size;
-    colorize: theme.color;
+    in property <length> size: UAppTheme.icon-size-base;
+    in-out property <brush> t-color: UAppTheme.text;
+    colorize: t-color;
     width: size;
     height: size;
     horizontal-alignment: center;

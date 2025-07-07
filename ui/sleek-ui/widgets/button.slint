@@ -1,12 +1,38 @@
 import { UAppTheme } from "../app-theme.slint";
 
-import { UButtonTheme, UButtonThemes, UButtonThemeColors } from "../widget-themes/button.slint";
 import { ButtonInterface } from "../utils/button-interface.slint";
 import { IconTextPlacement } from "../utils/structs.slint";
 
 import { UIcon } from "icon.slint";
 import { USpinner } from "spinner.slint";
 import { UText } from "text.slint";
+
+
+export struct UButtonThemeColors {
+	background: brush,
+	background-hover: brush,
+	background-active: brush,
+	background-checked: brush,
+	background-disabled: brush,
+	text-color: brush,
+	text-color-hover: brush,
+	text-color-active: brush,
+	text-color-checked: brush,
+	text-color-disabled: brush,
+	border: brush,
+	border-hover: brush,
+	border-active: brush,
+	border-checked: brush,
+	border-disabled: brush,
+}
+
+
+export enum UButtonVariant {
+	primary,
+	default,
+	filled,
+	text,
+}
 
 
 export component UButton inherits ButtonInterface {
@@ -16,9 +42,19 @@ export component UButton inherits ButtonInterface {
     accessible-action-default => {
         self.clicked()
     }
+	// Theming properties
+	in-out property <length> t-border-width;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <length> t-content-spacing: UAppTheme.spacing-base;
+    in-out property <length> t-padding-vertical: UAppTheme.padding-vertical;
+    in-out property <length> t-padding-horizontal: UAppTheme.padding-horizontal;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <length> t-icon-size: UAppTheme.icon-size-base;
+    in-out property <UButtonThemeColors> t-base-colors;
+    in-out property <UButtonThemeColors> t-danger-colors;
 	// Regular properties
-    in-out property <UButtonTheme> theme: UButtonThemes.default;
-    property <UButtonThemeColors> theme-colors: danger ? theme.danger-colors : theme.base-colors;
+    in-out property <UButtonVariant> variant: default;
+    property <UButtonThemeColors> theme-colors: danger ? t-danger-colors : t-base-colors;
     in-out property <string> text <=> text-obj.text;
     in-out property <bool> danger: false;
     in-out property <bool> loading: false;
@@ -27,15 +63,15 @@ export component UButton inherits ButtonInterface {
     in-out property <IconTextPlacement> icon-placement: IconTextPlacement.hidden;
     enabled: !loading;
     background: theme-colors.background;
-    border-radius: theme.border-radius;
-    border-width: self.has-focus ? UAppTheme.focus-border-width : theme.border-width;
+    border-radius: t-border-radius;
+    border-width: self.has-focus ? UAppTheme.focus-border-width : t-border-width;
     border-color: self.has-focus ? UAppTheme.focus-color : theme-colors.border;
     if loading: Rectangle {
         z: 10;
         width: parent.width;
         height: parent.height;
-        border-radius: parent.theme.border-radius;
-        border-width: theme.border-width;
+        border-radius: t-border-radius;
+        border-width: t-border-width;
         border-color: theme-colors.border;
         HorizontalLayout {
             alignment: center;
@@ -49,18 +85,18 @@ export component UButton inherits ButtonInterface {
     }
     HorizontalLayout {
         alignment: center;
-        spacing: theme.content-spacing;
-        padding-top: theme.padding-vertical;
-        padding-bottom: theme.padding-vertical;
-        padding-left: theme.padding-horizontal;
-        padding-right: theme.padding-horizontal;
+        spacing: t-content-spacing;
+        padding-top: t-padding-vertical;
+        padding-bottom: t-padding-vertical;
+        padding-left: t-padding-horizontal;
+        padding-right: t-padding-horizontal;
         if icon-placement == IconTextPlacement.start: VerticalLayout {
             alignment: center;
             icon-start := UIcon {
                 visible: !loading;
                 source: icon;
                 colorize: theme-colors.text-color;
-                size: theme.icon-size;
+                size: t-icon-size;
                 animate colorize { duration: 200ms; }
                 states [
                     loading when root.loading: {
@@ -88,7 +124,7 @@ export component UButton inherits ButtonInterface {
             alignment: center;
             text-obj := UText {
                 color: theme-colors.text-color;
-                font-size: theme.font-size;
+                font-size: t-font-size;
                 animate color { duration: 200ms; }
 				// Managing the text's states here as the states' order is different from the
 				// component.
@@ -118,7 +154,7 @@ export component UButton inherits ButtonInterface {
                 visible: !loading;
                 source: icon;
                 colorize: theme-colors.text-color;
-                size: theme.icon-size;
+                size: t-icon-size;
                 animate colorize { duration: 200ms; }
                 states [
                     loading when root.loading: {
@@ -162,4 +198,107 @@ export component UButton inherits ButtonInterface {
             border-color: self.has-focus ? UAppTheme.focus-color : theme-colors.border-checked;
         }
     ]
+    init => {
+        if variant == UButtonVariant.primary {
+            t-border-width = UAppTheme.border-width-base;
+            t-base-colors = {
+                background: UAppTheme.primary,
+                background-hover: UAppTheme.primary-hover,
+                background-active: UAppTheme.primary-active,
+                background-checked: UAppTheme.primary,
+                background-disabled: UAppTheme.border-secondary,
+                text-color: Colors.white,
+                text-color-hover: Colors.white,
+                text-color-active: Colors.white,
+                text-color-checked: Colors.white,
+                text-color-disabled: UAppTheme.text-disabled,
+                border-disabled: UAppTheme.border,
+            };
+            t-danger-colors = {
+                background: UAppTheme.danger,
+                background-hover: UAppTheme.danger-hover,
+                background-active: UAppTheme.danger-active,
+                background-checked: UAppTheme.danger,
+                background-disabled: UAppTheme.border-secondary,
+                text-color: Colors.white,
+                text-color-hover: Colors.white,
+                text-color-active: Colors.white,
+                text-color-checked: Colors.white,
+                text-color-disabled: UAppTheme.text-disabled,
+                border-disabled: UAppTheme.border,
+            };
+        } else if variant == UButtonVariant.default {
+            t-border-width = UAppTheme.border-width-base;
+            t-base-colors = {
+                background-active: UAppTheme.primary-selected,
+                background-checked: UAppTheme.primary-selected,
+                text-color:  UAppTheme.text,
+                text-color-hover: UAppTheme.primary-hover,
+                text-color-active: UAppTheme.primary-active,
+                text-color-checked: UAppTheme.primary,
+                text-color-disabled: UAppTheme.text-disabled,
+                border:  UAppTheme.border,
+                border-hover: UAppTheme.primary-hover,
+                border-active: UAppTheme.primary-active,
+                border-checked: UAppTheme.primary,
+                border-disabled: UAppTheme.border,
+            };
+            t-danger-colors = {
+                background-active: UAppTheme.danger-selected,
+                background-checked: UAppTheme.danger-selected,
+                text-color: UAppTheme.danger,
+                text-color-hover: UAppTheme.danger-hover,
+                text-color-active: UAppTheme.danger-active,
+                text-color-checked: UAppTheme.danger,
+                text-color-disabled: UAppTheme.text-disabled,
+                border: UAppTheme.danger,
+                border-hover: UAppTheme.danger-hover,
+                border-active: UAppTheme.danger-active,
+                border-checked: UAppTheme.danger,
+                border-disabled: UAppTheme.border,
+            };
+        } else if variant == UButtonVariant.filled {
+            t-base-colors = {
+                background: UAppTheme.color-fill-tertiary,
+                background-hover: UAppTheme.color-fill-secondary,
+                background-active: UAppTheme.color-fill,
+                background-checked: UAppTheme.primary-selected,
+                text-color: UAppTheme.text,
+                text-color-hover: UAppTheme.text,
+                text-color-active: UAppTheme.text,
+                text-color-checked: UAppTheme.primary,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+            t-danger-colors = {
+                background: UAppTheme.danger.with-alpha(0.1),
+                background-hover: UAppTheme.danger-hover.with-alpha(0.3),
+                background-active: UAppTheme.danger-active.with-alpha(0.4),
+                background-checked: UAppTheme.danger-selected,
+                text-color: UAppTheme.danger,
+                text-color-hover: UAppTheme.danger-hover,
+                text-color-active: UAppTheme.danger-active,
+                text-color-checked: UAppTheme.danger,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+        } else if variant == UButtonVariant.text {
+            t-base-colors = {
+                background-hover: UAppTheme.color-fill-secondary,
+                background-active: UAppTheme.color-fill,
+                text-color: UAppTheme.text,
+                text-color-hover: UAppTheme.text,
+                text-color-active: UAppTheme.text,
+                text-color-checked: UAppTheme.primary,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+            t-danger-colors = {
+                background-hover: UAppTheme.danger-hover.with-alpha(0.1),
+                background-active: UAppTheme.danger-active.with-alpha(0.3),
+                text-color: UAppTheme.danger,
+                text-color-hover: UAppTheme.danger-hover,
+                text-color-active: UAppTheme.danger-active,
+                text-color-checked: UAppTheme.danger,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+        }
+    }
 }

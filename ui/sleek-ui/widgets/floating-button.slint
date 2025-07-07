@@ -1,5 +1,4 @@
-import { UButton } from "button.slint";
-import { UButtonTheme } from "../widget-themes/button.slint";
+import { UButton, UButtonVariant, UButtonThemeColors } from "button.slint";
 import { IconTextPlacement } from "../utils/structs.slint";
 
 
@@ -12,7 +11,7 @@ export component UFloatingButton inherits VerticalLayout {
     in-out property <length> layout-padding-left: 0px;
     in-out property <length> layout-padding-right: 0px;
 	// Button's properties and callbacks
-	in-out property <UButtonTheme> theme <=> btn.theme;
+	in-out property <UButtonVariant> variant <=> btn.variant;
     in-out property <string> text <=> btn.text;
     in-out property <bool> enabled <=> btn.enabled;
     out property <bool> has-focus <=> btn.has-focus;
@@ -22,6 +21,16 @@ export component UFloatingButton inherits VerticalLayout {
     in-out property <image> icon <=> btn.icon;
     in-out property <IconTextPlacement> icon-placement <=> btn.icon-placement;
     callback clicked <=> btn.clicked;
+	// Theming properties
+	in-out property <length> t-border-width <=> btn.t-border-width;
+    in-out property <length> t-border-radius <=> btn.t-border-radius;
+    in-out property <length> t-content-spacing <=> btn.t-content-spacing;
+    in-out property <length> t-padding-vertical <=> btn.t-padding-vertical;
+    in-out property <length> t-padding-horizontal <=> btn.t-padding-horizontal;
+    in-out property <length> t-font-size <=> btn.t-font-size;
+    in-out property <length> t-icon-size <=> btn.t-icon-size;
+    in-out property <UButtonThemeColors> t-base-colors <=> btn.t-base-colors;
+    in-out property <UButtonThemeColors> t-danger-colors <=> btn.t-danger-colors;
 	// TouchArea callbacks from UButton.
     callback double-clicked <=> btn.double-clicked;
     callback moved <=> btn.moved;

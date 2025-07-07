@@ -1,10 +1,9 @@
 import { UAppTheme } from "../app-theme.slint";
 
 import { UIconButtonVariant } from "../widgets/icon-button.slint";
+import { UButtonVariant } from "../widgets/button.slint";
 
-import { UCardTheme, UCardThemes } from "card.slint";
 import { UTitleTheme, UTitleThemes } from "title.slint";
-import { UButtonTheme, UButtonThemes } from "button.slint";
 
 export struct UModalTheme {
 	blurred-background-color: brush,
@@ -15,11 +14,10 @@ export struct UModalTheme {
 	buttons-horizontal-padding: length,
 	buttons-vertical-padding: length,
 	buttons-spacing: length,
-	card-theme: UCardTheme,
 	title-theme: UTitleTheme,
-	close-button-theme: UIconButtonVariant,
-	cancel-button-theme: UButtonTheme,
-	accept-button-theme: UButtonTheme,
+	close-button-variant: UIconButtonVariant,
+	cancel-button-variant: UButtonVariant,
+	accept-button-variant: UButtonVariant,
 }
 
 
@@ -33,10 +31,9 @@ export global UModalThemes {
         buttons-horizontal-padding: UAppTheme.padding-big,
         buttons-vertical-padding: UAppTheme.padding-medium,
         buttons-spacing: UAppTheme.padding-medium,
-        card-theme: UCardThemes.default,
         title-theme: UTitleThemes.level-6,
-        close-button-theme: UIconButtonVariant.text,
-        cancel-button-theme: UButtonThemes.default,
-        accept-button-theme: UButtonThemes.primary,
+        close-button-variant: UIconButtonVariant.text,
+        cancel-button-variant: UButtonVariant.default,
+        accept-button-variant: UButtonVariant.primary,
     };
 }

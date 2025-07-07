@@ -5,27 +5,20 @@ import { UText } from "text.slint";
 import { UIcon } from "icon.slint";
 
 
-enum UBreadcrumbVariant {
-	default,
-}
-
 export component UBreadcrumb inherits Rectangle {
-	// Theming properties
-	in-out property <length> t-spacing;
-    in-out property <image> t-icon-separator;
-    in-out property <length> t-separator-size;
-    in-out property <brush> t-separator-color;
-    in-out property <brush> t-text-color;
-    in-out property <length> t-font-size;
+    // Theming properties
+	in-out property <length> t-spacing: UAppTheme.spacing-medium;
+    in-out property <image> t-icon-separator: @image-url("../assets/icons/chevron-right.svg");
+    in-out property <length> t-separator-size: UAppTheme.icon-size-base;
+    in-out property <brush> t-separator-color: UAppTheme.text-secondary;
+    in-out property <brush> t-text-color: UAppTheme.text-secondary;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
     in-out property <int> t-font-weight;
-    in-out property <brush> t-hover-text-color;
-    in-out property <length> t-hover-font-size;
+    in-out property <brush> t-hover-text-color: UAppTheme.text-disabled;
     in-out property <int> t-hover-font-weight;
-    in-out property <brush> t-active-text-color;
-    in-out property <length> t-active-font-size;
+    in-out property <brush> t-active-text-color: UAppTheme.primary;
     in-out property <int> t-active-font-weight;
 	// Regular properties
-	in-out property <UBreadcrumbVariant> variant: default;
     in-out property <[string]> steps: [];
     callback step-clicked(step: string);
     VerticalLayout {
@@ -38,13 +31,12 @@ export component UBreadcrumb inherits Rectangle {
                     UText {
                         text: step;
                         color: idx == steps.length - 1 ? t-active-text-color : t-text-color;
-                        font-size: idx == steps.length - 1 ? t-active-font-size : t-font-size;
+                        font-size: t-font-size;
                         font-weight: idx == steps.length - 1 ? t-active-font-weight : t-font-weight;
                         animate color { duration: 200ms; }
                         states [
                             hover when parent.has-hover && idx != steps.length - 1: {
                                 color: t-hover-text-color;
-                                font-size: t-hover-font-size;
                                 font-weight: t-hover-font-weight;
                             }
                         ]
@@ -65,21 +57,6 @@ export component UBreadcrumb inherits Rectangle {
                     }
                 }
             }
-        }
-    }
-
-    init => {
-        if variant == UBreadcrumbVariant.default {
-            self.t-spacing = UAppTheme.spacing-medium;
-            self.t-icon-separator = @image-url("../assets/icons/chevron-right.svg");
-            self.t-separator-size = UAppTheme.icon-size-base;
-            self.t-separator-color = UAppTheme.text-secondary;
-            self.t-text-color = UAppTheme.text-secondary;
-            self.t-font-size = UAppTheme.font-size-base;
-            self.t-hover-text-color = UAppTheme.text-disabled;
-            self.t-hover-font-size = UAppTheme.font-size-base;
-            self.t-active-text-color = UAppTheme.primary;
-            self.t-active-font-size = UAppTheme.font-size-base;
         }
     }
 }

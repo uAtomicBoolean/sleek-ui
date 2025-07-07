@@ -1,12 +1,17 @@
-import { UCardTheme, UCardThemes } from "../widget-themes/card.slint";
+import { UAppTheme } from "../app-theme.slint";
 
 
 export component UCard inherits Rectangle {
-    in-out property <UCardTheme> theme: UCardThemes.default;
-    background: theme.background;
-    border-radius: theme.border-radius;
-    drop-shadow-blur: theme.drop-shadow-blur;
-    drop-shadow-color: theme.drop-shadow-color;
-    drop-shadow-offset-y: theme.drop-shadow-offset-y;
+	// Theming properties
+	in-out property <brush> t-background: UAppTheme.bg-elevated;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <length> t-drop-shadow-blur: UAppTheme.shadow-blur;
+    in-out property <color> t-drop-shadow-color: UAppTheme.shadow-color;
+    in-out property <length> t-drop-shadow-offset-y: UAppTheme.shadow-y-offset;
+    background: t-background;
+    border-radius: t-border-radius;
+    drop-shadow-blur: t-drop-shadow-blur;
+    drop-shadow-color: t-drop-shadow-color;
+    drop-shadow-offset-y: t-drop-shadow-offset-y;
     @children
 }

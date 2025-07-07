@@ -20,7 +20,7 @@ export struct UNotificationTheme {
 	drop-shadow-blur: length,
 	drop-shadow-color: color,
 	drop-shadow-offset-y: length,
-	close-button-theme: UIconButtonVariant,
+	close-button-variant: UIconButtonVariant,
 }
 
 
@@ -40,7 +40,7 @@ export global UNotificationThemes {
         drop-shadow-blur: UAppTheme.shadow-blur,
         drop-shadow-color: UAppTheme.shadow-color,
         drop-shadow-offset-y: UAppTheme.shadow-y-offset,
-        close-button-theme: UIconButtonVariant.text,
+        close-button-variant: UIconButtonVariant.text,
     };
     out property <UNotificationTheme> success: {
         icon-image: @image-url("../assets/icons/circle-check.svg"),
@@ -57,7 +57,7 @@ export global UNotificationThemes {
         drop-shadow-blur: UAppTheme.shadow-blur,
         drop-shadow-color: UAppTheme.shadow-color,
         drop-shadow-offset-y: UAppTheme.shadow-y-offset,
-        close-button-theme: UIconButtonVariant.text,
+        close-button-variant: UIconButtonVariant.text,
     };
     out property <UNotificationTheme> warning: {
         icon-image: @image-url("../assets/icons/info.svg"),
@@ -74,7 +74,7 @@ export global UNotificationThemes {
         drop-shadow-blur: UAppTheme.shadow-blur,
         drop-shadow-color: UAppTheme.shadow-color,
         drop-shadow-offset-y: UAppTheme.shadow-y-offset,
-        close-button-theme: UIconButtonVariant.text,
+        close-button-variant: UIconButtonVariant.text,
     };
     out property <UNotificationTheme> danger: {
         icon-image: @image-url("../assets/icons/circle-x.svg"),
@@ -91,6 +91,6 @@ export global UNotificationThemes {
         drop-shadow-blur: UAppTheme.shadow-blur,
         drop-shadow-color: UAppTheme.shadow-color,
         drop-shadow-offset-y: UAppTheme.shadow-y-offset,
-        close-button-theme: UIconButtonVariant.text,
+        close-button-variant: UIconButtonVariant.text,
     };
 }

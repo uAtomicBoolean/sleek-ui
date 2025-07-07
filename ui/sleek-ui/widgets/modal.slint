@@ -6,7 +6,6 @@ import { UButton } from "button.slint";
 import { UIconButton } from "icon-button.slint";
 import { UTitle } from "title.slint";
 
-import { UButtonThemes } from "../widget-themes/button.slint";
 import { UTitleThemes } from "../widget-themes/title.slint";
 import { UModalTheme, UModalThemes } from "../widget-themes/modal.slint";
 
@@ -74,7 +73,6 @@ export component UModal {
         HorizontalLayout {
             alignment: center;
             modal-card := UCard {
-                theme: theme.card-theme;
                 min-width: modal-min-width;
                 min-height: modal-min-height;
                 max-width: modal-max-width;
@@ -105,7 +103,7 @@ export component UModal {
                         VerticalLayout {
                             alignment: center;
                             UIconButton {
-                                variant: theme.close-button-theme;
+                                variant: theme.close-button-variant;
                                 icon: @image-url("../assets/icons/x.svg");
                                 clicked => {
                                     root.close();
@@ -139,7 +137,7 @@ export component UModal {
                             padding-right: theme.buttons-horizontal-padding;
                             spacing: theme.buttons-spacing;
                             if cancel-btn-toggle: UButton {
-                                theme: theme.cancel-button-theme;
+                                variant: theme.cancel-button-variant;
                                 text: cancel-btn-text;
                                 enabled: cancel-btn-enabled;
                                 clicked => {
@@ -153,7 +151,7 @@ export component UModal {
                                 accessible-label: @tr("Cancel or refuse button for modal.");
                             }
                             if accept-btn-toggle: UButton {
-                                theme: theme.accept-button-theme;
+                                variant: theme.accept-button-variant;
                                 text: accept-btn-text;
                                 enabled: accept-btn-enabled;
                                 clicked => {

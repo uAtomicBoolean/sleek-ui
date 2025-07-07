@@ -16,7 +16,6 @@ import {
 	UTitle
 } from "../sleek-ui/widgets.slint";
 import {
-	UButtonThemes,
 	URadioButtonThemes,
 	UTitleThemes
 } from "../sleek-ui/widget-themes.slint";
@@ -64,19 +63,19 @@ export component Controls inherits Rectangle {
 
                 UButton {
                     enabled: widgets-enabled;
-                    theme: UButtonThemes.primary;
+                    variant: primary;
                     text: "Primary";
                 }
 
                 UButton {
                     enabled: widgets-enabled;
-                    theme: UButtonThemes.filled;
+                    variant: filled;
                     text: "Filled";
                 }
 
                 UButton {
                     enabled: widgets-enabled;
-                    theme: UButtonThemes.text;
+                    variant: text;
                     text: "Text";
                 }
             }
@@ -93,7 +92,7 @@ export component Controls inherits Rectangle {
 
                 UButton {
                     enabled: widgets-enabled;
-                    theme: UButtonThemes.filled;
+                    variant: filled;
                     text: "Filled";
                     danger: true;
                     loading: true;
@@ -101,7 +100,7 @@ export component Controls inherits Rectangle {
 
                 UButton {
                     enabled: widgets-enabled;
-                    theme: UButtonThemes.primary;
+                    variant: primary;
                     text: "Primary";
                     loading: true;
                 }
@@ -114,7 +113,7 @@ export component Controls inherits Rectangle {
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 UButton {
                     enabled: widgets-enabled;
-                    theme: UButtonThemes.primary;
+                    variant: primary;
                     text: "Primary";
                     icon: @image-url("../assets/images/plus.svg");
                     icon-placement: start;
