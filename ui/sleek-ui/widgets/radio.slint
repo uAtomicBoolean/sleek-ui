@@ -147,10 +147,10 @@ export component URadio {
 	// Regular properties
     in-out property <[string]> options;
     in-out property <string> selected-value;
-    in-out property <bool> vertical: true;
+    in-out property <Orientation> orientation: vertical;
     callback selected(value: string);
     VerticalLayout {
-        if vertical: VerticalLayout {
+        if orientation == Orientation.vertical: VerticalLayout {
             alignment: start;
             spacing: t-radio-spacing;
             for option in root.options: URadioOption {
@@ -180,7 +180,7 @@ export component URadio {
                 }
             }
         }
-        if !vertical: HorizontalLayout {
+        if orientation == Orientation.horizontal: HorizontalLayout {
             alignment: start;
             spacing: t-radio-spacing;
             for option in root.options: URadioOption {
