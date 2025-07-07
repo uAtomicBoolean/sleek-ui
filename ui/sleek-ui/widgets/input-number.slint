@@ -1,9 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
-
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
-
-import { UInputTheme, UInputThemes } from "../widget-themes/input.slint";
 
 
 export component UInputNumber inherits Rectangle {
@@ -24,8 +21,26 @@ export component UInputNumber inherits Rectangle {
     accessible-action-increment => {
         btn-increase.clicked();
     }
+	// Theming properties
+	in-out property <brush> t-background: UAppTheme.bg-elevated;
+    in-out property <brush> t-background-active: UAppTheme.bg-elevated;
+    in-out property <brush> t-background-error: UAppTheme.bg-elevated;
+    in-out property <brush> t-background-disabled: UAppTheme.color-fill-quaternary;
+    in-out property <length> t-border-width: UAppTheme.border-width-base;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <brush> t-border-color: UAppTheme.border;
+    in-out property <brush> t-border-color-active: UAppTheme.primary-active;
+    in-out property <brush> t-border-color-error: UAppTheme.danger;
+    in-out property <brush> t-border-color-disabled: UAppTheme.border-secondary;
+    in-out property <brush> t-text-color: UAppTheme.text;
+    in-out property <brush> t-text-color-disabled: UAppTheme.text-disabled;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <brush> t-placeholder-color: UAppTheme.text-disabled;
+    in-out property <length> t-icon-size: UAppTheme.icon-size-base;
+    in-out property <brush> t-icon-color: UAppTheme.text-secondary;
+    in-out property <length> t-padding-vertical: UAppTheme.padding-vertical;
+    in-out property <length> t-padding-horizontal: UAppTheme.padding-horizontal / 2;
 	// Regular properties
-    in-out property <UInputTheme> theme: UInputThemes.default;
     in-out property <float> value: 0;
     in-out property <bool> enabled <=> input.enabled;
     in-out property <float> step: 1;
@@ -40,10 +55,10 @@ export component UInputNumber inherits Rectangle {
             self.accessible-value-maximum = self.max-value;
         }
     }
-    border-width: theme.border-width;
-    border-radius: theme.border-radius;
-    border-color: theme.border-color;
-    background: theme.background;
+    border-width: t-border-width;
+    border-radius: t-border-radius;
+    border-color: t-border-color;
+    background: t-background;
     clip: true;
     HorizontalLayout {
         width: root.width;
@@ -52,10 +67,10 @@ export component UInputNumber inherits Rectangle {
             padding-left: UAppTheme.padding-small;
             Rectangle {
                 height: 100%;
-                width: theme.icon-size + theme.padding-horizontal;
+                width: t-icon-size + t-padding-horizontal;
                 UIcon {
-                    size: theme.icon-size;
-                    colorize: theme.icon-color;
+                    size: t-icon-size;
+                    colorize: t-icon-color;
                     source: @image-url("../assets/icons/minus.svg");
                 }
 
@@ -80,22 +95,21 @@ export component UInputNumber inherits Rectangle {
         }
 
         HorizontalLayout {
-            padding-left: theme.padding-horizontal;
-            padding-right: theme.padding-horizontal;
+            padding-left: t-padding-horizontal;
+            padding-right: t-padding-horizontal;
             Rectangle {
-                height: theme.font-size + theme.padding-vertical * 3;
+                height: t-font-size + t-padding-vertical * 3;
                 clip: true;
                 input := TextInput {
-                    property <length> h-padding: theme.padding-horizontal * 2;
+                    property <length> h-padding: t-padding-horizontal * 2;
                     property <length> computed_x;
                     text: root.value;
                     width: max(parent.width, self.preferred-width);
                     x: min(computed_x, 0px);
                     input-type: root.number ? InputType.number : InputType.decimal;
                     read-only: !root.enabled;
-                    font-size: theme.font-size;
-                    font-weight: theme.font-weight;
-                    color: theme.text-color;
+                    font-size: t-font-size;
+                    color: t-text-color;
                     vertical-alignment: center;
                     horizontal-alignment: center;
                     single-line: true;
@@ -139,10 +153,10 @@ export component UInputNumber inherits Rectangle {
             padding-left: UAppTheme.padding-small;
             Rectangle {
                 height: 100%;
-                width: theme.icon-size + theme.padding-horizontal;
+                width: t-icon-size + t-padding-horizontal;
                 UIcon {
-                    size: theme.icon-size;
-                    colorize: theme.icon-color;
+                    size: t-icon-size;
+                    colorize: t-icon-color;
                     source: @image-url("../assets/icons/plus.svg");
                 }
 
@@ -169,17 +183,17 @@ export component UInputNumber inherits Rectangle {
 
     states [
         disabled when !input.enabled: {
-            background: theme.background-disabled;
-            border-color: theme.border-color-disabled;
-            input.color: theme.text-color-disabled;
+            background: t-background-disabled;
+            border-color: t-border-color-disabled;
+            input.color: t-text-color-disabled;
         }
         error when error: {
-            background: theme.background-error;
-            border-color: theme.border-color-error;
+            background: t-background-error;
+            border-color: t-border-color-error;
         }
         active when input.has-focus: {
-            background: theme.background-active;
-            border-color: theme.border-color-active;
+            background: t-background-active;
+            border-color: t-border-color-active;
         }
     ]
 
