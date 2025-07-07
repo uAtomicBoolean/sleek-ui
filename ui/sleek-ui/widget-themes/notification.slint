@@ -1,7 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
 
-import { UIconButtonTheme, UIconButtonThemes } from "icon-button.slint";
-
+import { UIconButtonVariant } from "../widgets/icon-button.slint";
 
 export struct UNotificationTheme {
 	icon-image: image,
@@ -21,7 +20,7 @@ export struct UNotificationTheme {
 	drop-shadow-blur: length,
 	drop-shadow-color: color,
 	drop-shadow-offset-y: length,
-	close-button-theme: UIconButtonTheme,
+	close-button-theme: UIconButtonVariant,
 }
 
 
@@ -41,7 +40,7 @@ export global UNotificationThemes {
         drop-shadow-blur: UAppTheme.shadow-blur,
         drop-shadow-color: UAppTheme.shadow-color,
         drop-shadow-offset-y: UAppTheme.shadow-y-offset,
-        close-button-theme: UIconButtonThemes.text,
+        close-button-theme: UIconButtonVariant.text,
     };
     out property <UNotificationTheme> success: {
         icon-image: @image-url("../assets/icons/circle-check.svg"),
@@ -58,7 +57,7 @@ export global UNotificationThemes {
         drop-shadow-blur: UAppTheme.shadow-blur,
         drop-shadow-color: UAppTheme.shadow-color,
         drop-shadow-offset-y: UAppTheme.shadow-y-offset,
-        close-button-theme: UIconButtonThemes.text,
+        close-button-theme: UIconButtonVariant.text,
     };
     out property <UNotificationTheme> warning: {
         icon-image: @image-url("../assets/icons/info.svg"),
@@ -75,7 +74,7 @@ export global UNotificationThemes {
         drop-shadow-blur: UAppTheme.shadow-blur,
         drop-shadow-color: UAppTheme.shadow-color,
         drop-shadow-offset-y: UAppTheme.shadow-y-offset,
-        close-button-theme: UIconButtonThemes.text,
+        close-button-theme: UIconButtonVariant.text,
     };
     out property <UNotificationTheme> danger: {
         icon-image: @image-url("../assets/icons/circle-x.svg"),
@@ -92,6 +91,6 @@ export global UNotificationThemes {
         drop-shadow-blur: UAppTheme.shadow-blur,
         drop-shadow-color: UAppTheme.shadow-color,
         drop-shadow-offset-y: UAppTheme.shadow-y-offset,
-        close-button-theme: UIconButtonThemes.text,
+        close-button-theme: UIconButtonVariant.text,
     };
 }

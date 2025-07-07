@@ -3,35 +3,53 @@ import { ButtonInterface } from "../utils/button-interface.slint";
 
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
-import { UIconButton } from "icon-button.slint";
+import { UIconButton, UIconButtonVariant } from "icon-button.slint";
 
-import { UIconButtonThemes } from "../widget-themes/icon-button.slint";
-import { UAlertTheme, UAlertThemes } from "../widget-themes/alert.slint";
 
+export enum UAlertVariant {
+	info,
+	success,
+	warning,
+	danger,
+}
 
 export component UAlert inherits Rectangle {
-    in-out property <UAlertTheme> theme: UAlertThemes.info;
+	// Theming properties
+	in-out property <brush> t-background;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <length> t-border-width: 1px * UAppTheme.scale-factor;
+    in-out property <brush> t-border-color;
+    in-out property <image> t-icon-image;
+    in-out property <brush> t-icon-color;
+    in-out property <length> t-icon-size: UAppTheme.icon-size-base;
+    in-out property <brush> t-text-color;
+    in-out property <length> t-text-font-size: UAppTheme.font-size-base;
+    in-out property <length> t-horizontal-padding: UAppTheme.padding-big;
+    in-out property <length> t-vertical-padding: UAppTheme.padding-medium;
+    in-out property <UIconButtonVariant> t-close-button-theme: UIconButtonVariant.text-stripped;
+	// Regular properties
+	in-out property <UAlertVariant> variant: info;
     in-out property <string> message;
     in-out property <bool> display-close-button: false;
     callback close();
     min-width: 300px * UAppTheme.scale-factor;
-    background: theme.background;
-    border-radius: theme.border-radius;
-    border-color: theme.border-color;
-    border-width: theme.border-width;
+    background: t-background;
+    border-radius: t-border-radius;
+    border-color: t-border-color;
+    border-width: t-border-width;
     VerticalLayout {
-        padding-top: theme.vertical-padding;
-        padding-bottom: theme.vertical-padding;
-        padding-left: theme.horizontal-padding;
-        padding-right: theme.horizontal-padding;
+        padding-top: t-vertical-padding;
+        padding-bottom: t-vertical-padding;
+        padding-left: t-horizontal-padding;
+        padding-right: t-horizontal-padding;
         HorizontalLayout {
             VerticalLayout {
                 alignment: center;
                 padding-right: UAppTheme.padding-big;
                 UIcon {
-                    source: theme.icon-image;
-                    colorize: theme.icon-color;
-                    size: theme.icon-size;
+                    source: t-icon-image;
+                    colorize: t-icon-color;
+                    size: t-icon-size;
                     accessible-role: none;
                 }
             }
@@ -45,15 +63,15 @@ export component UAlert inherits Rectangle {
                     text: message;
                     wrap: no-wrap;
                     overflow: elide;
-                    color: theme.text-color;
-                    font-size: theme.text-font-size;
+                    color: t-text-color;
+                    font-size: t-text-font-size;
                 }
             }
 
             if display-close-button: VerticalLayout {
                 alignment: center;
                 close-button := UIconButton {
-                    theme: theme.close-button-theme;
+                    variant: text-stripped;
                     icon: @image-url("../assets/icons/x.svg");
                     accessible-label: @tr("Close button for alert");
                     accessible-action-default => {
@@ -64,6 +82,34 @@ export component UAlert inherits Rectangle {
                     }
                 }
             }
+        }
+    }
+
+    init => {
+        if variant == UAlertVariant.info {
+            self.t-background = UAppTheme.primary-selected;
+            self.t-border-color = UAppTheme.primary;
+            self.t-icon-image = @image-url("../assets/icons/info.svg");
+            self.t-icon-color = UAppTheme.primary;
+            self.t-text-color = UAppTheme.text;
+        } else if variant == UAlertVariant.success {
+            self.t-background = UAppTheme.success-selected;
+            self.t-border-color = UAppTheme.success;
+            self.t-icon-image = @image-url("../assets/icons/circle-check.svg");
+            self.t-icon-color = UAppTheme.success;
+            self.t-text-color = UAppTheme.text;
+        } else if variant == UAlertVariant.warning {
+            self.t-background = UAppTheme.warning-selected;
+            self.t-border-color = UAppTheme.warning;
+            self.t-icon-image = @image-url("../assets/icons/info.svg");
+            self.t-icon-color = UAppTheme.warning;
+            self.t-text-color = UAppTheme.text;
+        } else if variant == UAlertVariant.danger {
+            self.t-background = UAppTheme.danger-selected;
+            self.t-border-color = UAppTheme.danger;
+            self.t-icon-image = @image-url("../assets/icons/circle-x.svg");
+            self.t-icon-color = UAppTheme.danger;
+            self.t-text-color = UAppTheme.text;
         }
     }
 }

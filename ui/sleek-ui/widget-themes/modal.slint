@@ -1,8 +1,9 @@
 import { UAppTheme } from "../app-theme.slint";
 
+import { UIconButtonVariant } from "../widgets/icon-button.slint";
+
 import { UCardTheme, UCardThemes } from "card.slint";
 import { UTitleTheme, UTitleThemes } from "title.slint";
-import { UIconButtonTheme, UIconButtonThemes } from "icon-button.slint";
 import { UButtonTheme, UButtonThemes } from "button.slint";
 
 export struct UModalTheme {
@@ -16,7 +17,7 @@ export struct UModalTheme {
 	buttons-spacing: length,
 	card-theme: UCardTheme,
 	title-theme: UTitleTheme,
-	close-button-theme: UIconButtonTheme,
+	close-button-theme: UIconButtonVariant,
 	cancel-button-theme: UButtonTheme,
 	accept-button-theme: UButtonTheme,
 }
@@ -34,7 +35,7 @@ export global UModalThemes {
         buttons-spacing: UAppTheme.padding-medium,
         card-theme: UCardThemes.default,
         title-theme: UTitleThemes.level-6,
-        close-button-theme: UIconButtonThemes.text,
+        close-button-theme: UIconButtonVariant.text,
         cancel-button-theme: UButtonThemes.default,
         accept-button-theme: UButtonThemes.primary,
     };

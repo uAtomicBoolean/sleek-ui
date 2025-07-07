@@ -1,5 +1,4 @@
-import { UIconButton } from "icon-button.slint";
-import { UIconButtonTheme } from "../widget-themes/icon-button.slint";
+import { UIconButton, UIconButtonVariant, UIconButtonThemeColors } from "icon-button.slint";
 
 export component UFloatingIconButton inherits VerticalLayout {
 	// Layout placement
@@ -10,14 +9,21 @@ export component UFloatingIconButton inherits VerticalLayout {
     in-out property <length> layout-padding-left: 0px;
     in-out property <length> layout-padding-right: 0px;
 	// Button's properties and callbacks
-    in-out property <UIconButtonTheme> theme <=> btn.theme;
+    in-out property <UIconButtonVariant> variant <=> btn.variant;
     in-out property <bool> enabled <=> btn.enabled;
     out property <bool> has-focus <=> btn.has-focus;
     out property <bool> has-hover <=> btn.has-hover;
     out property <bool> pressed <=> btn.pressed;
     in-out property <bool> loading <=> btn.loading;
     in-out property <image> icon <=> btn.icon;
-    in-out property <length> icon-size <=> btn.icon-size;
+	// Theming properties
+    in-out property <length> t-border-radius <=> btn.t-border-radius;
+    in-out property <length> t-border-width <=> btn.t-border-width;
+    in-out property <length> t-icon-size <=> btn.t-icon-size;
+    in-out property <length> t-padding-vertical <=> btn.t-padding-vertical;
+    in-out property <length> t-padding-horizontal <=> btn.t-padding-horizontal;
+    in-out property <UIconButtonThemeColors> t-base-colors <=> btn.t-base-colors;
+    in-out property <UIconButtonThemeColors> t-danger-colors <=> btn.t-danger-colors;
     callback clicked <=> btn.clicked;
 	// TouchArea callbacks from UIconButton.
     callback double-clicked <=> btn.double-clicked;

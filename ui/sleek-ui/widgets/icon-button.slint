@@ -1,11 +1,37 @@
 import { UAppTheme } from "../app-theme.slint";
 
-import { UIconButtonTheme, UIconButtonThemes, UIconButtonThemeColors } from "../widget-themes/icon-button.slint";
 import { ButtonInterface } from "../utils/button-interface.slint";
 
 import { UIcon } from "icon.slint";
 import { USpinner } from "spinner.slint";
 
+
+export struct UIconButtonThemeColors {
+	background: brush,
+	background-hover: brush,
+	background-active: brush,
+	background-checked: brush,
+	background-disabled: brush,
+	text-color: brush,
+	text-color-hover: brush,
+	text-color-active: brush,
+	text-color-checked: brush,
+	text-color-disabled: brush,
+	border: brush,
+	border-hover: brush,
+	border-active: brush,
+	border-checked: brush,
+	border-disabled: brush,
+}
+
+
+export enum UIconButtonVariant {
+	primary,
+	default,
+	filled,
+	text,
+	text-stripped,
+}
 
 
 export component UIconButton inherits ButtonInterface {
@@ -14,33 +40,47 @@ export component UIconButton inherits ButtonInterface {
     accessible-action-default => {
         self.clicked()
     }
+	// Theming properties
+	// Using a custom size to have the same height as the Button.
+	// When using 16px as the icon's size, there will be a difference
+	// of 1px between the height of the IconButton and the Button.
+	// This is due to the text in the Button that increases the height 
+	// to 27px (26px for an icon button).
+	// This is a weird thing because the font-size is of 14px in the Button,
+	// which is smaller than the 16px of the icons.
+	in-out property <length> t-border-radius: UAppTheme.radius-circle;
+    in-out property <length> t-border-width;
+    in-out property <length> t-icon-size: 17px * UAppTheme.scale-factor;
+    in-out property <length> t-padding-vertical;
+    in-out property <length> t-padding-horizontal;
+    in-out property <UIconButtonThemeColors> t-base-colors;
+    in-out property <UIconButtonThemeColors> t-danger-colors;
+	
 	// Regular properties
-    in-out property <UIconButtonTheme> theme: UIconButtonThemes.default;
-    property <UIconButtonThemeColors> theme-colors: danger ? theme.danger-colors : theme.base-colors;
+    in-out property <UIconButtonVariant> variant: default;
+    property <UIconButtonThemeColors> theme-colors: danger ? t-danger-colors : t-base-colors;
     in-out property <bool> danger: false;
     in-out property <bool> loading: false;
     in-out property <bool> checked: false;
     in-out property <image> icon;
-    in-out property <length> icon-size: theme.icon-size;
     enabled: !loading;
     background: theme-colors.background;
-    border-radius: theme.border-radius;
-    border-width: self.has-focus ? UAppTheme.focus-border-width : theme.border-width;
+    border-radius: self.t-border-radius;
+    border-width: self.has-focus ? UAppTheme.focus-border-width : self.t-border-width;
     border-color: self.has-focus ? UAppTheme.focus-color : theme-colors.border;
     HorizontalLayout {
         alignment: center;
-        padding-top: theme.padding-vertical;
-        padding-bottom: theme.padding-vertical;
-        padding-left: theme.padding-horizontal;
-        padding-right: theme.padding-horizontal;
+        padding-top: t-padding-vertical;
+        padding-bottom: t-padding-vertical;
+        padding-left: t-padding-horizontal;
+        padding-right: t-padding-horizontal;
         VerticalLayout {
             alignment: center;
             if !loading: UIcon {
-                size: icon-size;
+                size: t-icon-size;
                 source: icon;
                 colorize: theme-colors.text-color;
                 animate colorize { duration: 200ms; }
-
                 states [
                     disabled when !root.enabled: {
                         colorize: theme-colors.text-color-disabled;
@@ -57,7 +97,7 @@ export component UIconButton inherits ButtonInterface {
                 ]
             }
             if loading: USpinner {
-                size: icon-size;
+                size: t-icon-size;
                 colorize: theme-colors.text-color;
             }
         }
@@ -84,4 +124,132 @@ export component UIconButton inherits ButtonInterface {
             border-color: self.has-focus ? UAppTheme.focus-color : theme-colors.border-checked;
         }
     ]
+
+	// Instantiating the variants' themes.
+	init => {
+        if variant == UIconButtonVariant.primary {
+            self.t-border-width = 1px * UAppTheme.scale-factor;
+            self.t-padding-vertical = UAppTheme.padding-vertical;
+            self.t-padding-horizontal = UAppTheme.padding-vertical;
+            self.t-base-colors = {
+                background: UAppTheme.primary,
+                background-hover: UAppTheme.primary-hover,
+                background-active: UAppTheme.primary-active,
+                background-checked: UAppTheme.primary,
+                background-disabled: UAppTheme.border-secondary,
+                text-color: Colors.white,
+                text-color-hover: Colors.white,
+                text-color-active: Colors.white,
+                text-color-checked: Colors.white,
+                text-color-disabled: UAppTheme.text-disabled,
+                border-disabled: UAppTheme.border,
+            };
+            self.t-danger-colors = {
+                background: UAppTheme.danger,
+                background-hover: UAppTheme.danger-hover,
+                background-active: UAppTheme.danger-active,
+                background-checked: UAppTheme.danger,
+                background-disabled: UAppTheme.border-secondary,
+                text-color: Colors.white,
+                text-color-hover: Colors.white,
+                text-color-active: Colors.white,
+                text-color-checked: Colors.white,
+                text-color-disabled: UAppTheme.text-disabled,
+                border-disabled: UAppTheme.border,
+            };
+        } else if variant == UIconButtonVariant.default {
+            self.t-border-width = 1px * UAppTheme.scale-factor;
+            self.t-padding-vertical = UAppTheme.padding-vertical;
+            self.t-padding-horizontal = UAppTheme.padding-vertical;
+            self.t-base-colors = {
+                background-checked: UAppTheme.primary-selected,
+                text-color:  UAppTheme.text,
+                text-color-hover: UAppTheme.primary-hover,
+                text-color-active: UAppTheme.primary-active,
+                text-color-checked: UAppTheme.primary,
+                text-color-disabled: UAppTheme.text-disabled,
+                border:  UAppTheme.border,
+                border-hover: UAppTheme.primary-hover,
+                border-active: UAppTheme.primary-active,
+                border-checked: UAppTheme.primary,
+                border-disabled: UAppTheme.border,
+            };
+            self.t-danger-colors = {
+                background-checked: UAppTheme.danger-selected,
+                text-color: UAppTheme.danger,
+                text-color-hover: UAppTheme.danger-hover,
+                text-color-active: UAppTheme.danger-active,
+                text-color-checked: UAppTheme.danger,
+                text-color-disabled: UAppTheme.text-disabled,
+                border: UAppTheme.danger,
+                border-hover: UAppTheme.danger-hover,
+                border-active: UAppTheme.danger-active,
+                border-checked: UAppTheme.danger,
+                border-disabled: UAppTheme.border,
+            };
+        } else if variant == UIconButtonVariant.filled {
+            self.t-padding-vertical = UAppTheme.padding-vertical;
+            self.t-padding-horizontal = UAppTheme.padding-vertical;
+            self.t-base-colors = {
+                background: UAppTheme.color-fill-tertiary,
+                background-hover: UAppTheme.color-fill-secondary,
+                background-active: UAppTheme.color-fill,
+                background-checked: UAppTheme.primary-selected,
+                text-color: UAppTheme.text,
+                text-color-hover: UAppTheme.text,
+                text-color-active: UAppTheme.text,
+                text-color-checked: UAppTheme.primary,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+            self.t-danger-colors = {
+                background: UAppTheme.danger.with-alpha(0.1),
+                background-hover: UAppTheme.danger-hover.with-alpha(0.3),
+                background-active: UAppTheme.danger-active.with-alpha(0.4),
+                background-checked: UAppTheme.danger-selected,
+                text-color: UAppTheme.danger,
+                text-color-hover: UAppTheme.danger-hover,
+                text-color-active: UAppTheme.danger-active,
+                text-color-checked: UAppTheme.danger,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+        } else if variant == UIconButtonVariant.text {
+            self.t-padding-vertical = UAppTheme.padding-vertical;
+            self.t-padding-horizontal = UAppTheme.padding-vertical;
+            self.t-base-colors = {
+                background-hover: UAppTheme.color-fill-secondary,
+                background-active: UAppTheme.color-fill,
+                text-color: UAppTheme.text,
+                text-color-hover: UAppTheme.text,
+                text-color-active: UAppTheme.text,
+                text-color-checked: UAppTheme.primary,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+            self.t-danger-colors = {
+                background-hover: UAppTheme.danger-hover.with-alpha(0.1),
+                background-active: UAppTheme.danger-active.with-alpha(0.3),
+                text-color: UAppTheme.danger,
+                text-color-hover: UAppTheme.danger-hover,
+                text-color-active: UAppTheme.danger-active,
+                text-color-checked: UAppTheme.danger,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+        } else if variant == UIconButtonVariant.text-stripped {
+            self.t-padding-vertical = UAppTheme.padding-vertical;
+            self.t-padding-horizontal = UAppTheme.padding-vertical;
+            self.t-base-colors = {
+                background-checked: UAppTheme.primary,
+                text-color: UAppTheme.text-secondary,
+                text-color-hover: UAppTheme.text,
+                text-color-active: UAppTheme.text,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+            self.t-danger-colors = {
+                background-checked: UAppTheme.primary,
+                text-color: UAppTheme.text-secondary,
+                text-color-hover: UAppTheme.text,
+                text-color-active: UAppTheme.text,
+                text-color-disabled: UAppTheme.text-disabled,
+            };
+        }
+    }
 }

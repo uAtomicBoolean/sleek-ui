@@ -5,7 +5,6 @@ import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 import { UIconButton } from "icon-button.slint";
 
-import { UIconButtonThemes } from "../widget-themes/icon-button.slint";
 import { UNotificationTheme, UNotificationThemes } from "../widget-themes/notification.slint";
 
 
@@ -56,7 +55,7 @@ export component UNotification inherits ButtonInterface {
             VerticalLayout {
                 alignment: center;
                 close-button := UIconButton {
-                    theme: theme.close-button-theme;
+                    variant: theme.close-button-theme;
                     icon: @image-url("../assets/icons/x.svg");
                     accessible-label: @tr("Close button for notification");
                     accessible-action-default => {

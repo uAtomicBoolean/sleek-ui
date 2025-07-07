@@ -7,7 +7,6 @@ import { UIconButton } from "icon-button.slint";
 import { UTitle } from "title.slint";
 
 import { UButtonThemes } from "../widget-themes/button.slint";
-import { UIconButtonThemes } from "../widget-themes/icon-button.slint";
 import { UTitleThemes } from "../widget-themes/title.slint";
 import { UModalTheme, UModalThemes } from "../widget-themes/modal.slint";
 
@@ -106,7 +105,7 @@ export component UModal {
                         VerticalLayout {
                             alignment: center;
                             UIconButton {
-                                theme: theme.close-button-theme;
+                                variant: theme.close-button-theme;
                                 icon: @image-url("../assets/icons/x.svg");
                                 clicked => {
                                     root.close();

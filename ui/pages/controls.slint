@@ -17,7 +17,6 @@ import {
 } from "../sleek-ui/widgets.slint";
 import {
 	UButtonThemes,
-	UIconButtonThemes,
 	URadioButtonThemes,
 	UTitleThemes
 } from "../sleek-ui/widget-themes.slint";
@@ -130,7 +129,7 @@ export component Controls inherits Rectangle {
 
                 UIconButton {
                     enabled: widgets-enabled;
-                    theme: UIconButtonThemes.primary;
+                    variant: primary;
                     icon: @image-url("../assets/images/search.svg");
                 }
 
@@ -284,7 +283,7 @@ export component Controls inherits Rectangle {
                 }
 
                 UIconButton {
-                    theme: UIconButtonThemes.primary;
+                    variant: primary;
                     icon: @image-url("../assets/images/minus.svg");
                     clicked => {
                         progress.progress -= 10%;
@@ -292,7 +291,7 @@ export component Controls inherits Rectangle {
                 }
 
                 UIconButton {
-                    theme: UIconButtonThemes.primary;
+                    variant: primary;
                     icon: @image-url("../assets/images/plus.svg");
                     clicked => {
                         progress.progress += 10%;
