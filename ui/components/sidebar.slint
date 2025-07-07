@@ -28,16 +28,16 @@ export component Sidebar inherits Rectangle {
                 height: 40px;
             }
 
-            HorizontalLayout {
+            for link in ["Controls", "Data display", "Feedback", "About"]: HorizontalLayout {
                 padding: UAppTheme.padding-small;
                 Rectangle {
-                    border-radius: UAppTheme.radius-base;
+                    border-radius: UAppTheme.radius-medium;
                     HorizontalLayout {
                         padding: 6px;
                         UText {
-                            text: "Controls";
+                            text: link;
                             states [
-                                active when SidebarLogic.current-page == "Controls": {
+                                active when SidebarLogic.current-page == link: {
                                     color: UAppTheme.primary;
                                 }
                             ]
@@ -46,114 +46,15 @@ export component Sidebar inherits Rectangle {
 
                     ctrls-touch := TouchArea {
                         clicked => {
-                            SidebarLogic.current-page = "Controls";
+                            SidebarLogic.current-page = link;
                         }
                     }
 
                     states [
-                        active when SidebarLogic.current-page == "Controls": {
+                        active when SidebarLogic.current-page == link: {
                             background: UAppTheme.primary-selected;
                         }
                         hover when ctrls-touch.has-hover: {
-                            background: UAppTheme.color-fill-tertiary;
-                        }
-                    ]
-                }
-            }
-
-            HorizontalLayout {
-                padding: UAppTheme.padding-small;
-                Rectangle {
-                    border-radius: UAppTheme.radius-base;
-                    HorizontalLayout {
-                        padding: 6px;
-                        UText {
-                            text: "Data display";
-                            states [
-                                active when SidebarLogic.current-page == "Data display": {
-                                    color: UAppTheme.primary;
-                                }
-                            ]
-                        }
-                    }
-
-                    dd-touch := TouchArea {
-                        clicked => {
-                            SidebarLogic.current-page = "Data display";
-                        }
-                    }
-
-                    states [
-                        active when SidebarLogic.current-page == "Data display": {
-                            background: UAppTheme.primary-selected;
-                        }
-                        hover when dd-touch.has-hover: {
-                            background: UAppTheme.color-fill-tertiary;
-                        }
-                    ]
-                }
-            }
-
-            HorizontalLayout {
-                padding: UAppTheme.padding-small;
-                Rectangle {
-                    border-radius: UAppTheme.radius-base;
-                    HorizontalLayout {
-                        padding: 6px;
-                        UText {
-                            text: "Feedback";
-                            states [
-                                active when SidebarLogic.current-page == "Feedback": {
-                                    color: UAppTheme.primary;
-                                }
-                            ]
-                        }
-                    }
-
-                    fb-touch := TouchArea {
-                        clicked => {
-                            SidebarLogic.current-page = "Feedback";
-                        }
-                    }
-
-                    states [
-                        active when SidebarLogic.current-page == "Feedback": {
-                            background: UAppTheme.primary-selected;
-                        }
-                        hover when fb-touch.has-hover: {
-                            background: UAppTheme.color-fill-tertiary;
-                        }
-                    ]
-                }
-            }
-
-            HorizontalLayout {
-                padding: UAppTheme.padding-small;
-                Rectangle {
-                    border-radius: UAppTheme.radius-base;
-                    HorizontalLayout {
-                        padding: 6px;
-                        UText {
-                            text: "About";
-                            states [
-                                active when SidebarLogic.current-page == "About": {
-                                    color: UAppTheme.primary;
-                                }
-                            ]
-                        }
-                    }
-
-                    about-touch := TouchArea {
-                        clicked => {
-                            SidebarLogic.current-page = "About";
-                        }
-                    }
-
-                    states [
-                        active when SidebarLogic.current-page == "About": {
-                            background: UAppTheme.primary-selected;
-                        }
-                        hover when about-touch.has-hover: {
                             background: UAppTheme.color-fill-tertiary;
                         }
                     ]

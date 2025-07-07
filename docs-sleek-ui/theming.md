@@ -9,6 +9,10 @@ Default values:
 
 ### Modify a theme
 You can modify the current theme by updating its values in both `sleek-ui/app-theme.slint` and `sleek-ui/theme-colors.slint` file if you cloned sleek-ui in your project.  
+> [!NOTE]
+> As an example, you change the the `UAppTheme.radius-base` to `20px` to round all widgets.  
+> This change must be made from the backend if you don't want to modify the library.
+
 Please note that you should update both `light-theme` and `dark-theme`.
 You can generated a color palette using the [ant design theme editor](https://ant.design/theme-editor).  
 
@@ -20,8 +24,9 @@ Otherwise you can set the `theme` property to your theme.
 ## Widget theming
 > [!NOTE]
 > You can check the widget's theming properties.
+> All widgets' theming properties are prefixed with `t-`.
 
-All widgets have a set of theming properties, prefixed by `t-`, to allow you to easily customize them, or use another widget's properties like the `UFloatingButton`.  
+All widgets have a set of theming properties to allow you to easily customize them, or use another widget's properties like the `UFloatingButton`.  
 You can customize a widget by creating a new component and inheriting the desired widget: 
 ```slint
 import { UIcon } from "@sleek-ui/widget-theme.slint";
