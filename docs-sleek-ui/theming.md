@@ -19,16 +19,23 @@ Otherwise you can set the `theme` property to your theme.
 
 ## Widget theming
 > [!NOTE]
-> You can check the widget's theme structs in their documentation.
+> You can check the widget's theming properties.
 
-All widgets have either their own theme struct or use another widget's theme struct (ex: `UFloatingButton` uses the `UButton` theme struct).  
-You can import this struct from the `sleek-ui/widget-themes.slint` file (like the widget's themes global) and then define your own widget's theme in a global:  
+All widgets have a set of theming properties, prefixed by `t-`, to allow you to easily customize them, or use another widget's properties like the `UFloatingButton`.  
+You can customize a widget by creating a new component and inheriting the desired widget: 
 ```slint
 import { UIcon } from "@sleek-ui/widget-theme.slint";
 
-export global CustomButtonThemes {
-	in-out property <UIcon> special: {
-		...
-	}
+component CustomAlert inherits UAlert {
+	// Necessary to be able to customize the widget else the changes will be overwritten.
+    variant: base;
+    t-background: UAppTheme.primary-selected;
+    t-icon-image: @image-url("../assets/icons/info.svg");
+    t-icon-color: UAppTheme.primary;
+    t-text-color: UAppTheme.primary;
+	// Your code
 }
 ```
+
+> [!WARNING]
+> If the widget comes with variants, use the `base` variants else your customization will be overwritten.

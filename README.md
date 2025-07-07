@@ -98,6 +98,8 @@ You can set your own color scheme themes by:
 - updating the `ligth-theme` and `dark-theme` properties.
 - updating the `theme` property but you will lose the automatic light/dark theme switch.
 
+[Check the documentation for more informations](./docs-sleek-ui/theming.md).
+
 #### Scale factor
 Sleek-ui comes with a scale-factor integrated that allows you to increase or decrease all sizes.  
 It takes effect in the `UAppTheme` global and all widgets.  
