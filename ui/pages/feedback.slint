@@ -6,7 +6,6 @@ import {
 	UText,
 	UTitle
 } from "../sleek-ui/widgets.slint";
-import { UNotificationThemes } from "../sleek-ui/widget-themes.slint";
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { ScrollView } from "std-widgets.slint";
 
@@ -63,7 +62,7 @@ export component Feedback {
                 }
 
                 UNotification {
-                    theme: UNotificationThemes.warning;
+                    variant: warning;
                     title: "New message";
                     message: "A notification can also represent a warning or an error. And a message can take multiple lines in the notification.";
                     width: 400px * UAppTheme.scale-factor;

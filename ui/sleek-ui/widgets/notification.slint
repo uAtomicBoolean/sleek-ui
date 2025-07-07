@@ -3,39 +3,64 @@ import { ButtonInterface } from "../utils/button-interface.slint";
 
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
-import { UIconButton } from "icon-button.slint";
+import { UIconButton, UIconButtonVariant } from "icon-button.slint";
 
-import { UNotificationTheme, UNotificationThemes } from "../widget-themes/notification.slint";
 
+export enum UNotificationVariant {
+	info,
+	success,
+	warning,
+	danger,
+}
 
 export component UNotification inherits ButtonInterface {
-    in-out property <UNotificationTheme> theme: UNotificationThemes.info;
+	// Theming properties
+	in-out property <image> t-icon-image;
+    in-out property <brush> t-icon-color;
+    in-out property <length> t-icon-size: UAppTheme.font-size-big;
+    in-out property <length> t-title-font-size: UAppTheme.font-size-medium;
+    in-out property <length> t-title-horizontal-padding: UAppTheme.padding-big;
+    in-out property <length> t-title-vertical-padding: UAppTheme.padding-medium;
+    in-out property <length> t-content-padding-top;
+    in-out property <length> t-content-padding-bottom: UAppTheme.padding-medium;
+    in-out property <length> t-content-padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base;
+    in-out property <length> t-content-padding-right: UAppTheme.padding-big;
+    in-out property <brush> t-background: UAppTheme.bg-elevated;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <length> t-border-width;
+    in-out property <brush> t-border-color;
+    in-out property <length> t-drop-shadow-blur: UAppTheme.shadow-blur;
+    in-out property <color> t-drop-shadow-color: UAppTheme.shadow-color;
+    in-out property <length> t-drop-shadow-offset-y: UAppTheme.shadow-y-offset;
+    in-out property <UIconButtonVariant> t-close-button-variant: text;
+	// Regular properties
+	in-out property <UNotificationVariant> variant: info;
     in-out property <string> title;
     in-out property <string> message;
     in-out property <bool> single-line-message: true;
     callback close <=> close-button.clicked;
     min-width: 300px * UAppTheme.scale-factor;
-    background: theme.background;
-    border-radius: theme.border-radius;
-    border-width: root.has-focus ? UAppTheme.focus-border-width : theme.border-width;
-    border-color: root.has-focus ? UAppTheme.focus-color : theme.border-color;
-    drop-shadow-blur: theme.drop-shadow-blur;
-    drop-shadow-color: theme.drop-shadow-color;
-    drop-shadow-offset-y: theme.drop-shadow-offset-y;
+    background: t-background;
+    border-radius: t-border-radius;
+    border-width: root.has-focus ? UAppTheme.focus-border-width : t-border-width;
+    border-color: root.has-focus ? UAppTheme.focus-color : t-border-color;
+    drop-shadow-blur: t-drop-shadow-blur;
+    drop-shadow-color: t-drop-shadow-color;
+    drop-shadow-offset-y: t-drop-shadow-offset-y;
     VerticalLayout {
         padding: UAppTheme.padding-base;
         HorizontalLayout {
-            padding-top: theme.title-vertical-padding;
-            padding-bottom: theme.title-vertical-padding;
-            padding-left: theme.title-horizontal-padding;
-            padding-right: theme.title-horizontal-padding;
+            padding-top: t-title-vertical-padding;
+            padding-bottom: t-title-vertical-padding;
+            padding-left: t-title-horizontal-padding;
+            padding-right: t-title-horizontal-padding;
             VerticalLayout {
                 alignment: center;
                 padding-right: UAppTheme.padding-medium;
                 UIcon {
-                    source: theme.icon-image;
-                    colorize: theme.icon-color;
-                    size: theme.icon-size;
+                    source: t-icon-image;
+                    colorize: t-icon-color;
+                    size: t-icon-size;
                     accessible-role: none;
                 }
             }
@@ -48,14 +73,14 @@ export component UNotification inherits ButtonInterface {
                     text: title;
                     wrap: no-wrap;
                     overflow: elide;
-                    font-size: theme.title-font-size;
+                    font-size: t-title-font-size;
                 }
             }
 
             VerticalLayout {
                 alignment: center;
                 close-button := UIconButton {
-                    variant: theme.close-button-variant;
+                    variant: t-close-button-variant;
                     icon: @image-url("../assets/icons/x.svg");
                     accessible-label: @tr("Close button for notification");
                     accessible-action-default => {
@@ -66,10 +91,10 @@ export component UNotification inherits ButtonInterface {
         }
 
         if message != "": HorizontalLayout {
-            padding-top: theme.content-padding-top;
-            padding-bottom: theme.content-padding-bottom;
-            padding-left: theme.content-padding-left;
-            padding-right: theme.content-padding-right;
+            padding-top: t-content-padding-top;
+            padding-bottom: t-content-padding-bottom;
+            padding-left: t-content-padding-left;
+            padding-right: t-content-padding-right;
             alignment: start;
             UText {
                 init => {
@@ -82,6 +107,22 @@ export component UNotification inherits ButtonInterface {
                 text: root.message;
                 accessible-label: @tr("Notification content");
             }
+        }
+    }
+
+    init => {
+        if variant == UNotificationVariant.info {
+            self.t-icon-image = @image-url("../assets/icons/info.svg");
+            self.t-icon-color = UAppTheme.primary;
+        } else if variant == UNotificationVariant.success {
+            self.t-icon-image = @image-url("../assets/icons/circle-check.svg");
+            self.t-icon-color = UAppTheme.success;
+        } else if variant == UNotificationVariant.warning {
+            self.t-icon-image = @image-url("../assets/icons/info.svg");
+            self.t-icon-color = UAppTheme.warning;
+        } else if variant == UNotificationVariant.danger {
+            self.t-icon-image = @image-url("../assets/icons/circle-x.svg");
+            self.t-icon-color = UAppTheme.danger;
         }
     }
 }

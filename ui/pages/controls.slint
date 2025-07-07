@@ -7,17 +7,13 @@ import {
 	UInputNumber,
 	ULink,
 	ULinearProgress,
-	UHorizontalRadio,
-	UVerticalRadio,
+	URadio,
 	URadioButton,
 	USelect,
 	USwitch,
 	UText,
 	UTitle
 } from "../sleek-ui/widgets.slint";
-import {
-	URadioButtonThemes,
-} from "../sleek-ui/widget-themes.slint";
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { ScrollView } from "std-widgets.slint";
 
@@ -179,7 +175,7 @@ export component Controls inherits Rectangle {
                 alignment: start;
                 spacing: UAppTheme.spacing-big;
                 padding-top: UAppTheme.padding-base;
-                UHorizontalRadio {
+                URadio {
                     options: ["Apple", "Banana", "Orange"];
                 }
             }
@@ -195,7 +191,8 @@ export component Controls inherits Rectangle {
                 alignment: start;
                 spacing: UAppTheme.spacing-big;
                 padding-bottom: 24px * UAppTheme.scale-factor;
-                UVerticalRadio {
+                URadio {
+                    horizontal: false;
                     options: ["Apple", "Banana", "Orange"];
                 }
             }
@@ -220,7 +217,7 @@ export component Controls inherits Rectangle {
                 padding-top: UAppTheme.padding-base;
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 URadioButton {
-                    theme: URadioButtonThemes.primary;
+                    variant: primary;
                     options: ["Apple", "Banana", "Orange"];
                 }
             }

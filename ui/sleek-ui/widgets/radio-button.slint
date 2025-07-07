@@ -1,30 +1,52 @@
 import { UAppTheme } from "../app-theme.slint";
 import { ButtonInterface } from "../utils/button-interface.slint";
-
 import { UText } from "./text.slint";
 
-import { URadioButtonTheme, URadioButtonThemes } from "../widget-themes/radio-button.slint";
 
-
+export enum URadioButtonVariant {
+	default,
+	primary,
+}
 
 export component URadioButton {
-    in-out property <URadioButtonTheme> theme: URadioButtonThemes.default;
+	// Theming properties
+	in-out property <brush> t-background;
+    in-out property <brush> t-background-hover;
+    in-out property <brush> t-background-selected;
+    in-out property <brush> t-background-selected-hover;
+    in-out property <brush> t-background-selected-active;
+    in-out property <length> t-border-width: UAppTheme.border-width-base;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <brush> t-border-color;
+    in-out property <brush> t-border-color-hover;
+    in-out property <brush> t-border-color-selected;
+    in-out property <brush> t-border-color-selected-hover;
+    in-out property <brush> t-border-color-selected-active;
+    in-out property <brush> t-text-color;
+    in-out property <brush> t-text-color-hover;
+    in-out property <brush> t-text-color-selected;
+    in-out property <brush> t-text-color-selected-hover;
+    in-out property <brush> t-text-color-selected-active;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <length> t-padding-vertical: UAppTheme.padding-vertical;
+    in-out property <length> t-padding-horizontal: UAppTheme.padding-horizontal;
+	// Regular properties
+	in-out property <URadioButtonVariant> variant: default;
     in-out property <[string]> options;
     in-out property <string> selected-value: options[0];
     callback selected(value: string);
-
     HorizontalLayout {
         for option[idx] in root.options: ButtonInterface {
-            background: theme.background;
-            border-width: theme.border-width;
-            border-color: theme.border-color;
+            background: t-background;
+            border-width: t-border-width;
+            border-color: t-border-color;
             init => {
                 if idx == 0 {
-                    self.border-top-left-radius = theme.border-radius;
-                    self.border-bottom-left-radius = theme.border-radius;
+                    self.border-top-left-radius = t-border-radius;
+                    self.border-bottom-left-radius = t-border-radius;
                 } else if idx == options.length - 1 {
-                    self.border-top-right-radius = theme.border-radius;
-                    self.border-bottom-right-radius = theme.border-radius;
+                    self.border-top-right-radius = t-border-radius;
+                    self.border-bottom-right-radius = t-border-radius;
                 }
             }
             clicked => {
@@ -33,16 +55,20 @@ export component URadioButton {
             }
             HorizontalLayout {
                 alignment: center;
-                padding-top: theme.padding-vertical;
-                padding-bottom: theme.padding-vertical;
-                padding-left: theme.padding-horizontal;
-                padding-right: theme.padding-horizontal;
+                padding-top: t-padding-vertical;
+                padding-bottom: t-padding-vertical;
+                padding-left: t-padding-horizontal;
+                padding-right: t-padding-horizontal;
                 VerticalLayout {
                     alignment: center;
                     option-text := UText {
                         text: option;
-                        color: theme.text-color;
-                        font-size: theme.font-size;
+                        color: t-text-color;
+                        font-size: t-font-size;
+                        animate color {
+                            easing: ease;
+                            duration: 200ms;
+                        }
                     }
                 }
             }
@@ -51,46 +77,75 @@ export component URadioButton {
                 focus-not-selected-hover when self.has-focus && selected-value != option && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
-                    background: theme.background-hover;
-                    option-text.color: theme.text-color-hover;
+                    background: t-background-hover;
+                    option-text.color: t-text-color-hover;
                 }
                 focus-selected-hover when self.has-focus && selected-value == option && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
-                    background: theme.background-selected-hover;
-                    option-text.color: theme.text-color-selected-hover;
+                    background: t-background-selected-hover;
+                    option-text.color: t-text-color-selected-hover;
                 }
                 focus-selected when self.has-focus && selected-value == option: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
-                    background: theme.background-selected;
-                    option-text.color: theme.text-color-selected;
+                    background: t-background-selected;
+                    option-text.color: t-text-color-selected;
                 }
                 focus when self.has-focus: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                 }
                 active-selected when self.pressed && selected-value == option: {
-                    background: theme.background-selected-active;
-                    border-color: theme.border-color-selected-active;
-                    option-text.color: theme.text-color-selected-active;
+                    background: t-background-selected-active;
+                    border-color: t-border-color-selected-active;
+                    option-text.color: t-text-color-selected-active;
                 }
                 hover-not-selected when self.has-hover && selected-value != option: {
-                    background: theme.background-hover;
-                    border-color: theme.border-color-hover;
-                    option-text.color: theme.text-color-hover;
+                    background: t-background-hover;
+                    border-color: t-border-color-hover;
+                    option-text.color: t-text-color-hover;
                 }
                 hover-selected when self.has-hover && selected-value == option: {
-                    background: theme.background-selected-hover;
-                    border-color: theme.border-color-selected-hover;
-                    option-text.color: theme.text-color-selected-hover;
+                    background: t-background-selected-hover;
+                    border-color: t-border-color-selected-hover;
+                    option-text.color: t-text-color-selected-hover;
                 }
                 selected when selected-value == option: {
-                    background: theme.background-selected;
-                    border-color: theme.border-color-selected;
-                    option-text.color: theme.text-color-selected;
+                    background: t-background-selected;
+                    border-color: t-border-color-selected;
+                    option-text.color: t-text-color-selected;
                 }
             ]
+        }
+    }
+
+    init => {
+        if variant == URadioButtonVariant.default {
+            self.t-border-color = UAppTheme.border;
+            self.t-border-color-hover = UAppTheme.border;
+            self.t-border-color-selected = UAppTheme.primary;
+            self.t-border-color-selected-hover = UAppTheme.primary-hover;
+            self.t-border-color-selected-active = UAppTheme.primary-active;
+            self.t-text-color = UAppTheme.text;
+            self.t-text-color-hover = UAppTheme.primary;
+            self.t-text-color-selected = UAppTheme.primary;
+            self.t-text-color-selected-hover = UAppTheme.primary-hover;
+            self.t-text-color-selected-active = UAppTheme.primary-active;
+        } else if variant == URadioButtonVariant.primary {
+            self.t-background-selected = UAppTheme.primary;
+            self.t-background-selected-hover = UAppTheme.primary-hover;
+            self.t-background-selected-active = UAppTheme.primary-active;
+            self.t-border-color = UAppTheme.border;
+            self.t-border-color-hover = UAppTheme.border;
+            self.t-border-color-selected = UAppTheme.primary;
+            self.t-border-color-selected-hover = UAppTheme.primary-hover;
+            self.t-border-color-selected-active = UAppTheme.primary-active;
+            self.t-text-color = UAppTheme.text;
+            self.t-text-color-hover = UAppTheme.primary;
+            self.t-text-color-selected = Colors.white;
+            self.t-text-color-selected-hover = Colors.white;
+            self.t-text-color-selected-active = Colors.white;
         }
     }
 }

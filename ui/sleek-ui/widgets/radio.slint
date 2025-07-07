@@ -1,8 +1,7 @@
 import { UAppTheme } from "../app-theme.slint";
-
-import { URadioTheme, URadioThemes } from "../widget-themes/radio.slint";
 import { ButtonInterface } from "../utils/button-interface.slint";
 import { UText } from "text.slint";
+
 
 component URadioOption inherits ButtonInterface {
 	// Accessability properties
@@ -13,8 +12,26 @@ component URadioOption inherits ButtonInterface {
     accessible-action-default => {
         self.clicked();
     }
+	// Theming properties
+	in-out property <brush> t-text-color;
+    in-out property <brush> t-text-color-selected;
+    in-out property <length> t-font-size;
+    in-out property <int> t-font-weight;
+    in-out property <int> t-font-weight-selected;
+    in-out property <brush> t-border;
+    in-out property <brush> t-border-hover;
+    in-out property <brush> t-border-selected;
+    in-out property <brush> t-border-selected-hover;
+    in-out property <brush> t-background;
+    in-out property <brush> t-background-selected;
+    in-out property <brush> t-background-selected-hover;
+    in-out property <length> t-main-circle-size;
+    in-out property <length> t-main-circle-border-width;
+    in-out property <length> t-dot-circle-size;
+    in-out property <brush> t-dot-color;
+    in-out property <length> t-radio-spacing;
+    in-out property <length> t-radio-text-spacing;
 	// Regular properties
-    in property <URadioTheme> theme;
     in-out property <string> option;
     in-out property <string> selected-value;
     callback selected(value: string);
@@ -28,15 +45,14 @@ component URadioOption inherits ButtonInterface {
     }
     HorizontalLayout {
         alignment: start;
-        spacing: theme.radio-text-spacing;
-
+        spacing: t-radio-text-spacing;
         VerticalLayout {
             alignment: center;
             Rectangle {
-                width: theme.main-circle-size;
-                height: theme.main-circle-size;
-                background: theme.background;
-                border-width: theme.main-circle-border-width;
+                width: t-main-circle-size;
+                height: t-main-circle-size;
+                background: t-background;
+                border-width: t-main-circle-border-width;
                 border-radius: UAppTheme.radius-circle;
                 border-color: UAppTheme.border;
                 animate background, border-color {
@@ -49,9 +65,9 @@ component URadioOption inherits ButtonInterface {
                         alignment: center;
                         Rectangle {
                             opacity: root.selected-value == root.option ? 1 : 0;
-                            width: theme.dot-circle-size;
-                            height: theme.dot-circle-size;
-                            background: theme.dot-color;
+                            width: t-dot-circle-size;
+                            height: t-dot-circle-size;
+                            background: t-dot-color;
                             border-radius: UAppTheme.radius-circle;
                             animate opacity { duration: 200ms; }
                         }
@@ -62,27 +78,27 @@ component URadioOption inherits ButtonInterface {
                     focused-hover-selected when root.has-focus && root.selected-value == root.option && root.has-hover: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
-                        background: theme.background-selected-hover;
+                        background: t-background-selected-hover;
                     }
                     focused-selected when root.has-focus && root.selected-value == root.option: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
-                        background: theme.background-selected;
+                        background: t-background-selected;
                     }
                     focused when root.has-focus: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
                     }
                     hover-unselected when root.has-hover && root.selected-value != root.option: {
-                        border-color: theme.border-hover;
+                        border-color: t-border-hover;
                     }
                     hover-selected when root.has-hover && root.selected-value == root.option: {
-                        border-color: theme.border-selected-hover;
-                        background: theme.background-selected-hover;
+                        border-color: t-border-selected-hover;
+                        background: t-background-selected-hover;
                     }
                     selected when root.selected-value == root.option: {
-                        border-color: theme.border-selected;
-                        background: theme.background-selected;
+                        border-color: t-border-selected;
+                        background: t-background-selected;
                     }
                 ]
             }
@@ -92,13 +108,13 @@ component URadioOption inherits ButtonInterface {
             alignment: center;
             UText {
                 text: root.option;
-                color: theme.text-color;
-                font-size: theme.font-size;
-                font-weight: theme.font-weight;
+                color: t-text-color;
+                font-size: t-font-size;
+                font-weight: t-font-weight;
                 states [
                     selected when root.selected-value == root.option: {
-                        color: theme.text-color-selected;
-                        font-weight: theme.font-weight-selected;
+                        color: t-text-color-selected;
+                        font-weight: t-font-weight-selected;
                     }
                 ]
             }
@@ -106,43 +122,92 @@ component URadioOption inherits ButtonInterface {
     }
 }
 
-export component UVerticalRadio inherits Rectangle {
+export component URadio {
     accessible-role: groupbox;
     accessible-item-count: self.options.length;
-    in-out property <URadioTheme> theme: URadioThemes.default;
+	// Theming properties
+	in-out property <brush> t-text-color: UAppTheme.text;
+    in-out property <brush> t-text-color-selected: UAppTheme.text;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <int> t-font-weight;
+    in-out property <int> t-font-weight-selected;
+    in-out property <brush> t-border: UAppTheme.border;
+    in-out property <brush> t-border-hover: UAppTheme.primary-hover;
+    in-out property <brush> t-border-selected: UAppTheme.primary;
+    in-out property <brush> t-border-selected-hover: UAppTheme.primary-hover;
+    in-out property <brush> t-background: UAppTheme.bg-elevated;
+    in-out property <brush> t-background-selected: UAppTheme.primary;
+    in-out property <brush> t-background-selected-hover: UAppTheme.primary-hover;
+    in-out property <length> t-main-circle-size: UAppTheme.font-size-base;
+    in-out property <length> t-main-circle-border-width: UAppTheme.border-width-base;
+    in-out property <length> t-dot-circle-size: UAppTheme.font-size-base / 3;
+    in-out property <brush> t-dot-color: white;
+    in-out property <length> t-radio-spacing: UAppTheme.spacing-base;
+    in-out property <length> t-radio-text-spacing: UAppTheme.spacing-base;
+	// Regular properties
     in-out property <[string]> options;
     in-out property <string> selected-value;
+    in-out property <bool> horizontal: true;
     callback selected(value: string);
     VerticalLayout {
-        alignment: start;
-        spacing: theme.radio-spacing;
-        for option in root.options: URadioOption {
-            option: option;
-            theme: theme;
-            selected-value <=> root.selected-value;
-            selected(value) => {
-                root.selected(value);
+        if horizontal: HorizontalLayout {
+            alignment: start;
+            spacing: t-radio-spacing;
+            for option in root.options: URadioOption {
+                t-text-color: root.t-text-color;
+                t-text-color-selected: root.t-text-color-selected;
+                t-font-size: root.t-font-size;
+                t-font-weight: root.t-font-weight;
+                t-font-weight-selected: root.t-font-weight-selected;
+                t-border: root.t-border;
+                t-border-hover: root.t-border-hover;
+                t-border-selected: root.t-border-selected;
+                t-border-selected-hover: root.t-border-selected-hover;
+                t-background: root.t-background;
+                t-background-selected: root.t-background-selected;
+                t-background-selected-hover: root.t-background-selected-hover;
+                t-main-circle-size: root.t-main-circle-size;
+                t-main-circle-border-width: root.t-main-circle-border-width;
+                t-dot-circle-size: root.t-dot-circle-size;
+                t-dot-color: root.t-dot-color;
+                t-radio-spacing: root.t-radio-spacing;
+                t-radio-text-spacing: root.t-radio-text-spacing;
+				// Regular properties
+                option: option;
+                selected-value <=> root.selected-value;
+                selected(value) => {
+                    root.selected(value);
+                }
             }
         }
-    }
-}
-
-export component UHorizontalRadio inherits Rectangle {
-    accessible-role: groupbox;
-    accessible-item-count: self.options.length;
-    in-out property <URadioTheme> theme: URadioThemes.default;
-    in-out property <[string]> options;
-    in-out property <string> selected-value;
-    callback selected(value: string);
-    HorizontalLayout {
-        alignment: start;
-        spacing: theme.radio-spacing;
-        for option in root.options: URadioOption {
-            option: option;
-            theme: theme;
-            selected-value <=> root.selected-value;
-            selected(value) => {
-                root.selected(value);
+        if !horizontal: VerticalLayout {
+            alignment: start;
+            spacing: t-radio-spacing;
+            for option in root.options: URadioOption {
+                t-text-color: root.t-text-color;
+                t-text-color-selected: root.t-text-color-selected;
+                t-font-size: root.t-font-size;
+                t-font-weight: root.t-font-weight;
+                t-font-weight-selected: root.t-font-weight-selected;
+                t-border: root.t-border;
+                t-border-hover: root.t-border-hover;
+                t-border-selected: root.t-border-selected;
+                t-border-selected-hover: root.t-border-selected-hover;
+                t-background: root.t-background;
+                t-background-selected: root.t-background-selected;
+                t-background-selected-hover: root.t-background-selected-hover;
+                t-main-circle-size: root.t-main-circle-size;
+                t-main-circle-border-width: root.t-main-circle-border-width;
+                t-dot-circle-size: root.t-dot-circle-size;
+                t-dot-color: root.t-dot-color;
+                t-radio-spacing: root.t-radio-spacing;
+                t-radio-text-spacing: root.t-radio-text-spacing;
+				// Regular properties
+                option: option;
+                selected-value <=> root.selected-value;
+                selected(value) => {
+                    root.selected(value);
+                }
             }
         }
     }

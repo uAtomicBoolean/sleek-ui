@@ -1,6 +1,5 @@
 import { UAppTheme } from "../app-theme.slint";
 
-import { USelectTheme, USelectThemes } from "../widget-themes/select.slint";
 import { ButtonInterface } from "../utils/button-interface.slint";
 import { USelectOption } from "../utils/structs.slint";
 
@@ -20,34 +19,54 @@ export component USelect inherits ButtonInterface {
     accessible-action-default => {
         self.clicked();
     }
+	// Theming properties
+	in-out property <brush> t-background: transparent;
+    in-out property <length> t-border-width: UAppTheme.border-width-base;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <brush> t-border-color: UAppTheme.border;
+    in-out property <brush> t-border-color-hover: UAppTheme.primary-hover;
+    in-out property <brush> t-border-color-disabled: UAppTheme.border-secondary;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <brush> t-text-color: UAppTheme.text;
+    in-out property <brush> t-text-color-disabled: UAppTheme.text-disabled;
+    in-out property <length> t-icon-size: UAppTheme.icon-size-base;
+    in-out property <brush> t-icon-color: UAppTheme.border;
+    in-out property <length> t-popup-max-height: 124px * UAppTheme.scale-factor;
+    in-out property <length> t-option-height:29px * UAppTheme.scale-factor;
+    in-out property <brush> t-option-bg-fill: UAppTheme.color-fill-tertiary;
+    in-out property <brush> t-option-bg-selected: UAppTheme.primary-selected;
+    in-out property <brush> t-option-text-selected-color: UAppTheme.primary;
+    in-out property <brush> t-option-text-disabled-color: UAppTheme.text-disabled;
+    in-out property <length> t-padding-vertical: UAppTheme.padding-vertical;
+    in-out property <length> t-padding-horizontal: UAppTheme.padding-horizontal;
+    in-out property <length> t-padding-popover: UAppTheme.padding-base;
 	// Regular properties
-    in-out property <USelectTheme> theme: USelectThemes.default;
     in-out property <int> current-index: -1;
     in-out property <[USelectOption]> options;
     private property <string> selected-text;
-    private property <length> full-options-height: theme.option-height * options.length + theme.padding-popover * 2;
+    private property <length> full-options-height: t-option-height * options.length + t-padding-popover * 2;
     callback selected-changed(new-index: int);
-    background: theme.background;
-    border-width: self.has-focus ? UAppTheme.focus-border-width : theme.border-width;
-    border-color: self.has-focus ? UAppTheme.focus-color : theme.border-color;
-    border-radius: theme.border-radius;
+    background: t-background;
+    border-width: self.has-focus ? UAppTheme.focus-border-width : t-border-width;
+    border-color: self.has-focus ? UAppTheme.focus-color : t-border-color;
+    border-radius: t-border-radius;
     clicked => {
         popup.show();
     }
     HorizontalLayout {
         alignment: space-between;
         spacing: UAppTheme.spacing-base;
-        padding-top: theme.padding-vertical;
-        padding-bottom: theme.padding-vertical;
-        padding-left: theme.padding-horizontal;
-        padding-right: theme.padding-horizontal;
+        padding-top: t-padding-vertical;
+        padding-bottom: t-padding-vertical;
+        padding-left: t-padding-horizontal;
+        padding-right: t-padding-horizontal;
         VerticalLayout {
             alignment: center;
             text-obj := UText {
                 text: current-index != -1 ? options[current-index].text : "";
                 overflow: elide;
-                font-size: theme.font-size;
-                color: theme.text-color;
+                font-size: t-font-size;
+                color: t-text-color;
             }
         }
 
@@ -55,8 +74,8 @@ export component USelect inherits ButtonInterface {
             alignment: center;
             UIcon {
                 source: @image-url("../assets/icons/chevron-up-down.svg");
-                size: theme.icon-size;
-                colorize: theme.icon-color;
+                size: t-icon-size;
+                colorize: t-icon-color;
             }
         }
     }
@@ -64,12 +83,12 @@ export component USelect inherits ButtonInterface {
     popup := UPopover {
         close-policy: close-on-click-outside;
         width: root.width;
-        height: root.full-options-height > theme.popup-max-height ? theme.popup-max-height : root.full-options-height;
+        height: root.full-options-height > t-popup-max-height ? t-popup-max-height : root.full-options-height;
         y: root.y + root.height + 1px;
         ScrollView {
             height: parent.height;
             list-contents := VerticalLayout {
-                padding: theme.padding-popover;
+                padding: t-padding-popover;
                 for option[index] in root.options: select-item := Rectangle {
 					// List item accessability
 					accessible-role: list-item;
@@ -80,24 +99,24 @@ export component USelect inherits ButtonInterface {
                         touch.clicked();
                     }
 					// Item contents and properties.
-					height: theme.option-height;
+					height: t-option-height;
                     border-radius: popup.t-border-radius;
                     width: 100%;
                     VerticalLayout {
                         alignment: center;
-                        padding-left: theme.padding-horizontal;
-                        padding-right: theme.padding-horizontal;
+                        padding-left: t-padding-horizontal;
+                        padding-right: t-padding-horizontal;
                         UText {
                             text: option.text;
-                            font-size: theme.font-size;
+                            font-size: t-font-size;
                             overflow: elide;
                             wrap: no-wrap;
                             states [
                                 disabled when !option.enabled: {
-                                    color: theme.option-text-disabled-color;
+                                    color: t-option-text-disabled-color;
                                 }
                                 selected when options[current-index].value == option.value: {
-                                    color: theme.option-text-selected-color;
+                                    color: t-option-text-selected-color;
                                 }
                             ]
                         }
@@ -116,10 +135,10 @@ export component USelect inherits ButtonInterface {
                     animate background { duration: 200ms; }
                     states [
                         selected when options[current-index].value == option.value && option.enabled: {
-                            background: theme.option-bg-selected;
+                            background: t-option-bg-selected;
                         }
                         hover when touch.has-hover && option.enabled: {
-                            background: theme.option-bg-fill;
+                            background: t-option-bg-fill;
                         }
                     ]
                 }
@@ -129,11 +148,11 @@ export component USelect inherits ButtonInterface {
 
     states [
         disabled when !self.enabled: {
-            border-color: theme.border-color-disabled;
-            text-obj.color: theme.text-color-disabled;
+            border-color: t-border-color-disabled;
+            text-obj.color: t-text-color-disabled;
         }
         hover when self.has-hover: {
-            border-color: self.has-focus ? black : theme.border-color-hover;
+            border-color: self.has-focus ? black : t-border-color-hover;
         }
     ]
 }
