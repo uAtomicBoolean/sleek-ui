@@ -176,6 +176,7 @@ export component Controls inherits Rectangle {
                 spacing: UAppTheme.spacing-big;
                 padding-top: UAppTheme.padding-base;
                 URadio {
+                    vertical: false;
                     options: ["Apple", "Banana", "Orange"];
                 }
             }
@@ -192,7 +193,6 @@ export component Controls inherits Rectangle {
                 spacing: UAppTheme.spacing-big;
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 URadio {
-                    horizontal: false;
                     options: ["Apple", "Banana", "Orange"];
                 }
             }

@@ -1,6 +1,5 @@
 # RadioButton
 A group of radio choices.  
-It comes with two widgets: `UHorizontalRadio` and `UVerticalRadio`.  
 
 ![radio presentation](images/radio.png)
 
@@ -36,6 +35,7 @@ struct URadioTheme {
 Inherits from `Rectangle`.
 
 **Properties:**
+- vertical `<bool>`: indicates weither the radio group should be vertical or horizontal. Default to `true`.
 - options `<[string]>`: the list of available values.
 - selected-value `<string>`: the currently selected value.
 
