@@ -23,8 +23,8 @@ export component UCheckbox inherits ButtonInterface {
     in-out property <brush> t-background-unchecked: Colors.transparent;
     in-out property <brush> t-background-disabled-checked: UAppTheme.primary-disabled;
     in-out property <brush> t-background-disabled-unchecked: UAppTheme.color-fill-tertiary;
-    in-out property <length> t-border-width: 1px * UAppTheme.scale-factor;
-    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <length> t-border-width: UAppTheme.border-width-base;
+    in-out property <length> t-border-radius: UAppTheme.radius-base > UAppTheme.radius-medium ? UAppTheme.radius-medium : UAppTheme.radius-base;
     in-out property <brush> t-border-color: UAppTheme.border;
     in-out property <brush> t-border-color-hover: UAppTheme.primary-hover;
     in-out property <brush> t-border-color-disabled: UAppTheme.border;

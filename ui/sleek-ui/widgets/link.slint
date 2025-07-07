@@ -18,7 +18,7 @@ export component ULink inherits ButtonInterface {
     in-out property <brush> t-text-color-hover: UAppTheme.primary;
     in-out property <brush> t-text-color-active: UAppTheme.primary;
     in-out property <length> t-underline-spacing: -1px;
-    in-out property <length> t-underline-thickness: 1px * UAppTheme.scale-factor;
+    in-out property <length> t-underline-thickness: UAppTheme.border-width-base;
 	// Regular properties
     in-out property <string> text <=> link-text.text;
 	// Using this horizontal layout to limit the width of the underline to the text's width.

@@ -26,7 +26,7 @@ export component UNotification inherits ButtonInterface {
     in-out property <length> t-content-padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base;
     in-out property <length> t-content-padding-right: UAppTheme.padding-big;
     in-out property <brush> t-background: UAppTheme.bg-elevated;
-    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <length> t-border-radius: UAppTheme.radius-base > UAppTheme.radius-medium ? UAppTheme.radius-medium : UAppTheme.radius-base;
     in-out property <length> t-border-width;
     in-out property <brush> t-border-color;
     in-out property <length> t-drop-shadow-blur: UAppTheme.shadow-blur;
