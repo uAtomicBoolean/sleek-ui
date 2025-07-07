@@ -2,7 +2,6 @@ import {
 	UText,
 	UTitle
 } from "../sleek-ui/widgets.slint";
-import { UTitleThemes } from "../sleek-ui/widget-themes.slint";
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { ScrollView, AboutSlint } from "std-widgets.slint";
 
@@ -13,7 +12,7 @@ export component About {
             alignment: start;
             padding-bottom: 36px * UAppTheme.scale-factor;
             UTitle {
-                theme: UTitleThemes.level-4;
+                level: 4;
                 text: "About";
             }
         }

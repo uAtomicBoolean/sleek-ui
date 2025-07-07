@@ -4,7 +4,7 @@ import { UAppTheme } from "../app-theme.slint";
 export component UCard inherits Rectangle {
 	// Theming properties
 	in-out property <brush> t-background: UAppTheme.bg-elevated;
-    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <length> t-border-radius: UAppTheme.radius-base > 4px * UAppTheme.scale-factor ? 4px * UAppTheme.scale-factor : UAppTheme.radius-base;
     in-out property <length> t-drop-shadow-blur: UAppTheme.shadow-blur;
     in-out property <color> t-drop-shadow-color: UAppTheme.shadow-color;
     in-out property <length> t-drop-shadow-offset-y: UAppTheme.shadow-y-offset;

@@ -1,6 +1,5 @@
 import { UAppTheme } from "../app-theme.slint";
 
-import { ULinkTheme, ULinkThemes } from "../widget-themes/link.slint";
 import { ButtonInterface } from "../utils/button-interface.slint";
 import { UText } from "text.slint";
 
@@ -13,23 +12,29 @@ export component ULink inherits ButtonInterface {
     accessible-action-default => {
         self.clicked()
     }
+	// Theming properties
+	in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <brush> t-text-color: UAppTheme.primary;
+    in-out property <brush> t-text-color-hover: UAppTheme.primary;
+    in-out property <brush> t-text-color-active: UAppTheme.primary;
+    in-out property <length> t-underline-spacing: -1px;
+    in-out property <length> t-underline-thickness: 1px * UAppTheme.scale-factor;
 	// Regular properties
-	in-out property <ULinkTheme> theme: ULinkThemes.primary;
     in-out property <string> text <=> link-text.text;
 	// Using this horizontal layout to limit the width of the underline to the text's width.
     HorizontalLayout {
         alignment: start;
         VerticalLayout {
             alignment: center;
-            spacing: theme.underline-spacing;
+            spacing: t-underline-spacing;
             link-text := UText {
-                color: theme.text-color;
-                font-size: theme.font-size;
+                color: t-text-color;
+                font-size: t-font-size;
             }
 
             underline := Rectangle {
-                height: theme.underline-thickness;
-                background: theme.text-color;
+                height: t-underline-thickness;
+                background: t-text-color;
             }
         }
     }
@@ -39,7 +44,12 @@ export component ULink inherits ButtonInterface {
             border-width: UAppTheme.focus-border-width;
             border-color: UAppTheme.focus-color;
         }
+        active when root.pressed: {
+            link-text.color: t-text-color-active;
+            underline.visible: false;
+        }
         hover when root.has-hover: {
+            link-text.color: t-text-color-hover;
             underline.visible: false;
         }
     ]

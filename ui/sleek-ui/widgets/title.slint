@@ -1,23 +1,29 @@
 import { UAppTheme } from "../app-theme.slint";
-import { UTitleTheme, UTitleThemes } from "../widget-themes/title.slint";
 
 export component UTitle inherits Text {
 	// Accessability properties
 	accessible-role: text;
     accessible-value: self.text;
 	// Regular properties
-	in-out property <UTitleTheme> theme: UTitleThemes.level-1;
-    color: theme.color;
-    font-size: theme.font-size;
-    font-weight: theme.font-weight;
-    font-family: theme.font-family;
-    font-italic: theme.font-italic;
-    horizontal-alignment: theme.horizontal-alignment;
-    letter-spacing: theme.letter-spacing;
-    overflow: theme.overflow;
-    vertical-alignment: theme.vertical-alignment;
-    wrap: theme.wrap;
-    stroke: theme.stroke;
-    stroke-width: theme.stroke-width;
-    stroke-style: theme.stroke-style;
+	in-out property <int> level: 1;
+    color: UAppTheme.text;
+    font-size: 36px * UAppTheme.scale-factor;
+    font-weight: 600;
+    init => {
+        if level == 1 {
+            self.font-size = 36px * UAppTheme.scale-factor;
+            self.font-weight = 600;
+        } else if level == 2 {
+            self.font-size = 30px * UAppTheme.scale-factor;
+            self.font-weight = 500;
+        } else if level == 3 {
+            self.font-size = 24px * UAppTheme.scale-factor;
+        } else if level == 4 {
+            self.font-size = 20px * UAppTheme.scale-factor;
+        } else if level == 5 {
+            self.font-size = 18px * UAppTheme.scale-factor;
+        } else if level == 6 {
+            self.font-size = 16px * UAppTheme.scale-factor;
+        }
+    }
 }

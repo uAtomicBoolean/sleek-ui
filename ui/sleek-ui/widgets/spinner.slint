@@ -1,12 +1,13 @@
-import { USpinnerTheme, USpinnerThemes } from "../widget-themes/spinner.slint";
+import { UAppTheme } from "../app-theme.slint";
 
 
 export component USpinner inherits Image {
     accessible-role: image;
     accessible-label: @tr("Loading spinner.");
-    in-out property <USpinnerTheme> theme: USpinnerThemes.default;
-    in property <length> size: theme.size;
-    colorize: theme.color;
+	// Theming properties
+    in-out property <brush> t-color: UAppTheme.primary;
+    in-out property <length> size: UAppTheme.icon-size-base;
+    colorize: t-color;
     width: size;
     height: size;
     source: @image-url("../assets/icons/loader-circle.svg");

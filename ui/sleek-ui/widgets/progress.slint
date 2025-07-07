@@ -1,5 +1,4 @@
 import { UAppTheme } from "../app-theme.slint";
-import { UProgressTheme, UProgressThemes } from "../widget-themes/progress.slint";
 
 
 enum ProgressAlignment {
@@ -7,25 +6,36 @@ enum ProgressAlignment {
 	end,
 }
 
+export enum ULinearProgressVariant {
+	primary,
+	success,
+	warning,
+	danger,
+}
 
 export component ULinearProgress inherits Rectangle {
 	// Accessability properties
 	accessible-role: progress-indicator;
     accessible-value-minimum: 0;
     accessible-value-maximum: 100;
+	// Theming properties
+	in-out property <brush> t-progress-color;
+    in-out property <brush> t-background: UAppTheme.color-fill-secondary;
+    in-out property <length> t-default-size: 10px * UAppTheme.scale-factor;
+    in-out property <length> t-radius: UAppTheme.radius-round;
 	// Regular properties
-    in-out property <UProgressTheme> theme: UProgressThemes.primary;
+    in-out property <ULinearProgressVariant> variant: primary;
     in property <Orientation> orientation: horizontal;
     in property <ProgressAlignment> alignment: start;
     in-out property <percent> progress: indeterminate ? 30% : 0%;
     in-out property <bool> indeterminate: false;
-    in-out property <brush> progress-color: theme.progress-color;
+    in-out property <brush> progress-color: t-progress-color;
     callback reset-x();
-    background: theme.background;
-    border-radius: theme.radius;
+    background: t-background;
+    border-radius: t-radius;
     clip: true;
-    height: theme.default-size;
-    width: theme.default-size;
+    height: t-default-size;
+    width: t-default-size;
     changed progress => {
         if indeterminate {
             progress = 30%;
@@ -36,7 +46,6 @@ export component ULinearProgress inherits Rectangle {
             progress = 30%;
         }
     }
-
     if orientation == Orientation.horizontal: Rectangle {
         property <length> x-pos: 0;
         function get-x-pos() -> length {
@@ -50,7 +59,7 @@ export component ULinearProgress inherits Rectangle {
         }
         x: get-x-pos();
         background: progress-color;
-        border-radius: theme.radius;
+        border-radius: t-radius;
         width: clamp(progress, 0%, 100%);
         animate width {
             easing: ease-in-out;
@@ -74,7 +83,6 @@ export component ULinearProgress inherits Rectangle {
             }
         }
     }
-
     if orientation == Orientation.vertical: Rectangle {
         property <length> y-pos: 0;
         function get-y-pos() -> length {
@@ -88,7 +96,7 @@ export component ULinearProgress inherits Rectangle {
         }
         y: get-y-pos();
         background: progress-color;
-        border-radius: theme.radius;
+        border-radius: t-radius;
         height: clamp(progress, 0%, 100%);
         animate height {
             easing: ease-in-out;
@@ -110,6 +118,17 @@ export component ULinearProgress inherits Rectangle {
                     }
                 }
             }
+        }
+    }
+    init => {
+        if variant == ULinearProgressVariant.primary {
+            self.t-progress-color = UAppTheme.primary;
+        } else if variant == ULinearProgressVariant.success {
+            self.t-progress-color = UAppTheme.success;
+        } else if variant == ULinearProgressVariant.warning {
+            self.t-progress-color = UAppTheme.warning;
+        } else if variant == ULinearProgressVariant.danger {
+            self.t-progress-color = UAppTheme.danger;
         }
     }
 }

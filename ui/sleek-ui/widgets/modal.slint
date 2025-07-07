@@ -6,7 +6,6 @@ import { UButton } from "button.slint";
 import { UIconButton } from "icon-button.slint";
 import { UTitle } from "title.slint";
 
-import { UTitleThemes } from "../widget-themes/title.slint";
 import { UModalTheme, UModalThemes } from "../widget-themes/modal.slint";
 
 
@@ -91,7 +90,7 @@ export component UModal {
                         VerticalLayout {
                             alignment: center;
                             UTitle {
-                                theme: theme.title-theme;
+                                level: theme.title-level;
                                 horizontal-stretch: 1;
                                 text: title;
                                 wrap: no-wrap;
