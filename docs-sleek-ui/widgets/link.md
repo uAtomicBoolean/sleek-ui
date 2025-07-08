@@ -4,20 +4,13 @@ Please note that you need to implement the link's logic in your code as Slint ca
 
 ![link presentation](images/link.png)
 
-## Themes
-- primary
-
-**Theming struct:**
-```slint
-struct ULinkTheme {
-	font-size: length,
-	text-color: brush,
-	text-color-hover: brush,
-	text-color-active: brush,
-	underline-spacing: length,
-	underline-thickness: length,
-}
-```
+## Theming properties
+- t-font-size `<length>`
+- t-text-color `<brush>`
+- t-text-color-hover `<brush>`
+- t-text-color-active `<brush>`
+- t-underline-spacing `<length>`
+- t-underline-thickness `<length>`
 
 ## Properties, callbacks and functions
 Inherits from [ButtonInterface](./button-interface.md).  

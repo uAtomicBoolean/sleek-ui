@@ -17,9 +17,6 @@ export component UCollapse inherits ButtonInterface {
     }
 	// Theming properties
 	in-out property <brush> t-background:Colors.transparent;
-    in-out property <length> t-border-width;
-    in-out property <brush> t-border-color;
-    in-out property <length> t-border-radius;
     in-out property <brush> t-text-color: UAppTheme.primary;
     in-out property <length> t-font-size: UAppTheme.font-size-base;
     in-out property <int> t-font-weight;
@@ -31,9 +28,6 @@ export component UCollapse inherits ButtonInterface {
     in-out property <length> content-width <=> collapse-content.width;
     in-out property <length> content-height: 100px * UAppTheme.scale-factor;
     background: t-background;
-    border-width: t-border-width;
-    border-color: t-border-color;
-    border-radius: t-border-radius;
     clicked => {
         collapse-open = !collapse-open;
     }

@@ -3,21 +3,18 @@ A vertical or horizontal Progress display.
 
 ![linear progress presentation](images/linear-progress.png)
 
-## Themes
+## Variants
 - primary
 - success
 - warning
 - danger
+- base: used to implement custom themes.
 
-**Theming struct:**
-```slint
-struct UProgressTheme {
-	progress-color: brush,
-	background: brush,
-	default-size: length,
-	radius: length,
-}
-```
+## Theming properties
+- t-progress-color `<brush>`
+- t-background `<brush>`
+- t-default-size `<length>`: the default thickness of the progress bar. Defaults to `10px`.
+- t-radius `<length>`
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  
@@ -27,7 +24,6 @@ Inherits from `Rectangle`.
 - alignment `<ProgressAlignment>`: define if the progress starts from the start or the end.
 - progress `<percent>`: the current progress of the widget.
 - indeterminate `<bool>`: if true, then the progress will be locked at 30% and will display a loading state.
-- progress-color `<brush>`: the main color of the progress.
 
 ## Example
 ```slint
@@ -50,6 +46,7 @@ export component App inherits Window {
             alignment: center;
             spacing: 4px;
             UProgress {
+				variant: success;
                 width: 300px;
                 indeterminate: true;
             }
@@ -59,6 +56,7 @@ export component App inherits Window {
             alignment: center;
             spacing: 4px;
             UProgress {
+				variant: warning;
                 width: 300px;
                 alignment: end;
                 progress: 50%;
@@ -69,6 +67,7 @@ export component App inherits Window {
             alignment: center;
             spacing: 4px;
             UProgress {
+				variant: danger;
                 height: 300px;
                 orientation: vertical;
                 progress: 50%;

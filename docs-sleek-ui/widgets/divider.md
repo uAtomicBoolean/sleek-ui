@@ -5,16 +5,9 @@ It is, by default, oriented horizontally.
 
 ![divider presentation](images/divider.png)
 
-## Themes
-- default
-
-**Theming struct:**
-```slint
-struct UDividerTheme {
-	thickness: length,
-	color: brush,
-}
-```
+## Theming properties
+- t-thickness `<length>`
+- t-color `<brush>`
   
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  

@@ -4,8 +4,11 @@ This button works exactly like the [UFloatingButton](floating-button.md).
 
 ![floating-button presentation](images/floating-icon-button.png)
 
-## Themes
-This widget uses the themes of [UIconButton](button.md).
+## Variants
+Uses [UIconButton's](icon-button.md) variants.
+
+## Theming properties
+This widget uses the properties of [UIconButton](button.md).
 
 ## Properties, callbacks and functions
 This widget uses the properties, callbacks and functions of [UIconButton](button.md)

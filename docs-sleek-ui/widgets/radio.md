@@ -3,39 +3,31 @@ A group of radio choices.
 
 ![radio presentation](images/radio.png)
 
-## Themes
-- default
-
-**Theming struct:**
-```slint
-struct URadioTheme {
-	text-color: brush,
-	text-color-selected: brush,
-	font-size: length,
-	font-weight: int,
-	font-weight-selected: int,
-	border: brush,
-	border-hover: brush,
-	border-selected: brush,
-	border-selected-hover: brush,
-	background: brush,
-	background-selected: brush,
-	background-selected-hover: brush,
-	main-circle-size: length,
-	main-circle-border-width: length,
-	dot-circle-size: length,
-	dot-color: brush,
-	radio-spacing: length,
-	radio-text-spacing: length,
-	radio-text-spacing: length,
-}
-```
+## Theming properties
+- t-text-color `<brush>`
+- t-text-color-selected `<brush>`
+- t-font-size `<length>`
+- t-font-weight `<int>`
+- t-font-weight-selected `<int>`
+- t-border `<brush>`
+- t-border-hover `<brush>`
+- t-border-selected `<brush>`
+- t-border-selected-hover `<brush>`
+- t-background `<brush>`
+- t-background-selected `<brush>`
+- t-background-selected-hover `<brush>`
+- t-main-circle-size `<length>`
+- t-main-circle-border-width `<length>`
+- t-dot-circle-size `<length>`: the dot's size in the selected option.
+- t-dot-color `<brush>`
+- t-radio-spacing `<length>`: spacing between the options.
+- t-radio-text-spacing `<length>`: spacing between the options' circles and texts.
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.
 
 **Properties:**
-- vertical `<bool>`: indicates weither the radio group should be vertical or horizontal. Default to `true`.
+- vertical `<bool>`: indicates weither the radio group should be vertical or horizontal. Defaults to `true`.
 - options `<[string]>`: the list of available values.
 - selected-value `<string>`: the currently selected value.
 

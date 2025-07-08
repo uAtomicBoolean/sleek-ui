@@ -5,19 +5,12 @@ It accepts children using the `@children` expression.
 
 ![card presentation](images/card.png)
 
-## Themes
-- default
-
-**Theming struct:**
-```slint
-struct UCardTheme {
-	background: brush,
-	border-radius: length,
-	drop-shadow-blur: length,
-	drop-shadow-color: color,
-	drop-shadow-offset-y: length,
-}
-```
+## Theming properties
+- t-background `<brush>`
+- t-border-radius `<length>`
+- t-drop-shadow-blur `<length>`
+- t-drop-shadow-color `<color>`
+- t-drop-shadow-offset-y `<length>`
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  

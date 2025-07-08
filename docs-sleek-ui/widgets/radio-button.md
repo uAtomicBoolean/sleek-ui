@@ -4,35 +4,32 @@ Like a radio, only one option can be selected.
 
 ![radio-button presentation](images/radio-button.png)
 
-## Themes
+## Variants
 - default
 - primary
+- base: used to implement custom themes.
 
-**Theming struct:**
-```slint
-struct URadioButtonTheme {
-	background: brush,
-	background-hover: brush,
-	background-selected: brush,
-	background-selected-hover: brush,
-	background-selected-active: brush,
-	border-width: length,
-	border-radius: length,
-	border-color: brush,
-	border-color-hover: brush,
-	border-color-selected: brush,
-	border-color-selected-hover: brush,
-	border-color-selected-active: brush,
-	text-color: brush,
-	text-color-hover: brush,
-	text-color-selected: brush,
-	text-color-selected-hover: brush,
-	text-color-selected-active: brush,
-	font-size: length,
-	padding-vertical: length,
-	padding-horizontal: length,
-}
-```
+## Theming properties
+- t-background `<brush>`
+- t-background-hover `<brush>`
+- t-background-selected `<brush>`
+- t-background-selected-hover `<brush>`
+- t-background-selected-active `<brush>`
+- t-border-width `<length>`
+- t-border-radius `<length>`
+- t-border-color `<brush>`
+- t-border-color-hover `<brush>`
+- t-border-color-selected `<brush>`
+- t-border-color-selected-hover `<brush>`
+- t-border-color-selected-active `<brush>`
+- t-text-color `<brush>`
+- t-text-color-hover `<brush>`
+- t-text-color-selected `<brush>`
+- t-text-color-selected-hover `<brush>`
+- t-text-color-selected-active `<brush>`
+- t-font-size `<length>`
+- t-padding-vertical `<length>`
+- t-padding-horizontal `<length>`
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.
@@ -56,6 +53,16 @@ export component App inherits Window {
 			alignment: center;
 			spacing: 4px;
             URadioButton {
+                selected-value: "Shenzou";
+                options: ["Shangai", "Shenzou", "Hong Kong"];
+            }
+		}
+
+		HorizontalLayout {
+			alignment: center;
+			spacing: 4px;
+            URadioButton {
+				variant: primary;
                 selected-value: "Shenzou";
                 options: ["Shangai", "Shenzou", "Hong Kong"];
             }

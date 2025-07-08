@@ -4,27 +4,24 @@ You can either use one of the theme or set your own colors using `text-color` an
 
 ![tag presentation](images/tag.png)
 
-## Themes
-- primary
+## Variants
+- info
 - danger
 - warning
 - success
+- base: used to implement custom themes.
 
-**Theming struct:**
-```slint
-struct UTagTheme {
-	background: brush,
-	text-size: length,
-	text-color: brush,
-	icon-size: length,
-	border-width: length,
-	border-color: brush,
-	border-radius: length,
-	padding-vertical: length,
-	padding-horizontal: length,
-	content-spacing: length,
-}
-```
+## Theming properties
+- t-background `<brush>`
+- t-text-size: `<length>`
+- t-text-color `<brush>`
+- t-icon-size `<length>`
+- t-border-width `<length>`
+- t-border-color `<brush>`
+- t-border-radius `<length>`
+- t-padding-vertical `<length>`
+- t-padding-horizontal `<length>`
+- t-content-spacing `<length>`
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.   
@@ -34,12 +31,11 @@ Inherits from `Rectangle`.
 - text-color `<color>`
 - background-color `<color>`
 - icon `<image>`
-- icon-placement `<IconTextPlacement>`: can be `start`, `end` or `hidden`. Default to `hidden`.
+- icon-placement `<IconTextPlacement>`: can be `start`, `end` or `hidden`. Defaults to `hidden`.
 
 ## Example
 ```slint
 import { UTag } from "@sleek-ui/widgets.slint";
-import { UTagThemes } from "@sleek-ui/widget-themes.slint";
 
 export component App inherits Window {
 	VerticalLayout {
@@ -49,23 +45,23 @@ export component App inherits Window {
 			alignment: center;
 			spacing: 4px;
 			UTag {
+				variant: primary;
 				text: "online";
-				theme: UTagThemes.primary;
 			}
 
 			UTag {
+				variant: success;
 				text: "online";
-				theme: UTagThemes.success;
 			}
 
 			UTag {
+				variant: warning;
 				text: "online";
-				theme: UTagThemes.warning;
 			}
 
 			UTag {
+				variant: danger;
 				text: "online";
-				theme: UTagThemes.danger;
 			}
 		}
 

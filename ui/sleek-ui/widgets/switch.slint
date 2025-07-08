@@ -22,6 +22,7 @@ export component USwitch inherits ButtonInterface {
     in-out property <brush> t-background-unchecked-hover: UAppTheme.color-fill-plus;
     in-out property <brush> t-background-unchecked-disabled: UAppTheme.color-fill-secondary;
     in-out property <length> t-radius: UAppTheme.radius-round;
+    in-out property <length> t-circle-radius: UAppTheme.radius-circle;
     in-out property <length> t-size: 40px * UAppTheme.scale-factor;
 	// Regular properties
     in-out property <bool> checked: true;
@@ -36,7 +37,7 @@ export component USwitch inherits ButtonInterface {
         width: root.height - 4px;
         height: root.height - 4px;
         background: checked ? t-foreground-checked : t-foreground-unchecked;
-        border-radius: UAppTheme.radius-circle;
+        border-radius: t-circle-radius;
         animate x {
             easing: ease;
             duration: 300ms;

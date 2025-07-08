@@ -27,7 +27,7 @@ export component UAlert inherits Rectangle {
     in-out property <length> t-text-font-size: UAppTheme.font-size-base;
     in-out property <length> t-horizontal-padding: UAppTheme.padding-big;
     in-out property <length> t-vertical-padding: UAppTheme.padding-medium;
-    in-out property <UIconButtonVariant> t-close-button-theme: UIconButtonVariant.text-stripped;
+    in-out property <UIconButtonVariant> t-close-button-variant: UIconButtonVariant.text-stripped;
 	// Regular properties
 	in-out property <UAlertVariant> variant: info;
     in-out property <string> message;
@@ -72,7 +72,7 @@ export component UAlert inherits Rectangle {
             if display-close-button: VerticalLayout {
                 alignment: center;
                 close-button := UIconButton {
-                    variant: text-stripped;
+                    variant: t-close-button-variant;
                     icon: @image-url("../assets/icons/x.svg");
                     accessible-label: @tr("Close button for alert");
                     accessible-action-default => {

@@ -1,30 +1,13 @@
 # Text
-A `Text` widget with predefined theme.  
-Its theme implement almost all of the properties of `Text`, allowing you to create themes for any situations.  
+A `Text` widget with predefined properties values.  
 
 ![text presentation](images/text.png)
 
-## Themes
-- default
-
-**Theming struct:**
-```slint
-struct UTextTheme {
-	color: brush,
-	font-size: length,
-	font-weight: int,
-	font-family: string,
-	font-italic: bool,
-	horizontal-alignment: TextHorizontalAlignment,
-	letter-spacing: length,
-	overflow: TextOverflow,
-	vertical-alignment: TextVerticalAlignment,
-	wrap: TextWrap,
-	stroke: brush,
-	stroke-width: length,
-	stroke-style: TextStrokeStyle,
-}
-```
+## Theming properties
+This widgets doesn't have any theming properties as it directly inherits from `Text`.  
+However, the `color` and `font-size` are set to custom values:
+- color: `UAppTheme.text`
+- font-size: `UAppTheme.font-size-base`
 
 ## Properties, callbacks and functions
 Inherits from `Text`.   

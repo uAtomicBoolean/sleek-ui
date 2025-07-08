@@ -2,7 +2,7 @@
 You will find, in each files:
 - an image of the widget.
 - a description of the widget with how to use it, what are the limitations, etc.
-- a list of its themes and its theming struct.
+- a list of its variants (if it has some) and its theming properties.
 - a list of its properties, functions and callbacks.
 - a small example.
 

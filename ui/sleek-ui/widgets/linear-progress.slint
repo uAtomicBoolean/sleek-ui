@@ -30,7 +30,6 @@ export component ULinearProgress inherits Rectangle {
     in property <ProgressAlignment> alignment: start;
     in-out property <percent> progress: indeterminate ? 30% : 0%;
     in-out property <bool> indeterminate: false;
-    in-out property <brush> progress-color: t-progress-color;
     callback reset-x();
     background: t-background;
     border-radius: t-radius;
@@ -59,7 +58,7 @@ export component ULinearProgress inherits Rectangle {
             return 0;
         }
         x: get-x-pos();
-        background: progress-color;
+        background: t-progress-color;
         border-radius: t-radius;
         width: clamp(progress, 0%, 100%);
         animate width {
@@ -96,7 +95,7 @@ export component ULinearProgress inherits Rectangle {
             return 0;
         }
         y: get-y-pos();
-        background: progress-color;
+        background: t-progress-color;
         border-radius: t-radius;
         height: clamp(progress, 0%, 100%);
         animate height {

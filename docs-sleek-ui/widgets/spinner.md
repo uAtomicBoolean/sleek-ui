@@ -3,19 +3,15 @@ A widget displaying a loading state.
 
 ![spinner presentation](images/spinner.png)
 
-## Themes
-- default
-
-**Theming struct:**
-```slint
-struct USpinnerTheme {
-	size: length,
-	color: brush,
-}
-```
+## Theming properties
+- t-color `brush`
+- t-rotation-speed `<angle>`: the rotation angle used in the rotation speed calculation. Defaults to `240deg`.
 
 ## Properties, callbacks and functions
-Inherits from `Image`.   
+Inherits from `Image`. 
+
+**Properties:**
+- size `<length>`: the spinner's width and height.
 
 ## Example
 ```slint

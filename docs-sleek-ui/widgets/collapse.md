@@ -4,23 +4,13 @@ A container that hide or show its children when clicked.
 
 ![collapse presentation](images/collapse.png)
 
-## Themes
-- default
-
-**Theming struct:**
-```slint
-struct UCollapseTheme {
-	background: brush,
-	border-width: length,
-	border-color: brush,
-	border-radius: length,
-	text-color: brush,
-	font-size: length,
-	font-weight: int,
-	icon-size: length,
-	icon-color: brush,
-}
-```
+## Theming properties
+- t-background `<brush>`
+- t-text-color `<brush>`
+- t-font-size `<length>`
+- t-font-weight `<int>`
+- t-icon-size `<length>`
+- t-icon-color `<brush>`
   
 ## Properties, callbacks and functions
 Inherits from [ButtonInterface](./button-interface.md).  

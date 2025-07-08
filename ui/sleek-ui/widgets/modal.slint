@@ -21,6 +21,10 @@ export component UModal {
     in-out property <UIconButtonVariant> t-close-button-variant: UIconButtonVariant.text;
     in-out property <UButtonVariant> t-cancel-button-variant: UButtonVariant.default;
     in-out property <UButtonVariant> t-accept-button-variant: UButtonVariant.primary;
+    in-out property <length> t-modal-min-width: 300px * UAppTheme.scale-factor;
+    in-out property <length> t-modal-min-height;
+    in-out property <length> t-modal-max-width: 600px * UAppTheme.scale-factor;
+    in-out property <length> t-modal-max-height: 600px * UAppTheme.scale-factor;
 	// Regular properties
     in-out property <string> title;
     in-out property <string> accept-btn-text: @tr("Done");
@@ -32,10 +36,6 @@ export component UModal {
     in-out property <bool> close-on-cancel: true;
     in-out property <bool> accept-btn-enabled: true;
     in-out property <bool> cancel-btn-enabled: true;
-    in-out property <length> modal-min-width: 300px * UAppTheme.scale-factor;
-    in-out property <length> modal-min-height;
-    in-out property <length> modal-max-width: 600px * UAppTheme.scale-factor;
-    in-out property <length> modal-max-height: 600px * UAppTheme.scale-factor;
     callback showed();
     callback closed();
     // Both callbacks are linked to the Cancel/No and Accept/Done/Ok buttons.
@@ -83,10 +83,10 @@ export component UModal {
         HorizontalLayout {
             alignment: center;
             modal-card := UCard {
-                min-width: modal-min-width;
-                min-height: modal-min-height;
-                max-width: modal-max-width;
-                max-height: modal-max-height;
+                min-width: t-modal-min-width;
+                min-height: t-modal-min-height;
+                max-width: t-modal-max-width;
+                max-height: t-modal-max-height;
 
 				
 				// Used to prevent clicks made in the modal to count as clicks made in the background.

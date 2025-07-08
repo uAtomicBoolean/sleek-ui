@@ -4,26 +4,24 @@ A basic switch.
 
 ![switch presentation](images/switch.png)
 
-## Themes
-- default
+## Theming properties
+The foreground represents the switch's circle color.
 
-**Theming struct:**
-```slint
-struct USwitchTheme {
-	foreground-checked: brush,
-	foreground-checked-disabled: brush,
-	background-checked: brush,
-	background-checked-hover: brush,
-	background-checked-disabled: brush,
-	foreground-unchecked: brush,
-	foreground-unchecked-disabled: brush,
-	background-unchecked: brush,
-	background-unchecked-hover: brush,
-	background-unchecked-disabled: brush,
-	radius: length,
-	size: length,
-}
-```
+- t-foreground-checked `<brush>`
+- t-foreground-checked-disabled `<brush>`
+- t-background-checked `<brush>`
+- t-background-checked-hover `<brush>`
+- t-background-checked-disabled `<brush>`
+- t-foreground-unchecked `<brush>`
+- t-foreground-unchecked-disabled `<brush>`
+- t-background-unchecked `<brush>`
+- t-background-unchecked-hover `<brush>`
+- t-background-unchecked-disabled `<brush>`
+- t-radius `<length>`: the radius of the outer borders.
+- t-circle-radius `<length>`: the radius of the inner circle.
+- t-size `<length>`: this is used for both the width and height of the switch.
+
+The width is equal to `t-size` and the height to `t-size / 2`.  
   
 ## Properties, callbacks and functions
 Inherits from [ButtonInterface](./button-interface.md).  

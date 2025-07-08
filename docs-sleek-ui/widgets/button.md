@@ -4,45 +4,44 @@ When outside of a layout, the button will take all the space available, otherwis
 
 ![buttons presentation](images/button.png)
 
-## Themes
-All themes are compatible with the `loading` and `danger` states : 
+## Variants
 - default
 - primary
 - fill
 - text
+- base: used to implement custom themes.
 
-**Theming structs:**
-```slint
-struct UButtonThemeColors {
-	background: brush,
-	background-hover: brush,
-	background-active: brush,
-	background-checked: brush,
-	background-disabled: brush,
-	text-color: brush,
-	text-color-hover: brush,
-	text-color-active: brush,
-	text-color-checked: brush,
-	text-color-disabled: brush,
-	border: brush,
-	border-hover: brush,
-	border-active: brush,
-	border-checked: brush,
-	border-disabled: brush,
-}
+## Theming properties
+The theming for `UButton` is particular as it uses a struct to define the colors.  
+This allows easier management of the `danger` and regular states.
 
-struct UButtonTheme {
-	border-width: length,
-	border-radius: length,
-	content-spacing: length,
-	padding-vertical: length,
-	padding-horizontal: length,
-	font-size: length,
-	icon-size: length,
-	base-colors: UButtonThemeColors,
-	danger-colors: UButtonThemeColors,
-}
-```
+Here are the fields in the `UButtonThemeColors` struct:
+- background `<brush>`
+- background-hover `<brush>`
+- background-active `<brush>`
+- background-checked `<brush>`
+- background-disabled `<brush>`
+- text-color `<brush>`
+- text-color-hover `<brush>`
+- text-color-active `<brush>`
+- text-color-checked `<brush>`
+- text-color-disabled `<brush>`
+- border `<brush>`
+- border-hover `<brush>`
+- border-active `<brush>`
+- border-checked `<brush>`
+- border-disabled `<brush>`
+
+Here are the theming properties at the top level of `UButton`:
+- t-border-width `<length>`
+- t-border-radius `<length>`
+- t-content-spacing `<length>`
+- t-padding-vertical `<length>`
+- t-padding-horizontal `<length>`
+- t-font-size `<length>`
+- t-icon-size `<length>`
+- t-base-colors `<UButtonThemeColors>`: colors used when the button is in its regular state.
+- t-danger-colors `<UButtonThemeColors>`: colors used for the `danger` state.
 
 ## Properties, callbacks and functions
 Inherits from [ButtonInterface](./button-interface.md).  
@@ -58,7 +57,6 @@ Inherits from [ButtonInterface](./button-interface.md).
 ## Example
 ```slint
 import { UButton } from "@sleek-ui/widgets.slint";
-import { UButtonThemes } from "sleek-ui/widgets-themes.slint";
 
 export component App inherits Window {
 	VerticalLayout {
@@ -75,19 +73,19 @@ export component App inherits Window {
 			}
 
 			UButton {
+				variant: primary;
 				text: "Click me";
-				theme: UButtonThemes.primary;
 			}
 
 			UButton {
+				variant: filled;
 				text: "Click me";
-				theme: UButtonThemes.filled;
 				danger: true;
 			}
 
 			UButton {
+				variant: text;
 				text: "Click me";
-				theme: UButtonThemes.text;
 				loading: true;
 			}
 		}

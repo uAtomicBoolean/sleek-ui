@@ -1,43 +1,22 @@
 # Title
-A `Text` widget with predefined theme to display a title.  
-Its theme implement almost all of the properties of `Text`, allowing you to create themes for any situations.  
+A `Text` widget with predefined properties values to display a title.  
 
 ![title presentation](images/title.png)
 
-## Themes
-- level-1
-- level-2
-- level-3
-- level-4
-- level-5
-- level-6
-
-**Theming struct:**
-```slint
-struct UTitleTheme {
-	color: brush,
-	font-size: length,
-	font-weight: int,
-	font-family: string,
-	font-italic: bool,
-	horizontal-alignment: TextHorizontalAlignment,
-	letter-spacing: length,
-	overflow: TextOverflow,
-	vertical-alignment: TextVerticalAlignment,
-	wrap: TextWrap,
-	stroke: brush,
-	stroke-width: length,
-	stroke-style: TextStrokeStyle,
-}
-```
+## Theming properties
+This widgets doesn't have any theming properties as it directly inherits from `Text`.  
 
 ## Properties, callbacks and functions
-Inherits from `Text`.   
+Inherits from `Text`. 
+
+**Properties:**
+- level `<int>`: the title's level. Goes from `1` (highest) to `6` (lowest).
+
+If the level doesn't fit the `1-6` inclusive range, then the title will default to the level `1`.
 
 ## Example
 ```slint
 import { UTitle } from "@sleek-ui/widgets.slint";
-import { UTitleThemes } from "@sleek-ui/widget-themes.slint";
 
 export component App inherits Window {
 	VerticalLayout {
@@ -47,48 +26,48 @@ export component App inherits Window {
             alignment: center;
             spacing: 4px;
             UTitle {
+                level: 1;
                 text: "Welcome to Sleek-ui";
-                theme: UTitleThemes.level-1;
             }
         }
 
         HorizontalLayout {
             alignment: center;
             UTitle {
+                level: 2;
                 text: "Welcome to Sleek-ui";
-                theme: UTitleThemes.level-2;
             }
         }
 
         HorizontalLayout {
             alignment: center;
             UTitle {
+                level: 3;
                 text: "Welcome to Sleek-ui";
-                theme: UTitleThemes.level-3;
             }
         }
 
         HorizontalLayout {
             alignment: center;
             UTitle {
+                level: 4;
                 text: "Welcome to Sleek-ui";
-                theme: UTitleThemes.level-4;
             }
         }
 
         HorizontalLayout {
             alignment: center;
             UTitle {
+                level: 5;
                 text: "Welcome to Sleek-ui";
-                theme: UTitleThemes.level-5;
             }
         }
 
         HorizontalLayout {
             alignment: center;
             UTitle {
+                level: 6;
                 text: "Welcome to Sleek-ui";
-                theme: UTitleThemes.level-6;
             }
         }
 	}

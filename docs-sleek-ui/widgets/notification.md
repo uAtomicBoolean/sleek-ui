@@ -5,35 +5,32 @@ As `UNotification` inherits from `ButtonInterface`, you can execute actions when
 
 ![notification presentation](images/notification.png)
 
-## Themes
+## Variants
 - info
 - success
 - warning
 - danger
+- base: used to implement custom themes.
 
-**Theming struct:**
-```slint
-struct UNotificationTheme {
-	icon-image: image,
-	icon-color: brush,
-	icon-size: length,
-	title-font-size: length,
-	title-horizontal-padding: length,
-	title-vertical-padding: length,
-	content-padding-top: length,
-	content-padding-bottom: length,
-	content-padding-left: length,
-	content-padding-right: length,
-	background: brush,
-	border-radius: length,
-	border-width: length,
-	border-color: brush,
-	drop-shadow-blur: length,
-	drop-shadow-color: color,
-	drop-shadow-offset-y: length,
-	close-button-theme: UIconButtonTheme,
-}
-```
+## Theming properties
+- t-icon-image `<image>`
+- t-icon-color `<brush>`
+- t-icon-size: `<length>`
+- t-title-font-size `<length>`
+- t-title-horizontal-padding `<length>`
+- t-title-vertical-padding `<length>`
+- t-content-padding-top `<length>`
+- t-content-padding-bottom `<length>`
+- t-content-padding-left `<length>`
+- t-content-padding-right `<length>`
+- t-background `<brush>`
+- t-border-radius `<length>`
+- t-border-width `<length>`
+- t-border-color `<brush>`
+- t-drop-shadow-blur `<length>`
+- t-drop-shadow-color `<color>`
+- t-drop-shadow-offset-y `<length>`
+- t-close-button-variant `<UIconButtonVariant>`
 
 ## Properties, callbacks and functions
 Inherits from `ButtonInterface`.  
@@ -49,7 +46,6 @@ Inherits from `ButtonInterface`.
 ## Example
 ```slint
 import { UNotification } from "@sleek-ui/widgets.slint";
-import { UNotificationThemes } from "@sleek-ui/widget-themes.slint";
 
 export component App inherits Window {
 	VerticalLayout {
@@ -70,7 +66,7 @@ export component App inherits Window {
             alignment: center;
             spacing: 4px;
             UNotification {
-                theme: UNotificationThemes.success;
+                variant: success;
                 width: 300px;
                 title: "Simple notification";
                 message: "You have a new notification with a single line message that must be read.";
@@ -81,7 +77,7 @@ export component App inherits Window {
             alignment: center;
             spacing: 4px;
             UNotification {
-                theme: UNotificationThemes.warning;
+                variant: warning;
                 width: 300px;
                 title: "Simple notification";
             }
@@ -91,7 +87,7 @@ export component App inherits Window {
             alignment: center;
             spacing: 4px;
             UNotification {
-                theme: UNotificationThemes.danger;
+                variant: danger;
                 width: 300px;
                 title: "Notification with long title.";
             }

@@ -4,44 +4,43 @@ When outside of a layout, the button will take all the space available, otherwis
 
 ![icon-button presentation](images/icon-button.png)
 
-## Themes
-All themes are compatible with the `loading` and `danger` states except for `text-raw` : 
+## Variants
 - default
 - primary
 - fill
 - text
 - text-raw: a simple theme with no effect except changing the text color on hover.
+- base: used to implement custom themes.
 
-**Theming structs:**
-```slint
-struct UIconButtonThemeColors {
-	background: brush,
-	background-hover: brush,
-	background-active: brush,
-	background-checked: brush,
-	background-disabled: brush,
-	text-color: brush,
-	text-color-hover: brush,
-	text-color-active: brush,
-	text-color-checked: brush,
-	text-color-disabled: brush,
-	border: brush,
-	border-hover: brush,
-	border-active: brush,
-	border-checked: brush,
-	border-disabled: brush,
-}
+## Theming properties
+The theming for `UIconButton` is particular as it uses a struct to define the colors.  
+This allows easier management of the `danger` and regular states.
 
-struct UIconButtonTheme {
-	border-width: length,
-	border-radius: length,
-	padding-vertical: length,
-	padding-horizontal: length,
-	icon-size: length,
-	base-colors: UIconButtonThemeColors,
-	danger-colors: UIconButtonThemeColors,
-}
-```
+Here are the fields in the `UIconButtonThemeColors` struct:
+- background `<brush>`
+- background-hover `<brush>`
+- background-active `<brush>`
+- background-checked `<brush>`
+- background-disabled `<brush>`
+- text-color `<brush>`
+- text-color-hover `<brush>`
+- text-color-active `<brush>`
+- text-color-checked `<brush>`
+- text-color-disabled `<brush>`
+- border `<brush>`
+- border-hover `<brush>`
+- border-active `<brush>`
+- border-checked `<brush>`
+- border-disabled `<brush>`
+
+Here are the theming properties at the top level of `UIconButton`:
+- t-icon-size `<length>`: please check the [comments in the code](../../ui/sleek-ui/widgets/icon-button.slint) to know about the `UButton` text size problem that impacts this icon size.
+- t-border-width `<length>`
+- t-border-radius `<length>`
+- t-padding-vertical `<length>`
+- t-padding-horizontal `<length>`
+- t-base-colors `<UIconButtonThemeColors>`: colors used when the button is in its regular state.
+- t-danger-colors `<UIconButtonThemeColors>`: colors used for the `danger` state.
 
 ## Properties, callbacks and functions
 Inherits from [ButtonInterface](./button-interface.md).  
@@ -56,7 +55,6 @@ Inherits from [ButtonInterface](./button-interface.md).
 ## Example
 ```slint
 import { UIconButton } from "@sleek-ui/widgets.slint";
-import { UIconButtonThemes } from "sleek-ui/widgets-themes.slint";
 
 export component App inherits Window {
 	VerticalLayout {
@@ -73,19 +71,19 @@ export component App inherits Window {
 			}
 
 			UIconButton {
+				variant: primary;
 				text: "Click me";
-				theme: UIconButtonThemes.primary;
 			}
 
 			UIconButton {
+				variant: filled;
 				text: "Click me";
-				theme: UIconButtonThemes.filled;
 				danger: true;
 			}
 
 			UIconButton {
+				variant: text;
 				text: "Click me";
-				theme: UIconButtonThemes.text;
 				loading: true;
 			}
 		}

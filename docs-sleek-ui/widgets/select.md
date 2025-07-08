@@ -4,34 +4,32 @@ It is possible to disable an option in the select (this can be used as a separat
 
 ![select presentation](images/select.png)
 
-## Themes
-- default
+## Theming properties
+- t-background `<brush>`
+- t-border-width `<length>`
+- t-border-radius `<length>`
+- t-border-color `<brush>`
+- t-border-color-hover `<brush>`
+- t-border-color-disabled `<brush>`
+- t-font-size `<length>`
+- t-text-color `<brush>`
+- t-text-color-disabled `<brush>`
+- t-icon-size `<length>`
+- t-icon-color `<brush>`
+- t-popup-max-height `<length>`: the maximum height of the select popup. Defaults to `124px`.
+- t-option-height `<length>`: this avoid having options with changing heights depending on the number of options. Defaults to `29px`.
+- t-option-bg-fill `<brush>`
+- t-option-bg-selected `<brush>`
+- t-option-text-selected-color `<brush>`
+- t-option-text-disabled-color `<brush>`
+- t-padding-vertical `<length>`
+- t-padding-horizontal `<length>`
+- t-padding-popover `<length>`
 
-**Theming struct:**
-```slint
-struct USelectTheme {
-	background: brush,
-	border-width: length,
-	border-radius: length,
-	border-color: brush,
-	border-color-hover: brush,
-	border-color-disabled: brush,
-	font-size: length,
-	text-color: brush,
-	text-color-disabled: brush,
-	icon-size: length,
-	icon-color: brush,
-	popup-max-height: length,
-	option-height: length,
-	option-bg-fill: brush,
-	option-bg-selected: brush,
-	option-text-selected-weight: int,
-	option-text-disabled-color: brush,
-	padding-vertical: length,
-	padding-horizontal: length,
-	padding-popover: length,
-}
-```
+> [!WARNING]
+> It is highly recommended to define the `t-option-height`.
+> Otherwise, the options' height might change depending on the number of options.
+> This leads to some wrong height calculations for the ScrollView viewport.
 
 ## Properties, callbacks and functions
 Inherits from `ButtonInterface`.   

@@ -4,29 +4,26 @@ A simple alert to display a message grabbing the user's attention.
 
 ![alert presentation](images/alert.png)
 
-## Themes
+## Variants
 - info
 - success
 - warning
 - danger
+- base: used to implement custom themes.
 
-**Theming struct:**
-```slint
-struct UAlertTheme {
-	background: brush,
-	border-radius: length,
-	border-width: length,
-	border-color: brush,
-	icon-image: image,
-	icon-color: brush,
-	icon-size: length,
-	text-color: brush,
-	text-font-size: length,
-	horizontal-padding: length,
-	vertical-padding: length,
-	close-button-theme: UIconButtonTheme,
-}
-```
+## Theming properties
+- t-background `<brush>`
+- t-border-radius `<length>` 
+- t-border-width `<length>` 
+- t-border-color `<brush>` 
+- t-icon-image `<image>` 
+- t-icon-color `<brush>` 
+- t-icon-size `<length>` 
+- t-text-color `<brush>` 
+- t-text-font-size `<length>` 
+- t-horizontal-padding `<length>` 
+- t-vertical-padding `<length>` 
+- t-close-button-variant `<UIconButtonVariant>`: defaults to `text-stripped` which is a ligthened version of the `text` variant. 
   
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  
@@ -53,7 +50,7 @@ export component AppWindow inherits Window {
         HorizontalLayout {
             alignment: center;
             UAlert {
-                theme: UAlertThemes.success;
+                variant: success;
                 message: "This is a simple alert.";
             }
         }
@@ -61,7 +58,7 @@ export component AppWindow inherits Window {
         HorizontalLayout {
             alignment: center;
             UAlert {
-                theme: UAlertThemes.warning;
+                variant: warning;
                 message: "This is a simple alert.";
             }
         }
@@ -69,7 +66,7 @@ export component AppWindow inherits Window {
         HorizontalLayout {
             alignment: center;
             UAlert {
-                theme: UAlertThemes.danger;
+                variant: danger;
                 message: "This is a simple alert.";
             }
         }
