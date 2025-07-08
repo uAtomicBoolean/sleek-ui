@@ -1,0 +1,122 @@
+import { ThemeColors } from "theme-colors-struct.slint";
+
+export global SunriseYellowTheme {
+    out property <ThemeColors> light-theme: {
+        // Primary
+        primary: #fadb14,
+        primary-hover: #ffec3d,
+        primary-active: #d4b106,
+        primary-disabled: #fff566,
+        primary-selected: #feffe6,
+
+        // Success
+        success: #52c41a,
+        success-hover: #73d13d,
+        success-active: #389e0d,
+        success-disabled: #95de64,
+        success-selected: #f6ffed,
+
+        // Warning
+        warning: #faad14,
+        warning-hover: #ffc53d,
+        warning-active: #d48806,
+        warning-disabled: #ffd666,
+        warning-selected: #fffbe6,
+
+        // Danger
+        danger: #ff4d4f,
+        danger-hover: #ff7875,
+        danger-active: #d9363e,
+        danger-disabled: #ff7875,
+        danger-selected: #fff1f0,
+
+        // Background color
+        bg-layout: #F5F5F5,
+        bg-container: Colors.white,
+        bg-elevated: Colors.white,
+
+        // Color fill
+        color-fill-plus: rgba(0, 0, 0, 0.25),
+        color-fill: rgba(0, 0, 0, 0.15),
+        color-fill-secondary: rgba(0, 0, 0, 0.06),
+        color-fill-tertiary: rgba(0, 0, 0, 0.04),
+        color-fill-quaternary: rgba(0, 0, 0, 0.02),
+
+        // Shadow
+        shadow-color: rgba(0, 0, 0, 0.12),
+
+        // Text color
+        inverse-text: rgba(255,255,255,0.85),
+        text: #000000E0,
+        text-secondary: #000000A6,
+        text-heading: #000000E0,
+        text-disabled: #00000040,
+  
+		// Focus display
+        focus-color: Colors.black,
+
+		// Borders
+        border: #D9D9D9,
+        border-secondary: #f0f0f0,
+        separator: #0505050F,
+    };
+    out property <ThemeColors> dark-theme: {
+        // Primary
+        primary: #d8bd14,
+        primary-hover: #e8d639,
+        primary-active: #aa9514,
+        primary-disabled: #7c6e14,
+        primary-selected: #595014,
+
+        // Success
+        success: #49aa19,
+        success-hover: #6abe39,
+        success-active: #3c8618,
+        success-disabled: #306317,
+        success-selected: #162312,
+
+        // Warning
+        warning: #d89614,
+        warning-hover: #e8b339,
+        warning-active: #aa7714,
+        warning-disabled: #7c5914,
+        warning-selected: #2b2111,
+
+        // Danger
+        danger: #dc4446,
+        danger-hover: #e86e6b,
+        danger-active: #ad393a,
+        danger-disabled: #791a1f,
+        danger-selected: #2a1215,
+
+        // Background color
+        bg-layout: #000000,
+        bg-container: #141414,
+        bg-elevated: #1f1f1f,
+
+        // Color fill
+        color-fill-plus: rgba(255,255,255, 0.28),
+        color-fill: rgba(255,255,255,0.18),
+        color-fill-secondary: rgba(255,255,255,0.12),
+        color-fill-tertiary: rgba(255,255,255,0.08),
+        color-fill-quaternary: rgba(255,255,255,0.04),
+
+        // Shadow
+        shadow-color: rgba(0, 0, 0, 0.12),
+
+        // Text color
+        inverse-text: rgba(0,0,0,0.88),
+        text: #FFFFFFD9,
+        text-secondary: #FFFFFFA6,
+        text-heading: #FFFFFFD9,
+        text-disabled: #FFFFFF40,
+
+		// Focus display
+        focus-color: Colors.white,
+            
+        // Borders
+        border: #424242,
+        border-secondary: #303030,
+        separator: #FDFDFD1F,
+    };
+}

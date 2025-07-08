@@ -1,9 +1,11 @@
-import { ThemeColors, ThemeColorsVariants } from "theme-colors.slint";
+import { ThemeColors } from "app-theme-colors/theme-colors-struct.slint";
+import { DaybreakBlueTheme } from "app-theme-colors/daybreak-blue.slint";
+import { PolarGreenTheme } from "app-theme-colors/polar-green.slint";
 import { Palette } from "std-widgets.slint";
 
 export global UAppTheme {
-    in-out property <ThemeColors> light-theme: ThemeColorsVariants.light-theme;
-    in-out property <ThemeColors> dark-theme: ThemeColorsVariants.dark-theme;
+    in-out property <ThemeColors> light-theme: PolarGreenTheme.light-theme;
+    in-out property <ThemeColors> dark-theme: PolarGreenTheme.dark-theme;
     in-out property <ThemeColors> theme: Palette.color-scheme == ColorScheme.dark ? dark-theme : light-theme;
     in-out property <float> scale-factor: 1;
 

@@ -1,71 +1,13 @@
-export struct ThemeColors {
-    // Primary color.
-    primary: color,
-    primary-hover: color,
-    primary-active: color,
-    primary-disabled: color,
-    primary-selected: color,
+import { ThemeColors } from "theme-colors-struct.slint";
 
-    // Success color.
-    success: color,
-    success-hover: color,
-    success-active: color,
-    success-disabled: color,
-    success-selected: color,
-
-    // Warning color.
-    warning: color,
-    warning-hover: color,
-    warning-active: color,
-    warning-disabled: color,
-    warning-selected: color,
-
-    // Danger color.
-    danger: color,
-    danger-hover: color,
-    danger-active: color,
-    danger-disabled: color,
-    danger-selected: color,
-
-    // Background color
-    bg-container: color,
-    bg-elevated: color,
-    bg-layout: color,
-
-    // Color fill
-    color-fill-plus: color,
-    color-fill: color,
-    color-fill-secondary: color,
-    color-fill-tertiary: color,
-    color-fill-quaternary: color,
-
-    // Shadow
-    shadow-color: color,
-
-    // Text color
-    inverse-text: color,
-    text: color,
-    text-secondary: color,
-    text-heading: color,
-    text-disabled: color,
-
-	// Focus display
-    focus-color: color,
-
-    // Borders
-    border: color,
-    border-secondary: color,
-    separator: color,
-}
-
-export global ThemeColorsVariants {
+export global LimeTheme {
     out property <ThemeColors> light-theme: {
         // Primary
-        primary: #1677ff,
-        primary-hover: #4096ff,
-        primary-active: #0958d9,
-        primary-disabled: #69b1ff,
-        primary-selected: #e6f4ff,
+        primary: #a0d911,
+        primary-hover: #bae637,
+        primary-active: #7cb305,
+        primary-disabled: #d3f261,
+        primary-selected: #fcffe6,
 
         // Success
         success: #52c41a,
@@ -120,11 +62,11 @@ export global ThemeColorsVariants {
     };
     out property <ThemeColors> dark-theme: {
         // Primary
-        primary: #1668dc,
-        primary-hover: #3c89e8,
-        primary-active: #1554ad,
-        primary-disabled: #15417e,
-        primary-selected: #111a2c,
+        primary: #8bbb11,
+        primary-hover: #a9d134,
+        primary-active: #6f9412,
+        primary-disabled: #536d13,
+        primary-selected: #3e4f13,
 
         // Success
         success: #49aa19,
