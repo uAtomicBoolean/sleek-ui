@@ -1,0 +1,183 @@
+import { UAppTheme } from "../app-theme.slint";
+
+import { UCard } from "card.slint";
+import { UDivider } from "divider.slint";
+import { UButton, UButtonVariant } from "button.slint";
+import { UIconButton, UIconButtonVariant } from "icon-button.slint";
+import { UTitle } from "title.slint";
+
+
+export component UModal {
+	// Theming properties
+	in-out property <brush> t-blurred-background-color: rgba(0, 0, 0, 0.2);
+    in-out property <length> t-title-horizontal-padding: UAppTheme.padding-big;
+    in-out property <length> t-title-vertical-padding: UAppTheme.padding-medium;
+    in-out property <length> t-content-horizontal-padding: UAppTheme.padding-big;
+    in-out property <length> t-content-vertical-padding: UAppTheme.padding-medium;
+    in-out property <length> t-buttons-horizontal-padding: UAppTheme.padding-big;
+    in-out property <length> t-buttons-vertical-padding: UAppTheme.padding-medium;
+    in-out property <length> t-buttons-spacing: UAppTheme.padding-medium;
+    in-out property <int> t-title-level: 6;
+    in-out property <UIconButtonVariant> t-close-button-variant: UIconButtonVariant.text;
+    in-out property <UButtonVariant> t-cancel-button-variant: UButtonVariant.default;
+    in-out property <UButtonVariant> t-accept-button-variant: UButtonVariant.primary;
+    in-out property <length> t-modal-min-width: 300px * UAppTheme.scale-factor;
+    in-out property <length> t-modal-min-height;
+    in-out property <length> t-modal-max-width: 600px * UAppTheme.scale-factor;
+    in-out property <length> t-modal-max-height: 600px * UAppTheme.scale-factor;
+	// Regular properties
+    in-out property <string> title;
+    in-out property <string> accept-btn-text: @tr("Done");
+    in-out property <string> cancel-btn-text: @tr("Cancel");
+    in-out property <bool> accept-btn-toggle: true;
+    in-out property <bool> cancel-btn-toggle: true;
+    in-out property <bool> close-on-click-outside: false;
+    in-out property <bool> close-on-accept: true;
+    in-out property <bool> close-on-cancel: true;
+    in-out property <bool> accept-btn-enabled: true;
+    in-out property <bool> cancel-btn-enabled: true;
+    callback showed();
+    callback closed();
+    // Both callbacks are linked to the Cancel/No and Accept/Done/Ok buttons.
+	callback accepted();
+    callback rejected();
+    public function show() {
+        self.visible = true;
+        rect-background-focus.focus();
+        self.showed();
+    }
+    public function close() {
+        self.visible = false;
+        self.closed();
+    }
+    visible: false;
+    width: 100%;
+    height: 100%;
+    Rectangle {
+        width: 100%;
+        height: 100%;
+        background: t-blurred-background-color;
+        touch-background := TouchArea {
+            clicked => {
+                if root.close-on-click-outside {
+                    root.close();
+                }
+            }
+        }
+
+		// Used to skip focus directly to the modal.
+		// This avoid having to focus all the elements in the window before getting to the modal.
+		rect-background-focus := FocusScope { }
+
+        accessible-role: button;
+        accessible-label: @tr("Background panel for modal.");
+        accessible-description: @tr("Close the modal if is is enabled.");
+        accessible-enabled: close-on-click-outside;
+        accessible-action-default => {
+            touch-background.clicked();
+        }
+    }
+
+    VerticalLayout {
+        alignment: center;
+        HorizontalLayout {
+            alignment: center;
+            modal-card := UCard {
+                min-width: t-modal-min-width;
+                min-height: t-modal-min-height;
+                max-width: t-modal-max-width;
+                max-height: t-modal-max-height;
+
+				
+				// Used to prevent clicks made in the modal to count as clicks made in the background.
+                TouchArea { }
+
+                VerticalLayout {
+                    HorizontalLayout {
+                        padding-top: t-title-vertical-padding;
+                        padding-bottom: t-title-vertical-padding;
+                        padding-left: t-title-horizontal-padding;
+                        padding-right: t-title-horizontal-padding;
+                        VerticalLayout {
+                            alignment: center;
+                            UTitle {
+                                level: t-title-level;
+                                horizontal-stretch: 1;
+                                text: title;
+                                wrap: no-wrap;
+                                overflow: elide;
+                                accessible-label: @tr("Title for the modal");
+                            }
+                        }
+
+                        VerticalLayout {
+                            alignment: center;
+                            UIconButton {
+                                variant: t-close-button-variant;
+                                icon: @image-url("../assets/icons/x.svg");
+                                clicked => {
+                                    root.close();
+                                }
+                                accessible-label: @tr("Close button for modal.");
+                            }
+                        }
+                    }
+
+                    UDivider { }
+
+                    VerticalLayout {
+                        vertical-stretch: 2;
+                        padding-top: t-content-vertical-padding;
+                        padding-bottom: t-content-vertical-padding;
+                        padding-left: t-content-horizontal-padding;
+                        padding-right: t-content-horizontal-padding;
+                        @children
+                    }
+
+                    if cancel-btn-enabled || accept-btn-enabled: VerticalLayout {
+                        alignment: start;
+                        vertical-stretch: 0;
+                        UDivider { }
+
+                        HorizontalLayout {
+                            alignment: end;
+                            padding-top: t-buttons-vertical-padding;
+                            padding-bottom: t-buttons-vertical-padding;
+                            padding-left: t-buttons-horizontal-padding;
+                            padding-right: t-buttons-horizontal-padding;
+                            spacing: t-buttons-spacing;
+                            if cancel-btn-toggle: UButton {
+                                variant: t-cancel-button-variant;
+                                text: cancel-btn-text;
+                                enabled: cancel-btn-enabled;
+                                clicked => {
+                                    self.loading = true;
+                                    root.rejected();
+                                    self.loading = false;
+                                    if close-on-cancel {
+                                        root.close();
+                                    }
+                                }
+                                accessible-label: @tr("Cancel or refuse button for modal.");
+                            }
+                            if accept-btn-toggle: UButton {
+                                variant: t-accept-button-variant;
+                                text: accept-btn-text;
+                                enabled: accept-btn-enabled;
+                                clicked => {
+                                    self.loading = true;
+                                    root.accepted();
+                                    self.loading = false;
+                                    if close-on-accept {
+                                        root.close();
+                                    }
+                                }
+                                accessible-label: @tr("Accept or done button for modal.");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

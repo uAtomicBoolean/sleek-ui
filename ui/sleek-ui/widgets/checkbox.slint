@@ -1,0 +1,123 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+import { IconTextPlacement } from "../utils/structs.slint";
+import { UText } from "text.slint";
+
+
+export component UCheckbox inherits ButtonInterface {
+	// Accessability properties
+	accessible-role: AccessibleRole.checkbox;
+    accessible-checkable: true;
+    accessible-checked: self.checked;
+    accessible-action-default => {
+        self.clicked()
+    }
+	// Theming properties
+	in-out property <length> t-size: UAppTheme.font-size-base * 1.2;
+    in-out property <LayoutAlignment> t-alignment: LayoutAlignment.space-between;
+    in-out property <length> t-text-spacing: UAppTheme.spacing-base;
+    in-out property <brush> t-text-color: UAppTheme.text;
+    in-out property <brush> t-text-color-disabled: UAppTheme.text-disabled;
+    in-out property <brush> t-background-checked: UAppTheme.primary;
+    in-out property <brush> t-background-checked-hover: UAppTheme.primary-hover;
+    in-out property <brush> t-background-unchecked: Colors.transparent;
+    in-out property <brush> t-background-disabled-checked: UAppTheme.primary-disabled;
+    in-out property <brush> t-background-disabled-unchecked: UAppTheme.color-fill-tertiary;
+    in-out property <length> t-border-width: UAppTheme.border-width-base;
+    in-out property <length> t-border-radius: UAppTheme.radius-base > UAppTheme.radius-medium ? UAppTheme.radius-medium : UAppTheme.radius-base;
+    in-out property <brush> t-border-color: UAppTheme.border;
+    in-out property <brush> t-border-color-hover: UAppTheme.primary-hover;
+    in-out property <brush> t-border-color-disabled: UAppTheme.border;
+    in-out property <length> t-check-icon-size: UAppTheme.font-size-base * 0.8;
+    in-out property <brush> t-check-icon-color: Colors.white;
+	// Regular properties
+    in-out property <bool> checked: false;
+    in-out property <string> text;
+    in-out property <IconTextPlacement> text-placement: text != "" ? start : hidden;
+    border-radius: t-border-radius;
+    HorizontalLayout {
+        alignment: t-alignment;
+        spacing: t-text-spacing;
+        if text-placement == IconTextPlacement.start: VerticalLayout {
+            alignment: center;
+            UText {
+                text: text;
+                color: t-text-color;
+                states [
+                    disabled when !root.enabled: {
+                        color: t-text-color-disabled;
+                    }
+                ]
+            }
+        }
+        VerticalLayout {
+            alignment: center;
+            Rectangle {
+                background: t-background-unchecked;
+                border-width: t-border-width;
+                border-radius: t-border-radius;
+                border-color: t-border-color;
+                width: t-size;
+                height: t-size;
+                VerticalLayout {
+                    alignment: center;
+                    HorizontalLayout {
+                        alignment: center;
+                        Image {
+                            source: @image-url("../assets/icons/check.svg");
+                            colorize: t-check-icon-color;
+                            width: checked ? t-check-icon-size : 0px;
+                            height: checked ? t-check-icon-size : 0px;
+                            animate width, height { duration: 200ms; }
+                        }
+                    }
+                }
+
+                states [
+                    disabled-checked when !root.enabled && root.checked: {
+                        border-color: t-border-color-disabled;
+                        background: t-background-disabled-checked;
+                    }
+                    disabled-unchecked when !root.enabled && !root.checked: {
+                        border-color: t-border-color-disabled;
+                        background: t-background-disabled-unchecked;
+                    }
+                    hover-unchecked when root.has-hover && !checked: {
+                        border-color: t-border-color-hover;
+                    }
+                    hover-checked when root.has-hover && checked: {
+                        background: t-background-checked-hover;
+                        border-color: t-background-checked-hover;
+                    }
+                    checked when checked: {
+                        background: t-background-checked;
+                        border-color: t-background-checked;
+                    }
+                ]
+            }
+        }
+
+        if text-placement == IconTextPlacement.end: VerticalLayout {
+            alignment: center;
+            UText {
+                text: text;
+                color: t-text-color;
+                states [
+                    disabled when !root.enabled: {
+                        color: t-text-color-disabled;
+                    }
+                ]
+            }
+        }
+    }
+
+    clicked => {
+        checked = !checked;
+    }
+    states [
+        focused when root.has-focus: {
+            border-width: UAppTheme.focus-border-width;
+            border-color: UAppTheme.focus-color;
+        }
+    ]
+}

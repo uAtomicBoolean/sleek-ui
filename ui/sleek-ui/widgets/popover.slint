@@ -1,0 +1,19 @@
+import { UAppTheme } from "../app-theme.slint";
+import { UCard } from "card.slint";
+
+
+export component UPopover inherits PopupWindow {
+	// Theming properties.
+	// The theming properties are linked to the card as it is its only base visual appearance.
+	in-out property <brush> t-background <=> card.t-background;
+    in-out property <length> t-border-radius <=> card.t-border-radius;
+    in-out property <length> t-drop-shadow-blur <=> card.t-drop-shadow-blur;
+    in-out property <color> t-drop-shadow-color <=> card.t-drop-shadow-color;
+    in-out property <length> t-drop-shadow-offset-y <=> card.t-drop-shadow-offset-y;
+    min-height: 10px * UAppTheme.scale-factor;
+    card := UCard {
+        width: 100%;
+        height: 100%;
+        @children
+    }
+}

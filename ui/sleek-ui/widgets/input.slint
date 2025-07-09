@@ -1,0 +1,187 @@
+import { UAppTheme } from "../app-theme.slint";
+import { UIcon } from "icon.slint";
+import { UText } from "text.slint";
+
+
+export component UInput inherits Rectangle {
+	// Accessability properties
+	accessible-role: text-input;
+    accessible-read-only: input.read-only;
+    accessible-value: self.text;
+    accessible-placeholder-text: self.placeholder;
+    accessible-action-default => {
+        self.accepted()
+    }
+    accessible-action-set-value(value) => {
+        input.text = value;
+    }
+	// Theming properties
+	in-out property <brush> t-background: UAppTheme.bg-elevated;
+    in-out property <brush> t-background-active: UAppTheme.bg-elevated;
+    in-out property <brush> t-background-error: UAppTheme.bg-elevated;
+    in-out property <brush> t-background-disabled: UAppTheme.color-fill-quaternary;
+    in-out property <length> t-border-width: UAppTheme.border-width-base;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <brush> t-border-color: UAppTheme.border;
+    in-out property <brush> t-border-color-active: UAppTheme.primary-active;
+    in-out property <brush> t-border-color-error: UAppTheme.danger;
+    in-out property <brush> t-border-color-disabled: UAppTheme.border-secondary;
+    in-out property <brush> t-text-color: UAppTheme.text;
+    in-out property <brush> t-text-color-disabled: UAppTheme.text-disabled;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <brush> t-placeholder-color: UAppTheme.text-disabled;
+    in-out property <length> t-icon-size: UAppTheme.icon-size-base;
+    in-out property <brush> t-icon-color: UAppTheme.text-secondary;
+    in-out property <length> t-padding-vertical: UAppTheme.padding-vertical;
+    in-out property <length> t-padding-horizontal: UAppTheme.padding-horizontal / 2;
+	// Regular properties
+    in-out property <string> text <=> input.text;
+    in-out property <bool> enabled <=> input.enabled;
+    in-out property <InputType> input-type: InputType.text;
+    in-out property <string> placeholder: "";
+    in-out property <bool> clearable: false;
+    in-out property <bool> error: false;
+    in-out property <bool> show: false;
+    border-width: t-border-width;
+    border-radius: t-border-radius;
+    border-color: t-border-color;
+    background: t-background;
+    clip: true;
+    HorizontalLayout {
+        width: root.width;
+        HorizontalLayout {
+            padding-left: t-padding-horizontal;
+            padding-right: t-padding-horizontal;
+            Rectangle {
+                height: t-font-size + t-padding-vertical * 3;
+                clip: true;
+                input := TextInput {
+                    property <length> h-padding: t-padding-horizontal * 2;
+                    property <length> computed_x;
+                    width: max(parent.width, self.preferred-width);
+                    x: min(computed_x, 0px);
+                    input-type: show ? InputType.text : input-type;
+                    read-only: !root.enabled;
+                    font-size: t-font-size;
+                    color: t-text-color;
+                    vertical-alignment: center;
+                    horizontal-alignment: left;
+                    single-line: true;
+                    wrap: no-wrap;
+					// Shamelessly taken from Surrealisme UI
+					// Source : https://github.com/Surrealism-All/SurrealismUI/blob/main/src/input/input.slint
+					cursor-position-changed(cpos) => {
+                        if cpos.x + self.computed_x < self.h-padding {
+                            self.computed_x = - cpos.x + self.h-padding;
+                        } else if cpos.x + self.computed_x > parent.width - 1px {
+                            self.computed_x = parent.width - cpos.x - 1px;
+                        }
+                    }
+                    if self.text == "" && placeholder != "": HorizontalLayout {
+                        alignment: start;
+                        VerticalLayout {
+                            alignment: center;
+                            UText {
+                                text: placeholder;
+                                color: t-placeholder-color;
+                                font-size: t-font-size;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if clearable && input-type != InputType.password: VerticalLayout {
+            alignment: center;
+            padding-left: -t-padding-horizontal;
+            Rectangle {
+                height: 100%;
+                width: t-icon-size + t-padding-horizontal;
+                UIcon {
+                    size: t-icon-size;
+                    colorize: t-icon-color;
+                    source: @image-url("../assets/icons/circle-x.svg");
+                }
+
+                TouchArea {
+                    accessible-role: button;
+                    accessible-label: @tr("Clear input.");
+                    mouse-cursor: MouseCursor.pointer;
+                    clicked => {
+                        text = "";
+                        input.set-selection-offsets(0, 0);
+                    }
+                }
+            }
+        }
+        if input-type == InputType.password: VerticalLayout {
+            alignment: center;
+            padding-left: -t-padding-horizontal;
+            Rectangle {
+                height: 100%;
+                width: t-icon-size + t-padding-horizontal;
+                UIcon {
+                    size: t-icon-size;
+                    colorize: t-icon-color;
+                    source: show ? @image-url("../assets/icons/eye.svg") : @image-url("../assets/icons/eye-closed.svg");
+                }
+
+                TouchArea {
+                    accessible-role: button;
+                    accessible-label: @tr("Show password input content.");
+                    mouse-cursor: MouseCursor.pointer;
+                    clicked => {
+                        show = !show;
+                        if show {
+                            input.input-type = InputType.text;
+                        } else {
+                            input.input-type = InputType.password;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    states [
+        disabled when !input.enabled: {
+            background: t-background-disabled;
+            border-color: t-border-color-disabled;
+            input.color: t-text-color-disabled;
+        }
+        error when error: {
+            background: t-background-error;
+            border-color: t-border-color-error;
+        }
+        active when input.has-focus: {
+            background: t-background-active;
+            border-color: t-border-color-active;
+        }
+    ]
+
+	// Link the functions and callback of TextInput to child.
+	public function set-selection-offsets(start: int, end: int) {
+        input.set-selection-offsets(start, end);
+    }
+    public function select-all() {
+        input.select-all();
+    }
+    public function clear-selection() {
+        input.clear-selection();
+    }
+    public function copy() {
+        input.copy();
+    }
+    public function cut() {
+        input.cut();
+    }
+    public function paste() {
+        input.paste();
+    }
+    callback accepted <=> input.accepted;
+    callback cursor-position-changed <=> input.cursor-position-changed;
+    callback edited <=> input.edited;
+    callback key-pressed <=> input.key-pressed;
+    callback key-released <=> input.key-released;
+}

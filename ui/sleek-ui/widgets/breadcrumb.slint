@@ -1,0 +1,62 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+
+import { UText } from "text.slint";
+import { UIcon } from "icon.slint";
+
+
+export component UBreadcrumb inherits Rectangle {
+    // Theming properties
+	in-out property <length> t-spacing: UAppTheme.spacing-medium;
+    in-out property <image> t-icon-separator: @image-url("../assets/icons/chevron-right.svg");
+    in-out property <length> t-separator-size: UAppTheme.icon-size-base;
+    in-out property <brush> t-separator-color: UAppTheme.text-secondary;
+    in-out property <brush> t-text-color: UAppTheme.text-secondary;
+    in-out property <length> t-font-size: UAppTheme.font-size-base;
+    in-out property <int> t-font-weight;
+    in-out property <brush> t-hover-text-color: UAppTheme.text-disabled;
+    in-out property <int> t-hover-font-weight;
+    in-out property <brush> t-active-text-color: UAppTheme.primary;
+    in-out property <int> t-active-font-weight;
+	// Regular properties
+    in-out property <[string]> steps: [];
+    callback step-clicked(step: string);
+    VerticalLayout {
+        alignment: center;
+        HorizontalLayout {
+            spacing: t-spacing;
+            for step[idx] in steps: HorizontalLayout {
+                spacing: t-spacing;
+                ButtonInterface {
+                    UText {
+                        text: step;
+                        color: idx == steps.length - 1 ? t-active-text-color : t-text-color;
+                        font-size: t-font-size;
+                        font-weight: idx == steps.length - 1 ? t-active-font-weight : t-font-weight;
+                        animate color { duration: 200ms; }
+                        states [
+                            hover when parent.has-hover && idx != steps.length - 1: {
+                                color: t-hover-text-color;
+                                font-weight: t-hover-font-weight;
+                            }
+                        ]
+                    }
+
+                    clicked => {
+                        step-clicked(step);
+                    }
+                }
+
+                if idx != steps.length - 1: VerticalLayout {
+                    alignment: center;
+                    height: 100%;
+                    UIcon {
+                        source: t-icon-separator;
+                        size: t-separator-size;
+                        colorize: t-separator-color;
+                    }
+                }
+            }
+        }
+    }
+}

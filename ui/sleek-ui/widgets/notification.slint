@@ -1,0 +1,129 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "../utils/button-interface.slint";
+
+import { UIcon } from "icon.slint";
+import { UText } from "text.slint";
+import { UIconButton, UIconButtonVariant } from "icon-button.slint";
+
+
+export enum UNotificationVariant {
+	info,
+	success,
+	warning,
+	danger,
+	custom,
+}
+
+export component UNotification inherits ButtonInterface {
+	// Theming properties
+	in-out property <image> t-icon-image;
+    in-out property <brush> t-icon-color;
+    in-out property <length> t-icon-size: UAppTheme.font-size-big;
+    in-out property <length> t-title-font-size: UAppTheme.font-size-medium;
+    in-out property <length> t-title-horizontal-padding: UAppTheme.padding-big;
+    in-out property <length> t-title-vertical-padding: UAppTheme.padding-medium;
+    in-out property <length> t-content-padding-top;
+    in-out property <length> t-content-padding-bottom: UAppTheme.padding-medium;
+    in-out property <length> t-content-padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base;
+    in-out property <length> t-content-padding-right: UAppTheme.padding-big;
+    in-out property <brush> t-background: UAppTheme.bg-elevated;
+    in-out property <length> t-border-radius: UAppTheme.radius-base > UAppTheme.radius-medium ? UAppTheme.radius-medium : UAppTheme.radius-base;
+    in-out property <length> t-border-width;
+    in-out property <brush> t-border-color;
+    in-out property <length> t-drop-shadow-blur: UAppTheme.shadow-blur;
+    in-out property <color> t-drop-shadow-color: UAppTheme.shadow-color;
+    in-out property <length> t-drop-shadow-offset-y: UAppTheme.shadow-y-offset;
+    in-out property <UIconButtonVariant> t-close-button-variant: text;
+	// Regular properties
+	in-out property <UNotificationVariant> variant: info;
+    in-out property <string> title;
+    in-out property <string> message;
+    in-out property <bool> single-line-message: true;
+    callback close <=> close-button.clicked;
+    min-width: 300px * UAppTheme.scale-factor;
+    background: t-background;
+    border-radius: t-border-radius;
+    border-width: root.has-focus ? UAppTheme.focus-border-width : t-border-width;
+    border-color: root.has-focus ? UAppTheme.focus-color : t-border-color;
+    drop-shadow-blur: t-drop-shadow-blur;
+    drop-shadow-color: t-drop-shadow-color;
+    drop-shadow-offset-y: t-drop-shadow-offset-y;
+    VerticalLayout {
+        padding: UAppTheme.padding-base;
+        HorizontalLayout {
+            padding-top: t-title-vertical-padding;
+            padding-bottom: t-title-vertical-padding;
+            padding-left: t-title-horizontal-padding;
+            padding-right: t-title-horizontal-padding;
+            VerticalLayout {
+                alignment: center;
+                padding-right: UAppTheme.padding-medium;
+                UIcon {
+                    source: t-icon-image;
+                    colorize: t-icon-color;
+                    size: t-icon-size;
+                    accessible-role: none;
+                }
+            }
+
+            VerticalLayout {
+                alignment: center;
+                horizontal-stretch: 1;
+                padding-top: -2px; // Offset text to have it correctly centered.
+				UText {
+                    text: title;
+                    wrap: no-wrap;
+                    overflow: elide;
+                    font-size: t-title-font-size;
+                }
+            }
+
+            VerticalLayout {
+                alignment: center;
+                close-button := UIconButton {
+                    variant: t-close-button-variant;
+                    icon: @image-url("../assets/icons/x.svg");
+                    accessible-label: @tr("Close button for notification");
+                    accessible-action-default => {
+                        self.clicked();
+                    }
+                }
+            }
+        }
+
+        if message != "": HorizontalLayout {
+            padding-top: t-content-padding-top;
+            padding-bottom: t-content-padding-bottom;
+            padding-left: t-content-padding-left;
+            padding-right: t-content-padding-right;
+            alignment: start;
+            UText {
+                init => {
+                    if root.single-line-message {
+                        self.overflow = TextOverflow.elide;
+                    } else {
+                        self.wrap = TextWrap.word-wrap;
+                    }
+                }
+                text: root.message;
+                accessible-label: @tr("Notification content");
+            }
+        }
+    }
+
+    init => {
+        if variant == UNotificationVariant.info {
+            self.t-icon-image = @image-url("../assets/icons/info.svg");
+            self.t-icon-color = UAppTheme.primary;
+        } else if variant == UNotificationVariant.success {
+            self.t-icon-image = @image-url("../assets/icons/circle-check.svg");
+            self.t-icon-color = UAppTheme.success;
+        } else if variant == UNotificationVariant.warning {
+            self.t-icon-image = @image-url("../assets/icons/info.svg");
+            self.t-icon-color = UAppTheme.warning;
+        } else if variant == UNotificationVariant.danger {
+            self.t-icon-image = @image-url("../assets/icons/circle-x.svg");
+            self.t-icon-color = UAppTheme.danger;
+        }
+    }
+}
