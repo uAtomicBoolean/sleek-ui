@@ -1,4 +1,4 @@
-import { UButton, UButtonVariant, UButtonThemeColors } from "button.slint";
+import { UButton, UButtonVariant, UButtonThemeColor } from "button.slint";
 import { IconTextPlacement } from "../utils/structs.slint";
 
 
@@ -29,8 +29,21 @@ export component UFloatingButton inherits VerticalLayout {
     in-out property <length> t-padding-horizontal <=> btn.t-padding-horizontal;
     in-out property <length> t-font-size <=> btn.t-font-size;
     in-out property <length> t-icon-size <=> btn.t-icon-size;
-    in-out property <UButtonThemeColors> t-base-colors <=> btn.t-base-colors;
-    in-out property <UButtonThemeColors> t-danger-colors <=> btn.t-danger-colors;
+    in-out property <UButtonThemeColor> t-background <=> btn.t-background;
+    in-out property <UButtonThemeColor> t-background-hover <=> btn.t-background-hover;
+    in-out property <UButtonThemeColor> t-background-active <=> btn.t-background-active;
+    in-out property <UButtonThemeColor> t-background-checked <=> btn.t-background-checked;
+    in-out property <UButtonThemeColor> t-background-disabled <=> btn.t-background-disabled;
+    in-out property <UButtonThemeColor> t-text-color <=> btn.t-text-color;
+    in-out property <UButtonThemeColor> t-text-color-hover <=> btn.t-text-color-hover;
+    in-out property <UButtonThemeColor> t-text-color-active <=> btn.t-text-color-active;
+    in-out property <UButtonThemeColor> t-text-color-checked <=> btn.t-text-color-checked;
+    in-out property <UButtonThemeColor> t-text-color-disabled <=> btn.t-text-color-disabled;
+    in-out property <UButtonThemeColor> t-border <=> btn.t-border;
+    in-out property <UButtonThemeColor> t-border-hover <=> btn.t-border-hover;
+    in-out property <UButtonThemeColor> t-border-active <=> btn.t-border-active;
+    in-out property <UButtonThemeColor> t-border-checked <=> btn.t-border-checked;
+    in-out property <UButtonThemeColor> t-border-disabled <=> btn.t-border-disabled;
 	// TouchArea callbacks from UButton.
     callback double-clicked <=> btn.double-clicked;
     callback moved <=> btn.moved;

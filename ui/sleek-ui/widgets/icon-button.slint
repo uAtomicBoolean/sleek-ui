@@ -6,22 +6,9 @@ import { UIcon } from "icon.slint";
 import { USpinner } from "spinner.slint";
 
 
-export struct UIconButtonThemeColors {
-	background: brush,
-	background-hover: brush,
-	background-active: brush,
-	background-checked: brush,
-	background-disabled: brush,
-	text-color: brush,
-	text-color-hover: brush,
-	text-color-active: brush,
-	text-color-checked: brush,
-	text-color-disabled: brush,
-	border: brush,
-	border-hover: brush,
-	border-active: brush,
-	border-checked: brush,
-	border-disabled: brush,
+export struct UIconButtonThemeColor {
+	base: brush,
+	danger: brush,
 }
 
 
@@ -52,23 +39,35 @@ export component UIconButton inherits ButtonInterface {
     in-out property <length> t-icon-size: 17px * UAppTheme.scale-factor;
     in-out property <length> t-border-width;
     in-out property <length> t-border-radius: UAppTheme.radius-circle;
-    in-out property <length> t-padding-vertical;
-    in-out property <length> t-padding-horizontal;
-    in-out property <UIconButtonThemeColors> t-base-colors;
-    in-out property <UIconButtonThemeColors> t-danger-colors;
+    in-out property <length> t-padding-vertical: UAppTheme.padding-vertical;
+    in-out property <length> t-padding-horizontal: UAppTheme.padding-vertical;
+    in-out property <UIconButtonThemeColor> t-background;
+    in-out property <UIconButtonThemeColor> t-background-hover;
+    in-out property <UIconButtonThemeColor> t-background-active;
+    in-out property <UIconButtonThemeColor> t-background-checked;
+    in-out property <UIconButtonThemeColor> t-background-disabled;
+    in-out property <UIconButtonThemeColor> t-text-color;
+    in-out property <UIconButtonThemeColor> t-text-color-hover;
+    in-out property <UIconButtonThemeColor> t-text-color-active;
+    in-out property <UIconButtonThemeColor> t-text-color-checked;
+    in-out property <UIconButtonThemeColor> t-text-color-disabled;
+    in-out property <UIconButtonThemeColor> t-border;
+    in-out property <UIconButtonThemeColor> t-border-hover;
+    in-out property <UIconButtonThemeColor> t-border-active;
+    in-out property <UIconButtonThemeColor> t-border-checked;
+    in-out property <UIconButtonThemeColor> t-border-disabled;
 	
 	// Regular properties
     in-out property <UIconButtonVariant> variant: default;
-    property <UIconButtonThemeColors> theme-colors: danger ? t-danger-colors : t-base-colors;
     in-out property <bool> danger: false;
     in-out property <bool> loading: false;
     in-out property <bool> checked: false;
     in-out property <image> icon;
     enabled: !loading;
-    background: theme-colors.background;
+    background: get-color(t-background);
     border-radius: self.t-border-radius;
     border-width: self.has-focus ? UAppTheme.focus-border-width : self.t-border-width;
-    border-color: self.has-focus ? UAppTheme.focus-color : theme-colors.border;
+    border-color: self.has-focus ? UAppTheme.focus-color : get-color(t-border);
     HorizontalLayout {
         alignment: center;
         padding-top: t-padding-vertical;
@@ -80,49 +79,49 @@ export component UIconButton inherits ButtonInterface {
             if !loading: UIcon {
                 size: t-icon-size;
                 source: icon;
-                colorize: theme-colors.text-color;
+                colorize: get-color(t-text-color);
                 animate colorize { duration: 200ms; }
                 states [
                     disabled when !root.enabled: {
-                        colorize: theme-colors.text-color-disabled;
+                        colorize: get-color(t-text-color-disabled);
                     }
                     checked when root.checked: {
-                        colorize: theme-colors.text-color-checked;
+                        colorize: get-color(t-text-color-checked);
                     }
                     active when root.pressed: {
-                        colorize: theme-colors.text-color-active;
+                        colorize: get-color(t-text-color-active);
                     }
                     hover when root.has-hover: {
-                        colorize: theme-colors.text-color-hover;
+                        colorize: get-color(t-text-color-hover);
                     }
                 ]
             }
             if loading: USpinner {
                 size: t-icon-size;
-                colorize: theme-colors.text-color;
+                colorize: get-color(t-text-color);
             }
         }
     }
 
     states [
         loading when self.loading: {
-            background: theme-colors.background;
+            background: get-color(t-background);
         }
         disabled when !self.enabled: {
-            background: theme-colors.background-disabled;
-            border-color: theme-colors.border-disabled;
+            background: get-color(t-background-disabled);
+            border-color: get-color(t-border-disabled);
         }
         active when self.pressed: {
-            background: theme-colors.background-active;
-            border-color: self.has-focus ? UAppTheme.focus-color : theme-colors.border-active;
+            background: get-color(t-background-active);
+            border-color: self.has-focus ? UAppTheme.focus-color : get-color(t-border-active);
         }
         hover when self.has-hover: {
-            background: theme-colors.background-hover;
-            border-color: self.has-focus ? UAppTheme.focus-color : theme-colors.border-hover;
+            background: get-color(t-background-hover);
+            border-color: self.has-focus ? UAppTheme.focus-color : get-color(t-border-hover);
         }
         checked when self.checked: {
-            background: theme-colors.background-checked;
-            border-color: self.has-focus ? UAppTheme.focus-color : theme-colors.border-checked;
+            background: get-color(t-background-checked);
+            border-color: self.has-focus ? UAppTheme.focus-color : get-color(t-border-checked);
         }
     ]
 
@@ -130,127 +129,63 @@ export component UIconButton inherits ButtonInterface {
 	init => {
         if variant == UIconButtonVariant.primary {
             self.t-border-width = UAppTheme.border-width-base;
-            self.t-padding-vertical = UAppTheme.padding-vertical;
-            self.t-padding-horizontal = UAppTheme.padding-vertical;
-            self.t-base-colors = {
-                background: UAppTheme.primary,
-                background-hover: UAppTheme.primary-hover,
-                background-active: UAppTheme.primary-active,
-                background-checked: UAppTheme.primary,
-                background-disabled: UAppTheme.border-secondary,
-                text-color: Colors.white,
-                text-color-hover: Colors.white,
-                text-color-active: Colors.white,
-                text-color-checked: Colors.white,
-                text-color-disabled: UAppTheme.text-disabled,
-                border-disabled: UAppTheme.border,
-            };
-            self.t-danger-colors = {
-                background: UAppTheme.danger,
-                background-hover: UAppTheme.danger-hover,
-                background-active: UAppTheme.danger-active,
-                background-checked: UAppTheme.danger,
-                background-disabled: UAppTheme.border-secondary,
-                text-color: Colors.white,
-                text-color-hover: Colors.white,
-                text-color-active: Colors.white,
-                text-color-checked: Colors.white,
-                text-color-disabled: UAppTheme.text-disabled,
-                border-disabled: UAppTheme.border,
-            };
+            t-background = { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-background-hover = { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
+            t-background-active = { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
+            t-background-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-background-disabled = { base: UAppTheme.border-secondary, danger: UAppTheme.border-secondary };
+            t-text-color = { base: Colors.white, danger: Colors.white };
+            t-text-color-hover = { base: Colors.white, danger: Colors.white };
+            t-text-color-active = { base: Colors.white, danger: Colors.white };
+            t-text-color-checked = { base: Colors.white, danger: Colors.white };
+            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
         } else if variant == UIconButtonVariant.default {
             self.t-border-width = UAppTheme.border-width-base;
-            self.t-padding-vertical = UAppTheme.padding-vertical;
-            self.t-padding-horizontal = UAppTheme.padding-vertical;
-            self.t-base-colors = {
-                background-checked: UAppTheme.primary-selected,
-                text-color:  UAppTheme.text,
-                text-color-hover: UAppTheme.primary-hover,
-                text-color-active: UAppTheme.primary-active,
-                text-color-checked: UAppTheme.primary,
-                text-color-disabled: UAppTheme.text-disabled,
-                border:  UAppTheme.border,
-                border-hover: UAppTheme.primary-hover,
-                border-active: UAppTheme.primary-active,
-                border-checked: UAppTheme.primary,
-                border-disabled: UAppTheme.border,
-            };
-            self.t-danger-colors = {
-                background-checked: UAppTheme.danger-selected,
-                text-color: UAppTheme.danger,
-                text-color-hover: UAppTheme.danger-hover,
-                text-color-active: UAppTheme.danger-active,
-                text-color-checked: UAppTheme.danger,
-                text-color-disabled: UAppTheme.text-disabled,
-                border: UAppTheme.danger,
-                border-hover: UAppTheme.danger-hover,
-                border-active: UAppTheme.danger-active,
-                border-checked: UAppTheme.danger,
-                border-disabled: UAppTheme.border,
-            };
+            t-background-active = { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
+            t-background-checked = { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
+            t-text-color = { base: UAppTheme.text, danger: UAppTheme.danger };
+            t-text-color-hover = { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
+            t-text-color-active = { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
+            t-text-color-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
+            t-border = { base: UAppTheme.border, danger: UAppTheme.danger };
+            t-border-hover = { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
+            t-border-active = { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
+            t-border-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-border-disabled = { base: UAppTheme.border, danger: UAppTheme.border };
         } else if variant == UIconButtonVariant.filled {
-            self.t-padding-vertical = UAppTheme.padding-vertical;
-            self.t-padding-horizontal = UAppTheme.padding-vertical;
-            self.t-base-colors = {
-                background: UAppTheme.color-fill-tertiary,
-                background-hover: UAppTheme.color-fill-secondary,
-                background-active: UAppTheme.color-fill,
-                background-checked: UAppTheme.primary-selected,
-                text-color: UAppTheme.text,
-                text-color-hover: UAppTheme.text,
-                text-color-active: UAppTheme.text,
-                text-color-checked: UAppTheme.primary,
-                text-color-disabled: UAppTheme.text-disabled,
+            t-background = { base: UAppTheme.color-fill-tertiary, danger: UAppTheme.danger.with-alpha(0.1) };
+            t-background-hover = {
+                base: UAppTheme.color-fill-secondary,
+                danger: UAppTheme.danger-hover.with-alpha(0.3)
             };
-            self.t-danger-colors = {
-                background: UAppTheme.danger.with-alpha(0.1),
-                background-hover: UAppTheme.danger-hover.with-alpha(0.3),
-                background-active: UAppTheme.danger-active.with-alpha(0.4),
-                background-checked: UAppTheme.danger-selected,
-                text-color: UAppTheme.danger,
-                text-color-hover: UAppTheme.danger-hover,
-                text-color-active: UAppTheme.danger-active,
-                text-color-checked: UAppTheme.danger,
-                text-color-disabled: UAppTheme.text-disabled,
-            };
+            t-background-active = { base: UAppTheme.color-fill, danger: UAppTheme.danger-active.with-alpha(0.4) };
+            t-background-checked = { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
+            t-text-color = { base: UAppTheme.text, danger: UAppTheme.danger };
+            t-text-color-hover = { base: UAppTheme.text, danger: UAppTheme.danger-hover };
+            t-text-color-active = { base: UAppTheme.text, danger: UAppTheme.danger-active };
+            t-text-color-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
         } else if variant == UIconButtonVariant.text {
-            self.t-padding-vertical = UAppTheme.padding-vertical;
-            self.t-padding-horizontal = UAppTheme.padding-vertical;
-            self.t-base-colors = {
-                background-hover: UAppTheme.color-fill-secondary,
-                background-active: UAppTheme.color-fill,
-                text-color: UAppTheme.text,
-                text-color-hover: UAppTheme.text,
-                text-color-active: UAppTheme.text,
-                text-color-checked: UAppTheme.primary,
-                text-color-disabled: UAppTheme.text-disabled,
+            t-background-hover = {
+                base: UAppTheme.color-fill-secondary,
+                danger: UAppTheme.danger-hover.with-alpha(0.1)
             };
-            self.t-danger-colors = {
-                background-hover: UAppTheme.danger-hover.with-alpha(0.1),
-                background-active: UAppTheme.danger-active.with-alpha(0.3),
-                text-color: UAppTheme.danger,
-                text-color-hover: UAppTheme.danger-hover,
-                text-color-active: UAppTheme.danger-active,
-                text-color-checked: UAppTheme.danger,
-                text-color-disabled: UAppTheme.text-disabled,
-            };
+            t-background-active = { base: UAppTheme.color-fill, danger: UAppTheme.danger-active.with-alpha(0.3) };
+            t-text-color = { base: UAppTheme.text, danger: UAppTheme.danger };
+            t-text-color-hover = { base: UAppTheme.text, danger: UAppTheme.danger-hover };
+            t-text-color-active = { base: UAppTheme.text, danger: UAppTheme.danger-active };
+            t-text-color-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
         } else if variant == UIconButtonVariant.text-stripped {
-            self.t-padding-vertical = UAppTheme.padding-vertical;
-            self.t-padding-horizontal = UAppTheme.padding-vertical;
-            self.t-base-colors = {
-                background-checked: UAppTheme.primary,
-                text-color: UAppTheme.text-secondary,
-                text-color-hover: UAppTheme.text,
-                text-color-active: UAppTheme.text,
-                text-color-disabled: UAppTheme.text-disabled,
-            };
-            self.t-danger-colors = {
-                background-checked: UAppTheme.primary,
-                text-color: UAppTheme.text-secondary,
-                text-color-hover: UAppTheme.text,
-                text-color-active: UAppTheme.text,
-                text-color-disabled: UAppTheme.text-disabled,
-            };
+            t-text-color = { base: UAppTheme.text-secondary, danger: UAppTheme.text-secondary };
+            t-text-color-hover = { base: UAppTheme.text, danger: UAppTheme.text };
+            t-text-color-active = { base: UAppTheme.text, danger: UAppTheme.text };
+            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
         }
+    }
+
+    function get-color(c: UIconButtonThemeColor) -> brush {
+        return self.danger ? c.danger : c.base;
     }
 }

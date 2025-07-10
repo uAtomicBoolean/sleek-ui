@@ -12,25 +12,10 @@ When outside of a layout, the button will take all the space available, otherwis
 - custom: used to implement custom themes.
 
 ## Theming properties
-The theming for `UButton` is particular as it uses a struct to define the colors.  
-This allows easier management of the `danger` and regular states.
-
-Here are the fields in the `UButtonThemeColors` struct:
-- background `<brush>`
-- background-hover `<brush>`
-- background-active `<brush>`
-- background-checked `<brush>`
-- background-disabled `<brush>`
-- text-color `<brush>`
-- text-color-hover `<brush>`
-- text-color-active `<brush>`
-- text-color-checked `<brush>`
-- text-color-disabled `<brush>`
-- border `<brush>`
-- border-hover `<brush>`
-- border-active `<brush>`
-- border-checked `<brush>`
-- border-disabled `<brush>`
+The theming for `UButton` is particular as it uses a struct, `UButtonThemeColor`, to define each color which makes it easier to manage the `danger` state (and future states).  
+It contains two fields:
+- **base:** the default color.
+- **danger**: it speaks for itself.
 
 Here are the theming properties at the top level of `UButton`:
 - t-border-width `<length>`
@@ -40,8 +25,21 @@ Here are the theming properties at the top level of `UButton`:
 - t-padding-horizontal `<length>`
 - t-font-size `<length>`
 - t-icon-size `<length>`
-- t-base-colors `<UButtonThemeColors>`: colors used when the button is in its regular state.
-- t-danger-colors `<UButtonThemeColors>`: colors used for the `danger` state.
+- t-background `<UButtonThemeColor>`
+- t-background-hover `<UButtonThemeColor>`
+- t-background-active `<UButtonThemeColor>`
+- t-background-checked `<UButtonThemeColor>`
+- t-background-disabled `<UButtonThemeColor>`
+- t-text-color `<UButtonThemeColor>`
+- t-text-color-hover `<UButtonThemeColor>`
+- t-text-color-active `<UButtonThemeColor>`
+- t-text-color-checked `<UButtonThemeColor>`
+- t-text-color-disabled `<UButtonThemeColor>`
+- t-border `<UButtonThemeColor>`
+- t-border-hover `<UButtonThemeColor>`
+- t-border-active `<UButtonThemeColor>`
+- t-border-checked `<UButtonThemeColor>`
+- t-border-disabled `<UButtonThemeColor>`
 
 ## Properties, callbacks and functions
 Inherits from [ButtonInterface](./button-interface.md).  
