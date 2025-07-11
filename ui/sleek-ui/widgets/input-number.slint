@@ -62,38 +62,6 @@ export component UInputNumber inherits Rectangle {
     clip: true;
     HorizontalLayout {
         width: root.width;
-        VerticalLayout {
-            alignment: center;
-            padding-left: UAppTheme.padding-small;
-            Rectangle {
-                height: 100%;
-                width: t-icon-size + t-padding-horizontal;
-                UIcon {
-                    size: t-icon-size;
-                    colorize: t-icon-color;
-                    source: @image-url("../assets/icons/minus.svg");
-                }
-
-                btn-decrease := TouchArea {
-                    accessible-role: button;
-                    accessible-label: @tr("Decrease number input value.");
-                    mouse-cursor: MouseCursor.pointer;
-                    clicked => {
-                        if !root.enabled {
-                            return;
-                        }
-                        if root.enable-min-max && root.value < root.min-value {
-                            root.value = root.min-value;
-                        } else {
-                            root.value = input.text.to-float() - root.step;
-                        }
-                        input.text = root.value;
-                        input.focus();
-                    }
-                }
-            }
-        }
-
         HorizontalLayout {
             padding-left: t-padding-horizontal;
             padding-right: t-padding-horizontal;
@@ -111,7 +79,7 @@ export component UInputNumber inherits Rectangle {
                     font-size: t-font-size;
                     color: t-text-color;
                     vertical-alignment: center;
-                    horizontal-alignment: center;
+                    horizontal-alignment: left;
                     single-line: true;
                     wrap: no-wrap;
 					// Shamelessly taken from Surrealisme UI
@@ -157,7 +125,40 @@ export component UInputNumber inherits Rectangle {
                 UIcon {
                     size: t-icon-size;
                     colorize: t-icon-color;
-                    source: @image-url("../assets/icons/plus.svg");
+                    source: @image-url("../assets/icons/chevron-down.svg");
+                }
+
+                btn-decrease := TouchArea {
+                    accessible-role: button;
+                    accessible-label: @tr("Decrease number input value.");
+                    mouse-cursor: MouseCursor.pointer;
+                    clicked => {
+                        if !root.enabled {
+                            return;
+                        }
+                        if root.enable-min-max && root.value < root.min-value {
+                            root.value = root.min-value;
+                        } else {
+                            root.value = input.text.to-float() - root.step;
+                        }
+                        input.text = root.value;
+                        input.focus();
+                    }
+                }
+            }
+        }
+
+        VerticalLayout {
+            alignment: center;
+            padding-left: UAppTheme.padding-small;
+            Rectangle {
+                height: 100%;
+                width: t-icon-size + t-padding-horizontal;
+                UIcon {
+                    size: t-icon-size;
+                    colorize: t-icon-color;
+                    source: @image-url("../assets/icons/chevron-down.svg");
+                    rotation-angle: 180deg;
                 }
 
                 btn-increase := TouchArea {
