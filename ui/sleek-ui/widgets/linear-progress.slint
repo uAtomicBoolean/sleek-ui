@@ -120,15 +120,18 @@ export component ULinearProgress inherits Rectangle {
             }
         }
     }
-    init => {
-        if variant == ULinearProgressVariant.primary {
-            self.t-progress-color = UAppTheme.primary;
-        } else if variant == ULinearProgressVariant.success {
-            self.t-progress-color = UAppTheme.success;
-        } else if variant == ULinearProgressVariant.warning {
-            self.t-progress-color = UAppTheme.warning;
-        } else if variant == ULinearProgressVariant.danger {
-            self.t-progress-color = UAppTheme.danger;
+    states [
+        primary when variant == ULinearProgressVariant.primary: {
+            t-progress-color: UAppTheme.primary;
         }
-    }
+        success when variant == ULinearProgressVariant.success: {
+            t-progress-color: UAppTheme.success;
+        }
+        warning when variant == ULinearProgressVariant.warning: {
+            t-progress-color: UAppTheme.warning;
+        }
+        danger when variant == ULinearProgressVariant.danger: {
+            t-progress-color: UAppTheme.danger;
+        }
+    ]
 }

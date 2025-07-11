@@ -62,19 +62,22 @@ export component UTag inherits Rectangle {
         }
     }
 
-    init => {
-        if variant == UTagVariant.info {
-            self.t-background = UAppTheme.primary-selected;
-            self.t-text-color = UAppTheme.primary;
-        } else if variant == UTagVariant.success {
-            self.t-background = UAppTheme.success-selected;
-            self.t-text-color = UAppTheme.success;
-        } else if variant == UTagVariant.warning {
-            self.t-background = UAppTheme.warning-selected;
-            self.t-text-color = UAppTheme.warning;
-        } else if variant == UTagVariant.danger {
-            self.t-background = UAppTheme.danger-selected;
-            self.t-text-color = UAppTheme.danger;
+    states [
+        info when variant == UTagVariant.info: {
+            t-background: UAppTheme.primary-selected;
+            t-text-color: UAppTheme.primary;
         }
-    }
+        success when variant == UTagVariant.success: {
+            t-background: UAppTheme.success-selected;
+            t-text-color: UAppTheme.success;
+        }
+        warning when variant == UTagVariant.warning: {
+            t-background: UAppTheme.warning-selected;
+            t-text-color: UAppTheme.warning;
+        }
+        danger when variant == UTagVariant.danger: {
+            t-background: UAppTheme.danger-selected;
+            t-text-color: UAppTheme.danger;
+        }
+    ]
 }
