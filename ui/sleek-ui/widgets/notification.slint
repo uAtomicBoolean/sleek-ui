@@ -75,6 +75,7 @@ export component UNotification inherits ButtonInterface {
                     wrap: no-wrap;
                     overflow: elide;
                     font-size: t-title-font-size;
+                    animate color { duration: 200ms; }
                 }
             }
 
@@ -111,19 +112,22 @@ export component UNotification inherits ButtonInterface {
         }
     }
 
-    init => {
-        if variant == UNotificationVariant.info {
-            self.t-icon-image = @image-url("../assets/icons/info.svg");
-            self.t-icon-color = UAppTheme.primary;
-        } else if variant == UNotificationVariant.success {
-            self.t-icon-image = @image-url("../assets/icons/circle-check.svg");
-            self.t-icon-color = UAppTheme.success;
-        } else if variant == UNotificationVariant.warning {
-            self.t-icon-image = @image-url("../assets/icons/info.svg");
-            self.t-icon-color = UAppTheme.warning;
-        } else if variant == UNotificationVariant.danger {
-            self.t-icon-image = @image-url("../assets/icons/circle-x.svg");
-            self.t-icon-color = UAppTheme.danger;
+    states [
+        info when variant == UNotificationVariant.info: {
+            t-icon-image: @image-url("../assets/icons/info.svg");
+            t-icon-color: UAppTheme.primary;
         }
-    }
+        success when variant == UNotificationVariant.success: {
+            t-icon-image: @image-url("../assets/icons/circle-check.svg");
+            t-icon-color: UAppTheme.success;
+        }
+        warning when variant == UNotificationVariant.warning: {
+            t-icon-image: @image-url("../assets/icons/info.svg");
+            t-icon-color: UAppTheme.warning;
+        }
+        danger when variant == UNotificationVariant.danger: {
+            t-icon-image: @image-url("../assets/icons/circle-x.svg");
+            t-icon-color: UAppTheme.danger;
+        }
+    ]
 }

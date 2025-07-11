@@ -86,31 +86,34 @@ export component UAlert inherits Rectangle {
         }
     }
 
-    init => {
-        if variant == UAlertVariant.info {
-            self.t-background = UAppTheme.primary-selected;
-            self.t-border-color = UAppTheme.primary;
-            self.t-icon-image = @image-url("../assets/icons/info.svg");
-            self.t-icon-color = UAppTheme.primary;
-            self.t-text-color = UAppTheme.text;
-        } else if variant == UAlertVariant.success {
-            self.t-background = UAppTheme.success-selected;
-            self.t-border-color = UAppTheme.success;
-            self.t-icon-image = @image-url("../assets/icons/circle-check.svg");
-            self.t-icon-color = UAppTheme.success;
-            self.t-text-color = UAppTheme.text;
-        } else if variant == UAlertVariant.warning {
-            self.t-background = UAppTheme.warning-selected;
-            self.t-border-color = UAppTheme.warning;
-            self.t-icon-image = @image-url("../assets/icons/info.svg");
-            self.t-icon-color = UAppTheme.warning;
-            self.t-text-color = UAppTheme.text;
-        } else if variant == UAlertVariant.danger {
-            self.t-background = UAppTheme.danger-selected;
-            self.t-border-color = UAppTheme.danger;
-            self.t-icon-image = @image-url("../assets/icons/circle-x.svg");
-            self.t-icon-color = UAppTheme.danger;
-            self.t-text-color = UAppTheme.text;
+    states [
+        info when variant == UAlertVariant.info: {
+            t-background: UAppTheme.primary-selected;
+            t-border-color: UAppTheme.primary;
+            t-icon-image: @image-url("../assets/icons/info.svg");
+            t-icon-color: UAppTheme.primary;
+            t-text-color: UAppTheme.text;
         }
-    }
+        success when variant == UAlertVariant.success: {
+            t-background: UAppTheme.success-selected;
+            t-border-color: UAppTheme.success;
+            t-icon-image: @image-url("../assets/icons/circle-check.svg");
+            t-icon-color: UAppTheme.success;
+            t-text-color: UAppTheme.text;
+        }
+        warning when variant == UAlertVariant.warning: {
+            t-background: UAppTheme.warning-selected;
+            t-border-color: UAppTheme.warning;
+            t-icon-image: @image-url("../assets/icons/info.svg");
+            t-icon-color: UAppTheme.warning;
+            t-text-color: UAppTheme.text;
+        }
+        danger when variant == UAlertVariant.danger: {
+            t-background: UAppTheme.danger-selected;
+            t-border-color: UAppTheme.danger;
+            t-icon-image: @image-url("../assets/icons/circle-x.svg");
+            t-icon-color: UAppTheme.danger;
+            t-text-color: UAppTheme.text;
+        }
+    ]
 }

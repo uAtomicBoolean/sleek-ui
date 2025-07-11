@@ -64,10 +64,10 @@ export component UIconButton inherits ButtonInterface {
     in-out property <bool> checked: false;
     in-out property <image> icon;
     enabled: !loading;
-    background: get-color(t-background);
+    background: get-background();
     border-radius: self.t-border-radius;
     border-width: self.has-focus ? UAppTheme.focus-border-width : self.t-border-width;
-    border-color: self.has-focus ? UAppTheme.focus-color : get-color(t-border);
+    border-color: self.has-focus ? UAppTheme.focus-color : get-border-color();
     HorizontalLayout {
         alignment: center;
         padding-top: t-padding-vertical;
@@ -103,89 +103,108 @@ export component UIconButton inherits ButtonInterface {
         }
     }
 
-    states [
-        loading when self.loading: {
-            background: get-color(t-background);
-        }
-        disabled when !self.enabled: {
-            background: get-color(t-background-disabled);
-            border-color: get-color(t-border-disabled);
-        }
-        active when self.pressed: {
-            background: get-color(t-background-active);
-            border-color: self.has-focus ? UAppTheme.focus-color : get-color(t-border-active);
-        }
-        hover when self.has-hover: {
-            background: get-color(t-background-hover);
-            border-color: self.has-focus ? UAppTheme.focus-color : get-color(t-border-hover);
-        }
-        checked when self.checked: {
-            background: get-color(t-background-checked);
-            border-color: self.has-focus ? UAppTheme.focus-color : get-color(t-border-checked);
-        }
-    ]
-
-	// Instantiating the variants' themes.
-	init => {
-        if variant == UIconButtonVariant.primary {
-            self.t-border-width = UAppTheme.border-width-base;
-            t-background = { base: UAppTheme.primary, danger: UAppTheme.danger };
-            t-background-hover = { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
-            t-background-active = { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
-            t-background-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
-            t-background-disabled = { base: UAppTheme.border-secondary, danger: UAppTheme.border-secondary };
-            t-text-color = { base: Colors.white, danger: Colors.white };
-            t-text-color-hover = { base: Colors.white, danger: Colors.white };
-            t-text-color-active = { base: Colors.white, danger: Colors.white };
-            t-text-color-checked = { base: Colors.white, danger: Colors.white };
-            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
-        } else if variant == UIconButtonVariant.default {
-            self.t-border-width = UAppTheme.border-width-base;
-            t-background-active = { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
-            t-background-checked = { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
-            t-text-color = { base: UAppTheme.text, danger: UAppTheme.danger };
-            t-text-color-hover = { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
-            t-text-color-active = { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
-            t-text-color-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
-            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
-            t-border = { base: UAppTheme.border, danger: UAppTheme.danger };
-            t-border-hover = { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
-            t-border-active = { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
-            t-border-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
-            t-border-disabled = { base: UAppTheme.border, danger: UAppTheme.border };
-        } else if variant == UIconButtonVariant.filled {
-            t-background = { base: UAppTheme.color-fill-tertiary, danger: UAppTheme.danger.with-alpha(0.1) };
-            t-background-hover = {
-                base: UAppTheme.color-fill-secondary,
-                danger: UAppTheme.danger-hover.with-alpha(0.3)
-            };
-            t-background-active = { base: UAppTheme.color-fill, danger: UAppTheme.danger-active.with-alpha(0.4) };
-            t-background-checked = { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
-            t-text-color = { base: UAppTheme.text, danger: UAppTheme.danger };
-            t-text-color-hover = { base: UAppTheme.text, danger: UAppTheme.danger-hover };
-            t-text-color-active = { base: UAppTheme.text, danger: UAppTheme.danger-active };
-            t-text-color-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
-            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
-        } else if variant == UIconButtonVariant.text {
-            t-background-hover = {
-                base: UAppTheme.color-fill-secondary,
-                danger: UAppTheme.danger-hover.with-alpha(0.1)
-            };
-            t-background-active = { base: UAppTheme.color-fill, danger: UAppTheme.danger-active.with-alpha(0.3) };
-            t-text-color = { base: UAppTheme.text, danger: UAppTheme.danger };
-            t-text-color-hover = { base: UAppTheme.text, danger: UAppTheme.danger-hover };
-            t-text-color-active = { base: UAppTheme.text, danger: UAppTheme.danger-active };
-            t-text-color-checked = { base: UAppTheme.primary, danger: UAppTheme.danger };
-            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
-        } else if variant == UIconButtonVariant.text-stripped {
-            t-text-color = { base: UAppTheme.text-secondary, danger: UAppTheme.text-secondary };
-            t-text-color-hover = { base: UAppTheme.text, danger: UAppTheme.text };
-            t-text-color-active = { base: UAppTheme.text, danger: UAppTheme.text };
-            t-text-color-disabled = { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
-        }
-    }
-
     function get-color(c: UIconButtonThemeColor) -> brush {
         return self.danger ? c.danger : c.base;
     }
+
+	// Managing the background and border colors with a function allows use to 
+	// not use a states list for both properties.
+	// Thanks to this, we can use a states list for the variants which remove
+	// a bug in which the colors are not updated when switching color schemes 
+	// while using an 'init' to instantiate the variants.
+    function get-background() -> brush {
+        if !self.enabled {
+            return get-color(t-background-disabled);
+        }
+        if self.pressed {
+            return get-color(t-background-active);
+        }
+        if self.has-hover {
+            return get-color(t-background-hover);
+        }
+        if self.checked {
+            return get-color(t-background-checked);
+        }
+        return get-color(t-background);
+    }
+
+    function get-border-color() -> brush {
+        if !self.enabled {
+            return get-color(t-border-disabled);
+        }
+        if self.pressed {
+            return get-color(t-border-active);
+        }
+        if self.has-hover {
+            return get-color(t-border-hover);
+        }
+        if self.checked {
+            return get-color(t-border-checked);
+        }
+        return get-color(t-border);
+    }
+
+	// Instantiating the variants' themes.
+	states [
+        primary when variant == UIconButtonVariant.primary: {
+            t-border-width: UAppTheme.border-width-base;
+            t-background: { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-background-hover: { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
+            t-background-active: { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
+            t-background-checked: { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-background-disabled: { base: UAppTheme.border-secondary, danger: UAppTheme.border-secondary };
+            t-text-color: { base: Colors.white, danger: Colors.white };
+            t-text-color-hover: { base: Colors.white, danger: Colors.white };
+            t-text-color-active: { base: Colors.white, danger: Colors.white };
+            t-text-color-checked: { base: Colors.white, danger: Colors.white };
+            t-text-color-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
+        }
+        default when variant == UIconButtonVariant.default: {
+            t-border-width: UAppTheme.border-width-base;
+            t-background-active: { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
+            t-background-checked: { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
+            t-text-color: { base: UAppTheme.text, danger: UAppTheme.danger };
+            t-text-color-hover: { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
+            t-text-color-active: { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
+            t-text-color-checked: { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-text-color-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
+            t-border: { base: UAppTheme.border, danger: UAppTheme.danger };
+            t-border-hover: { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
+            t-border-active: { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
+            t-border-checked: { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-border-disabled: { base: UAppTheme.border, danger: UAppTheme.border };
+        }
+        filled when variant == UIconButtonVariant.filled: {
+            t-background: { base: UAppTheme.color-fill-tertiary, danger: UAppTheme.danger.with-alpha(0.1) };
+            t-background-hover: {
+                base: UAppTheme.color-fill-secondary,
+                danger: UAppTheme.danger-hover.with-alpha(0.3)
+            };
+            t-background-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger-active.with-alpha(0.4) };
+            t-background-checked: { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
+            t-text-color: { base: UAppTheme.text, danger: UAppTheme.danger };
+            t-text-color-hover: { base: UAppTheme.text, danger: UAppTheme.danger-hover };
+            t-text-color-active: { base: UAppTheme.text, danger: UAppTheme.danger-active };
+            t-text-color-checked: { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-text-color-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
+        }
+        text when variant == UIconButtonVariant.text: {
+            t-background-hover: {
+                base: UAppTheme.color-fill-secondary,
+                danger: UAppTheme.danger-hover.with-alpha(0.1)
+            };
+            t-background-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger-active.with-alpha(0.3) };
+            t-text-color: { base: UAppTheme.text, danger: UAppTheme.danger };
+            t-text-color-hover: { base: UAppTheme.text, danger: UAppTheme.danger-hover };
+            t-text-color-active: { base: UAppTheme.text, danger: UAppTheme.danger-active };
+            t-text-color-checked: { base: UAppTheme.primary, danger: UAppTheme.danger };
+            t-text-color-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
+        }
+        stripped when variant == UIconButtonVariant.text-stripped: {
+            t-text-color: { base: UAppTheme.text-secondary, danger: UAppTheme.text-secondary };
+            t-text-color-hover: { base: UAppTheme.text, danger: UAppTheme.text };
+            t-text-color-active: { base: UAppTheme.text, danger: UAppTheme.text };
+            t-text-color-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
+        }
+    ]
 }

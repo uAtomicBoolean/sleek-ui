@@ -121,32 +121,33 @@ export component URadioButton {
         }
     }
 
-    init => {
-        if variant == URadioButtonVariant.default {
-            self.t-border-color = UAppTheme.border;
-            self.t-border-color-hover = UAppTheme.border;
-            self.t-border-color-selected = UAppTheme.primary;
-            self.t-border-color-selected-hover = UAppTheme.primary-hover;
-            self.t-border-color-selected-active = UAppTheme.primary-active;
-            self.t-text-color = UAppTheme.text;
-            self.t-text-color-hover = UAppTheme.primary;
-            self.t-text-color-selected = UAppTheme.primary;
-            self.t-text-color-selected-hover = UAppTheme.primary-hover;
-            self.t-text-color-selected-active = UAppTheme.primary-active;
-        } else if variant == URadioButtonVariant.primary {
-            self.t-background-selected = UAppTheme.primary;
-            self.t-background-selected-hover = UAppTheme.primary-hover;
-            self.t-background-selected-active = UAppTheme.primary-active;
-            self.t-border-color = UAppTheme.border;
-            self.t-border-color-hover = UAppTheme.border;
-            self.t-border-color-selected = UAppTheme.primary;
-            self.t-border-color-selected-hover = UAppTheme.primary-hover;
-            self.t-border-color-selected-active = UAppTheme.primary-active;
-            self.t-text-color = UAppTheme.text;
-            self.t-text-color-hover = UAppTheme.primary;
-            self.t-text-color-selected = Colors.white;
-            self.t-text-color-selected-hover = Colors.white;
-            self.t-text-color-selected-active = Colors.white;
+    states [
+        default when variant == URadioButtonVariant.default: {
+            t-border-color: UAppTheme.border;
+            t-border-color-hover: UAppTheme.border;
+            t-border-color-selected: UAppTheme.primary;
+            t-border-color-selected-hover: UAppTheme.primary-hover;
+            t-border-color-selected-active: UAppTheme.primary-active;
+            t-text-color: UAppTheme.text;
+            t-text-color-hover: UAppTheme.primary;
+            t-text-color-selected: UAppTheme.primary;
+            t-text-color-selected-hover: UAppTheme.primary-hover;
+            t-text-color-selected-active: UAppTheme.primary-active;
         }
-    }
+        primary when variant == URadioButtonVariant.primary: {
+            t-background-selected: UAppTheme.primary;
+            t-background-selected-hover: UAppTheme.primary-hover;
+            t-background-selected-active: UAppTheme.primary-active;
+            t-border-color: UAppTheme.border;
+            t-border-color-hover: UAppTheme.border;
+            t-border-color-selected: UAppTheme.primary;
+            t-border-color-selected-hover: UAppTheme.primary-hover;
+            t-border-color-selected-active: UAppTheme.primary-active;
+            t-text-color: UAppTheme.text;
+            t-text-color-hover: UAppTheme.primary;
+            t-text-color-selected: Colors.white;
+            t-text-color-selected-hover: Colors.white;
+            t-text-color-selected-active: Colors.white;
+        }
+    ]
 }
