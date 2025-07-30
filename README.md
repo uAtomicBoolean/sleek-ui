@@ -18,7 +18,6 @@ A UI components library built with/for Slint based on [ant design](https://ant.d
 	- [Use the application's theme](#use-the-applications-theme)
 		- [Use your own themes](#use-your-own-themes)
 		- [Scale factor](#scale-factor)
-- [Translation](#translation)
 - [Documentation](#documentation)
 - [Widgets](#widgets)
 	- [General](#general)
@@ -40,7 +39,6 @@ Import the widgets' themes from the `@sleek-ui/widget-themes.slint` file.
 
 ```slint
 import { UText, UButton } from "@sleek-ui/widgets.slint";
-import { UButtonThemes } from "@sleek-ui/widget-themes.slint";
 
 export component AppWindow inherits Window {
 	width: 400px;
@@ -62,7 +60,7 @@ export component AppWindow inherits Window {
 			spacing: 4px;
 			// Using one of the premade theme.
 			UButton {
-				theme: UButtonThemes.primary;
+				variant: primary;
 				text: "Decrement";
 				clicked => {
 					root.counter -= 1;
@@ -78,7 +76,7 @@ export component AppWindow inherits Window {
 
 			// Each button's theme has a danger variant.
 			UButton {
-				theme: UButtonThemes.primary;
+				variant: primary;
 				danger: true;
 				text: "increment";
 				clicked => {
@@ -112,11 +110,6 @@ app_theme_global.set_scale_factor(1.5);
 
 ui.run()?;
 ```
-
-## Translation
-A POT file is available in the `lang/` folder with all strings used in the library.  
-You can use this file to complete your translations by copy-pasting only the translation of the widgets used in your project.  
-You can see to which widget each string belongs with the `msgctxt` attribute.
 
 ## Documentation
 The documentation is available in the [ui-docs](./docs-sleek-ui/) folder. You can also click on one of the widgets in the list below to go to its documentation.
@@ -171,4 +164,3 @@ Documentation pages :
 
 ## Resources
 - Ant Design Theme editor : https://ant.design/theme-editor
-
