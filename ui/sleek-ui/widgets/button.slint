@@ -58,6 +58,7 @@ export component UButton inherits ButtonInterface {
     in-out property <bool> loading: false;
     in-out property <bool> checked: false;
     in-out property <image> icon;
+    in-out property <bool> colorize-icon: true;
     in-out property <IconTextPlacement> icon-placement: IconTextPlacement.hidden;
     enabled: !loading;
     background: get-background();
@@ -93,7 +94,7 @@ export component UButton inherits ButtonInterface {
             icon-start := UIcon {
                 visible: !loading;
                 source: icon;
-                colorize: get-color(t-text-color);
+                colorize: colorize-icon ? get-color(t-text-color) : transparent;
                 size: t-icon-size;
                 animate colorize { duration: 200ms; }
                 states [
@@ -101,19 +102,16 @@ export component UButton inherits ButtonInterface {
                         colorize: transparent;
                     }
                     disabled when !root.enabled: {
-                        colorize: get-color(t-text-color-disabled);
+                        colorize: colorize-icon ? get-color(t-text-color-disabled) : transparent;
                     }
                     checked when root.checked: {
-                        colorize: get-color(t-text-color-checked);
+                        colorize: colorize-icon ? get-color(t-text-color-checked) : transparent;
                     }
                     active when root.pressed: {
-                        colorize: get-color(t-text-color-active);
+                        colorize: colorize-icon ? get-color(t-text-color-active) : transparent;
                     }
                     hover when root.has-hover: {
-                        colorize: get-color(t-text-color-hover);
-                    }
-                    checked when root.checked: {
-                        colorize: get-color(t-text-color-checked);
+                        colorize: colorize-icon ? get-color(t-text-color-hover) : transparent;
                     }
                 ]
             }
@@ -151,7 +149,7 @@ export component UButton inherits ButtonInterface {
             icon-end := UIcon {
                 visible: !loading;
                 source: icon;
-                colorize: get-color(t-text-color);
+                colorize: colorize-icon ? get-color(t-text-color) : transparent;
                 size: t-icon-size;
                 animate colorize { duration: 200ms; }
                 states [
@@ -159,16 +157,16 @@ export component UButton inherits ButtonInterface {
                         colorize: transparent;
                     }
                     disabled when !root.enabled: {
-                        colorize: get-color(t-text-color-disabled);
+                        colorize: colorize-icon ? get-color(t-text-color-disabled) : transparent;
                     }
                     checked when root.checked: {
-                        colorize: get-color(t-text-color-checked);
+                        colorize: colorize-icon ? get-color(t-text-color-checked) : transparent;
                     }
                     active when root.pressed: {
-                        colorize: get-color(t-text-color-active);
+                        colorize: colorize-icon ? get-color(t-text-color-active) : transparent;
                     }
                     hover when root.has-hover: {
-                        colorize: get-color(t-text-color-hover);
+                        colorize: colorize-icon ? get-color(t-text-color-hover) : transparent;
                     }
                 ]
             }
