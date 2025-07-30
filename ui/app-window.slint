@@ -8,6 +8,7 @@ import { About } from "pages/about.slint";
 import { Controls } from "pages/controls.slint";
 import { DataDisplay } from "pages/data-display.slint";
 import { Feedback } from "pages/feedback.slint";
+import { Navigation } from "pages/navigation.slint";
 
 
 export component AppWindow inherits Window {
@@ -22,9 +23,6 @@ export component AppWindow inherits Window {
             height: 100%;
         }
 
-        if SidebarLogic.current-page == "About": About {
-            horizontal-stretch: 1;
-        }
         if SidebarLogic.current-page == "Controls": Controls {
             horizontal-stretch: 1;
         }
@@ -36,6 +34,12 @@ export component AppWindow inherits Window {
             open-modal => {
                 modal.show();
             }
+        }
+        if SidebarLogic.current-page == "Navigation": Navigation {
+            horizontal-stretch: 1;
+        }
+        if SidebarLogic.current-page == "About": About {
+            horizontal-stretch: 1;
         }
     }
 

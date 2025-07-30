@@ -146,7 +146,7 @@ Documentation pages :
 ### Data display
 - [x] Collapse
 - [x] Popover
-- [ ] Tabs
+- [x] Tabs
 - [x] Tag
 - [ ] Tooltip
 

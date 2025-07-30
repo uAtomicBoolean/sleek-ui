@@ -41,7 +41,7 @@ You will find, in each files:
 ## Data display
 - [Collapse](widgets/collapse.md)
 - [Popover](widgets/popover.md)
-- Tabs
+- [Tabs](widgets/tabs.md)
 - [Tag](widgets/tag.md)
 - Tooltip
 
