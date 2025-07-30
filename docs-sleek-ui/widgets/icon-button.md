@@ -49,6 +49,7 @@ Inherits from [ButtonInterface](./button-interface.md).
 - checked `<bool>`: display the button as checked by modifying its appearance when not hovered/cliked/disabled.
 - icon `<image>`: an icon to display in the button.
 - icon-size `<length>`
+- colorize-icon `<bool>`: If set to true, the icon will be colorized to the same color as the Button’s text color. Defaults to true.
 
 ## Example
 ```slint
