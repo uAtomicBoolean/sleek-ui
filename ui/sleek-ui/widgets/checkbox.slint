@@ -73,7 +73,7 @@ export component UCheckbox inherits ButtonInterface {
                     }
                 }
 
-                animate background { duration: 200ms; }
+                animate background, border-color { duration: 200ms; }
 
                 states [
                     disabled-checked when !root.enabled && root.checked: {
