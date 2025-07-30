@@ -12,6 +12,7 @@ It inherits from the `Image` widget hence all its properties, callbacks and func
 
 **Properties:**
 - size `<length>`: the width and height of the icon.
+- colorize-icon `<bool>`: If set to true, the icon will be colorized to the same color as the default text color in the app theme. Defaults to true.
 
 ## Example
 ```slint

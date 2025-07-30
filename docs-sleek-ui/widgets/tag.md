@@ -31,6 +31,7 @@ Inherits from `Rectangle`.
 - text-color `<color>`
 - background-color `<color>`
 - icon `<image>`
+- colorize-icon `<bool>`: If set to true, the icon will be colorized to the same color as the tag’s text color. Defaults to true.
 - icon-placement `<IconTextPlacement>`: can be `start`, `end` or `hidden`. Defaults to `hidden`.
 
 ## Example
