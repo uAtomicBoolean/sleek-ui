@@ -56,10 +56,10 @@ export component UInput inherits Rectangle {
                 height: t-font-size + t-padding-vertical * 3;
                 clip: true;
                 input := TextInput {
-                    property <length> h-padding: t-padding-horizontal * 2;
-                    property <length> computed_x;
+                    property <length> cursor-padding: t-padding-horizontal * 3;
+                    property <length> x-pos;
                     width: max(parent.width, self.preferred-width);
-                    x: min(computed_x, 0px);
+                    x: min(x-pos, 0px);
                     input-type: show ? InputType.text : input-type;
                     read-only: !root.enabled;
                     font-size: t-font-size;
@@ -68,15 +68,14 @@ export component UInput inherits Rectangle {
                     horizontal-alignment: left;
                     single-line: true;
                     wrap: no-wrap;
-					// Shamelessly taken from Surrealisme UI
-					// Source : https://github.com/Surrealism-All/SurrealismUI/blob/main/src/input/input.slint
-					cursor-position-changed(cpos) => {
-                        if cpos.x + self.computed_x < self.h-padding {
-                            self.computed_x = - cpos.x + self.h-padding;
-                        } else if cpos.x + self.computed_x > parent.width - 1px {
-                            self.computed_x = parent.width - cpos.x - 1px;
+                    cursor-position-changed(cpos) => {
+                        if cpos.x - self.cursor-padding < - self.x-pos {
+                            self.x-pos = self.cursor-padding - cpos.x;
+                        } else if cpos.x + self.x-pos > parent.width - 1px {
+                            self.x-pos = parent.width - cpos.x - 1px;
                         }
                     }
+
                     if self.text == "" && placeholder != "": HorizontalLayout {
                         alignment: start;
                         VerticalLayout {
