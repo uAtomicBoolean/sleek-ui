@@ -68,11 +68,13 @@ export component UInput inherits Rectangle {
                     horizontal-alignment: left;
                     single-line: true;
                     wrap: no-wrap;
+                    // Disable the TextInput accessability as the widget takes care of that.
+                    accessible-role: none;
                     cursor-position-changed(cpos) => {
                         if cpos.x - self.cursor-padding < - self.x-pos {
                             self.x-pos = self.cursor-padding - cpos.x;
-                        } else if cpos.x + self.x-pos > parent.width - 1px {
-                            self.x-pos = parent.width - cpos.x - 1px;
+                        } else if cpos.x + self.x-pos > parent.width - self.text-cursor-width {
+                            self.x-pos = parent.width - cpos.x - self.text-cursor-width;
                         }
                     }
 
