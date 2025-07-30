@@ -7,28 +7,30 @@ import { ScrollView, AboutSlint } from "std-widgets.slint";
 
 
 export component About {
-    VerticalLayout {
-        padding: 10px * UAppTheme.scale-factor;
-        HorizontalLayout {
-            alignment: start;
-            padding-bottom: 36px * UAppTheme.scale-factor;
-            UTitle {
-                level: 4;
-                text: "About";
+    ScrollView {
+        VerticalLayout {
+            padding: 10px * UAppTheme.scale-factor;
+            HorizontalLayout {
+                alignment: start;
+                padding-bottom: 36px * UAppTheme.scale-factor;
+                UTitle {
+                    level: 4;
+                    text: "About";
+                }
             }
-        }
 
-        UText {
-            wrap: word-wrap;
-            text: "Sleek-ui is an widget library made for Slint. It comes with 25+ customisable widget using a theme system compatible with Slint's color scheme.";
-        }
+            UText {
+                wrap: word-wrap;
+                text: "Sleek-ui is an widget library made for Slint. It comes with 25+ customisable widget using a theme system compatible with Slint's color scheme.";
+            }
 
-        Rectangle { }
+            Rectangle { }
 
-        HorizontalLayout {
-            alignment: center;
-            AboutSlint {
-                width: 175px * UAppTheme.scale-factor;
+            HorizontalLayout {
+                alignment: center;
+                AboutSlint {
+                    width: 175px * UAppTheme.scale-factor;
+                }
             }
         }
     }
