@@ -99,13 +99,8 @@ export component UNotification inherits ButtonInterface {
             padding-right: t-content-padding-right;
             alignment: start;
             UText {
-                init => {
-                    if root.single-line-message {
-                        self.overflow = TextOverflow.elide;
-                    } else {
-                        self.wrap = TextWrap.word-wrap;
-                    }
-                }
+                overflow: root.single-line-message ? elide : clip;
+                wrap: root.single-line-message ? no-wrap : word-wrap;
                 text: root.message;
                 accessible-label: @tr("Notification content");
             }

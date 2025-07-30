@@ -9,6 +9,8 @@ export component UInputNumber inherits Rectangle {
     accessible-read-only: input.read-only;
     accessible-value: self.value;
     accessible-value-step: self.step;
+    accessible-value-minimum: self.enable-min-max ? self.min-value : 0;
+    accessible-value-maximum: self.enable-min-max ? self.max-value : 0;
     accessible-action-default => {
         self.accepted()
     }
@@ -49,12 +51,6 @@ export component UInputNumber inherits Rectangle {
     in-out property <bool> enable-min-max: false;
     in-out property <float> min-value: -100;
     in-out property <float> max-value: 100;
-    init => {
-        if self.enable-min-max {
-            self.accessible-value-minimum = self.min-value;
-            self.accessible-value-maximum = self.max-value;
-        }
-    }
     border-width: t-border-width;
     border-radius: t-border-radius;
     border-color: t-border-color;
@@ -94,9 +90,9 @@ export component UInputNumber inherits Rectangle {
                     edited => {
                         root.value = self.text.to-float();
                         if root.enable-min-max {
-                            if root.value < root.min-value {
+                            if root.value <= root.min-value {
                                 root.value = root.min-value;
-                            } else if root.value > root.max-value {
+                            } else if root.value >= root.max-value {
                                 root.value = root.max-value;
                             }
                         }
@@ -136,7 +132,7 @@ export component UInputNumber inherits Rectangle {
                         if !root.enabled {
                             return;
                         }
-                        if root.enable-min-max && root.value < root.min-value {
+                        if root.enable-min-max && root.value <= root.min-value {
                             root.value = root.min-value;
                         } else {
                             root.value = input.text.to-float() - root.step;
@@ -169,7 +165,7 @@ export component UInputNumber inherits Rectangle {
                         if !root.enabled {
                             return;
                         }
-                        if root.enable-min-max && root.value > root.max-value {
+                        if root.enable-min-max && root.value >= root.max-value {
                             root.value = root.max-value;
                         } else {
                             root.value = input.text.to-float() + root.step;
