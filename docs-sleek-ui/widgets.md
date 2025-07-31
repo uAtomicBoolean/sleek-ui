@@ -43,7 +43,7 @@ You will find, in each files:
 - [Popover](widgets/popover.md)
 - [Tabs](widgets/tabs.md)
 - [Tag](widgets/tag.md)
-- Tooltip
+- [Tooltip](widgets/tooltip.md)
 
 ## Feedback
 - [Modal](widgets/modal.md)

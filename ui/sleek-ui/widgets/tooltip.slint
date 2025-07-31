@@ -1,0 +1,97 @@
+import { UText } from "text.slint";
+import { UCenter } from "../layouts/center.slint";
+import { UAppTheme } from "../app-theme.slint";
+
+
+enum TooltipPosition {
+	top,
+	bottom,
+	left,
+	right
+}
+
+export component UTooltip {
+	// Theming properties
+	in-out property <color> t-background: UAppTheme.bg-inverse;
+    in-out property <color> t-text-color: UAppTheme.inverse-text;
+    in-out property <length> t-font-size: UAppTheme.font-size-small;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
+    in-out property <length> t-padding: UAppTheme.padding-base;
+    in-out property <length> t-spacing-tooltip-inner: UAppTheme.spacing-base;
+    in-out property <length> t-max-width: 150px * UAppTheme.scale-factor;
+    in-out property <length> t-max-height;
+	// Regular properties
+    in-out property <string> text;
+    in-out property <TooltipPosition> position: top;
+    in-out property <duration> delay: 250ms;
+    in-out property <bool> user_is_hovering: false;
+    in-out property <length> inner-x;
+    in-out property <length> inner-y;
+    in-out property <length> inner-width;
+    in-out property <length> inner-height;
+    property <bool> has_waited: false;
+    z: 100;
+    x: compute-x-position();
+    y: compute-y-position();
+
+    changed user_is_hovering => {
+        if !user_is_hovering && has_waited {
+            has_waited = false;
+        }
+    }
+
+    content := Rectangle {
+        z: 100;
+        Rectangle {
+            z: 100;
+            background: t-background;
+            border-radius: t-border-radius;
+            opacity: has_waited ? 1 : 0;
+            HorizontalLayout {
+                padding: t-padding;
+                UText {
+                    opacity: has_waited ? 1 : 0;
+                    text: text;
+                    color: t-text-color;
+                    font-size: t-font-size;
+                    wrap: word-wrap;
+                    max-width: t-max-width;
+                    max-height: t-max-height;
+                    animate opacity { duration: 200ms; }
+                }
+            }
+
+            animate opacity { duration: 200ms; }
+        }
+    }
+
+    Timer {
+        running: parent.user_is_hovering;
+        interval: delay;
+        triggered => {
+            has_waited = true;
+        }
+    }
+
+    function compute-x-position() -> length {
+        if (position == TooltipPosition.top || position == TooltipPosition.bottom) {
+            return inner-x - (content.width / 2 - inner-width / 2);
+        } else if (position == TooltipPosition.left) {
+            return inner-x - content.width - t-spacing-tooltip-inner;
+        } else if (position == TooltipPosition.right) {
+            return inner-x + inner-width + t-spacing-tooltip-inner;
+        }
+        return inner-x;
+    }
+
+    function compute-y-position() -> length {
+        if (position == TooltipPosition.top) {
+            return inner-y - content.height - t-spacing-tooltip-inner;
+        } else if (position == TooltipPosition.bottom) {
+            return inner-y + inner-height + t-spacing-tooltip-inner;
+        } else if (position == TooltipPosition.left || position == TooltipPosition.right) {
+            return inner-y - (content.height / 2 - inner-height / 2);
+        }
+        return inner-y;
+    }
+}
