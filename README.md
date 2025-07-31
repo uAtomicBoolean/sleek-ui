@@ -148,7 +148,7 @@ Documentation pages :
 - [x] Popover
 - [x] Tabs
 - [x] Tag
-- [ ] Tooltip
+- [x] Tooltip
 
 ### Feedback
 - [x] Modal

@@ -4,7 +4,6 @@ A navigation widgets to switch between tabs.
 
 ![tabs presentation](images/tabs.png)
 
-
 ## Theming properties
 - t-font-size `<length>`
 - t-text-color `<brush>`
