@@ -78,6 +78,11 @@ export component UButton inherits ButtonInterface {
                 alignment: center;
                 USpinner {
                     colorize: get-color(t-text-color);
+                    states [
+                        disabled when !root.enabled: {
+                            colorize: get-color(t-text-color-disabled);
+                        }
+                    ]
                 }
             }
         }

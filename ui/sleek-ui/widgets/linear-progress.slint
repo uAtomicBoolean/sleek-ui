@@ -67,7 +67,7 @@ export component ULinearProgress inherits Rectangle {
         }
         Timer {
             running: indeterminate;
-            interval: 10ms;
+            interval: 5ms;
             triggered => {
                 if alignment == ProgressAlignment.start {
                     parent.x-pos += 1px * UAppTheme.scale-factor;
