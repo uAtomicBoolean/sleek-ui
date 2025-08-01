@@ -14,6 +14,7 @@ Display a modal dialog box, providing a title, content area, and action buttons.
 - t-buttons-vertical-padding `<length>`
 - t-buttons-spacing `<length>`
 - t-title-level `<int>`: defaults to `6`.
+- t-title-font-weight `<int>`: defaults to `600`.
 - t-close-button-variant `<UIconButtonVariant>`: defaults to `text`.
 - t-cancel-button-variant `<UButtonVariant>`: defaults to `default`.
 - t-accept-button-variant `<UButtonVariant>`: defaults to `primary`.
@@ -21,6 +22,8 @@ Display a modal dialog box, providing a title, content area, and action buttons.
 - t-modal-min-height `<length>`: no default value.
 - t-modal-max-width `<length>`: defaults to `600px`.
 - t-modal-max-height `<length>`: defaults to `600px`.
+- t-display-top-divider `<bool>`: display or not the divider separating the title area from the content. Defaults to `false`.
+- t-display-bottom-divider `<bool>`: display or not the divider separating the content area from the bottom buttons. Defaults to `false`.
 
 ## Properties, callbacks and functions
 **Properties:**

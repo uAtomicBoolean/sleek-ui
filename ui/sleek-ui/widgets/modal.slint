@@ -17,7 +17,8 @@ export component UModal {
     in-out property <length> t-buttons-horizontal-padding: UAppTheme.padding-big;
     in-out property <length> t-buttons-vertical-padding: UAppTheme.padding-medium;
     in-out property <length> t-buttons-spacing: UAppTheme.padding-medium;
-    in-out property <int> t-title-level: 6;
+    in-out property <int> t-title-level: 5;
+    in-out property <int> t-title-font-weight: 600;
     in-out property <UIconButtonVariant> t-close-button-variant: UIconButtonVariant.text;
     in-out property <UButtonVariant> t-cancel-button-variant: UButtonVariant.default;
     in-out property <UButtonVariant> t-accept-button-variant: UButtonVariant.primary;
@@ -25,6 +26,8 @@ export component UModal {
     in-out property <length> t-modal-min-height;
     in-out property <length> t-modal-max-width: 600px * UAppTheme.scale-factor;
     in-out property <length> t-modal-max-height: 600px * UAppTheme.scale-factor;
+    in-out property <bool> t-display-top-divider: false;
+    in-out property <bool> t-display-bottom-divider: false;
 	// Regular properties
     in-out property <string> title;
     in-out property <string> accept-btn-text: @tr("Done");
@@ -101,8 +104,9 @@ export component UModal {
                         VerticalLayout {
                             alignment: center;
                             UTitle {
-                                level: t-title-level;
                                 horizontal-stretch: 1;
+                                level: t-title-level;
+                                font-weight: t-title-font-weight;
                                 text: title;
                                 wrap: no-wrap;
                                 overflow: elide;
@@ -123,8 +127,7 @@ export component UModal {
                         }
                     }
 
-                    UDivider { }
-
+                    if t-display-top-divider: UDivider { }
                     VerticalLayout {
                         vertical-stretch: 2;
                         padding-top: t-content-vertical-padding;
@@ -137,8 +140,7 @@ export component UModal {
                     if cancel-btn-enabled || accept-btn-enabled: VerticalLayout {
                         alignment: start;
                         vertical-stretch: 0;
-                        UDivider { }
-
+                        if t-display-bottom-divider: UDivider { }
                         HorizontalLayout {
                             alignment: end;
                             padding-top: t-buttons-vertical-padding;

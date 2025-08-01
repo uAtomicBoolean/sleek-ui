@@ -9,26 +9,27 @@ export component UTitle inherits Text {
     in-out property <int> level: 1;
     color: UAppTheme.text;
     font-size: t-font-size * UAppTheme.scale-factor;
-    font-weight: 600;
+    font-weight: {
+        if level == 1 {
+            return 600;
+        } else if level == 5 {
+            return 500;
+        }
+        return 400;
+    };
     init => {
         if level == 1 {
             self.t-font-size = 36px;
-            self.font-weight = 600;
         } else if level == 2 {
             self.t-font-size = 30px;
-            self.font-weight = 500;
         } else if level == 3 {
             self.t-font-size = 24px;
-            self.font-weight = 400;
         } else if level == 4 {
             self.t-font-size = 20px;
-            self.font-weight = 400;
         } else if level == 5 {
             self.t-font-size = 18px;
-            self.font-weight = 400;
         } else if level == 6 {
             self.t-font-size = 16px;
-            self.font-weight = 400;
         }
     }
 }
