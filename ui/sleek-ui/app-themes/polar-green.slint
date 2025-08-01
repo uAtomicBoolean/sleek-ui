@@ -1,13 +1,13 @@
-import { ThemeColors } from "theme-colors-struct.slint";
+import { AppTheme} from "app-theme-struct.slint";
 
-export global DustRedTheme {
-    out property <ThemeColors> light-theme: {
+export global PolarGreenTheme {
+    out property <AppTheme> light-theme: {
         // Primary
-        primary: #f5222d,
-        primary-hover:#ff4d4f,
-        primary-active: #cf1322,
-        primary-disabled: #ff7875,
-        primary-selected: #fff1f0,
+        primary: #52c41a,
+        primary-hover: #73d13d,
+        primary-active: #389e0d,
+        primary-disabled: #95de64,
+        primary-selected: #f6ffed,
 
         // Success
         success: #52c41a,
@@ -45,6 +45,9 @@ export global DustRedTheme {
 
         // Shadow
         shadow-color: rgba(0, 0, 0, 0.12),
+        shadow-blur: 16px,
+        shadow-x-offset: 0px,
+        shadow-y-offset: 6px,
 
         // Text color
         inverse-text: rgba(255,255,255,0.85),
@@ -52,22 +55,59 @@ export global DustRedTheme {
         text-secondary: #000000A6,
         text-heading: #000000E0,
         text-disabled: #00000040,
-  
-		// Focus display
-        focus-color: Colors.black,
 
-		// Borders
+        // Font size
+        font-size-smaller: 10px,
+        font-size-small: 12px,
+        font-size-base: 14px,
+        font-size-medium: 16px,
+        font-size-big: 18px,
+        font-size-bigger: 20px,
+  
+        // Focus display
+        focus-color: Colors.black,
+        focus-border-width: 2px,
+
+        // Borders
+        border-width-base: 1px,
         border: #D9D9D9,
         border-secondary: #f0f0f0,
         separator: #0505050F,
+
+        // Icons
+        icon-size-base: 16px,
+
+        // Padding
+        padding-vertical: 5px,
+        padding-horizontal: 14px,
+        padding-small: 2px,
+        padding-base: 4px,
+        padding-medium: 8px,
+        padding-big: 12px,
+        padding-bigger: 16px,
+
+        // Spacing
+        spacing-small: 2px,
+        spacing-base: 4px,
+        spacing-medium: 8px,
+        spacing-big: 12px,
+        spacing-bigger: 16px,
+
+        // Radius
+        radius-base: 4px,
+        radius-small: 2px,
+        radius-medium: 4px,
+        radius-large: 8px,
+        radius-round: 20px,
+        radius-circle: 9999px,
     };
-    out property <ThemeColors> dark-theme: {
+    out property <AppTheme> dark-theme: {
         // Primary
-        primary: #d32029,
-        primary-hover: #e84749,
-        primary-active: #a61d24,
-        primary-disabled: #791a1f,
-        primary-selected: #58181c,
+        primary: #49aa19,
+        primary-hover: #6abe39,
+        primary-active: #3c8618,
+        primary-disabled: #306317,
+        primary-selected: #274916,
 
         // Success
         success: #49aa19,
@@ -105,6 +145,9 @@ export global DustRedTheme {
 
         // Shadow
         shadow-color: rgba(0, 0, 0, 0.12),
+        shadow-blur: 16px,
+        shadow-x-offset: 0px,
+        shadow-y-offset: 6px,
 
         // Text color
         inverse-text: rgba(0,0,0,0.88),
@@ -113,12 +156,49 @@ export global DustRedTheme {
         text-heading: #FFFFFFD9,
         text-disabled: #FFFFFF40,
 
-		// Focus display
+        // Font size
+        font-size-smaller: 10px,
+        font-size-small: 12px,
+        font-size-base: 14px,
+        font-size-medium: 16px,
+        font-size-big: 18px,
+        font-size-bigger: 20px,
+
+        // Focus display
         focus-color: Colors.white,
+        focus-border-width: 2px,
             
         // Borders
+        border-width-base: 1px,
         border: #424242,
         border-secondary: #303030,
         separator: #FDFDFD1F,
+
+        // Icons
+        icon-size-base: 16px,
+
+        // Padding
+        padding-vertical: 5px,
+        padding-horizontal: 14px,
+        padding-small: 2px,
+        padding-base: 4px,
+        padding-medium: 8px,
+        padding-big: 12px,
+        padding-bigger: 16px,
+
+        // Spacing
+        spacing-small: 2px,
+        spacing-base: 4px,
+        spacing-medium: 8px,
+        spacing-big: 12px,
+        spacing-bigger: 16px,
+
+        // Radius
+        radius-base: 4px,
+        radius-small: 2px,
+        radius-medium: 4px,
+        radius-large: 8px,
+        radius-round: 20px,
+        radius-circle: 9999px,
     };
 }

@@ -1,4 +1,4 @@
-export struct ThemeColors {
+export struct AppTheme {
     // Primary color.
     primary: brush,
     primary-hover: brush,
@@ -41,7 +41,10 @@ export struct ThemeColors {
     color-fill-quaternary: brush,
 
     // Shadow
+    shadow-blur: length,
     shadow-color: brush,
+    shadow-x-offset: length,
+    shadow-y-offset: length,
 
     // Text color
     inverse-text: brush,
@@ -50,11 +53,48 @@ export struct ThemeColors {
     text-heading: brush,
     text-disabled: brush,
 
+	// Font size
+	font-size-smaller: length,
+    font-size-small: length,
+    font-size-base: length,
+    font-size-medium: length,
+    font-size-big: length,
+    font-size-bigger: length,
+
 	// Focus display
     focus-color: brush,
+	focus-border-width: length,
 
     // Borders
+	border-width-base: length,
     border: brush,
     border-secondary: brush,
     separator: brush,
+
+    // Icons
+    icon-size-base: length,
+
+    // Padding
+    padding-vertical: length,
+    padding-horizontal: length,
+    padding-small: length,
+    padding-base: length,
+    padding-medium: length,
+    padding-big: length,
+    padding-bigger: length,
+
+    // Spacing
+    spacing-small: length,
+    spacing-base: length,
+    spacing-medium: length,
+    spacing-big: length,
+    spacing-bigger: length,
+
+    // Radius
+    radius-base: length,
+    radius-small: length,
+    radius-medium: length,
+    radius-large: length,
+    radius-round: length,
+    radius-circle: length,
 }

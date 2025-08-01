@@ -2,29 +2,25 @@
 ## Application theming
 The application's theme is defined in the `app-themes.slint` file and contains all the colors and lengths used in the application.  
 Two color variants, used by default for the light and dark color scheme, are selected automatically following the `Palette.color-scheme` property.  
-You can find a set of premade colors in [../ui/sleek-ui/app-theme-colors/](../ui/sleek-ui/app-theme-colors/), with `DaybreakBlue` being the currently used theme.
-
-Default values:
-- [UAppTheme](../ui/sleek-ui/app-theme.slint)
-- [color themes](../ui/sleek-ui/app-theme-colors/)
+You can find a set of premade theme in [../ui/sleek-ui/app-themes/](../ui/sleek-ui/app-themes/), with `DaybreakBlue` being the currently used theme.
 
 ### Modify the theme
 You can modify the current theme by updating the [UAppTheme](../ui/sleek-ui/app-theme.slint) global properties:
 - from Slint if you downloaded sleek-ui directly in your project.
 - from the backend if you downloaded sleek-ui in another folder.
-  
-The theme colors are defined in the [ThemeColors](../ui/sleek-ui/app-theme-colors/theme-colors-struct.slint) struct.  
+
+The theme struct is defined in the [app-theme-struct.slint](../ui/sleek-ui/app-themes/app-theme-struct.slint) file.
 
 > [!NOTE]
 > Both `light-theme` and `dark-theme` should be updated in order to have an automatic light/dark theme switch.  
 > Otherwise, you can just replace the `UAppTheme.theme` property with your own color theme.  
 
-**Use a predefined color theme:**
+**Use a predefined theme:**
 The following example is in Rust but it can be done with the other languages.
 ```rust
 let ui = AppWindow::new()?;
 
-// Get the desired color theme in your backend.
+// Get the desired theme in your backend.
 // NOTE: you must export the desired theme's global from your mail UI file for it to be available in the backend.
 let cyan = ui.global::<CyanTheme>();
 let app_theme = ui.global::<UAppTheme>();
@@ -35,9 +31,9 @@ app_theme.set_dark_theme(cyan.get_dark_theme());
 app_theme.set_theme(cyan.get_light_theme());
 ```
 
-**Create your own color theme:**  
-- Import the [ThemeColors](../ui/sleek-ui/app-theme-colors/theme-colors-struct.slint) struct.
-- Define your colors in a global.
+**Create your own theme:**  
+- Import the [AppTheme](../ui/sleek-ui/app-themes/app-theme-struct.slint) struct.
+- Define your theme in a global.
 - Update the `UAppTheme` global in your backend (or directly in Slint if you downloaded sleek-ui directly in your project).
 
 You can generated a color palette using the [ant design theme editor](https://ant.design/theme-editor).  
@@ -50,8 +46,7 @@ Here is the equivalent between the theme editor and our color properties:
 
 
 > [!NOTE]
-> As an example, you change the the `UAppTheme.radius-base` to `20px` to round all widgets.  
-> This change must be made from the backend if you don't want to modify the library. 
+> As an example, you change the the `AppTheme.radius-base` to `20px` to round all widgets.  
 
 ## Widget theming
 > [!NOTE]

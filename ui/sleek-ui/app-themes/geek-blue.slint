@@ -1,13 +1,13 @@
-import { ThemeColors } from "theme-colors-struct.slint";
+import { AppTheme} from "app-theme-struct.slint";
 
-export global CalendulaGoldTheme {
-    out property <ThemeColors> light-theme: {
+export global GeekBlueTheme {
+    out property <AppTheme> light-theme: {
         // Primary
-        primary: #faad14,
-        primary-hover: #ffc53d,
-        primary-active: #d48806,
-        primary-disabled: #ffd666,
-        primary-selected: #fffbe6,
+        primary: #2f54eb,
+        primary-hover: #597ef7,
+        primary-active: #1d39c4,
+        primary-disabled: #85a5ff,
+        primary-selected: #f0f5ff,
 
         // Success
         success: #52c41a,
@@ -45,6 +45,9 @@ export global CalendulaGoldTheme {
 
         // Shadow
         shadow-color: rgba(0, 0, 0, 0.12),
+        shadow-blur: 16px,
+        shadow-x-offset: 0px,
+        shadow-y-offset: 6px,
 
         // Text color
         inverse-text: rgba(255,255,255,0.85),
@@ -52,22 +55,59 @@ export global CalendulaGoldTheme {
         text-secondary: #000000A6,
         text-heading: #000000E0,
         text-disabled: #00000040,
-  
-		// Focus display
-        focus-color: Colors.black,
 
-		// Borders
+        // Font size
+        font-size-smaller: 10px,
+        font-size-small: 12px,
+        font-size-base: 14px,
+        font-size-medium: 16px,
+        font-size-big: 18px,
+        font-size-bigger: 20px,
+  
+        // Focus display
+        focus-color: Colors.black,
+        focus-border-width: 2px,
+
+        // Borders
+        border-width-base: 1px,
         border: #D9D9D9,
         border-secondary: #f0f0f0,
         separator: #0505050F,
+
+        // Icons
+        icon-size-base: 16px,
+
+        // Padding
+        padding-vertical: 5px,
+        padding-horizontal: 14px,
+        padding-small: 2px,
+        padding-base: 4px,
+        padding-medium: 8px,
+        padding-big: 12px,
+        padding-bigger: 16px,
+
+        // Spacing
+        spacing-small: 2px,
+        spacing-base: 4px,
+        spacing-medium: 8px,
+        spacing-big: 12px,
+        spacing-bigger: 16px,
+
+        // Radius
+        radius-base: 4px,
+        radius-small: 2px,
+        radius-medium: 4px,
+        radius-large: 8px,
+        radius-round: 20px,
+        radius-circle: 9999px,
     };
-    out property <ThemeColors> dark-theme: {
+    out property <AppTheme> dark-theme: {
         // Primary
-        primary: #d89614,
-        primary-hover: #e8b339,
-        primary-active: #aa7714,
-        primary-disabled: #7c5914,
-        primary-selected: #594214,
+        primary: #2b4acb,
+        primary-hover: #5273e0,
+        primary-active: #263ea0,
+        primary-disabled: #203175,
+        primary-selected: #1c2755,
 
         // Success
         success: #49aa19,
@@ -105,6 +145,9 @@ export global CalendulaGoldTheme {
 
         // Shadow
         shadow-color: rgba(0, 0, 0, 0.12),
+        shadow-blur: 16px,
+        shadow-x-offset: 0px,
+        shadow-y-offset: 6px,
 
         // Text color
         inverse-text: rgba(0,0,0,0.88),
@@ -113,12 +156,49 @@ export global CalendulaGoldTheme {
         text-heading: #FFFFFFD9,
         text-disabled: #FFFFFF40,
 
-		// Focus display
+        // Font size
+        font-size-smaller: 10px,
+        font-size-small: 12px,
+        font-size-base: 14px,
+        font-size-medium: 16px,
+        font-size-big: 18px,
+        font-size-bigger: 20px,
+
+        // Focus display
         focus-color: Colors.white,
+        focus-border-width: 2px,
             
         // Borders
+        border-width-base: 1px,
         border: #424242,
         border-secondary: #303030,
         separator: #FDFDFD1F,
+
+        // Icons
+        icon-size-base: 16px,
+
+        // Padding
+        padding-vertical: 5px,
+        padding-horizontal: 14px,
+        padding-small: 2px,
+        padding-base: 4px,
+        padding-medium: 8px,
+        padding-big: 12px,
+        padding-bigger: 16px,
+
+        // Spacing
+        spacing-small: 2px,
+        spacing-base: 4px,
+        spacing-medium: 8px,
+        spacing-big: 12px,
+        spacing-bigger: 16px,
+
+        // Radius
+        radius-base: 4px,
+        radius-small: 2px,
+        radius-medium: 4px,
+        radius-large: 8px,
+        radius-round: 20px,
+        radius-circle: 9999px,
     };
 }

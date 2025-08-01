@@ -1,11 +1,11 @@
-import { ThemeColors } from "app-theme-colors/theme-colors-struct.slint";
-import { DaybreakBlueTheme } from "app-theme-colors/daybreak-blue.slint";
+import { AppTheme } from "app-themes/app-theme-struct.slint";
+import { DaybreakBlueTheme } from "app-themes/daybreak-blue.slint";
 import { Palette } from "std-widgets.slint";
 
 export global UAppTheme {
-    in-out property <ThemeColors> light-theme: DaybreakBlueTheme.light-theme;
-    in-out property <ThemeColors> dark-theme: DaybreakBlueTheme.dark-theme;
-    in-out property <ThemeColors> theme: Palette.color-scheme == ColorScheme.dark ? dark-theme : light-theme;
+    in-out property <AppTheme> light-theme: DaybreakBlueTheme.light-theme;
+    in-out property <AppTheme> dark-theme: DaybreakBlueTheme.dark-theme;
+    in-out property <AppTheme> theme: Palette.color-scheme == ColorScheme.dark ? dark-theme : light-theme;
     in-out property <float> scale-factor: 1;
 
     // Primary color.
@@ -50,10 +50,10 @@ export global UAppTheme {
     in-out property <color> color-fill-quaternary: theme.color-fill-quaternary;
 	
     // Shadow
-    in-out property <length> shadow-blur: 16px * scale-factor;
     in-out property <color> shadow-color: theme.shadow-color;
-    in-out property <length> shadow-x-offset: 0px * scale-factor;
-    in-out property <length> shadow-y-offset: 6px * scale-factor;
+    in-out property <length> shadow-blur: theme.shadow-blur * scale-factor;
+    in-out property <length> shadow-x-offset: theme.shadow-x-offset * scale-factor;
+    in-out property <length> shadow-y-offset: theme.shadow-y-offset * scale-factor;
 
 	// Text color
     in-out property <color> inverse-text: theme.inverse-text;
@@ -63,47 +63,47 @@ export global UAppTheme {
     in-out property <color> text-disabled: theme.text-disabled;
 
     // Font size
-    in-out property <length> font-size-smaller: 10px * scale-factor;
-    in-out property <length> font-size-small: 12px * scale-factor;
-    in-out property <length> font-size-base: 14px * scale-factor;
-    in-out property <length> font-size-medium: 16px * scale-factor;
-    in-out property <length> font-size-big: 18px * scale-factor;
-    in-out property <length> font-size-bigger: 20px * scale-factor;
+    in-out property <length> font-size-smaller: theme.font-size-smaller * scale-factor;
+    in-out property <length> font-size-small: theme.font-size-small * scale-factor;
+    in-out property <length> font-size-base: theme.font-size-base * scale-factor;
+    in-out property <length> font-size-medium: theme.font-size-medium * scale-factor;
+    in-out property <length> font-size-big: theme.font-size-big * scale-factor;
+    in-out property <length> font-size-bigger: theme.font-size-bigger * scale-factor;
 
 	// Focus display
     in-out property <color> focus-color: theme.focus-color;
-    in-out property <length> focus-border-width: 2px * scale-factor;
+    in-out property <length> focus-border-width: theme.focus-border-width * scale-factor;
 
     // Borders
-	in-out property <length> border-width-base: 1px * scale-factor;
+	in-out property <length> border-width-base: theme.border-width-base * scale-factor;
     in-out property <color> border: theme.border;
     in-out property <color> border-secondary: theme.border-secondary;
     in-out property <color> separator: theme.separator;
 
     // Icons
-    in-out property <length> icon-size-base: 16px * scale-factor;
+    in-out property <length> icon-size-base: theme.icon-size-base * scale-factor;
 
     // Padding
-    in-out property <length> padding-vertical: 5px * scale-factor;
-    in-out property <length> padding-horizontal: 14px * scale-factor;
-    in-out property <length> padding-small: 2px * scale-factor;
-    in-out property <length> padding-base: 4px * scale-factor;
-    in-out property <length> padding-medium: 8px * scale-factor;
-    in-out property <length> padding-big: 12px * scale-factor;
-    in-out property <length> padding-bigger: 16px * scale-factor;
+    in-out property <length> padding-vertical: theme.padding-vertical * scale-factor;
+    in-out property <length> padding-horizontal: theme.padding-horizontal * scale-factor;
+    in-out property <length> padding-small: theme.padding-small * scale-factor;
+    in-out property <length> padding-base: theme.padding-base * scale-factor;
+    in-out property <length> padding-medium: theme.padding-medium * scale-factor;
+    in-out property <length> padding-big: theme.padding-big * scale-factor;
+    in-out property <length> padding-bigger: theme.padding-bigger * scale-factor;
 
     // Spacing
-    in-out property <length> spacing-small: 2px * scale-factor;
-    in-out property <length> spacing-base: 4px * scale-factor;
-    in-out property <length> spacing-medium: 8px * scale-factor;
-    in-out property <length> spacing-big: 12px * scale-factor;
-    in-out property <length> spacing-bigger: 16px * scale-factor;
+    in-out property <length> spacing-small: theme.spacing-small * scale-factor;
+    in-out property <length> spacing-base: theme.spacing-base * scale-factor;
+    in-out property <length> spacing-medium: theme.spacing-medium * scale-factor;
+    in-out property <length> spacing-big: theme.spacing-big * scale-factor;
+    in-out property <length> spacing-bigger: theme.spacing-bigger * scale-factor;
 
     // Radius
-    in-out property <length> radius-base: 4px * scale-factor;
-    in-out property <length> radius-small: 2px * scale-factor;
-    in-out property <length> radius-medium: 4px * scale-factor;
-    in-out property <length> radius-large: 8px * scale-factor;
-    in-out property <length> radius-round: 20px * scale-factor;
-    in-out property <length> radius-circle: 9999px;
+    in-out property <length> radius-base: theme.radius-base * scale-factor;
+    in-out property <length> radius-small: theme.radius-small * scale-factor;
+    in-out property <length> radius-medium: theme.radius-medium * scale-factor;
+    in-out property <length> radius-large: theme.radius-large * scale-factor;
+    in-out property <length> radius-round: theme.radius-round * scale-factor;
+    in-out property <length> radius-circle: theme.radius-circle;
 }
