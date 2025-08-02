@@ -128,7 +128,6 @@ export component UIconButton inherits ButtonInterface {
         }
         return get-color(t-background);
     }
-
     function get-border-color() -> brush {
         if !self.enabled {
             return get-color(t-border-disabled);
@@ -162,16 +161,17 @@ export component UIconButton inherits ButtonInterface {
         }
         default when variant == UIconButtonVariant.default: {
             t-border-width: UAppTheme.border-width-base;
-            t-background-active: { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
+            t-background-hover: { base: UAppTheme.color-fill-tertiary, danger: Colors.transparent };
+            t-background-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger-selected };
             t-background-checked: { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
             t-text-color: { base: UAppTheme.text, danger: UAppTheme.danger };
-            t-text-color-hover: { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
-            t-text-color-active: { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
+            t-text-color-hover: { base: UAppTheme.text, danger: UAppTheme.danger-hover };
+            t-text-color-active: { base: UAppTheme.text, danger: UAppTheme.danger-active };
             t-text-color-checked: { base: UAppTheme.primary, danger: UAppTheme.danger };
             t-text-color-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled };
             t-border: { base: UAppTheme.border, danger: UAppTheme.danger };
-            t-border-hover: { base: UAppTheme.primary-hover, danger: UAppTheme.danger-hover };
-            t-border-active: { base: UAppTheme.primary-active, danger: UAppTheme.danger-active };
+            t-border-hover: { base: UAppTheme.border, danger: UAppTheme.danger-hover };
+            t-border-active: { base: UAppTheme.border, danger: UAppTheme.danger-active };
             t-border-checked: { base: UAppTheme.primary, danger: UAppTheme.danger };
             t-border-disabled: { base: UAppTheme.border, danger: UAppTheme.border };
         }
