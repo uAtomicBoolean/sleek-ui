@@ -235,7 +235,7 @@ export component UButton inherits ButtonInterface {
         default when variant == UButtonVariant.default: {
             t-border-width: UAppTheme.border-width-base;
             t-background-hover: { base: UAppTheme.color-fill-tertiary, danger: Colors.transparent };
-            t-background-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger-selected };
+            t-background-active: { base: UAppTheme.color-fill-secondary, danger: UAppTheme.danger-selected };
             t-background-checked: { base: UAppTheme.primary-selected, danger: UAppTheme.danger-selected };
             t-text-color: { base: UAppTheme.text, danger: UAppTheme.danger };
             t-text-color-hover: { base: UAppTheme.text, danger: UAppTheme.danger-hover };
