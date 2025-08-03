@@ -26,6 +26,7 @@ export component UModal {
     in-out property <length> t-modal-min-height;
     in-out property <length> t-modal-max-width: 600px * UAppTheme.scale-factor;
     in-out property <length> t-modal-max-height: 600px * UAppTheme.scale-factor;
+    in-out property <length> t-border-radius: UAppTheme.radius-base;
     in-out property <bool> t-display-top-divider: false;
     in-out property <bool> t-display-bottom-divider: false;
 	// Regular properties
@@ -86,6 +87,7 @@ export component UModal {
         HorizontalLayout {
             alignment: center;
             modal-card := UCard {
+                border-radius: t-border-radius;
                 min-width: t-modal-min-width;
                 min-height: t-modal-min-height;
                 max-width: t-modal-max-width;

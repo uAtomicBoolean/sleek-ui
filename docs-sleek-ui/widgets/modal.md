@@ -22,6 +22,7 @@ Display a modal dialog box, providing a title, content area, and action buttons.
 - t-modal-min-height `<length>`: no default value.
 - t-modal-max-width `<length>`: defaults to `600px`.
 - t-modal-max-height `<length>`: defaults to `600px`.
+- t-border-radius `<length>`: the radius of the modal's card. defaults to `UAppTheme.radius-base`.
 - t-display-top-divider `<bool>`: display or not the divider separating the title area from the content. Defaults to `false`.
 - t-display-bottom-divider `<bool>`: display or not the divider separating the content area from the bottom buttons. Defaults to `false`.
 
