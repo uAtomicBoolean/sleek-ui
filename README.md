@@ -1,5 +1,5 @@
 # sleek-ui <!-- omit in toc -->
-A UI components library built with/for Slint based on [ant design](https://ant.design).  
+A UI components library built with/for [Slint](https://github.com/slint-ui/slint) based on [ant design](https://ant.design).  
 <br />
 <br />
 <br />
