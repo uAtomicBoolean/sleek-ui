@@ -31,6 +31,8 @@ Display a modal dialog box, providing a title, content area, and action buttons.
 - title `<string>`: the modal's title, display in its header.
 - accept-btn-text `<string>`: the text displayed in the accept button. Defaults to "Done".
 - cancel-btn-text `<string>`: the text displayed in the cancel button. Defaults to "Cancel".
+- accept-btn-danger `<bool>`: define if the button is in the `danger` state. Defaults to false.
+- cancel-btn-danger `<bool>`: define if the button is in the `danger` state. Defaults to false.
 - accept-btn-toggle `<bool>`: allow to display or not the accept button. Defaults to true.
 - cancel-btn-toggle `<bool>`: allow to display or not the cancel button. Defaults to true.
 - close-on-click-outside `<bool>`: if true, the modal will be closed when clicking on its greyed background. Defaults to false.
