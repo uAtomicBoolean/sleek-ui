@@ -3,9 +3,8 @@ import { UAppTheme } from "../app-theme.slint";
 
 export component UIcon inherits Image {
     in property <length> size: UAppTheme.icon-size-base;
-    in-out property <brush> t-color: UAppTheme.text;
     in-out property <bool> colorize-icon: true;
-    colorize: colorize-icon ? t-color : transparent;
+    colorize: colorize-icon ? UAppTheme.text : transparent;
     width: size;
     height: size;
     horizontal-alignment: center;

@@ -6,30 +6,20 @@ import { ButtonInterface } from "button-interface.slint";
 
 
 export component UTabs inherits Rectangle {
-	// Theming properties
-	in-out property <length> t-font-size: UAppTheme.font-size-base;
-    in-out property <brush> t-text-color: UAppTheme.text;
-    in-out property <brush> t-text-color-hover: UAppTheme.primary-hover;
-    in-out property <brush> t-text-color-selected: UAppTheme.primary;
-    in-out property <brush> t-underline-color: UAppTheme.primary;
-    in-out property <length> t-spacing-content: UAppTheme.spacing-bigger;
-    in-out property <length> t-divider-top-padding: UAppTheme.padding-base;
-    in-out property <length> t-vertical-padding: UAppTheme.padding-vertical;
-    in-out property <length> t-horizontal-padding: UAppTheme.padding-horizontal;
 	// Regular properties
     in-out property <[string]> tabs;
     in-out property <int> current-index: 0;
-    property <length> current-text-x: t-horizontal-padding;
+    property <length> current-text-x: UAppTheme.padding-horizontal;
     property <length> current-text-width: 0px;
     VerticalLayout {
         alignment: start;
         HorizontalLayout {
             alignment: start;
-            padding-bottom: t-divider-top-padding;
+            padding-bottom: UAppTheme.padding-base;
             for tab[idx] in tabs: ButtonInterface {
                 clicked => {
                     current-index = idx;
-                    current-text-x = self.x + t-horizontal-padding;
+                    current-text-x = self.x + UAppTheme.padding-horizontal;
                     current-text-width = tab-text.width;
                 }
                 border-color: UAppTheme.focus-color;
@@ -37,14 +27,14 @@ export component UTabs inherits Rectangle {
                 border-radius: UAppTheme.radius-base;
                 VerticalLayout {
                     HorizontalLayout {
-                        padding-top: t-vertical-padding;
-                        padding-bottom: t-vertical-padding;
-                        padding-left: t-horizontal-padding;
-                        padding-right: t-horizontal-padding;
+                        padding-top: UAppTheme.padding-vertical;
+                        padding-bottom: UAppTheme.padding-vertical;
+                        padding-left: UAppTheme.padding-horizontal;
+                        padding-right: UAppTheme.padding-horizontal;
                         tab-text := UText {
                             text: tab;
-                            font-size: t-font-size;
-                            color: current-index == idx ? t-text-color-selected : t-text-color;
+                            font-size: UAppTheme.font-size-base;
+                            color: current-index == idx ? UAppTheme.primary.base : UAppTheme.text;
                             animate color { duration: 200ms; }
                         }
                     }
@@ -64,10 +54,10 @@ export component UTabs inherits Rectangle {
 
                 states [
                     pressed when self.pressed: {
-                        tab-text.color: t-text-color-selected;
+                        tab-text.color: UAppTheme.primary.base;
                     }
                     hover when self.has-hover: {
-                        tab-text.color: t-text-color-hover;
+                        tab-text.color: UAppTheme.primary.hover;
                     }
                 ]
             }
@@ -80,13 +70,13 @@ export component UTabs inherits Rectangle {
                 width: current-text-width;
                 height: 2px * UAppTheme.scale-factor;
                 x: current-text-x;
-                background: t-underline-color;
+                background: UAppTheme.primary.base;
                 animate x, width { duration: 200ms; }
             }
         }
 
         VerticalLayout {
-            padding-top: t-spacing-content;
+            padding-top: UAppTheme.spacing-bigger;
             @children
         }
     }

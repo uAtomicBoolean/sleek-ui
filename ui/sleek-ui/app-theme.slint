@@ -1,6 +1,6 @@
 import { AppTheme } from "app-themes/app-theme-struct.slint";
 import { UPrimaryColors } from "colors.slint";
-import { USingleColor, UThemeColor, UDualThemeColor } from "structs/colors.slint";
+import { USingleColor, UThemeColor, UColorSchemeThemeColor } from "structs/colors.slint";
 import { Palette } from "std-widgets.slint";
 
 
@@ -24,7 +24,7 @@ export global UAppTheme {
         return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
     }
 
-    public pure function get-theme-color(c: UDualThemeColor) -> UThemeColor {
+    public pure function get-theme-color(c: UColorSchemeThemeColor) -> UThemeColor {
         if color-scheme == UColorScheme.light {
             return c.light;
         } else if color-scheme == UColorScheme.dark {

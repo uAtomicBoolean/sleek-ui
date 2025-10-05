@@ -10,34 +10,20 @@ export component USwitch inherits ButtonInterface {
     accessible-action-default => {
         self.clicked();
     }
-	// Theming properties
-	in-out property <brush> t-foreground-checked: white;
-    in-out property <brush> t-foreground-checked-disabled: UAppTheme.color-fill-plus;
-    in-out property <brush> t-background-checked: UAppTheme.primary;
-    in-out property <brush> t-background-checked-hover: UAppTheme.primary-hover;
-    in-out property <brush> t-background-checked-disabled: UAppTheme.primary-disabled;
-    in-out property <brush> t-foreground-unchecked: white;
-    in-out property <brush> t-foreground-unchecked-disabled: UAppTheme.color-fill-plus;
-    in-out property <brush> t-background-unchecked: UAppTheme.color-fill;
-    in-out property <brush> t-background-unchecked-hover: UAppTheme.color-fill-plus;
-    in-out property <brush> t-background-unchecked-disabled: UAppTheme.color-fill-secondary;
-    in-out property <length> t-radius: UAppTheme.radius-round;
-    in-out property <length> t-circle-radius: UAppTheme.radius-circle;
-    in-out property <length> t-size: 40px * UAppTheme.scale-factor;
 	// Regular properties
     in-out property <bool> checked: true;
-    background: checked ? t-background-checked : t-background-unchecked;
-    width: t-size;
-    height: t-size / 2;
-    border-radius: t-radius;
+    background: checked ? UAppTheme.primary.base : UAppTheme.color-fill;
+    width: 40px * UAppTheme.scale-factor;
+    height: 40px * UAppTheme.scale-factor / 2;
+    border-radius: UAppTheme.radius-round;
     border-width: root.has-focus ? UAppTheme.focus-border-width : 0;
     border-color: root.has-focus ? UAppTheme.focus-color : transparent;
     circle := Rectangle {
         x: checked ? root.height + 2px : 2px;
         width: root.height - 4px;
         height: root.height - 4px;
-        background: checked ? t-foreground-checked : t-foreground-unchecked;
-        border-radius: t-circle-radius;
+        background: white;
+        border-radius: 9999px;
         animate x {
             easing: ease;
             duration: 300ms;
@@ -49,11 +35,11 @@ export component USwitch inherits ButtonInterface {
     }
     states [
         disabled when !root.enabled: {
-            background: checked ? t-background-checked-disabled : t-background-unchecked-disabled;
-            circle.background: checked ? t-foreground-checked-disabled : t-foreground-unchecked-disabled;
+            background: checked ? UAppTheme.primary.disabled : UAppTheme.color-fill-secondary;
+            circle.background: UAppTheme.color-fill-plus;
         }
         hover when root.has-hover: {
-            background: checked ? t-background-checked-hover : t-background-unchecked-hover;
+            background: checked ? UAppTheme.primary.hover : UAppTheme.color-fill-plus;
         }
     ]
 }
