@@ -20,16 +20,6 @@ inner-height: target.height;
 > Moreover, if placed inside a page while using a sidebar as a example, the tooltip can still go under the sidebar depending on how you implemented it.
 > This is due to the fact that the `z` index only works on the siblings elements.
 
-## Theming properties
-- t-background `<color>`
-- t-text-color `<color>`
-- t-font-size `<length>`
-- t-border-radius `<length>`
-- t-padding `<length>`
-- t-spacing-tooltip-inner `<length>`: the spacing between the tooltip and the target element.
-- t-max-width `<length>`
-- t-max-height `<length>`
-
 ## Properties, callbacks and functions
 
 **Properties:**

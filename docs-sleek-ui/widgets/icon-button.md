@@ -10,35 +10,6 @@ When outside of a layout, the button will take all the space available, otherwis
 - fill
 - text
 - text-raw: a simple theme with no effect except changing the text color on hover.
-- custom: used to implement custom themes.
-
-## Theming properties
-Like `UButton`, the theming for `UIconButton` is particular as it uses a struct, `UIconButtonThemeColor`, to define each color which makes it easier to manage the `danger` state (and future states).  
-It contains two fields:
-- **base:** the default color.
-- **danger**: it speaks for itself.
-
-Here are the theming properties at the top level of `UIconButton`:
-- t-icon-size `<length>`: please check the [comments in the code](../../ui/sleek-ui/widgets/icon-button.slint) to know about the `UButton` text size problem that impacts this icon size.
-- t-border-width `<length>`
-- t-border-radius `<length>`
-- t-padding-vertical `<length>`
-- t-padding-horizontal `<length>`
-- t-background `<UIconButtonThemeColor>`
-- t-background-hover `<UIconButtonThemeColor>`
-- t-background-active `<UIconButtonThemeColor>`
-- t-background-checked `<UIconButtonThemeColor>`
-- t-background-disabled `<UIconButtonThemeColor>`
-- t-text-color `<UIconButtonThemeColor>`
-- t-text-color-hover `<UIconButtonThemeColor>`
-- t-text-color-active `<UIconButtonThemeColor>`
-- t-text-color-checked `<UIconButtonThemeColor>`
-- t-text-color-disabled `<UIconButtonThemeColor>`
-- t-border `<UIconButtonThemeColor>`
-- t-border-hover `<UIconButtonThemeColor>`
-- t-border-active `<UIconButtonThemeColor>`
-- t-border-checked `<UIconButtonThemeColor>`
-- t-border-disabled `<UIconButtonThemeColor>`
 
 ## Properties, callbacks and functions
 Inherits from [ButtonInterface](./button-interface.md).  

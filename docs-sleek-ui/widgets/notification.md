@@ -10,27 +10,6 @@ As `UNotification` inherits from `ButtonInterface`, you can execute actions when
 - success
 - warning
 - danger
-- custom: used to implement custom themes.
-
-## Theming properties
-- t-icon-image `<image>`
-- t-icon-color `<brush>`
-- t-icon-size: `<length>`
-- t-title-font-size `<length>`
-- t-title-horizontal-padding `<length>`
-- t-title-vertical-padding `<length>`
-- t-content-padding-top `<length>`
-- t-content-padding-bottom `<length>`
-- t-content-padding-left `<length>`
-- t-content-padding-right `<length>`
-- t-background `<brush>`
-- t-border-radius `<length>`
-- t-border-width `<length>`
-- t-border-color `<brush>`
-- t-drop-shadow-blur `<length>`
-- t-drop-shadow-color `<color>`
-- t-drop-shadow-offset-y `<length>`
-- t-close-button-variant `<UIconButtonVariant>`
 
 ## Properties, callbacks and functions
 Inherits from `ButtonInterface`.  

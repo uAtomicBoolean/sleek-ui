@@ -8,18 +8,12 @@ A vertical or horizontal Progress display.
 - success
 - warning
 - danger
-- custom: used to implement custom themes.
-
-## Theming properties
-- t-progress-color `<brush>`
-- t-background `<brush>`
-- t-default-size `<length>`: the default thickness of the progress bar. Defaults to `10px`.
-- t-radius `<length>`
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  
 
 **Properties:**  
+- default-size `<length>`: the default size of the linear progress (10px * scale factor).
 - orientation `<Orientation>`: define if the progress is horizontal or vertical.
 - alignment `<ProgressAlignment>`: define if the progress starts from the start or the end.
 - progress `<percent>`: the current progress of the widget.

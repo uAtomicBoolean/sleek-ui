@@ -4,28 +4,6 @@ Display a modal dialog box, providing a title, content area, and action buttons.
 
 ![modal presentation](images/modal.png)
 
-## Theming properties
-- t-blurred-background-color `<brush>`: defaults to `rgba(0, 0, 0, 0.2)`.
-- t-title-horizontal-padding `<length>`
-- t-title-vertical-padding `<length>`
-- t-content-horizontal-padding `<length>`
-- t-content-vertical-padding `<length>`
-- t-buttons-horizontal-padding `<length>`
-- t-buttons-vertical-padding `<length>`
-- t-buttons-spacing `<length>`
-- t-title-level `<int>`: defaults to `6`.
-- t-title-font-weight `<int>`: defaults to `600`.
-- t-close-button-variant `<UIconButtonVariant>`: defaults to `text`.
-- t-cancel-button-variant `<UButtonVariant>`: defaults to `default`.
-- t-accept-button-variant `<UButtonVariant>`: defaults to `primary`.
-- t-modal-min-width `<length>`: defaults to `300px`.
-- t-modal-min-height `<length>`: no default value.
-- t-modal-max-width `<length>`: defaults to `600px`.
-- t-modal-max-height `<length>`: defaults to `600px`.
-- t-border-radius `<length>`: the radius of the modal's card. defaults to `UAppTheme.radius-base`.
-- t-display-top-divider `<bool>`: display or not the divider separating the title area from the content. Defaults to `false`.
-- t-display-bottom-divider `<bool>`: display or not the divider separating the content area from the bottom buttons. Defaults to `false`.
-
 ## Properties, callbacks and functions
 **Properties:**
 - title `<string>`: the modal's title, display in its header.

@@ -3,9 +3,6 @@ A `Text` widget with predefined properties values to display a title.
 
 ![title presentation](images/title.png)
 
-## Theming properties
-This widgets doesn't have any theming properties as it directly inherits from `Text`.  
-
 ## Properties, callbacks and functions
 Inherits from `Text`. 
 

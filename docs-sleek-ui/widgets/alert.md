@@ -11,20 +11,6 @@ A simple alert to display a message grabbing the user's attention.
 - danger
 - custom: used to implement custom themes.
 
-## Theming properties
-- t-background `<brush>`
-- t-border-radius `<length>` 
-- t-border-width `<length>` 
-- t-border-color `<brush>` 
-- t-icon-image `<image>` 
-- t-icon-color `<brush>` 
-- t-icon-size `<length>` 
-- t-text-color `<brush>` 
-- t-text-font-size `<length>` 
-- t-horizontal-padding `<length>` 
-- t-vertical-padding `<length>` 
-- t-close-button-variant `<UIconButtonVariant>`: defaults to `text-stripped` which is a ligthened version of the `text` variant. 
-  
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  
 

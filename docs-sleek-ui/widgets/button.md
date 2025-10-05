@@ -9,37 +9,6 @@ When outside of a layout, the button will take all the space available, otherwis
 - primary
 - fill
 - text
-- custom: used to implement custom themes.
-
-## Theming properties
-The theming for `UButton` is particular as it uses a struct, `UButtonThemeColor`, to define each color which makes it easier to manage the `danger` state (and future states).  
-It contains two fields:
-- **base:** the default color.
-- **danger**: it speaks for itself.
-
-Here are the theming properties at the top level of `UButton`:
-- t-border-width `<length>`
-- t-border-radius `<length>`
-- t-content-spacing `<length>`
-- t-padding-vertical `<length>`
-- t-padding-horizontal `<length>`
-- t-font-size `<length>`
-- t-icon-size `<length>`
-- t-background `<UButtonThemeColor>`
-- t-background-hover `<UButtonThemeColor>`
-- t-background-active `<UButtonThemeColor>`
-- t-background-checked `<UButtonThemeColor>`
-- t-background-disabled `<UButtonThemeColor>`
-- t-text-color `<UButtonThemeColor>`
-- t-text-color-hover `<UButtonThemeColor>`
-- t-text-color-active `<UButtonThemeColor>`
-- t-text-color-checked `<UButtonThemeColor>`
-- t-text-color-disabled `<UButtonThemeColor>`
-- t-border `<UButtonThemeColor>`
-- t-border-hover `<UButtonThemeColor>`
-- t-border-active `<UButtonThemeColor>`
-- t-border-checked `<UButtonThemeColor>`
-- t-border-disabled `<UButtonThemeColor>`
 
 ## Properties, callbacks and functions
 Inherits from [ButtonInterface](./button-interface.md).  

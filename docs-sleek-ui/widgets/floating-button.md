@@ -10,9 +10,6 @@ You can position the floating button with either:
 ## Variants
 Uses [UButton's](button.md) variants.
 
-## Theming properties
-This widget uses the properties of [UButton](button.md).
-
 ## Properties, callbacks and functions
 This widget uses the properties, callbacks and functions of [UButton](button.md)
 

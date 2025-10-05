@@ -5,10 +5,6 @@ It is, by default, oriented horizontally.
 
 ![divider presentation](images/divider.png)
 
-## Theming properties
-- t-thickness `<length>`
-- t-color `<brush>`
-  
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  
 
