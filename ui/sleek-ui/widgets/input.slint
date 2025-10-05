@@ -15,25 +15,6 @@ export component UInput inherits Rectangle {
     accessible-action-set-value(value) => {
         input.text = value;
     }
-	// Theming properties
-	in-out property <brush> t-background: UAppTheme.bg-elevated;
-    in-out property <brush> t-background-active: UAppTheme.bg-elevated;
-    in-out property <brush> t-background-error: UAppTheme.bg-elevated;
-    in-out property <brush> t-background-disabled: UAppTheme.color-fill-quaternary;
-    in-out property <length> t-border-width: UAppTheme.border-width-base;
-    in-out property <length> t-border-radius: UAppTheme.radius-base;
-    in-out property <brush> t-border-color: UAppTheme.border;
-    in-out property <brush> t-border-color-active: UAppTheme.primary-active;
-    in-out property <brush> t-border-color-error: UAppTheme.danger;
-    in-out property <brush> t-border-color-disabled: UAppTheme.border-secondary;
-    in-out property <brush> t-text-color: UAppTheme.text;
-    in-out property <brush> t-text-color-disabled: UAppTheme.text-disabled;
-    in-out property <length> t-font-size: UAppTheme.font-size-base;
-    in-out property <brush> t-placeholder-color: UAppTheme.text-disabled;
-    in-out property <length> t-icon-size: UAppTheme.icon-size-base;
-    in-out property <brush> t-icon-color: UAppTheme.text-secondary;
-    in-out property <length> t-padding-vertical: UAppTheme.padding-vertical;
-    in-out property <length> t-padding-horizontal: UAppTheme.padding-horizontal / 2;
 	// Regular properties
     in-out property <string> text <=> input.text;
     in-out property <bool> enabled <=> input.enabled;
@@ -42,28 +23,28 @@ export component UInput inherits Rectangle {
     in-out property <bool> clearable: false;
     in-out property <bool> error: false;
     in-out property <bool> show: false;
-    border-width: t-border-width;
-    border-radius: t-border-radius;
-    border-color: t-border-color;
-    background: t-background;
+    border-width: UAppTheme.border-width-base;
+    border-radius: UAppTheme.radius-base;
+    border-color: UAppTheme.border;
+    background: UAppTheme.bg-elevated;
     clip: true;
     HorizontalLayout {
         width: root.width;
         HorizontalLayout {
-            padding-left: t-padding-horizontal;
-            padding-right: t-padding-horizontal;
+            padding-left: UAppTheme.padding-horizontal / 2;
+            padding-right: UAppTheme.padding-horizontal / 2;
             Rectangle {
-                height: t-font-size + t-padding-vertical * 3;
+                height: UAppTheme.font-size-base + UAppTheme.padding-vertical * 3;
                 clip: true;
                 input := TextInput {
-                    property <length> cursor-padding: t-padding-horizontal * 3;
+                    property <length> cursor-padding: UAppTheme.padding-horizontal / 2 * 3;
                     property <length> x-pos;
                     width: max(parent.width, self.preferred-width);
                     x: min(x-pos, 0px);
                     input-type: show ? InputType.text : input-type;
                     read-only: !root.enabled;
-                    font-size: t-font-size;
-                    color: t-text-color;
+                    font-size: UAppTheme.font-size-base;
+                    color: UAppTheme.text;
                     vertical-alignment: center;
                     horizontal-alignment: left;
                     single-line: true;
@@ -84,8 +65,7 @@ export component UInput inherits Rectangle {
                             alignment: center;
                             UText {
                                 text: placeholder;
-                                color: t-placeholder-color;
-                                font-size: t-font-size;
+                                color: UAppTheme.text-disabled;
                             }
                         }
                     }
@@ -95,13 +75,13 @@ export component UInput inherits Rectangle {
 
         if clearable && input-type != InputType.password: VerticalLayout {
             alignment: center;
-            padding-left: -t-padding-horizontal;
+            padding-left: -UAppTheme.padding-horizontal / 2;
             Rectangle {
                 height: 100%;
-                width: t-icon-size + t-padding-horizontal;
+                width: UAppTheme.icon-size-base + UAppTheme.padding-horizontal / 2;
                 UIcon {
-                    size: t-icon-size;
-                    colorize: t-icon-color;
+                    size: UAppTheme.icon-size-base;
+                    colorize: UAppTheme.text-secondary;
                     source: @image-url("../assets/icons/circle-x.svg");
                 }
 
@@ -118,13 +98,13 @@ export component UInput inherits Rectangle {
         }
         if input-type == InputType.password: VerticalLayout {
             alignment: center;
-            padding-left: -t-padding-horizontal;
+            padding-left: -UAppTheme.padding-horizontal / 2;
             Rectangle {
                 height: 100%;
-                width: t-icon-size + t-padding-horizontal;
+                width: UAppTheme.icon-size-base + UAppTheme.padding-horizontal / 2;
                 UIcon {
-                    size: t-icon-size;
-                    colorize: t-icon-color;
+                    size: UAppTheme.icon-size-base;
+                    colorize: UAppTheme.text-secondary;
                     source: show ? @image-url("../assets/icons/eye.svg") : @image-url("../assets/icons/eye-closed.svg");
                 }
 
@@ -147,17 +127,17 @@ export component UInput inherits Rectangle {
 
     states [
         disabled when !input.enabled: {
-            background: t-background-disabled;
-            border-color: t-border-color-disabled;
-            input.color: t-text-color-disabled;
+            background: UAppTheme.color-fill-quaternary;
+            border-color: UAppTheme.border-secondary;
+            input.color: UAppTheme.text-disabled;
         }
         error when error: {
-            background: t-background-error;
-            border-color: t-border-color-error;
+            background: UAppTheme.bg-elevated;
+            border-color: UAppTheme.danger.base;
         }
         active when input.has-focus: {
-            background: t-background-active;
-            border-color: t-border-color-active;
+            background: UAppTheme.bg-elevated;
+            border-color: UAppTheme.primary.active;
         }
     ]
 
