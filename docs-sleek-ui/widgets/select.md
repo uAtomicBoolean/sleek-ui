@@ -4,11 +4,6 @@ It is possible to disable an option in the select (this can be used as a separat
 
 ![select presentation](images/select.png)
 
-> [!WARNING]
-> It is highly recommended to define the `t-option-height`.
-> Otherwise, the options' height might change depending on the number of options.
-> This leads to some wrong height calculations for the ScrollView viewport.
-
 ## Properties, callbacks and functions
 Inherits from `ButtonInterface`.   
 
