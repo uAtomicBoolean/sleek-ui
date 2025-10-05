@@ -1,13 +1,19 @@
 import { UAppTheme } from "../app-theme.slint";
 
-import { ButtonInterface } from "../utils/button-interface.slint";
-import { USelectOption } from "../utils/structs.slint";
+import { ButtonInterface } from "button-interface.slint";
 
 import { UPopover } from "popover.slint";
 import { UText } from "text.slint";
 import { UIcon } from "icon.slint";
 
 import { ScrollView } from "std-widgets.slint";
+
+
+struct USelectOption {
+	text: string,
+	value: string,
+	enabled: bool,
+}
 
 
 export component USelect inherits ButtonInterface {

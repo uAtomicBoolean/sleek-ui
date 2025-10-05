@@ -1,109 +1,111 @@
 import { AppTheme } from "app-themes/app-theme-struct.slint";
-import { DaybreakBlueTheme } from "app-themes/daybreak-blue.slint";
+import { UPrimaryColors } from "colors.slint";
+import { USingleColor, UThemeColor, UDualThemeColor } from "structs/colors.slint";
 import { Palette } from "std-widgets.slint";
 
+
+export enum UColorScheme {
+	light,
+	dark,
+	system,
+}
+
 export global UAppTheme {
-    in-out property <AppTheme> light-theme: DaybreakBlueTheme.light-theme;
-    in-out property <AppTheme> dark-theme: DaybreakBlueTheme.dark-theme;
-    in-out property <AppTheme> theme: Palette.color-scheme == ColorScheme.dark ? dark-theme : light-theme;
     in-out property <float> scale-factor: 1;
 
-    // Primary color.
-    in-out property <color> primary: theme.primary;
-    in-out property <color> primary-hover: theme.primary-hover;
-    in-out property <color> primary-active: theme.primary-active;
-    in-out property <color> primary-disabled: theme.primary-disabled;
-    in-out property <color> primary-selected: theme.primary-selected;
+	// Color scheme management.
+    in-out property <UColorScheme> color-scheme: system;
+    public pure function get-single-color(c: USingleColor) -> brush {
+        if color-scheme == UColorScheme.light {
+            return c.light;
+        } else if color-scheme == UColorScheme.dark {
+            return c.dark;
+        }
+        return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
+    }
 
-    // Success color.
-    in-out property <color> success: theme.success;
-    in-out property <color> success-hover: theme.success-hover;
-    in-out property <color> success-active: theme.success-active;
-    in-out property <color> success-disabled: theme.success-disabled;
-    in-out property <color> success-selected: theme.success-selected;
+    public pure function get-theme-color(c: UDualThemeColor) -> UThemeColor {
+        if color-scheme == UColorScheme.light {
+            return c.light;
+        } else if color-scheme == UColorScheme.dark {
+            return c.dark;
+        }
+        return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
+    }
 
-    // Warning color.
-    in-out property <color> warning: theme.warning;
-    in-out property <color> warning-hover: theme.warning-hover;
-    in-out property <color> warning-active: theme.warning-active;
-    in-out property <color> warning-disabled: theme.warning-disabled;
-    in-out property <color> warning-selected: theme.warning-selected;
-
-    // Danger color.
-    in-out property <color> danger: theme.danger;
-    in-out property <color> danger-hover: theme.danger-hover;
-    in-out property <color> danger-active: theme.danger-active;
-    in-out property <color> danger-disabled: theme.danger-disabled;
-    in-out property <color> danger-selected: theme.danger-selected;
+    in-out property <UThemeColor> primary: get-theme-color(UPrimaryColors.daybreak-blue);
+    in-out property <UThemeColor> success: get-theme-color(UPrimaryColors.success);
+    in-out property <UThemeColor> warning: get-theme-color(UPrimaryColors.warning);
+    in-out property <UThemeColor> danger: get-theme-color(UPrimaryColors.danger);
 	
 	// Background color
-    in-out property <color> bg-container: theme.bg-container;
-    in-out property <color> bg-elevated: theme.bg-elevated;
-    in-out property <color> bg-layout: theme.bg-layout;
-    in-out property <color> bg-inverse: theme.bg-inverse;
+    in-out property <color> bg-container: get-single-color({ light: #F5F5F5, dark: black });
+    in-out property <color> bg-elevated: get-single-color({ light: white, dark: #141414 });
+    in-out property <color> bg-layout: get-single-color({ light: white, dark: #1f1f1f });
+    in-out property <color> bg-inverse: get-single-color({ light: #262626, dark: #424242 });
 
 	// Color fill
-    in-out property <color> color-fill-plus: theme.color-fill-plus;
-    in-out property <color> color-fill: theme.color-fill;
-    in-out property <color> color-fill-secondary: theme.color-fill-secondary;
-    in-out property <color> color-fill-tertiary: theme.color-fill-tertiary;
-    in-out property <color> color-fill-quaternary: theme.color-fill-quaternary;
+    in-out property <color> color-fill-plus: get-single-color({ light: rgba(0, 0, 0, 0.25), dark: rgba(255,255,255, 0.28) });
+    in-out property <color> color-fill: get-single-color({ light: rgba(0, 0, 0, 0.15), dark: rgba(255,255,255, 0.18) });
+    in-out property <color> color-fill-secondary: get-single-color({ light: rgba(0, 0, 0, 0.06), dark: rgba(255,255,255, 0.12) });
+    in-out property <color> color-fill-tertiary: get-single-color({ light: rgba(0, 0, 0, 0.04), dark: rgba(255,255,255, 0.08) });
+    in-out property <color> color-fill-quaternary: get-single-color({ light: rgba(0, 0, 0, 0.02), dark: rgba(255,255,255, 0.04) });
 	
     // Shadow
-    in-out property <color> shadow-color: theme.shadow-color;
-    in-out property <length> shadow-blur: theme.shadow-blur * scale-factor;
-    in-out property <length> shadow-x-offset: theme.shadow-x-offset * scale-factor;
-    in-out property <length> shadow-y-offset: theme.shadow-y-offset * scale-factor;
+    in-out property <color> shadow-color: get-single-color({ light: rgba(0, 0, 0, 0.12), dark: rgba(0, 0, 0, 0.12) });
+    in-out property <length> shadow-blur: 16px * scale-factor;
+    in-out property <length> shadow-x-offset: 0px * scale-factor;
+    in-out property <length> shadow-y-offset: 6px * scale-factor;
 
 	// Text color
-    in-out property <color> inverse-text: theme.inverse-text;
-    in-out property <color> text: theme.text;
-    in-out property <color> text-secondary: theme.text-secondary;
-    in-out property <color> text-heading: theme.text-heading;
-    in-out property <color> text-disabled: theme.text-disabled;
+    in-out property <color> inverse-text: get-single-color({ light: rgba(255,255,255,0.85), dark: rgba(0,0,0,0.88) });
+    in-out property <color> text: get-single-color({ light: #000000E0, dark: #FFFFFFD9 });
+    in-out property <color> text-secondary: get-single-color({ light: #000000A6, dark: #FFFFFFA6 });
+    in-out property <color> text-heading: get-single-color({ light: #000000E0, dark: #FFFFFFD9 });
+    in-out property <color> text-disabled: get-single-color({ light: #00000040, dark: #FFFFFF40 });
 
     // Font size
-    in-out property <length> font-size-smaller: theme.font-size-smaller * scale-factor;
-    in-out property <length> font-size-small: theme.font-size-small * scale-factor;
-    in-out property <length> font-size-base: theme.font-size-base * scale-factor;
-    in-out property <length> font-size-medium: theme.font-size-medium * scale-factor;
-    in-out property <length> font-size-big: theme.font-size-big * scale-factor;
-    in-out property <length> font-size-bigger: theme.font-size-bigger * scale-factor;
+    in-out property <length> font-size-smaller: 10px * scale-factor;
+    in-out property <length> font-size-small: 12px * scale-factor;
+    in-out property <length> font-size-base: 14px * scale-factor;
+    in-out property <length> font-size-medium: 16px * scale-factor;
+    in-out property <length> font-size-big: 18px * scale-factor;
+    in-out property <length> font-size-bigger: 20px * scale-factor;
 
 	// Focus display
-    in-out property <color> focus-color: theme.focus-color;
-    in-out property <length> focus-border-width: theme.focus-border-width * scale-factor;
+    in-out property <color> focus-color: get-single-color({ light: black, dark: white });
+    in-out property <length> focus-border-width: 2px * scale-factor;
 
     // Borders
-	in-out property <length> border-width-base: theme.border-width-base * scale-factor;
-    in-out property <color> border: theme.border;
-    in-out property <color> border-secondary: theme.border-secondary;
-    in-out property <color> separator: theme.separator;
+	in-out property <length> border-width-base: 1px * scale-factor;
+    in-out property <color> border: get-single-color({ light: #D9D9D9, dark: #424242 });
+    in-out property <color> border-secondary: get-single-color({ light: #f0f0f0, dark: #303030 });
+    in-out property <color> separator: get-single-color({ light: #0505050F, dark: #FDFDFD1F });
 
     // Icons
-    in-out property <length> icon-size-base: theme.icon-size-base * scale-factor;
+    in-out property <length> icon-size-base: 16px * scale-factor;
 
     // Padding
-    in-out property <length> padding-vertical: theme.padding-vertical * scale-factor;
-    in-out property <length> padding-horizontal: theme.padding-horizontal * scale-factor;
-    in-out property <length> padding-small: theme.padding-small * scale-factor;
-    in-out property <length> padding-base: theme.padding-base * scale-factor;
-    in-out property <length> padding-medium: theme.padding-medium * scale-factor;
-    in-out property <length> padding-big: theme.padding-big * scale-factor;
-    in-out property <length> padding-bigger: theme.padding-bigger * scale-factor;
+    in-out property <length> padding-vertical: 5px * scale-factor;
+    in-out property <length> padding-horizontal: 14px * scale-factor;
+    in-out property <length> padding-small: 2px * scale-factor;
+    in-out property <length> padding-base: 4px * scale-factor;
+    in-out property <length> padding-medium: 8px * scale-factor;
+    in-out property <length> padding-big: 12px * scale-factor;
+    in-out property <length> padding-bigger: 16px * scale-factor;
 
     // Spacing
-    in-out property <length> spacing-small: theme.spacing-small * scale-factor;
-    in-out property <length> spacing-base: theme.spacing-base * scale-factor;
-    in-out property <length> spacing-medium: theme.spacing-medium * scale-factor;
-    in-out property <length> spacing-big: theme.spacing-big * scale-factor;
-    in-out property <length> spacing-bigger: theme.spacing-bigger * scale-factor;
+    in-out property <length> spacing-small: 2px * scale-factor;
+    in-out property <length> spacing-base: 4px * scale-factor;
+    in-out property <length> spacing-medium: 8px * scale-factor;
+    in-out property <length> spacing-big: 12px * scale-factor;
+    in-out property <length> spacing-bigger: 16px * scale-factor;
 
     // Radius
-    in-out property <length> radius-base: theme.radius-base * scale-factor;
-    in-out property <length> radius-small: theme.radius-small * scale-factor;
-    in-out property <length> radius-medium: theme.radius-medium * scale-factor;
-    in-out property <length> radius-large: theme.radius-large * scale-factor;
-    in-out property <length> radius-round: theme.radius-round * scale-factor;
-    in-out property <length> radius-circle: theme.radius-circle;
+    in-out property <length> radius-small: 2px * scale-factor;
+    in-out property <length> radius-base: 4px * scale-factor;
+    in-out property <length> radius-medium: 8px * scale-factor;
+    in-out property <length> radius-large: 12px * scale-factor;
+    in-out property <length> radius-round: 20px * scale-factor;
+    in-out property <length> radius-circle: 9999px;
 }
