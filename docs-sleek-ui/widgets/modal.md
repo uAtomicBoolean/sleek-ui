@@ -7,6 +7,8 @@ Display a modal dialog box, providing a title, content area, and action buttons.
 ## Properties, callbacks and functions
 **Properties to manage modal appearance and behavior:**
 - title `<string>`: the modal's title, display in its header.
+- top-divider `<bool>`: weither to display or not the top divider (between title and content). Defaults to false.
+- bottom-divider `<bool>`: weither to display or not the bottom divider (between content and accept/cancel buttons). Defaults to false.
 - close-on-click-outside `<bool>`: if true, the modal will be closed when clicking on its greyed background. Defaults to false.
 - close-on-accept `<bool>`: weither to close or not the modal when clicking on the accept button. Defaults to true.
 - close-on-cancel `<bool>`: weither to close or not the modal when clicking on the cancel button. Defaults to true.

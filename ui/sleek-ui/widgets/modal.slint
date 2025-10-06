@@ -10,6 +10,8 @@ import { UTitle } from "title.slint";
 export component UModal {
 	// Regular properties
     in-out property <string> title;
+    in-out property <bool> top-divider: false;
+    in-out property <bool> bottom-divider: false;
     in-out property <bool> close-on-click-outside: false;
     in-out property <bool> close-on-accept: true;
     in-out property <bool> close-on-cancel: true;
@@ -117,6 +119,7 @@ export component UModal {
                         }
                     }
 
+                    if top-divider: UDivider { }
                     VerticalLayout {
                         vertical-stretch: 2;
                         padding-top: UAppTheme.padding-medium;
@@ -129,6 +132,7 @@ export component UModal {
                     if cancel-btn-enabled || accept-btn-enabled: VerticalLayout {
                         alignment: start;
                         vertical-stretch: 0;
+                        if bottom-divider: UDivider { }
                         HorizontalLayout {
                             alignment: end;
                             padding-top: UAppTheme.padding-medium;
