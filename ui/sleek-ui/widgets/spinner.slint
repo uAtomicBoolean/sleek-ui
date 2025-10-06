@@ -2,11 +2,12 @@ import { UAppTheme } from "../app-theme.slint";
 
 
 export component USpinner inherits Image {
+    in-out property <length> size: UAppTheme.icon-size-base;
     accessible-role: image;
     accessible-label: @tr("Loading spinner.");
     colorize: UAppTheme.primary.base;
-    width: UAppTheme.icon-size-base;
-    height: UAppTheme.icon-size-base;
+    width: size;
+    height: size;
     source: @image-url("../assets/icons/loader-circle.svg");
     rotation-angle: 240deg * animation-tick() / 1s;
     animate rotation-angle {
