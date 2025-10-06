@@ -16,13 +16,6 @@ export component UTag inherits Rectangle {
 	// Accessability properties
 	accessible-role: AccessibleRole.text;
     accessible-label: self.text;
-	// Theming properties
-    in-out property <length> t-text-size: UAppTheme.font-size-small;
-    in-out property <length> t-icon-size: UAppTheme.font-size-base;
-    in-out property <length> t-border-radius: UAppTheme.radius-base;
-    in-out property <length> t-padding-vertical: UAppTheme.padding-vertical / 1.5;
-    in-out property <length> t-padding-horizontal: UAppTheme.padding-horizontal / 1.5;
-    in-out property <length> t-content-spacing: UAppTheme.spacing-small;
 	// Regular properties
     in-out property <UTagVariant> variant: info;
     in-out property <color> text-color;
@@ -46,7 +39,7 @@ export component UTag inherits Rectangle {
             colorize: text-color;
         }
         badge-text := UText {
-            font-size: t-text-size;
+            font-size: UAppTheme.font-size-small;
             color: text-color;
         }
 
