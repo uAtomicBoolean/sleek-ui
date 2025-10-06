@@ -38,7 +38,7 @@ export component Sidebar inherits Rectangle {
                             text: link;
                             states [
                                 active when SidebarLogic.current-page == link: {
-                                    color: UAppTheme.primary;
+                                    color: UAppTheme.primary.base;
                                 }
                             ]
                         }
@@ -52,7 +52,7 @@ export component Sidebar inherits Rectangle {
 
                     states [
                         active when SidebarLogic.current-page == link: {
-                            background: UAppTheme.primary-selected;
+                            background: UAppTheme.primary.selected;
                         }
                         hover when ctrls-touch.has-hover: {
                             background: UAppTheme.color-fill-tertiary;
