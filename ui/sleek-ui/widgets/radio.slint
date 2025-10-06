@@ -64,7 +64,7 @@ component URadioOption inherits ButtonInterface {
                     focused-selected when root.has-focus && root.selected-value == root.option: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
-                        background: UAppTheme.primary.selected;
+                        background: UAppTheme.primary.base;
                     }
                     focused when root.has-focus: {
                         border-color: UAppTheme.focus-color;
@@ -79,7 +79,7 @@ component URadioOption inherits ButtonInterface {
                     }
                     selected when root.selected-value == root.option: {
                         border-color: UAppTheme.primary.base;
-                        background: UAppTheme.primary.selected;
+                        background: UAppTheme.primary.base;
                     }
                 ]
             }
