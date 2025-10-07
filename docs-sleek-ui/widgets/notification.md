@@ -18,6 +18,8 @@ Inherits from `ButtonInterface`.
 - title `<string>`: the notification's title. It elides if too long.
 - message `<string>`: the notification's message. It will word-wrap if `single-line-message` is false.
 - single-line-message `<bool>`: (true by default) the notification's message will elide on the first line if set to true.  
+- notif-icon `<image>`: the notification's icon. Each variant has its own icon.
+- notif-icon-color `<brush>`: the notification icon's color. Each variant has its own color.
 
 **Callbacks:**  
 - `close()`: called when the close button is clicked.

@@ -1,9 +1,9 @@
-export struct USingleColor {
+export struct UThemeColor {
 	light: brush,
 	dark: brush,
 }
 
-export struct UThemeColor {
+export struct UVariantsColor {
 	base: brush,
 	hover: brush,
 	active: brush,
@@ -12,7 +12,7 @@ export struct UThemeColor {
 }
 
 
-export struct UColorSchemeThemeColor {
-	light: UThemeColor,
-	dark: UThemeColor,
+export struct UColorSchemeVariantsColor {
+	light: UVariantsColor,
+	dark: UVariantsColor,
 }

@@ -19,6 +19,30 @@ export component UNotification inherits ButtonInterface {
     in-out property <string> title;
     in-out property <string> message;
     in-out property <bool> single-line-message: true;
+	in-out property <image> notif-icon: {
+		if variant == UNotificationVariant.success {
+			return @image-url("../assets/icons/circle-check.svg");
+		}
+		if variant == UNotificationVariant.warning {
+			return @image-url("../assets/icons/info.svg");
+		}
+		if variant == UNotificationVariant.danger {
+			return @image-url("../assets/icons/circle-x.svg");
+		}
+		return @image-url("../assets/icons/info.svg");
+	}
+	in-out property <brush> notif-icon-color: {
+		if variant == UNotificationVariant.success {
+			return UAppTheme.success.base;
+		}
+		if variant == UNotificationVariant.warning {
+			return UAppTheme.warning.base;
+		}
+		if variant == UNotificationVariant.danger {
+			return UAppTheme.danger.base;
+		}
+		return UAppTheme.primary.base;
+	}
     callback close <=> close-button.clicked;
     min-width: 300px * UAppTheme.scale-factor;
     background: UAppTheme.bg-elevated;
@@ -38,7 +62,9 @@ export component UNotification inherits ButtonInterface {
             VerticalLayout {
                 alignment: center;
                 padding-right: UAppTheme.padding-medium;
-                notif-icon := UIcon {
+                UIcon {
+					source: notif-icon;
+					colorize: notif-icon-color;
                     size: UAppTheme.font-size-big;
                     accessible-role: none;
                 }
@@ -83,23 +109,4 @@ export component UNotification inherits ButtonInterface {
             }
         }
     }
-
-    states [
-        info when variant == UNotificationVariant.info: {
-            notif-icon.source: @image-url("../assets/icons/info.svg");
-            notif-icon.colorize: UAppTheme.primary.base;
-        }
-        success when variant == UNotificationVariant.success: {
-            notif-icon.source: @image-url("../assets/icons/circle-check.svg");
-            notif-icon.colorize: UAppTheme.success.base;
-        }
-        warning when variant == UNotificationVariant.warning: {
-            notif-icon.source: @image-url("../assets/icons/info.svg");
-            notif-icon.colorize: UAppTheme.warning.base;
-        }
-        danger when variant == UNotificationVariant.danger: {
-            notif-icon.source: @image-url("../assets/icons/circle-x.svg");
-            notif-icon.colorize: UAppTheme.danger.base;
-        }
-    ]
 }

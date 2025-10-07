@@ -1,5 +1,5 @@
 import { UPrimaryColors } from "colors.slint";
-import { USingleColor, UThemeColor, UColorSchemeThemeColor } from "structs/colors.slint";
+import { UThemeColor, UVariantsColor, UColorSchemeVariantsColor } from "structs/colors.slint";
 import { Palette } from "std-widgets.slint";
 
 
@@ -12,9 +12,9 @@ export enum UColorScheme {
 export global UAppTheme {
     in-out property <float> scale-factor: 1;
 
-	// Color scheme management.
+    // Color scheme management.
     in-out property <UColorScheme> color-scheme: system;
-    public pure function get-single-color(c: USingleColor) -> brush {
+    public pure function get-themed-color(c: UThemeColor) -> brush {
         if color-scheme == UColorScheme.light {
             return c.light;
         } else if color-scheme == UColorScheme.dark {
@@ -23,7 +23,7 @@ export global UAppTheme {
         return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
     }
 
-    public pure function get-theme-color(c: UColorSchemeThemeColor) -> UThemeColor {
+    public pure function get-variants-color(c: UColorSchemeVariantsColor) -> UVariantsColor {
         if color-scheme == UColorScheme.light {
             return c.light;
         } else if color-scheme == UColorScheme.dark {
@@ -32,36 +32,40 @@ export global UAppTheme {
         return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
     }
 
-    in-out property <UThemeColor> primary: get-theme-color(UPrimaryColors.daybreak-blue);
-    in-out property <UThemeColor> success: get-theme-color(UPrimaryColors.success);
-    in-out property <UThemeColor> warning: get-theme-color(UPrimaryColors.warning);
-    in-out property <UThemeColor> danger: get-theme-color(UPrimaryColors.danger);
+    in-out property <UVariantsColor> primary: get-variants-color(UPrimaryColors.daybreak-blue);
+    in-out property <UVariantsColor> success: get-variants-color(UPrimaryColors.success);
+    in-out property <UVariantsColor> warning: get-variants-color(UPrimaryColors.warning);
+    in-out property <UVariantsColor> danger: get-variants-color(UPrimaryColors.danger);
 
-	// Background color
-	in-out property <color> bg-layout: get-single-color({ light: #F5F5F5, dark: black });
-    in-out property <color> bg-container: get-single-color({ light: white, dark: #141414 });
-    in-out property <color> bg-elevated: get-single-color({ light: white, dark: #1f1f1f });
-    in-out property <color> bg-inverse: get-single-color({ light: #262626, dark: #424242 });
+    // Background color
+	in-out property <color> bg-layout: get-themed-color({ light: #F5F5F5, dark: black });
+    in-out property <color> bg-container: get-themed-color({ light: white, dark: #141414 });
+    in-out property <color> bg-elevated: get-themed-color({ light: white, dark: #1f1f1f });
+    in-out property <color> bg-inverse: get-themed-color({ light: #262626, dark: #424242 });
 
-	// Color fill
-    in-out property <color> color-fill-plus: get-single-color({ light: rgba(0, 0, 0, 0.25), dark: rgba(255,255,255, 0.28) });
-    in-out property <color> color-fill: get-single-color({ light: rgba(0, 0, 0, 0.15), dark: rgba(255,255,255, 0.18) });
-    in-out property <color> color-fill-secondary: get-single-color({ light: rgba(0, 0, 0, 0.06), dark: rgba(255,255,255, 0.12) });
-    in-out property <color> color-fill-tertiary: get-single-color({ light: rgba(0, 0, 0, 0.04), dark: rgba(255,255,255, 0.08) });
-    in-out property <color> color-fill-quaternary: get-single-color({ light: rgba(0, 0, 0, 0.02), dark: rgba(255,255,255, 0.04) });
+    // Color fill
+    in-out property <color> color-fill-plus: get-themed-color({ light: rgba(0, 0, 0, 0.25), dark: rgba(255,255,255, 0.28) });
+    in-out property <color> color-fill: get-themed-color({ light: rgba(0, 0, 0, 0.15), dark: rgba(255,255,255, 0.18) });
+    in-out property <color> color-fill-secondary: get-themed-color({ light: rgba(0, 0, 0, 0.06), dark: rgba(255,255,255, 0.12) });
+    in-out property <color> color-fill-tertiary: get-themed-color({ light: rgba(0, 0, 0, 0.04), dark: rgba(255,255,255, 0.08) });
+    in-out property <color> color-fill-quaternary: get-themed-color({ light: rgba(0, 0, 0, 0.02), dark: rgba(255,255,255, 0.04) });
 	
     // Shadow
-    in-out property <color> shadow-color: get-single-color({ light: rgba(0, 0, 0, 0.12), dark: rgba(0, 0, 0, 0.12) });
+    in-out property <color> shadow-color: get-themed-color({ light: rgba(0, 0, 0, 0.12), dark: rgba(0, 0, 0, 0.12) });
     in-out property <length> shadow-blur: 16px * scale-factor;
     in-out property <length> shadow-x-offset: 0px * scale-factor;
     in-out property <length> shadow-y-offset: 6px * scale-factor;
 
-	// Text color
-    in-out property <color> inverse-text: get-single-color({ light: rgba(255,255,255,0.85), dark: rgba(0,0,0,0.88) });
-    in-out property <color> text: get-single-color({ light: #000000E0, dark: #FFFFFFD9 });
-    in-out property <color> text-secondary: get-single-color({ light: #000000A6, dark: #FFFFFFA6 });
-    in-out property <color> text-heading: get-single-color({ light: #000000E0, dark: #FFFFFFD9 });
-    in-out property <color> text-disabled: get-single-color({ light: #00000040, dark: #FFFFFF40 });
+    // Focus display
+    in-out property <color> focus-color: get-themed-color({ light: black, dark: white });
+    in-out property <length> focus-border-width: 2px * scale-factor;
+
+    // Text color
+    in-out property <color> inverse-text: get-themed-color({ light: rgba(255,255,255,0.85), dark: rgba(0,0,0,0.88) });
+    in-out property <color> text: get-themed-color({ light: #000000E0, dark: #FFFFFFD9 });
+    in-out property <color> text-secondary: get-themed-color({ light: #000000A6, dark: #FFFFFFA6 });
+    in-out property <color> text-heading: get-themed-color({ light: #000000E0, dark: #FFFFFFD9 });
+    in-out property <color> text-disabled: get-themed-color({ light: #00000040, dark: #FFFFFF40 });
 
     // Font size
     in-out property <length> font-size-smaller: 10px * scale-factor;
@@ -71,15 +75,11 @@ export global UAppTheme {
     in-out property <length> font-size-big: 18px * scale-factor;
     in-out property <length> font-size-bigger: 20px * scale-factor;
 
-	// Focus display
-    in-out property <color> focus-color: get-single-color({ light: black, dark: white });
-    in-out property <length> focus-border-width: 2px * scale-factor;
-
     // Borders
 	in-out property <length> border-width-base: 1px * scale-factor;
-    in-out property <color> border: get-single-color({ light: #D9D9D9, dark: #424242 });
-    in-out property <color> border-secondary: get-single-color({ light: #f0f0f0, dark: #303030 });
-    in-out property <color> separator: get-single-color({ light: #0505050F, dark: #FDFDFD1F });
+    in-out property <color> border: get-themed-color({ light: #D9D9D9, dark: #424242 });
+    in-out property <color> border-secondary: get-themed-color({ light: #f0f0f0, dark: #303030 });
+    in-out property <color> separator: get-themed-color({ light: #0505050F, dark: #FDFDFD1F });
 
     // Icons
     in-out property <length> icon-size-base: 16px * scale-factor;
