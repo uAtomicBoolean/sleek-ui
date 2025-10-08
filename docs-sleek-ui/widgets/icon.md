@@ -9,6 +9,7 @@ It inherits from the `Image` widget hence all its properties, callbacks and func
 
 **Properties:**
 - size `<length>`: the width and height of the icon.
+- color `<brush>`: the icon's color. Using this property instead of `colorize` allows `colorize-icon` to work even when using a custom color. Defaults to `UAppTheme.text`.
 - colorize-icon `<bool>`: If set to true, the icon will be colorized to the same color as the default text color in the app theme. Defaults to true.
 
 ## Example
