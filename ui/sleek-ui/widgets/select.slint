@@ -101,7 +101,7 @@ export component USelect inherits ButtonInterface {
                                     color: UAppTheme.text-disabled;
                                 }
                                 selected when options[current-index].value == option.value: {
-                                    color: UAppTheme.primary.base;
+                                    font-weight: 800;
                                 }
                             ]
                         }
@@ -120,7 +120,7 @@ export component USelect inherits ButtonInterface {
                     animate background { duration: 200ms; }
                     states [
                         selected when options[current-index].value == option.value && option.enabled: {
-                            background: UAppTheme.primary.selected;
+                            background: UAppTheme.primary.base.with-alpha(0.3);
                         }
                         hover when touch.has-hover && option.enabled: {
                             background: UAppTheme.color-fill-tertiary;
