@@ -1,0 +1,93 @@
+import {
+	UMainColorsStyle,
+	UBackgroundColorsStyle,
+	UFillColorsStyle,
+	UShadowStyle,
+	UFocusStyle,
+	UTextStyle,
+	UFontStyle,
+	UBorderStyle,
+	UPaddingStyle,
+	USpacingStyle,
+	URadiusStyle,
+} from "../structs/styles.slint";
+import { UPrimaryColors } from "colors.slint";
+
+
+export global UDefaultStyle {
+    out property <UMainColorsStyle> main-colors: {
+        primary: UPrimaryColors.daybreak-blue,
+        success: UPrimaryColors.success,
+        warning: UPrimaryColors.warning,
+        danger: UPrimaryColors.danger,
+    };
+    out property <UBackgroundColorsStyle> background-colors: {
+        layout: { light: #F5F5F5, dark: Colors.black },
+        container: { light: Colors.white, dark: #141414 },
+        elevated: { light: Colors.white, dark: #1f1f1f },
+        inverse: { light: #262626, dark: #424242 },
+    };
+    out property <UFillColorsStyle> fill-colors: {
+        fill-plus: { light: rgba(0, 0, 0, 0.25), dark: rgba(255,255,255, 0.28) },
+        fill: { light: rgba(0, 0, 0, 0.15), dark: rgba(255,255,255, 0.18) },
+        fill-secondary: { light: rgba(0, 0, 0, 0.06), dark: rgba(255,255,255, 0.12) },
+        fill-tertiary: { light: rgba(0, 0, 0, 0.04), dark: rgba(255,255,255, 0.08) },
+        fill-quaternary: { light: rgba(0, 0, 0, 0.02), dark: rgba(255,255,255, 0.04) },
+    };
+    out property <UShadowStyle> shadow: {
+        color: { light: rgba(0, 0, 0, 0.12), dark: rgba(0, 0, 0, 0.12) },
+        blur: 16px,
+        x-offset: 0px,
+        y-offset: 6px,
+    };
+    out property <UFocusStyle> focus: {
+        color: { light: Colors.black, dark: Colors.white },
+        border-width: 1px,
+    };
+    out property <UTextStyle> text: {
+        color-inverse: { light: rgba(255,255,255,0.85), dark: rgba(0,0,0,0.88) },
+        color: { light: #000000E0, dark: #FFFFFFD9 },
+        color-secondary: { light: #000000A6, dark: #FFFFFFA6 },
+        color-heading: { light: #000000E0, dark: #FFFFFFD9 },
+        color-disabled: { light: #00000040, dark: #FFFFFF40 },
+    };
+    out property <UFontStyle> font: {
+        smaller: 10px,
+        small: 12px,
+        base: 14px,
+        medium: 16px,
+        big: 18px,
+        bigger: 20px,
+        icon-base-size: 16px,
+    };
+    out property <UBorderStyle> border: {
+        width: 1px,
+        color: { light: #D9D9D9, dark: #424242 },
+        color-secondary: { light: #f0f0f0, dark: #303030 },
+        separator: { light: #0505050F, dark: #FDFDFD1F },
+    };
+    out property <UPaddingStyle> padding: {
+        vertical: 5px,
+        horizontal: 14px,
+        small: 2px,
+        base: 4px,
+        medium: 8px,
+        big: 12px,
+        bigger: 16px,
+    };
+    out property <USpacingStyle> spacing: {
+        small: 2px,
+        base: 4px,
+        medium: 8px,
+        big: 12px,
+        bigger: 16px,
+    };
+    out property <URadiusStyle> radius: {
+        small: 2px,
+        base: 4px,
+        medium: 8px,
+        large: 12px,
+        round: 20px,
+        circle: 9999px,
+    };
+}
