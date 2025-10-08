@@ -54,38 +54,38 @@ export global UAppTheme {
 
     // Background color
 	in property <UBackgroundColorsStyle> background-colors-style: UDefaultStyle.background-colors;
-    out property <color> bg-layout: get-themed-color(background-colors-style.layout);
-    out property <color> bg-container: get-themed-color(background-colors-style.container);
-    out property <color> bg-elevated: get-themed-color(background-colors-style.elevated);
-    out property <color> bg-inverse: get-themed-color(background-colors-style.inverse);
+    out property <brush> bg-layout: get-themed-color(background-colors-style.layout);
+    out property <brush> bg-container: get-themed-color(background-colors-style.container);
+    out property <brush> bg-elevated: get-themed-color(background-colors-style.elevated);
+    out property <brush> bg-inverse: get-themed-color(background-colors-style.inverse);
 
     // Color fill
 	in property <UFillColorsStyle> fill-colors-style: UDefaultStyle.fill-colors;
-    out property <color> color-fill-plus: get-themed-color(fill-colors-style.fill-plus);
-    out property <color> color-fill: get-themed-color(fill-colors-style.fill);
-    out property <color> color-fill-secondary: get-themed-color(fill-colors-style.fill-secondary);
-    out property <color> color-fill-tertiary: get-themed-color(fill-colors-style.fill-tertiary);
-    out property <color> color-fill-quaternary: get-themed-color(fill-colors-style.fill-quaternary);
+    out property <brush> color-fill-plus: get-themed-color(fill-colors-style.fill-plus);
+    out property <brush> color-fill: get-themed-color(fill-colors-style.fill);
+    out property <brush> color-fill-secondary: get-themed-color(fill-colors-style.fill-secondary);
+    out property <brush> color-fill-tertiary: get-themed-color(fill-colors-style.fill-tertiary);
+    out property <brush> color-fill-quaternary: get-themed-color(fill-colors-style.fill-quaternary);
 	
     // Shadow
 	in property <UShadowStyle> shadow-style: UDefaultStyle.shadow;
-    out property <color> shadow-color: get-themed-color(shadow-style.color);
+    out property <brush> shadow-color: get-themed-color(shadow-style.color);
     out property <length> shadow-blur: shadow-style.blur * scale-factor;
     out property <length> shadow-x-offset: shadow-style.x-offset * scale-factor;
     out property <length> shadow-y-offset: shadow-style.y-offset * scale-factor;
 
     // Focus display
 	in property <UFocusStyle> focus-style: UDefaultStyle.focus;
-    out property <color> focus-color: get-themed-color(focus-style.color);
+    out property <brush> focus-color: get-themed-color(focus-style.color);
     out property <length> focus-border-width: focus-style.border-width * scale-factor;
 
     // Text color
 	in property <UTextStyle> text-style: UDefaultStyle.text;
-    out property <color> inverse-text: get-themed-color(text-style.color-inverse);
-    out property <color> text: get-themed-color(text-style.color);
-    out property <color> text-secondary: get-themed-color(text-style.color-secondary);
-    out property <color> text-heading: get-themed-color(text-style.color-heading);
-    out property <color> text-disabled: get-themed-color(text-style.color-disabled);
+    out property <brush> inverse-text: get-themed-color(text-style.color-inverse);
+    out property <brush> text: get-themed-color(text-style.color);
+    out property <brush> text-secondary: get-themed-color(text-style.color-secondary);
+    out property <brush> text-heading: get-themed-color(text-style.color-heading);
+    out property <brush> text-disabled: get-themed-color(text-style.color-disabled);
 
     // Font size
 	in property <UFontStyle> font-style: UDefaultStyle.font;
@@ -102,9 +102,9 @@ export global UAppTheme {
     // Borders
 	in property <UBorderStyle> border-style: UDefaultStyle.border;
     out property <length> border-width-base: border-style.width * scale-factor;
-    out property <color> border: get-themed-color(border-style.color);
-    out property <color> border-secondary: get-themed-color(border-style.color-secondary);
-    out property <color> separator: get-themed-color(border-style.separator);
+    out property <brush> border: get-themed-color(border-style.color);
+    out property <brush> border-secondary: get-themed-color(border-style.color-secondary);
+    out property <brush> separator: get-themed-color(border-style.separator);
 
     // Padding
 	in property <UPaddingStyle> padding-style: UDefaultStyle.padding;
