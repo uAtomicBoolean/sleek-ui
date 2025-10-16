@@ -4,40 +4,28 @@ Display a modal dialog box, providing a title, content area, and action buttons.
 
 ![modal presentation](images/modal.png)
 
-## Theming properties
-- t-blurred-background-color `<brush>`: defaults to `rgba(0, 0, 0, 0.2)`.
-- t-title-horizontal-padding `<length>`
-- t-title-vertical-padding `<length>`
-- t-content-horizontal-padding `<length>`
-- t-content-vertical-padding `<length>`
-- t-buttons-horizontal-padding `<length>`
-- t-buttons-vertical-padding `<length>`
-- t-buttons-spacing `<length>`
-- t-title-level `<int>`: defaults to `6`.
-- t-title-font-weight `<int>`: defaults to `600`.
-- t-close-button-variant `<UIconButtonVariant>`: defaults to `text`.
-- t-cancel-button-variant `<UButtonVariant>`: defaults to `default`.
-- t-accept-button-variant `<UButtonVariant>`: defaults to `primary`.
-- t-modal-min-width `<length>`: defaults to `300px`.
-- t-modal-min-height `<length>`: no default value.
-- t-modal-max-width `<length>`: defaults to `600px`.
-- t-modal-max-height `<length>`: defaults to `600px`.
-- t-border-radius `<length>`: the radius of the modal's card. defaults to `UAppTheme.radius-base`.
-- t-display-top-divider `<bool>`: display or not the divider separating the title area from the content. Defaults to `false`.
-- t-display-bottom-divider `<bool>`: display or not the divider separating the content area from the bottom buttons. Defaults to `false`.
-
 ## Properties, callbacks and functions
-**Properties:**
+**Properties to manage modal appearance and behavior:**
 - title `<string>`: the modal's title, display in its header.
+- top-divider `<bool>`: weither to display or not the top divider (between title and content). Defaults to false.
+- bottom-divider `<bool>`: weither to display or not the bottom divider (between content and accept/cancel buttons). Defaults to false.
+- close-on-click-outside `<bool>`: if true, the modal will be closed when clicking on its greyed background. Defaults to false.
+- close-on-accept `<bool>`: weither to close or not the modal when clicking on the accept button. Defaults to true.
+- close-on-cancel `<bool>`: weither to close or not the modal when clicking on the cancel button. Defaults to true.
+- modal-min-width `<length>`: Defaults to 300px * scale-factor.
+- modal-min-height `<length>`: Defaults to 300px * scale-factor.
+- modal-max-width `<length>`: Defaults to 300px * scale-factor.
+- modal-max-height `<length>`: Defaults to 300px * scale-factor.
+
+**Properties to manage the accept and cancel buttons:**
 - accept-btn-text `<string>`: the text displayed in the accept button. Defaults to "Done".
 - cancel-btn-text `<string>`: the text displayed in the cancel button. Defaults to "Cancel".
 - accept-btn-danger `<bool>`: define if the button is in the `danger` state. Defaults to false.
 - cancel-btn-danger `<bool>`: define if the button is in the `danger` state. Defaults to false.
 - accept-btn-toggle `<bool>`: allow to display or not the accept button. Defaults to true.
 - cancel-btn-toggle `<bool>`: allow to display or not the cancel button. Defaults to true.
-- close-on-click-outside `<bool>`: if true, the modal will be closed when clicking on its greyed background. Defaults to false.
-- close-on-accept `<bool>`: weither to close or not the modal when clicking on the accept button. Defaults to true.
-- close-on-cancel `<bool>`: weither to close or not the modal when clicking on the cancel button. Defaults to true.
+- accept-btn-danger `<bool>`: allow to set the button to its `danger` state. Defaults to false.
+- cancel-btn-danger `<bool>`: allow to set the button to its `danger` state. Defaults to false.
 - accept-btn-enabled `<bool>`: enable or disable the accept button. Defaults to true.
 - cancel-btn-enabled `<bool>`: enable or disable the cancel button. Defaults to true.
 

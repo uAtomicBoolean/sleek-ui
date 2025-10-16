@@ -89,12 +89,13 @@ export component AppWindow inherits Window {
 ```
 
 ### Use the application's theme
-The application's theme is defined in the `@sleek-ui/app-theme.slint` file and implements by default: an automatic switch for dark and light themes, a customizable scale factor.  
+The application's theme is defined in the `@sleek-ui/app-theme.slint` file.  
+It implements a scale-factor property to increase/reduce the size of all widgets in the window.  
+A `UAppTheme.color-scheme` property is also available to choose which color theme to use. The available values are : `light`, `dark` and `system`. The system value uses the `Palette.color-scheme` to decide which one to use.
+
 
 #### Use your own themes
-You can set your own color scheme themes by:
-- updating the `ligth-theme` and `dark-theme` properties.
-- updating the `theme` property but you will lose the automatic light/dark theme switch.
+You can modify all the properties from the application theme to create your own theme.
 
 [Check the documentation for more informations](./docs-sleek-ui/theming.md).
 

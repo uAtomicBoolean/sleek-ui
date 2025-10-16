@@ -1,6 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
-import { ButtonInterface } from "../utils/button-interface.slint";
-import { IconTextPlacement } from "../utils/structs.slint";
+import { ButtonInterface } from "button-interface.slint";
+import { IconTextPlacement } from "../structs/icon-placement.slint";
 import { UText } from "text.slint";
 
 
@@ -12,40 +12,23 @@ export component UCheckbox inherits ButtonInterface {
     accessible-action-default => {
         self.clicked()
     }
-	// Theming properties
-	in-out property <length> t-size: UAppTheme.font-size-base * 1.2;
-    in-out property <LayoutAlignment> t-alignment: LayoutAlignment.space-between;
-    in-out property <length> t-text-spacing: UAppTheme.spacing-base;
-    in-out property <brush> t-text-color: UAppTheme.text;
-    in-out property <brush> t-text-color-disabled: UAppTheme.text-disabled;
-    in-out property <brush> t-background-checked: UAppTheme.primary;
-    in-out property <brush> t-background-checked-hover: UAppTheme.primary-hover;
-    in-out property <brush> t-background-unchecked: Colors.transparent;
-    in-out property <brush> t-background-disabled-checked: UAppTheme.primary-disabled;
-    in-out property <brush> t-background-disabled-unchecked: UAppTheme.color-fill-tertiary;
-    in-out property <length> t-border-width: UAppTheme.border-width-base;
-    in-out property <length> t-border-radius: UAppTheme.radius-base > UAppTheme.radius-medium ? UAppTheme.radius-medium : UAppTheme.radius-base;
-    in-out property <brush> t-border-color: UAppTheme.border;
-    in-out property <brush> t-border-color-hover: UAppTheme.primary-hover;
-    in-out property <brush> t-border-color-disabled: UAppTheme.border;
-    in-out property <length> t-check-icon-size: UAppTheme.font-size-base * 0.8;
-    in-out property <brush> t-check-icon-color: Colors.white;
 	// Regular properties
     in-out property <bool> checked: false;
     in-out property <string> text;
     in-out property <IconTextPlacement> text-placement: text != "" ? start : hidden;
-    border-radius: t-border-radius;
+    in-out property <LayoutAlignment> alignment: space-between;
+    border-radius: clamp(UAppTheme.radius-base, 0, UAppTheme.radius-medium);
     HorizontalLayout {
-        alignment: t-alignment;
-        spacing: t-text-spacing;
+        alignment: root.alignment;
+        spacing: UAppTheme.spacing-base;
         if text-placement == IconTextPlacement.start: VerticalLayout {
             alignment: center;
             UText {
                 text: text;
-                color: t-text-color;
+                color: UAppTheme.text;
                 states [
                     disabled when !root.enabled: {
-                        color: t-text-color-disabled;
+                        color: UAppTheme.text-disabled;
                     }
                 ]
             }
@@ -53,21 +36,20 @@ export component UCheckbox inherits ButtonInterface {
         VerticalLayout {
             alignment: center;
             Rectangle {
-                background: t-background-unchecked;
-                border-width: t-border-width;
-                border-radius: t-border-radius;
-                border-color: t-border-color;
-                width: t-size;
-                height: t-size;
+                border-width: UAppTheme.border-width-base;
+                border-radius: clamp(UAppTheme.radius-base, 0, UAppTheme.radius-medium);
+                border-color: UAppTheme.border;
+                width: UAppTheme.font-size-base * 1.2;
+                height: UAppTheme.font-size-base * 1.2;
                 VerticalLayout {
                     alignment: center;
                     HorizontalLayout {
                         alignment: center;
                         Image {
                             source: @image-url("../assets/icons/check.svg");
-                            colorize: t-check-icon-color;
-                            width: checked ? t-check-icon-size : 0px;
-                            height: checked ? t-check-icon-size : 0px;
+                            colorize: white;
+                            width: checked ? UAppTheme.font-size-base * 0.8 : 0px;
+                            height: checked ? UAppTheme.font-size-base * 0.8 : 0px;
                             animate width, height { duration: 200ms; }
                         }
                     }
@@ -77,23 +59,23 @@ export component UCheckbox inherits ButtonInterface {
 
                 states [
                     disabled-checked when !root.enabled && root.checked: {
-                        border-color: t-border-color-disabled;
-                        background: t-background-disabled-checked;
+                        border-color: UAppTheme.border;
+                        background: UAppTheme.primary.disabled;
                     }
                     disabled-unchecked when !root.enabled && !root.checked: {
-                        border-color: t-border-color-disabled;
-                        background: t-background-disabled-unchecked;
+                        border-color: UAppTheme.border;
+                        background: UAppTheme.color-fill-tertiary;
                     }
                     hover-unchecked when root.has-hover && !checked: {
-                        border-color: t-border-color-hover;
+                        border-color: UAppTheme.primary.hover;
                     }
                     hover-checked when root.has-hover && checked: {
-                        background: t-background-checked-hover;
-                        border-color: t-background-checked-hover;
+                        background: UAppTheme.primary.hover;
+                        border-color: UAppTheme.primary.hover;
                     }
                     checked when checked: {
-                        background: t-background-checked;
-                        border-color: t-background-checked;
+                        background: UAppTheme.primary.base;
+                        border-color: UAppTheme.primary.base;
                     }
                 ]
             }
@@ -103,10 +85,10 @@ export component UCheckbox inherits ButtonInterface {
             alignment: center;
             UText {
                 text: text;
-                color: t-text-color;
+                color: UAppTheme.text;
                 states [
                     disabled when !root.enabled: {
-                        color: t-text-color-disabled;
+                        color: UAppTheme.text-disabled;
                     }
                 ]
             }

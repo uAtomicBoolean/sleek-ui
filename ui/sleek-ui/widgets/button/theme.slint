@@ -1,0 +1,86 @@
+import { UAppTheme } from "../../app-theme.slint";
+
+
+export struct UButtonThemeColor {
+	base: brush,
+	danger: brush,
+}
+
+export struct UButtonTheme {
+	border-width: length,
+    bg: UButtonThemeColor,
+    bg-hover: UButtonThemeColor,
+    bg-active: UButtonThemeColor,
+    bg-checked: UButtonThemeColor,
+    bg-disabled: UButtonThemeColor,
+    text: UButtonThemeColor,
+    text-hover: UButtonThemeColor,
+    text-active: UButtonThemeColor,
+    text-checked: UButtonThemeColor,
+    text-disabled: UButtonThemeColor,
+    border: UButtonThemeColor,
+    border-hover: UButtonThemeColor,
+    border-active: UButtonThemeColor,
+    border-checked: UButtonThemeColor,
+    border-disabled: UButtonThemeColor,
+}
+
+
+export global UButtonThemes {
+    out property <UButtonTheme> primary: {
+        border-width: UAppTheme.border-width-base,
+        bg: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
+        bg-hover: { base: UAppTheme.primary.hover, danger: UAppTheme.danger.hover },
+        bg-active: { base: UAppTheme.primary.active, danger: UAppTheme.danger.active },
+        bg-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
+        bg-disabled: { base: UAppTheme.border-secondary, danger: UAppTheme.border-secondary },
+        text: { base: Colors.white, danger: Colors.white },
+        text-hover: { base: Colors.white, danger: Colors.white },
+        text-active: { base: Colors.white, danger: Colors.white },
+        text-checked: { base: Colors.white, danger: Colors.white },
+        text-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled },
+        border-disabled: { base: UAppTheme.border, danger: UAppTheme.border },
+    };
+    out property <UButtonTheme> default: {
+        border-width: UAppTheme.border-width-base,
+        bg-hover: { base: UAppTheme.color-fill-tertiary, danger: Colors.transparent },
+        bg-active: { base: UAppTheme.color-fill-secondary, danger: UAppTheme.danger.selected },
+        bg-checked: { base: UAppTheme.primary.selected, danger: UAppTheme.danger.selected },
+        text: { base: UAppTheme.text, danger: UAppTheme.danger.base },
+        text-hover: { base: UAppTheme.text, danger: UAppTheme.danger.hover },
+        text-active: { base: UAppTheme.text, danger: UAppTheme.danger.active },
+        text-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
+        text-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled },
+        border: { base: UAppTheme.border, danger: UAppTheme.danger.base },
+        border-hover: { base: UAppTheme.border, danger: UAppTheme.danger.base },
+        border-active: { base: UAppTheme.border, danger: UAppTheme.danger.base },
+        border-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
+        border-disabled: { base: UAppTheme.border, danger: UAppTheme.border },
+    };
+    out property <UButtonTheme> filled: {
+        bg: { base: UAppTheme.color-fill-tertiary, danger: UAppTheme.danger.base.with-alpha(0.1) },
+        bg-hover: {
+            base: UAppTheme.color-fill-secondary,
+            danger: UAppTheme.danger.hover.with-alpha(0.3)
+        },
+        bg-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger.active.with-alpha(0.4) },
+        bg-checked: { base: UAppTheme.primary.selected, danger: UAppTheme.danger.selected },
+        text: { base: UAppTheme.text, danger: UAppTheme.danger.base },
+        text-hover: { base: UAppTheme.text, danger: UAppTheme.danger.hover },
+        text-active: { base: UAppTheme.text, danger: UAppTheme.danger.active },
+        text-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
+        text-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled },
+    };
+    out property <UButtonTheme> text: {
+        bg-hover: {
+            base: UAppTheme.color-fill-secondary,
+            danger: UAppTheme.danger.hover.with-alpha(0.1)
+        },
+        bg-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger.active.with-alpha(0.3) },
+        text: { base: UAppTheme.text, danger: UAppTheme.danger.base },
+        text-hover: { base: UAppTheme.text, danger: UAppTheme.danger.hover },
+        text-active: { base: UAppTheme.text, danger: UAppTheme.danger.active },
+        text-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
+        text-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled },
+    };
+}

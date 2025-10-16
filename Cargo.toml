@@ -7,10 +7,10 @@ edition = "2024"
 
 [dependencies]
 dotenv = "0.15.0"
-slint = { version = "^1.10.0", features = ["renderer-skia"] }
+slint = { version = "^1.13.1", features = ["renderer-skia"] }
 
 [build-dependencies]
-slint-build = "^1.10.0"
+slint-build = "^1.13.1"
 
 [profile.dev]
 incremental = true

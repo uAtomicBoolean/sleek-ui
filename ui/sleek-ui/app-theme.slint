@@ -1,109 +1,134 @@
-import { AppTheme } from "app-themes/app-theme-struct.slint";
-import { DaybreakBlueTheme } from "app-themes/daybreak-blue.slint";
+import {
+	UMainColorsStyle,
+	UBackgroundColorsStyle,
+	UFillColorsStyle,
+	UShadowStyle,
+	UFocusStyle,
+	UTextStyle,
+	UFontSizeStyle,
+	UBorderStyle,
+	UPaddingStyle,
+	USpacingStyle,
+	URadiusStyle,
+} from "structs/styles.slint";
+import { UDefaultStyle } from "styling/default-style.slint";
 import { Palette } from "std-widgets.slint";
+import { USingleColor, UVariantsColor, UColorSchemeVariantsColor } from "structs/colors.slint";
+
+
+export enum UColorScheme {
+	light,
+	dark,
+	system,
+}
 
 export global UAppTheme {
-    in-out property <AppTheme> light-theme: DaybreakBlueTheme.light-theme;
-    in-out property <AppTheme> dark-theme: DaybreakBlueTheme.dark-theme;
-    in-out property <AppTheme> theme: Palette.color-scheme == ColorScheme.dark ? dark-theme : light-theme;
     in-out property <float> scale-factor: 1;
 
-    // Primary color.
-    in-out property <color> primary: theme.primary;
-    in-out property <color> primary-hover: theme.primary-hover;
-    in-out property <color> primary-active: theme.primary-active;
-    in-out property <color> primary-disabled: theme.primary-disabled;
-    in-out property <color> primary-selected: theme.primary-selected;
+    // Color scheme management.
+    in-out property <UColorScheme> color-scheme: system;
+    public pure function get-themed-color(c: USingleColor) -> brush {
+        if color-scheme == UColorScheme.light {
+            return c.light;
+        } else if color-scheme == UColorScheme.dark {
+            return c.dark;
+        }
+        return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
+    }
+    public pure function get-variants-color(c: UColorSchemeVariantsColor) -> UVariantsColor {
+        if color-scheme == UColorScheme.light {
+            return c.light;
+        } else if color-scheme == UColorScheme.dark {
+            return c.dark;
+        }
+        return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
+    }
 
-    // Success color.
-    in-out property <color> success: theme.success;
-    in-out property <color> success-hover: theme.success-hover;
-    in-out property <color> success-active: theme.success-active;
-    in-out property <color> success-disabled: theme.success-disabled;
-    in-out property <color> success-selected: theme.success-selected;
+    // Main colors
+    in property <UMainColorsStyle> main-colors-style: UDefaultStyle.main-colors;
+    out property <UVariantsColor> primary: get-variants-color(main-colors-style.primary);
+    out property <UVariantsColor> success: get-variants-color(main-colors-style.success);
+    out property <UVariantsColor> warning: get-variants-color(main-colors-style.warning);
+    out property <UVariantsColor> danger: get-variants-color(main-colors-style.danger);
 
-    // Warning color.
-    in-out property <color> warning: theme.warning;
-    in-out property <color> warning-hover: theme.warning-hover;
-    in-out property <color> warning-active: theme.warning-active;
-    in-out property <color> warning-disabled: theme.warning-disabled;
-    in-out property <color> warning-selected: theme.warning-selected;
+    // Background colors
+	in property <UBackgroundColorsStyle> background-colors-style: UDefaultStyle.background-colors;
+    out property <brush> bg-layout: get-themed-color(background-colors-style.layout);
+    out property <brush> bg-container: get-themed-color(background-colors-style.container);
+    out property <brush> bg-elevated: get-themed-color(background-colors-style.elevated);
+    out property <brush> bg-inverse: get-themed-color(background-colors-style.inverse);
 
-    // Danger color.
-    in-out property <color> danger: theme.danger;
-    in-out property <color> danger-hover: theme.danger-hover;
-    in-out property <color> danger-active: theme.danger-active;
-    in-out property <color> danger-disabled: theme.danger-disabled;
-    in-out property <color> danger-selected: theme.danger-selected;
+    // Fill colors
+	in property <UFillColorsStyle> fill-colors-style: UDefaultStyle.fill-colors;
+    out property <brush> color-fill-plus: get-themed-color(fill-colors-style.fill-plus);
+    out property <brush> color-fill: get-themed-color(fill-colors-style.fill);
+    out property <brush> color-fill-secondary: get-themed-color(fill-colors-style.fill-secondary);
+    out property <brush> color-fill-tertiary: get-themed-color(fill-colors-style.fill-tertiary);
+    out property <brush> color-fill-quaternary: get-themed-color(fill-colors-style.fill-quaternary);
 	
-	// Background color
-    in-out property <color> bg-container: theme.bg-container;
-    in-out property <color> bg-elevated: theme.bg-elevated;
-    in-out property <color> bg-layout: theme.bg-layout;
-    in-out property <color> bg-inverse: theme.bg-inverse;
-
-	// Color fill
-    in-out property <color> color-fill-plus: theme.color-fill-plus;
-    in-out property <color> color-fill: theme.color-fill;
-    in-out property <color> color-fill-secondary: theme.color-fill-secondary;
-    in-out property <color> color-fill-tertiary: theme.color-fill-tertiary;
-    in-out property <color> color-fill-quaternary: theme.color-fill-quaternary;
-	
-    // Shadow
-    in-out property <color> shadow-color: theme.shadow-color;
-    in-out property <length> shadow-blur: theme.shadow-blur * scale-factor;
-    in-out property <length> shadow-x-offset: theme.shadow-x-offset * scale-factor;
-    in-out property <length> shadow-y-offset: theme.shadow-y-offset * scale-factor;
-
-	// Text color
-    in-out property <color> inverse-text: theme.inverse-text;
-    in-out property <color> text: theme.text;
-    in-out property <color> text-secondary: theme.text-secondary;
-    in-out property <color> text-heading: theme.text-heading;
-    in-out property <color> text-disabled: theme.text-disabled;
-
-    // Font size
-    in-out property <length> font-size-smaller: theme.font-size-smaller * scale-factor;
-    in-out property <length> font-size-small: theme.font-size-small * scale-factor;
-    in-out property <length> font-size-base: theme.font-size-base * scale-factor;
-    in-out property <length> font-size-medium: theme.font-size-medium * scale-factor;
-    in-out property <length> font-size-big: theme.font-size-big * scale-factor;
-    in-out property <length> font-size-bigger: theme.font-size-bigger * scale-factor;
-
-	// Focus display
-    in-out property <color> focus-color: theme.focus-color;
-    in-out property <length> focus-border-width: theme.focus-border-width * scale-factor;
-
     // Borders
-	in-out property <length> border-width-base: theme.border-width-base * scale-factor;
-    in-out property <color> border: theme.border;
-    in-out property <color> border-secondary: theme.border-secondary;
-    in-out property <color> separator: theme.separator;
+	in property <UBorderStyle> border-style: UDefaultStyle.border;
+    out property <length> border-width-base: border-style.width * scale-factor;
+    out property <brush> border: get-themed-color(border-style.color);
+    out property <brush> border-secondary: get-themed-color(border-style.color-secondary);
+    out property <brush> separator: get-themed-color(border-style.separator);
 
+    // Shadow
+	in property <UShadowStyle> shadow-style: UDefaultStyle.shadow;
+    out property <brush> shadow-color: get-themed-color(shadow-style.color);
+    out property <length> shadow-blur: shadow-style.blur * scale-factor;
+    out property <length> shadow-x-offset: shadow-style.x-offset * scale-factor;
+    out property <length> shadow-y-offset: shadow-style.y-offset * scale-factor;
+
+    // Focus display
+	in property <UFocusStyle> focus-style: UDefaultStyle.focus;
+    out property <brush> focus-color: get-themed-color(focus-style.color);
+    out property <length> focus-border-width: focus-style.border-width * scale-factor;
+
+    // Text colors
+	in property <UTextStyle> text-style: UDefaultStyle.text;
+    out property <brush> inverse-text: get-themed-color(text-style.color-inverse);
+    out property <brush> text: get-themed-color(text-style.color);
+    out property <brush> text-secondary: get-themed-color(text-style.color-secondary);
+    out property <brush> text-heading: get-themed-color(text-style.color-heading);
+    out property <brush> text-disabled: get-themed-color(text-style.color-disabled);
+
+    // Font sizes
+	in property <UFontSizeStyle> font-size-style: UDefaultStyle.font-size;
+    out property <length> font-size-smaller: font-size-style.smaller * scale-factor;
+    out property <length> font-size-small: font-size-style.small * scale-factor;
+    out property <length> font-size-base: font-size-style.base * scale-factor;
+    out property <length> font-size-medium: font-size-style.medium * scale-factor;
+    out property <length> font-size-big: font-size-style.big * scale-factor;
+    out property <length> font-size-bigger: font-size-style.bigger * scale-factor;
+	
     // Icons
-    in-out property <length> icon-size-base: theme.icon-size-base * scale-factor;
+    out property <length> icon-size-base: font-size-style.icon-base-size * scale-factor;
 
     // Padding
-    in-out property <length> padding-vertical: theme.padding-vertical * scale-factor;
-    in-out property <length> padding-horizontal: theme.padding-horizontal * scale-factor;
-    in-out property <length> padding-small: theme.padding-small * scale-factor;
-    in-out property <length> padding-base: theme.padding-base * scale-factor;
-    in-out property <length> padding-medium: theme.padding-medium * scale-factor;
-    in-out property <length> padding-big: theme.padding-big * scale-factor;
-    in-out property <length> padding-bigger: theme.padding-bigger * scale-factor;
+	in property <UPaddingStyle> padding-style: UDefaultStyle.padding;
+    out property <length> padding-vertical: padding-style.vertical * scale-factor;
+    out property <length> padding-horizontal: padding-style.horizontal * scale-factor;
+    out property <length> padding-small: padding-style.small * scale-factor;
+    out property <length> padding-base: padding-style.base * scale-factor;
+    out property <length> padding-medium: padding-style.medium * scale-factor;
+    out property <length> padding-big: padding-style.big * scale-factor;
+    out property <length> padding-bigger: padding-style.bigger * scale-factor;
 
     // Spacing
-    in-out property <length> spacing-small: theme.spacing-small * scale-factor;
-    in-out property <length> spacing-base: theme.spacing-base * scale-factor;
-    in-out property <length> spacing-medium: theme.spacing-medium * scale-factor;
-    in-out property <length> spacing-big: theme.spacing-big * scale-factor;
-    in-out property <length> spacing-bigger: theme.spacing-bigger * scale-factor;
+	in property <USpacingStyle> spacing-style: UDefaultStyle.spacing;
+    out property <length> spacing-small: spacing-style.small * scale-factor;
+    out property <length> spacing-base: spacing-style.base * scale-factor;
+    out property <length> spacing-medium: spacing-style.medium * scale-factor;
+    out property <length> spacing-big: spacing-style.big * scale-factor;
+    out property <length> spacing-bigger: spacing-style.bigger * scale-factor;
 
     // Radius
-    in-out property <length> radius-base: theme.radius-base * scale-factor;
-    in-out property <length> radius-small: theme.radius-small * scale-factor;
-    in-out property <length> radius-medium: theme.radius-medium * scale-factor;
-    in-out property <length> radius-large: theme.radius-large * scale-factor;
-    in-out property <length> radius-round: theme.radius-round * scale-factor;
-    in-out property <length> radius-circle: theme.radius-circle;
+	in property <URadiusStyle> radius-style: UDefaultStyle.radius;
+    out property <length> radius-small: radius-style.small * scale-factor;
+    out property <length> radius-base: radius-style.base * scale-factor;
+    out property <length> radius-medium: radius-style.medium * scale-factor;
+    out property <length> radius-large: radius-style.large * scale-factor;
+    out property <length> radius-round: radius-style.round * scale-factor;
+    out property <length> radius-circle: radius-style.circle;
 }

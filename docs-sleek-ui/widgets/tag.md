@@ -9,19 +9,6 @@ You can either use one of the theme or set your own colors using `text-color` an
 - danger
 - warning
 - success
-- custom: used to implement custom themes.
-
-## Theming properties
-- t-background `<brush>`
-- t-text-size: `<length>`
-- t-text-color `<brush>`
-- t-icon-size `<length>`
-- t-border-width `<length>`
-- t-border-color `<brush>`
-- t-border-radius `<length>`
-- t-padding-vertical `<length>`
-- t-padding-horizontal `<length>`
-- t-content-spacing `<length>`
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.   

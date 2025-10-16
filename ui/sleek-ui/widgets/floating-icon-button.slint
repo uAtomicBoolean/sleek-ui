@@ -1,4 +1,4 @@
-import { UIconButton, UIconButtonVariant, UIconButtonThemeColor } from "icon-button.slint";
+import { UIconButton, UIconButtonVariant } from "icon-button/icon-button.slint";
 
 export component UFloatingIconButton inherits VerticalLayout {
 	// Layout placement
@@ -16,27 +16,6 @@ export component UFloatingIconButton inherits VerticalLayout {
     out property <bool> pressed <=> btn.pressed;
     in-out property <bool> loading <=> btn.loading;
     in-out property <image> icon <=> btn.icon;
-	// Theming properties
-    in-out property <length> t-border-radius <=> btn.t-border-radius;
-    in-out property <length> t-border-width <=> btn.t-border-width;
-    in-out property <length> t-icon-size <=> btn.t-icon-size;
-    in-out property <length> t-padding-vertical <=> btn.t-padding-vertical;
-    in-out property <length> t-padding-horizontal <=> btn.t-padding-horizontal;
-    in-out property <UIconButtonThemeColor> t-background;
-    in-out property <UIconButtonThemeColor> t-background-hover;
-    in-out property <UIconButtonThemeColor> t-background-active;
-    in-out property <UIconButtonThemeColor> t-background-checked;
-    in-out property <UIconButtonThemeColor> t-background-disabled;
-    in-out property <UIconButtonThemeColor> t-text-color;
-    in-out property <UIconButtonThemeColor> t-text-color-hover;
-    in-out property <UIconButtonThemeColor> t-text-color-active;
-    in-out property <UIconButtonThemeColor> t-text-color-checked;
-    in-out property <UIconButtonThemeColor> t-text-color-disabled;
-    in-out property <UIconButtonThemeColor> t-border;
-    in-out property <UIconButtonThemeColor> t-border-hover;
-    in-out property <UIconButtonThemeColor> t-border-active;
-    in-out property <UIconButtonThemeColor> t-border-checked;
-    in-out property <UIconButtonThemeColor> t-border-disabled;
     callback clicked <=> btn.clicked;
 	// TouchArea callbacks from UIconButton.
     callback double-clicked <=> btn.double-clicked;

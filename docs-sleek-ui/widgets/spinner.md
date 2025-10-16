@@ -3,10 +3,6 @@ A widget displaying a loading state.
 
 ![spinner presentation](images/spinner.png)
 
-## Theming properties
-- t-color `brush`
-- t-rotation-speed `<angle>`: the rotation angle used in the rotation speed calculation. Defaults to `240deg`.
-
 ## Properties, callbacks and functions
 Inherits from `Image`. 
 

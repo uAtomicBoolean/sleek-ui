@@ -4,17 +4,6 @@ A navigation widgets to switch between tabs.
 
 ![tabs presentation](images/tabs.png)
 
-## Theming properties
-- t-font-size `<length>`
-- t-text-color `<brush>`
-- t-text-color-hover `<brush>`
-- t-text-color-selected `<brush>`
-- t-underline-color `<brush>`: the color of the underline indicating the currently selected tab.
-- t-spacing-content `<length>`: the spacing between the divider and the tabs' contents.
-- t-divider-top-padding `<length>`: padding between the divider and the tabs.
-- t-vertical-padding `<length>`: vertical padding of a tab's title. 
-- t-horizontal-padding `<length>`: horizontal padding of a tab's title.
-  
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  
 

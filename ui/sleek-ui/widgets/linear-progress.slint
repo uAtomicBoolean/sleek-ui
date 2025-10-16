@@ -11,7 +11,6 @@ export enum ULinearProgressVariant {
 	success,
 	warning,
 	danger,
-	custom,
 }
 
 export component ULinearProgress inherits Rectangle {
@@ -19,23 +18,20 @@ export component ULinearProgress inherits Rectangle {
 	accessible-role: progress-indicator;
     accessible-value-minimum: 0;
     accessible-value-maximum: 100;
-	// Theming properties
-	in-out property <brush> t-progress-color;
-    in-out property <brush> t-background: UAppTheme.color-fill-secondary;
-    in-out property <length> t-default-size: 10px * UAppTheme.scale-factor;
-    in-out property <length> t-radius: UAppTheme.radius-round;
 	// Regular properties
     in-out property <ULinearProgressVariant> variant: primary;
+    property <brush> progress-color;
+    in property <length> default-size: 10px * UAppTheme.scale-factor;
     in property <Orientation> orientation: horizontal;
     in property <ProgressAlignment> alignment: start;
     in-out property <percent> progress: indeterminate ? 30% : 0%;
     in-out property <bool> indeterminate: false;
     callback reset-x();
-    background: t-background;
-    border-radius: t-radius;
+    background: UAppTheme.color-fill-secondary;
+    border-radius: UAppTheme.radius-round;
     clip: true;
-    height: t-default-size;
-    width: t-default-size;
+    height: default-size;
+    width: default-size;
     changed progress => {
         if indeterminate {
             progress = 30%;
@@ -58,8 +54,8 @@ export component ULinearProgress inherits Rectangle {
             return 0;
         }
         x: get-x-pos();
-        background: t-progress-color;
-        border-radius: t-radius;
+        background: progress-color;
+        border-radius: UAppTheme.radius-round;
         width: clamp(progress, 0%, 100%);
         animate width {
             easing: ease-in-out;
@@ -95,8 +91,8 @@ export component ULinearProgress inherits Rectangle {
             return 0;
         }
         y: get-y-pos();
-        background: t-progress-color;
-        border-radius: t-radius;
+        background: progress-color;
+        border-radius: UAppTheme.radius-round;
         height: clamp(progress, 0%, 100%);
         animate height {
             easing: ease-in-out;
@@ -122,16 +118,16 @@ export component ULinearProgress inherits Rectangle {
     }
     states [
         primary when variant == ULinearProgressVariant.primary: {
-            t-progress-color: UAppTheme.primary;
+            progress-color: UAppTheme.primary.base;
         }
         success when variant == ULinearProgressVariant.success: {
-            t-progress-color: UAppTheme.success;
+            progress-color: UAppTheme.success.base;
         }
         warning when variant == ULinearProgressVariant.warning: {
-            t-progress-color: UAppTheme.warning;
+            progress-color: UAppTheme.warning.base;
         }
         danger when variant == ULinearProgressVariant.danger: {
-            t-progress-color: UAppTheme.danger;
+            progress-color: UAppTheme.danger.base;
         }
     ]
 }

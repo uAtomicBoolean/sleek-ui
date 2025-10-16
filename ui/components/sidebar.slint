@@ -31,14 +31,14 @@ export component Sidebar inherits Rectangle {
             for link in ["Controls", "Data display", "Feedback", "Navigation", "About"]: HorizontalLayout {
                 padding: UAppTheme.padding-small;
                 Rectangle {
-                    border-radius: UAppTheme.radius-medium;
+                    border-radius: UAppTheme.radius-base;
                     HorizontalLayout {
                         padding: 6px;
                         UText {
                             text: link;
                             states [
                                 active when SidebarLogic.current-page == link: {
-                                    color: UAppTheme.primary;
+                                    font-weight: 800;
                                 }
                             ]
                         }
@@ -52,7 +52,7 @@ export component Sidebar inherits Rectangle {
 
                     states [
                         active when SidebarLogic.current-page == link: {
-                            background: UAppTheme.primary-selected;
+                            background: UAppTheme.primary.base.with-alpha(0.3);
                         }
                         hover when ctrls-touch.has-hover: {
                             background: UAppTheme.color-fill-tertiary;

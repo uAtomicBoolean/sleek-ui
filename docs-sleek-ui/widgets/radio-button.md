@@ -7,29 +7,6 @@ Like a radio, only one option can be selected.
 ## Variants
 - default
 - primary
-- custom: used to implement custom themes.
-
-## Theming properties
-- t-background `<brush>`
-- t-background-hover `<brush>`
-- t-background-selected `<brush>`
-- t-background-selected-hover `<brush>`
-- t-background-selected-active `<brush>`
-- t-border-width `<length>`
-- t-border-radius `<length>`
-- t-border-color `<brush>`
-- t-border-color-hover `<brush>`
-- t-border-color-selected `<brush>`
-- t-border-color-selected-hover `<brush>`
-- t-border-color-selected-active `<brush>`
-- t-text-color `<brush>`
-- t-text-color-hover `<brush>`
-- t-text-color-selected `<brush>`
-- t-text-color-selected-hover `<brush>`
-- t-text-color-selected-active `<brush>`
-- t-font-size `<length>`
-- t-padding-vertical `<length>`
-- t-padding-horizontal `<length>`
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.

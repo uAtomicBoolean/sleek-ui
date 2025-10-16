@@ -3,26 +3,6 @@ A group of radio choices.
 
 ![radio presentation](images/radio.png)
 
-## Theming properties
-- t-text-color `<brush>`
-- t-text-color-selected `<brush>`
-- t-font-size `<length>`
-- t-font-weight `<int>`
-- t-font-weight-selected `<int>`
-- t-border `<brush>`
-- t-border-hover `<brush>`
-- t-border-selected `<brush>`
-- t-border-selected-hover `<brush>`
-- t-background `<brush>`
-- t-background-selected `<brush>`
-- t-background-selected-hover `<brush>`
-- t-main-circle-size `<length>`
-- t-main-circle-border-width `<length>`
-- t-dot-circle-size `<length>`: the dot's size in the selected option.
-- t-dot-color `<brush>`
-- t-radio-spacing `<length>`: spacing between the options.
-- t-radio-text-spacing `<length>`: spacing between the options' circles and texts.
-
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.
 

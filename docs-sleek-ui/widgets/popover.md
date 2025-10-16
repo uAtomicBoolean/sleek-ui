@@ -5,14 +5,6 @@ You can check `USelect` that uses it to display the choices.
 
 ![popover presentation](images/popover.png)
 
-## Theming properties
-Uses `UCard` properties as it is its direct child:
-- t-background `<brush>`
-- t-border-radius `<length>`
-- t-drop-shadow-blur `<length>`
-- t-drop-shadow-color `<color>`
-- t-drop-shadow-offset-y `<length>`
-
 ## Properties, callbacks and functions
 Inherits from `PopupWindow`.   
 

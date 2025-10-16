@@ -1,73 +1,265 @@
 # Theming
-## Application theming
-The application's theme is defined in the `app-themes.slint` file and contains all the colors and lengths used in the application.  
-Two color variants, used by default for the light and dark color scheme, are selected automatically following the `Palette.color-scheme` property.  
-You can find a set of premade theme in [../ui/sleek-ui/app-themes/](../ui/sleek-ui/app-themes/), with `DaybreakBlue` being the currently used theme.
 
-### Modify the theme
-You can modify the current theme by updating the [UAppTheme](../ui/sleek-ui/app-theme.slint) global properties:
-- from Slint if you downloaded sleek-ui directly in your project.
-- from the backend if you downloaded sleek-ui in another folder.
+The theming configuration is available in the `UAppTheme` struct from the `@sleek-ui/app-theme.slint` file.  
+It comes with a custom scale-factor which allows you to implement a zoom like feature, and with a custom light and dark theme management system.  
+There is three categories of properties in the theme:
+- the `in-out` properties: both the `scale-factor` and `color-scheme` properties are the only ones in the categories. You can modify and get their values.
+- the `in` properties: these properties are used to define the theme style. You can't use them in your code as they automatically compute the usable properties.
+- the `out` properties: these properties are computed from the `in` ones and are the ones that you can use in your code. They will be automatically updated with the scale factor and the current color scheme.
 
-The theme struct is defined in the [app-theme-struct.slint](../ui/sleek-ui/app-themes/app-theme-struct.slint) file.
+## Scale factor and color scheme
+Both properties are unique as they are used by all other properties to update the theme, and are the only ones to not be computed from an `in` property.  
 
-> [!NOTE]
-> Both `light-theme` and `dark-theme` should be updated in order to have an automatic light/dark theme switch.  
-> Otherwise, you can just replace the `UAppTheme.theme` property with your own color theme.  
+**Scale factor:**  
+- type: `float`
+- default value: `1`
 
-**Use a predefined theme:**
-The following example is in Rust but it can be done with the other languages.
+**Color scheme:**
+- type: `UColorScheme`
+- default value: `system`
+- possible values: `light`, `dark`, `system`
+
+Updating the color scheme to one of its value will update the whole app theme automatically.  
+
+**Rust example:**  
 ```rust
 let ui = AppWindow::new()?;
-
-// Get the desired theme in your backend.
-// NOTE: you must export the desired theme's global from your mail UI file for it to be available in the backend.
-let cyan = ui.global::<CyanTheme>();
+// You must export the UAppTheme global from your main file to be able to use it in your logic.
 let app_theme = ui.global::<UAppTheme>();
-app_theme.set_light_theme(cyan.get_light_theme());
-app_theme.set_dark_theme(cyan.get_dark_theme());
-
-// Or set the `theme` property if you don't want to manage dark/light mode.
-app_theme.set_theme(cyan.get_light_theme());
+// Same as UAppTheme.
+app_theme.set_color_scheme(UColorScheme::dark);
+app_theme.set_scale_factor(1.5);
 ```
 
-**Create your own theme:**  
-- Import the [AppTheme](../ui/sleek-ui/app-themes/app-theme-struct.slint) struct.
-- Define your theme in a global.
-- Update the `UAppTheme` global in your backend (or directly in Slint if you downloaded sleek-ui directly in your project).
+## Computed properties
+All the computed properties follow the same template: a struct stored in an `in` property is used to define the values of the corresponding `out` properties.  
+The values from the struct are then either: passed through a function to get the right color depending on the color scheme, or multiplied by the scale factor.  
 
-You can generated a color palette using the [ant design theme editor](https://ant.design/theme-editor).  
-Here is the equivalent between the theme editor and our color properties:
-- primary: `level 6` / `colorPrimary`
-- primary-hover: `level 5` / `colorPrimaryHover`
-- primary-active: `level 7` / `colorPrimaryActive`
-- primary-disabled: `level 4` / `colorPrimaryBorderHover`
-- primary-selected: `level 1` / `colorPrimaryBg`
+### Main colors
+These properties defines the main colors used in the application.
+
+**Input property:**
+- name: `main-colors-style`
+- type: [UMainColorStyle](#umaincolorsstyle)
+
+**Output properties:**
+- types: `UVariantsColor`
+- names: `primary`, `success`, `warning`, `danger`
+
+### Background colors
+These properties defines the different background colors used in the application.
+
+**Input property:**
+- name: `background-colors-style`
+- type: [UBackgroundColorStyle](#ubackgroundcolorsstyle)
+
+**Output properties:**
+- types: `brush`
+- names: `bg-layout`, `bg-container`, `bg-elevated`, `bg-inverse`
+
+### Fill colors
+These properties defines the different fill colors used in the application.  
+The plus variant is opposite to the secondary, tertiary and quarternary variants.  
+
+**Input property:**
+- name: `fill-colors-style`
+- type: [UFillColorStyle](#ufillcolorsstyle)
+
+**Output properties:**
+- types: `brush`
+- names: `color-fill`, `color-fill-plus`, `color-fill-secondary`, `color-fill-tertiary`, `color-fill-quaternary`
+
+### Border
+These properties defines the style of the default border used in the different widgets.  
+
+**Input property:**
+- name: `border-style`
+- type: [UBorderStyle](#uborderstyle)
+
+**Output properties:**
+- name: `border-width-base`
+	- type: `length`
+- name: `border`
+	- type: `length`
+- name: `border-secondary`
+	- type: `length`
+- name: `separator`
+	- type: `length`
+
+### Shadow
+These properties defines the style of the default shadow used in the different widgets.  
+
+**Input property:**
+- name: `shadow-style`
+- type: [UShadowStyle](#ushadowstyle)
+
+**Output properties:**
+- name: `shadow-color`
+	- type: `brush`
+- name: `shadow-blur`
+	- type: `length`
+- name: `shadow-x-offset`
+	- type: `length`
+- name: `shadow-y-offset`
+	- type: `length`
+
+### Focus
+These properties defines the style of the focus state in the widgets.  
+
+**Input property:**
+- name: `focus-style`
+- type: [UFocusStyle](#ufocusstyle)
+
+**Output properties:**
+- name: `focus-color`
+	- type: `brush`
+- name: `focus-border-width`
+	- type: `length`
 
 
-> [!NOTE]
-> As an example, you change the the `AppTheme.radius-base` to `20px` to round all widgets.  
+### Text colors
+These properties defines the different text colors used in the application.  
 
-## Widget theming
-> [!NOTE]
-> You can check the widget's theming properties in their documentation or source files.
-> All widgets' theming properties are prefixed with `t-`.
+**Input property:**
+- name: `text-style`
+- type: [UTextStyle](#utextstyle)
 
-All widgets have a set of theming properties to allow you to easily customize them, or use another widget's properties like the `UFloatingButton`.  
-You can customize a widget by creating a new component and inheriting the desired widget: 
-```slint
-import { UIcon } from "@sleek-ui/widget-theme.slint";
+**Output properties:**
+- types: `brush`
+- names: `inverse-text`, `text`, `text-secondary`, `text-heading`, `text-disabled`
 
-component CustomAlert inherits UAlert {
-	// Necessary to be able to customize the widget else the changes will be overwritten.
-    variant: base;
-    t-background: UAppTheme.primary-selected;
-    t-icon-image: @image-url("../assets/icons/info.svg");
-    t-icon-color: UAppTheme.primary;
-    t-text-color: UAppTheme.primary;
-	// Your code
-}
-```
+### Font sizes
+These properties defines the different font sizes used in the application.  
 
-> [!WARNING]
-> If the widget comes with variants, use the `base` variants else your customization will be overwritten.
+**Input property:**
+- name: `font-size-style`
+- type: [UFontSizeStyle](#ufontsizestyle)
+
+**Output properties:**
+- types: `length`
+- names: `font-size-smaller`, `font-size-small`, `font-size-base`, `font-size-medium`, `font-size-big`, `font-size-bigger`, `icon-size-base`
+
+### Padding
+These properties defines the different padding sizes used in the application.  
+
+**Input property:**
+- name: `padding-style`
+- type: [UPaddingStyle](#upaddingstyle)
+
+**Output properties:**
+- types: `length`
+- names: `padding-horizontal`, `padding-vertical`, `padding-small`, `padding-base`, `padding-medium`, `padding-big`, `padding-bigger`
+
+### Spacing
+These properties defines the different spacing sizes used in the application.  
+
+**Input property:**
+- name: `spacing-style`
+- type: [USpacingStyle](#uspacingstyle)
+
+**Output properties:**
+- types: `length`
+- names: `spacing-small`, `spacing-base`, `spacing-medium`, `spacing-big`, `spacing-bigger`
+
+### Spacing
+These properties defines the different radius sizes used in the application.  
+
+**Input property:**
+- name: `radius-style`
+- type: [URadiusStyle](#uradiusstyle)
+
+**Output properties:**
+- types: `length`
+- names: `radius-small`, `radius-base`, `radius-medium`, `radius-large`, `radius-round`, `radius-circle`
+
+
+## Theming structs
+### USingleColor
+- light: `brush`
+- dark: `brush`
+
+### UVariantsColor
+- base: `brush`
+- hover: `brush`
+- active: `brush`
+- disabled: `brush`
+- selected: `brush`
+
+### UColorSchemeVariantsColor
+- light: `UVariantsColor`
+- dark: `UVariantsColor`
+
+### UMainColorsStyle
+- primary: `UColorSchemeVariantsColor`
+- success: `UColorSchemeVariantsColor`
+- warning: `UColorSchemeVariantsColor`
+- danger: `UColorSchemeVariantsColor`
+
+### UBackgroundColorsStyle
+- layout: `USingleColor`
+- container: `USingleColor`
+- elevated: `USingleColor`
+- inverse: `USingleColor`
+
+### UFillColorsStyle
+- fill-plus: `USingleColor`
+- fill: `USingleColor`
+- fill-secondary: `USingleColor`
+- fill-tertiary: `USingleColor`
+- fill-quaternary: `USingleColor`
+
+### UShadowStyle
+- color: `USingleColor`
+- blur: `length`
+- x-offset: `length`
+- y-offset: `length`
+
+### UFocusStyle
+- color: `USingleColor`
+- border-width: `length`
+
+### UTextStyle
+- color-inverse: `USingleColor`
+- color: `USingleColor`
+- color-secondary: `USingleColor`
+- color-heading: `USingleColor`
+- color-disabled: `USingleColor`
+
+### UFontSizeStyle
+- smaller: `length`
+- small: `length`
+- base: `length`
+- medium: `length`
+- big: `length`
+- bigger: `length`
+- icon-base-size: `length`
+
+### UBorderStyle
+- width: `length`
+- color: `USingleColor`
+- color-secondary: `USingleColor`
+- separator: `USingleColor`
+
+### UPaddingStyle
+- vertical: `length`
+- horizontal: `length`
+- small: `length`
+- base: `length`
+- medium: `length`
+- big: `length`
+- bigger: `length`
+
+### USpacingStyle
+- small: `length`
+- base: `length`
+- medium: `length`
+- big: `length`
+- bigger: `length`
+
+### URadiusStyle
+- small: `length`
+- base: `length`
+- medium: `length`
+- large: `length`
+- round: `length`
+- circle: `length`

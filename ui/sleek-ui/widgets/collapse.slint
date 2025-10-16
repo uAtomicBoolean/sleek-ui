@@ -1,5 +1,5 @@
 import { UAppTheme } from "../app-theme.slint";
-import { ButtonInterface } from "../utils/button-interface.slint";
+import { ButtonInterface } from "button-interface.slint";
 
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
@@ -15,19 +15,11 @@ export component UCollapse inherits ButtonInterface {
     accessible-action-default => {
         self.clicked()
     }
-	// Theming properties
-	in-out property <brush> t-background:Colors.transparent;
-    in-out property <brush> t-text-color: UAppTheme.primary;
-    in-out property <length> t-font-size: UAppTheme.font-size-base;
-    in-out property <int> t-font-weight;
-    in-out property <length> t-icon-size: 20px * UAppTheme.scale-factor;
-    in-out property <brush> t-icon-color: UAppTheme.primary;
 	// Regular properties
     in-out property <string> title <=> collapse-title.text;
     in-out property <bool> collapse-open: false;
     in-out property <length> content-width <=> collapse-content.width;
     in-out property <length> content-height: 100px * UAppTheme.scale-factor;
-    background: t-background;
     clicked => {
         collapse-open = !collapse-open;
     }
@@ -37,8 +29,8 @@ export component UCollapse inherits ButtonInterface {
             alignment: start;
             spacing: UAppTheme.spacing-base;
             UIcon {
-                size: root.t-icon-size;
-                colorize: root.t-icon-color;
+                size: 20px * UAppTheme.scale-factor;
+                colorize: UAppTheme.primary.base;
                 source: @image-url("../assets/icons/chevron-down.svg");
                 rotation-angle: root.collapse-open ? 180deg : 0deg;
                 animate rotation-angle {
@@ -50,9 +42,8 @@ export component UCollapse inherits ButtonInterface {
             VerticalLayout {
                 alignment: center;
                 collapse-title := UText {
-                    color: root.t-text-color;
-                    font-size: root.t-font-size;
-                    font-weight: root.t-font-weight;
+                    color: UAppTheme.primary.base;
+                    font-size: UAppTheme.font-size-base;
                     accessible-label: @tr("Title for the collapse");
                 }
             }

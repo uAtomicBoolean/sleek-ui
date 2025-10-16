@@ -4,14 +4,12 @@ It uses, by default, the `UAppTheme.icon-size-base` property to set its size.
 
 ![icon presentation](images/icon.png)
 
-## Theming properties
-- t-color `<brush>`
-
 ## Properties, callbacks and functions
 It inherits from the `Image` widget hence all its properties, callbacks and functions are available on `UIcon`.  
 
 **Properties:**
 - size `<length>`: the width and height of the icon.
+- color `<brush>`: the icon's color. Using this property instead of `colorize` allows `colorize-icon` to work even when using a custom color. Defaults to `UAppTheme.text`.
 - colorize-icon `<bool>`: If set to true, the icon will be colorized to the same color as the default text color in the app theme. Defaults to true.
 
 ## Example
