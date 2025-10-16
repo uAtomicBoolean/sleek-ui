@@ -36,7 +36,9 @@ global URadioButtonThemes {
 }
 
 export component URadioButton {
-	// TODO Add accessability
+    accessible-role: combobox;
+    accessible-label: "Radio button";
+    accessible-value: selected-value;
 	// Regular properties
 	in-out property <URadioButtonVariant> variant: default;
     property <URadionButtonTheme> theme: {
