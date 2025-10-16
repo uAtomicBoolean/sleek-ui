@@ -5,7 +5,7 @@ import {
 	UShadowStyle,
 	UFocusStyle,
 	UTextStyle,
-	UFontStyle,
+	UFontSizeStyle,
 	UBorderStyle,
 	UPaddingStyle,
 	USpacingStyle,
@@ -35,7 +35,6 @@ export global UAppTheme {
         }
         return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
     }
-
     public pure function get-variants-color(c: UColorSchemeVariantsColor) -> UVariantsColor {
         if color-scheme == UColorScheme.light {
             return c.light;
@@ -52,14 +51,14 @@ export global UAppTheme {
     out property <UVariantsColor> warning: get-variants-color(main-colors-style.warning);
     out property <UVariantsColor> danger: get-variants-color(main-colors-style.danger);
 
-    // Background color
+    // Background colors
 	in property <UBackgroundColorsStyle> background-colors-style: UDefaultStyle.background-colors;
     out property <brush> bg-layout: get-themed-color(background-colors-style.layout);
     out property <brush> bg-container: get-themed-color(background-colors-style.container);
     out property <brush> bg-elevated: get-themed-color(background-colors-style.elevated);
     out property <brush> bg-inverse: get-themed-color(background-colors-style.inverse);
 
-    // Color fill
+    // Fill colors
 	in property <UFillColorsStyle> fill-colors-style: UDefaultStyle.fill-colors;
     out property <brush> color-fill-plus: get-themed-color(fill-colors-style.fill-plus);
     out property <brush> color-fill: get-themed-color(fill-colors-style.fill);
@@ -67,6 +66,13 @@ export global UAppTheme {
     out property <brush> color-fill-tertiary: get-themed-color(fill-colors-style.fill-tertiary);
     out property <brush> color-fill-quaternary: get-themed-color(fill-colors-style.fill-quaternary);
 	
+    // Borders
+	in property <UBorderStyle> border-style: UDefaultStyle.border;
+    out property <length> border-width-base: border-style.width * scale-factor;
+    out property <brush> border: get-themed-color(border-style.color);
+    out property <brush> border-secondary: get-themed-color(border-style.color-secondary);
+    out property <brush> separator: get-themed-color(border-style.separator);
+
     // Shadow
 	in property <UShadowStyle> shadow-style: UDefaultStyle.shadow;
     out property <brush> shadow-color: get-themed-color(shadow-style.color);
@@ -79,7 +85,7 @@ export global UAppTheme {
     out property <brush> focus-color: get-themed-color(focus-style.color);
     out property <length> focus-border-width: focus-style.border-width * scale-factor;
 
-    // Text color
+    // Text colors
 	in property <UTextStyle> text-style: UDefaultStyle.text;
     out property <brush> inverse-text: get-themed-color(text-style.color-inverse);
     out property <brush> text: get-themed-color(text-style.color);
@@ -87,24 +93,17 @@ export global UAppTheme {
     out property <brush> text-heading: get-themed-color(text-style.color-heading);
     out property <brush> text-disabled: get-themed-color(text-style.color-disabled);
 
-    // Font size
-	in property <UFontStyle> font-style: UDefaultStyle.font;
-    out property <length> font-size-smaller: font-style.smaller * scale-factor;
-    out property <length> font-size-small: font-style.small * scale-factor;
-    out property <length> font-size-base: font-style.base * scale-factor;
-    out property <length> font-size-medium: font-style.medium * scale-factor;
-    out property <length> font-size-big: font-style.big * scale-factor;
-    out property <length> font-size-bigger: font-style.bigger * scale-factor;
+    // Font sizes
+	in property <UFontSizeStyle> font-size-style: UDefaultStyle.font-size;
+    out property <length> font-size-smaller: font-size-style.smaller * scale-factor;
+    out property <length> font-size-small: font-size-style.small * scale-factor;
+    out property <length> font-size-base: font-size-style.base * scale-factor;
+    out property <length> font-size-medium: font-size-style.medium * scale-factor;
+    out property <length> font-size-big: font-size-style.big * scale-factor;
+    out property <length> font-size-bigger: font-size-style.bigger * scale-factor;
 	
     // Icons
-    out property <length> icon-size-base: font-style.icon-base-size * scale-factor;
-
-    // Borders
-	in property <UBorderStyle> border-style: UDefaultStyle.border;
-    out property <length> border-width-base: border-style.width * scale-factor;
-    out property <brush> border: get-themed-color(border-style.color);
-    out property <brush> border-secondary: get-themed-color(border-style.color-secondary);
-    out property <brush> separator: get-themed-color(border-style.separator);
+    out property <length> icon-size-base: font-size-style.icon-base-size * scale-factor;
 
     // Padding
 	in property <UPaddingStyle> padding-style: UDefaultStyle.padding;
