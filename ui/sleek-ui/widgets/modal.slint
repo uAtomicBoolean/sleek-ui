@@ -28,8 +28,6 @@ export component UModal {
     in-out property <bool> cancel-btn-danger: false;
     in-out property <bool> accept-btn-toggle: true;
     in-out property <bool> cancel-btn-toggle: true;
-    in-out property <bool> accept-btn-danger: false;
-    in-out property <bool> cancel-btn-danger: false;
     in-out property <bool> accept-btn-enabled: true;
     in-out property <bool> cancel-btn-enabled: true;
     callback showed();
@@ -147,7 +145,6 @@ export component UModal {
                                 text: cancel-btn-text;
                                 danger: cancel-btn-danger;
                                 enabled: cancel-btn-enabled;
-                                danger: cancel-btn-danger;
                                 clicked => {
                                     self.loading = true;
                                     root.rejected();
@@ -163,7 +160,6 @@ export component UModal {
                                 text: accept-btn-text;
                                 danger: accept-btn-danger;
                                 enabled: accept-btn-enabled;
-                                danger: accept-btn-danger;
                                 clicked => {
                                     self.loading = true;
                                     root.accepted();

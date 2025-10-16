@@ -46,7 +46,6 @@ export component UButton inherits ButtonInterface {
     in-out property <image> icon;
     in-out property <bool> colorize-icon: true;
     in-out property <IconTextPlacement> icon-placement: IconTextPlacement.hidden;
-    enabled: !loading;
     background: get-color(theme.bg);
     border-radius: UAppTheme.radius-base;
     border-width: self.has-focus ? UAppTheme.focus-border-width : theme.border-width;
@@ -167,7 +166,6 @@ export component UButton inherits ButtonInterface {
     function get-color(c: UButtonThemeColor) -> brush {
         return self.danger ? c.danger : c.base;
     }
-
     states [
         disabled when !root.enabled: {
             background: get-color(theme.bg-disabled);
@@ -177,11 +175,11 @@ export component UButton inherits ButtonInterface {
             background: get-color(theme.bg-checked);
             border-color: get-color(theme.border-checked);
         }
-        active when root.pressed: {
+        active when root.pressed && !root.loading: {
             background: get-color(theme.bg-active);
             border-color: get-color(theme.border-active);
         }
-        hover when root.has-hover: {
+        hover when root.has-hover && !root.loading: {
             background: get-color(theme.bg-hover);
             border-color: get-color(theme.border-hover);
         }
