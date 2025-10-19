@@ -10,7 +10,9 @@ export component USlider inherits ButtonInterface {
     accessible-value-minimum: root.min-value;
     accessible-value-maximum: root.max-value;
     accessible-action-set-value(value) => {
-        root.value = value.to-float();
+        if value.is-float() {
+            root.value = value.to-float();
+        }
     }
     accessible-action-decrement => {
         root.value -= root.step
