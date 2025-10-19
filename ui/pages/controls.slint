@@ -73,6 +73,16 @@ export component Controls inherits Rectangle {
                 }
             }
 
+            HorizontalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                UText {
+                    text: "\{sliderh.value} \{sliderv.value}";
+                }
+            }
+
             UText {
                 text: "Buttons";
                 font-weight: 600;

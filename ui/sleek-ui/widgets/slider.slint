@@ -3,23 +3,52 @@ import { ButtonInterface } from "button-interface.slint";
 
 
 export component USlider inherits ButtonInterface {
-    in-out property <float> step: 1;
+	// Accessability properties
+	accessible-role: slider;
+    accessible-value: root.value;
+    accessible-value-step: root.step;
+    accessible-value-minimum: root.min-value;
+    accessible-value-maximum: root.max-value;
+    accessible-action-set-value(value) => {
+        root.value = value.to-float();
+    }
+    accessible-action-decrement => {
+        root.value -= root.step
+    }
+    accessible-action-increment => {
+        root.value += root.step
+    }
+	// Regular properties
     in-out property <float> value: 0;
+    in-out property <float> step: 1;
     in-out property <float> min-value: 0;
     in-out property <float> max-value: 100;
     in-out property <Orientation> orientation: horizontal;
     in-out property <length> default-size: 5px * UAppTheme.scale-factor;
+    changed value => {
+        value = clamp(root.value, min-value, max-value);
+    }
     clicked => {
         let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
         let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
         let value-diff = mod(raw-value, step);
-        value = clamp(raw-value - value-diff, min-value, max-value);
+        value = raw-value - value-diff;
     }
     moved => {
         let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
         let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
         let value-diff = mod(raw-value, step);
-        value = clamp(raw-value - value-diff, min-value, max-value);
+        value = raw-value - value-diff;
+    }
+    key-pressed(event) => {
+        if event.text == Key.UpArrow {
+            root.value += root.step;
+            return EventResult.accept;
+        } else if event.text == Key.DownArrow {
+            root.value -= root.step;
+            return EventResult.accept;
+        }
+        return EventResult.reject;
     }
     background: UAppTheme.color-fill-secondary;
     border-radius: UAppTheme.radius-circle;
@@ -40,6 +69,10 @@ export component USlider inherits ButtonInterface {
                 hover when root.has-hover: {
                     background: UAppTheme.primary.base;
                 }
+                focus when root.has-focus: {
+                    border-width: UAppTheme.focus-border-width;
+                    border-color: UAppTheme.focus-color;
+                }
             ]
         }
     }
@@ -58,7 +91,17 @@ export component USlider inherits ButtonInterface {
                 hover when root.has-hover: {
                     background: UAppTheme.primary.base;
                 }
+                focus when root.has-focus: {
+                    border-width: UAppTheme.focus-border-width;
+                    border-color: UAppTheme.focus-color;
+                }
             ]
         }
     }
+    states [
+        focus when root.has-focus: {
+            border-width: UAppTheme.focus-border-width;
+            border-color: UAppTheme.focus-color;
+        }
+    ]
 }
