@@ -1,0 +1,64 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ButtonInterface } from "button-interface.slint";
+
+
+export component USlider inherits ButtonInterface {
+    in-out property <float> step: 1;
+    in-out property <float> value: 0;
+    in-out property <float> min-value: 0;
+    in-out property <float> max-value: 100;
+    in-out property <Orientation> orientation: horizontal;
+    in-out property <length> default-size: 5px * UAppTheme.scale-factor;
+    clicked => {
+        let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
+        let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
+        let value-diff = mod(raw-value, step);
+        value = clamp(raw-value - value-diff, min-value, max-value);
+    }
+    moved => {
+        let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
+        let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
+        let value-diff = mod(raw-value, step);
+        value = clamp(raw-value - value-diff, min-value, max-value);
+    }
+    background: UAppTheme.color-fill-secondary;
+    border-radius: UAppTheme.radius-circle;
+    width: default-size;
+    height: default-size;
+    if orientation == Orientation.horizontal: HorizontalLayout {
+        alignment: start;
+        Rectangle {
+            property <int> curr-width: (value / 1px) * root.width / max-value;
+            background: UAppTheme.primary.hover;
+            border-radius: UAppTheme.radius-circle;
+            width: curr-width * 1px;
+            animate background { duration: 200ms; }
+            states [
+                disabled when !root.enabled: {
+                    background: UAppTheme.color-fill;
+                }
+                hover when root.has-hover: {
+                    background: UAppTheme.primary.base;
+                }
+            ]
+        }
+    }
+    if orientation == Orientation.vertical: VerticalLayout {
+        alignment: end;
+        Rectangle {
+            property <int> curr-height: (value / 1px) * root.height / max-value;
+            background: UAppTheme.primary.hover;
+            border-radius: UAppTheme.radius-circle;
+            height: curr-height * 1px;
+            animate background { duration: 200ms; }
+            states [
+                disabled when !root.enabled: {
+                    background: UAppTheme.color-fill;
+                }
+                hover when root.has-hover: {
+                    background: UAppTheme.primary.base;
+                }
+            ]
+        }
+    }
+}
