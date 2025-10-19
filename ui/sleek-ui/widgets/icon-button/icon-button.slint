@@ -53,6 +53,19 @@ export component UIconButton inherits ButtonInterface {
 	// This is a weird thing because the font-size is of 14px in the Button,
 	// which is smaller than the 16px of the icons.
 	property <length> icon-size: 17px * UAppTheme.scale-factor;
+    changed enabled => {
+        if root.loading && root.enabled {
+            root.enabled = false;
+        }
+    }
+    changed loading => {
+        root.enabled = !root.loading;
+    }
+    init => {
+        if root.loading {
+            root.enabled = false;
+        }
+    }
     background: get-color(theme.bg);
     border-radius: UAppTheme.radius-circle;
     border-width: self.has-focus ? UAppTheme.focus-border-width : theme.border-width;
@@ -99,6 +112,10 @@ export component UIconButton inherits ButtonInterface {
         return self.danger ? c.danger : c.base;
     }
     states [
+        loading when root.loading: {
+            background: get-color(theme.bg);
+            border-color: get-color(theme.border);
+        }
         disabled when !root.enabled: {
             background: get-color(theme.bg-disabled);
             border-color: get-color(theme.border-disabled);

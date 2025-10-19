@@ -2,6 +2,9 @@
 A simple icon button to do an action on click.  
 When outside of a layout, the button will take all the space available, otherwise, it will fit to its content.  
 
+> [!NOTE] The loading state overwrites the `enabled` property.
+> Setting an icon button to the loading state will set `enabled` to `false`, and vice-versa.
+
 ![icon-button presentation](images/icon-button.png)
 
 ## Variants

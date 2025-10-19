@@ -2,6 +2,9 @@
 A simple button to do an action on click.  
 When outside of a layout, the button will take all the space available, otherwise, it will fit to its content.  
 
+> [!NOTE] The loading state overwrites the `enabled` property.
+> Setting a button to the loading state will set `enabled` to `false`, and vice-versa.
+
 ![buttons presentation](images/button.png)
 
 ## Variants
