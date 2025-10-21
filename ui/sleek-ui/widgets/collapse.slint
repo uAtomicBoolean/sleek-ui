@@ -32,8 +32,8 @@ export component UCollapse inherits ButtonInterface {
                 size: 20px * UAppTheme.scale-factor;
                 colorize: UAppTheme.primary.base;
                 source: @image-url("../assets/icons/chevron-down.svg");
-                rotation-angle: root.collapse-open ? 180deg : 0deg;
-                animate rotation-angle {
+                transform-rotation: root.collapse-open ? 180deg : 0deg;
+                animate transform-rotation {
                     easing: ease;
                     duration: 200ms;
                 }

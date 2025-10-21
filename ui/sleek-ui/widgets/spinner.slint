@@ -9,8 +9,8 @@ export component USpinner inherits Image {
     width: size;
     height: size;
     source: @image-url("../assets/icons/loader-circle.svg");
-    rotation-angle: 240deg * animation-tick() / 1s;
-    animate rotation-angle {
+    transform-rotation: 240deg * animation-tick() / 1s;
+    animate transform-rotation {
         easing: ease-in-out;
         iteration-count: -1;
     }
