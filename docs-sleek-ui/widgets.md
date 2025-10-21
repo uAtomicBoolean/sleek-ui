@@ -33,7 +33,7 @@ You will find, in each files:
 - [Radio](widgets/radio.md)
 - [RadioButton](widgets/radio-button.md)
 - [Select](widgets/select.md)
-- Slider
+- [Slider](widgets/slider.md)
 - [Switch](widgets/switch.md)
 - TimePicker
 
