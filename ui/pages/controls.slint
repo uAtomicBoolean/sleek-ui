@@ -46,43 +46,6 @@ export component Controls inherits Rectangle {
                 }
             }
 
-            HorizontalLayout {
-                alignment: start;
-                spacing: UAppTheme.spacing-base;
-                padding-top: UAppTheme.padding-base;
-                padding-bottom: 24px * UAppTheme.scale-factor;
-                sliderh := USlider {
-                    enabled: widgets-enabled;
-                    value: 30;
-                    step: 5;
-                    width: 300px * UAppTheme.scale-factor;
-                }
-            }
-
-            HorizontalLayout {
-                alignment: start;
-                spacing: UAppTheme.spacing-base;
-                padding-top: UAppTheme.padding-base;
-                padding-bottom: 24px * UAppTheme.scale-factor;
-                sliderv := USlider {
-                    enabled: widgets-enabled;
-                    orientation: vertical;
-                    value: 30;
-                    step: 5;
-                    height: 300px * UAppTheme.scale-factor;
-                }
-            }
-
-            HorizontalLayout {
-                alignment: start;
-                spacing: UAppTheme.spacing-base;
-                padding-top: UAppTheme.padding-base;
-                padding-bottom: 24px * UAppTheme.scale-factor;
-                UText {
-                    text: "\{sliderh.value} \{sliderv.value}";
-                }
-            }
-
             UText {
                 text: "Buttons";
                 font-weight: 600;
@@ -301,6 +264,24 @@ export component Controls inherits Rectangle {
             }
 
             UText {
+                text: "Slider";
+                font-weight: 600;
+            }
+
+            HorizontalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                USlider {
+                    enabled: widgets-enabled;
+                    value: 30;
+                    step: 1;
+                    width: 300px * UAppTheme.scale-factor;
+                }
+            }
+
+            UText {
                 text: "Progress";
                 font-weight: 600;
             }
@@ -308,7 +289,6 @@ export component Controls inherits Rectangle {
             HorizontalLayout {
                 alignment: start;
                 spacing: UAppTheme.spacing-big;
-                padding-top: UAppTheme.padding-base;
                 VerticalLayout {
                     alignment: center;
                     progress := ULinearProgress {

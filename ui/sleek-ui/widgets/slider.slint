@@ -44,10 +44,16 @@ export component USlider inherits ButtonInterface {
     }
     key-pressed(event) => {
         if event.text == Key.UpArrow {
-            root.value += root.step;
+            value = max-value;
             return EventResult.accept;
         } else if event.text == Key.DownArrow {
-            root.value -= root.step;
+            value = min-value;
+            return EventResult.accept;
+        } else if event.text == Key.RightArrow {
+            value += step;
+            return EventResult.accept;
+        } else if event.text == Key.LeftArrow {
+            value -= step;
             return EventResult.accept;
         }
         return EventResult.reject;
@@ -56,54 +62,126 @@ export component USlider inherits ButtonInterface {
     border-radius: UAppTheme.radius-circle;
     width: default-size;
     height: default-size;
-    if orientation == Orientation.horizontal: HorizontalLayout {
-        alignment: start;
+    if orientation == Orientation.horizontal: Rectangle {
+        HorizontalLayout {
+            alignment: start;
+            h-slider := Rectangle {
+                property <int> curr-width: (value / 1px) * root.width / max-value;
+                background: UAppTheme.primary.base;
+                border-radius: UAppTheme.radius-circle;
+                width: curr-width * 1px;
+                animate background { duration: 200ms; }
+                states [
+                    disabled when !root.enabled: {
+                        background: UAppTheme.color-fill;
+                    }
+                    focus when root.has-focus: {
+                        background: UAppTheme.primary.hover;
+                    }
+                    hover when root.has-hover: {
+                        background: UAppTheme.primary.hover;
+                    }
+                ]
+            }
+        }
+
+		// Manage the aura-like border that appears around the handle.
         Rectangle {
-            property <int> curr-width: (value / 1px) * root.width / max-value;
-            background: UAppTheme.primary.hover;
+            property <length> size: 14px * UAppTheme.scale-factor;
+            x: h-slider.width - size / 2;
             border-radius: UAppTheme.radius-circle;
-            width: curr-width * 1px;
-            animate background { duration: 200ms; }
+            width: size;
+            height: size;
+            animate size { duration: 200ms; }
+            states [
+                hover when root.has-hover || root.has-focus: {
+                    background: UAppTheme.primary.base.with-alpha(0.2);
+                    size: 22px * UAppTheme.scale-factor;
+                }
+            ]
+        }
+
+		// The handle itself.
+        Rectangle {
+            property <length> size: 14px * UAppTheme.scale-factor;
+            x: h-slider.width - size / 2;
+            background: UAppTheme.bg-container;
+            border-color: UAppTheme.primary.base;
+            border-width: 2px * UAppTheme.scale-factor;
+            border-radius: UAppTheme.radius-circle;
+            width: size;
+            height: size;
+            animate border-color, size { duration: 200ms; }
             states [
                 disabled when !root.enabled: {
-                    background: UAppTheme.color-fill;
+                    border-color: UAppTheme.color-fill-plus;
                 }
-                hover when root.has-hover: {
-                    background: UAppTheme.primary.base;
-                }
-                focus when root.has-focus: {
-                    border-width: UAppTheme.focus-border-width;
-                    border-color: UAppTheme.focus-color;
+                hover when root.has-hover || root.has-focus: {
+                    border-color: UAppTheme.primary.hover;
+                    size: 18px * UAppTheme.scale-factor;
                 }
             ]
         }
     }
-    if orientation == Orientation.vertical: VerticalLayout {
-        alignment: end;
+    if orientation == Orientation.vertical: Rectangle {
+        VerticalLayout {
+            alignment: end;
+            v-slider := Rectangle {
+                property <int> curr-height: (value / 1px) * root.height / max-value;
+                background: UAppTheme.primary.base;
+                border-radius: UAppTheme.radius-circle;
+                height: curr-height * 1px;
+                animate background { duration: 200ms; }
+                states [
+                    disabled when !root.enabled: {
+                        background: UAppTheme.color-fill;
+                    }
+                    focus when root.has-focus: {
+                        background: UAppTheme.primary.hover;
+                    }
+                    hover when root.has-hover: {
+                        background: UAppTheme.primary.hover;
+                    }
+                ]
+            }
+        }
+
+		// Manage the aura-like border that appears around the handle.
         Rectangle {
-            property <int> curr-height: (value / 1px) * root.height / max-value;
-            background: UAppTheme.primary.hover;
+            property <length> size: 14px * UAppTheme.scale-factor;
+            y: root.height - (v-slider.height + size / 2);
             border-radius: UAppTheme.radius-circle;
-            height: curr-height * 1px;
-            animate background { duration: 200ms; }
+            width: size;
+            height: size;
+            animate size { duration: 200ms; }
+            states [
+                hover when root.has-hover || root.has-focus: {
+                    background: UAppTheme.primary.base.with-alpha(0.2);
+                    size: 22px * UAppTheme.scale-factor;
+                }
+            ]
+        }
+
+		// The handle itself.
+        Rectangle {
+            property <length> size: 14px * UAppTheme.scale-factor;
+            y: root.height - (v-slider.height + size / 2);
+            background: UAppTheme.bg-container;
+            border-color: UAppTheme.primary.base;
+            border-width: 2px * UAppTheme.scale-factor;
+            border-radius: UAppTheme.radius-circle;
+            width: size;
+            height: size;
+            animate border-color, size { duration: 200ms; }
             states [
                 disabled when !root.enabled: {
-                    background: UAppTheme.color-fill;
+                    border-color: UAppTheme.color-fill-plus;
                 }
-                hover when root.has-hover: {
-                    background: UAppTheme.primary.base;
-                }
-                focus when root.has-focus: {
-                    border-width: UAppTheme.focus-border-width;
-                    border-color: UAppTheme.focus-color;
+                hover when root.has-hover || root.has-focus: {
+                    border-color: UAppTheme.primary.hover;
+                    size: 18px * UAppTheme.scale-factor;
                 }
             ]
         }
     }
-    states [
-        focus when root.has-focus: {
-            border-width: UAppTheme.focus-border-width;
-            border-color: UAppTheme.focus-color;
-        }
-    ]
 }
