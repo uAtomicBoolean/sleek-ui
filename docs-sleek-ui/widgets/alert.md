@@ -8,7 +8,6 @@ A simple alert to display a message grabbing the user's attention.
 - success
 - warning
 - danger
-- custom: used to implement custom themes.
 
 ## Properties, callbacks and functions
 Inherits from `Rectangle`.  
