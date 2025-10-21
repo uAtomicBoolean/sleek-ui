@@ -6,6 +6,11 @@ export component ButtonInterface inherits Rectangle {
     out property <bool> has-focus <=> focus-scope.has-focus;
     out property <bool> has-hover <=> touch.has-hover;
     out property <bool> pressed <=> touch.pressed;
+    out property <MouseCursor> mouse-cursor <=> touch.mouse-cursor;
+    out property <length> mouse-x <=> touch.mouse-x;
+    out property <length> mouse-y <=> touch.mouse-y;
+    out property <length> pressed-x <=> touch.pressed-x;
+    out property <length> pressed-y <=> touch.pressed-y;
     callback clicked();
 	// TouchArea callbacks
     callback double-clicked <=> touch.double-clicked;
@@ -16,11 +21,7 @@ export component ButtonInterface inherits Rectangle {
 	callback key-pressed <=> focus-scope.key-pressed;
     callback key-released <=> focus-scope.key-released;
     callback focus-changed-event <=> focus-scope.focus-changed-event;
-
-    animate background, border-color {
-        easing: ease;
-        duration: 200ms;
-    }
+    animate background, border-color { duration: 200ms; }
     focus-scope := FocusScope {
         enabled: root.enabled;
         key-pressed(event) => {

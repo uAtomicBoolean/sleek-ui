@@ -1,4 +1,3 @@
-
 # Breadcrumb
 A breadcrumd to display your current navigation level.  
 All steps before last are clickable to manage navigation from the breadcrumb.  

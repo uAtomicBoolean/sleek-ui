@@ -1,4 +1,3 @@
-
 # Checkbox
 A basic checkbox.  
 

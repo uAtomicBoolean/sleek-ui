@@ -1,4 +1,3 @@
-
 # FloatingIconButton
 This button works exactly like the [UFloatingButton](floating-button.md).  
 
