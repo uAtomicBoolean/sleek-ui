@@ -1,4 +1,3 @@
-
 # Divider
 A simple divider to split a container horizontally or vertically.  
 It is, by default, oriented horizontally.

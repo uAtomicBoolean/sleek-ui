@@ -1,4 +1,3 @@
-
 # Center
 A simple layout to center elements in a parent.  
 This combine an HorizontalLayout in a VerticalLayout.  

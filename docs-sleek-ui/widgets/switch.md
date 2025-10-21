@@ -1,4 +1,3 @@
-
 # Switch
 A basic switch.  
 

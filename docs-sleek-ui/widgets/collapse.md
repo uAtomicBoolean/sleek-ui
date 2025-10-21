@@ -1,4 +1,3 @@
-
 # Collapse
 A container that hide or show its children when clicked.  
 

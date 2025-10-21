@@ -1,4 +1,3 @@
-
 # Alert
 A simple alert to display a message grabbing the user's attention.  
 

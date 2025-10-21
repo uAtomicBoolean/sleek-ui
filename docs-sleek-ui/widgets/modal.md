@@ -1,4 +1,3 @@
-
 # Modal
 Display a modal dialog box, providing a title, content area, and action buttons.    
 
