@@ -9,6 +9,8 @@ Inherits from `ButtonInterface`.
 
 **Properties:**
 - current-index `<int>`: the current selected index. Set this to -1 to have no selected option (-1 by default).
+- selected-text `<string>`: `out` property to get the currently selected text. Defaults to "".
+- selected-value `<string>`: `out` property to get the currently selected value. Defaults to "".
 - options `<[{text: string, value: string, enabled: bool}]>`: the list of available options in the select.
 
 ## Example
