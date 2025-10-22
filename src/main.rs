@@ -11,6 +11,16 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let ui = AppWindow::new()?;
 
+    let options_bar_logic = ui.global::<OptionsBarLogic>();
+    options_bar_logic.on_change_color_scheme({
+        let ui_weak = ui.as_weak();
+        move |cs| {
+            let ui = ui_weak.unwrap();
+            let app_theme = ui.global::<UAppTheme>();
+            app_theme.set_color_scheme(cs);
+        }
+    });
+
     ui.run()?;
 
     Ok(())
