@@ -1,8 +1,8 @@
 # Theming
 
 The theming configuration is available in the `UAppTheme` struct from the `@sleek-ui/app-theme.slint` file.  
-It comes with a custom scale-factor which allows you to implement a zoom like feature, and with a custom light and dark theme management system.  
-There is three categories of properties in the theme:
+It comes with a custom scale-factor which allows you to implement a zoom like feature, a custom light and dark theme management system and a set of default primary colors.  
+There are three categories of properties in the theme:
 - the `in-out` properties: both the `scale-factor` and `color-scheme` properties are the only ones in the categories. You can modify and get their values.
 - the `in` properties: these properties are used to define the theme style. You can't use them in your code as they automatically compute the usable properties.
 - the `out` properties: these properties are computed from the `in` ones and are the ones that you can use in your code. They will be automatically updated with the scale factor and the current color scheme.
@@ -30,6 +30,24 @@ let app_theme = ui.global::<UAppTheme>();
 app_theme.set_color_scheme(UColorScheme::dark);
 app_theme.set_scale_factor(1.5);
 ```
+
+## Default colors
+The default colors are available in the `@sleek-ui/styling/colors.slint` file and are from the [ant design documentation](https://ant.design/docs/spec/colors?theme=light):
+- success
+- warning
+- danger
+- dust-red
+- volcano
+- sunset-orange
+- lime
+- calendula-gold
+- sunrise-yellow
+- polar-green
+- cyan
+- daybreak-blue
+- geek-blue
+- golden-purple
+- french-magenta
 
 ## Computed properties
 All the computed properties follow the same template: a struct stored in an `in` property is used to define the values of the corresponding `out` properties.  
