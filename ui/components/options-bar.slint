@@ -1,10 +1,12 @@
 import { UDivider, USelect, USelectOption } from "../sleek-ui/widgets.slint";
-import { UAppTheme } from "../sleek-ui/app-theme.slint";
-import { UColorScheme } from "../sleek-ui/app-theme.slint";
+import { UAppTheme, UColorScheme } from "../sleek-ui/app-theme.slint";
+import { UPrimaryColors } from "../sleek-ui/styling/colors.slint";
+import { UColorSchemeVariantsColor } from "../sleek-ui/structs/colors.slint";
 
 
 export global OptionsBarLogic {
     callback change-color-scheme(color-scheme: UColorScheme);
+    callback change-primary-color(style: UColorSchemeVariantsColor);
 }
 
 export component OptionsBar inherits Rectangle {
@@ -15,32 +17,69 @@ export component OptionsBar inherits Rectangle {
             HorizontalLayout {
                 alignment: start;
                 spacing: UAppTheme.spacing-base;
-                VerticalLayout {
-                    alignment: center;
-                    USelect {
-                        property <[USelectOption]> color-scheme-options: [
-                            { text: "Light", value: "light", enabled: true },
-                            { text: "Dark", value: "dark", enabled: true },
-                            { text: "System", value: "system", enabled: true }
-                        ];
-                        width: 95px * UAppTheme.scale-factor;
-                        current-index: 2;
-                        options: color-scheme-options;
-                        selected-changed(_) => {
-                            if self.selected-value == "light" {
-                                OptionsBarLogic.change-color-scheme(UColorScheme.light);
-                            } else if self.selected-value == "dark" {
-                                OptionsBarLogic.change-color-scheme(UColorScheme.dark);
-                            } else {
-                                OptionsBarLogic.change-color-scheme(UColorScheme.system);
-                            }
+                USelect {
+                    property <[USelectOption]> color-scheme-options: [
+                        { text: "Light", value: "light", enabled: true },
+                        { text: "Dark", value: "dark", enabled: true },
+                        { text: "System", value: "system", enabled: true }
+                    ];
+                    width: 95px * UAppTheme.scale-factor;
+                    current-index: 2;
+                    options: color-scheme-options;
+                    selected-changed(_) => {
+                        if self.selected-value == "light" {
+                            OptionsBarLogic.change-color-scheme(UColorScheme.light);
+                        } else if self.selected-value == "dark" {
+                            OptionsBarLogic.change-color-scheme(UColorScheme.dark);
+                        } else {
+                            OptionsBarLogic.change-color-scheme(UColorScheme.system);
                         }
                     }
                 }
 
-                Rectangle {
-                    Text {
-                        text: "Primary color";
+                USelect {
+                    width: 150px * UAppTheme.scale-factor;
+                    current-index: 8;
+                    options: [
+                        { text: "Dust-red", value: "dust-red", enabled: true },
+                        { text: "Volcano", value: "volcano", enabled: true },
+                        { text: "Sunset orange", value: "sunset-orange", enabled: true },
+                        { text: "Lime", value: "lime", enabled: true },
+                        { text: "Calendula gold", value: "calendula-gold", enabled: true },
+                        { text: "Sunrise yellow", value: "sunrise-yellow", enabled: true },
+                        { text: "Polar green", value: "polar-green", enabled: true },
+                        { text: "Cyan", value: "cyan", enabled: true },
+                        { text: "Daybreak blue", value: "daybreak-blue", enabled: true },
+                        { text: "Geek blue", value: "geek-blue", enabled: true },
+                        { text: "Golden purple", value: "golden-purple", enabled: true },
+                        { text: "French magenta", value: "french-magenta", enabled: true },
+                    ];
+                    selected-changed(_) => {
+                        if self.selected-value == "dust-red" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.dust-red);
+                        } else if self.selected-value == "volcano" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.volcano);
+                        } else if self.selected-value == "sunset-orange" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.sunset-orange);
+                        } else if self.selected-value == "lime" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.lime);
+                        } else if self.selected-value == "calendula-gold" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.calendula-gold);
+                        } else if self.selected-value == "sunrise-yellow" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.sunrise-yellow);
+                        } else if self.selected-value == "polar-green" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.polar-green);
+                        } else if self.selected-value == "cyan" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.cyan);
+                        } else if self.selected-value == "daybreak-blue" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.daybreak-blue);
+                        } else if self.selected-value == "geek-blue" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.geek-blue);
+                        } else if self.selected-value == "golden-purple" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.golden-purple);
+                        } else if self.selected-value == "french-magenta" {
+                            OptionsBarLogic.change-primary-color(UPrimaryColors.french-magenta);
+                        }
                     }
                 }
             }
