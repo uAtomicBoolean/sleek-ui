@@ -1,26 +1,24 @@
 import {
-	UMainColorsStyle,
-	UBackgroundColorsStyle,
-	UFillColorsStyle,
-	UShadowStyle,
-	UFocusStyle,
-	UTextStyle,
-	UFontSizeStyle,
-	UBorderStyle,
-	UPaddingStyle,
-	USpacingStyle,
-	URadiusStyle,
+    UBackgroundColorsStyle,
+    UFillColorsStyle,
+    UShadowStyle,
+    UFocusStyle,
+    UTextStyle,
+    UFontSizeStyle,
+    UBorderStyle,
+    UPaddingStyle,
+    USpacingStyle,
+    URadiusStyle,
 } from "../structs/styles.slint";
+import { UColorSchemeVariantsColor } from "../structs/colors.slint";
 import { UPrimaryColors } from "colors.slint";
 
 
 export global UDefaultStyle {
-    out property <UMainColorsStyle> main-colors: {
-        primary: UPrimaryColors.daybreak-blue,
-        success: UPrimaryColors.success,
-        warning: UPrimaryColors.warning,
-        danger: UPrimaryColors.danger,
-    };
+    out property <UColorSchemeVariantsColor> primary-color: UPrimaryColors.daybreak-blue;
+    out property <UColorSchemeVariantsColor> success-color: UPrimaryColors.success;
+    out property <UColorSchemeVariantsColor> warning-color: UPrimaryColors.warning;
+    out property <UColorSchemeVariantsColor> danger-color: UPrimaryColors.danger;
     out property <UBackgroundColorsStyle> background-colors: {
         layout: { light: #F5F5F5, dark: Colors.black },
         container: { light: Colors.white, dark: #141414 },

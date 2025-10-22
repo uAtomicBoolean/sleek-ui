@@ -33,9 +33,9 @@ app_theme.set_scale_factor(1.5);
 
 ## Default colors
 The default colors are available in the `@sleek-ui/styling/colors.slint` file and are from the [ant design documentation](https://ant.design/docs/spec/colors?theme=light):
-- success
-- warning
-- danger
+- success: a green color.
+- warning: a yellow color.
+- danger: a red color.
 - dust-red
 - volcano
 - sunset-orange
@@ -55,14 +55,23 @@ The values from the struct are then either: passed through a function to get the
 
 ### Main colors
 These properties defines the main colors used in the application.
+The main colors are defined each with two properties: an `in` and an `out`.  
 
-**Input property:**
-- name: `main-colors-style`
-- type: [UMainColorStyle](#umaincolorsstyle)
+**Input properties:**
+- names:
+	- `primary-color-style`
+	- `success-color-style`
+	- `warning-color-style`
+	- `danger-color-style`
+- type: [UColorSchemeVariantsColor](#ucolorschemevariantscolor)
 
 **Output properties:**
-- types: `UVariantsColor`
-- names: `primary`, `success`, `warning`, `danger`
+- names:
+	- `primary`
+	- `success`
+	- `warning`
+	- `danger`
+- type: [UVariantsColor](#uvariantscolor)
 
 ### Background colors
 These properties defines the different background colors used in the application.
@@ -206,12 +215,6 @@ These properties defines the different radius sizes used in the application.
 ### UColorSchemeVariantsColor
 - light: `UVariantsColor`
 - dark: `UVariantsColor`
-
-### UMainColorsStyle
-- primary: `UColorSchemeVariantsColor`
-- success: `UColorSchemeVariantsColor`
-- warning: `UColorSchemeVariantsColor`
-- danger: `UColorSchemeVariantsColor`
 
 ### UBackgroundColorsStyle
 - layout: `USingleColor`
