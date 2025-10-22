@@ -1,10 +1,17 @@
-import { UDivider, USelect, USelectOption } from "../sleek-ui/widgets.slint";
+import {
+    UDivider,
+    USelect,
+    USelectOption,
+    UText,
+    USwitch,
+} from "../sleek-ui/widgets.slint";
 import { UAppTheme, UColorScheme } from "../sleek-ui/app-theme.slint";
 import { UPrimaryColors } from "../sleek-ui/styling/colors.slint";
 import { UColorSchemeVariantsColor } from "../sleek-ui/structs/colors.slint";
 
 
 export global OptionsBarLogic {
+    in-out property <bool> widgets-enabled: true;
     callback change-color-scheme(color-scheme: UColorScheme);
     callback change-primary-color(style: UColorSchemeVariantsColor);
 }
@@ -84,9 +91,20 @@ export component OptionsBar inherits Rectangle {
                 }
             }
 
-            Rectangle {
-                Text {
-                    text: "enable widgets";
+            HorizontalLayout {
+                spacing: UAppTheme.spacing-base;
+                VerticalLayout {
+                    alignment: center;
+                    UText {
+                        text: "Widgets enabled:";
+                    }
+                }
+
+                VerticalLayout {
+                    alignment: center;
+                    USwitch {
+                        checked <=> OptionsBarLogic.widgets-enabled;
+                    }
                 }
             }
         }
