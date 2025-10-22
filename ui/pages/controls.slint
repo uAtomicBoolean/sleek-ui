@@ -1,28 +1,28 @@
 import {
-	UButton,
-	UCheckbox,
-	UDivider,
-	UIconButton,
-	UInput,
-	UInputNumber,
-	ULink,
-	ULinearProgress,
-	URadio,
-	URadioButton,
-	USelect,
-	USlider,
-	USwitch,
-	UText,
-	UTitle
+    UButton,
+    UCheckbox,
+    UDivider,
+    UIconButton,
+    UInput,
+    UInputNumber,
+    ULink,
+    ULinearProgress,
+    URadio,
+    URadioButton,
+    USelect,
+    USlider,
+    USwitch,
+    UText,
+    UTitle,
 } from "../sleek-ui/widgets.slint";
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { ScrollView } from "std-widgets.slint";
+import { OptionsBarLogic } from "../components/options-bar.slint";
 
 
 import { Slider } from "std-widgets.slint";
 
 export component Controls inherits Rectangle {
-    in-out property <bool> widgets-enabled <=> enable-switch.checked;
     ScrollView {
         VerticalLayout {
             alignment: start;
@@ -33,16 +33,6 @@ export component Controls inherits Rectangle {
                 UTitle {
                     level: 4;
                     text: "Controls";
-                }
-
-                HorizontalLayout {
-                    spacing: UAppTheme.spacing-big;
-                    enable-switch := USwitch { }
-
-                    UText {
-                        text: widgets-enabled ? "Widgets enabled" : "Widgets disabled";
-                        color: UAppTheme.text-secondary;
-                    }
                 }
             }
 
@@ -56,24 +46,24 @@ export component Controls inherits Rectangle {
                 spacing: UAppTheme.spacing-base;
                 padding-top: UAppTheme.padding-base;
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     text: "Default";
                 }
 
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: primary;
                     text: "Primary";
                 }
 
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: filled;
                     text: "Filled";
                 }
 
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: text;
                     text: "Text";
                 }
@@ -84,13 +74,13 @@ export component Controls inherits Rectangle {
                 spacing: UAppTheme.spacing-base;
                 padding-top: UAppTheme.padding-base;
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     text: "Danger";
                     danger: true;
                 }
 
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: filled;
                     text: "Filled";
                     danger: true;
@@ -98,7 +88,7 @@ export component Controls inherits Rectangle {
                 }
 
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: primary;
                     text: "Primary";
                     loading: true;
@@ -111,7 +101,7 @@ export component Controls inherits Rectangle {
                 padding-top: UAppTheme.padding-base;
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: primary;
                     text: "Primary";
                     icon: @image-url("../assets/images/plus.svg");
@@ -119,20 +109,20 @@ export component Controls inherits Rectangle {
                 }
 
                 UButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     text: "Default";
                     icon: @image-url("../assets/images/plus.svg");
                     icon-placement: end;
                 }
 
                 UIconButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: primary;
                     icon: @image-url("../assets/images/search.svg");
                 }
 
                 UIconButton {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     icon: @image-url("../assets/images/search.svg");
                 }
             }
@@ -153,7 +143,7 @@ export component Controls inherits Rectangle {
                 }
 
                 USelect {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     width: 150px * UAppTheme.scale-factor;
                     options: [
                         { text: "Europe", value: "eu", enabled: true },
@@ -165,7 +155,7 @@ export component Controls inherits Rectangle {
                 VerticalLayout {
                     alignment: center;
                     USwitch {
-                        enabled: widgets-enabled;
+                        enabled: OptionsBarLogic.widgets-enabled;
                     }
                 }
             }
@@ -237,13 +227,13 @@ export component Controls inherits Rectangle {
                 padding-top: UAppTheme.padding-base;
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 UInput {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     width: 150px * UAppTheme.scale-factor;
                     placeholder: "Enter some text";
                 }
 
                 UInputNumber {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     width: 150px * UAppTheme.scale-factor;
                 }
             }
@@ -274,7 +264,7 @@ export component Controls inherits Rectangle {
                 padding-top: UAppTheme.padding-base;
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 USlider {
-                    enabled: widgets-enabled;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     value: 30;
                     step: 1;
                     width: 300px * UAppTheme.scale-factor;

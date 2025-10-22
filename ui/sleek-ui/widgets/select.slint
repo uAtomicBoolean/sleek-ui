@@ -9,7 +9,7 @@ import { UIcon } from "icon.slint";
 import { ScrollView } from "std-widgets.slint";
 
 
-struct USelectOption {
+export struct USelectOption {
 	text: string,
 	value: string,
 	enabled: bool,
@@ -28,7 +28,8 @@ export component USelect inherits ButtonInterface {
 	// Regular properties
     in-out property <int> current-index: -1;
     in-out property <[USelectOption]> options;
-    private property <string> selected-text;
+    out property <string> selected-text;
+    out property <string> selected-value;
     private property <length> full-options-height: (29px * UAppTheme.scale-factor) * options.length + UAppTheme.padding-base * 2;
     callback selected-changed(new-index: int);
     background: UAppTheme.bg-elevated;
@@ -112,6 +113,8 @@ export component USelect inherits ButtonInterface {
                         mouse-cursor: pointer;
                         clicked => {
                             current-index = index;
+                            selected-text = option.text;
+                            selected-value = option.value;
                             selected-changed(index);
                             popup.close();
                         }

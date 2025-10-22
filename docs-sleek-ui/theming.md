@@ -1,8 +1,8 @@
 # Theming
 
 The theming configuration is available in the `UAppTheme` struct from the `@sleek-ui/app-theme.slint` file.  
-It comes with a custom scale-factor which allows you to implement a zoom like feature, and with a custom light and dark theme management system.  
-There is three categories of properties in the theme:
+It comes with a custom scale-factor which allows you to implement a zoom like feature, a custom light and dark theme management system and a set of default primary colors.  
+There are three categories of properties in the theme:
 - the `in-out` properties: both the `scale-factor` and `color-scheme` properties are the only ones in the categories. You can modify and get their values.
 - the `in` properties: these properties are used to define the theme style. You can't use them in your code as they automatically compute the usable properties.
 - the `out` properties: these properties are computed from the `in` ones and are the ones that you can use in your code. They will be automatically updated with the scale factor and the current color scheme.
@@ -31,20 +31,47 @@ app_theme.set_color_scheme(UColorScheme::dark);
 app_theme.set_scale_factor(1.5);
 ```
 
+## Default colors
+The default colors are available in the `@sleek-ui/styling/colors.slint` file and are from the [ant design documentation](https://ant.design/docs/spec/colors?theme=light):
+- success: a green color.
+- warning: a yellow color.
+- danger: a red color.
+- dust-red
+- volcano
+- sunset-orange
+- lime
+- calendula-gold
+- sunrise-yellow
+- polar-green
+- cyan
+- daybreak-blue
+- geek-blue
+- golden-purple
+- french-magenta
+
 ## Computed properties
 All the computed properties follow the same template: a struct stored in an `in` property is used to define the values of the corresponding `out` properties.  
 The values from the struct are then either: passed through a function to get the right color depending on the color scheme, or multiplied by the scale factor.  
 
 ### Main colors
 These properties defines the main colors used in the application.
+The main colors are defined each with two properties: an `in` and an `out`.  
 
-**Input property:**
-- name: `main-colors-style`
-- type: [UMainColorStyle](#umaincolorsstyle)
+**Input properties:**
+- names:
+	- `primary-color-style`
+	- `success-color-style`
+	- `warning-color-style`
+	- `danger-color-style`
+- type: [UColorSchemeVariantsColor](#ucolorschemevariantscolor)
 
 **Output properties:**
-- types: `UVariantsColor`
-- names: `primary`, `success`, `warning`, `danger`
+- names:
+	- `primary`
+	- `success`
+	- `warning`
+	- `danger`
+- type: [UVariantsColor](#uvariantscolor)
 
 ### Background colors
 These properties defines the different background colors used in the application.
@@ -188,12 +215,6 @@ These properties defines the different radius sizes used in the application.
 ### UColorSchemeVariantsColor
 - light: `UVariantsColor`
 - dark: `UVariantsColor`
-
-### UMainColorsStyle
-- primary: `UColorSchemeVariantsColor`
-- success: `UColorSchemeVariantsColor`
-- warning: `UColorSchemeVariantsColor`
-- danger: `UColorSchemeVariantsColor`
 
 ### UBackgroundColorsStyle
 - layout: `USingleColor`

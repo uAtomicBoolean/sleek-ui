@@ -1,19 +1,23 @@
 import {
-	UMainColorsStyle,
-	UBackgroundColorsStyle,
-	UFillColorsStyle,
-	UShadowStyle,
-	UFocusStyle,
-	UTextStyle,
-	UFontSizeStyle,
-	UBorderStyle,
-	UPaddingStyle,
-	USpacingStyle,
-	URadiusStyle,
+    UMainColorsStyle,
+    UBackgroundColorsStyle,
+    UFillColorsStyle,
+    UShadowStyle,
+    UFocusStyle,
+    UTextStyle,
+    UFontSizeStyle,
+    UBorderStyle,
+    UPaddingStyle,
+    USpacingStyle,
+    URadiusStyle,
 } from "structs/styles.slint";
 import { UDefaultStyle } from "styling/default-style.slint";
 import { Palette } from "std-widgets.slint";
-import { USingleColor, UVariantsColor, UColorSchemeVariantsColor } from "structs/colors.slint";
+import {
+    USingleColor,
+    UVariantsColor,
+    UColorSchemeVariantsColor,
+} from "structs/colors.slint";
 
 
 export enum UColorScheme {
@@ -45,11 +49,14 @@ export global UAppTheme {
     }
 
     // Main colors
-    in property <UMainColorsStyle> main-colors-style: UDefaultStyle.main-colors;
-    out property <UVariantsColor> primary: get-variants-color(main-colors-style.primary);
-    out property <UVariantsColor> success: get-variants-color(main-colors-style.success);
-    out property <UVariantsColor> warning: get-variants-color(main-colors-style.warning);
-    out property <UVariantsColor> danger: get-variants-color(main-colors-style.danger);
+    in property <UColorSchemeVariantsColor> primary-color-style: UDefaultStyle.primary-color;
+    out property <UVariantsColor> primary: get-variants-color(primary-color-style);
+    in property <UColorSchemeVariantsColor> success-color-style: UDefaultStyle.success-color;
+    out property <UVariantsColor> success: get-variants-color(success-color-style);
+    in property <UColorSchemeVariantsColor> warning-color-style: UDefaultStyle.warning-color;
+    out property <UVariantsColor> warning: get-variants-color(warning-color-style);
+    in property <UColorSchemeVariantsColor> danger-color-style: UDefaultStyle.danger-color;
+    out property <UVariantsColor> danger: get-variants-color(danger-color-style);
 
     // Background colors
 	in property <UBackgroundColorsStyle> background-colors-style: UDefaultStyle.background-colors;
