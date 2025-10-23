@@ -7,7 +7,6 @@ A UI components library built with/for [Slint](https://github.com/slint-ui/slint
 <p align="center">
 	<img src="images/widgets_gallery.png" width="500px" />
 </p>
-![alt text](image-1.png)
 <br />
 <br />
 <br />
