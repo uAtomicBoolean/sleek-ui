@@ -1,5 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
 import { ButtonInterface } from "button-interface.slint";
+import { UPrimaryColors } from "../styling/colors.slint";
 
 
 export component USlider inherits ButtonInterface {
@@ -26,21 +27,20 @@ export component USlider inherits ButtonInterface {
     in-out property <float> min-value: 0;
     in-out property <float> max-value: 100;
     in-out property <Orientation> orientation: horizontal;
-    in-out property <length> default-size: 5px * UAppTheme.scale-factor;
     changed value => {
         value = clamp(root.value, min-value, max-value);
     }
-    clicked => {
+    function update-value() {
         let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
         let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
         let value-diff = mod(raw-value, step);
         value = raw-value - value-diff;
     }
+    clicked => {
+        update-value();
+    }
     moved => {
-        let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
-        let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
-        let value-diff = mod(raw-value, step);
-        value = raw-value - value-diff;
+        update-value();
     }
     key-pressed(event) => {
         if event.text == Key.UpArrow {
@@ -58,11 +58,12 @@ export component USlider inherits ButtonInterface {
         }
         return EventResult.reject;
     }
-    background: UAppTheme.color-fill-secondary;
-    border-radius: UAppTheme.radius-circle;
-    width: default-size;
-    height: default-size;
+    width: 14px * UAppTheme.scale-factor;
+    height: 14px * UAppTheme.scale-factor;
     if orientation == Orientation.horizontal: Rectangle {
+        background: UAppTheme.color-fill-secondary;
+        border-radius: UAppTheme.radius-circle;
+        height: 5px * UAppTheme.scale-factor;
         HorizontalLayout {
             alignment: start;
             h-slider := Rectangle {
@@ -124,6 +125,9 @@ export component USlider inherits ButtonInterface {
         }
     }
     if orientation == Orientation.vertical: Rectangle {
+        background: UAppTheme.color-fill-secondary;
+        border-radius: UAppTheme.radius-circle;
+        width: 5px * UAppTheme.scale-factor;
         VerticalLayout {
             alignment: end;
             v-slider := Rectangle {
