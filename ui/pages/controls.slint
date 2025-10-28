@@ -138,6 +138,7 @@ export component Controls inherits Rectangle {
                 padding-top: UAppTheme.padding-base;
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 UCheckbox {
+                    enabled: OptionsBarLogic.widgets-enabled;
                     text: self.checked ? "Checked" : "Unchecked";
                     text-placement: end;
                 }
@@ -170,6 +171,7 @@ export component Controls inherits Rectangle {
                 spacing: UAppTheme.spacing-big;
                 padding-top: UAppTheme.padding-base;
                 URadio {
+                    enabled: OptionsBarLogic.widgets-enabled;
                     orientation: horizontal;
                     options: ["Apple", "Banana", "Orange"];
                 }
@@ -187,6 +189,7 @@ export component Controls inherits Rectangle {
                 spacing: UAppTheme.spacing-big;
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 URadio {
+                    enabled: OptionsBarLogic.widgets-enabled;
                     options: ["Apple", "Banana", "Orange"];
                 }
             }
@@ -289,6 +292,7 @@ export component Controls inherits Rectangle {
                 }
 
                 UIconButton {
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: primary;
                     icon: @image-url("../assets/images/minus.svg");
                     clicked => {
@@ -297,6 +301,7 @@ export component Controls inherits Rectangle {
                 }
 
                 UIconButton {
+                    enabled: OptionsBarLogic.widgets-enabled;
                     variant: primary;
                     icon: @image-url("../assets/images/plus.svg");
                     clicked => {
@@ -309,6 +314,7 @@ export component Controls inherits Rectangle {
                 alignment: start;
                 padding-top: UAppTheme.padding-base;
                 progress-indeterminate := UCheckbox {
+                    enabled: OptionsBarLogic.widgets-enabled;
                     checked: false;
                     text: "Indeterminate";
                     text-placement: end;
