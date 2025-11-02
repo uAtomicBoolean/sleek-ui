@@ -3,11 +3,11 @@
 The theming configuration is available in the `UAppTheme` struct from the `@sleek-ui/app-theme.slint` file.  
 It comes with a custom scale-factor which allows you to implement a zoom like feature, a custom light and dark theme management system and a set of default primary colors.  
 There are three categories of properties in the theme:
-- the `in-out` properties: both the `scale-factor` and `color-scheme` properties are the only ones in the categories. You can modify and get their values.
+- the `in-out` properties: all three of `scale-factor`, `animation-duration` and `color-scheme` properties are the only ones in the categories. You can modify and get their values.
 - the `in` properties: these properties are used to define the theme style. You can't use them in your code as they automatically compute the usable properties.
 - the `out` properties: these properties are computed from the `in` ones and are the ones that you can use in your code. They will be automatically updated with the scale factor and the current color scheme.
 
-## Scale factor and color scheme
+## Scale factor, animation duration and color scheme
 Both properties are unique as they are used by all other properties to update the theme, and are the only ones to not be computed from an `in` property.  
 
 **Scale factor:**  

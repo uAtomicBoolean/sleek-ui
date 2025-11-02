@@ -1,6 +1,10 @@
 import { UAppTheme } from "../../app-theme.slint";
 
-import { UIconButtonThemeColor, UIconButtonTheme, UIconButtonThemes } from "theme.slint";
+import {
+    UIconButtonThemeColor,
+    UIconButtonTheme,
+    UIconButtonThemes,
+} from "theme.slint";
 
 import { ButtonInterface } from "../button-interface.slint";
 
@@ -82,7 +86,7 @@ export component UIconButton inherits ButtonInterface {
                 size: icon-size;
                 source: icon;
                 colorize: colorize-icon ? get-color(theme.text) : transparent;
-                animate colorize { duration: 200ms; }
+                animate colorize { duration: UAppTheme.animation-duration; }
                 states [
                     loading when root.loading: {
                         colorize: transparent;

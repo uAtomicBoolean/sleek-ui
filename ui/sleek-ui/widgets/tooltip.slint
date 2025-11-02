@@ -26,13 +26,11 @@ export component UTooltip {
     z: 100;
     x: compute-x-position();
     y: compute-y-position();
-
     changed user_is_hovering => {
         if !user_is_hovering && has_waited {
             has_waited = false;
         }
     }
-
     content := Rectangle {
         z: 100;
         Rectangle {
@@ -50,11 +48,11 @@ export component UTooltip {
                     wrap: word-wrap;
                     max-width: tooltip-max-width;
                     max-height: tooltip-max-height;
-                    animate opacity { duration: 200ms; }
+                    animate opacity { duration: UAppTheme.animation-duration; }
                 }
             }
 
-            animate opacity { duration: 200ms; }
+            animate opacity { duration: UAppTheme.animation-duration; }
         }
     }
 
@@ -76,7 +74,6 @@ export component UTooltip {
         }
         return inner-x;
     }
-
     function compute-y-position() -> length {
         if (position == TooltipPosition.top) {
             return inner-y - content.height - UAppTheme.spacing-base;

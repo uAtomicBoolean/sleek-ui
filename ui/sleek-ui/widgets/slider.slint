@@ -71,7 +71,7 @@ export component USlider inherits ButtonInterface {
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
                 width: curr-width * 1px;
-                animate background { duration: 200ms; }
+                animate background { duration: UAppTheme.animation-duration; }
                 states [
                     disabled when !root.enabled: {
                         background: UAppTheme.color-fill;
@@ -93,7 +93,7 @@ export component USlider inherits ButtonInterface {
             border-radius: UAppTheme.radius-circle;
             width: size;
             height: size;
-            animate size { duration: 200ms; }
+            animate size { duration: UAppTheme.animation-duration; }
             states [
                 hover when root.has-hover || root.has-focus: {
                     background: UAppTheme.primary.base.with-alpha(0.2);
@@ -112,7 +112,7 @@ export component USlider inherits ButtonInterface {
             border-radius: UAppTheme.radius-circle;
             width: size;
             height: size;
-            animate border-color, size { duration: 200ms; }
+            animate border-color, size { duration: UAppTheme.animation-duration; }
             states [
                 disabled when !root.enabled: {
                     border-color: UAppTheme.color-fill-plus;
@@ -135,7 +135,7 @@ export component USlider inherits ButtonInterface {
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
                 height: curr-height * 1px;
-                animate background { duration: 200ms; }
+                animate background { duration: UAppTheme.animation-duration; }
                 states [
                     disabled when !root.enabled: {
                         background: UAppTheme.color-fill;
@@ -157,7 +157,7 @@ export component USlider inherits ButtonInterface {
             border-radius: UAppTheme.radius-circle;
             width: size;
             height: size;
-            animate size { duration: 200ms; }
+            animate size { duration: UAppTheme.animation-duration; }
             states [
                 hover when root.has-hover || root.has-focus: {
                     background: UAppTheme.primary.base.with-alpha(0.2);
@@ -176,7 +176,7 @@ export component USlider inherits ButtonInterface {
             border-radius: UAppTheme.radius-circle;
             width: size;
             height: size;
-            animate border-color, size { duration: 200ms; }
+            animate border-color, size { duration: UAppTheme.animation-duration; }
             states [
                 disabled when !root.enabled: {
                     border-color: UAppTheme.color-fill-plus;

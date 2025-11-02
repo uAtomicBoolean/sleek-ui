@@ -38,7 +38,7 @@ component URadioOption inherits ButtonInterface {
                 border-color: UAppTheme.border;
                 animate background, border-color {
                     easing: ease;
-                    duration: 200ms;
+                    duration: UAppTheme.animation-duration;
                 }
                 HorizontalLayout {
                     alignment: center;
@@ -50,7 +50,7 @@ component URadioOption inherits ButtonInterface {
                             height: UAppTheme.font-size-base / 3;
                             background: white;
                             border-radius: UAppTheme.radius-circle;
-                            animate opacity { duration: 200ms; }
+                            animate opacity { duration: UAppTheme.animation-duration; }
                             states [
                                 disabled when !root.enabled: {
                                     background: UAppTheme.color-fill-plus;

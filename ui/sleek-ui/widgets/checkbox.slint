@@ -50,7 +50,7 @@ export component UCheckbox inherits ButtonInterface {
                             colorize: white;
                             width: checked ? UAppTheme.font-size-smaller : 0px;
                             height: checked ? UAppTheme.font-size-smaller : 0px;
-                            animate width, height { duration: 200ms; }
+                            animate width, height { duration: UAppTheme.animation-duration; }
                             states [
                                 disabled when !root.enabled: {
                                     colorize: UAppTheme.color-fill-plus;
@@ -60,7 +60,7 @@ export component UCheckbox inherits ButtonInterface {
                     }
                 }
 
-                animate background, border-color { duration: 200ms; }
+                animate background, border-color { duration: UAppTheme.animation-duration; }
                 states [
                     disabled-checked when !root.enabled && root.checked: {
                         border-color: UAppTheme.border;

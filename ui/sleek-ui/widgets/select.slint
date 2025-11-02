@@ -120,7 +120,7 @@ export component USelect inherits ButtonInterface {
                         }
                     }
 
-                    animate background { duration: 200ms; }
+                    animate background { duration: UAppTheme.animation-duration; }
                     states [
                         selected when options[current-index].value == option.value && option.enabled: {
                             background: UAppTheme.primary.base.with-alpha(0.2);
