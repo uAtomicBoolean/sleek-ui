@@ -1,5 +1,18 @@
-import "./assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf";
-import "./assets/fonts/Inter-VariableFont_opsz,wght.ttf";
+// import "./assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf";
+// import "./assets/fonts/Inter-VariableFont_opsz,wght.ttf";
+
+// Using static fonts while waiting for slint-ui/#9777 to be fixed.
+// https://github.com/slint-ui/slint/issues/9777
+import "assets/fonts/static/Inter-Black.otf";
+import "assets/fonts/static/Inter-Bold.otf";
+import "assets/fonts/static/Inter-ExtraBold.otf";
+import "assets/fonts/static/Inter-ExtraLight.otf";
+import "assets/fonts/static/Inter-Light.otf";
+import "assets/fonts/static/Inter-Medium.otf";
+import "assets/fonts/static/Inter-Regular.otf";
+import "assets/fonts/static/Inter-SemiBold.otf";
+import "assets/fonts/static/Inter-Thin.otf";
+
 
 import { UAppTheme } from "sleek-ui/app-theme.slint";
 import { UModal, UText } from "sleek-ui/widgets.slint";
