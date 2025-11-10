@@ -12,6 +12,7 @@ Like a radio, only one option can be selected.
 Inherits from `Rectangle`.
 
 **Properties:**
+- enabled `<bool>`: enable or not the widget. Defaults to `true`.
 - selected-value `<string>`: the current selected value.
 - options `<[string]>`: the list of available values.
 
