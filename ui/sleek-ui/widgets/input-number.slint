@@ -103,6 +103,11 @@ export component UInputNumber inherits Rectangle {
                     size: UAppTheme.icon-size-base;
                     colorize: UAppTheme.text-secondary;
                     source: @image-url("../assets/icons/chevron-down.svg");
+                    states [
+                        disabled when !root.enabled: {
+                            colorize: UAppTheme.text-disabled;
+                        }
+                    ]
                 }
 
                 btn-decrease := TouchArea {
@@ -136,6 +141,11 @@ export component UInputNumber inherits Rectangle {
                     colorize: UAppTheme.text-secondary;
                     source: @image-url("../assets/icons/chevron-down.svg");
                     transform-rotation: 180deg;
+                    states [
+                        disabled when !root.enabled: {
+                            colorize: UAppTheme.text-disabled;
+                        }
+                    ]
                 }
 
                 btn-increase := TouchArea {
@@ -161,7 +171,7 @@ export component UInputNumber inherits Rectangle {
 
     states [
         disabled when !input.enabled: {
-            background: UAppTheme.color-fill-quaternary;
+            background: UAppTheme.bg-elevated.with-alpha(0.4);
             border-color: UAppTheme.border-secondary;
             input.color: UAppTheme.text-disabled;
         }
@@ -175,7 +185,7 @@ export component UInputNumber inherits Rectangle {
         }
     ]
 
-	// Link the functions and callback of TextInput to child.
+    // Link the functions and callback of TextInput to child.
 	public function set-selection-offsets(start: int, end: int) {
         input.set-selection-offsets(start, end);
     }

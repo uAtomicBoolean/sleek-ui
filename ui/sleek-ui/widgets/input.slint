@@ -127,7 +127,7 @@ export component UInput inherits Rectangle {
 
     states [
         disabled when !input.enabled: {
-            background: UAppTheme.color-fill-quaternary;
+            background: UAppTheme.bg-elevated.with-alpha(0.4);
             border-color: UAppTheme.border-secondary;
             input.color: UAppTheme.text-disabled;
         }
@@ -141,7 +141,7 @@ export component UInput inherits Rectangle {
         }
     ]
 
-	// Link the functions and callback of TextInput to child.
+    // Link the functions and callback of TextInput to child.
 	public function set-selection-offsets(start: int, end: int) {
         input.set-selection-offsets(start, end);
     }
