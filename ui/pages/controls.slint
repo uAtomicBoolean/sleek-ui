@@ -204,6 +204,7 @@ export component Controls inherits Rectangle {
                 spacing: UAppTheme.spacing-big;
                 padding-top: UAppTheme.padding-base;
                 URadioButton {
+                    enabled: OptionsBarLogic.widgets-enabled;
                     options: ["Apple", "Banana", "Orange"];
                 }
             }
@@ -215,6 +216,7 @@ export component Controls inherits Rectangle {
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 URadioButton {
                     variant: primary;
+                    enabled: OptionsBarLogic.widgets-enabled;
                     options: ["Apple", "Banana", "Orange"];
                 }
             }

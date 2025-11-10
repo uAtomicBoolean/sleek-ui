@@ -14,9 +14,13 @@ struct URadionButtonTheme {
     bg-selected: brush,
     bg-selected-hover: brush,
     bg-selected-active: brush,
+	bg-disabled: brush,
+	bg-selected-disabled: brush,
     text-selected: brush,
     text-selected-hover: brush,
     text-selected-active: brush,
+	text-disabled: brush,
+	text-selected-disabled: brush,
 }
 
 global URadioButtonThemes {
@@ -24,14 +28,19 @@ global URadioButtonThemes {
         text-selected: UAppTheme.primary.base,
         text-selected-hover: UAppTheme.primary.hover,
         text-selected-active: UAppTheme.primary.active,
+        text-disabled: UAppTheme.text-disabled,
+        text-selected-disabled: UAppTheme.primary.disabled,
     };
     out property <URadionButtonTheme> primary: {
         bg-selected: UAppTheme.primary.base,
         bg-selected-hover: UAppTheme.primary.hover,
         bg-selected-active: UAppTheme.primary.active,
-        text-selected: Colors.white,
-        text-selected-hover: Colors.white,
-        text-selected-active: Colors.white,
+        bg-selected-disabled: UAppTheme.primary.disabled,
+        text-selected: UAppTheme.inverse-text,
+        text-selected-hover: UAppTheme.inverse-text,
+        text-selected-active: UAppTheme.inverse-text,
+        text-disabled: UAppTheme.text-disabled,
+        text-selected-disabled: UAppTheme.inverse-text,
     };
 }
 
@@ -47,11 +56,13 @@ export component URadioButton {
         }
         return URadioButtonThemes.default;
     };
+    in-out property <bool> enabled: true;
     in-out property <[string]> options;
     in-out property <string> selected-value: options[0];
     callback selected(value: string);
     HorizontalLayout {
         for option[idx] in root.options: ButtonInterface {
+            enabled: root.enabled;
             border-width: UAppTheme.border-width-base;
             border-color: UAppTheme.border;
             init => {
@@ -88,6 +99,15 @@ export component URadioButton {
             }
 
             states [
+                disabled when !root.enabled && selected-value != option: {
+                    background: theme.bg-disabled;
+                    option-text.color: theme.text-disabled;
+                }
+                disabled-selected when !root.enabled && selected-value == option: {
+                    background: theme.bg-selected-disabled;
+                    border-color: UAppTheme.primary.disabled;
+                    option-text.color: theme.text-selected-disabled;
+                }
                 focus-not-selected-hover when self.has-focus && selected-value != option && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
