@@ -1,7 +1,7 @@
 # ButtonInterface
 An interface that is inherited by most interactive widgets.  
 It implements a TouchArea and a FocusScope and export their properties and callbacks.  
-This also implements a few basics such as calling the `clicked` callback when pressing the spacebar on a focused widget or an easing animation with a duration of `200ms` on the background and border of its rectangle.
+This also implements a few basics such as calling the `clicked` callback when pressing the spacebar on a focused widget or an easing animation with a duration of `200ms` (`UAppTheme.base-animation-duration`) on the background and border of its rectangle.
 
 Here are the properties and callbacks exported from the interface :
 ```

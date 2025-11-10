@@ -33,12 +33,12 @@ export global UButtonThemes {
         bg-hover: { base: UAppTheme.primary.hover, danger: UAppTheme.danger.hover },
         bg-active: { base: UAppTheme.primary.active, danger: UAppTheme.danger.active },
         bg-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
-        bg-disabled: { base: UAppTheme.border-secondary, danger: UAppTheme.border-secondary },
+        bg-disabled: { base: UAppTheme.primary.disabled, danger: UAppTheme.primary.disabled },
         text: { base: Colors.white, danger: Colors.white },
         text-hover: { base: Colors.white, danger: Colors.white },
         text-active: { base: Colors.white, danger: Colors.white },
         text-checked: { base: Colors.white, danger: Colors.white },
-        text-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled },
+        text-disabled: { base: Colors.white.with-alpha(0.8), danger: Colors.white.with-alpha(0.8) },
         border-disabled: { base: UAppTheme.border, danger: UAppTheme.border },
     };
     out property <UButtonTheme> default: {

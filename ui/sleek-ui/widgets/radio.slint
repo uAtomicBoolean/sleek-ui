@@ -38,7 +38,7 @@ component URadioOption inherits ButtonInterface {
                 border-color: UAppTheme.border;
                 animate background, border-color {
                     easing: ease;
-                    duration: 200ms;
+                    duration: UAppTheme.animation-duration;
                 }
                 HorizontalLayout {
                     alignment: center;
@@ -50,12 +50,25 @@ component URadioOption inherits ButtonInterface {
                             height: UAppTheme.font-size-base / 3;
                             background: white;
                             border-radius: UAppTheme.radius-circle;
-                            animate opacity { duration: 200ms; }
+                            animate opacity { duration: UAppTheme.animation-duration; }
+                            states [
+                                disabled when !root.enabled: {
+                                    background: UAppTheme.color-fill-plus;
+                                }
+                            ]
                         }
                     }
                 }
 
                 states [
+                    disabled-unselected when !root.enabled && root.selected-value != root.option: {
+                        border-color: UAppTheme.border;
+                        background: UAppTheme.color-fill-tertiary;
+                    }
+                    disabled-selected when !root.enabled && root.selected-value == root.option: {
+                        border-color: UAppTheme.border;
+                        background: UAppTheme.primary.disabled;
+                    }
                     focused-hover-selected when root.has-focus && root.selected-value == root.option && root.has-hover: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
@@ -91,6 +104,11 @@ component URadioOption inherits ButtonInterface {
                 text: root.option;
                 color: UAppTheme.text;
                 font-size: UAppTheme.font-size-base;
+                states [
+                    disabled when !root.enabled: {
+                        color: UAppTheme.text-disabled;
+                    }
+                ]
             }
         }
     }
@@ -100,6 +118,7 @@ export component URadio {
     accessible-role: groupbox;
     accessible-item-count: self.options.length;
 	// Regular properties
+	in-out property <bool> enabled: true;
     in-out property <[string]> options;
     in-out property <string> selected-value;
     in-out property <Orientation> orientation: vertical;
@@ -109,6 +128,7 @@ export component URadio {
             alignment: start;
             spacing: UAppTheme.spacing-base;
             for option in root.options: URadioOption {
+                enabled <=> root.enabled;
                 option: option;
                 selected-value <=> root.selected-value;
                 selected(value) => {
@@ -120,6 +140,7 @@ export component URadio {
             alignment: start;
             spacing: UAppTheme.spacing-base;
             for option in root.options: URadioOption {
+                enabled <=> root.enabled;
                 option: option;
                 selected-value <=> root.selected-value;
                 selected(value) => {

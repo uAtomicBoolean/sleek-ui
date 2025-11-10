@@ -35,7 +35,7 @@ export component UTabs inherits Rectangle {
                             text: tab;
                             font-size: UAppTheme.font-size-base;
                             color: current-index == idx ? UAppTheme.primary.base : UAppTheme.text;
-                            animate color { duration: 200ms; }
+                            animate color { duration: UAppTheme.animation-duration; }
                         }
                     }
                 }
@@ -71,7 +71,7 @@ export component UTabs inherits Rectangle {
                 height: 2px * UAppTheme.scale-factor;
                 x: current-text-x;
                 background: UAppTheme.primary.base;
-                animate x, width { duration: 200ms; }
+                animate x, width { duration: UAppTheme.animation-duration; }
             }
         }
 

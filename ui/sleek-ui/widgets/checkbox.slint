@@ -39,8 +39,8 @@ export component UCheckbox inherits ButtonInterface {
                 border-width: UAppTheme.border-width-base;
                 border-radius: clamp(UAppTheme.radius-base, 0, UAppTheme.radius-medium);
                 border-color: UAppTheme.border;
-                width: UAppTheme.font-size-base * 1.2;
-                height: UAppTheme.font-size-base * 1.2;
+                width: UAppTheme.icon-size-base;
+                height: UAppTheme.icon-size-base;
                 VerticalLayout {
                     alignment: center;
                     HorizontalLayout {
@@ -48,15 +48,19 @@ export component UCheckbox inherits ButtonInterface {
                         Image {
                             source: @image-url("../assets/icons/check.svg");
                             colorize: white;
-                            width: checked ? UAppTheme.font-size-base * 0.8 : 0px;
-                            height: checked ? UAppTheme.font-size-base * 0.8 : 0px;
-                            animate width, height { duration: 200ms; }
+                            width: checked ? UAppTheme.font-size-smaller : 0px;
+                            height: checked ? UAppTheme.font-size-smaller : 0px;
+                            animate width, height { duration: UAppTheme.animation-duration; }
+                            states [
+                                disabled when !root.enabled: {
+                                    colorize: UAppTheme.color-fill-plus;
+                                }
+                            ]
                         }
                     }
                 }
 
-                animate background, border-color { duration: 200ms; }
-
+                animate background, border-color { duration: UAppTheme.animation-duration; }
                 states [
                     disabled-checked when !root.enabled && root.checked: {
                         border-color: UAppTheme.border;

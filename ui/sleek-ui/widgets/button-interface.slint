@@ -1,6 +1,7 @@
 // A simple component used to implement a button-like comportment.
 // This is used to manage clicking with the left mouse button, with 
 // the space and return keys and to manage focus.
+import { UAppTheme } from "../app-theme.slint";
 export component ButtonInterface inherits Rectangle {
     in-out property <bool> enabled <=> touch.enabled;
     out property <bool> has-focus <=> focus-scope.has-focus;
@@ -21,7 +22,7 @@ export component ButtonInterface inherits Rectangle {
 	callback key-pressed <=> focus-scope.key-pressed;
     callback key-released <=> focus-scope.key-released;
     callback focus-changed-event <=> focus-scope.focus-changed-event;
-    animate background, border-color { duration: 200ms; }
+    animate background, border-color { duration: UAppTheme.animation-duration; }
     focus-scope := FocusScope {
         enabled: root.enabled;
         key-pressed(event) => {

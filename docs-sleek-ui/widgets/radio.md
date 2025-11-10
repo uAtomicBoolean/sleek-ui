@@ -7,6 +7,7 @@ A group of radio choices.
 Inherits from `Rectangle`.
 
 **Properties:**
+- enabled `<bool>`: enable or not the widget. Defaults to `true`.
 - vertical `<bool>`: indicates weither the radio group should be vertical or horizontal. Defaults to `true`.
 - options `<[string]>`: the list of available values.
 - selected-value `<string>`: the currently selected value.

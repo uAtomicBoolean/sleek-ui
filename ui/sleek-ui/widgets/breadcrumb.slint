@@ -20,7 +20,7 @@ export component UBreadcrumb inherits Rectangle {
                         text: step;
                         color: idx == steps.length - 1 ? UAppTheme.primary.base : UAppTheme.text-secondary;
                         font-size: UAppTheme.font-size-base;
-                        animate color { duration: 200ms; }
+                        animate color { duration: UAppTheme.animation-duration; }
                         states [
                             hover when parent.has-hover && idx != steps.length - 1: {
                                 color: UAppTheme.text-disabled;

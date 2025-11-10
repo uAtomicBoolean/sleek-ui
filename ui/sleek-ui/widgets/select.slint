@@ -60,7 +60,12 @@ export component USelect inherits ButtonInterface {
             UIcon {
                 source: @image-url("../assets/icons/chevron-up-down.svg");
                 size: UAppTheme.icon-size-base;
-                colorize: UAppTheme.border;
+                colorize: UAppTheme.text-secondary;
+                states [
+                    disabled when !root.enabled: {
+                        colorize: UAppTheme.text-disabled;
+                    }
+                ]
             }
         }
     }
@@ -120,7 +125,7 @@ export component USelect inherits ButtonInterface {
                         }
                     }
 
-                    animate background { duration: 200ms; }
+                    animate background { duration: UAppTheme.animation-duration; }
                     states [
                         selected when options[current-index].value == option.value && option.enabled: {
                             background: UAppTheme.primary.base.with-alpha(0.2);
@@ -136,6 +141,7 @@ export component USelect inherits ButtonInterface {
 
     states [
         disabled when !self.enabled: {
+            background: UAppTheme.bg-elevated.with-alpha(0.4);
             border-color: UAppTheme.border-secondary;
             text-obj.color: UAppTheme.text-disabled;
         }

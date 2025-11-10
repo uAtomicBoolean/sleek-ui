@@ -94,7 +94,7 @@ export component UButton inherits ButtonInterface {
                 source: icon;
                 colorize: colorize-icon ? get-color(theme.text) : transparent;
                 size: UAppTheme.icon-size-base;
-                animate colorize { duration: 200ms; }
+                animate colorize { duration: UAppTheme.animation-duration; }
                 states [
                     loading when root.loading: {
                         colorize: transparent;
@@ -119,7 +119,7 @@ export component UButton inherits ButtonInterface {
             text-obj := UText {
                 color: get-color(theme.text);
                 font-size: UAppTheme.font-size-base;
-                animate color { duration: 200ms; }
+                animate color { duration: UAppTheme.animation-duration; }
 				// Managing the text's states here as the states' order is different from the
 				// component.
 				states [
@@ -149,7 +149,7 @@ export component UButton inherits ButtonInterface {
                 source: icon;
                 colorize: colorize-icon ? get-color(theme.text) : transparent;
                 size: UAppTheme.icon-size-base;
-                animate colorize { duration: 200ms; }
+                animate colorize { duration: UAppTheme.animation-duration; }
                 states [
                     loading when root.loading: {
                         colorize: transparent;

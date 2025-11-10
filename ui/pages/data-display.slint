@@ -1,14 +1,14 @@
 import {
-	UBreadcrumb,
-	UCard,
-	UCollapse,
-	UDivider,
-	UIcon,
-	USpinner,
-	UTag,
-	UText,
-	UTitle,
-	UTooltip
+    UBreadcrumb,
+    UCard,
+    UCollapse,
+    UDivider,
+    UIcon,
+    USpinner,
+    UTag,
+    UText,
+    UTitle,
+    UTooltip,
 } from "../sleek-ui/widgets.slint";
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { ScrollView } from "std-widgets.slint";
@@ -285,7 +285,7 @@ export component DataDisplay {
             position: top;
             user_is_hovering: t-text.has-hover;
             inner-x: t-text.absolute-position.x - root.absolute-position.x;
-            inner-y: t-text.absolute-position.y;
+            inner-y: t-text.absolute-position.y - root.absolute-position.y;
             inner-width: t-text.width;
             inner-height: t-text.height;
         }
