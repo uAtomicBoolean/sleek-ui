@@ -176,7 +176,7 @@ export component UButton inherits ButtonInterface {
     }
     states [
         loading when root.loading: {
-            background: get-color(theme.bg);
+            background: get-color(theme.bg-loading);
             border-color: get-color(theme.border);
         }
         disabled when !root.enabled: {

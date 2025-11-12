@@ -12,6 +12,7 @@ export struct UIconButtonTheme {
     bg-active: UIconButtonThemeColor,
     bg-checked: UIconButtonThemeColor,
     bg-disabled: UIconButtonThemeColor,
+	bg-loading: UIconButtonThemeColor,
     text: UIconButtonThemeColor,
     text-hover: UIconButtonThemeColor,
     text-active: UIconButtonThemeColor,
@@ -33,6 +34,7 @@ export global UIconButtonThemes {
         bg-active: { base: UAppTheme.primary.active, danger: UAppTheme.danger.active },
         bg-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
         bg-disabled: { base: UAppTheme.border-secondary, danger: UAppTheme.border-secondary },
+        bg-loading: { base: UAppTheme.primary.hover, danger: UAppTheme.danger.hover },
         text: { base: Colors.white, danger: Colors.white },
         text-hover: { base: Colors.white, danger: Colors.white },
         text-active: { base: Colors.white, danger: Colors.white },
@@ -45,6 +47,7 @@ export global UIconButtonThemes {
         bg-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger.selected },
         bg-checked: { base: UAppTheme.primary.selected, danger: UAppTheme.danger.selected },
         text: { base: UAppTheme.text, danger: UAppTheme.danger.base },
+        bg-loading: { base: UAppTheme.color-fill-secondary, danger: Colors.transparent },
         text-hover: { base: UAppTheme.text, danger: UAppTheme.danger.hover },
         text-active: { base: UAppTheme.text, danger: UAppTheme.danger.active },
         text-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
@@ -63,6 +66,10 @@ export global UIconButtonThemes {
         },
         bg-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger.active.with-alpha(0.4) },
         bg-checked: { base: UAppTheme.primary.selected, danger: UAppTheme.danger.selected },
+        bg-loading: {
+            base: UAppTheme.color-fill-secondary,
+            danger: UAppTheme.danger.hover.with-alpha(0.3)
+        },
         text: { base: UAppTheme.text, danger: UAppTheme.danger.base },
         text-hover: { base: UAppTheme.text, danger: UAppTheme.danger.hover },
         text-active: { base: UAppTheme.text, danger: UAppTheme.danger.active },
@@ -75,6 +82,10 @@ export global UIconButtonThemes {
             danger: UAppTheme.danger.hover.with-alpha(0.1)
         },
         bg-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger.active.with-alpha(0.3) },
+        bg-loading: {
+            base: UAppTheme.color-fill-secondary,
+            danger: UAppTheme.danger.hover.with-alpha(0.1)
+        },
         text: { base: UAppTheme.text, danger: UAppTheme.danger.base },
         text-hover: { base: UAppTheme.text, danger: UAppTheme.danger.hover },
         text-active: { base: UAppTheme.text, danger: UAppTheme.danger.active },
