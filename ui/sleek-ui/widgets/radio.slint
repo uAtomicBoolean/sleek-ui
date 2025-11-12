@@ -53,7 +53,7 @@ component URadioOption inherits ButtonInterface {
                             animate opacity { duration: UAppTheme.animation-duration; }
                             states [
                                 disabled when !root.enabled: {
-                                    background: UAppTheme.color-fill-plus;
+                                    background: white.with-alpha(0.8);
                                 }
                             ]
                         }
@@ -66,7 +66,7 @@ component URadioOption inherits ButtonInterface {
                         background: UAppTheme.color-fill-tertiary;
                     }
                     disabled-selected when !root.enabled && root.selected-value == root.option: {
-                        border-color: UAppTheme.border;
+                        border-color: UAppTheme.primary.disabled;
                         background: UAppTheme.primary.disabled;
                     }
                     focused-hover-selected when root.has-focus && root.selected-value == root.option && root.has-hover: {
@@ -104,6 +104,7 @@ component URadioOption inherits ButtonInterface {
                 text: root.option;
                 color: UAppTheme.text;
                 font-size: UAppTheme.font-size-base;
+                animate color { duration: UAppTheme.animation-duration; }
                 states [
                     disabled when !root.enabled: {
                         color: UAppTheme.text-disabled;

@@ -36,7 +36,7 @@ export component USwitch inherits ButtonInterface {
     states [
         disabled when !root.enabled: {
             background: checked ? UAppTheme.primary.disabled : UAppTheme.color-fill-secondary;
-            circle.background: UAppTheme.color-fill-plus;
+            circle.background: white.with-alpha(0.8);
         }
         hover when root.has-hover: {
             background: checked ? UAppTheme.primary.hover : UAppTheme.color-fill-plus;
