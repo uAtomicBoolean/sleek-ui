@@ -3,7 +3,8 @@
 // the space and return keys and to manage focus.
 import { UAppTheme } from "../app-theme.slint";
 export component ButtonInterface inherits Rectangle {
-    in-out property <bool> enabled <=> touch.enabled;
+    in-out property <bool> enabled: true;
+    in-out property <MouseCursor> touch-mouse-cursor: pointer;
     out property <bool> has-focus <=> focus-scope.has-focus;
     out property <bool> has-hover <=> touch.has-hover;
     out property <bool> pressed <=> touch.pressed;
@@ -12,12 +13,13 @@ export component ButtonInterface inherits Rectangle {
     out property <length> mouse-y <=> touch.mouse-y;
     out property <length> pressed-x <=> touch.pressed-x;
     out property <length> pressed-y <=> touch.pressed-y;
+
     callback clicked();
 	// TouchArea callbacks
-    callback double-clicked <=> touch.double-clicked;
-    callback moved <=> touch.moved;
-    callback pointer-event <=> touch.pointer-event;
-    callback scroll-event <=> touch.scroll-event;
+    callback double-clicked();
+    callback moved();
+    callback pointer-event();
+    callback scroll-event() -> EventResult;
 	// FocusScope callbacks
 	callback key-pressed <=> focus-scope.key-pressed;
     callback key-released <=> focus-scope.key-released;
@@ -38,11 +40,34 @@ export component ButtonInterface inherits Rectangle {
     }
 
     touch := TouchArea {
-        mouse-cursor: pointer;
+        mouse-cursor: root.enabled ? root.touch-mouse-cursor : not-allowed;
         clicked => {
-            focus-scope.focus();
-            focus-scope.clear-focus();
-            root.clicked();
+            if root.enabled {
+                focus-scope.focus();
+                focus-scope.clear-focus();
+                root.clicked();
+            }
+        }
+        double-clicked => {
+            if root.enabled {
+                root.double-clicked();
+            }
+        }
+        moved => {
+            if root.enabled {
+                root.moved();
+            }
+        }
+        pointer-event => {
+            if root.enabled {
+                root.pointer-event();
+            }
+        }
+        scroll-event => {
+            if root.enabled {
+                return root.scroll-event();
+            }
+            EventResult.reject
         }
     }
 }
