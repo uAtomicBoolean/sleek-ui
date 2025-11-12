@@ -5,28 +5,35 @@ import { UDivider } from "divider.slint";
 import { ButtonInterface } from "button-interface.slint";
 
 
+enum TabsAlignmentType {
+	start,
+	stretch,
+}
+
 export component UTabs inherits Rectangle {
 	// Regular properties
     in-out property <[string]> tabs;
     in-out property <int> current-index: 0;
-    property <length> current-text-x: UAppTheme.padding-horizontal;
-    property <length> current-text-width: 0px;
+    in-out property <TabsAlignmentType> tabs-alignement: start;
+    property <length> underline-x: 0px;
+    property <length> underline-width: 0px;
     VerticalLayout {
         alignment: start;
         HorizontalLayout {
-            alignment: start;
+            alignment: tabs-alignement == TabsAlignmentType.start ? start : stretch;
             padding-bottom: UAppTheme.padding-base;
             for tab[idx] in tabs: ButtonInterface {
                 clicked => {
                     current-index = idx;
-                    current-text-x = self.x + UAppTheme.padding-horizontal;
-                    current-text-width = tab-text.width;
+                    underline-x = self.x;
+                    underline-width = self.width;
                 }
                 border-color: UAppTheme.focus-color;
                 border-width: self.has-focus ? UAppTheme.focus-border-width : 0px;
                 border-radius: UAppTheme.radius-base;
                 VerticalLayout {
                     HorizontalLayout {
+                        alignment: center;
                         padding-top: UAppTheme.padding-vertical;
                         padding-bottom: UAppTheme.padding-vertical;
                         padding-left: UAppTheme.padding-horizontal;
@@ -40,14 +47,14 @@ export component UTabs inherits Rectangle {
                     }
                 }
 
-				// Used to initialize the current-* properties.
-				// This is due to a recursion error when trying to get the tab-text's 
+                // Used to initialize the underline-width property.
+				// This is due to a recursion error when trying to get the ButtonInterface's 
 				// width before it being rendered.
                 Timer {
                     interval: 1ms;
-                    running: true;
+                    running: current-index == idx;
                     triggered => {
-                        current-text-width = tab-text.width;
+                        underline-width = parent.width;
                         self.running = false;
                     }
                 }
@@ -64,12 +71,13 @@ export component UTabs inherits Rectangle {
         }
 
         Rectangle {
+            height: 2px;
             UDivider { }
 
             Rectangle {
-                width: current-text-width;
+                width: underline-width;
                 height: 2px * UAppTheme.scale-factor;
-                x: current-text-x;
+                x: underline-x;
                 background: UAppTheme.primary.base;
                 animate x, width { duration: UAppTheme.animation-duration; }
             }
