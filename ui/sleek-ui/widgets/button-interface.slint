@@ -6,8 +6,8 @@ export component ButtonInterface inherits Rectangle {
     in-out property <bool> enabled: true;
     in-out property <MouseCursor> touch-mouse-cursor: pointer;
     out property <bool> has-focus <=> focus-scope.has-focus;
-    out property <bool> has-hover <=> touch.has-hover;
-    out property <bool> pressed <=> touch.pressed;
+    out property <bool> has-hover: enabled && touch.has-hover;
+    out property <bool> pressed: enabled && touch.pressed;
     out property <MouseCursor> mouse-cursor <=> touch.mouse-cursor;
     out property <length> mouse-x <=> touch.mouse-x;
     out property <length> mouse-y <=> touch.mouse-y;
