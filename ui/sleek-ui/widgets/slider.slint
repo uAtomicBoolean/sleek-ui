@@ -86,7 +86,7 @@ export component USlider inherits ButtonInterface {
             }
         }
 
-		// Manage the aura-like border that appears around the handle.
+        // Manage the aura-like border that appears around the handle.
         Rectangle {
             property <length> size: 14px * UAppTheme.scale-factor;
             x: h-slider.width - size / 2;
@@ -95,14 +95,14 @@ export component USlider inherits ButtonInterface {
             height: size;
             animate size { duration: UAppTheme.animation-duration; }
             states [
-                hover when root.has-hover || root.has-focus: {
+                hover when root.enabled && (root.has-hover || root.has-focus): {
                     background: UAppTheme.primary.base.with-alpha(0.2);
                     size: 22px * UAppTheme.scale-factor;
                 }
             ]
         }
 
-		// The handle itself.
+        // The handle itself.
         Rectangle {
             property <length> size: 14px * UAppTheme.scale-factor;
             x: h-slider.width - size / 2;
@@ -150,7 +150,7 @@ export component USlider inherits ButtonInterface {
             }
         }
 
-		// Manage the aura-like border that appears around the handle.
+        // Manage the aura-like border that appears around the handle.
         Rectangle {
             property <length> size: 14px * UAppTheme.scale-factor;
             y: root.height - (v-slider.height + size / 2);
@@ -166,7 +166,7 @@ export component USlider inherits ButtonInterface {
             ]
         }
 
-		// The handle itself.
+        // The handle itself.
         Rectangle {
             property <length> size: 14px * UAppTheme.scale-factor;
             y: root.height - (v-slider.height + size / 2);
