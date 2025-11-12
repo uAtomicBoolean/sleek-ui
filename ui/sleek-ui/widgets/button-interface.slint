@@ -14,8 +14,8 @@ export component ButtonInterface inherits Rectangle {
     out property <length> pressed-x <=> touch.pressed-x;
     out property <length> pressed-y <=> touch.pressed-y;
 
+    // TouchArea callbacks
     callback clicked();
-	// TouchArea callbacks
     callback double-clicked();
     callback moved();
     callback pointer-event();

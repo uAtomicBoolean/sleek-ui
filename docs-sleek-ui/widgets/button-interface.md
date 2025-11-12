@@ -5,20 +5,23 @@ This also implements a few basics such as calling the `clicked` callback when pr
 
 Here are the properties and callbacks exported from the interface :
 ```
-in-out property <bool> enabled <=> touch.enabled;
+in-out property <bool> enabled: true;
+in-out property <MouseCursor> touch-mouse-cursor: pointer;
 out property <bool> has-focus <=> focus-scope.has-focus;
 out property <bool> has-hover <=> touch.has-hover;
 out property <bool> pressed <=> touch.pressed;
-
-// Custom callback that is called from the TouchArea.
-// This allows to set the focus and then remove it to the widget when clicking on it before sending the callback.
-callback clicked();
+out property <MouseCursor> mouse-cursor <=> touch.mouse-cursor;
+out property <length> mouse-x <=> touch.mouse-x;
+out property <length> mouse-y <=> touch.mouse-y;
+out property <length> pressed-x <=> touch.pressed-x;
+out property <length> pressed-y <=> touch.pressed-y;
 
 // TouchArea callbacks
-callback double-clicked <=> touch.double-clicked;
-callback moved <=> touch.moved;
-callback pointer-event <=> touch.pointer-event;
-callback scroll-event <=> touch.scroll-event;
+callback clicked();
+callback double-clicked();
+callback moved();
+callback pointer-event();
+callback scroll-event() -> EventResult;
 
 // FocusScope callbacks
 callback key-pressed <=> focus-scope.key-pressed;
