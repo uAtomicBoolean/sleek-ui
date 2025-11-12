@@ -40,7 +40,7 @@ export component ButtonInterface inherits Rectangle {
     }
 
     touch := TouchArea {
-        mouse-cursor: root.enabled ? root.touch-mouse-cursor : not-allowed;
+        mouse-cursor: root.enabled || root.touch-mouse-cursor != MouseCursor.pointer ? root.touch-mouse-cursor : not-allowed;
         clicked => {
             if root.enabled {
                 focus-scope.focus();
