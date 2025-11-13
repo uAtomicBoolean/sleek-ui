@@ -1,5 +1,4 @@
 import {
-    UBreadcrumb,
     UCard,
     UCode,
     UCollapse,
@@ -26,21 +25,6 @@ export component DataDisplay {
                 UTitle {
                     level: 4;
                     text: "Data display";
-                }
-            }
-
-            UText {
-                text: "Breadcrumb";
-                font-weight: 600;
-            }
-
-            HorizontalLayout {
-                alignment: start;
-                spacing: UAppTheme.spacing-base;
-                padding-top: UAppTheme.padding-base;
-                padding-bottom: 24px * UAppTheme.scale-factor;
-                UBreadcrumb {
-                    steps: ["Home", "Settings", "User", "Confidentiality"];
                 }
             }
 

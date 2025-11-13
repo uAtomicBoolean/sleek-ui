@@ -1,4 +1,4 @@
-import { UText, UTitle, UTabs } from "../sleek-ui/widgets.slint";
+import { UBreadcrumb, UText, UTitle, UTabs } from "../sleek-ui/widgets.slint";
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { ScrollView, AboutSlint } from "std-widgets.slint";
 
@@ -14,6 +14,21 @@ export component Navigation {
                 UTitle {
                     level: 4;
                     text: "Navigation";
+                }
+            }
+
+            UText {
+                text: "Breadcrumb";
+                font-weight: 600;
+            }
+
+            HorizontalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                UBreadcrumb {
+                    steps: ["Home", "Settings", "User", "Confidentiality"];
                 }
             }
 
@@ -56,24 +71,17 @@ export component Navigation {
                 UTabs {
                     tabs-alignement: stretch;
                     tabs: ["France", "Germany", "United Kingdom", "Italy"];
-                    if self.current-index == 0: VerticalLayout {
-                        spacing: UAppTheme.spacing-base;
-                        UText {
-                            text: "Welcome to France!";
-                        }
-
-                        UText {
-                            text: "You can put whatever you want in a tab's content.";
-                        }
+                    if self.current-index == 0: UText {
+                        text: "You can also enable the tabs to take all the available space.";
                     }
                     if self.current-index == 1: UText {
-                        text: "Welcome to Germany!";
+                        text: "You can also enable the tabs to take all the available space.";
                     }
                     if self.current-index == 2: UText {
-                        text: "Welcome to the United Kingdom!";
+                        text: "You can also enable the tabs to take all the available space.";
                     }
                     if self.current-index == 3: UText {
-                        text: "Welcome to Italy!";
+                        text: "You can also enable the tabs to take all the available space.";
                     }
                 }
             }
