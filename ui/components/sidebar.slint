@@ -36,9 +36,10 @@ export component Sidebar inherits Rectangle {
                         padding: 6px;
                         UText {
                             text: link;
+                            animate color { duration: UAppTheme.animation-duration; }
                             states [
                                 active when SidebarLogic.current-page == link: {
-                                    font-weight: 800;
+                                    color: UAppTheme.primary.base;
                                 }
                             ]
                         }
@@ -50,12 +51,13 @@ export component Sidebar inherits Rectangle {
                         }
                     }
 
+                    animate background { duration: UAppTheme.animation-duration; }
                     states [
                         active when SidebarLogic.current-page == link: {
-                            background: UAppTheme.primary.base.with-alpha(0.3);
+                            background: UAppTheme.primary.selected;
                         }
                         hover when ctrls-touch.has-hover: {
-                            background: UAppTheme.color-fill-tertiary;
+                            background: UAppTheme.color-fill-secondary;
                         }
                     ]
                 }
