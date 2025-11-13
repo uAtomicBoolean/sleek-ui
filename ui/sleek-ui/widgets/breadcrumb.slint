@@ -16,6 +16,7 @@ export component UBreadcrumb inherits Rectangle {
             for step[idx] in steps: HorizontalLayout {
                 spacing: UAppTheme.spacing-medium;
                 ButtonInterface {
+                    enabled: idx != steps.length - 1;
                     UText {
                         text: step;
                         color: idx == steps.length - 1 ? UAppTheme.primary.base : UAppTheme.text-secondary;
@@ -31,6 +32,13 @@ export component UBreadcrumb inherits Rectangle {
                     clicked => {
                         step-clicked(step);
                     }
+
+                    states [
+                        focused when self.has-focus: {
+                            border-color: UAppTheme.focus-color;
+                            border-width: UAppTheme.focus-border-width;
+                        }
+                    ]
                 }
 
                 if idx != steps.length - 1: VerticalLayout {

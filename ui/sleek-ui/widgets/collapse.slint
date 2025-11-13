@@ -60,4 +60,11 @@ export component UCollapse inherits ButtonInterface {
             @children
         }
     }
+
+    states [
+        focused when root.has-focus: {
+            border-color: UAppTheme.focus-color;
+            border-width: UAppTheme.focus-border-width;
+        }
+    ]
 }
