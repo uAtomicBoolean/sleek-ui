@@ -1,6 +1,7 @@
 import {
     UBreadcrumb,
     UCard,
+    UCode,
     UCollapse,
     UDivider,
     UIcon,
@@ -231,6 +232,19 @@ export component DataDisplay {
                 padding-bottom: 24px * UAppTheme.scale-factor;
                 UText {
                     text: "A simple text element pre-configured and themeable.";
+                }
+            }
+
+            UText {
+                text: "Code";
+                font-weight: 600;
+            }
+
+            HorizontalLayout {
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                UCode {
+                    code: "print(\"This is some simple code.\")\nprint(\"The code can be written on multiple lines.\")";
                 }
             }
 
