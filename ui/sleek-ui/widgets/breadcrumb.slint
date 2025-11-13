@@ -17,6 +17,7 @@ export component UBreadcrumb inherits Rectangle {
                 spacing: UAppTheme.spacing-medium;
                 ButtonInterface {
                     enabled: idx != steps.length - 1;
+                    touch-mouse-cursor: idx == steps.length - 1 ? default : pointer;
                     UText {
                         text: step;
                         color: idx == steps.length - 1 ? UAppTheme.primary.base : UAppTheme.text-secondary;
@@ -24,7 +25,7 @@ export component UBreadcrumb inherits Rectangle {
                         animate color { duration: UAppTheme.animation-duration; }
                         states [
                             hover when parent.has-hover && idx != steps.length - 1: {
-                                color: UAppTheme.text-disabled;
+                                color: UAppTheme.primary.hover;
                             }
                         ]
                     }
