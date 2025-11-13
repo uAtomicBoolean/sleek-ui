@@ -20,7 +20,9 @@ import { ScrollView } from "std-widgets.slint";
 import { OptionsBarLogic } from "../components/options-bar.slint";
 
 
-import { Slider } from "std-widgets.slint";
+// TODO Remove this import once dev of UMenu is done
+import { UMenu, UMenuItemType } from "../sleek-ui/widgets.slint";
+
 
 export component Controls inherits Rectangle {
     ScrollView {
@@ -33,6 +35,55 @@ export component Controls inherits Rectangle {
                 UTitle {
                     level: 4;
                     text: "Controls";
+                }
+            }
+
+            HorizontalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                UMenu {
+                    width: 300px * UAppTheme.scale-factor;
+                    items: [
+                        {
+                            id: "home",
+                            name: "Home",
+                            type: UMenuItemType.link,
+                        },
+                        {
+                            id: "dashboard",
+                            name: "Dashboard",
+                            type: UMenuItemType.link,
+                        },
+                        {
+                            id: "users",
+                            name: "Users",
+                            type: UMenuItemType.submenu,
+                        },
+                        {
+                            id: "settings",
+                            name: "Settings",
+                            type: UMenuItemType.link,
+                        },
+                        {
+                            id: "users1",
+                            name: "Users 1",
+                            type: UMenuItemType.link,
+                            parent_id: "users",
+                        },
+                        {
+                            id: "users2",
+                            name: "Users 2",
+                            type: UMenuItemType.link,
+                            parent_id: "users",
+                        },
+                        {
+                            id: "users3",
+                            name: "Users 3",
+                            type: UMenuItemType.link,
+                            parent_id: "users",
+                        },
+                    ];
                 }
             }
 
