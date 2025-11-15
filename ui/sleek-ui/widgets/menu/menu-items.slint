@@ -17,6 +17,10 @@ export component UMenuLink inherits ButtonInterface {
     HorizontalLayout {
         alignment: space-between;
         padding: UAppTheme.padding-base;
+        padding-top: UAppTheme.padding-vertical;
+        padding-bottom: UAppTheme.padding-vertical;
+        padding-left: UAppTheme.padding-horizontal;
+        padding-right: UAppTheme.padding-horizontal;
         link-text := UText {
             text: name;
             overflow: elide;
@@ -58,7 +62,10 @@ export component UMenuSubmenu inherits VerticalLayout {
         border-radius: UAppTheme.radius-base;
         HorizontalLayout {
             alignment: space-between;
-            padding: UAppTheme.padding-base;
+            padding-top: UAppTheme.padding-vertical;
+            padding-bottom: UAppTheme.padding-vertical;
+            padding-left: UAppTheme.padding-horizontal;
+            padding-right: UAppTheme.padding-horizontal;
             submenu-text := UText {
                 text: name;
                 overflow: elide;
