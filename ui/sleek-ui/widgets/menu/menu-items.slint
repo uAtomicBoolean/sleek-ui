@@ -28,12 +28,27 @@ export component UMenuLink inherits ButtonInterface {
     }
 
     states [
+        focus-selected when self.has-focus && menu-current-link == id: {
+            background: UAppTheme.primary.selected;
+            link-text.color: UAppTheme.primary.base;
+            border-color: UAppTheme.focus-color;
+            border-width: UAppTheme.focus-border-width;
+        }
         selected when menu-current-link == id: {
             background: UAppTheme.primary.selected;
             link-text.color: UAppTheme.primary.base;
         }
+        focus-hover when self.has-focus && self.has-hover: {
+            border-color: UAppTheme.focus-color;
+            border-width: UAppTheme.focus-border-width;
+            background: UAppTheme.color-fill-secondary;
+        }
         hover when self.has-hover: {
             background: UAppTheme.color-fill-secondary;
+        }
+        focus when self.has-focus: {
+            border-color: UAppTheme.focus-color;
+            border-width: UAppTheme.focus-border-width;
         }
     ]
 }
@@ -79,13 +94,39 @@ export component UMenuSubmenu inherits VerticalLayout {
         }
 
         states [
-            selected when menu-current-link == id: {
-                background: UAppTheme.primary.selected;
-                submenu-text.color: UAppTheme.primary.base;
-                submenu-icon.colorize: UAppTheme.primary.base;
+            focus-hover when self.has-focus && self.has-hover: {
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+                background: UAppTheme.color-fill-secondary;
             }
             hover when self.has-hover: {
                 background: UAppTheme.color-fill-secondary;
+            }
+        ]
+        states [
+            focus-selected when self.has-focus && menu-current-link == id: {
+                background: UAppTheme.primary.selected;
+                submenu-icon.colorize: UAppTheme.primary.base;
+                submenu-text.color: UAppTheme.primary.base;
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+            }
+            selected when menu-current-link == id: {
+                background: UAppTheme.primary.selected;
+                submenu-icon.colorize: UAppTheme.primary.base;
+                submenu-text.color: UAppTheme.primary.base;
+            }
+            focus-hover when self.has-focus && self.has-hover: {
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+                background: UAppTheme.color-fill-secondary;
+            }
+            hover when self.has-hover: {
+                background: UAppTheme.color-fill-secondary;
+            }
+            focus when self.has-focus: {
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
             }
         ]
     }
