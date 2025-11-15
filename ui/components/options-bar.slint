@@ -46,9 +46,10 @@ export component OptionsBar inherits Rectangle {
 
                 USelect {
                     width: 150px * UAppTheme.scale-factor;
+                    popup-max-height: 200px * UAppTheme.scale-factor;
                     current-index: 8;
                     options: [
-                        { text: "Dust-red", value: "dust-red", enabled: true },
+                        { text: "Dust red", value: "dust-red", enabled: true },
                         { text: "Volcano", value: "volcano", enabled: true },
                         { text: "Sunset orange", value: "sunset-orange", enabled: true },
                         { text: "Lime", value: "lime", enabled: true },
