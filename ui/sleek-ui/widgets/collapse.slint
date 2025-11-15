@@ -47,7 +47,6 @@ export component UCollapse inherits ButtonInterface {
         }
 
         collapse-content := Rectangle {
-            z: -10;
             clip: true;
             height: root.collapse-open ? root.content-height : 0px;
             animate height { duration: UAppTheme.animation-duration; }
