@@ -50,7 +50,7 @@ export component URadioButton {
     accessible-value: selected-value;
 	// Regular properties
 	in-out property <URadioButtonVariant> variant: default;
-    property <URadionButtonTheme> theme: {
+    private property <URadionButtonTheme> theme: {
         if variant == URadioButtonVariant.primary {
             return URadioButtonThemes.primary;
         }

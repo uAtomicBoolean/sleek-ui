@@ -20,7 +20,7 @@ export component ULinearProgress inherits Rectangle {
     accessible-value-maximum: 100;
 	// Regular properties
     in-out property <ULinearProgressVariant> variant: primary;
-    property <brush> progress-color;
+    private property <brush> progress-color;
     in property <length> default-size: 10px * UAppTheme.scale-factor;
     in property <Orientation> orientation: horizontal;
     in property <ProgressAlignment> alignment: start;
@@ -43,7 +43,7 @@ export component ULinearProgress inherits Rectangle {
         }
     }
     if orientation == Orientation.horizontal: Rectangle {
-        property <length> x-pos: 0;
+        private property <length> x-pos: 0;
         function get-x-pos() -> length {
             if indeterminate {
                 return x-pos;
@@ -80,7 +80,7 @@ export component ULinearProgress inherits Rectangle {
         }
     }
     if orientation == Orientation.vertical: Rectangle {
-        property <length> y-pos: 0;
+        private property <length> y-pos: 0;
         function get-y-pos() -> length {
             if indeterminate {
                 return y-pos;

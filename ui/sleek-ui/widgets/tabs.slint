@@ -15,8 +15,8 @@ export component UTabs inherits Rectangle {
     in-out property <[string]> tabs;
     in-out property <int> current-index: 0;
     in-out property <TabsAlignmentType> tabs-alignement: start;
-    property <length> underline-x: 0px;
-    property <length> underline-width: 0px;
+    private property <length> underline-x: 0px;
+    private property <length> underline-width: 0px;
     VerticalLayout {
         alignment: start;
         HorizontalLayout {

@@ -67,7 +67,7 @@ export component USlider inherits ButtonInterface {
         HorizontalLayout {
             alignment: start;
             h-slider := Rectangle {
-                property <int> curr-width: (value / 1px) * root.width / max-value;
+                private property <int> curr-width: (value / 1px) * root.width / max-value;
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
                 width: curr-width * 1px;
@@ -88,7 +88,7 @@ export component USlider inherits ButtonInterface {
 
         // Manage the aura-like border that appears around the handle.
         Rectangle {
-            property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: 14px * UAppTheme.scale-factor;
             x: h-slider.width - size / 2;
             border-radius: UAppTheme.radius-circle;
             width: size;
@@ -104,7 +104,7 @@ export component USlider inherits ButtonInterface {
 
         // The handle itself.
         Rectangle {
-            property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: 14px * UAppTheme.scale-factor;
             x: h-slider.width - size / 2;
             background: UAppTheme.bg-container;
             border-color: UAppTheme.primary.base;
@@ -131,7 +131,7 @@ export component USlider inherits ButtonInterface {
         VerticalLayout {
             alignment: end;
             v-slider := Rectangle {
-                property <int> curr-height: (value / 1px) * root.height / max-value;
+                private property <int> curr-height: (value / 1px) * root.height / max-value;
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
                 height: curr-height * 1px;
@@ -152,7 +152,7 @@ export component USlider inherits ButtonInterface {
 
         // Manage the aura-like border that appears around the handle.
         Rectangle {
-            property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: 14px * UAppTheme.scale-factor;
             y: root.height - (v-slider.height + size / 2);
             border-radius: UAppTheme.radius-circle;
             width: size;
@@ -168,7 +168,7 @@ export component USlider inherits ButtonInterface {
 
         // The handle itself.
         Rectangle {
-            property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: 14px * UAppTheme.scale-factor;
             y: root.height - (v-slider.height + size / 2);
             background: UAppTheme.bg-container;
             border-color: UAppTheme.primary.base;

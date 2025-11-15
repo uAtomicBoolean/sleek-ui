@@ -25,7 +25,7 @@ export component OptionsBar inherits Rectangle {
                 alignment: start;
                 spacing: UAppTheme.spacing-base;
                 USelect {
-                    property <[USelectOption]> color-scheme-options: [
+                    private property <[USelectOption]> color-scheme-options: [
                         { text: "Light", value: "light", enabled: true },
                         { text: "Dark", value: "dark", enabled: true },
                         { text: "System", value: "system", enabled: true }

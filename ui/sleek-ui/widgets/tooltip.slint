@@ -22,7 +22,7 @@ export component UTooltip {
     in-out property <length> inner-height;
     in-out property <length> tooltip-max-width: 150px * UAppTheme.scale-factor;
     in-out property <length> tooltip-max-height;
-    property <bool> has_waited: false;
+    private property <bool> has_waited: false;
     z: 100;
     x: compute-x-position();
     y: compute-y-position();
