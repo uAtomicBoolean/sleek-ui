@@ -3,120 +3,67 @@ import { ButtonInterface } from "../button-interface.slint";
 import { UText } from "../text.slint";
 import { UIcon } from "../icon.slint";
 
-
-export enum UMenuItemType {
-	link,
-	submenu,
-	group,
-}
-
-export struct UMenuItem {
-	id: string,
-	name: string,
-	type: UMenuItemType,
-	parent_id: string,
-}
+import { UMenuLink, UMenuSubmenu } from "menu-items.slint";
+import { UMenuData, UMenuItemType } from "structs.slint";
 
 
-component UMenuItem {
-    in-out property <string> current-link;
-    in-out property <[UMenuItem]> items;
-    in property <string> id;
-    in property <string> name;
-    in property <UMenuItemType> type;
-    in property <length> level-padding;
-	// Three case now.
-	// First -> type = link : display a simple reactive link with ButtonInterface which trigger change-opened-link().
-	// Second -> type = submenu : display a reactive link that doesn't change the current link but open/close a custom collapse.
-	// Third -> type = group : display the item as the group name (different from a link and not clickable).
+export { UMenuData, UMenuItemType }
 
-	VerticalLayout {
-        if type == UMenuItemType.link: ButtonInterface {
-            clicked => {
-                current-link = id;
-            }
-            border-radius: UAppTheme.radius-base;
-            HorizontalLayout {
-                alignment: space-between;
-                padding: UAppTheme.padding-base;
-                link-text := UText {
-                    text: name;
-                    overflow: elide;
-                }
-            }
-
-            states [
-                selected when current-link == id: {
-                    background: UAppTheme.primary.selected;
-                    link-text.color: UAppTheme.primary.base;
-                }
-                hover when self.has-hover: {
-                    background: UAppTheme.color-fill-secondary;
-                }
-            ]
-        }
-        if type == UMenuItemType.submenu: ButtonInterface {
-            property <length> item-height: 25px * UAppTheme.scale-factor;
-            property <bool> submenu-opened: false;
-            changed submenu-opened => {
-                if !submenu-opened {
-                    submenu-content.height = 0px;
-                }
-            }
-            clicked => {
-                submenu-opened = !submenu-opened;
-            }
-            border-radius: UAppTheme.radius-base;
-            HorizontalLayout {
-                alignment: space-between;
-                padding: UAppTheme.padding-base;
-                submenu-text := UText {
-                    text: name;
-                    overflow: elide;
-                }
-
-                submenu-icon := UIcon {
-                    source: @image-url("../../assets/icons/chevron-down.svg");
-                    transform-rotation: submenu-opened ? 180deg : 0deg;
-                    animate transform-rotation { duration: UAppTheme.animation-duration; }
-                }
-            }
-
-            submenu-content := Rectangle {
-                z: -10;
-                clip: true;
-                animate height { duration: UAppTheme.animation-duration; }
-				// TODO How to make recursive-like call as recursive call is not possible in slint.
-            }
-
-            states [
-                selected when current-link == id: {
-                    background: UAppTheme.primary.selected;
-                    submenu-text.color: UAppTheme.primary.base;
-                    submenu-icon.colorize: UAppTheme.primary.base;
-                }
-                hover when self.has-hover: {
-                    background: UAppTheme.color-fill-secondary;
-                }
-            ]
-        }
-    }
-}
 
 export component UMenu {
     in-out property <string> current-link;
-    in-out property <[UMenuItem]> items;
+    in-out property <[UMenuData]> items;
+
     VerticalLayout {
-        alignment: start;
-        for item in items: HorizontalLayout {
-            if item.parent_id == "": UMenuItem {
-                current-link <=> root.current-link;
-                items: root.items;
+        for item in items: VerticalLayout {
+            if item.type == UMenuItemType.link: UMenuLink {
+                menu-current-link <=> current-link;
                 id: item.id;
                 name: item.name;
-                type: item.type;
-                level-padding: 0px;
             }
-        }
+            if item.type == UMenuItemType.submenu: UMenuSubmenu {
+                menu-current-link <=> current-link;
+                id: item.id;
+                name: item.name;
+                children: item.children;
+            }
+
+            // submenu-content := Rectangle {
+                //     property <length> computed-height: submenu-title.height * item.children.length;
+                //     z: -10;
+                //     clip: true;
+                //     height: parent.submenu-opened ? computed-height : 0px;
+                //     animate height { duration: UAppTheme.animation-duration; }
+                //     VerticalLayout {
+                //         alignment: start;
+                //         for child in item.children: HorizontalLayout {
+                //             ButtonInterface {
+                //                 clicked => {
+                //                     current-link = child.id;
+                //                 }
+                //                 border-radius: UAppTheme.radius-base;
+                //                 HorizontalLayout {
+                //                     alignment: space-between;
+                //                     padding: UAppTheme.padding-base;
+                //                     child-link-text := UText {
+                //                         text: child.name;
+                //                         overflow: elide;
+                //                     }
+                //                 }
+
+                //                 states [
+                //                     selected when current-link == child.id: {
+                //                         background: UAppTheme.primary.selected;
+                //                         child-link-text.color: UAppTheme.primary.base;
+                //                     }
+                //                     hover when self.has-hover: {
+                //                         background: UAppTheme.color-fill-secondary;
+                //                     }
+                //                 ]
+                //             }
+                //         }
+                //     }
+                // }
+            }
     }
 }

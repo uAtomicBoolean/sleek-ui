@@ -1,0 +1,102 @@
+import { UAppTheme } from "../../app-theme.slint";
+import { UText } from "../text.slint";
+import { UIcon } from "../icon.slint";
+import { ButtonInterface } from "../button-interface.slint";
+
+import { UMenuData, UMenuItemType } from "structs.slint";
+
+
+export component UMenuLink inherits ButtonInterface {
+    in-out property <string> menu-current-link;
+    in-out property <string> id;
+    in-out property <string> name;
+    clicked => {
+        menu-current-link = id;
+    }
+    border-radius: UAppTheme.radius-base;
+    HorizontalLayout {
+        alignment: space-between;
+        padding: UAppTheme.padding-base;
+        link-text := UText {
+            text: name;
+            overflow: elide;
+        }
+    }
+
+    states [
+        selected when menu-current-link == id: {
+            background: UAppTheme.primary.selected;
+            link-text.color: UAppTheme.primary.base;
+        }
+        hover when self.has-hover: {
+            background: UAppTheme.color-fill-secondary;
+        }
+    ]
+}
+
+export component UMenuSubmenu inherits VerticalLayout {
+    in-out property <string> menu-current-link;
+    in-out property <string> id;
+    in-out property <string> name;
+    in-out property <[{
+		id: string,
+		name: string,
+		type: UMenuItemType,
+	}]> children;
+    property <bool> submenu-opened: false;
+    property <length> collapse-height;
+    alignment: start;
+    submenu-trigger := ButtonInterface {
+		// Necessary as computing the collapse's height before displaying the submenu trigger
+		// will result in a layout recursion error.
+		init => {
+            collapse-height = self.height * children.length;
+        }
+        clicked => {
+            submenu-opened = !submenu-opened;
+        }
+        border-radius: UAppTheme.radius-base;
+        HorizontalLayout {
+            alignment: space-between;
+            padding: UAppTheme.padding-base;
+            submenu-text := UText {
+                text: name;
+                overflow: elide;
+            }
+
+            submenu-icon := UIcon {
+                source: @image-url("../../assets/icons/chevron-down.svg");
+                transform-rotation: submenu-opened ? 180deg : 0deg;
+                animate transform-rotation { duration: UAppTheme.animation-duration; }
+            }
+        }
+
+        states [
+            selected when menu-current-link == id: {
+                background: UAppTheme.primary.selected;
+                submenu-text.color: UAppTheme.primary.base;
+                submenu-icon.colorize: UAppTheme.primary.base;
+            }
+            hover when self.has-hover: {
+                background: UAppTheme.color-fill-secondary;
+            }
+        ]
+    }
+
+    collapse := Rectangle {
+        z: -10;
+        clip: true;
+        height: submenu-opened ? collapse-height : 0px;
+        animate height { duration: UAppTheme.animation-duration; }
+        VerticalLayout {
+            for child in children: VerticalLayout {
+                padding-left: UAppTheme.padding-bigger;
+                if child.type == UMenuItemType.link: UMenuLink {
+                    menu-current-link <=> root.menu-current-link;
+                    id: child.id;
+                    name: child.name;
+                }
+            }
+        }
+    }
+}
