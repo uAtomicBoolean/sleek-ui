@@ -11,59 +11,25 @@ export { UMenuData, UMenuItemType }
 
 
 export component UMenu {
-    in-out property <string> current-link;
     in-out property <[UMenuData]> items;
+    in-out property <string> current-link;
+    private property <string> current-submenu;
 
     VerticalLayout {
         for item in items: VerticalLayout {
             if item.type == UMenuItemType.link: UMenuLink {
                 menu-current-link <=> current-link;
+                menu-current-submenu <=> current-submenu;
                 id: item.id;
                 name: item.name;
             }
             if item.type == UMenuItemType.submenu: UMenuSubmenu {
                 menu-current-link <=> current-link;
+                menu-current-submenu <=> current-submenu;
                 id: item.id;
                 name: item.name;
                 children: item.children;
             }
-
-            // submenu-content := Rectangle {
-                //     property <length> computed-height: submenu-title.height * item.children.length;
-                //     z: -10;
-                //     clip: true;
-                //     height: parent.submenu-opened ? computed-height : 0px;
-                //     animate height { duration: UAppTheme.animation-duration; }
-                //     VerticalLayout {
-                //         alignment: start;
-                //         for child in item.children: HorizontalLayout {
-                //             ButtonInterface {
-                //                 clicked => {
-                //                     current-link = child.id;
-                //                 }
-                //                 border-radius: UAppTheme.radius-base;
-                //                 HorizontalLayout {
-                //                     alignment: space-between;
-                //                     padding: UAppTheme.padding-base;
-                //                     child-link-text := UText {
-                //                         text: child.name;
-                //                         overflow: elide;
-                //                     }
-                //                 }
-
-                //                 states [
-                //                     selected when current-link == child.id: {
-                //                         background: UAppTheme.primary.selected;
-                //                         child-link-text.color: UAppTheme.primary.base;
-                //                     }
-                //                     hover when self.has-hover: {
-                //                         background: UAppTheme.color-fill-secondary;
-                //                     }
-                //                 ]
-                //             }
-                //         }
-                //     }
-                // }
-            }
+        }
     }
 }

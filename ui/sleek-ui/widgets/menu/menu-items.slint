@@ -8,10 +8,12 @@ import { UMenuData, UMenuItemType } from "structs.slint";
 
 export component UMenuLink inherits ButtonInterface {
     in-out property <string> menu-current-link;
+    in-out property <string> menu-current-submenu;
     in-out property <string> id;
     in-out property <string> name;
     clicked => {
         menu-current-link = id;
+        menu-current-submenu = "";
     }
     border-radius: UAppTheme.radius-base;
     HorizontalLayout {
@@ -55,6 +57,7 @@ export component UMenuLink inherits ButtonInterface {
 
 export component UMenuSubmenu inherits VerticalLayout {
     in-out property <string> menu-current-link;
+    in-out property <string> menu-current-submenu;
     in-out property <string> id;
     in-out property <string> name;
     in-out property <[{
@@ -62,8 +65,8 @@ export component UMenuSubmenu inherits VerticalLayout {
 		name: string,
 		type: UMenuItemType,
 	}]> children;
-    property <bool> submenu-opened: false;
-    property <length> collapse-height;
+    private property <bool> submenu-opened: false;
+    private property <length> collapse-height;
     alignment: start;
     submenu-trigger := ButtonInterface {
 		// Necessary as computing the collapse's height before displaying the submenu trigger
@@ -94,24 +97,14 @@ export component UMenuSubmenu inherits VerticalLayout {
         }
 
         states [
-            focus-hover when self.has-focus && self.has-hover: {
-                border-color: UAppTheme.focus-color;
-                border-width: UAppTheme.focus-border-width;
-                background: UAppTheme.color-fill-secondary;
-            }
-            hover when self.has-hover: {
-                background: UAppTheme.color-fill-secondary;
-            }
-        ]
-        states [
-            focus-selected when self.has-focus && menu-current-link == id: {
+            focus-selected when self.has-focus && menu-current-submenu == id: {
                 background: UAppTheme.primary.selected;
                 submenu-icon.colorize: UAppTheme.primary.base;
                 submenu-text.color: UAppTheme.primary.base;
                 border-color: UAppTheme.focus-color;
                 border-width: UAppTheme.focus-border-width;
             }
-            selected when menu-current-link == id: {
+            selected when menu-current-submenu == id: {
                 background: UAppTheme.primary.selected;
                 submenu-icon.colorize: UAppTheme.primary.base;
                 submenu-text.color: UAppTheme.primary.base;
@@ -132,7 +125,6 @@ export component UMenuSubmenu inherits VerticalLayout {
     }
 
     collapse := Rectangle {
-        z: -10;
         clip: true;
         height: submenu-opened ? collapse-height : 0px;
         animate height { duration: UAppTheme.animation-duration; }
@@ -140,6 +132,10 @@ export component UMenuSubmenu inherits VerticalLayout {
             for child in children: VerticalLayout {
                 padding-left: UAppTheme.padding-bigger;
                 if child.type == UMenuItemType.link: UMenuLink {
+                    clicked => {
+                        menu-current-link = child.id;
+                        menu-current-submenu = id;
+                    }
                     menu-current-link <=> root.menu-current-link;
                     id: child.id;
                     name: child.name;
