@@ -58,30 +58,33 @@ export component Controls inherits Rectangle {
                     UMenuLink {
                         id: "dashboard";
                         name: "Dashboard";
+                        activated => {
+                            debug("ttestinge");
+                        }
                     }
 
                     UMenuSubmenu {
                         name: "Controls";
-                        has-child-selected: controls-l1.is-selected || controls-l2.is-selected || controls-l3.is-selected || controls-l4.is-selected || controls-s1.has-child-selected;
-                        controls-l1 := UMenuLink {
+                        has-child-selected: cont1.is-selected || cont2.is-selected || cont3.is-selected || cont4.is-selected || conts1.has-child-selected;
+                        cont1 := UMenuLink {
                             level: 1;
                             id: "Mouse";
                             name: "Mouse";
                         }
 
-                        controls-l2 := UMenuLink {
+                        cont2 := UMenuLink {
                             level: 1;
                             id: "Keyboard";
                             name: "Keyboard";
                         }
 
-                        controls-l3 := UMenuLink {
+                        cont3 := UMenuLink {
                             level: 1;
                             id: "Controller";
                             name: "Controller";
                         }
 
-                        controls-s1 := UMenuSubmenu {
+                        conts1 := UMenuSubmenu {
                             level: 1;
                             name: "Custom controls";
                             has-child-selected: cust1.is-selected || cust2.is-selected || cust3.is-selected;
@@ -109,7 +112,7 @@ export component Controls inherits Rectangle {
                             title: "Settings";
                         }
 
-                        controls-l4 := UMenuLink {
+                        cont4 := UMenuLink {
                             level: 1;
                             id: "ControlsSettings";
                             name: "Settings";

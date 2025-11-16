@@ -38,14 +38,12 @@ export component UMenuSubmenu inherits VerticalLayout {
 
         states [
             focus-selected when self.has-focus && has-child-selected: {
-                background: UAppTheme.primary.selected;
                 submenu-icon.colorize: UAppTheme.primary.base;
                 submenu-text.color: UAppTheme.primary.base;
                 border-color: UAppTheme.focus-color;
                 border-width: UAppTheme.focus-border-width;
             }
             selected when has-child-selected: {
-                background: UAppTheme.primary.selected;
                 submenu-icon.colorize: UAppTheme.primary.base;
                 submenu-text.color: UAppTheme.primary.base;
             }

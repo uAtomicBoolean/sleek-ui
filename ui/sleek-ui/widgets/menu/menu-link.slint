@@ -5,51 +5,55 @@ import { ButtonInterface } from "../button-interface.slint";
 import { UMenuLogic } from "menu-logic.slint";
 
 
-export component UMenuLink inherits ButtonInterface {
+export component UMenuLink inherits Rectangle {
     in-out property <string> id;
     in-out property <string> name;
     in-out property <int> level;
     in-out property <string> parent-id;
     out property <bool> is-selected: UMenuLogic.current-link == id;
-    clicked => {
-        UMenuLogic.current-link = id;
-    }
-    border-radius: UAppTheme.radius-base;
-    HorizontalLayout {
-        alignment: space-between;
-        padding: UAppTheme.padding-base;
-        padding-top: UAppTheme.padding-vertical;
-        padding-bottom: UAppTheme.padding-vertical;
-        padding-left: UAppTheme.padding-horizontal + (UAppTheme.padding-bigger * level);
-        padding-right: UAppTheme.padding-horizontal;
-        link-text := UText {
-            text: name;
-            overflow: elide;
+    callback activated();
+    ButtonInterface {
+        clicked => {
+            UMenuLogic.current-link = id;
+            root.activated();
         }
-    }
+        border-radius: UAppTheme.radius-base;
+        HorizontalLayout {
+            alignment: space-between;
+            padding: UAppTheme.padding-base;
+            padding-top: UAppTheme.padding-vertical;
+            padding-bottom: UAppTheme.padding-vertical;
+            padding-left: UAppTheme.padding-horizontal + (UAppTheme.padding-bigger * level);
+            padding-right: UAppTheme.padding-horizontal;
+            link-text := UText {
+                text: name;
+                overflow: elide;
+            }
+        }
 
-    states [
-        focus-selected when root.has-focus && root.is-selected: {
-            background: UAppTheme.primary.selected;
-            link-text.color: UAppTheme.primary.base;
-            border-color: UAppTheme.focus-color;
-            border-width: UAppTheme.focus-border-width;
-        }
-        selected when root.is-selected: {
-            background: UAppTheme.primary.selected;
-            link-text.color: UAppTheme.primary.base;
-        }
-        focus-hover when root.has-focus && root.has-hover: {
-            border-color: UAppTheme.focus-color;
-            border-width: UAppTheme.focus-border-width;
-            background: UAppTheme.color-fill-secondary;
-        }
-        hover when root.has-hover: {
-            background: UAppTheme.color-fill-secondary;
-        }
-        focus when root.has-focus: {
-            border-color: UAppTheme.focus-color;
-            border-width: UAppTheme.focus-border-width;
-        }
-    ]
+        states [
+            focus-selected when self.has-focus && root.is-selected: {
+                background: UAppTheme.primary.selected;
+                link-text.color: UAppTheme.primary.base;
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+            }
+            selected when root.is-selected: {
+                background: UAppTheme.primary.selected;
+                link-text.color: UAppTheme.primary.base;
+            }
+            focus-hover when self.has-focus && self.has-hover: {
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+                background: UAppTheme.color-fill-secondary;
+            }
+            hover when self.has-hover: {
+                background: UAppTheme.color-fill-secondary;
+            }
+            focus when self.has-focus: {
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+            }
+        ]
+    }
 }
