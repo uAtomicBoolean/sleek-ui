@@ -19,7 +19,7 @@ export component UCollapse inherits ButtonInterface {
     in-out property <string> title <=> collapse-title.text;
     in-out property <bool> collapse-open: false;
     in-out property <length> content-width <=> collapse-content.width;
-    in-out property <length> content-height: 100px * UAppTheme.scale-factor;
+    in-out property <length> content-height: collapse-content.preferred-height;
     clicked => {
         collapse-open = !collapse-open;
     }
