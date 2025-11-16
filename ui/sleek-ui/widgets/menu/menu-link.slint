@@ -8,7 +8,6 @@ import { UMenuLogic } from "menu-logic.slint";
 export component UMenuLink inherits Rectangle {
     in-out property <string> id;
     in-out property <string> name;
-    in-out property <int> level;
     in-out property <string> parent-id;
     out property <bool> is-selected: UMenuLogic.current-link == id;
     callback activated();
@@ -23,7 +22,7 @@ export component UMenuLink inherits Rectangle {
             padding: UAppTheme.padding-base;
             padding-top: UAppTheme.padding-vertical;
             padding-bottom: UAppTheme.padding-vertical;
-            padding-left: UAppTheme.padding-horizontal + (UAppTheme.padding-bigger * level);
+            padding-left: UAppTheme.padding-horizontal;
             padding-right: UAppTheme.padding-horizontal;
             link-text := UText {
                 text: name;

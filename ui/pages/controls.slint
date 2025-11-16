@@ -67,53 +67,44 @@ export component Controls inherits Rectangle {
                         name: "Controls";
                         has-child-selected: cont1.is-selected || cont2.is-selected || cont3.is-selected || cont4.is-selected || conts1.has-child-selected;
                         cont1 := UMenuLink {
-                            level: 1;
                             id: "Mouse";
                             name: "Mouse";
                         }
 
                         cont2 := UMenuLink {
-                            level: 1;
                             id: "Keyboard";
                             name: "Keyboard";
                         }
 
                         cont3 := UMenuLink {
-                            level: 1;
                             id: "Controller";
                             name: "Controller";
                         }
 
                         conts1 := UMenuSubmenu {
-                            level: 1;
                             name: "Custom controls";
                             has-child-selected: cust1.is-selected || cust2.is-selected || cust3.is-selected;
                             cust1 := UMenuLink {
-                                level: 2;
                                 id: "custom 1";
                                 name: "Custom 1";
                             }
 
                             cust2 := UMenuLink {
-                                level: 2;
                                 id: "custom 2";
                                 name: "Custom 2";
                             }
 
                             cust3 := UMenuLink {
-                                level: 2;
                                 id: "custom 3";
                                 name: "Custom 3";
                             }
                         }
 
                         UMenuGroupTitle {
-                            level: 1;
                             title: "Settings";
                         }
 
                         cont4 := UMenuLink {
-                            level: 1;
                             id: "ControlsSettings";
                             name: "Settings";
                         }

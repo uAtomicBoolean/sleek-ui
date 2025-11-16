@@ -9,7 +9,6 @@ import { UMenuLogic } from "menu-logic.slint";
 export component UMenuSubmenu inherits VerticalLayout {
     in-out property <string> id;
     in-out property <string> name;
-    in-out property <int> level;
     in-out property <bool> has-child-selected;
     private property <bool> submenu-opened: false;
     alignment: start;
@@ -22,7 +21,7 @@ export component UMenuSubmenu inherits VerticalLayout {
             alignment: space-between;
             padding-top: UAppTheme.padding-vertical;
             padding-bottom: UAppTheme.padding-vertical;
-            padding-left: UAppTheme.padding-horizontal + (UAppTheme.padding-bigger * level);
+            padding-left: UAppTheme.padding-horizontal;
             padding-right: UAppTheme.padding-horizontal;
             submenu-text := UText {
                 text: name;
@@ -68,6 +67,7 @@ export component UMenuSubmenu inherits VerticalLayout {
         animate height { duration: UAppTheme.animation-duration; }
         VerticalLayout {
             alignment: start;
+            padding-left: UAppTheme.padding-bigger;
             @children
         }
     }
