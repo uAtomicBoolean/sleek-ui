@@ -55,25 +55,29 @@ export component UMenuLink inherits ButtonInterface {
     ]
 }
 
+export component UMenuGroupTitle inherits HorizontalLayout {
+    in-out property <string> name;
+    alignment: start;
+    padding-top: UAppTheme.padding-big;
+    padding-bottom: UAppTheme.padding-base;
+    padding-left: UAppTheme.padding-horizontal;
+    padding-right: UAppTheme.padding-horizontal;
+    UText {
+        text: name;
+        font-size: UAppTheme.font-size-small;
+        color: UAppTheme.text-secondary;
+    }
+}
+
 export component UMenuSubmenu inherits VerticalLayout {
     in-out property <string> menu-current-link;
     in-out property <string> menu-current-submenu;
     in-out property <string> id;
     in-out property <string> name;
-    in-out property <[{
-		id: string,
-		name: string,
-		type: UMenuItemType,
-	}]> children;
+    in-out property <[{id: string, name: string, type: UMenuItemType}]> children;
     private property <bool> submenu-opened: false;
-    private property <length> collapse-height;
     alignment: start;
     submenu-trigger := ButtonInterface {
-		// Necessary as computing the collapse's height before displaying the submenu trigger
-		// will result in a layout recursion error.
-		init => {
-            collapse-height = self.height * children.length;
-        }
         clicked => {
             submenu-opened = !submenu-opened;
         }
@@ -126,19 +130,27 @@ export component UMenuSubmenu inherits VerticalLayout {
 
     collapse := Rectangle {
         clip: true;
-        height: submenu-opened ? collapse-height : 0px;
+        height: submenu-opened ? self.preferred-height : 0px;
         animate height { duration: UAppTheme.animation-duration; }
         VerticalLayout {
             for child in children: VerticalLayout {
-                padding-left: UAppTheme.padding-bigger;
-                if child.type == UMenuItemType.link: UMenuLink {
-                    clicked => {
-                        menu-current-link = child.id;
-                        menu-current-submenu = id;
+                if child.type == UMenuItemType.link: VerticalLayout {
+                    padding-left: UAppTheme.padding-bigger;
+                    UMenuLink {
+                        clicked => {
+                            menu-current-link = child.id;
+                            menu-current-submenu = id;
+                        }
+                        menu-current-link <=> root.menu-current-link;
+                        id: child.id;
+                        name: child.name;
                     }
-                    menu-current-link <=> root.menu-current-link;
-                    id: child.id;
-                    name: child.name;
+                }
+                if child.type == UMenuItemType.group-title: VerticalLayout {
+                    padding-left: UAppTheme.padding-medium;
+                    UMenuGroupTitle {
+                        name: child.name;
+                    }
                 }
             }
         }
