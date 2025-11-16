@@ -1,35 +1,13 @@
-import { UAppTheme } from "../../app-theme.slint";
-import { ButtonInterface } from "../button-interface.slint";
-import { UText } from "../text.slint";
-import { UIcon } from "../icon.slint";
-
-import { UMenuLink, UMenuSubmenu } from "menu-items.slint";
-import { UMenuData, UMenuItemType } from "structs.slint";
+import { UMenuLogic } from "menu-logic.slint";
+import { UMenuLink } from "menu-link.slint";
+import { UMenuSubmenu } from "menu-submenu.slint";
+import { UMenuGroupTitle } from "menu-group-title.slint";
 
 
-export { UMenuData, UMenuItemType }
+export { UMenuLogic, UMenuLink, UMenuGroupTitle, UMenuSubmenu }
 
-
-export component UMenu {
-    in-out property <[UMenuData]> items;
+export component UMenu inherits VerticalLayout {
     in-out property <string> current-link;
-    private property <string> current-submenu;
-
-    VerticalLayout {
-        for item in items: VerticalLayout {
-            if item.type == UMenuItemType.link: UMenuLink {
-                menu-current-link <=> current-link;
-                menu-current-submenu <=> current-submenu;
-                id: item.id;
-                name: item.name;
-            }
-            if item.type == UMenuItemType.submenu: UMenuSubmenu {
-                menu-current-link <=> current-link;
-                menu-current-submenu <=> current-submenu;
-                id: item.id;
-                name: item.name;
-                children: item.children;
-            }
-        }
-    }
+    alignment: start;
+    @children
 }

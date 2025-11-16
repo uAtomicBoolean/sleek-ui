@@ -21,7 +21,13 @@ import { OptionsBarLogic } from "../components/options-bar.slint";
 
 
 // TODO Remove this import once dev of UMenu is done
-import { UMenu, UMenuItemType } from "../sleek-ui/widgets.slint";
+import {
+    UMenu,
+    UMenuLogic,
+    UMenuLink,
+    UMenuGroupTitle,
+    UMenuSubmenu,
+} from "../sleek-ui/widgets.slint";
 
 
 export component Controls inherits Rectangle {
@@ -44,55 +50,81 @@ export component Controls inherits Rectangle {
                 padding-top: UAppTheme.padding-base;
                 UMenu {
                     width: 300px * UAppTheme.scale-factor;
-                    items: [
-                        {
-                            id: "home",
-                            name: "Home",
-                            type: UMenuItemType.link,
-                        },
-                        {
-                            id: "dashboard",
-                            name: "Dashboard",
-                            type: UMenuItemType.link,
-                        },
-                        {
-                            id: "users",
-                            name: "Users",
-                            type: UMenuItemType.submenu,
-                            children: [
-                                {
-                                    id: "users1",
-                                    name: "Users 1",
-                                    type: UMenuItemType.link,
-                                },
-                                {
-                                    id: "users2",
-                                    name: "Users 2",
-                                    type: UMenuItemType.link,
-                                },
-                                {
-                                    id: "",
-                                    name: "Group title",
-                                    type: UMenuItemType.group-title,
-                                },
-                                {
-                                    id: "users3",
-                                    name: "Users 3",
-                                    type: UMenuItemType.link,
-                                },
-                                {
-                                    id: "users4",
-                                    name: "Users 4",
-                                    type: UMenuItemType.link,
-                                },
-                            ]
-                        },
-                        {
-                            id: "settings",
-                            name: "Settings",
-                            type: UMenuItemType.link,
-                        },
-                    ];
+                    UMenuLink {
+                        id: "Home";
+                        name: "Home";
+                    }
+
+                    UMenuLink {
+                        id: "dashboard";
+                        name: "Dashboard";
+                    }
+
+                    UMenuSubmenu {
+                        name: "Controls";
+                        has-child-selected: controls-l1.is-selected || controls-l2.is-selected || controls-l3.is-selected || controls-l4.is-selected || controls-s1.has-child-selected;
+                        controls-l1 := UMenuLink {
+                            level: 1;
+                            id: "Mouse";
+                            name: "Mouse";
+                        }
+
+                        controls-l2 := UMenuLink {
+                            level: 1;
+                            id: "Keyboard";
+                            name: "Keyboard";
+                        }
+
+                        controls-l3 := UMenuLink {
+                            level: 1;
+                            id: "Controller";
+                            name: "Controller";
+                        }
+
+                        controls-s1 := UMenuSubmenu {
+                            level: 1;
+                            name: "Custom controls";
+                            has-child-selected: cust1.is-selected || cust2.is-selected || cust3.is-selected;
+                            cust1 := UMenuLink {
+                                level: 2;
+                                id: "custom 1";
+                                name: "Custom 1";
+                            }
+
+                            cust2 := UMenuLink {
+                                level: 2;
+                                id: "custom 2";
+                                name: "Custom 2";
+                            }
+
+                            cust3 := UMenuLink {
+                                level: 2;
+                                id: "custom 3";
+                                name: "Custom 3";
+                            }
+                        }
+
+                        UMenuGroupTitle {
+                            level: 1;
+                            title: "Settings";
+                        }
+
+                        controls-l4 := UMenuLink {
+                            level: 1;
+                            id: "ControlsSettings";
+                            name: "Settings";
+                        }
+                    }
+
+                    UMenuLink {
+                        id: "Users";
+                        name: "Users";
+                    }
+
+                    UMenuLink {
+                        id: "Settings";
+                        name: "Settings";
+                    }
                 }
             }
 

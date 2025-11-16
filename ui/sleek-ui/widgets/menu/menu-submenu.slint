@@ -1,0 +1,76 @@
+import { UAppTheme } from "../../app-theme.slint";
+import { UText } from "../text.slint";
+import { UIcon } from "../icon.slint";
+import { ButtonInterface } from "../button-interface.slint";
+
+import { UMenuLogic } from "menu-logic.slint";
+
+
+export component UMenuSubmenu inherits VerticalLayout {
+    in-out property <string> id;
+    in-out property <string> name;
+    in-out property <int> level;
+    in-out property <bool> has-child-selected;
+    private property <bool> submenu-opened: false;
+    alignment: start;
+    submenu-trigger := ButtonInterface {
+        clicked => {
+            submenu-opened = !submenu-opened;
+        }
+        border-radius: UAppTheme.radius-base;
+        HorizontalLayout {
+            alignment: space-between;
+            padding-top: UAppTheme.padding-vertical;
+            padding-bottom: UAppTheme.padding-vertical;
+            padding-left: UAppTheme.padding-horizontal + (UAppTheme.padding-bigger * level);
+            padding-right: UAppTheme.padding-horizontal;
+            submenu-text := UText {
+                text: name;
+                overflow: elide;
+            }
+
+            submenu-icon := UIcon {
+                source: @image-url("../../assets/icons/chevron-down.svg");
+                transform-rotation: submenu-opened ? 180deg : 0deg;
+                animate transform-rotation { duration: UAppTheme.animation-duration; }
+            }
+        }
+
+        states [
+            focus-selected when self.has-focus && has-child-selected: {
+                background: UAppTheme.primary.selected;
+                submenu-icon.colorize: UAppTheme.primary.base;
+                submenu-text.color: UAppTheme.primary.base;
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+            }
+            selected when has-child-selected: {
+                background: UAppTheme.primary.selected;
+                submenu-icon.colorize: UAppTheme.primary.base;
+                submenu-text.color: UAppTheme.primary.base;
+            }
+            focus-hover when self.has-focus && self.has-hover: {
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+                background: UAppTheme.color-fill-secondary;
+            }
+            hover when self.has-hover: {
+                background: UAppTheme.color-fill-secondary;
+            }
+            focus when self.has-focus: {
+                border-color: UAppTheme.focus-color;
+                border-width: UAppTheme.focus-border-width;
+            }
+        ]
+    }
+
+    collapse := Rectangle {
+        clip: true;
+        height: submenu-opened ? self.preferred-height : 0px;
+        animate height { duration: UAppTheme.animation-duration; }
+        VerticalLayout {
+            alignment: start;
+            @children
+        }
+    }
+}
