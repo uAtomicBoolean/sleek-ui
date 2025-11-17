@@ -11,7 +11,7 @@ export component UMenuSubmenu inherits VerticalLayout {
     in-out property <string> name;
     in-out property <bool> has-child-selected;
     in-out property <bool> enable-animation: true;
-    private property <bool> submenu-opened: false;
+    in-out property <bool> submenu-opened: false;
     alignment: start;
     submenu-trigger := ButtonInterface {
         clicked => {

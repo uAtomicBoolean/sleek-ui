@@ -57,13 +57,15 @@ export component Controls inherits Rectangle {
                     UMenuLink {
                         id: "dashboard";
                         name: "Dashboard";
-                        activated => {
-                            debug("ttestinge");
-                        }
                     }
 
                     UMenuSubmenu {
                         enable-animation: false;
+                        changed submenu-opened => {
+                            if !self.submenu-opened {
+                                conts1.submenu-opened = false;
+                            }
+                        }
                         name: "Controls";
                         has-child-selected: cont1.is-selected || cont2.is-selected || cont3.is-selected || cont4.is-selected || conts1.has-child-selected;
                         cont1 := UMenuLink {
