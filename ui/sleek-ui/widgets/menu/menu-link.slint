@@ -9,9 +9,11 @@ export component UMenuLink inherits Rectangle {
     in-out property <string> id;
     in-out property <string> name;
     in-out property <string> parent-id;
+    in-out property <bool> enabled: true;
     out property <bool> is-selected: UMenuLogic.current-link == id;
     callback activated();
     ButtonInterface {
+        enabled: root.enabled;
         clicked => {
             UMenuLogic.current-link = id;
             root.activated();
@@ -31,6 +33,9 @@ export component UMenuLink inherits Rectangle {
         }
 
         states [
+            disabled when !root.enabled: {
+                link-text.color: UAppTheme.text-disabled;
+            }
             focus-selected when self.has-focus && root.is-selected: {
                 background: UAppTheme.primary.selected;
                 link-text.color: UAppTheme.primary.base;
