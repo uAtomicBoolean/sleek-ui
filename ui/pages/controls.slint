@@ -64,6 +64,7 @@ export component Controls inherits Rectangle {
                     }
 
                     UMenuSubmenu {
+                        enable-animation: false;
                         name: "Controls";
                         has-child-selected: cont1.is-selected || cont2.is-selected || cont3.is-selected || cont4.is-selected || conts1.has-child-selected;
                         cont1 := UMenuLink {
@@ -82,6 +83,7 @@ export component Controls inherits Rectangle {
                         }
 
                         conts1 := UMenuSubmenu {
+                            enable-animation: false;
                             name: "Custom controls";
                             has-child-selected: cust1.is-selected || cust2.is-selected || cust3.is-selected;
                             cust1 := UMenuLink {
