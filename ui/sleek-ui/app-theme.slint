@@ -31,9 +31,9 @@ export enum UColorScheme {
 export global UAppTheme {
     in-out property <float> scale-factor: 1;
     in-out property <duration> animation-duration: 150ms;
+    in-out property <UColorScheme> color-scheme: system;
 
     // Color scheme management.
-    in-out property <UColorScheme> color-scheme: system;
     pure function get-themed-color(light: brush, dark: brush) -> brush {
         if color-scheme == UColorScheme.light {
             return light;
