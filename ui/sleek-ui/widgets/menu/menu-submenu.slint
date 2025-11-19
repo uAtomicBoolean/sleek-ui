@@ -10,7 +10,7 @@ export component UMenuSubmenu inherits VerticalLayout {
     in-out property <string> id;
     in-out property <string> name;
     in-out property <bool> has-child-selected;
-    in-out property <bool> enable-animation: true;
+    in-out property <bool> enable-open-animation: true;
     in-out property <bool> submenu-opened: false;
     alignment: start;
     submenu-trigger := ButtonInterface {
@@ -32,7 +32,7 @@ export component UMenuSubmenu inherits VerticalLayout {
             submenu-icon := UIcon {
                 source: @image-url("../../assets/icons/chevron-down.svg");
                 transform-rotation: submenu-opened ? 180deg : 0deg;
-                animate transform-rotation { duration: enable-animation ? UAppTheme.animation-duration : 0; }
+                animate transform-rotation { duration: enable-open-animation ? UAppTheme.animation-duration : 0; }
             }
         }
 
@@ -65,7 +65,7 @@ export component UMenuSubmenu inherits VerticalLayout {
     collapse := Rectangle {
         clip: true;
         height: submenu-opened ? self.preferred-height : 0px;
-        animate height { duration: enable-animation ? UAppTheme.animation-duration : 0; }
+        animate height { duration: enable-open-animation ? UAppTheme.animation-duration : 0; }
         VerticalLayout {
             alignment: start;
             padding-left: UAppTheme.padding-bigger;
