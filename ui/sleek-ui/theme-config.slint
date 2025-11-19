@@ -1,0 +1,39 @@
+import {
+    UMainColorsStyle,
+    UBackgroundColorsStyle,
+    UFillColorsStyle,
+    UShadowStyle,
+    UFocusStyle,
+    UTextStyle,
+    UFontSizeStyle,
+    UBorderStyle,
+    UPaddingStyle,
+    USpacingStyle,
+    URadiusStyle,
+} from "structs/styles.slint";
+import { UDefaultStyle } from "styling/default-style.slint";
+import {
+    UColorSchemeVariantsColor,
+} from "structs/colors.slint";
+
+
+export global UThemeConfig {
+    in-out property <float> scale-factor: 1;
+    in-out property <duration> animation-duration: 150ms;
+
+    // Main colors
+    in property <UColorSchemeVariantsColor> primary-color-style: UDefaultStyle.primary-color;
+    in property <UColorSchemeVariantsColor> success-color-style: UDefaultStyle.success-color;
+    in property <UColorSchemeVariantsColor> warning-color-style: UDefaultStyle.warning-color;
+    in property <UColorSchemeVariantsColor> danger-color-style: UDefaultStyle.danger-color;
+    in property <UBackgroundColorsStyle> background-colors-style: UDefaultStyle.background-colors;
+    in property <UFillColorsStyle> fill-colors-style: UDefaultStyle.fill-colors;
+    in property <UBorderStyle> border-style: UDefaultStyle.border;
+    in property <UShadowStyle> shadow-style: UDefaultStyle.shadow;
+    in property <UFocusStyle> focus-style: UDefaultStyle.focus;
+    in property <UTextStyle> text-style: UDefaultStyle.text;
+    in property <UFontSizeStyle> font-size-style: UDefaultStyle.font-size;
+    in property <UPaddingStyle> padding-style: UDefaultStyle.padding;
+    in property <USpacingStyle> spacing-style: UDefaultStyle.spacing;
+    in property <URadiusStyle> radius-style: UDefaultStyle.radius;
+}

@@ -14,11 +14,13 @@ import {
 import { UDefaultStyle } from "styling/default-style.slint";
 import { Palette } from "std-widgets.slint";
 import {
+    UThemeColors,
     USingleColor,
     UVariantsColor,
     UColorSchemeVariantsColor,
 } from "structs/colors.slint";
 
+import { UThemeConfig } from "theme-config.slint";
 
 export enum UColorScheme {
 	light,
@@ -32,111 +34,175 @@ export global UAppTheme {
 
     // Color scheme management.
     in-out property <UColorScheme> color-scheme: system;
-    public pure function get-themed-color(c: USingleColor) -> brush {
+    pure function get-themed-color(light: brush, dark: brush) -> brush {
         if color-scheme == UColorScheme.light {
-            return c.light;
+            return light;
         } else if color-scheme == UColorScheme.dark {
-            return c.dark;
+            return dark;
         }
-        return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
+        return Palette.color-scheme == ColorScheme.dark ? dark : light;
     }
-    public pure function get-variants-color(c: UColorSchemeVariantsColor) -> UVariantsColor {
+    pure function get-variants-color(light: UVariantsColor, dark: UVariantsColor) -> UVariantsColor {
         if color-scheme == UColorScheme.light {
-            return c.light;
+            return light;
         } else if color-scheme == UColorScheme.dark {
-            return c.dark;
+            return dark;
         }
-        return Palette.color-scheme == ColorScheme.dark ? c.dark : c.light;
+        return Palette.color-scheme == ColorScheme.dark ? dark : light;
     }
 
     // Main colors
-    in property <UColorSchemeVariantsColor> primary-color-style: UDefaultStyle.primary-color;
-    out property <UVariantsColor> primary: get-variants-color(primary-color-style);
-    in property <UColorSchemeVariantsColor> success-color-style: UDefaultStyle.success-color;
-    out property <UVariantsColor> success: get-variants-color(success-color-style);
-    in property <UColorSchemeVariantsColor> warning-color-style: UDefaultStyle.warning-color;
-    out property <UVariantsColor> warning: get-variants-color(warning-color-style);
-    in property <UColorSchemeVariantsColor> danger-color-style: UDefaultStyle.danger-color;
-    out property <UVariantsColor> danger: get-variants-color(danger-color-style);
+    out property <UVariantsColor> primary: get-variants-color(light.primary, dark.primary);
+    out property <UVariantsColor> success: get-variants-color(light.success, dark.success);
+    out property <UVariantsColor> warning: get-variants-color(light.warning, dark.warning);
+    out property <UVariantsColor> danger: get-variants-color(light.danger, dark.danger);
 
     // Background colors
-	in property <UBackgroundColorsStyle> background-colors-style: UDefaultStyle.background-colors;
-    out property <brush> bg-layout: get-themed-color(background-colors-style.layout);
-    out property <brush> bg-container: get-themed-color(background-colors-style.container);
-    out property <brush> bg-elevated: get-themed-color(background-colors-style.elevated);
-    out property <brush> bg-inverse: get-themed-color(background-colors-style.inverse);
+    out property <brush> bg-layout: get-themed-color(light.bg-layout, dark.bg-layout);
+    out property <brush> bg-container: get-themed-color(light.bg-container, dark.bg-container);
+    out property <brush> bg-elevated: get-themed-color(light.bg-elevated, dark.bg-elevated);
+    out property <brush> bg-inverse: get-themed-color(light.bg-inverse, dark.bg-inverse);
 
     // Fill colors
-	in property <UFillColorsStyle> fill-colors-style: UDefaultStyle.fill-colors;
-    out property <brush> color-fill-plus: get-themed-color(fill-colors-style.fill-plus);
-    out property <brush> color-fill: get-themed-color(fill-colors-style.fill);
-    out property <brush> color-fill-secondary: get-themed-color(fill-colors-style.fill-secondary);
-    out property <brush> color-fill-tertiary: get-themed-color(fill-colors-style.fill-tertiary);
-    out property <brush> color-fill-quaternary: get-themed-color(fill-colors-style.fill-quaternary);
-	
+    out property <brush> color-fill-plus: get-themed-color(light.color-fill-plus, dark.color-fill-plus);
+    out property <brush> color-fill: get-themed-color(light.color-fill, dark.color-fill);
+    out property <brush> color-fill-secondary: get-themed-color(light.color-fill-secondary, dark.color-fill-secondary);
+    out property <brush> color-fill-tertiary: get-themed-color(light.color-fill-tertiary, dark.color-fill-tertiary);
+    out property <brush> color-fill-quaternary: get-themed-color(light.color-fill-quaternary, dark.color-fill-quaternary);
+
     // Borders
-	in property <UBorderStyle> border-style: UDefaultStyle.border;
-    out property <length> border-width-base: border-style.width * scale-factor;
-    out property <brush> border: get-themed-color(border-style.color);
-    out property <brush> border-secondary: get-themed-color(border-style.color-secondary);
-    out property <brush> separator: get-themed-color(border-style.separator);
+    out property <length> border-width-base: UThemeConfig.border-style.width * scale-factor;
+    out property <brush> border: get-themed-color(light.border, dark.border);
+    out property <brush> border-secondary: get-themed-color(light.border-secondary, dark.border-secondary);
+    out property <brush> separator: get-themed-color(light.separator, dark.separator);
 
     // Shadow
-	in property <UShadowStyle> shadow-style: UDefaultStyle.shadow;
-    out property <brush> shadow-color: get-themed-color(shadow-style.color);
-    out property <length> shadow-blur: shadow-style.blur * scale-factor;
-    out property <length> shadow-x-offset: shadow-style.x-offset * scale-factor;
-    out property <length> shadow-y-offset: shadow-style.y-offset * scale-factor;
+    out property <brush> shadow-color: get-themed-color(light.shadow-color, dark.shadow-color);
+    out property <length> shadow-blur: UThemeConfig.shadow-style.blur * scale-factor;
+    out property <length> shadow-x-offset: UThemeConfig.shadow-style.x-offset * scale-factor;
+    out property <length> shadow-y-offset: UThemeConfig.shadow-style.y-offset * scale-factor;
 
     // Focus display
-	in property <UFocusStyle> focus-style: UDefaultStyle.focus;
-    out property <brush> focus-color: get-themed-color(focus-style.color);
-    out property <length> focus-border-width: focus-style.border-width * scale-factor;
+    out property <brush> focus-color: get-themed-color(light.focus-color, dark.focus-color);
+    out property <length> focus-border-width: UThemeConfig.focus-style.border-width * scale-factor;
 
     // Text colors
-	in property <UTextStyle> text-style: UDefaultStyle.text;
-    out property <brush> inverse-text: get-themed-color(text-style.color-inverse);
-    out property <brush> text: get-themed-color(text-style.color);
-    out property <brush> text-secondary: get-themed-color(text-style.color-secondary);
-    out property <brush> text-heading: get-themed-color(text-style.color-heading);
-    out property <brush> text-disabled: get-themed-color(text-style.color-disabled);
+    out property <brush> inverse-text: get-themed-color(light.inverse-text, dark.inverse-text);
+    out property <brush> text: get-themed-color(light.text, dark.text);
+    out property <brush> text-secondary: get-themed-color(light.text-secondary, dark.text-secondary);
+    out property <brush> text-heading: get-themed-color(light.text-heading, dark.text-heading);
+    out property <brush> text-disabled: get-themed-color(light.text-disabled, dark.text-disabled);
 
     // Font sizes
-	in property <UFontSizeStyle> font-size-style: UDefaultStyle.font-size;
-    out property <length> font-size-smaller: font-size-style.smaller * scale-factor;
-    out property <length> font-size-small: font-size-style.small * scale-factor;
-    out property <length> font-size-base: font-size-style.base * scale-factor;
-    out property <length> font-size-medium: font-size-style.medium * scale-factor;
-    out property <length> font-size-big: font-size-style.big * scale-factor;
-    out property <length> font-size-bigger: font-size-style.bigger * scale-factor;
+    out property <length> font-size-smaller: UThemeConfig.font-size-style.smaller * scale-factor;
+    out property <length> font-size-small: UThemeConfig.font-size-style.small * scale-factor;
+    out property <length> font-size-base: UThemeConfig.font-size-style.base * scale-factor;
+    out property <length> font-size-medium: UThemeConfig.font-size-style.medium * scale-factor;
+    out property <length> font-size-big: UThemeConfig.font-size-style.big * scale-factor;
+    out property <length> font-size-bigger: UThemeConfig.font-size-style.bigger * scale-factor;
 	
     // Icons
-    out property <length> icon-size-base: font-size-style.icon-base-size * scale-factor;
+    out property <length> icon-size-base: UThemeConfig.font-size-style.icon-base-size * scale-factor;
 
     // Padding
-	in property <UPaddingStyle> padding-style: UDefaultStyle.padding;
-    out property <length> padding-vertical: padding-style.vertical * scale-factor;
-    out property <length> padding-horizontal: padding-style.horizontal * scale-factor;
-    out property <length> padding-small: padding-style.small * scale-factor;
-    out property <length> padding-base: padding-style.base * scale-factor;
-    out property <length> padding-medium: padding-style.medium * scale-factor;
-    out property <length> padding-big: padding-style.big * scale-factor;
-    out property <length> padding-bigger: padding-style.bigger * scale-factor;
+    out property <length> padding-vertical: UThemeConfig.padding-style.vertical * scale-factor;
+    out property <length> padding-horizontal: UThemeConfig.padding-style.horizontal * scale-factor;
+    out property <length> padding-small: UThemeConfig.padding-style.small * scale-factor;
+    out property <length> padding-base: UThemeConfig.padding-style.base * scale-factor;
+    out property <length> padding-medium: UThemeConfig.padding-style.medium * scale-factor;
+    out property <length> padding-big: UThemeConfig.padding-style.big * scale-factor;
+    out property <length> padding-bigger: UThemeConfig.padding-style.bigger * scale-factor;
 
     // Spacing
-	in property <USpacingStyle> spacing-style: UDefaultStyle.spacing;
-    out property <length> spacing-small: spacing-style.small * scale-factor;
-    out property <length> spacing-base: spacing-style.base * scale-factor;
-    out property <length> spacing-medium: spacing-style.medium * scale-factor;
-    out property <length> spacing-big: spacing-style.big * scale-factor;
-    out property <length> spacing-bigger: spacing-style.bigger * scale-factor;
+    out property <length> spacing-small: UThemeConfig.spacing-style.small * scale-factor;
+    out property <length> spacing-base: UThemeConfig.spacing-style.base * scale-factor;
+    out property <length> spacing-medium: UThemeConfig.spacing-style.medium * scale-factor;
+    out property <length> spacing-big: UThemeConfig.spacing-style.big * scale-factor;
+    out property <length> spacing-bigger: UThemeConfig.spacing-style.bigger * scale-factor;
 
     // Radius
-	in property <URadiusStyle> radius-style: UDefaultStyle.radius;
-    out property <length> radius-small: radius-style.small * scale-factor;
-    out property <length> radius-base: radius-style.base * scale-factor;
-    out property <length> radius-medium: radius-style.medium * scale-factor;
-    out property <length> radius-large: radius-style.large * scale-factor;
-    out property <length> radius-round: radius-style.round * scale-factor;
-    out property <length> radius-circle: radius-style.circle;
+    out property <length> radius-small: UThemeConfig.radius-style.small * scale-factor;
+    out property <length> radius-base: UThemeConfig.radius-style.base * scale-factor;
+    out property <length> radius-medium: UThemeConfig.radius-style.medium * scale-factor;
+    out property <length> radius-large: UThemeConfig.radius-style.large * scale-factor;
+    out property <length> radius-round: UThemeConfig.radius-style.round * scale-factor;
+    out property <length> radius-circle: UThemeConfig.radius-style.circle;
+
+	// Structs with both color scheme mode for the colors.
+	out property <UThemeColors> light: {
+		// Main colors
+    	primary: UThemeConfig.primary-color-style.light,
+        success: UThemeConfig.success-color-style.light,
+        warning: UThemeConfig.warning-color-style.light,
+        danger: UThemeConfig.danger-color-style.light,
+
+    	// Background colors
+    	bg-layout: UThemeConfig.background-colors-style.layout.light,
+        bg-container: UThemeConfig.background-colors-style.container.light,
+        bg-elevated: UThemeConfig.background-colors-style.elevated.light,
+        bg-inverse: UThemeConfig.background-colors-style.inverse.light,
+
+    	// Fill colors
+    	color-fill-plus: UThemeConfig.fill-colors-style.fill-plus.light,
+        color-fill: UThemeConfig.fill-colors-style.fill.light,
+        color-fill-secondary: UThemeConfig.fill-colors-style.fill-secondary.light,
+        color-fill-tertiary: UThemeConfig.fill-colors-style.fill-tertiary.light,
+        color-fill-quaternary: UThemeConfig.fill-colors-style.fill-quaternary.light,
+	
+    	// Borders
+    	border: UThemeConfig.border-style.color.light,
+        border-secondary: UThemeConfig.border-style.color-secondary.light,
+        separator: UThemeConfig.border-style.separator.light,
+
+    	// Shadow
+    	shadow-color: UThemeConfig.shadow-style.color.light,
+
+    	// Focus display
+    	focus-color: UThemeConfig.focus-style.color.light,
+
+    	// Text colors
+    	inverse-text: UThemeConfig.text-style.color-inverse.light,
+        text: UThemeConfig.text-style.color.light,
+        text-secondary: UThemeConfig.text-style.color-secondary.light,
+        text-heading: UThemeConfig.text-style.color-heading.light,
+        text-disabled: UThemeConfig.text-style.color-disabled.light,
+    };
+    out property <UThemeColors> dark: {
+		// Main colors
+    	primary: UThemeConfig.primary-color-style.light,
+        success: UThemeConfig.success-color-style.light,
+        warning: UThemeConfig.warning-color-style.light,
+        danger: UThemeConfig.danger-color-style.light,
+
+    	// Background colors
+    	bg-layout: UThemeConfig.background-colors-style.layout.light,
+        bg-container: UThemeConfig.background-colors-style.container.light,
+        bg-elevated: UThemeConfig.background-colors-style.elevated.light,
+        bg-inverse: UThemeConfig.background-colors-style.inverse.light,
+
+    	// Fill colors
+    	color-fill-plus: UThemeConfig.fill-colors-style.fill-plus.light,
+        color-fill: UThemeConfig.fill-colors-style.fill.light,
+        color-fill-secondary: UThemeConfig.fill-colors-style.fill-secondary.light,
+        color-fill-tertiary: UThemeConfig.fill-colors-style.fill-tertiary.light,
+        color-fill-quaternary: UThemeConfig.fill-colors-style.fill-quaternary.light,
+	
+    	// Borders
+    	border: UThemeConfig.border-style.color.light,
+        border-secondary: UThemeConfig.border-style.color-secondary.light,
+        separator: UThemeConfig.border-style.separator.light,
+
+    	// Shadow
+    	shadow-color: UThemeConfig.shadow-style.color.light,
+
+    	// Focus display
+    	focus-color: UThemeConfig.focus-style.color.light,
+
+    	// Text colors
+    	inverse-text: UThemeConfig.text-style.color-inverse.light,
+        text: UThemeConfig.text-style.color.light,
+        text-secondary: UThemeConfig.text-style.color-secondary.light,
+        text-heading: UThemeConfig.text-style.color-heading.light,
+        text-disabled: UThemeConfig.text-style.color-disabled.light,
+    };
 }

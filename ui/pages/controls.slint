@@ -60,7 +60,7 @@ export component Controls inherits Rectangle {
                     }
 
                     UMenuSubmenu {
-                        enable-animation: false;
+                        enable-open-animation: false;
                         changed submenu-opened => {
                             if !self.submenu-opened {
                                 conts1.submenu-opened = false;
@@ -79,12 +79,12 @@ export component Controls inherits Rectangle {
                         }
 
                         cont3 := UMenuLink {
-                            id: "Controller";
-                            name: "Controller";
+                            id: "Controler";
+                            name: "Controler";
                         }
 
                         conts1 := UMenuSubmenu {
-                            enable-animation: false;
+                            enable-open-animation: false;
                             name: "Custom controls";
                             has-child-selected: cust1.is-selected || cust2.is-selected || cust3.is-selected;
                             cust1 := UMenuLink {
