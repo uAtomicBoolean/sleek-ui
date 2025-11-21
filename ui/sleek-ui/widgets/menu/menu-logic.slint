@@ -1,3 +1,9 @@
+export enum UMenuVariant {
+	light,
+	dark,
+}
+
 export global UMenuLogic {
+    in-out property <UMenuVariant> menu-variant;
     in-out property <string> current-link;
 }

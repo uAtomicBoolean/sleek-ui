@@ -1,13 +1,20 @@
-import { UMenuLogic } from "menu-logic.slint";
+import { UMenuLogic, UMenuVariant } from "menu-logic.slint";
 import { UMenuLink } from "menu-link.slint";
 import { UMenuSubmenu } from "menu-submenu.slint";
 import { UMenuGroupTitle } from "menu-group-title.slint";
 
 
-export { UMenuLogic, UMenuLink, UMenuGroupTitle, UMenuSubmenu }
+export { UMenuVariant, UMenuLink, UMenuGroupTitle, UMenuSubmenu }
 
 export component UMenu inherits VerticalLayout {
+    in-out property <UMenuVariant> variant: light;
     in-out property <string> current-link;
+    init => {
+        UMenuLogic.menu-variant = variant;
+    }
+    changed variant => {
+        UMenuLogic.menu-variant = variant;
+    }
     alignment: start;
     @children
 }
