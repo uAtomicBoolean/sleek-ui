@@ -22,33 +22,22 @@ import {
 
 import { UThemeConfig } from "theme-config.slint";
 
-export enum UColorScheme {
-	light,
-	dark,
-	system,
-}
-
 export global UAppTheme {
     in-out property <float> scale-factor: 1;
     in-out property <duration> animation-duration: 150ms;
-    in-out property <UColorScheme> color-scheme: system;
 
     // Color scheme management.
     pure function get-themed-color(light: brush, dark: brush) -> brush {
-        if color-scheme == UColorScheme.light {
-            return light;
-        } else if color-scheme == UColorScheme.dark {
+        if Palette.color-scheme == ColorScheme.dark {
             return dark;
         }
-        return Palette.color-scheme == ColorScheme.dark ? dark : light;
+        return light;
     }
     pure function get-variants-color(light: UVariantsColor, dark: UVariantsColor) -> UVariantsColor {
-        if color-scheme == UColorScheme.light {
-            return light;
-        } else if color-scheme == UColorScheme.dark {
+        if Palette.color-scheme == ColorScheme.dark {
             return dark;
         }
-        return Palette.color-scheme == ColorScheme.dark ? dark : light;
+        return light;
     }
 
     // Main colors
@@ -169,40 +158,40 @@ export global UAppTheme {
     };
     out property <UThemeColors> dark: {
 		// Main colors
-    	primary: UThemeConfig.primary-color-style.light,
-        success: UThemeConfig.success-color-style.light,
-        warning: UThemeConfig.warning-color-style.light,
-        danger: UThemeConfig.danger-color-style.light,
+    	primary: UThemeConfig.primary-color-style.dark,
+        success: UThemeConfig.success-color-style.dark,
+        warning: UThemeConfig.warning-color-style.dark,
+        danger: UThemeConfig.danger-color-style.dark,
 
     	// Background colors
-    	bg-layout: UThemeConfig.background-colors-style.layout.light,
-        bg-container: UThemeConfig.background-colors-style.container.light,
-        bg-elevated: UThemeConfig.background-colors-style.elevated.light,
-        bg-inverse: UThemeConfig.background-colors-style.inverse.light,
+    	bg-layout: UThemeConfig.background-colors-style.layout.dark,
+        bg-container: UThemeConfig.background-colors-style.container.dark,
+        bg-elevated: UThemeConfig.background-colors-style.elevated.dark,
+        bg-inverse: UThemeConfig.background-colors-style.inverse.dark,
 
     	// Fill colors
-    	color-fill-plus: UThemeConfig.fill-colors-style.fill-plus.light,
-        color-fill: UThemeConfig.fill-colors-style.fill.light,
-        color-fill-secondary: UThemeConfig.fill-colors-style.fill-secondary.light,
-        color-fill-tertiary: UThemeConfig.fill-colors-style.fill-tertiary.light,
-        color-fill-quaternary: UThemeConfig.fill-colors-style.fill-quaternary.light,
+    	color-fill-plus: UThemeConfig.fill-colors-style.fill-plus.dark,
+        color-fill: UThemeConfig.fill-colors-style.fill.dark,
+        color-fill-secondary: UThemeConfig.fill-colors-style.fill-secondary.dark,
+        color-fill-tertiary: UThemeConfig.fill-colors-style.fill-tertiary.dark,
+        color-fill-quaternary: UThemeConfig.fill-colors-style.fill-quaternary.dark,
 	
     	// Borders
-    	border: UThemeConfig.border-style.color.light,
-        border-secondary: UThemeConfig.border-style.color-secondary.light,
-        separator: UThemeConfig.border-style.separator.light,
+    	border: UThemeConfig.border-style.color.dark,
+        border-secondary: UThemeConfig.border-style.color-secondary.dark,
+        separator: UThemeConfig.border-style.separator.dark,
 
     	// Shadow
-    	shadow-color: UThemeConfig.shadow-style.color.light,
+    	shadow-color: UThemeConfig.shadow-style.color.dark,
 
     	// Focus display
-    	focus-color: UThemeConfig.focus-style.color.light,
+    	focus-color: UThemeConfig.focus-style.color.dark,
 
     	// Text colors
-    	inverse-text: UThemeConfig.text-style.color-inverse.light,
-        text: UThemeConfig.text-style.color.light,
-        text-secondary: UThemeConfig.text-style.color-secondary.light,
-        text-heading: UThemeConfig.text-style.color-heading.light,
-        text-disabled: UThemeConfig.text-style.color-disabled.light,
+    	inverse-text: UThemeConfig.text-style.color-inverse.dark,
+        text: UThemeConfig.text-style.color.dark,
+        text-secondary: UThemeConfig.text-style.color-secondary.dark,
+        text-heading: UThemeConfig.text-style.color-heading.dark,
+        text-disabled: UThemeConfig.text-style.color-disabled.dark,
     };
 }

@@ -1,4 +1,8 @@
-import { UMenuLogic, UMenuVariant } from "menu-logic.slint";
+import { Palette } from "std-widgets.slint";
+
+import { UAppTheme } from "../../app-theme.slint";
+
+import { UMenuLogic, UMenuVariant } from "index.slint";
 import { UMenuLink } from "menu-link.slint";
 import { UMenuSubmenu } from "menu-submenu.slint";
 import { UMenuGroupTitle } from "menu-group-title.slint";
@@ -6,15 +10,24 @@ import { UMenuGroupTitle } from "menu-group-title.slint";
 
 export { UMenuVariant, UMenuLink, UMenuGroupTitle, UMenuSubmenu }
 
-export component UMenu inherits VerticalLayout {
-    in-out property <UMenuVariant> variant: light;
+export component UMenu inherits Rectangle {
+    in-out property <UMenuVariant> variant: default;
     in-out property <string> current-link;
     init => {
-        UMenuLogic.menu-variant = variant;
+        UMenuLogic.variant = variant;
     }
     changed variant => {
-        UMenuLogic.menu-variant = variant;
+        UMenuLogic.variant = variant;
     }
-    alignment: start;
-    @children
+    function get-background() -> brush {
+        if variant == UMenuVariant.inverse {
+            return Palette.color-scheme == ColorScheme.light ? UAppTheme.dark.bg-container : UAppTheme.light.bg-container;
+        }
+        return UAppTheme.bg-container;
+    }
+    background: get-background();
+    VerticalLayout {
+        alignment: start;
+        @children
+    }
 }

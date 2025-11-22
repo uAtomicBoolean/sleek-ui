@@ -1,0 +1,33 @@
+import { Palette } from "std-widgets.slint";
+
+import { UAppTheme } from "../../app-theme.slint";
+
+
+export enum UMenuVariant {
+	default,
+	inverse,
+}
+
+
+export global UMenuLogic {
+    in-out property <UMenuVariant> variant;
+    in-out property <string> current-link;
+    pure function get-variant-color-scheme() -> ColorScheme {
+        if variant == UMenuVariant.inverse {
+            return Palette.color-scheme == light ? dark : light;
+        }
+        return Palette.color-scheme == dark ? dark : light;
+    }
+}
+
+export struct UMenuLinkTheme {
+	text: brush,
+	text-selected: brush,
+	text-disabled: brush,
+	bg-hover: brush,
+	bg-selected: brush,
+}
+
+export global UMenuLinkThemes {
+    out property <UMenuLinkTheme> default;
+}

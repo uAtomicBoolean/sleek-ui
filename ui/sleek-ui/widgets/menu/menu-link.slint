@@ -1,11 +1,13 @@
 import { UAppTheme } from "../../app-theme.slint";
+
 import { UText } from "../text.slint";
 import { ButtonInterface } from "../button-interface.slint";
 
-import { UMenuLogic } from "menu-logic.slint";
+import { UMenuLogic, UMenuVariant, UMenuLinkTheme } from "index.slint";
 
 
 export component UMenuLink inherits Rectangle {
+    private property <UMenuLinkTheme> theme;
     in-out property <string> id;
     in-out property <string> name;
     in-out property <string> parent-id;
