@@ -3,11 +3,16 @@ import { UAppTheme } from "../../app-theme.slint";
 import { UText } from "../text.slint";
 import { ButtonInterface } from "../button-interface.slint";
 
-import { UMenuLogic, UMenuVariant, UMenuLinkTheme } from "index.slint";
+import {
+    UMenuLogic,
+    UMenuVariant,
+    UMenuLinkTheme,
+    UMenuLinkThemes,
+} from "index.slint";
 
 
 export component UMenuLink inherits Rectangle {
-    private property <UMenuLinkTheme> theme;
+    private property <UMenuLinkTheme> theme: UMenuLogic.variant == UMenuVariant.light ? UMenuLinkThemes.light : UMenuLinkThemes.dark;
     in-out property <string> id;
     in-out property <string> name;
     in-out property <string> parent-id;
@@ -31,30 +36,31 @@ export component UMenuLink inherits Rectangle {
             link-text := UText {
                 text: name;
                 overflow: elide;
+                color: theme.text;
             }
         }
 
         states [
             disabled when !root.enabled: {
-                link-text.color: UAppTheme.text-disabled;
+                link-text.color: theme.text-disabled;
             }
             focus-selected when self.has-focus && root.is-selected: {
-                background: UAppTheme.primary.selected;
-                link-text.color: UAppTheme.primary.base;
+                background: theme.bg-selected;
+                link-text.color: theme.text-selected;
                 border-color: UAppTheme.focus-color;
                 border-width: UAppTheme.focus-border-width;
             }
             selected when root.is-selected: {
-                background: UAppTheme.primary.selected;
-                link-text.color: UAppTheme.primary.base;
+                background: theme.bg-selected;
+                link-text.color: theme.text-selected;
             }
             focus-hover when self.has-focus && self.has-hover: {
                 border-color: UAppTheme.focus-color;
                 border-width: UAppTheme.focus-border-width;
-                background: UAppTheme.color-fill-secondary;
+                background: theme.bg-hover;
             }
             hover when self.has-hover: {
-                background: UAppTheme.color-fill-secondary;
+                background: theme.bg-hover;
             }
             focus when self.has-focus: {
                 border-color: UAppTheme.focus-color;

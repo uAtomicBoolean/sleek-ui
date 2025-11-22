@@ -11,7 +11,7 @@ import { UMenuGroupTitle } from "menu-group-title.slint";
 export { UMenuVariant, UMenuLink, UMenuGroupTitle, UMenuSubmenu }
 
 export component UMenu inherits Rectangle {
-    in-out property <UMenuVariant> variant: default;
+    in-out property <UMenuVariant> variant: inverse;
     in-out property <string> current-link;
     init => {
         UMenuLogic.variant = variant;
@@ -21,7 +21,7 @@ export component UMenu inherits Rectangle {
     }
     function get-background() -> brush {
         if variant == UMenuVariant.inverse {
-            return Palette.color-scheme == ColorScheme.light ? UAppTheme.dark.bg-container : UAppTheme.light.bg-container;
+            return Palette.color-scheme == ColorScheme.light ? UAppTheme.dark.primary.active : UAppTheme.light.bg-container;
         }
         return UAppTheme.bg-container;
     }

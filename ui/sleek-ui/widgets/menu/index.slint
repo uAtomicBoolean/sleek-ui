@@ -4,20 +4,14 @@ import { UAppTheme } from "../../app-theme.slint";
 
 
 export enum UMenuVariant {
-	default,
-	inverse,
+	light,
+	dark,
 }
 
 
 export global UMenuLogic {
     in-out property <UMenuVariant> variant;
     in-out property <string> current-link;
-    pure function get-variant-color-scheme() -> ColorScheme {
-        if variant == UMenuVariant.inverse {
-            return Palette.color-scheme == light ? dark : light;
-        }
-        return Palette.color-scheme == dark ? dark : light;
-    }
 }
 
 export struct UMenuLinkTheme {
@@ -29,5 +23,24 @@ export struct UMenuLinkTheme {
 }
 
 export global UMenuLinkThemes {
-    out property <UMenuLinkTheme> default;
+	// private property <ColorScheme> variant-cs: {
+    //     if UMenuLogic.variant == UMenuVariant.dark {
+    //         return Palette.color-scheme == light ? dark : light;
+    //     }
+    //     return Palette.color-scheme == dark ? dark : light;
+    // };
+    out property <UMenuLinkTheme> light: {
+        text: UAppTheme.text,
+        text-selected: UAppTheme.primary.base,
+        text-disabled: UAppTheme.text-disabled,
+        bg-hover: UAppTheme.color-fill-secondary,
+        bg-selected: UAppTheme.primary.selected,
+    };
+    // out property <UMenuLinkTheme> dark: {
+    //     text: variant-cs == ColorScheme.dark ? UAppTheme.light.text : UAppTheme.dark.text,
+    //     text-selected: variant-cs == ColorScheme.dark ? UAppTheme.light.primary.base : UAppTheme.dark.primary.base,
+    //     text-disabled: variant-cs == ColorScheme.dark ? UAppTheme.light.text-disabled : UAppTheme.dark.text-disabled,
+    //     bg-hover: variant-cs == ColorScheme.dark ? UAppTheme.light.color-fill-secondary : UAppTheme.dark.color-fill-secondary,
+    //     bg-selected: variant-cs == ColorScheme.dark ? UAppTheme.light.primary.selected : UAppTheme.dark.primary.selected,
+    // };
 }
