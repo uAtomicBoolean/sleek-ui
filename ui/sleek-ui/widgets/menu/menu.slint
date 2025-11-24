@@ -11,7 +11,7 @@ import { UMenuGroupTitle } from "menu-group-title.slint";
 export { UMenuVariant, UMenuLink, UMenuGroupTitle, UMenuSubmenu }
 
 export component UMenu inherits Rectangle {
-    in-out property <UMenuVariant> variant: light;
+    in-out property <UMenuVariant> variant: dark;
     in-out property <string> current-link;
     init => {
         UMenuLogic.variant = variant;
@@ -19,7 +19,7 @@ export component UMenu inherits Rectangle {
     changed variant => {
         UMenuLogic.variant = variant;
     }
-    background: self.variant == UMenuVariant.light ? UAppTheme.bg-container : UAppTheme.primary.active;
+    background: self.variant == UMenuVariant.default ? UAppTheme.bg-container : UAppTheme.primary.active;
     VerticalLayout {
         alignment: start;
         @children

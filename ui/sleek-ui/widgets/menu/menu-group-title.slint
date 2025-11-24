@@ -1,6 +1,8 @@
 import { UAppTheme } from "../../app-theme.slint";
 import { UText } from "../text.slint";
 
+import { UMenuLogic, UMenuVariant } from "index.slint";
+
 
 export component UMenuGroupTitle inherits HorizontalLayout {
     in-out property <string> title;
@@ -13,6 +15,6 @@ export component UMenuGroupTitle inherits HorizontalLayout {
     UText {
         text: title;
         font-size: UAppTheme.font-size-small;
-        color: UAppTheme.text-secondary;
+        color: UMenuLogic.variant == UMenuVariant.default ? UAppTheme.text-secondary : UAppTheme.dark.text;
     }
 }
