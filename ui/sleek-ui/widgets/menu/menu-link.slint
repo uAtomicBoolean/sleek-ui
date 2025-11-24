@@ -12,7 +12,7 @@ import {
 
 
 export component UMenuLink inherits Rectangle {
-    private property <UMenuLinkTheme> theme: UMenuLogic.variant == UMenuVariant.default ? UMenuLinkThemes.default : UMenuLinkThemes.dark;
+    private property <UMenuLinkTheme> theme: UMenuLogic.variant == UMenuVariant.default ? UMenuLinkThemes.default : UMenuLinkThemes.primary;
     in-out property <string> id;
     in-out property <string> name;
     in-out property <string> parent-id;

@@ -5,7 +5,7 @@ import { UAppTheme } from "../../app-theme.slint";
 
 export enum UMenuVariant {
 	default,
-	dark,
+	primary,
 }
 
 
@@ -36,10 +36,10 @@ export global UMenuLinkThemes {
         bg-hover: UAppTheme.color-fill-secondary,
         bg-selected: UAppTheme.primary.selected,
     };
-    out property <UMenuLinkTheme> dark: {
+    out property <UMenuLinkTheme> primary: {
         text: UAppTheme.dark.text,
     };
-    // out property <UMenuLinkTheme> dark: {
+    // out property <UMenuLinkTheme> primary: {
     //     text: variant-cs == ColorScheme.dark ? UAppTheme.light.text : UAppTheme.dark.text,
     //     text-selected: variant-cs == ColorScheme.dark ? UAppTheme.light.primary.base : UAppTheme.dark.primary.base,
     //     text-disabled: variant-cs == ColorScheme.dark ? UAppTheme.light.text-disabled : UAppTheme.dark.text-disabled,
@@ -62,7 +62,7 @@ export global UMenuSubMenuThemes {
         text-disabled: UAppTheme.text-disabled,
         bg-hover: UAppTheme.color-fill-secondary,
     };
-    out property <UMenuSubMenuTheme> dark: {
+    out property <UMenuSubMenuTheme> primary: {
         text: UAppTheme.dark.text,
     };
 }
