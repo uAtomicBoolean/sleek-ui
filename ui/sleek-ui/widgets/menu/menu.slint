@@ -11,7 +11,7 @@ import { UMenuGroupTitle } from "menu-group-title.slint";
 export { UMenuVariant, UMenuLink, UMenuGroupTitle, UMenuSubmenu }
 
 export component UMenu inherits Rectangle {
-    in-out property <UMenuVariant> variant: dark;
+    in-out property <UMenuVariant> variant: default;
     in-out property <string> current-link;
     init => {
         UMenuLogic.variant = variant;

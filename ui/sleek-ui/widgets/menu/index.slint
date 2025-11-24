@@ -47,3 +47,22 @@ export global UMenuLinkThemes {
     //     bg-selected: variant-cs == ColorScheme.dark ? UAppTheme.light.primary.selected : UAppTheme.dark.primary.selected,
     // };
 }
+
+export struct UMenuSubMenuTheme {
+	text: brush,
+	text-selected: brush,
+	text-disabled: brush,
+	bg-hover: brush,
+}
+
+export global UMenuSubMenuThemes {
+    out property <UMenuSubMenuTheme> default: {
+        text: UAppTheme.text,
+        text-selected: UAppTheme.primary.base,
+        text-disabled: UAppTheme.text-disabled,
+        bg-hover: UAppTheme.color-fill-secondary,
+    };
+    out property <UMenuSubMenuTheme> dark: {
+        text: UAppTheme.dark.text,
+    };
+}
