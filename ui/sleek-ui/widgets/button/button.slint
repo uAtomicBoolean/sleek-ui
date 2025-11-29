@@ -27,7 +27,7 @@ export component UButton inherits ButtonInterface {
     }
 	// Regular properties
     in-out property <UButtonVariant> variant: default;
-    property <UButtonTheme> theme: {
+    private property <UButtonTheme> theme: {
         if variant == UButtonVariant.primary {
             return UButtonThemes.primary;
         }

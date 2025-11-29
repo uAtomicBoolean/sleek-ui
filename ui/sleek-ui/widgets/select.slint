@@ -30,6 +30,7 @@ export component USelect inherits ButtonInterface {
     in-out property <[USelectOption]> options;
     out property <string> selected-text;
     out property <string> selected-value;
+    in-out property <length> popup-max-height: 124px * UAppTheme.scale-factor;
     private property <length> full-options-height: (29px * UAppTheme.scale-factor) * options.length + UAppTheme.padding-base * 2;
     callback selected-changed(new-index: int);
     background: UAppTheme.bg-elevated;
@@ -71,7 +72,6 @@ export component USelect inherits ButtonInterface {
     }
 
     popup := UPopover {
-        property <length> popup-max-height: 124px * UAppTheme.scale-factor;
         close-policy: close-on-click-outside;
         width: root.width;
         height: root.full-options-height > popup-max-height ? popup-max-height : root.full-options-height;

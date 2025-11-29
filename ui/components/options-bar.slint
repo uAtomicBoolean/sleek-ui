@@ -1,3 +1,5 @@
+import { Palette } from "std-widgets.slint";
+
 import {
     UDivider,
     USelect,
@@ -5,14 +7,13 @@ import {
     UText,
     USwitch,
 } from "../sleek-ui/widgets.slint";
-import { UAppTheme, UColorScheme } from "../sleek-ui/app-theme.slint";
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { UPrimaryColors } from "../sleek-ui/styling/colors.slint";
 import { UColorSchemeVariantsColor } from "../sleek-ui/structs/colors.slint";
 
 
 export global OptionsBarLogic {
     in-out property <bool> widgets-enabled: true;
-    callback change-color-scheme(color-scheme: UColorScheme);
     callback change-primary-color(style: UColorSchemeVariantsColor);
 }
 
@@ -25,7 +26,7 @@ export component OptionsBar inherits Rectangle {
                 alignment: start;
                 spacing: UAppTheme.spacing-base;
                 USelect {
-                    property <[USelectOption]> color-scheme-options: [
+                    private property <[USelectOption]> color-scheme-options: [
                         { text: "Light", value: "light", enabled: true },
                         { text: "Dark", value: "dark", enabled: true },
                         { text: "System", value: "system", enabled: true }
@@ -35,20 +36,19 @@ export component OptionsBar inherits Rectangle {
                     options: color-scheme-options;
                     selected-changed(_) => {
                         if self.selected-value == "light" {
-                            OptionsBarLogic.change-color-scheme(UColorScheme.light);
+                            Palette.color-scheme = ColorScheme.light;
                         } else if self.selected-value == "dark" {
-                            OptionsBarLogic.change-color-scheme(UColorScheme.dark);
-                        } else {
-                            OptionsBarLogic.change-color-scheme(UColorScheme.system);
+                            Palette.color-scheme = ColorScheme.dark;
                         }
                     }
                 }
 
                 USelect {
                     width: 150px * UAppTheme.scale-factor;
+                    popup-max-height: 200px * UAppTheme.scale-factor;
                     current-index: 8;
                     options: [
-                        { text: "Dust-red", value: "dust-red", enabled: true },
+                        { text: "Dust red", value: "dust-red", enabled: true },
                         { text: "Volcano", value: "volcano", enabled: true },
                         { text: "Sunset orange", value: "sunset-orange", enabled: true },
                         { text: "Lime", value: "lime", enabled: true },

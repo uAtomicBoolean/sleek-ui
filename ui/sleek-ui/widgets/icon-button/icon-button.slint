@@ -29,7 +29,7 @@ export component UIconButton inherits ButtonInterface {
     }	
 	// Regular properties
     in-out property <UIconButtonVariant> variant: default;
-    property <UIconButtonTheme> theme: {
+    private property <UIconButtonTheme> theme: {
         if variant == UIconButtonVariant.primary {
             return UIconButtonThemes.primary;
         }

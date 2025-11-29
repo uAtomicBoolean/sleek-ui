@@ -20,7 +20,15 @@ import { ScrollView } from "std-widgets.slint";
 import { OptionsBarLogic } from "../components/options-bar.slint";
 
 
-import { Slider } from "std-widgets.slint";
+// TODO Remove this import once dev of UMenu is done
+import {
+    UMenu,
+    UMenuLink,
+    UMenuGroupTitle,
+    UMenuSubmenu,
+    UMenuVariant,
+} from "../sleek-ui/widgets.slint";
+
 
 export component Controls inherits Rectangle {
     ScrollView {
@@ -33,6 +41,89 @@ export component Controls inherits Rectangle {
                 UTitle {
                     level: 4;
                     text: "Controls";
+                }
+            }
+
+            HorizontalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                padding-top: UAppTheme.padding-base;
+                UMenu {
+                    width: 300px * UAppTheme.scale-factor;
+                    UMenuLink {
+                        id: "Home";
+                        name: "Home";
+                    }
+
+                    UMenuLink {
+                        id: "dashboard";
+                        name: "Dashboard";
+                    }
+
+                    UMenuSubmenu {
+                        enable-open-animation: false;
+                        changed submenu-opened => {
+                            if !self.submenu-opened {
+                                conts1.submenu-opened = false;
+                            }
+                        }
+                        name: "Controls";
+                        has-child-selected: cont1.is-selected || cont2.is-selected || cont3.is-selected || cont4.is-selected || conts1.has-child-selected;
+                        cont1 := UMenuLink {
+                            id: "Mouse";
+                            name: "Mouse";
+                        }
+
+                        cont2 := UMenuLink {
+                            id: "Keyboard";
+                            name: "Keyboard";
+                        }
+
+                        cont3 := UMenuLink {
+                            id: "Controler";
+                            name: "Controler";
+                        }
+
+                        conts1 := UMenuSubmenu {
+                            enable-open-animation: false;
+                            name: "Custom controls";
+                            has-child-selected: cust1.is-selected || cust2.is-selected || cust3.is-selected;
+                            cust1 := UMenuLink {
+                                id: "custom 1";
+                                name: "Custom 1";
+                            }
+
+                            cust2 := UMenuLink {
+                                id: "custom 2";
+                                name: "Custom 2";
+                            }
+
+                            cust3 := UMenuLink {
+                                id: "custom 3";
+                                name: "Custom 3";
+                            }
+                        }
+
+                        UMenuGroupTitle {
+                            title: "Settings";
+                        }
+
+                        cont4 := UMenuLink {
+                            id: "ControlsSettings";
+                            name: "Settings";
+                        }
+                    }
+
+                    UMenuLink {
+                        enabled: false;
+                        id: "Users";
+                        name: "Users";
+                    }
+
+                    UMenuLink {
+                        id: "Settings";
+                        name: "Settings";
+                    }
                 }
             }
 

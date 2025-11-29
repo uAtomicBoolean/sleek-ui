@@ -19,7 +19,7 @@ export component UCollapse inherits ButtonInterface {
     in-out property <string> title <=> collapse-title.text;
     in-out property <bool> collapse-open: false;
     in-out property <length> content-width <=> collapse-content.width;
-    in-out property <length> content-height: 100px * UAppTheme.scale-factor;
+    in-out property <length> content-height: collapse-content.preferred-height;
     clicked => {
         collapse-open = !collapse-open;
     }
@@ -33,10 +33,7 @@ export component UCollapse inherits ButtonInterface {
                 colorize: UAppTheme.primary.base;
                 source: @image-url("../assets/icons/chevron-down.svg");
                 transform-rotation: root.collapse-open ? 180deg : 0deg;
-                animate transform-rotation {
-                    easing: ease;
-                    duration: UAppTheme.animation-duration;
-                }
+                animate transform-rotation { duration: UAppTheme.animation-duration; }
             }
 
             VerticalLayout {
@@ -50,13 +47,9 @@ export component UCollapse inherits ButtonInterface {
         }
 
         collapse-content := Rectangle {
-            z: -10;
             clip: true;
             height: root.collapse-open ? root.content-height : 0px;
-            animate height {
-                easing: ease;
-                duration: UAppTheme.animation-duration;
-            }
+            animate height { duration: UAppTheme.animation-duration; }
             @children
         }
     }

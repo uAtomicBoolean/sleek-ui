@@ -12,6 +12,7 @@ Inherits from `ButtonInterface`.
 - selected-text `<string>`: `out` property to get the currently selected text. Defaults to "".
 - selected-value `<string>`: `out` property to get the currently selected value. Defaults to "".
 - options `<[{text: string, value: string, enabled: bool}]>`: the list of available options in the select.
+- popup-max-height `<length>`: define the maximum height of the options popup. Defaults to `124px`.
 
 ## Example
 ```slint
