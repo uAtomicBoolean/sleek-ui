@@ -5,7 +5,7 @@ import { UAppTheme } from "../app-theme.slint";
 export component ButtonInterface inherits Rectangle {
     in-out property <bool> enabled: true;
     in-out property <MouseCursor> touch-mouse-cursor: pointer;
-    out property <bool> has-focus <=> focus-scope.has-focus;
+    out property <bool> has-focus: focus-scope.has-focus;
     out property <bool> has-hover: enabled && touch.has-hover;
     out property <bool> pressed: enabled && touch.pressed;
     out property <MouseCursor> mouse-cursor <=> touch.mouse-cursor;
@@ -43,8 +43,6 @@ export component ButtonInterface inherits Rectangle {
         mouse-cursor: root.enabled || root.touch-mouse-cursor != MouseCursor.pointer ? root.touch-mouse-cursor : not-allowed;
         clicked => {
             if root.enabled {
-                focus-scope.focus();
-                focus-scope.clear-focus();
                 root.clicked();
             }
         }
