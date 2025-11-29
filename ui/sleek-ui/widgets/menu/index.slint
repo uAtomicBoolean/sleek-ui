@@ -5,7 +5,8 @@ import { UAppTheme } from "../../app-theme.slint";
 
 export enum UMenuVariant {
 	default,
-	primary,
+	light,
+	dark,
 }
 
 
@@ -23,12 +24,6 @@ export struct UMenuLinkTheme {
 }
 
 export global UMenuLinkThemes {
-	// private property <ColorScheme> variant-cs: {
-    //     if UMenuLogic.variant == UMenuVariant.dark {
-    //         return Palette.color-scheme == light ? dark : light;
-    //     }
-    //     return Palette.color-scheme == dark ? dark : light;
-    // };
     out property <UMenuLinkTheme> default: {
         text: UAppTheme.text,
         text-selected: UAppTheme.primary.base,
@@ -36,16 +31,22 @@ export global UMenuLinkThemes {
         bg-hover: UAppTheme.color-fill-secondary,
         bg-selected: UAppTheme.primary.selected,
     };
-    out property <UMenuLinkTheme> primary: {
-        text: UAppTheme.dark.text,
+
+    out property <UMenuLinkTheme> light: {
+        text: UAppTheme.light.text,
+        text-selected: UAppTheme.light.primary.base,
+        text-disabled: UAppTheme.light.text-disabled,
+        bg-hover: UAppTheme.light.color-fill-secondary,
+        bg-selected: UAppTheme.light.primary.selected,
     };
-    // out property <UMenuLinkTheme> primary: {
-    //     text: variant-cs == ColorScheme.dark ? UAppTheme.light.text : UAppTheme.dark.text,
-    //     text-selected: variant-cs == ColorScheme.dark ? UAppTheme.light.primary.base : UAppTheme.dark.primary.base,
-    //     text-disabled: variant-cs == ColorScheme.dark ? UAppTheme.light.text-disabled : UAppTheme.dark.text-disabled,
-    //     bg-hover: variant-cs == ColorScheme.dark ? UAppTheme.light.color-fill-secondary : UAppTheme.dark.color-fill-secondary,
-    //     bg-selected: variant-cs == ColorScheme.dark ? UAppTheme.light.primary.selected : UAppTheme.dark.primary.selected,
-    // };
+
+    out property <UMenuLinkTheme> dark: {
+        text: UAppTheme.dark.text,
+        text-selected: UAppTheme.dark.primary.base,
+        text-disabled: UAppTheme.dark.text-disabled,
+        bg-hover: UAppTheme.dark.color-fill-secondary,
+        bg-selected: UAppTheme.dark.primary.selected,
+    };
 }
 
 export struct UMenuSubMenuTheme {
@@ -62,7 +63,17 @@ export global UMenuSubMenuThemes {
         text-disabled: UAppTheme.text-disabled,
         bg-hover: UAppTheme.color-fill-secondary,
     };
-    out property <UMenuSubMenuTheme> primary: {
+
+    out property <UMenuSubMenuTheme> light: {
+        text: UAppTheme.light.text,
+        text-selected: UAppTheme.light.primary.base,
+        text-disabled: UAppTheme.light.text-disabled,
+        bg-hover: UAppTheme.light.color-fill-secondary,
+    };
+    out property <UMenuSubMenuTheme> dark: {
         text: UAppTheme.dark.text,
+        text-selected: UAppTheme.dark.primary.base,
+        text-disabled: UAppTheme.dark.text-disabled,
+        bg-hover: UAppTheme.dark.color-fill-secondary,
     };
 }

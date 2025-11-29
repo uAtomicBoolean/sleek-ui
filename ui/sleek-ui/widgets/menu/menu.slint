@@ -19,9 +19,17 @@ export component UMenu inherits Rectangle {
     changed variant => {
         UMenuLogic.variant = variant;
     }
-    background: self.variant == UMenuVariant.default ? UAppTheme.bg-container : UAppTheme.primary.active;
+    background: {
+        if UMenuLogic.variant == UMenuVariant.light {
+            return UAppTheme.light.bg-container;
+        } else if UMenuLogic.variant == UMenuVariant.dark {
+            return UAppTheme.dark.bg-container;
+        }
+        return UAppTheme.bg-container;
+    };
     VerticalLayout {
         alignment: start;
+        padding: UAppTheme.padding-base;
         @children
     }
 }

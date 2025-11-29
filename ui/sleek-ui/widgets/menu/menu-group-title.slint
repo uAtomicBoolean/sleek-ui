@@ -15,6 +15,13 @@ export component UMenuGroupTitle inherits HorizontalLayout {
     UText {
         text: title;
         font-size: UAppTheme.font-size-small;
-        color: UMenuLogic.variant == UMenuVariant.default ? UAppTheme.text-secondary : UAppTheme.dark.text;
+        color: {
+            if UMenuLogic.variant == UMenuVariant.light {
+                return UAppTheme.light.text-secondary;
+            } else if UMenuLogic.variant == UMenuVariant.dark {
+                return UAppTheme.dark.text-secondary;
+            }
+            return UAppTheme.text-secondary;
+        };
     }
 }

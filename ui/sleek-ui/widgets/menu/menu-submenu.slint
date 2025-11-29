@@ -12,7 +12,14 @@ import {
 
 
 export component UMenuSubmenu inherits VerticalLayout {
-    private property <UMenuSubMenuTheme> theme: UMenuLogic.variant == UMenuVariant.default ? UMenuSubMenuThemes.default : UMenuSubMenuThemes.primary;
+    private property <UMenuSubMenuTheme> theme: {
+        if UMenuLogic.variant == UMenuVariant.light {
+            return UMenuSubMenuThemes.light;
+        } else if UMenuLogic.variant == UMenuVariant.dark {
+            return UMenuSubMenuThemes.dark;
+        }
+        return UMenuSubMenuThemes.default;
+    };
     in-out property <string> id;
     in-out property <string> name;
     in-out property <bool> enabled: true;
