@@ -76,7 +76,7 @@ export component USlider inherits ButtonInterface {
                     disabled when !root.enabled: {
                         background: UAppTheme.color-fill;
                     }
-                    focus when root.has-focus: {
+                    focus when root.has-tab-focus: {
                         background: UAppTheme.primary.hover;
                     }
                     hover when root.has-hover: {
@@ -95,7 +95,7 @@ export component USlider inherits ButtonInterface {
             height: size;
             animate size { duration: UAppTheme.animation-duration; }
             states [
-                hover when root.enabled && (root.has-hover || root.has-focus): {
+                hover when root.enabled && (root.has-hover || root.has-tab-focus): {
                     background: UAppTheme.primary.base.with-alpha(0.2);
                     size: 22px * UAppTheme.scale-factor;
                 }
@@ -117,7 +117,7 @@ export component USlider inherits ButtonInterface {
                 disabled when !root.enabled: {
                     border-color: UAppTheme.color-fill-plus;
                 }
-                hover when root.has-hover || root.has-focus: {
+                hover when root.has-hover || root.has-tab-focus: {
                     border-color: UAppTheme.primary.hover;
                     size: 18px * UAppTheme.scale-factor;
                 }
@@ -140,7 +140,7 @@ export component USlider inherits ButtonInterface {
                     disabled when !root.enabled: {
                         background: UAppTheme.color-fill;
                     }
-                    focus when root.has-focus: {
+                    focus when root.has-tab-focus: {
                         background: UAppTheme.primary.hover;
                     }
                     hover when root.has-hover: {
@@ -159,7 +159,7 @@ export component USlider inherits ButtonInterface {
             height: size;
             animate size { duration: UAppTheme.animation-duration; }
             states [
-                hover when root.has-hover || root.has-focus: {
+                hover when root.has-hover || root.has-tab-focus: {
                     background: UAppTheme.primary.base.with-alpha(0.2);
                     size: 22px * UAppTheme.scale-factor;
                 }
@@ -181,7 +181,7 @@ export component USlider inherits ButtonInterface {
                 disabled when !root.enabled: {
                     border-color: UAppTheme.color-fill-plus;
                 }
-                hover when root.has-hover || root.has-focus: {
+                hover when root.has-hover || root.has-tab-focus: {
                     border-color: UAppTheme.primary.hover;
                     size: 18px * UAppTheme.scale-factor;
                 }

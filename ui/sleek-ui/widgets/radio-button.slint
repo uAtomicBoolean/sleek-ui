@@ -106,23 +106,23 @@ export component URadioButton {
                     border-color: UAppTheme.primary.disabled;
                     option-text.color: theme.text-selected-disabled;
                 }
-                focus-not-selected-hover when self.has-focus && selected-value != option && self.has-hover: {
+                focus-not-selected-hover when self.has-tab-focus && selected-value != option && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                 }
-                focus-selected-hover when self.has-focus && selected-value == option && self.has-hover: {
+                focus-selected-hover when self.has-tab-focus && selected-value == option && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                     background: theme.bg-selected-hover;
                     option-text.color: theme.text-selected-hover;
                 }
-                focus-selected when self.has-focus && selected-value == option: {
+                focus-selected when self.has-tab-focus && selected-value == option: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                     background: theme.bg-selected;
                     option-text.color: theme.text-selected;
                 }
-                focus when self.has-focus: {
+                focus when self.has-tab-focus: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                 }

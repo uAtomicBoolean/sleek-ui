@@ -34,8 +34,8 @@ export component USelect inherits ButtonInterface {
     private property <length> full-options-height: (29px * UAppTheme.scale-factor) * options.length + UAppTheme.padding-base * 2;
     callback selected-changed(new-index: int);
     background: UAppTheme.bg-elevated;
-    border-width: self.has-focus ? UAppTheme.focus-border-width : UAppTheme.border-width-base;
-    border-color: self.has-focus ? UAppTheme.focus-color : UAppTheme.border;
+    border-width: self.has-tab-focus ? UAppTheme.focus-border-width : UAppTheme.border-width-base;
+    border-color: self.has-tab-focus ? UAppTheme.focus-color : UAppTheme.border;
     border-radius: UAppTheme.radius-base;
     clicked => {
         popup.show();
@@ -146,7 +146,7 @@ export component USelect inherits ButtonInterface {
             text-obj.color: UAppTheme.text-disabled;
         }
         hover when self.has-hover: {
-            border-color: self.has-focus ? black : UAppTheme.primary.hover;
+            border-color: self.has-tab-focus ? black : UAppTheme.primary.hover;
         }
     ]
 }

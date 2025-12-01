@@ -34,6 +34,12 @@ export component AppWindow inherits Window {
     min-width: 800px * UAppTheme.scale-factor;
     min-height: 840px * UAppTheme.scale-factor;
     background: UAppTheme.bg-container;
+    FocusScope {
+        capture-key-pressed(event) => {
+            reject
+        }
+    }
+
     VerticalLayout {
         OptionsBar { }
 

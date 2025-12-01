@@ -38,22 +38,40 @@ export component ButtonInterface inherits Rectangle {
             }
             reject
         }
+        focus-changed-event(reason) => {
+            debug(reason);
+            if reason == FocusReason.tab-navigation && self.has-focus {
+                has-tab-focus = true;
+            } else if !self.has-focus {
+                has-tab-focus = false;
+            }
+        }
     }
 
     touch := TouchArea {
         mouse-cursor: root.enabled || root.touch-mouse-cursor != MouseCursor.pointer ? root.touch-mouse-cursor : not-allowed;
         clicked => {
             if root.enabled {
+                if has-tab-focus {
+                    has-tab-focus = false;
+                }
+                focus-scope.focus();
                 root.clicked();
             }
         }
         double-clicked => {
             if root.enabled {
+                if has-tab-focus {
+                    has-tab-focus = false;
+                }
                 root.double-clicked();
             }
         }
         moved => {
             if root.enabled {
+                if has-tab-focus {
+                    has-tab-focus = false;
+                }
                 root.moved();
             }
         }

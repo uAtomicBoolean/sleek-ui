@@ -16,8 +16,8 @@ export component USwitch inherits ButtonInterface {
     width: 40px * UAppTheme.scale-factor;
     height: 40px * UAppTheme.scale-factor / 2;
     border-radius: UAppTheme.radius-round;
-    border-width: root.has-focus ? UAppTheme.focus-border-width : 0;
-    border-color: root.has-focus ? UAppTheme.focus-color : transparent;
+    border-width: root.has-tab-focus ? UAppTheme.focus-border-width : 0;
+    border-color: root.has-tab-focus ? UAppTheme.focus-color : transparent;
     circle := Rectangle {
         x: checked ? root.height + 2px : 2px;
         width: root.height - 4px;

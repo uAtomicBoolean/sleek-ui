@@ -61,8 +61,8 @@ export component UButton inherits ButtonInterface {
     }
     background: get-color(theme.bg);
     border-radius: UAppTheme.radius-base;
-    border-width: self.has-focus ? UAppTheme.focus-border-width : theme.border-width;
-    border-color: self.has-focus ? UAppTheme.focus-color : get-color(theme.border);
+    border-width: self.has-tab-focus ? UAppTheme.focus-border-width : theme.border-width;
+    border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border);
     if loading: Rectangle {
         z: 10;
         width: parent.width;

@@ -103,7 +103,7 @@ export component UCheckbox inherits ButtonInterface {
         checked = !checked;
     }
     states [
-        focused when root.has-focus: {
+        focused when root.has-tab-focus: {
             border-width: UAppTheme.focus-border-width;
             border-color: UAppTheme.focus-color;
         }

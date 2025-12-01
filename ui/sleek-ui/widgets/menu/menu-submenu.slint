@@ -58,7 +58,7 @@ export component UMenuSubmenu inherits VerticalLayout {
                 submenu-text.color: theme.text-disabled;
                 submenu-icon.colorize: theme.text-disabled;
             }
-            focus-selected when self.has-focus && has-child-selected: {
+            focus-selected when self.has-tab-focus && has-child-selected: {
                 submenu-icon.colorize: theme.text-selected;
                 submenu-text.color: theme.text-selected;
                 border-color: UAppTheme.focus-color;
@@ -68,7 +68,7 @@ export component UMenuSubmenu inherits VerticalLayout {
                 submenu-icon.colorize: theme.text-selected;
                 submenu-text.color: theme.text-selected;
             }
-            focus-hover when self.has-focus && self.has-hover: {
+            focus-hover when self.has-tab-focus && self.has-hover: {
                 border-color: UAppTheme.focus-color;
                 border-width: UAppTheme.focus-border-width;
                 background: theme.bg-hover;
@@ -76,7 +76,7 @@ export component UMenuSubmenu inherits VerticalLayout {
             hover when self.has-hover: {
                 background: theme.bg-hover;
             }
-            focus when self.has-focus: {
+            focus when self.has-tab-focus: {
                 border-color: UAppTheme.focus-color;
                 border-width: UAppTheme.focus-border-width;
             }

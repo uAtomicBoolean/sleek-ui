@@ -33,9 +33,8 @@ export component UBreadcrumb inherits Rectangle {
                     clicked => {
                         step-clicked(step);
                     }
-
                     states [
-                        focused when self.has-focus: {
+                        focused when self.has-tab-focus: {
                             border-color: UAppTheme.focus-color;
                             border-width: UAppTheme.focus-border-width;
                         }

@@ -1,6 +1,7 @@
 import { UAppTheme } from "../app-theme.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
+import { ButtonInterface } from "button-interface.slint";
 
 
 export component UCode inherits Rectangle {
@@ -27,7 +28,7 @@ export component UCode inherits Rectangle {
             padding: UAppTheme.padding-medium;
             Rectangle {
                 states [
-                    focus when clipboard-focus.has-focus: {
+                    focus when btn-interface.has-tab-focus: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
                     }
@@ -35,16 +36,14 @@ export component UCode inherits Rectangle {
                 UIcon {
                     colorize: UAppTheme.color-fill-plus;
                     source: @image-url("../assets/icons/clipboard.svg");
-                    clipboard-touch := TouchArea {
+                    btn-interface := ButtonInterface {
                         clicked => {
                             root.copied(code);
                         }
                     }
 
-                    clipboard-focus := FocusScope { }
-
                     states [
-                        hover when clipboard-touch.has-hover: {
+                        hover when btn-interface.has-hover: {
                             colorize: UAppTheme.color-fill;
                         }
                     ]

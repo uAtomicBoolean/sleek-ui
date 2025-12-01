@@ -33,7 +33,7 @@ export component ULink inherits ButtonInterface {
     }
 
     states [
-        focus when root.has-focus: {
+        focus when root.has-tab-focus: {
             border-width: UAppTheme.focus-border-width;
             border-color: UAppTheme.focus-color;
         }

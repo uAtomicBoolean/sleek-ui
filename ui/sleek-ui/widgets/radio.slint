@@ -66,17 +66,17 @@ component URadioOption inherits ButtonInterface {
                         border-color: UAppTheme.primary.disabled;
                         background: UAppTheme.primary.disabled;
                     }
-                    focused-hover-selected when root.has-focus && root.selected-value == root.option && root.has-hover: {
+                    focused-hover-selected when root.has-tab-focus && root.selected-value == root.option && root.has-hover: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
                         background: UAppTheme.primary.hover;
                     }
-                    focused-selected when root.has-focus && root.selected-value == root.option: {
+                    focused-selected when root.has-tab-focus && root.selected-value == root.option: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
                         background: UAppTheme.primary.base;
                     }
-                    focused when root.has-focus: {
+                    focused when root.has-tab-focus: {
                         border-color: UAppTheme.focus-color;
                         border-width: UAppTheme.focus-border-width;
                     }

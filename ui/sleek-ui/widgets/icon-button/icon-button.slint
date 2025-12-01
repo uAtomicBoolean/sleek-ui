@@ -72,8 +72,8 @@ export component UIconButton inherits ButtonInterface {
     }
     background: get-color(theme.bg);
     border-radius: UAppTheme.radius-circle;
-    border-width: self.has-focus ? UAppTheme.focus-border-width : theme.border-width;
-    border-color: self.has-focus ? UAppTheme.focus-color : get-color(theme.border);
+    border-width: self.has-tab-focus ? UAppTheme.focus-border-width : theme.border-width;
+    border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border);
     HorizontalLayout {
         alignment: center;
         padding-top: UAppTheme.padding-vertical;

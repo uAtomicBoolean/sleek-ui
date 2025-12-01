@@ -45,7 +45,7 @@ export component Controls inherits Rectangle {
                 padding-top: UAppTheme.padding-base;
                 UButton {
                     enabled: OptionsBarLogic.widgets-enabled;
-                    text: "Default";
+                    text: "Default " + (self.has-tab-focus ? "true" : "false");
                 }
 
                 UButton {
