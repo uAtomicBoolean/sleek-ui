@@ -15,73 +15,38 @@ import "assets/fonts/static/Inter-Thin.otf";
 
 
 import { UAppTheme } from "sleek-ui/app-theme.slint";
-import { UModal, UText } from "sleek-ui/widgets.slint";
-import { Sidebar, SidebarLogic } from "components/sidebar.slint";
-import { About } from "pages/about.slint";
-import { Controls } from "pages/controls.slint";
-import { DataDisplay } from "pages/data-display.slint";
-import { Feedback } from "pages/feedback.slint";
-import { Navigation } from "pages/navigation.slint";
-import { OptionsBar, OptionsBarLogic } from "components/options-bar.slint";
+import { Sidebar } from "components/sidebar.slint";
+import { PageManager } from "components/page-manager.slint";
 
-
-export { UAppTheme, OptionsBarLogic }
+export { UAppTheme }
 
 export component AppWindow inherits Window {
-    title: "Sleek-ui Widgets Gallery";
+    title: "Sleek-ui Documentation";
     default-font-family: "Inter";
     default-font-size: 14px;
     min-width: 800px * UAppTheme.scale-factor;
     min-height: 840px * UAppTheme.scale-factor;
     background: UAppTheme.bg-container;
-    FocusScope {
-        capture-key-pressed(event) => {
-            reject
-        }
+    FocusScope { }
+
+    HorizontalLayout {
+        Sidebar { }
+
+        PageManager { }
     }
 
-    VerticalLayout {
-        OptionsBar { }
-
-        HorizontalLayout {
-            vertical-stretch: 1;
-            Sidebar {
-                height: 100%;
-            }
-
-            if SidebarLogic.current-page == "Controls": Controls {
-                horizontal-stretch: 1;
-            }
-            if SidebarLogic.current-page == "Data display": DataDisplay {
-                horizontal-stretch: 1;
-            }
-            if SidebarLogic.current-page == "Feedback": Feedback {
-                horizontal-stretch: 1;
-                open-modal => {
-                    modal.show();
-                }
-            }
-            if SidebarLogic.current-page == "Navigation": Navigation {
-                horizontal-stretch: 1;
-            }
-            if SidebarLogic.current-page == "About": About {
-                horizontal-stretch: 1;
-            }
-        }
-    }
-
-    modal := UModal {
-        title: "Modal example";
-        modal-min-width: 400px * UAppTheme.scale-factor;
-        modal-max-width: 400px * UAppTheme.scale-factor;
-        modal-min-height: 200px * UAppTheme.scale-factor;
-        modal-max-height: 400px * UAppTheme.scale-factor;
-        VerticalLayout {
-            alignment: start;
-            UText {
-                text: "This part of the modal takes children components hence is fully customizable.";
-                wrap: word-wrap;
-            }
-        }
-    }
+    // modal := UModal {
+    //     title: "Modal example";
+    //     modal-min-width: 400px * UAppTheme.scale-factor;
+    //     modal-max-width: 400px * UAppTheme.scale-factor;
+    //     modal-min-height: 200px * UAppTheme.scale-factor;
+    //     modal-max-height: 400px * UAppTheme.scale-factor;
+    //     VerticalLayout {
+    //         alignment: start;
+    //         UText {
+    //             text: "This part of the modal takes children components hence is fully customizable.";
+    //             wrap: word-wrap;
+    //         }
+    //     }
+    // }
 }

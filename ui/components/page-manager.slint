@@ -1,0 +1,11 @@
+import { UMenuLogic } from "../sleek-ui/widgets.slint";
+
+
+export component PageManager {
+    in property <string> current-page: UMenuLogic.current-link;
+    VerticalLayout {
+        Text {
+            text: current-page;
+        }
+    }
+}

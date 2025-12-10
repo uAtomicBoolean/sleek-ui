@@ -1,65 +1,265 @@
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
-import { UDivider, UText, UTitle } from "../sleek-ui/widgets.slint";
+import {
+    UDivider,
+    UText,
+    UTitle,
+    UMenu,
+    UMenuLink,
+    UMenuSubmenu,
+    UMenuGroupTitle,
+} from "../sleek-ui/widgets.slint";
+import { ScrollView } from "std-widgets.slint";
 
-
-export global SidebarLogic {
-    in-out property <string> current-page: "Controls";
-}
 
 export component Sidebar inherits Rectangle {
     width: 200px * UAppTheme.scale-factor;
     HorizontalLayout {
-        VerticalLayout {
-            alignment: start;
-            horizontal-stretch: 1;
-            HorizontalLayout {
-                padding: UAppTheme.padding-base;
-                padding-top: UAppTheme.padding-big;
-                UTitle {
-                    horizontal-alignment: center;
-                    level: 5;
-                    text: "Sleek-ui Widgets Gallery";
-                    font-weight: 600;
-                    wrap: word-wrap;
-                }
-            }
+        ScrollView {
+            width: root.width;
+            VerticalLayout {
+                width: root.width;
+                padding-bottom: 24px * UAppTheme.scale-factor;
+                UMenu {
+                    current-link: "home";
+                    UMenuLink {
+                        id: "home";
+                        name: "Home";
+                    }
 
-            Rectangle {
-                height: 40px;
-            }
+                    UMenuLink {
+                        id: "how-to-use";
+                        name: "How to use";
+                    }
 
-            for link in ["Controls", "Data display", "Feedback", "Navigation", "About"]: HorizontalLayout {
-                padding: UAppTheme.padding-small;
-                Rectangle {
-                    border-radius: UAppTheme.radius-base;
-                    HorizontalLayout {
-                        padding: 6px;
-                        UText {
-                            text: link;
-                            animate color { duration: UAppTheme.animation-duration; }
-                            states [
-                                active when SidebarLogic.current-page == link: {
-                                    color: UAppTheme.primary.base;
-                                }
-                            ]
+                    UMenuLink {
+                        id: "theming";
+                        name: "Theming";
+                    }
+
+                    UMenuLink {
+                        id: "default-colors";
+                        name: "Default colors";
+                    }
+
+                    UMenuSubmenu {
+                        name: "Widgets";
+                        opened: true;
+                        UMenuGroupTitle {
+                            title: "General";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "button";
+                            name: "Button";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "divider";
+                            name: "Divider";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "icon-button";
+                            name: "Icon button";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "floating-button";
+                            name: "Floating button";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "floating-icon-button";
+                            name: "Floating icon button";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "link";
+                            name: "Link";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "spinner";
+                            name: "Spinner";
+                        }
+
+                        UMenuGroupTitle {
+                            title: "Navigation";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "breadcrumb";
+                            name: "Breadcrumb";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "tabs";
+                            name: "Tabs";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "menu";
+                            name: "Menu";
+                        }
+
+                        UMenuGroupTitle {
+                            title: "Data entry";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "checkbox";
+                            name: "Checkbox";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "input";
+                            name: "Input";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "input-number";
+                            name: "Input number";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "select";
+                            name: "Select";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "radio";
+                            name: "Radio";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "radio-button";
+                            name: "Radio button";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "slider";
+                            name: "Slider";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "switch";
+                            name: "Switch";
+                        }
+
+                        UMenuGroupTitle {
+                            title: "Data display";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "card";
+                            name: "Card";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "code";
+                            name: "Code";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "collapse";
+                            name: "Collapse";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "icon";
+                            name: "Icon";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "progress";
+                            name: "Progress";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "tag";
+                            name: "Tag";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "text";
+                            name: "Text";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "title";
+                            name: "Title";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "tooltip";
+                            name: "Tooltip";
+                        }
+
+                        UMenuGroupTitle {
+                            title: "Feedback";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "alert";
+                            name: "Alert";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "modal";
+                            name: "Modal";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "notification";
+                            name: "Notification";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "popover";
+                            name: "Popover";
                         }
                     }
 
-                    ctrls-touch := TouchArea {
-                        clicked => {
-                            SidebarLogic.current-page = link;
-                        }
+                    UMenuLink {
+                        id: "settings";
+                        name: "Settings";
                     }
 
-                    animate background { duration: UAppTheme.animation-duration; }
-                    states [
-                        active when SidebarLogic.current-page == link: {
-                            background: UAppTheme.primary.selected;
-                        }
-                        hover when ctrls-touch.has-hover: {
-                            background: UAppTheme.color-fill-secondary;
-                        }
-                    ]
+                    UMenuLink {
+                        id: "about";
+                        name: "About";
+                    }
                 }
             }
         }
