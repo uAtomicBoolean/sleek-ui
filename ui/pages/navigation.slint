@@ -1,4 +1,12 @@
-import { UBreadcrumb, UText, UTitle, UTabs } from "../sleek-ui/widgets.slint";
+import {
+    UBreadcrumb,
+    UText,
+    UTitle,
+    UTabs,
+    UMenu,
+    UMenuLink,
+    UMenuSubmenu,
+} from "../sleek-ui/widgets.slint";
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { ScrollView, AboutSlint } from "std-widgets.slint";
 
@@ -68,6 +76,7 @@ export component Navigation {
             VerticalLayout {
                 alignment: start;
                 padding-top: UAppTheme.padding-base;
+                padding-bottom: 24px * UAppTheme.scale-factor;
                 UTabs {
                     tabs-alignement: stretch;
                     tabs: ["France", "Germany", "United Kingdom", "Italy"];
@@ -82,6 +91,81 @@ export component Navigation {
                     }
                     if self.current-index == 3: UText {
                         text: "You can also enable the tabs to take all the available space.";
+                    }
+                }
+            }
+
+            UText {
+                text: "Menu";
+                font-weight: 600;
+            }
+
+            VerticalLayout {
+                alignment: start;
+                padding-top: UAppTheme.padding-base;
+                height: 120px;
+                UMenu {
+                    UMenuLink {
+                        id: "home";
+                        name: "Home";
+                    }
+
+                    UMenuLink {
+                        id: "how-to-use";
+                        name: "How to use";
+                    }
+
+                    UMenuLink {
+                        id: "Theming";
+                        name: "Theming";
+                    }
+
+                    UMenuLink {
+                        id: "Color scheme";
+                        name: "Color scheme";
+                    }
+
+                    UMenuSubmenu {
+                        name: "Widgets";
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "home 2";
+                            name: "Home";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "how-to-use 2";
+                            name: "How to use";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "Theming 2";
+                            name: "Theming";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "Color scheme 2";
+                            name: "Color scheme";
+                        }
+
+                        UMenuSubmenu {
+                            name: "Sub widgets";
+                            parent-child-opened <=> parent.child-opened;
+                            UMenuLink {
+                                parent-child-opened <=> parent.child-opened;
+                                id: "Theming 3";
+                                name: "Theming";
+                            }
+
+                            UMenuLink {
+                                parent-child-opened <=> parent.child-opened;
+                                id: "Color scheme 3";
+                                name: "Color scheme";
+                            }
+                        }
                     }
                 }
             }
