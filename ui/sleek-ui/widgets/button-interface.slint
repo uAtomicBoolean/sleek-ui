@@ -39,7 +39,6 @@ export component ButtonInterface inherits Rectangle {
             reject
         }
         focus-changed-event(reason) => {
-            debug(reason);
             if reason == FocusReason.tab-navigation && self.has-focus {
                 has-tab-focus = true;
             } else if !self.has-focus {
