@@ -3,11 +3,16 @@ name = "sleek-ui"
 version = "1.0.0"
 edition = "2024"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "sleek_ui_lib"
+crate-type = ["cdylib"]
 
 [dependencies]
 dotenv = "0.15.0"
 slint = { version = "1.14.1", features = ["renderer-skia"] }
+
+[target.'cfg(target_family = "wasm")'.dependencies]
+wasm-bindgen = { version = "0.2" }
 
 [build-dependencies]
 slint-build = "1.14.1"
