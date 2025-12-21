@@ -17,10 +17,15 @@ import "assets/fonts/static/Inter-Thin.otf";
 import { UAppTheme } from "sleek-ui/app-theme.slint";
 import { Sidebar } from "components/sidebar.slint";
 import { PageManager } from "components/page-manager.slint";
+import { Palette } from "std-widgets.slint";
 
 export { UAppTheme }
 
 export component AppWindow inherits Window {
+	// Used to force light theme in the documentation.
+    public function switch-theme-to-light() {
+        Palette.color-scheme = ColorScheme.light;
+    }
     title: "Sleek-ui Documentation";
     default-font-family: "Inter";
     default-font-size: 14px;

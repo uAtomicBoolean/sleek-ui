@@ -2,14 +2,21 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use dotenv::dotenv;
-use std::error::Error;
+
+#[cfg(target_family = "wasm")]
+use wasm_bindgen::prelude::*;
 
 slint::include_modules!();
 
-fn main() -> Result<(), Box<dyn Error>> {
+#[allow(dead_code)]
+#[cfg_attr(target_family = "wasm", wasm_bindgen(start))]
+fn main() {
     dotenv().ok();
 
-    let ui = AppWindow::new()?;
+    let ui = AppWindow::new().unwrap();
+
+    #[cfg(target_family = "wasm")]
+    ui.invoke_switch_theme_to_light();
 
     // let options_bar_logic = ui.global::<OptionsBarLogic>();
 
@@ -22,7 +29,5 @@ fn main() -> Result<(), Box<dyn Error>> {
     //     }
     // });
 
-    ui.run()?;
-
-    Ok(())
+    ui.run().unwrap();
 }

@@ -5,13 +5,18 @@ edition = "2024"
 
 [lib]
 name = "sleek_ui_lib"
+path = "src/main.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
 dotenv = "0.15.0"
+
+# Use skia renderer on all platforms but wasm as it is not supported. 
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
 slint = { version = "1.14.1", features = ["renderer-skia"] }
 
 [target.'cfg(target_family = "wasm")'.dependencies]
+slint = { version = "1.14.1" }
 wasm-bindgen = { version = "0.2" }
 
 [build-dependencies]
@@ -20,7 +25,8 @@ slint-build = "1.14.1"
 [profile.dev]
 incremental = true
 
-[profile.release]
+# Applying the profile release on wasm causes an error during build.
+[target.'cfg(not(target_family = "wasm"))'.profile.release]
 codegen-units = 1
 lto = true
 opt-level = "s"
