@@ -1,0 +1,172 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UButton,
+    USlider,
+    ULinearProgress,
+    UInput,
+    UInputNumber,
+    ULink,
+    UAlert,
+    USwitch,
+    UCheckbox,
+    UTag,
+} from "../sleek-ui/widgets.slint";
+import { UMenuLogic } from "../sleek-ui/widgets.slint";
+
+
+import { PageBase } from "../components/page-base.slint";
+
+
+export component HomePage inherits PageBase {
+    HorizontalLayout {
+        alignment: center;
+        padding-top: 64px * UAppTheme.scale-factor;
+        padding-bottom: 24px * UAppTheme.scale-factor;
+        UTitle {
+            level: 1;
+            text: "Sleek-ui";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        UText {
+            text: "A widgets library built with/for Slint and based on Ant Design.";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        UText {
+            text: "Comes with a simple application wide theming system and a custom scale factor.";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        spacing: UAppTheme.spacing-base;
+        padding-top: 100px * UAppTheme.scale-factor;
+        UButton {
+            variant: primary;
+            text: "Primary";
+        }
+
+        UButton {
+            variant: default;
+            text: "Default";
+        }
+
+        UButton {
+            variant: filled;
+            text: "Filled";
+        }
+
+        UButton {
+            variant: text;
+            text: "Text";
+        }
+
+        UButton {
+            variant: primary;
+            danger: true;
+            text: "Danger";
+        }
+
+        UButton {
+            variant: primary;
+            loading: true;
+            text: "Loading";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        spacing: UAppTheme.spacing-base;
+        padding-top: UAppTheme.padding-bigger;
+        UTag {
+            text: "Primary";
+        }
+
+        UTag {
+            variant: success;
+            text: "Success";
+        }
+
+        UTag {
+            variant: warning;
+            text: "Warning";
+        }
+
+        UTag {
+            variant: danger;
+            text: "Danger";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        spacing: UAppTheme.spacing-bigger;
+        padding-top: UAppTheme.padding-bigger;
+        USwitch { }
+
+        UCheckbox {
+            text: "Checkox";
+            text-placement: start;
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        padding-top: UAppTheme.padding-bigger;
+        ULinearProgress {
+            width: 300px * UAppTheme.scale-factor;
+            progress: 30%;
+            indeterminate: true;
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        padding-top: UAppTheme.padding-bigger;
+        USlider {
+            width: 350px * UAppTheme.scale-factor;
+            value: 30;
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        spacing: UAppTheme.spacing-bigger;
+        padding-top: UAppTheme.padding-bigger;
+        UInput {
+            width: 150px * UAppTheme.scale-factor;
+            placeholder: "Text input";
+        }
+
+        UInputNumber {
+            width: 150px * UAppTheme.scale-factor;
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        padding-top: UAppTheme.padding-bigger;
+        UAlert {
+            variant: info;
+            message: "Simple alert to display a message to the user.";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        padding-top: UAppTheme.padding-bigger;
+        ULink {
+            text: "Documentation";
+            clicked => {
+                UMenuLogic.current-link = "how-to-use";
+            }
+        }
+    }
+}

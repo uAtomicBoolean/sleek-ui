@@ -1,11 +1,12 @@
 import { UMenuLogic } from "../sleek-ui/widgets.slint";
 
+import { HomePage } from "../pages/page-index.slint";
+
 
 export component PageManager {
     in property <string> current-page: UMenuLogic.current-link;
     VerticalLayout {
-        Text {
-            text: current-page;
-        }
+        alignment: start;
+        if current-page == "home": HomePage { }
     }
 }
