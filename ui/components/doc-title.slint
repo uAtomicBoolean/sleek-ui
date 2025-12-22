@@ -1,0 +1,15 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UTitle } from "../sleek-ui/widgets.slint";
+
+
+export component DocTitle {
+    in property <string> text;
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-bigger;
+        padding-bottom: UAppTheme.padding-base;
+        UTitle {
+            level: 5;
+            text: root.text;
+        }
+    }
+}

@@ -18,6 +18,12 @@ fn main() {
     #[cfg(target_family = "wasm")]
     ui.invoke_switch_theme_to_light();
 
+    let doc_logic = ui.global::<DocumentationLogic>();
+
+    doc_logic.on_open_url(|url| {
+        let _ = open::that(url);
+    });
+
     // let options_bar_logic = ui.global::<OptionsBarLogic>();
 
     // options_bar_logic.on_change_primary_color({

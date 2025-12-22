@@ -1,0 +1,89 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+
+import { DocTitle } from "../components/doc-title.slint";
+import { PageBase } from "../components/page-base.slint";
+import { DocumentationLogic } from "../logic/documentation-logic.slint";
+import { TextEdit } from "std-widgets.slint";
+
+
+export component HowToUsePage inherits PageBase {
+    HorizontalLayout {
+        UTitle {
+            level: 3;
+            text: "How to use Sleek-ui";
+        }
+    }
+
+    DocTitle {
+        text: "Add the library to your project";
+    }
+
+    HorizontalLayout {
+        alignment: start;
+        UText {
+            text: "1. Download the library from the latest release on its ";
+        }
+
+        ULink {
+            text: "github repository";
+            clicked => {
+                DocumentationLogic.open-url("https://github.com/uAtomicBoolean/sleek-ui/releases");
+            }
+        }
+
+        UText {
+            text: ".";
+        }
+    }
+
+    UText {
+        text: "2. Unzip the library and move it either to your project, or to another folder on your computer.";
+    }
+
+    HorizontalLayout {
+        alignment: start;
+        UText {
+            text: "3. Add Sleek-ui as a library following the ";
+        }
+
+        ULink {
+            text: "official documentation";
+            clicked => {
+                DocumentationLogic.open-url("https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries");
+            }
+        }
+
+        UText {
+            text: ".";
+        }
+    }
+
+    DocTitle {
+        text: "Use the widgets in your code";
+    }
+
+    UText {
+        text: "All widgets can be imported from the \"@sleek-ui/widgets.slint\" file.";
+    }
+
+    UText {
+        text: "They can be then used like a native widget:";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        UCode {
+            code: "import { UButton, UText } from \"@sleek-ui/widgets.slint\";\n\nexport component AppWindow inherits Window {\n    VerticalLayout {\n        UButton {\n            text: \"Button\";\n            variant: primary;\n        }\n        UText {\n            text: \"Some custom text displayed with UText.\";\n        }\n    }\n}";
+        }
+    }
+
+    DocTitle {
+        text: "Use the UAppTheme properties";
+    }
+
+    UText {
+        text: "Sleek-ui comes with design tokens fully available in the \"UAppTheme\" global which allows you to keep the same look and feel across your whole application. This also allows you to use the custom scale factor used in the library.";
+        wrap: word-wrap;
+    }
+}

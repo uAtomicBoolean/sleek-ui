@@ -15,7 +15,6 @@ import {
 } from "../sleek-ui/widgets.slint";
 import { UMenuLogic } from "../sleek-ui/widgets.slint";
 
-
 import { PageBase } from "../components/page-base.slint";
 
 
@@ -163,7 +162,7 @@ export component HomePage inherits PageBase {
         alignment: center;
         padding-top: UAppTheme.padding-bigger;
         ULink {
-            text: "Documentation";
+            text: "How to use";
             clicked => {
                 UMenuLogic.current-link = "how-to-use";
             }
