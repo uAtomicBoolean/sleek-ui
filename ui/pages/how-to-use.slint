@@ -4,15 +4,12 @@ import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
 import { DocTitle } from "../components/doc-title.slint";
 import { PageBase } from "../components/page-base.slint";
 import { DocumentationLogic } from "../logic/documentation-logic.slint";
-import { TextEdit } from "std-widgets.slint";
 
 
 export component HowToUsePage inherits PageBase {
-    HorizontalLayout {
-        UTitle {
-            level: 3;
-            text: "How to use Sleek-ui";
-        }
+    UTitle {
+        level: 3;
+        text: "How to use Sleek-ui";
     }
 
     DocTitle {
