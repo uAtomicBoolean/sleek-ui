@@ -1,0 +1,220 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UPrimaryColors } from "../sleek-ui/styling/colors.slint";
+import { UColorSchemeVariantsColor } from "../sleek-ui/structs/colors.slint";
+import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+
+import { DocTitle } from "../components/doc-title.slint";
+import { PageBase } from "../components/page-base.slint";
+import { DocumentationLogic } from "../logic/documentation-logic.slint";
+
+
+component ColorRect inherits Rectangle {
+    in property <brush> color-brush;
+    width: 80px * UAppTheme.scale-factor;
+    height: 40px * UAppTheme.scale-factor;
+    background: color-brush;
+    border-width: UAppTheme.border-width-base;
+    border-color: UAppTheme.focus-color;
+}
+
+component ColorPresentation {
+    in property <string> color-name;
+    in property <UColorSchemeVariantsColor> colors;
+    VerticalLayout {
+        alignment: start;
+        spacing: UAppTheme.spacing-big;
+        padding-top: UAppTheme.padding-big;
+        padding-bottom: UAppTheme.padding-big;
+        UTitle {
+            level: 6;
+            text: color-name;
+        }
+
+        HorizontalLayout {
+            alignment: space-around;
+            HorizontalLayout {
+                ColorRect {
+                    color-brush: colors.light.base;
+                }
+
+                ColorRect {
+                    color-brush: colors.light.hover;
+                }
+
+                ColorRect {
+                    color-brush: colors.light.active;
+                }
+
+                ColorRect {
+                    color-brush: colors.light.disabled;
+                }
+
+                ColorRect {
+                    color-brush: colors.light.selected;
+                }
+            }
+
+            HorizontalLayout {
+                ColorRect {
+                    color-brush: colors.dark.base;
+                }
+
+                ColorRect {
+                    color-brush: colors.dark.hover;
+                }
+
+                ColorRect {
+                    color-brush: colors.dark.active;
+                }
+
+                ColorRect {
+                    color-brush: colors.dark.disabled;
+                }
+
+                ColorRect {
+                    color-brush: colors.dark.selected;
+                }
+            }
+        }
+    }
+}
+
+export component ColorsPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Default colors";
+    }
+
+    DocTitle {
+        text: "Colors global and struct";
+    }
+
+    UText {
+        wrap: word-wrap;
+        text: "Sleek-ui comes with a set of default colors available in the \"UPrimaryColors\" global. Each property of this global is of the type \"UColorSchemeVariantsColor\" with the following structure:";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        padding-bottom: UAppTheme.padding-big;
+        UCode {
+            code: "import { UPrimaryColors } from \"@/sleek-ui/styling/colors.slint\";";
+        }
+    }
+
+    UText {
+        text: "Each property of this global is of the type \"UColorSchemeVariantsColor\" with the following structure:";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        UCode {
+            code: "struct UColorSchemeVariantsColor {\n    light: {\n        base: brush,\n        hover: brush,\n        active: brush,\n        disabled: brush,\n        selected: brush,\n    },\n    dark: {\n        base: brush,\n        hover: brush,\n        active: brush,\n        disabled: brush,\n        selected: brush,\n    }\n}";
+        }
+    }
+
+    DocTitle {
+        text: "Default colors";
+    }
+
+    UText {
+        text: "Each color has a light and dark variant, with each variant having the following fields: base, hover, active, disabled, selected.";
+    }
+
+    HorizontalLayout {
+        alignment: start;
+        UText {
+            text: "All colors are available on the ";
+        }
+
+        ULink {
+            text: "Ant Design website";
+            clicked => {
+                DocumentationLogic.open-url("https://ant.design/docs/spec/colors");
+            }
+        }
+
+        UText {
+            text: ".";
+        }
+    }
+
+    Rectangle {
+        height: UAppTheme.spacing-bigger;
+    }
+
+    ColorPresentation {
+        color-name: "Success";
+        colors: UPrimaryColors.success;
+    }
+
+    ColorPresentation {
+        color-name: "Warning";
+        colors: UPrimaryColors.warning;
+    }
+
+    ColorPresentation {
+        color-name: "Danger";
+        colors: UPrimaryColors.danger;
+    }
+
+    ColorPresentation {
+        color-name: "Dust red";
+        colors: UPrimaryColors.dust-red;
+    }
+
+    ColorPresentation {
+        color-name: "Volcano";
+        colors: UPrimaryColors.volcano;
+    }
+
+    ColorPresentation {
+        color-name: "Sunset orange";
+        colors: UPrimaryColors.sunset-orange;
+    }
+
+    ColorPresentation {
+        color-name: "Lime";
+        colors: UPrimaryColors.lime;
+    }
+
+    ColorPresentation {
+        color-name: "Calendula gold";
+        colors: UPrimaryColors.calendula-gold;
+    }
+
+    ColorPresentation {
+        color-name: "Sunrise yellow";
+        colors: UPrimaryColors.sunrise-yellow;
+    }
+
+    ColorPresentation {
+        color-name: "Polar green";
+        colors: UPrimaryColors.polar-green;
+    }
+
+    ColorPresentation {
+        color-name: "Cyan";
+        colors: UPrimaryColors.cyan;
+    }
+
+    ColorPresentation {
+        color-name: "Daybreak blue";
+        colors: UPrimaryColors.daybreak-blue;
+    }
+
+    ColorPresentation {
+        color-name: "Geek blue";
+        colors: UPrimaryColors.geek-blue;
+    }
+
+    ColorPresentation {
+        color-name: "Golden purple";
+        colors: UPrimaryColors.golden-purple;
+    }
+
+    ColorPresentation {
+        color-name: "French magenta";
+        colors: UPrimaryColors.french-magenta;
+    }
+}

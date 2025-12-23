@@ -3,7 +3,8 @@ import { UMenuLogic } from "../sleek-ui/widgets.slint";
 import {
     HomePage,
     HowToUsePage,
-    DefaultColorsPage,
+    ColorsPage,
+    ThemingPage,
 } from "../pages/page-index.slint";
 
 
@@ -13,6 +14,7 @@ export component PageManager {
         alignment: start;
         if current-page == "home": HomePage { }
         if current-page == "how-to-use": HowToUsePage { }
-        if current-page == "default-colors": DefaultColorsPage { }
+        if current-page == "default-colors": ColorsPage { }
+        if current-page == "theming": ThemingPage { }
     }
 }

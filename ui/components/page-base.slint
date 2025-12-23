@@ -2,11 +2,14 @@ import { ScrollView } from "std-widgets.slint";
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
 
 export component PageBase {
-    in-out property <length> inner-padding: UAppTheme.padding-bigger;
     height: 100%;
-    VerticalLayout {
-        alignment: start;
-        padding: root.inner-padding;
-        @children
+    ScrollView {
+        height: 100%;
+        VerticalLayout {
+            alignment: start;
+            padding: UAppTheme.padding-base;
+            padding-top: UAppTheme.padding-bigger;
+            @children
+        }
     }
 }

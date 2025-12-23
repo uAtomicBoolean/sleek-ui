@@ -1,0 +1,14 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+
+import { DocTitle } from "../components/doc-title.slint";
+import { PageBase } from "../components/page-base.slint";
+import { DocumentationLogic } from "../logic/documentation-logic.slint";
+
+
+export component ThemingPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Application theming";
+    }
+}
