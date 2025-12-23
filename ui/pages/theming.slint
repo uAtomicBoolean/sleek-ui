@@ -11,4 +11,42 @@ export component ThemingPage inherits PageBase {
         level: 3;
         text: "Application theming";
     }
+
+    DocTitle {
+        text: "Generalities";
+    }
+
+    HorizontalLayout {
+        alignment: start;
+        UText {
+            text: "The application's style can be customized by modifying, from your source code, the properties in the ";
+        }
+
+        ULink {
+            text: "UAppTheme";
+            clicked => {
+                DocumentationLogic.open-url("https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint");
+            }
+        }
+
+        UText {
+            text: " global.";
+        }
+    }
+
+    UText {
+        text: "When building your interface, you can use the UAppTheme's properties by importing it with the following code:";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        padding-bottom: UAppTheme.padding-big;
+        UCode {
+            code: "import { UAppTheme } from \"@sleek-ui/app-theme.slint\";";
+        }
+    }
+
+    UText {
+        text: "All the length defined in the theme are multiplied by the custom scale factor, of type float, which is set to 1 by default.";
+    }
 }
