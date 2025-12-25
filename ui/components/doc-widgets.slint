@@ -1,5 +1,5 @@
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
-import { UText, UTitle } from "../sleek-ui/widgets.slint";
+import { UText, UTitle, ULink } from "../sleek-ui/widgets.slint";
 
 
 export component DocTitle {
@@ -35,16 +35,38 @@ export component WidgetPresentation {
     }
 }
 
+
+// Elements for the description of DocSection.
+struct DescStyledText {
+	id: string,
+	text: string,
+	link: string,
+	code: string,
+}
+
+
 export component DocSection {
     in property <string> title;
-    in property <string> description;
+    in property <[DescStyledText]> description;
+    callback link-clicked(id: string);
     VerticalLayout {
         DocTitle {
             text: root.title;
         }
 
-        if description != "": UText {
-            text: description;
+        if description.length != 0: HorizontalLayout {
+            alignment: start;
+            for item in description: HorizontalLayout {
+                alignment: start;
+                if item.text != "": UText {
+                    text: item.text;
+                }
+                if item.link != "": ULink {
+                    text: item.link;
+                    clicked => root.link-clicked(item.id);
+                }
+				// TODO Add support for inline code.
+            }
         }
     }
 }

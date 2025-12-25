@@ -249,6 +249,28 @@ export component Sidebar inherits Rectangle {
                             id: "popover";
                             name: "Popover";
                         }
+
+                        UMenuGroupTitle {
+                            title: "Misc";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "button-interface";
+                            name: "Button interface";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "center-layout";
+                            name: "Center layout";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "scrollview";
+                            name: "Scrollview";
+                        }
                     }
 
                     UMenuLink {

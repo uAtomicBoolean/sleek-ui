@@ -10,6 +10,7 @@ import {
     IconButtonPage,
     FloatingButtonPage,
     FloatingIconButtonPage,
+    LinkPage,
 } from "../pages/page-index.slint";
 
 
@@ -28,5 +29,6 @@ export component PageManager {
         if current-page == "icon-button": IconButtonPage { }
         if current-page == "floating-button": FloatingButtonPage { }
         if current-page == "floating-icon-button": FloatingIconButtonPage { }
+        if current-page == "link": LinkPage { }
     }
 }
