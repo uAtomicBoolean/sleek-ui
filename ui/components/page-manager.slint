@@ -6,6 +6,7 @@ import {
     ColorsPage,
     ThemingPage,
     ButtonPage,
+    IconButtonPage,
 } from "../pages/page-index.slint";
 
 
@@ -18,5 +19,6 @@ export component PageManager {
         if current-page == "default-colors": ColorsPage { }
         if current-page == "theming": ThemingPage { }
         if current-page == "button": ButtonPage { }
+        if current-page == "icon-button": IconButtonPage { }
     }
 }

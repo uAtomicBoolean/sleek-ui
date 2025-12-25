@@ -1,0 +1,152 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+    UIconButton,
+    UIcon,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component IconButtonPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Icon Button";
+    }
+
+    DocDescription {
+        text: "An icon-only button used for compact actions. It supports variants, loading, disabled and danger states.";
+    }
+
+    DocSection {
+        title: "Simple icon buttons";
+        description: "Icon buttons are compact and come with the same variants as regular buttons.";
+    }
+
+    WidgetPresentation {
+        UIconButton {
+            variant: primary;
+            icon: @image-url("../../assets/images/plus.svg");
+        }
+
+        UIconButton {
+            icon: @image-url("../../assets/images/search.svg");
+        }
+
+        UIconButton {
+            variant: filled;
+            icon: @image-url("../../assets/images/rocket.svg");
+        }
+
+        UIconButton {
+            variant: text;
+            icon: @image-url("../../assets/images/close.svg");
+        }
+    }
+
+    UCode {
+        code: "import { UIconButton } from \"@sleek-ui/widgets.slint\";\n\nUIconButton {\n    variant: primary;\n    icon: @image-url(\"url-to-icon\");\n}";
+    }
+
+    DocSection {
+        title: "Disabled icon buttons";
+    }
+
+    WidgetPresentation {
+        UIconButton {
+            enabled: false;
+            variant: primary;
+            icon: @image-url("../../assets/images/plus.svg");
+        }
+
+        UIconButton {
+            enabled: false;
+            icon: @image-url("../../assets/images/search.svg");
+        }
+    }
+
+    UCode {
+        code: "UIconButton {\n    enabled: false;\n    icon: @image-url(\"url-to-icon\");\n}";
+    }
+
+    DocSection {
+        title: "Loading";
+    }
+
+    WidgetPresentation {
+        UIconButton {
+            loading: true;
+            variant: primary;
+            icon: @image-url("../../assets/images/plus.svg");
+        }
+
+        UIconButton {
+            loading: true;
+            icon: @image-url("../../assets/images/search.svg");
+        }
+    }
+
+    UCode {
+        code: "UIconButton {\n    loading: true;\n    icon: @image-url(\"url-to-icon\");\n}";
+    }
+
+    DocSection {
+        title: "Danger";
+        description: "Change the button's color to the danger color of the theme. It is compatible with other states.";
+    }
+
+    WidgetPresentation {
+        UIconButton {
+            danger: true;
+            variant: primary;
+            icon: @image-url("../../assets/images/search.svg");
+        }
+    }
+
+    UCode {
+        code: "UIconButton {\n    danger: true;\n    icon: @image-url(\"url-to-icon\");\n}";
+    }
+
+    DocSection {
+        title: "Checked";
+        description: "A state in which the button keeps a different look even on hover and active events.";
+    }
+
+    WidgetPresentation {
+        UIconButton {
+            checked: true;
+            icon: @image-url("../../assets/images/plus.svg");
+            clicked => {
+                self.checked = !self.checked;
+            }
+        }
+    }
+
+    UCode {
+        code: "UIconButton {\n    checked: true;\n    icon: @image-url(\"url-to-icon\");\n}";
+    }
+
+    DocSection {
+        title: "Colored icons";
+    }
+
+    WidgetPresentation {
+        UIconButton {
+            icon: @image-url("../../assets/images/rocket.svg");
+            colorize-icon: false;
+        }
+    }
+
+    UCode {
+        code: "UIconButton {\n    icon: @image-url(\"url-to-icon\");\n    colorize-icon: false;\n}";
+    }
+}
