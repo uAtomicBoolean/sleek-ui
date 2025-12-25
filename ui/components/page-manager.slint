@@ -5,12 +5,17 @@ import {
     HowToUsePage,
     ColorsPage,
     ThemingPage,
+
+	// General widgets.
     ButtonPage,
     DividerPage,
     IconButtonPage,
     FloatingButtonPage,
     FloatingIconButtonPage,
     LinkPage,
+    SpinnerPage,
+
+	// Navigation widgets.
 } from "../pages/page-index.slint";
 
 
@@ -30,5 +35,6 @@ export component PageManager {
         if current-page == "floating-button": FloatingButtonPage { }
         if current-page == "floating-icon-button": FloatingIconButtonPage { }
         if current-page == "link": LinkPage { }
+        if current-page == "spinner": SpinnerPage { }
     }
 }

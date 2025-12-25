@@ -1,0 +1,88 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+    USpinner,
+    UCenter,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component SpinnerPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Spinner";
+    }
+
+    DocDescription {
+        text: "A simple spinner used to warn the user that something is loading.";
+    }
+
+    DocSection {
+        title: "Example";
+    }
+
+    WidgetPresentation {
+        USpinner { }
+    }
+
+    UCode {
+        code: "import { USpinner } from \"@sleek-ui/widgets.slint\";\n\nUSpinner { }";
+    }
+
+    DocSection {
+        title: "Customization";
+        description: [
+            { text: "The spinner is easily customizable as it inherits from the " },
+            { code: "Image" },
+            { text: " standard widget. Moreover, a " },
+            { code: "size" },
+            { text: " property is available to easily change the spinner's size." }
+        ];
+    }
+
+    WidgetPresentation {
+        UCenter {
+            USpinner {
+                size: 16px * UAppTheme.scale-factor;
+            }
+        }
+
+        UCenter {
+            USpinner {
+                size: 24px * UAppTheme.scale-factor;
+                colorize: UAppTheme.success.base;
+            }
+        }
+
+        UCenter {
+            USpinner {
+                size: 32px * UAppTheme.scale-factor;
+                colorize: UAppTheme.warning.base;
+            }
+        }
+
+        UCenter {
+            USpinner {
+                size: 48px * UAppTheme.scale-factor;
+                colorize: UAppTheme.danger.base;
+            }
+        }
+
+        UCenter {
+            USpinner {
+                size: 64px * UAppTheme.scale-factor;
+                colorize: UAppTheme.text;
+            }
+        }
+    }
+}
