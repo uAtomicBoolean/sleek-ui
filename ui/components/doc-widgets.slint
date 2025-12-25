@@ -1,0 +1,50 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UText, UTitle } from "../sleek-ui/widgets.slint";
+
+
+export component DocTitle {
+    in property <string> text;
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-bigger;
+        padding-bottom: UAppTheme.padding-base;
+        UTitle {
+            level: 5;
+            text: root.text;
+        }
+    }
+}
+
+export component DocDescription {
+    in property <string> text;
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-bigger;
+        padding-bottom: UAppTheme.padding-base;
+        UText {
+            text: root.text;
+        }
+    }
+}
+
+export component WidgetPresentation {
+    HorizontalLayout {
+        alignment: start;
+        padding-top: UAppTheme.padding-big;
+        padding-bottom: UAppTheme.padding-base;
+        spacing: UAppTheme.spacing-base;
+        @children
+    }
+}
+
+export component DocSection {
+    in property <string> title;
+    in property <string> description;
+    VerticalLayout {
+        DocTitle {
+            text: root.title;
+        }
+
+        if description != "": UText {
+            text: description;
+        }
+    }
+}
