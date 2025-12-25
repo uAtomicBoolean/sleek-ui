@@ -7,6 +7,7 @@ import {
     ThemingPage,
     ButtonPage,
     IconButtonPage,
+    DividerPage,
 } from "../pages/page-index.slint";
 
 
@@ -18,7 +19,10 @@ export component PageManager {
         if current-page == "how-to-use": HowToUsePage { }
         if current-page == "default-colors": ColorsPage { }
         if current-page == "theming": ThemingPage { }
+		
+		// Widgets
         if current-page == "button": ButtonPage { }
+        if current-page == "divider": DividerPage { }
         if current-page == "icon-button": IconButtonPage { }
     }
 }

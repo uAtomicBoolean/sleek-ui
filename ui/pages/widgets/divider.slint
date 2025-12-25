@@ -1,0 +1,89 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle, UText, UCode, UDivider } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component DividerPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Divider";
+    }
+
+    DocDescription {
+        text: "A simple separator using the app theme's border color.";
+    }
+
+    DocSection {
+        title: "Horizontal divider";
+    }
+
+    WidgetPresentation {
+        VerticalLayout {
+            alignment: start;
+            spacing: UAppTheme.spacing-base;
+            UText {
+                text: "Top text";
+            }
+
+            UDivider { }
+
+            UText {
+                text: "Bottom text";
+            }
+        }
+    }
+
+    UCode {
+        code: "import { UDivider } from \"@sleek-ui/widgets.slint\";\n\nUDivider { }";
+    }
+
+    DocSection {
+        title: "Vertical divider";
+    }
+
+    WidgetPresentation {
+        HorizontalLayout {
+            alignment: start;
+            spacing: UAppTheme.spacing-base;
+            UText {
+                text: "Top text";
+            }
+
+            UDivider {
+                orientation: vertical;
+            }
+
+            UText {
+                text: "Bottom text";
+            }
+        }
+    }
+
+    UCode {
+        code: "import { UDivider } from \"@sleek-ui/widgets.slint\";\n\nUDivider {\n    orientation: vertical;\n}";
+    }
+
+    DocSection {
+        title: "Custom color";
+        description: "You can change the divider's color by setting the background color.";
+    }
+
+    WidgetPresentation {
+        UDivider {
+            width: 150px * UAppTheme.scale-factor;
+            background: red;
+        }
+    }
+
+    UCode {
+        code: "import { UDivider } from \"@sleek-ui/widgets.slint\";\n\nUDivider {\n    background: red;\n}";
+    }
+}
