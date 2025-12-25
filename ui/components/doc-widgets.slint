@@ -1,5 +1,5 @@
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
-import { UText, UTitle, ULink } from "../sleek-ui/widgets.slint";
+import { UText, UTitle, ULink, UCode } from "../sleek-ui/widgets.slint";
 
 
 export component DocTitle {
@@ -65,7 +65,10 @@ export component DocSection {
                     text: item.link;
                     clicked => root.link-clicked(item.id);
                 }
-				// TODO Add support for inline code.
+                if item.code != "": UCode {
+                    type: inline;
+                    code: item.code;
+                }
             }
         }
     }
