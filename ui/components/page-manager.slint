@@ -6,8 +6,10 @@ import {
     ColorsPage,
     ThemingPage,
     ButtonPage,
-    IconButtonPage,
     DividerPage,
+    IconButtonPage,
+    FloatingButtonPage,
+    FloatingIconButtonPage,
 } from "../pages/page-index.slint";
 
 
@@ -24,5 +26,7 @@ export component PageManager {
         if current-page == "button": ButtonPage { }
         if current-page == "divider": DividerPage { }
         if current-page == "icon-button": IconButtonPage { }
+        if current-page == "floating-button": FloatingButtonPage { }
+        if current-page == "floating-icon-button": FloatingIconButtonPage { }
     }
 }

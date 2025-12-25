@@ -1,0 +1,40 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle, UText, UCode } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component FloatingIconButtonPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Floating icon button";
+    }
+
+    DocDescription {
+        text: "An icon button that can be displayed in a specific position in a window, floating above other elements.";
+    }
+
+    DocSection {
+        title: "Code integration";
+        description: "A floating button must be added after the main window/page/view components for it to appear above the others.";
+    }
+
+    DocSection {
+        title: "Usage";
+        description: "You can place the floating button by using the vertical and horizontal alignment properties, and its padding properties.";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        UCode {
+            code: "import { UFloatingIconButton } from \"@sleek-ui/widgets.slint\";\n\nexport component AppWindow inherits Window {\n    VerticalLayout {\n        // Your UI code.\n    }\n\n    // Note how the floating button is outside of the main content's layout.\n    UFloatingIconButton {\n        vertical-alignment: end;\n        horizontal-alignment: end;\n        layout-padding-bottom: 10px;\n        layout-padding-right: 10px;\n    }\n}";
+        }
+    }
+}
