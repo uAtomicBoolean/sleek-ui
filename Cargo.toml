@@ -10,11 +10,11 @@ crate-type = ["cdylib"]
 
 [dependencies]
 dotenv = "0.15.0"
-open = "5.3.3"
 
 # Use skia renderer on all platforms but wasm as it is not supported. 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 slint = { version = "1.14.1", features = ["renderer-skia", "live-preview"] }
+open = "5.3.3"
 
 [target.'cfg(target_family = "wasm")'.dependencies]
 slint = { version = "1.14.1" }

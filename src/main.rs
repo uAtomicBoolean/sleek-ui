@@ -20,6 +20,7 @@ fn main() {
 
     let doc_logic = ui.global::<DocumentationLogic>();
 
+    #[cfg(not(target_family = "wasm"))]
     doc_logic.on_open_url(|url| {
         let _ = open::that(url);
     });

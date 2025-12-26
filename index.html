@@ -3,33 +3,18 @@
 
 <head>
 	<title>Sleek UI documentation</title>
+	<link rel="stylesheet" href="https://slint.dev/css/demos-v1.css" />
 </head>
 
 <body>
-	<div id="canvas-holder">
-		<canvas id="canvas"></canvas>
-	</div>
+	<h1>Sleek-ui documentation 1.14.0</h1>
+	<canvas id="canvas" data-slint-auto-resize-to-preferred="true" unselectable="on" tabindex="0" alt="Gallery"
+		style="min-width: 500px; min-height: 700px; max-width: 16777200px; max-height: 16777200px; width: 1058.33px; height: 916.667px;"
+		width="1270" height="1100"></canvas>
 	<script type="module">
 		import init from "./pkg/sleek_ui_lib.js";
 		init();
 	</script>
-
-	<style>
-		html,
-		body {
-			height: 100%;
-			margin: 0;
-		}
-
-		#canvas-holder {
-			height: 100%;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-			background-color: #c3bfbf;
-		}
-	</style>
 </body>
 
 </html>
