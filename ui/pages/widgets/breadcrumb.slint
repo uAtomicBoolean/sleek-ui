@@ -1,0 +1,49 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+    UBreadcrumb,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component BreadcrumbPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Breadcrumb";
+    }
+
+    DocDescription {
+        text: "An interactive widget that display the current path of your page, allowing the user to go back to parent pages.";
+    }
+
+    DocSection {
+        title: "Example";
+        description: [
+            { text: "The widget takes the current path as a list of string with the " },
+            { code: "steps" },
+            { text: " property, and calls the " },
+            { code: "step-clicked(step: string)" },
+            { text: " callback when a step is clicked." }
+        ];
+    }
+
+    WidgetPresentation {
+        UBreadcrumb {
+            steps: ["Settings", "General", "Appearance"];
+        }
+    }
+
+    UCode {
+        code: "import { UBreadcrumb } from \"@sleek-ui/widgets.slint\";\n\nUBreadcrumb {\n    steps: [\"Settings\", \"General\", \"Appareance\"];\n    step-clicked(step) => {\n        // Your navigation logic.\n    }\n}";
+    }
+}

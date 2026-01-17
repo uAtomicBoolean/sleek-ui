@@ -5,8 +5,12 @@ edition = "2024"
 
 [lib]
 name = "sleek_ui_lib"
-path = "src/main.rs"
+path = "src/lib.rs"
 crate-type = ["cdylib"]
+
+[[bin]]
+name = "sleek-ui"
+path = "src/main.rs"
 
 [dependencies]
 dotenv = "0.15.0"

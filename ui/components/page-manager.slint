@@ -16,6 +16,7 @@ import {
     SpinnerPage,
 
 	// Navigation widgets.
+	BreadcrumbPage,
 } from "../pages/page-index.slint";
 
 
@@ -28,7 +29,7 @@ export component PageManager {
         if current-page == "default-colors": ColorsPage { }
         if current-page == "theming": ThemingPage { }
 		
-		// Widgets
+		// General widgets
         if current-page == "button": ButtonPage { }
         if current-page == "divider": DividerPage { }
         if current-page == "icon-button": IconButtonPage { }
@@ -36,5 +37,8 @@ export component PageManager {
         if current-page == "floating-icon-button": FloatingIconButtonPage { }
         if current-page == "link": LinkPage { }
         if current-page == "spinner": SpinnerPage { }
+
+		// Navigation widgets
+		if current-page == "breadcrumb": BreadcrumbPage { }
     }
 }

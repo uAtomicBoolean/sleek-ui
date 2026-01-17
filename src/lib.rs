@@ -1,20 +1,22 @@
-// Prevent console window in addition to Slint window in Windows release builds when, e.g., starting the app via file manager. Ignored on other platforms.
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
 use dotenv::dotenv;
+
+#[cfg(target_family = "wasm")]
+use wasm_bindgen::prelude::*;
 
 slint::include_modules!();
 
 #[allow(dead_code)]
+#[cfg_attr(target_family = "wasm", wasm_bindgen(start))]
 fn main() {
     dotenv().ok();
 
     let ui = AppWindow::new().unwrap();
 
+    ui.invoke_switch_theme_to_light();
+
     let doc_logic = ui.global::<DocumentationLogic>();
 
     doc_logic.on_open_url(|url| {
-        // let _ = open::that(url);
         if let Err(err) = webbrowser::open(url.as_str()) {
             println!("Couldn't open the URL in the default browser.");
             println!("URL: {url}");
