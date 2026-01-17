@@ -1,0 +1,53 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+    UMenu,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component MenuPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Menu";
+    }
+
+    DocDescription {
+        text: "A versatile menu for navigation.";
+    }
+
+    DocSection {
+        title: "Example";
+        description: [
+            { text: "The menu is made from several subwidgets: " },
+            { code: "UMenu" },
+            { text: ", " },
+            { code: "UMenuLink" },
+            { text: ", " },
+            { code: "UMenuSubmenu" },
+            { text: ", " },
+            { code: "UMenuGroupTitle" },
+            { text: ", each widget having its own properties." },
+        ];
+    }
+
+    WidgetPresentation { }
+
+    UCode {
+        code: "import { UMenu } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    \n}";
+    }
+
+	// TODO Explain theming
+	// TODO Explain interactive path to currently selected child.
+	// TODO Present each subwidget.
+}
