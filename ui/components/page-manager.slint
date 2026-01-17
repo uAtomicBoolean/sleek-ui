@@ -17,6 +17,7 @@ import {
 
 	// Navigation widgets.
 	BreadcrumbPage,
+    TabsPage,
 } from "../pages/page-index.slint";
 
 
@@ -40,5 +41,6 @@ export component PageManager {
 
 		// Navigation widgets
 		if current-page == "breadcrumb": BreadcrumbPage { }
+        if current-page == "tabs": TabsPage { }
     }
 }

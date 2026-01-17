@@ -1,0 +1,74 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+    UTabs,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component TabsPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Tabs";
+    }
+
+    DocDescription {
+        text: "An interactive widget to switch between different views.";
+    }
+
+    DocSection {
+        title: "Default tabs";
+        description: [
+            { text: "The widget takes a list of tabs as strings with the " },
+            { code: "tabs" },
+            { text: " property, and update the " },
+            { code: "current-index" },
+            { text: " property when switching tabs." }
+        ];
+    }
+
+    WidgetPresentation {
+        UTabs {
+            tabs: ["First tab", "Second tab", "Third tab"];
+        }
+    }
+
+    UCode {
+        code: "import { UTabs } from \"@sleek-ui/widgets.slint\";\n\nUTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"]\n}";
+    }
+
+    DocSection {
+        title: "Stretched tabs";
+        description: [
+            { text: "You can use set the " },
+            { code: "tabs-alignment" },
+            { text: " property to " },
+            { code: "stretch" },
+            { text: " to have tabs that take the while width of the page (defaults to " },
+            { code: "start" },
+            { text: ")." }
+        ];
+    }
+
+    WidgetPresentation {
+        full-width: true;
+        UTabs {
+            tabs: ["First tab", "Second tab", "Third tab"];
+            tabs-alignement: stretch;
+        }
+    }
+
+    UCode {
+        code: "import { UTabs } from \"@sleek-ui/widgets.slint\";\n\nUTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"]\n    tabs-alignment: stretch;\n}";
+    }
+}

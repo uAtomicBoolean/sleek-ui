@@ -26,8 +26,10 @@ export component DocDescription {
 }
 
 export component WidgetPresentation {
+    in property <bool> full-width: false;
     HorizontalLayout {
-        alignment: start;
+        width: 100%;
+        alignment: full-width ? stretch : start;
         padding-top: UAppTheme.padding-big;
         padding-bottom: UAppTheme.padding-base;
         spacing: UAppTheme.spacing-base;
