@@ -2,46 +2,78 @@ import { Button } from "std-widgets.slint";
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 
 
+component Scrollbar inherits Rectangle {
+    in-out property <length> value;
+    in-out property <Orientation> orientation: vertical;
+    in property <length> handle-size;
+    private property <float> min-handle-pct: 0.05;
+    width: orientation == Orientation.vertical ? 10px * UAppTheme.scale-factor : 0;
+    height: orientation == Orientation.horizontal ? 10px * UAppTheme.scale-factor : 0;
+    background: UAppTheme.bg-layout;
+    Rectangle {
+        y: value;
+        width: orientation == Orientation.vertical ? 8px * UAppTheme.scale-factor : handle-size;
+        height: orientation == Orientation.horizontal ? 8px * UAppTheme.scale-factor : handle-size;
+        background: UAppTheme.color-fill;
+        border-radius: UAppTheme.radius-circle;
+    }
+
+    touch := TouchArea {
+        moved => {
+            if orientation == Orientation.vertical {
+                debug(self.mouse-y);
+            }
+        }
+    }
+}
+
+
 // TODO Manage clicks in the scrollbar
 // 		Click on handles -> 1% to 5% scroll (to test) (if handles are used)
 //		Click in scrollbar space -> 10% to 20% scroll (to test)
 //		Drag scrollbar
-//		Accessability with keyboard management
-export component UScrollview {
+//		Accessability with keyboard management (directional keys + top bottom)
+export component UScrollview inherits Rectangle {
     in-out property <bool> interactive: false;
+    in-out property <length> value-y: -(self.height * flickable.viewport-y / flickable.viewport-height);
+    in-out property <length> value-x: -(self.width * flickable.viewport-x / flickable.viewport-width);
     private property <bool> scrollbar-visible-y: flickable.viewport-height > flickable.height;
     private property <bool> scrollbar-visible-x: flickable.viewport-width > flickable.width;
-    height: 100%;
-    width: 100%;
-    HorizontalLayout {
-        VerticalLayout {
+    VerticalLayout {
+        flickable := Flickable {
             horizontal-stretch: 2;
             vertical-stretch: 2;
-            flickable := Flickable {
-                interactive: root.interactive;
-                @children
-            }
-        }
-
-        Rectangle {
-            horizontal-stretch: 0;
-            height: 100%;
-            width: 10px * UAppTheme.scale-factor;
-
-			// TODO Define handle minimum height.
-			// TODO Handle shrinking when reducing window height to its maximum.
-			//		Handle should keep the same height after passing the min-handle-pct threshold.
-			Rectangle {
-                private property <float> min-handle-pct: 0.05;
-                private property <float> handle-pct: flickable.height / flickable.viewport-height;
-                visible: scrollbar-visible-y;
-                background: UAppTheme.color-fill;
-                height: handle-pct > min-handle-pct ? flickable.height * handle-pct : flickable.height * min-handle-pct;
-                width: parent.width;
-                border-radius: UAppTheme.radius-circle;
-            }
+            interactive: root.interactive;
+            @children
         }
     }
+
+	// TODO Define handle minimum height.
+	// TODO Handle shrinking when reducing window height to its maximum.
+	//		Handle should keep the same height after passing the min-handle-pct threshold.
+    Scrollbar {
+        visible: scrollbar-visible-y;
+        x: root.width - self.width;
+        height: root.height;
+        value: value-y;
+        handle-size: flickable.height / flickable.viewport-height * flickable.height;
+    }
+
+    // Rectangle {
+    //     horizontal-stretch: 0;
+    //     height: root.height;
+    //     width: 10px * UAppTheme.scale-factor;
+
+	// 	Rectangle {
+    //         width: 8px * UAppTheme.scale-factor;
+    //         private property <float> min-handle-pct: 0.05;
+    //         private property <float> handle-pct: flickable.height / flickable.viewport-height;
+    //         visible: scrollbar-visible-y;
+    //         background: UAppTheme.color-fill;
+    //         height: handle-pct > min-handle-pct ? flickable.height * handle-pct : flickable.height * min-handle-pct;
+    //         border-radius: UAppTheme.radius-circle;
+    //     }
+    // }
 
     Button {
         text: "debug";
@@ -55,9 +87,9 @@ export component UScrollview {
             debug("position");
             debug(flickable.viewport-x);
             debug(flickable.viewport-y);
-            debug("scrollbar visibility");
-            debug(root.scrollbar-visible-y);
-            debug(root.scrollbar-visible-x);
+            // debug("scrollbar visibility");
+            // debug(root.scrollbar-visible-y);
+            // debug(root.scrollbar-visible-x);
             debug("\n\n\n");
         }
     }
