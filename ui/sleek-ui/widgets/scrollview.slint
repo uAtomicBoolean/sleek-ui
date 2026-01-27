@@ -7,9 +7,10 @@ component Scrollbar inherits Rectangle {
     in-out property <Orientation> orientation: vertical;
     in property <length> handle-size;
     private property <float> min-handle-pct: 0.05;
+    private property <length> initial-mouse-y;
+    private property <length> initial-mouse-x;
     width: orientation == Orientation.vertical ? 10px * UAppTheme.scale-factor : 0;
     height: orientation == Orientation.horizontal ? 10px * UAppTheme.scale-factor : 0;
-    background: UAppTheme.bg-layout;
     Rectangle {
         y: value;
         width: orientation == Orientation.vertical ? 8px * UAppTheme.scale-factor : handle-size;
@@ -19,6 +20,12 @@ component Scrollbar inherits Rectangle {
     }
 
     touch := TouchArea {
+        pointer-event(event) => {
+            if event.button == PointerEventButton.left && event.kind == PointerEventKind.down {
+                root.initial-mouse-y = self.mouse-y;
+                debug("SET INITIAL MOUSE Y");
+            }
+        }
         moved => {
             if orientation == Orientation.vertical {
                 debug(self.mouse-y);
@@ -37,6 +44,8 @@ export component UScrollview inherits Rectangle {
     in-out property <bool> interactive: false;
     in-out property <length> value-y: -(self.height * flickable.viewport-y / flickable.viewport-height);
     in-out property <length> value-x: -(self.width * flickable.viewport-x / flickable.viewport-width);
+    out property <length> scrollbar-area-x: 10px * UAppTheme.scale-factor;
+    out property <length> scrollbar-area-y: 10px * UAppTheme.scale-factor;
     private property <bool> scrollbar-visible-y: flickable.viewport-height > flickable.height;
     private property <bool> scrollbar-visible-x: flickable.viewport-width > flickable.width;
     VerticalLayout {
