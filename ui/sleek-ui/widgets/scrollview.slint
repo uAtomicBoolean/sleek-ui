@@ -3,32 +3,50 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 
 
 component Scrollbar inherits Rectangle {
-    in-out property <length> value;
     in-out property <Orientation> orientation: vertical;
+    in-out property <length> value;
+    in-out property <length> max-scroll-pos;
     in property <length> handle-size;
+    private property <length> available-space: (orientation == Orientation.vertical ? self.height : self.width) - handle-size;
+	// TODO apply min-handle-pct
+	// TODO Handle shrinking when reducing window height to its maximum.
+	//		Handle should keep the same height after passing the min-handle-pct threshold.
     private property <float> min-handle-pct: 0.05;
-    private property <length> initial-mouse-y;
-    private property <length> initial-mouse-x;
-    width: orientation == Orientation.vertical ? 10px * UAppTheme.scale-factor : 0;
-    height: orientation == Orientation.horizontal ? 10px * UAppTheme.scale-factor : 0;
-    Rectangle {
-        y: value;
-        width: orientation == Orientation.vertical ? 8px * UAppTheme.scale-factor : handle-size;
-        height: orientation == Orientation.horizontal ? 8px * UAppTheme.scale-factor : handle-size;
+    width: orientation == Orientation.vertical ? 8px * UAppTheme.scale-factor : 0;
+    height: orientation == Orientation.horizontal ? 8px * UAppTheme.scale-factor : 0;
+    handle := Rectangle {
+        x: orientation == Orientation.horizontal ? -value / max-scroll-pos * (root.width - handle-size) : 1px;
+        y: orientation == Orientation.vertical ? -value / max-scroll-pos * (root.height - handle-size) : 1px;
+        width: orientation == Orientation.vertical ? 6px * UAppTheme.scale-factor : handle-size;
+        height: orientation == Orientation.horizontal ? 6px * UAppTheme.scale-factor : handle-size;
         background: UAppTheme.color-fill;
         border-radius: UAppTheme.radius-circle;
+        animate background { duration: UAppTheme.animation-duration; }
+        states [
+            hover when touch.has-hover: {
+                background: UAppTheme.color-fill-plus;
+            }
+        ]
     }
 
     touch := TouchArea {
+        private property <length> initial-pressed;
         pointer-event(event) => {
             if event.button == PointerEventButton.left && event.kind == PointerEventKind.down {
-                root.initial-mouse-y = self.mouse-y;
-                debug("SET INITIAL MOUSE Y");
+                initial-pressed = self.mouse-y;
             }
         }
         moved => {
-            if orientation == Orientation.vertical {
-                debug(self.mouse-y);
+            if orientation == Orientation.vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
+                let move-diff = initial-pressed - self.mouse-y;
+                let new-y = max(0px, min(available-space, handle.y - move-diff));
+                initial-pressed = self.mouse-y;
+                value = -(max-scroll-pos * (new-y / available-space));
+            } else if orientation == Orientation.horizontal && self.mouse-x >= 0 && self.mouse-x <= root.width {
+                let move-diff = initial-pressed - self.mouse-x;
+                let new-x = max(0px, min(available-space, handle.x - move-diff));
+                initial-pressed = self.mouse-x;
+                value = -(max-scroll-pos * (new-x / available-space));
             }
         }
     }
@@ -36,70 +54,38 @@ component Scrollbar inherits Rectangle {
 
 
 // TODO Manage clicks in the scrollbar
-// 		Click on handles -> 1% to 5% scroll (to test) (if handles are used)
 //		Click in scrollbar space -> 10% to 20% scroll (to test)
-//		Drag scrollbar
 //		Accessability with keyboard management (directional keys + top bottom)
 export component UScrollview inherits Rectangle {
     in-out property <bool> interactive: false;
-    in-out property <length> value-y: -(self.height * flickable.viewport-y / flickable.viewport-height);
-    in-out property <length> value-x: -(self.width * flickable.viewport-x / flickable.viewport-width);
-    out property <length> scrollbar-area-x: 10px * UAppTheme.scale-factor;
-    out property <length> scrollbar-area-y: 10px * UAppTheme.scale-factor;
-    private property <bool> scrollbar-visible-y: flickable.viewport-height > flickable.height;
-    private property <bool> scrollbar-visible-x: flickable.viewport-width > flickable.width;
+    out property <length> scrollbar-area: 8px * UAppTheme.scale-factor;
     VerticalLayout {
         flickable := Flickable {
             horizontal-stretch: 2;
             vertical-stretch: 2;
             interactive: root.interactive;
+            viewport-y <=> h-scrollbar.value;
+            viewport-x <=> v-scrollbar.value;
             @children
         }
     }
 
-	// TODO Define handle minimum height.
-	// TODO Handle shrinking when reducing window height to its maximum.
-	//		Handle should keep the same height after passing the min-handle-pct threshold.
-    Scrollbar {
-        visible: scrollbar-visible-y;
+    h-scrollbar := Scrollbar {
+        y: 0;
         x: root.width - self.width;
-        height: root.height;
-        value: value-y;
+        height: root.height - (v-scrollbar.visible ? v-scrollbar.height : 0);
+        visible: flickable.viewport-height > flickable.height;
+        max-scroll-pos: flickable.viewport-height - flickable.height;
         handle-size: flickable.height / flickable.viewport-height * flickable.height;
     }
 
-    // Rectangle {
-    //     horizontal-stretch: 0;
-    //     height: root.height;
-    //     width: 10px * UAppTheme.scale-factor;
-
-	// 	Rectangle {
-    //         width: 8px * UAppTheme.scale-factor;
-    //         private property <float> min-handle-pct: 0.05;
-    //         private property <float> handle-pct: flickable.height / flickable.viewport-height;
-    //         visible: scrollbar-visible-y;
-    //         background: UAppTheme.color-fill;
-    //         height: handle-pct > min-handle-pct ? flickable.height * handle-pct : flickable.height * min-handle-pct;
-    //         border-radius: UAppTheme.radius-circle;
-    //     }
-    // }
-
-    Button {
-        text: "debug";
-        clicked => {
-            debug("size");
-            debug(flickable.height);
-            debug(flickable.width);
-            debug("viewport");
-            debug(flickable.viewport-height);
-            debug(flickable.viewport-width);
-            debug("position");
-            debug(flickable.viewport-x);
-            debug(flickable.viewport-y);
-            // debug("scrollbar visibility");
-            // debug(root.scrollbar-visible-y);
-            // debug(root.scrollbar-visible-x);
-            debug("\n\n\n");
-        }
+    v-scrollbar := Scrollbar {
+        orientation: horizontal;
+        x: 0;
+        y: root.height - self.height;
+        width: root.width - (h-scrollbar.visible ? h-scrollbar.width : 0);
+        visible: flickable.viewport-width > flickable.width;
+        max-scroll-pos: flickable.viewport-width - flickable.width;
+        handle-size: flickable.width / flickable.viewport-width * flickable.width;
     }
 }
