@@ -1,4 +1,3 @@
-import { Button } from "std-widgets.slint";
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 
 
@@ -7,6 +6,7 @@ component Scrollbar inherits Rectangle {
     in-out property <length> value;
     in-out property <length> max-scroll-pos;
     in property <length> handle-size;
+    out property <bool> pressed <=> touch.pressed;
     private property <length> available-space: (orientation == Orientation.vertical ? self.height : self.width) - handle-size;
 	// TODO apply min-handle-pct
 	// TODO Handle shrinking when reducing window height to its maximum.
@@ -55,10 +55,14 @@ component Scrollbar inherits Rectangle {
 
 // TODO Manage clicks in the scrollbar
 //		Click in scrollbar space -> 10% to 20% scroll (to test)
-//		Accessability with keyboard management (directional keys + top bottom)
 export component UScrollview inherits Rectangle {
     in-out property <bool> interactive: false;
     out property <length> scrollbar-area: 8px * UAppTheme.scale-factor;
+    out property <length> viewport-x <=> flickable.viewport-x;
+    out property <length> viewport-y <=> flickable.viewport-y;
+    out property <length> viewport-width <=> flickable.viewport-width;
+    out property <length> viewport-height <=> flickable.viewport-height;
+    private property <duration> scroll-anim-duration: !h-scrollbar.pressed && !v-scrollbar.pressed ? UAppTheme.animation-duration : 0;
     VerticalLayout {
         flickable := Flickable {
             horizontal-stretch: 2;
@@ -66,6 +70,7 @@ export component UScrollview inherits Rectangle {
             interactive: root.interactive;
             viewport-y <=> h-scrollbar.value;
             viewport-x <=> v-scrollbar.value;
+            animate viewport-x, viewport-y { duration: scroll-anim-duration; }
             @children
         }
     }

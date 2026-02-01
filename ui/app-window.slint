@@ -32,13 +32,15 @@ export component AppWindow inherits Window {
     // min-width: 1280px * UAppTheme.scale-factor;
     // min-height: 720px * UAppTheme.scale-factor;
     background: UAppTheme.bg-container;
-    FocusScope { }
+    FocusScope {
+        HorizontalLayout {
+            Sidebar { }
 
-    HorizontalLayout {
-        Sidebar { }
-
-        PageManager { }
+            PageManager { }
+        }
     }
+
+    
 
     // modal := UModal {
     //     title: "Modal example";
