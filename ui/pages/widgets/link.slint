@@ -24,17 +24,15 @@ export component LinkPage inherits PageBase {
     }
 
     DocDescription {
-        text: "A simple text displayed as a link. The logic must be implemented by your source code as opening URLs is not supported by Slint.";
+        text: "A simple text displayed as a link. The logic must be implemented by your source code as opening URLs is not (yet) supported by Slint.";
     }
 
     DocSection {
         title: "Example";
         description: [
-            { text: "The link widget comes with all the callbacks from " },
-            { link: "ButtonInterface" },
-            { text: ", but only the " },
+            { text: "The link widget comes with a " },
             { code: "clicked" },
-            { text: " callback should be useful." }
+            { text: " callback." },
         ];
         link-clicked(id) => {
             UMenuLogic.current-link = "button-interface";
@@ -52,5 +50,27 @@ export component LinkPage inherits PageBase {
 
     UCode {
         code: "import { ULink } from \"@sleek-ui/widgets.slint\";\n\nULink {\n    text: \"Source\";\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
+    }
+
+    DocSection {
+        title: "Word wrapping";
+        description: [
+            { text: "A " },
+            { code: "wrap" },
+            {
+                text: " property is available in the link, allowing you to define how to wrap the text. It uses the "
+            },
+            { code: "TextWrap" },
+            { text: " enum and defaults to " },
+            { code: "no-wrap" },
+            { text: "." },
+        ];
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        UCode {
+            code: "import { ULink } from \"@sleek-ui/widgets.slint\";\n\nULink {\n    text: \"Source\";\n    wrap: no-wrap;\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
+        }
     }
 }

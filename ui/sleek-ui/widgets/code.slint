@@ -14,6 +14,7 @@ export component UCode inherits VerticalLayout {
     in-out property <UCodeType> type: block;
     in-out property <string> code;
     in-out property <bool> enable-clipboard: false;
+    in-out property <TextWrap> wrap: no-wrap;
     callback copied(code: string);
     private property <brush> bg-color: UAppTheme.color-fill-secondary;
     private property <brush> bd-color: UAppTheme.border;
