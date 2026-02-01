@@ -52,9 +52,6 @@ component Scrollbar inherits Rectangle {
     }
 }
 
-
-// TODO Manage clicks in the scrollbar
-//		Click in scrollbar space -> 10% to 20% scroll (to test)
 export component UScrollview inherits Rectangle {
     in-out property <bool> interactive: false;
     out property <length> scrollbar-area: 8px * UAppTheme.scale-factor;
