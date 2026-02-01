@@ -40,8 +40,8 @@ export component UAlert inherits Rectangle {
             VerticalLayout {
                 alignment: center;
                 horizontal-stretch: 1;
-                padding-top: UAppTheme.padding-vertical;
-                padding-bottom: UAppTheme.padding-vertical;
+                padding-top: UAppTheme.padding-vertical + 1px * UAppTheme.scale-factor;
+                padding-bottom: UAppTheme.padding-vertical - 1px * UAppTheme.scale-factor;
                 UText {
                     text: message;
                     wrap: no-wrap;
@@ -89,7 +89,7 @@ export component UAlert inherits Rectangle {
         danger when variant == UAlertVariant.danger: {
             background: UAppTheme.danger.selected;
             border-color: UAppTheme.danger.base;
-            icon.source: @image-url("../assets/icons/circle-x.svg");
+            icon.source: @image-url("../assets/icons/triangle-alert.svg");
             icon.colorize: UAppTheme.danger.base;
         }
     ]
