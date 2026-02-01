@@ -4,6 +4,7 @@ import {
     UText,
     UCode,
     UMenu,
+    UMenuLink,
 } from "../../sleek-ui/widgets.slint";
 
 import {
@@ -14,6 +15,7 @@ import {
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+import { UAlert } from "../../sleek-ui/widgets/alert.slint";
 
 
 export component MenuPage inherits PageBase {
@@ -24,6 +26,15 @@ export component MenuPage inherits PageBase {
 
     DocDescription {
         text: "A versatile menu for navigation.";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        padding-bottom: UAppTheme.padding-base;
+        UAlert {
+            variant: danger;
+            message: "As the menu uses a global to store the current link, only one menu can be displayed at the same time.";
+        }
     }
 
     DocSection {
@@ -41,13 +52,32 @@ export component MenuPage inherits PageBase {
         ];
     }
 
-    WidgetPresentation { }
-
-    UCode {
-        code: "import { UMenu } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    \n}";
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        UCode {
+            code: "import { UMenu } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
+        }
     }
 
-	// TODO Explain theming
+	// TODO Find a way to fix the description overflow.
+    DocSection {
+        title: "Theming";
+        description: [
+            { text: "The " },
+            { code: "UMenu" },
+            { text: " widget comes with a " },
+            { code: "variant" },
+            { text: " property that can be one of the following choices: " },
+            { code: "default" },
+            { text: ", " },
+            { code: "light" },
+            { text: ", " },
+            { code: "dark" },
+            {
+                text: ". Using the default variant will give you a menu that follows the current coor scheme, meanwhile the light and dark variants will force their equivalent color schemes."
+            },
+        ];
+    }
 	// TODO Explain interactive path to currently selected child.
 	// TODO Present each subwidget.
 }
