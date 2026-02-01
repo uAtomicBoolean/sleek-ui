@@ -1,5 +1,4 @@
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
-import { Button } from "std-widgets.slint";
 
 
 component Scrollbar inherits Rectangle {
@@ -50,7 +49,7 @@ component Scrollbar inherits Rectangle {
     }
 }
 
-export component UScrollview inherits Rectangle {
+export component UScrollView inherits Rectangle {
     in-out property <bool> interactive: false;
     out property <length> scrollbar-area: 8px * UAppTheme.scale-factor;
     out property <length> viewport-x <=> flickable.viewport-x;

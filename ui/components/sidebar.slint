@@ -7,6 +7,7 @@ import {
     UMenuLink,
     UMenuSubmenu,
     UMenuGroupTitle,
+    UScrollView,
 } from "../sleek-ui/widgets.slint";
 import { ScrollView } from "std-widgets.slint";
 
@@ -14,7 +15,7 @@ import { ScrollView } from "std-widgets.slint";
 export component Sidebar inherits Rectangle {
     width: 250px * UAppTheme.scale-factor;
     HorizontalLayout {
-        ScrollView {
+        UScrollView {
             width: root.width;
             VerticalLayout {
                 width: root.width;
