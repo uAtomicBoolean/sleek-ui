@@ -40,15 +40,17 @@ export component MenuPage inherits PageBase {
     DocSection {
         title: "Example";
         description: [
-            { text: "The menu is made from several subwidgets: " },
-            { code: "UMenu" },
-            { text: ", " },
-            { code: "UMenuLink" },
-            { text: ", " },
-            { code: "UMenuSubmenu" },
-            { text: ", " },
-            { code: "UMenuGroupTitle" },
-            { text: ", each widget having its own properties." },
+            [
+                { text: "The menu is made from several subwidgets: " },
+                { code: "UMenu" },
+                { text: ", " },
+                { code: "UMenuLink" },
+                { text: ", " },
+                { code: "UMenuSubmenu" },
+                { text: ", " },
+                { code: "UMenuGroupTitle" },
+                { text: ", each widget having its own properties." },
+            ]
         ];
     }
 
@@ -63,19 +65,24 @@ export component MenuPage inherits PageBase {
     DocSection {
         title: "Theming";
         description: [
-            { text: "The " },
-            { code: "UMenu" },
-            { text: " widget comes with a " },
-            { code: "variant" },
-            { text: " property that can be one of the following choices: " },
-            { code: "default" },
-            { text: ", " },
-            { code: "light" },
-            { text: ", " },
-            { code: "dark" },
-            {
-                text: ". Using the default variant will give you a menu that follows the current coor scheme, meanwhile the light and dark variants will force their equivalent color schemes."
-            },
+            [
+                { text: "The " },
+                { code: "UMenu" },
+                { text: " widget comes with a " },
+                { code: "variant" },
+                { text: " property that can be one of the following choices: " },
+                { code: "default" },
+                { text: ", " },
+                { code: "light" },
+                { text: ", " },
+                { code: "dark" },
+                { text: "." },
+            ],
+            [
+                {
+                    text: "Using the default variant will give you a menu that follows the current coor scheme, meanwhile the light and dark variants will force their equivalent color schemes.",
+                }
+            ]
         ];
     }
 	// TODO Explain interactive path to currently selected child.

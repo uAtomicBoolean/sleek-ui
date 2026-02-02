@@ -49,27 +49,33 @@ struct DescStyledText {
 
 export component DocSection {
     in property <string> title;
-    in property <[DescStyledText]> description;
+    in property <[[DescStyledText]]> description;
     callback link-clicked(id: string);
     VerticalLayout {
         DocTitle {
             text: root.title;
         }
 
-        if description.length != 0: HorizontalLayout {
+        if description.length != 0: VerticalLayout {
             alignment: start;
-            for item in description: HorizontalLayout {
+            for line in description: HorizontalLayout {
                 alignment: start;
-                if item.text != "": UText {
-                    text: item.text;
-                }
-                if item.link != "": ULink {
-                    text: item.link;
-                    clicked => root.link-clicked(item.id);
-                }
-                if item.code != "": UCode {
-                    type: inline;
-                    code: item.code;
+                for item in line: HorizontalLayout {
+                    alignment: start;
+                    if item.text != "": UText {
+                        text: item.text;
+                        wrap: word-wrap;
+                    }
+                    if item.link != "": ULink {
+                        text: item.link;
+                        wrap: word-wrap;
+                        clicked => root.link-clicked(item.id);
+                    }
+                    if item.code != "": UCode {
+                        type: inline;
+                        code: item.code;
+                        wrap: word-wrap;
+                    }
                 }
             }
         }
