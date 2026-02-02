@@ -29,8 +29,9 @@ export component AppWindow inherits Window {
     title: "Sleek-ui Documentation";
     default-font-family: "Inter";
     default-font-size: 14px;
-    min-width: 1280px * UAppTheme.scale-factor;
-    min-height: 720px * UAppTheme.scale-factor;
+    min-width: 1280px;
+    min-height: 720px;
+    preferred-height: 720px;
     background: UAppTheme.bg-container;
     FocusScope {
         HorizontalLayout {
@@ -39,8 +40,6 @@ export component AppWindow inherits Window {
             PageManager { }
         }
     }
-
-    
 
     // modal := UModal {
     //     title: "Modal example";
