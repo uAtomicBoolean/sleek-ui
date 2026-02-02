@@ -57,11 +57,10 @@ export component MenuPage inherits PageBase {
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         UCode {
-            code: "import { UMenu } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
+            code: "import { UMenu, UMenuLink, UMenuSubmenu, UMenuGroupTitle } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
         }
     }
 
-	// TODO Find a way to fix the description overflow.
     DocSection {
         title: "Theming";
         description: [
@@ -85,6 +84,42 @@ export component MenuPage inherits PageBase {
             ]
         ];
     }
-	// TODO Explain interactive path to currently selected child.
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        UCode {
+            code: "import { UMenu } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    variant: light;\n}";
+        }
+    }
+
+    DocSection {
+        title: "Parent groups";
+        description: [
+            [
+                { text: "When using submenus, you can use the " },
+                { code: "parent-child-opened" },
+                { text: " and " },
+                { code: "child-opened" },
+                { text: " properties to display the current path." },
+            ],
+            [
+                {
+                    text: "This will allow the parents submenus of the currently selected link to be highlighted."
+                }
+            ]
+        ];
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        UCode {
+            code: "import { UMenu, UMenuSubmenu, UMenuLink } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    UMenuSubmenu {\n        name: \"Settings\";\n        UMenuSubmenu {\n            parent-child-opened <=> parent.child-opened;\n            name: \"Inner\";\n            UMenuLink {\n                parent-child-opened <=> parent.child-opened;\n                id: \"settings\";\n                name: \"Settings\";\n            }\n        }\n    }\n}";
+        }
+    }
+
+    DocSection {
+        title: "";
+    }
+
 	// TODO Present each subwidget.
 }
