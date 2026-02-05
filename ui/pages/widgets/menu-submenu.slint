@@ -1,0 +1,59 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component MenuPageSubmenu inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Menu submenu";
+    }
+
+    DocDescription {
+        text: "A submenu to use in the menu widget.";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        padding-bottom: UAppTheme.padding-base;
+    }
+
+    // TODO Present properties
+
+    DocSection {
+        title: "Parent submenus";
+        description: [
+            [
+                { text: "When using submenus, you can use the " },
+                { code: "parent-child-opened" },
+                { text: " and " },
+                { code: "child-opened" },
+                { text: " properties to display the current path." },
+            ],
+            [
+                {
+                    text: "This will allow the parents submenus of the currently selected link to be highlighted."
+                }
+            ]
+        ];
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        UCode {
+            code: "import { UMenu, UMenuSubmenu, UMenuLink } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    UMenuSubmenu {\n        name: \"Settings\";\n        UMenuSubmenu {\n            parent-child-opened <=> parent.child-opened;\n            name: \"Inner\";\n            UMenuLink {\n                parent-child-opened <=> parent.child-opened;\n                id: \"settings\";\n                name: \"Settings\";\n            }\n        }\n    }\n}";
+        }
+    }
+}

@@ -3,8 +3,6 @@ import {
     UTitle,
     UText,
     UCode,
-    UMenu,
-    UMenuLink,
 } from "../../sleek-ui/widgets.slint";
 
 import {
@@ -18,7 +16,7 @@ import { DocumentationLogic } from "../../logic/documentation-logic.slint";
 import { UAlert } from "../../sleek-ui/widgets/alert.slint";
 
 
-export component MenuPage inherits PageBase {
+export component MenuPageHowTo inherits PageBase {
     UTitle {
         level: 3;
         text: "Menu";
@@ -91,35 +89,4 @@ export component MenuPage inherits PageBase {
             code: "import { UMenu } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    variant: light;\n}";
         }
     }
-
-    DocSection {
-        title: "Parent submenus";
-        description: [
-            [
-                { text: "When using submenus, you can use the " },
-                { code: "parent-child-opened" },
-                { text: " and " },
-                { code: "child-opened" },
-                { text: " properties to display the current path." },
-            ],
-            [
-                {
-                    text: "This will allow the parents submenus of the currently selected link to be highlighted."
-                }
-            ]
-        ];
-    }
-
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        UCode {
-            code: "import { UMenu, UMenuSubmenu, UMenuLink } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    UMenuSubmenu {\n        name: \"Settings\";\n        UMenuSubmenu {\n            parent-child-opened <=> parent.child-opened;\n            name: \"Inner\";\n            UMenuLink {\n                parent-child-opened <=> parent.child-opened;\n                id: \"settings\";\n                name: \"Settings\";\n            }\n        }\n    }\n}";
-        }
-    }
-
-    DocSection {
-        title: "";
-    }
-
-	// TODO Present each subwidget.
 }

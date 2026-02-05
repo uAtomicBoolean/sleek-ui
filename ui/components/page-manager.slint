@@ -18,7 +18,10 @@ import {
 	// Navigation widgets.
 	BreadcrumbPage,
     TabsPage,
-    MenuPage,
+    MenuPageHowTo,
+    MenuPageLink,
+    MenuPageSubmenu,
+    MenuPageGroupTitle,
 } from "../pages/page-index.slint";
 
 
@@ -40,9 +43,12 @@ export component PageManager {
         if current-page == "link": LinkPage { }
         if current-page == "spinner": SpinnerPage { }
 
-		// Navigation widgets
+        // Navigation widgets
 		if current-page == "breadcrumb": BreadcrumbPage { }
         if current-page == "tabs": TabsPage { }
-        if current-page == "menu": MenuPage { }
+        if current-page == "menu-how-to": MenuPageHowTo { }
+        if current-page == "menu-link": MenuPageLink { }
+        if current-page == "menu-submenu": MenuPageSubmenu { }
+        if current-page == "menu-group-title": MenuPageGroupTitle { }
     }
 }

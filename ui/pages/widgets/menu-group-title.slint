@@ -1,0 +1,34 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component MenuPageGroupTitle inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Menu group title";
+    }
+
+    DocDescription {
+        text: "A title to separate links and submenu from different groups in a menu.";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        padding-bottom: UAppTheme.padding-base;
+    }
+
+    // TODO Present properties
+}

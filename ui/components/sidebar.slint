@@ -112,10 +112,32 @@ export component Sidebar inherits Rectangle {
                             name: "Tabs";
                         }
 
-                        UMenuLink {
+                        UMenuSubmenu {
                             parent-child-opened <=> parent.child-opened;
-                            id: "menu";
                             name: "Menu";
+                            UMenuLink {
+                                parent-child-opened <=> parent.child-opened;
+                                id: "menu-how-to";
+                                name: "How to use";
+                            }
+
+                            UMenuLink {
+                                parent-child-opened <=> parent.child-opened;
+                                id: "menu-link";
+                                name: "Menu link";
+                            }
+
+                            UMenuLink {
+                                parent-child-opened <=> parent.child-opened;
+                                id: "menu-submenu";
+                                name: "Menu submenu";
+                            }
+
+                            UMenuLink {
+                                parent-child-opened <=> parent.child-opened;
+                                id: "menu-group-title";
+                                name: "Menu group title";
+                            }
                         }
 
                         UMenuGroupTitle {
