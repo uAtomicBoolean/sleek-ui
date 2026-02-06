@@ -52,6 +52,15 @@ export component MenuPageHowTo inherits PageBase {
         ];
     }
 
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        padding-bottom: UAppTheme.padding-base;
+        UAlert {
+            variant: info;
+            message: "Check out the sidebar for a running example of a menu.";
+        }
+    }
+
     DocCode {
         code: "UMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
     }

@@ -25,7 +25,50 @@ export component MenuPageSubmenu inherits PageBase {
         text: "A submenu to use in the menu widget.";
     }
 
-    // TODO Present properties
+    DocSection {
+        title: "Basic usage";
+        description: [
+            [
+                { text: "To use a submenu, you only need to set the " },
+                { code: "name" },
+                { text: " property." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UMenuSubmenu {\n    name: \"Settings\";\n}";
+    }
+
+    DocSection {
+        title: "Disabled menu";
+        description: [
+            [
+                { text: "You can disable a menu with the " },
+                { code: "enabled" },
+                { text: " property." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UMenuSubmenu {\n    enabled: false;\n}";
+    }
+
+    DocSection {
+        title: "Programmaticaly open a submenu";
+        description: [
+            [
+                { text: "You can open a submenu using the " },
+                { code: "opened" },
+                { text: " property." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UMenuSubmenu {\n    opened: true;\n}";
+    }
 
     DocSection {
         title: "Parent submenus";
@@ -41,11 +84,11 @@ export component MenuPageSubmenu inherits PageBase {
                 {
                     text: "This will allow the parents submenus of the currently selected link to be highlighted."
                 }
-            ]
+            ],
         ];
     }
 
     DocCode {
-        code: "";
+        code: "UMenuSubmenu {\n    UMenuSubmenu {\n        parent-child-opened <=> parent.child-opened;\n        UMenuLink {\n            parent-child-opened <=> parent.child-opened;\n        }\n    }\n}";
     }
 }
