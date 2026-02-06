@@ -68,17 +68,14 @@ export component DocSection {
                     alignment: start;
                     if item.text != "": UText {
                         text: item.text;
-                        wrap: word-wrap;
                     }
                     if item.link != "": ULink {
                         text: item.link;
-                        wrap: word-wrap;
                         clicked => root.link-clicked(item.id);
                     }
                     if item.code != "": UCode {
                         type: inline;
                         code: item.code;
-                        wrap: word-wrap;
                     }
                 }
             }
