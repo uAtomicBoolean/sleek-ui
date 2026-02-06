@@ -153,4 +153,23 @@ export component InputPage inherits PageBase {
     DocCode {
         code: "UInput {\n    input-type: password;\n    width: 150px;\n}\n\nUInput {\n    input-type: decimal;\n    width: 150px;\n}";
     }
+
+    DocSection {
+        title: "Functions and callbacks";
+        description: [
+            [
+                { text: "With the exception of both " },
+                { code: "focus()" },
+                { text: " and " },
+                { code:"clear-focus()" },
+                { text:" , all of " },
+                { code: "TextInput" },
+                { text: " functions and callbacks are available." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UInput {\n    accepted => {\n        // Your code\n    }\n    edited => {\n        // Your code\n    }\n}";
+    }
 }
