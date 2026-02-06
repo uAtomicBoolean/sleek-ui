@@ -22,7 +22,7 @@ export component UInput inherits Rectangle {
     in-out property <string> placeholder: "";
     in-out property <bool> clearable: false;
     in-out property <bool> error: false;
-    in-out property <bool> show: false;
+    private property <bool> show: false;
     border-width: UAppTheme.border-width-base;
     border-radius: UAppTheme.radius-base;
     border-color: UAppTheme.border;

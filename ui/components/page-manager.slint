@@ -25,6 +25,7 @@ import {
 
 	// Data entry widgets
 	CheckboxPage,
+    InputPage,
 } from "../pages/page-index.slint";
 
 
@@ -56,5 +57,6 @@ export component PageManager {
 
         // Data entry widgets
 		if current-page == "checkbox": CheckboxPage { }
+        if current-page == "input": InputPage { }
     }
 }

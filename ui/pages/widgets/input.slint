@@ -1,0 +1,156 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UInput,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component InputPage inherits PageBase {
+    private property <length> input-width: 150px * UAppTheme.scale-factor;
+    UTitle {
+        level: 3;
+        text: "Input";
+    }
+
+    DocDescription {
+        text: "A text input that can be of different types (text, password, decimal).";
+    }
+
+    DocSection {
+        title: "Basic usage";
+        description: [];
+    }
+
+    WidgetPresentation {
+        UInput {
+            width: input-width;
+        }
+    }
+
+    DocCode {
+        code: "UInput {\n    width: 150px;\n    accepted => {\n        debug(self.text);\n    }\n}";
+    }
+
+    DocSection {
+        title: "Disabled input";
+        description: [[{ text: "Use the " }, { code: "enabled" }, { text:" property to disable the input." }]];
+    }
+
+    WidgetPresentation {
+        UInput {
+            width: input-width;
+            enabled: false;
+        }
+    }
+
+    DocCode {
+        code: "UInput {\n    enabled: false;\n    width: 150px;\n}";
+    }
+
+    DocSection {
+        title: "Displaying a placeholder";
+        description: [[{ text: "Set the " }, { code: "placeholder" }, { text: " property to display one." }]];
+    }
+
+    WidgetPresentation {
+        UInput {
+            placeholder: "Email";
+            width: input-width;
+        }
+    }
+
+    DocCode {
+        code: "UInput {\n    placeholder: \"Email\";\n    width: 150px;\n}";
+    }
+
+    DocSection {
+        title: "Errored input";
+        description: [
+            [
+                { text: "You can set the input to an error state with the " },
+                { code:"error" },
+                { text:" property." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UInput {
+            error: true;
+            width: input-width;
+        }
+    }
+
+    DocCode {
+        code: "UInput {\n    error: true;\n    width: 150px;\n}";
+    }
+
+    DocSection {
+        title: "Clearable input";
+        description: [
+            [
+                { text: "You can display a clear button with the " },
+                { code:"clearable" },
+                { text:" property." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UInput {
+            width: input-width;
+            clearable: true;
+        }
+    }
+
+    DocCode {
+        code: "UInput {\n    clearable: true;\n    width: 150px;\n}";
+    }
+
+    DocSection {
+        title: "Input type";
+        description: [
+            [
+                { text: "You can change the input's type with the " },
+                { code:"input-type" },
+                { text:" property." }
+            ],
+            [
+                { text: "This property is of type " },
+                { code: "InputType" },
+                { text: " and defaults to " },
+                { code:"text" },
+                { text:"." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-base;
+        UInput {
+            input-type: password;
+            width: input-width;
+        }
+
+        UInput {
+            input-type: decimal;
+            width: input-width;
+            placeholder: "Decimal";
+        }
+    }
+
+    DocCode {
+        code: "UInput {\n    input-type: password;\n    width: 150px;\n}\n\nUInput {\n    input-type: decimal;\n    width: 150px;\n}";
+    }
+}
