@@ -55,8 +55,40 @@ export component MenuPageLink inherits PageBase {
     }
 
     DocCode {
-        code: "UMenuLink {\n    id: \"first-page\";\n    name: \"First page\";\n}";
+        code: "UMenuLink {\n    enabled: false;\n}";
     }
 
-    // TODO Present properties
+    DocSection {
+        title: "Selected link";
+        description: [
+            [
+                {
+                    text: "You can check a link is selected either by checking the current value of "
+                },
+                { code: "UMenuLogic.current-link" },
+                { text:" or by checking the " },
+                { code:"is-selected" },
+                { text: " property." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UMenuLink {\n    activated => {\n        debug(self.is-selected);\n    }\n}";
+    }
+
+    DocSection {
+        title: "Activated callback";
+        description: [
+            [
+                { text:"Clicking on the link will fire the " },
+                { code:"activated" },
+                { text: " callback (only if the link is not the current link)." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UMenuLink {\n    activated => {\n        debug(\"Link \\{self.id} has been clicked.\");\n    }\n}";
+    }
 }

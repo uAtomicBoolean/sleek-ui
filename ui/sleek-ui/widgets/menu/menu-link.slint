@@ -37,8 +37,10 @@ export component UMenuLink inherits Rectangle {
     ButtonInterface {
         enabled: root.enabled;
         clicked => {
-            UMenuLogic.current-link = id;
-            root.activated();
+            if UMenuLogic.current-link != id {
+                UMenuLogic.current-link = id;
+                root.activated();
+            }
         }
         border-radius: UAppTheme.radius-base;
         HorizontalLayout {
