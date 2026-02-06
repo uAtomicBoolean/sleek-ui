@@ -22,7 +22,37 @@ export component MenuPageGroupTitle inherits PageBase {
     }
 
     DocDescription {
-        text: "A title to separate links and submenu from different groups in a menu.";
+        text: "A title to separate links and submenu from different groups in a menu or submenu.";
+    }
+
+    DocSection {
+        title: "Basic usage";
+        description: [
+            [
+                { text: "You only need to set the " },
+                { code:"title" },
+                { text:" property to use the widget." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UMenuGroupTitle {\n    title: \"User settings\";\n}";
+    }
+
+    DocSection {
+        title: "Change the title level";
+        description: [
+            [
+                { text: "You can change the title's level with the " },
+                { code: "level" },
+                { text:" property." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UMenuGroupTitle {\n    level: 1;\n    title:\"User settings\";\n}";
     }
 
     // TODO Present properties
