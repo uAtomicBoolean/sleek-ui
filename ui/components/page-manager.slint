@@ -22,6 +22,9 @@ import {
     MenuPageLink,
     MenuPageSubmenu,
     MenuPageGroupTitle,
+
+	// Data entry widgets
+	CheckboxPage,
 } from "../pages/page-index.slint";
 
 
@@ -50,5 +53,8 @@ export component PageManager {
         if current-page == "menu-link": MenuPageLink { }
         if current-page == "menu-submenu": MenuPageSubmenu { }
         if current-page == "menu-group-title": MenuPageGroupTitle { }
+
+        // Data entry widgets
+		if current-page == "checkbox": CheckboxPage { }
     }
 }
