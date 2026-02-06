@@ -51,7 +51,7 @@ export component LinkPage inherits PageBase {
     }
 
     UCode {
-        code: "import { ULink } from \"@sleek-ui/widgets.slint\";\n\nULink {\n    text: \"Source\";\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
+        code: "ULink {\n    text: \"Source\";\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
     }
 
     DocSection {
@@ -74,7 +74,7 @@ export component LinkPage inherits PageBase {
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         UCode {
-            code: "import { ULink } from \"@sleek-ui/widgets.slint\";\n\nULink {\n    text: \"Source\";\n    wrap: no-wrap;\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
+            code: "ULink {\n    text: \"Source\";\n    wrap: no-wrap;\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
         }
     }
 }

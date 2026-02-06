@@ -46,7 +46,7 @@ export component FloatingButtonPage inherits PageBase {
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         UCode {
-            code: "import { UFloatingButton } from \"@sleek-ui/widgets.slint\";\n\nexport component AppWindow inherits Window {\n    VerticalLayout {\n        // Your UI code.\n    }\n\n    // Note how the floating button is outside of the main content's layout.\n    UFloatingButton {\n        vertical-alignment: end;\n        horizontal-alignment: end;\n        layout-padding-bottom: 10px;\n        layout-padding-right: 10px;\n    }\n}";
+            code: "export component AppWindow inherits Window {\n    VerticalLayout {\n        // Your UI code.\n    }\n\n    // Note how the floating button is outside of the main content's layout.\n    UFloatingButton {\n        vertical-alignment: end;\n        horizontal-alignment: end;\n        layout-padding-bottom: 10px;\n        layout-padding-right: 10px;\n    }\n}";
         }
     }
 }

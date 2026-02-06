@@ -55,7 +55,7 @@ export component MenuPageHowTo inherits PageBase {
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         UCode {
-            code: "import { UMenu, UMenuLink, UMenuSubmenu, UMenuGroupTitle } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
+            code: "UMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
         }
     }
 
@@ -86,7 +86,7 @@ export component MenuPageHowTo inherits PageBase {
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         UCode {
-            code: "import { UMenu } from \"@sleek-ui/widgets.slint\";\n\nUMenu {\n    variant: light;\n}";
+            code: "UMenu {\n    variant: light;\n}";
         }
     }
 }

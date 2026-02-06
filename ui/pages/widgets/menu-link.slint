@@ -22,12 +22,27 @@ export component MenuPageLink inherits PageBase {
     }
 
     DocDescription {
-        text: "A link to use in the menu widget.";
+        text: "A link to use in the menu or submenu widget.";
+    }
+
+    DocSection {
+        title: "Basic usage";
+        description: [
+            [
+                { text: "Add a link to a menu by setting the " },
+                { code: "id" },
+                { text: " and " },
+                { code: "name" },
+                { text: "." },
+            ]
+        ];
     }
 
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
-        padding-bottom: UAppTheme.padding-base;
+        UCode {
+            code: "UMenuLink {\n    id: \"first-page\";\n    name: \"First page\";\n}";
+        }
     }
 
     // TODO Present properties
