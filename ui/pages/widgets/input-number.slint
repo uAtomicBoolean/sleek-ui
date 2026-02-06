@@ -1,0 +1,59 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UText,
+    UInputNumber,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component InputNumberPage inherits PageBase {
+    private property <length> input-width: 150px * UAppTheme.scale-factor;
+    UTitle {
+        level: 3;
+        text: "InputNumber";
+    }
+
+    DocDescription {
+        text: "A basic number input.";
+    }
+
+    DocSection {
+        title: "Basic usage";
+    }
+
+    WidgetPresentation {
+        UInputNumber {
+            width: input-width;
+        }
+    }
+
+    DocCode {
+        code: "UInputNumber {\n    width: 150px;\n    accepted => {\n        debug(self.text);\n    }\n}";
+    }
+
+    DocSection {
+        title: "Disabled input";
+        description: [[{ text: "Use the " }, { code: "enabled" }, { text:" property to disable the input." }]];
+    }
+
+    WidgetPresentation {
+        UInputNumber {
+            width: input-width;
+            enabled: false;
+        }
+    }
+
+    DocCode {
+        code: "UInputNumber {\n    enabled: false;\n    width: 150px;\n}";
+    }
+}
