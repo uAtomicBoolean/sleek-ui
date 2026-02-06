@@ -1,11 +1,12 @@
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
-import { UTitle, UText, UCode } from "../../sleek-ui/widgets.slint";
+import { UTitle, UText } from "../../sleek-ui/widgets.slint";
 
 import {
     DocTitle,
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -43,10 +44,7 @@ export component FloatingIconButtonPage inherits PageBase {
         ];
     }
 
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        UCode {
-            code: "export component AppWindow inherits Window {\n    VerticalLayout {\n        // Your UI code.\n    }\n\n    // Note how the floating button is outside of the main content's layout.\n    UFloatingIconButton {\n        vertical-alignment: end;\n        horizontal-alignment: end;\n        layout-padding-bottom: 10px;\n        layout-padding-right: 10px;\n    }\n}";
-        }
+    DocCode {
+        code: "export component AppWindow inherits Window {\n    VerticalLayout {\n        // Your UI code.\n    }\n\n    // Note how the floating button is outside of the main content's layout.\n    UFloatingIconButton {\n        vertical-alignment: end;\n        horizontal-alignment: end;\n        layout-padding-bottom: 10px;\n        layout-padding-right: 10px;\n    }\n}";
     }
 }

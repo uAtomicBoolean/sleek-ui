@@ -2,7 +2,6 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UTitle,
     UText,
-    UCode,
 } from "../../sleek-ui/widgets.slint";
 
 import {
@@ -10,6 +9,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -23,11 +23,6 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocDescription {
         text: "A submenu to use in the menu widget.";
-    }
-
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        padding-bottom: UAppTheme.padding-base;
     }
 
     // TODO Present properties
@@ -50,10 +45,7 @@ export component MenuPageSubmenu inherits PageBase {
         ];
     }
 
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        UCode {
-            code: "";
-        }
+    DocCode {
+        code: "";
     }
 }

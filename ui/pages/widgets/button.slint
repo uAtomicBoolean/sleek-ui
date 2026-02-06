@@ -6,6 +6,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -53,7 +54,7 @@ export component ButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UButton {\n    variant: primary;\n    text: \"Primary\";\n}";
     }
 
@@ -86,7 +87,7 @@ export component ButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UButton {\n    enabled: false;\n    text: \"Disabled\";\n}";
     }
 
@@ -110,7 +111,7 @@ export component ButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UButton {\n    icon: @image-url(\"url-to-image\");\n    icon-placement: start;\n    text: \"Danger\";\n}";
     }
 
@@ -129,7 +130,7 @@ export component ButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UButton {\n    icon: @image-url(\"url-to-image\");\n    icon-placement: start;\n    colorize-icon: false;\n    text: \"Danger\";\n}";
     }
 
@@ -163,7 +164,7 @@ export component ButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UButton {\n    loading: true;\n    text: \"Loading\";\n}";
     }
 
@@ -203,7 +204,7 @@ export component ButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UButton {\n    danger: true;\n    text: \"Danger\";\n}";
     }
 
@@ -255,7 +256,7 @@ export component ButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UButton {\n    checked: true;\n    text: \"Checked\";\n}";
     }
 }

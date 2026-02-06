@@ -1,11 +1,12 @@
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
-import { UTitle, UText, UCode, UDivider } from "../../sleek-ui/widgets.slint";
+import { UTitle, UText, UDivider } from "../../sleek-ui/widgets.slint";
 
 import {
     DocTitle,
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -41,7 +42,7 @@ export component DividerPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UDivider { }";
     }
 
@@ -67,7 +68,7 @@ export component DividerPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UDivider {\n    orientation: vertical;\n}";
     }
 
@@ -85,7 +86,7 @@ export component DividerPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UDivider {\n    background: red;\n}";
     }
 }

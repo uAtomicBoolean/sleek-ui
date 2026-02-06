@@ -2,7 +2,6 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UTitle,
     UText,
-    UCode,
     UIconButton,
     UIcon,
 } from "../../sleek-ui/widgets.slint";
@@ -12,6 +11,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -59,7 +59,7 @@ export component IconButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UIconButton {\n    variant: primary;\n    icon: @image-url(\"url-to-icon\");\n}";
     }
 
@@ -80,7 +80,7 @@ export component IconButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UIconButton {\n    enabled: false;\n    icon: @image-url(\"url-to-icon\");\n}";
     }
 
@@ -101,7 +101,7 @@ export component IconButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UIconButton {\n    loading: true;\n    icon: @image-url(\"url-to-icon\");\n}";
     }
 
@@ -124,7 +124,7 @@ export component IconButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UIconButton {\n    danger: true;\n    icon: @image-url(\"url-to-icon\");\n}";
     }
 
@@ -149,7 +149,7 @@ export component IconButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UIconButton {\n    checked: true;\n    icon: @image-url(\"url-to-icon\");\n}";
     }
 
@@ -164,7 +164,7 @@ export component IconButtonPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UIconButton {\n    icon: @image-url(\"url-to-icon\");\n    colorize-icon: false;\n}";
     }
 }

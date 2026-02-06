@@ -10,6 +10,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -38,11 +39,23 @@ export component MenuPageLink inherits PageBase {
         ];
     }
 
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        UCode {
-            code: "UMenuLink {\n    id: \"first-page\";\n    name: \"First page\";\n}";
-        }
+    DocCode {
+        code: "UMenuLink {\n    id: \"first-page\";\n    name: \"First page\";\n}";
+    }
+
+    DocSection {
+        title: "Disabled link";
+        description: [
+            [
+                { text: "You can disable a link by setting the " },
+                { code: "enabled" },
+                { text:" property to false." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UMenuLink {\n    id: \"first-page\";\n    name: \"First page\";\n}";
     }
 
     // TODO Present properties

@@ -2,7 +2,6 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UTitle,
     UText,
-    UCode,
 } from "../../sleek-ui/widgets.slint";
 
 import {
@@ -10,6 +9,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -52,11 +52,8 @@ export component MenuPageHowTo inherits PageBase {
         ];
     }
 
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        UCode {
-            code: "UMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
-        }
+    DocCode {
+        code: "UMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
     }
 
     DocSection {
@@ -83,10 +80,7 @@ export component MenuPageHowTo inherits PageBase {
         ];
     }
 
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        UCode {
-            code: "UMenu {\n    variant: light;\n}";
-        }
+    DocCode {
+        code: "UMenu {\n    variant: light;\n}";
     }
 }

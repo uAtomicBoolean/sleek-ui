@@ -2,7 +2,6 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UTitle,
     UText,
-    UCode,
     ULink,
     UMenuLogic,
 } from "../../sleek-ui/widgets.slint";
@@ -12,6 +11,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -50,7 +50,7 @@ export component LinkPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "ULink {\n    text: \"Source\";\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
     }
 
@@ -71,10 +71,7 @@ export component LinkPage inherits PageBase {
         ];
     }
 
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        UCode {
-            code: "ULink {\n    text: \"Source\";\n    wrap: no-wrap;\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
-        }
+    DocCode {
+        code: "ULink {\n    text: \"Source\";\n    wrap: no-wrap;\n    clicked => {\n        // Your logic to open URLs.\n    }\n}";
     }
 }

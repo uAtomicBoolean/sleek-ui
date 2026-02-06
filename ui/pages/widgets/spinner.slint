@@ -2,7 +2,6 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UTitle,
     UText,
-    UCode,
     USpinner,
     UCenter,
 } from "../../sleek-ui/widgets.slint";
@@ -12,6 +11,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -35,7 +35,7 @@ export component SpinnerPage inherits PageBase {
         USpinner { }
     }
 
-    UCode {
+    DocCode {
         code: "USpinner { }";
     }
 
@@ -88,7 +88,7 @@ export component SpinnerPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "USpinner {\n    size: 16px;\n}\n\nUSpinner {\n    size: 24px;\n    colorize: UAppTheme.success.base;\n}\n\nUSpinner {\n    size: 32px;\n    colorize: UAppTheme.warning.base;\n}\n\nUSpinner {\n    size: 48px;\n    colorize: UAppTheme.danger.base;\n}\n\nUSpinner {\n    size: 64px;\n    colorize: UAppTheme.text;\n}";
     }
 }

@@ -2,7 +2,6 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UTitle,
     UText,
-    UCode,
     UBreadcrumb,
 } from "../../sleek-ui/widgets.slint";
 
@@ -11,6 +10,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -45,7 +45,7 @@ export component BreadcrumbPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UBreadcrumb {\n    steps: [\"Settings\", \"General\", \"Appareance\"];\n    step-clicked(step) => {\n        // Your navigation logic.\n    }\n}";
     }
 }

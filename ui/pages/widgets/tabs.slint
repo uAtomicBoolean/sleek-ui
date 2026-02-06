@@ -2,7 +2,6 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UTitle,
     UText,
-    UCode,
     UTabs,
 } from "../../sleek-ui/widgets.slint";
 
@@ -11,6 +10,7 @@ import {
     DocDescription,
     WidgetPresentation,
     DocSection,
+    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
@@ -45,7 +45,7 @@ export component TabsPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"]\n}";
     }
 
@@ -72,7 +72,7 @@ export component TabsPage inherits PageBase {
         }
     }
 
-    UCode {
+    DocCode {
         code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"]\n    tabs-alignment: stretch;\n}";
     }
 }
