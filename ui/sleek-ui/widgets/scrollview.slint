@@ -58,6 +58,12 @@ export component UScrollView inherits Rectangle {
     out property <length> viewport-height <=> flickable.viewport-height;
     private property <length> min-handle-size: 30px;
     private property <duration> scroll-anim-duration: !v-scrollbar.pressed && !h-scrollbar.pressed ? UAppTheme.animation-duration : 0;
+    public function scroll-x-to(new-x: length) {
+        self.viewport-x = new-x;
+    }
+    public function scroll-y-to(new-y: length) {
+        self.viewport-y = new-y;
+    }
     VerticalLayout {
         flickable := Flickable {
             horizontal-stretch: 2;
