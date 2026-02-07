@@ -5,7 +5,23 @@ slint::include_modules!();
 
 #[allow(dead_code)]
 fn main() {
+    let selector = slint::BackendSelector::new()
+        .backend_name("winit".to_owned())
+        .renderer_name("skia".to_owned());
+    if let Err(err) = selector.select() {
+        eprintln!("Error while selecting the backend and renderer.");
+        eprintln!("{}", err.to_string());
+    }
+
     let ui = AppWindow::new().unwrap();
+
+    // Code used to update the scale factor with user input.
+    // let ui_weak = ui.as_weak();
+    // ui.on_update_scale_factor(move |sf| {
+    //     let ui = ui_weak.upgrade().unwrap();
+    //     ui.window()
+    //         .dispatch_event(slint::platform::WindowEvent::ScaleFactorChanged { scale_factor: sf });
+    // });
 
     let doc_logic = ui.global::<DocumentationLogic>();
 
