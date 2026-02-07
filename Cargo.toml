@@ -13,7 +13,6 @@ name = "sleek-ui"
 path = "src/main.rs"
 
 [dependencies]
-dotenv = "0.15.0"
 webbrowser = { version = "1.0.6", features = ["hardened"] }
 
 # Use skia renderer on all platforms but wasm as it is not supported. 
