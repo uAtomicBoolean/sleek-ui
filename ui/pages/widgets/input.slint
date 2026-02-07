@@ -17,7 +17,6 @@ import { DocumentationLogic } from "../../logic/documentation-logic.slint";
 
 
 export component InputPage inherits PageBase {
-    private property <length> input-width: 150px;
     UTitle {
         level: 3;
         text: "Input";
@@ -33,13 +32,11 @@ export component InputPage inherits PageBase {
     }
 
     WidgetPresentation {
-        UInput {
-            width: input-width;
-        }
+        UInput { }
     }
 
     DocCode {
-        code: "UInput {\n    width: 150px;\n    accepted => {\n        debug(self.text);\n    }\n}";
+        code: "UInput {\n    accepted => {\n        debug(self.text);\n    }\n}";
     }
 
     DocSection {
@@ -49,13 +46,12 @@ export component InputPage inherits PageBase {
 
     WidgetPresentation {
         UInput {
-            width: input-width;
             enabled: false;
         }
     }
 
     DocCode {
-        code: "UInput {\n    enabled: false;\n    width: 150px;\n}";
+        code: "UInput {\n    enabled: false;\n}";
     }
 
     DocSection {
@@ -66,12 +62,11 @@ export component InputPage inherits PageBase {
     WidgetPresentation {
         UInput {
             placeholder: "Email";
-            width: input-width;
         }
     }
 
     DocCode {
-        code: "UInput {\n    placeholder: \"Email\";\n    width: 150px;\n}";
+        code: "UInput {\n    placeholder: \"Email\";\n}";
     }
 
     DocSection {
@@ -88,12 +83,11 @@ export component InputPage inherits PageBase {
     WidgetPresentation {
         UInput {
             error: true;
-            width: input-width;
         }
     }
 
     DocCode {
-        code: "UInput {\n    error: true;\n    width: 150px;\n}";
+        code: "UInput {\n    error: true;\n}";
     }
 
     DocSection {
@@ -109,13 +103,12 @@ export component InputPage inherits PageBase {
 
     WidgetPresentation {
         UInput {
-            width: input-width;
             clearable: true;
         }
     }
 
     DocCode {
-        code: "UInput {\n    clearable: true;\n    width: 150px;\n}";
+        code: "UInput {\n    clearable: true;\n}";
     }
 
     DocSection {
@@ -140,18 +133,16 @@ export component InputPage inherits PageBase {
         spacing: UAppTheme.spacing-base;
         UInput {
             input-type: password;
-            width: input-width;
         }
 
         UInput {
             input-type: decimal;
-            width: input-width;
             placeholder: "Decimal";
         }
     }
 
     DocCode {
-        code: "UInput {\n    input-type: password;\n    width: 150px;\n}\n\nUInput {\n    input-type: decimal;\n    width: 150px;\n}";
+        code: "UInput {\n    input-type: password;\n}\n\nUInput {\n    input-type: decimal;\n}";
     }
 
     DocSection {

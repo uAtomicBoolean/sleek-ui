@@ -38,7 +38,7 @@ export component InputNumberPage inherits PageBase {
     }
 
     DocCode {
-        code: "UInputNumber {\n    width: 150px;\n    accepted => {\n        debug(self.text);\n    }\n}";
+        code: "UInputNumber {\n    accepted => {\n        debug(self.text);\n    }\n}";
     }
 
     DocSection {
@@ -54,6 +54,97 @@ export component InputNumberPage inherits PageBase {
     }
 
     DocCode {
-        code: "UInputNumber {\n    enabled: false;\n    width: 150px;\n}";
+        code: "UInputNumber {\n    enabled: false;\n}";
+    }
+
+    DocSection {
+        title: "Define the step";
+        description: [
+            [{ text:"You can set the step with the " }, { code: "step" }, { text:" property" }],
+            [{ text:"You can use the up/down arrow keys to increase/decrease the value." }]
+        ];
+    }
+
+    WidgetPresentation {
+        UInputNumber {
+            step: 10;
+            width: 150px;
+        }
+    }
+
+    DocCode {
+        code: "UInputNumber {\n    step: 10;\n}";
+    }
+
+    DocSection {
+        title: "Minimum and maximum values";
+        description: [
+            [
+                { text: "Enable the minimum and maximum values by setting the " },
+                { code:"enable-min-max" },
+                { text: " property to " },
+                { code:"true" },
+                { text:"." }
+            ],
+            [
+                { text: "You can then set the " },
+                { code: "min" },
+                { text:" and " },
+                { code: "max" },
+                { text: " properties." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UInputNumber {
+            enable-min-max: true;
+            min-value: 10;
+            max-value: 20;
+        }
+    }
+
+    DocCode {
+        code: "UInputNumber {\n    enable-min-max: true;\n    min: 10\n    max: 20;\n}";
+    }
+
+    DocSection {
+        title: "Errored input";
+        description: [
+            [
+                { text: "You can set the input to an error state with the " },
+                { code:"error" },
+                { text: " properties." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UInputNumber {
+            error: true;
+        }
+    }
+
+    DocCode {
+        code: "UInputNumber {\n    error: true;\n}";
+    }
+
+    DocSection {
+        title: "Functions and callbacks";
+        description: [
+            [
+                { text: "With the exception of both " },
+                { code: "focus()" },
+                { text: " and " },
+                { code:"clear-focus()" },
+                { text:" , all of " },
+                { code: "TextInput" },
+                { text: " functions and callbacks are available." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UInputNumber {\n    accepted => {\n        // Your code\n    }\n    edited => {\n        // Your code\n    }\n}";
     }
 }

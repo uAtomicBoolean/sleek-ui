@@ -36,7 +36,17 @@ export component UInputNumber inherits Rectangle {
     border-radius: UAppTheme.radius-base;
     border-color: UAppTheme.border;
     background: UAppTheme.bg-elevated;
+    preferred-width: 150px;
     clip: true;
+    init => {
+        if enable-min-max {
+            if value < min-value {
+                value = min-value;
+            } else if value > max-value {
+                value = max-value;
+            }
+        }
+    }
     HorizontalLayout {
         width: root.width;
         HorizontalLayout {
