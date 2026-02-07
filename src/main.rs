@@ -16,6 +16,11 @@ fn main() {
     let ui = AppWindow::new().unwrap();
 
     // Code used to update the scale factor with user input.
+    // TODO Find a way to set the scale factor once the window has appeared.
+    //		The goal being to remove the manuel implementation of the scale factor as it introduces complexity and requires manuel implementation everywhere for the developper.
+    //		What has been tried: fire a callback from the init {} callback of the window, fire a callback with a timer of 1ms added to the end of the window.
+    //		Both solutions return Ok(()) when using tr_dispatch_event(), however, the window doesn't change its scale factor.
+    //		Setting the scale factor by clicking on a button does work, so we might have to wait a few more ms or s before dispatching the window event.
     // let ui_weak = ui.as_weak();
     // ui.on_update_scale_factor(move |sf| {
     //     let ui = ui_weak.upgrade().unwrap();
