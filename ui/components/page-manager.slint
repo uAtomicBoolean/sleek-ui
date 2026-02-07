@@ -27,6 +27,7 @@ import {
 	CheckboxPage,
     InputPage,
     InputNumberPage,
+    SelectPage,
 } from "../pages/page-index.slint";
 
 
@@ -60,5 +61,6 @@ export component PageManager {
 		if current-page == "checkbox": CheckboxPage { }
         if current-page == "input": InputPage { }
         if current-page == "input-number": InputNumberPage { }
+        if current-page == "select": SelectPage { }
     }
 }

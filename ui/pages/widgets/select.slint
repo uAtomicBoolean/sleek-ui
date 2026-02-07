@@ -1,0 +1,72 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle, USelect } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component SelectPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Select";
+    }
+
+    DocDescription {
+        text: "A simple select field to choose a value from a list.";
+    }
+
+    DocSection {
+        title: "Basic usage";
+        description: [
+            [
+                { text:"You can set the options with the " },
+                { code: "options" },
+                { text: " property, an option being of type " },
+                { link: "USelectOption", id: "uselectoption" },
+                { text:"." }
+            ],
+            [
+                { text: "By default, the " },
+                { code: "current-index" },
+                {
+                    text: " property will be set to -1 until the user select a value or you set it to another value."
+                }
+            ]
+        ];
+        link-clicked(id) => {
+            if id == "uselectoption" {
+                debug("scroll to uselect option");
+            }
+        }
+    }
+
+    WidgetPresentation {
+        USelect {
+            options: [
+                { text: "France", value: "france", enabled:true },
+                { text: "Germany", value: "germany", enabled:true },
+                { text: "Switzerland", value: "switzerland", enabled:true },
+                { text: "Option 1", value: "option1", enabled:true },
+                { text: "Option 2", value: "option2", enabled:true },
+                { text: "Option 3", value: "option3", enabled:true },
+                { text: "Option 4", value: "option4", enabled:true },
+            ];
+        }
+    }
+
+    DocSection {
+        title: "The USelectOption struct";
+        description: [[{ text: "This struct contains the data for one option in a select" }]];
+    }
+
+    DocCode {
+        code: "USelectOption {\n    // The visual text of the value.\n    text: string,\n    // The value that can be used in your logic to check the current value.\n    value: string,\n    // Weither the option is enabled or not.\n    // A disabled option will be greyed out and not selectable.\n    // Note that you must set it to true as the default value of a boolean in Slint is false.\n    enabled: bool,\n}";
+    }
+}
