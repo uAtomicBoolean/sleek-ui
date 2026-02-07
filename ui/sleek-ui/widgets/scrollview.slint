@@ -9,13 +9,13 @@ component Scrollbar inherits Rectangle {
     out property <bool> pressed <=> touch.pressed;
     private property <length> available-space: (orientation == Orientation.vertical ? self.height : self.width) - handle-size;
     private property <float> min-handle-pct: 0.05;
-    width: orientation == Orientation.vertical ? 8px * UAppTheme.scale-factor : 0;
-    height: orientation == Orientation.horizontal ? 8px * UAppTheme.scale-factor : 0;
+    width: orientation == Orientation.vertical ? 8px : 0;
+    height: orientation == Orientation.horizontal ? 8px : 0;
     handle := Rectangle {
         x: orientation == Orientation.horizontal ? -value / max-scroll-pos * (root.width - handle-size) : 1px;
         y: orientation == Orientation.vertical ? -value / max-scroll-pos * (root.height - handle-size) : 1px;
-        width: orientation == Orientation.vertical ? 6px * UAppTheme.scale-factor : handle-size;
-        height: orientation == Orientation.horizontal ? 6px * UAppTheme.scale-factor : handle-size;
+        width: orientation == Orientation.vertical ? 6px : handle-size;
+        height: orientation == Orientation.horizontal ? 6px : handle-size;
         background: UAppTheme.color-fill;
         border-radius: UAppTheme.radius-circle;
         animate background { duration: UAppTheme.animation-duration; }
@@ -51,12 +51,12 @@ component Scrollbar inherits Rectangle {
 
 export component UScrollView inherits Rectangle {
     in-out property <bool> interactive: false;
-    out property <length> scrollbar-area: 8px * UAppTheme.scale-factor;
+    out property <length> scrollbar-area: 8px;
     out property <length> viewport-x <=> flickable.viewport-x;
     out property <length> viewport-y <=> flickable.viewport-y;
     out property <length> viewport-width <=> flickable.viewport-width;
     out property <length> viewport-height <=> flickable.viewport-height;
-    private property <length> min-handle-size: 30px * UAppTheme.scale-factor;
+    private property <length> min-handle-size: 30px;
     private property <duration> scroll-anim-duration: !v-scrollbar.pressed && !h-scrollbar.pressed ? UAppTheme.animation-duration : 0;
     VerticalLayout {
         flickable := Flickable {

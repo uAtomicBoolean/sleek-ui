@@ -21,7 +21,7 @@ export component ULinearProgress inherits Rectangle {
 	// Regular properties
     in-out property <ULinearProgressVariant> variant: primary;
     private property <brush> progress-color;
-    in property <length> default-size: 10px * UAppTheme.scale-factor;
+    in property <length> default-size: 10px;
     in property <Orientation> orientation: horizontal;
     in property <ProgressAlignment> alignment: start;
     in-out property <percent> progress: indeterminate ? 30% : 0%;
@@ -66,12 +66,12 @@ export component ULinearProgress inherits Rectangle {
             interval: 5ms;
             triggered => {
                 if alignment == ProgressAlignment.start {
-                    parent.x-pos += 1px * UAppTheme.scale-factor;
+                    parent.x-pos += 1px;
                     if parent.x-pos > root.width {
                         parent.x-pos = -parent.width;
                     }
                 } else {
-                    parent.x-pos -= 1px * UAppTheme.scale-factor;
+                    parent.x-pos -= 1px;
                     if parent.x-pos < -parent.width {
                         parent.x-pos = root.width - parent.width;
                     }
@@ -103,12 +103,12 @@ export component ULinearProgress inherits Rectangle {
             interval: 10ms;
             triggered => {
                 if alignment == ProgressAlignment.start {
-                    parent.y-pos += 1px * UAppTheme.scale-factor;
+                    parent.y-pos += 1px;
                     if parent.y-pos > root.height {
                         parent.y-pos = -parent.height;
                     }
                 } else {
-                    parent.y-pos -= 1px * UAppTheme.scale-factor;
+                    parent.y-pos -= 1px;
                     if parent.y-pos < -parent.height {
                         parent.y-pos = root.height;
                     }

@@ -23,7 +23,6 @@ import {
 import { UThemeConfig } from "theme-config.slint";
 
 export global UAppTheme {
-    in-out property <float> scale-factor: 1;
     in-out property <duration> animation-duration: 150ms;
 
     // Color scheme management.
@@ -60,20 +59,20 @@ export global UAppTheme {
     out property <brush> color-fill-quaternary: get-themed-color(light.color-fill-quaternary, dark.color-fill-quaternary);
 
     // Borders
-    out property <length> border-width-base: UThemeConfig.border-style.width * scale-factor;
+    out property <length> border-width-base: UThemeConfig.border-style.width;
     out property <brush> border: get-themed-color(light.border, dark.border);
     out property <brush> border-secondary: get-themed-color(light.border-secondary, dark.border-secondary);
     out property <brush> separator: get-themed-color(light.separator, dark.separator);
 
     // Shadow
     out property <brush> shadow-color: get-themed-color(light.shadow-color, dark.shadow-color);
-    out property <length> shadow-blur: UThemeConfig.shadow-style.blur * scale-factor;
-    out property <length> shadow-x-offset: UThemeConfig.shadow-style.x-offset * scale-factor;
-    out property <length> shadow-y-offset: UThemeConfig.shadow-style.y-offset * scale-factor;
+    out property <length> shadow-blur: UThemeConfig.shadow-style.blur;
+    out property <length> shadow-x-offset: UThemeConfig.shadow-style.x-offset;
+    out property <length> shadow-y-offset: UThemeConfig.shadow-style.y-offset;
 
     // Focus display
     out property <brush> focus-color: get-themed-color(light.focus-color, dark.focus-color);
-    out property <length> focus-border-width: UThemeConfig.focus-style.border-width * scale-factor;
+    out property <length> focus-border-width: UThemeConfig.focus-style.border-width;
 
     // Text colors
     out property <brush> inverse-text: get-themed-color(light.inverse-text, dark.inverse-text);
@@ -83,41 +82,41 @@ export global UAppTheme {
     out property <brush> text-disabled: get-themed-color(light.text-disabled, dark.text-disabled);
 
     // Font sizes
-    out property <length> font-size-smaller: UThemeConfig.font-size-style.smaller * scale-factor;
-    out property <length> font-size-small: UThemeConfig.font-size-style.small * scale-factor;
-    out property <length> font-size-base: UThemeConfig.font-size-style.base * scale-factor;
-    out property <length> font-size-medium: UThemeConfig.font-size-style.medium * scale-factor;
-    out property <length> font-size-big: UThemeConfig.font-size-style.big * scale-factor;
-    out property <length> font-size-bigger: UThemeConfig.font-size-style.bigger * scale-factor;
+    out property <length> font-size-smaller: UThemeConfig.font-size-style.smaller;
+    out property <length> font-size-small: UThemeConfig.font-size-style.small;
+    out property <length> font-size-base: UThemeConfig.font-size-style.base;
+    out property <length> font-size-medium: UThemeConfig.font-size-style.medium;
+    out property <length> font-size-big: UThemeConfig.font-size-style.big;
+    out property <length> font-size-bigger: UThemeConfig.font-size-style.bigger;
 	
     // Icons
-    out property <length> icon-size-base: UThemeConfig.font-size-style.icon-base-size * scale-factor;
+    out property <length> icon-size-base: UThemeConfig.font-size-style.icon-base-size;
 
     // Padding
-    out property <length> padding-vertical: UThemeConfig.padding-style.vertical * scale-factor;
-    out property <length> padding-horizontal: UThemeConfig.padding-style.horizontal * scale-factor;
-    out property <length> padding-small: UThemeConfig.padding-style.small * scale-factor;
-    out property <length> padding-base: UThemeConfig.padding-style.base * scale-factor;
-    out property <length> padding-medium: UThemeConfig.padding-style.medium * scale-factor;
-    out property <length> padding-big: UThemeConfig.padding-style.big * scale-factor;
-    out property <length> padding-bigger: UThemeConfig.padding-style.bigger * scale-factor;
+    out property <length> padding-vertical: UThemeConfig.padding-style.vertical;
+    out property <length> padding-horizontal: UThemeConfig.padding-style.horizontal;
+    out property <length> padding-small: UThemeConfig.padding-style.small;
+    out property <length> padding-base: UThemeConfig.padding-style.base;
+    out property <length> padding-medium: UThemeConfig.padding-style.medium;
+    out property <length> padding-big: UThemeConfig.padding-style.big;
+    out property <length> padding-bigger: UThemeConfig.padding-style.bigger;
 
     // Spacing
-    out property <length> spacing-small: UThemeConfig.spacing-style.small * scale-factor;
-    out property <length> spacing-base: UThemeConfig.spacing-style.base * scale-factor;
-    out property <length> spacing-medium: UThemeConfig.spacing-style.medium * scale-factor;
-    out property <length> spacing-big: UThemeConfig.spacing-style.big * scale-factor;
-    out property <length> spacing-bigger: UThemeConfig.spacing-style.bigger * scale-factor;
+    out property <length> spacing-small: UThemeConfig.spacing-style.small;
+    out property <length> spacing-base: UThemeConfig.spacing-style.base;
+    out property <length> spacing-medium: UThemeConfig.spacing-style.medium;
+    out property <length> spacing-big: UThemeConfig.spacing-style.big;
+    out property <length> spacing-bigger: UThemeConfig.spacing-style.bigger;
 
     // Radius
-    out property <length> radius-small: UThemeConfig.radius-style.small * scale-factor;
-    out property <length> radius-base: UThemeConfig.radius-style.base * scale-factor;
-    out property <length> radius-medium: UThemeConfig.radius-style.medium * scale-factor;
-    out property <length> radius-large: UThemeConfig.radius-style.large * scale-factor;
-    out property <length> radius-round: UThemeConfig.radius-style.round * scale-factor;
+    out property <length> radius-small: UThemeConfig.radius-style.small;
+    out property <length> radius-base: UThemeConfig.radius-style.base;
+    out property <length> radius-medium: UThemeConfig.radius-style.medium;
+    out property <length> radius-large: UThemeConfig.radius-style.large;
+    out property <length> radius-round: UThemeConfig.radius-style.round;
     out property <length> radius-circle: UThemeConfig.radius-style.circle;
 
-	// Structs with both color scheme mode for the colors.
+    // Structs with both color scheme mode for the colors.
 	out property <UThemeColors> light: {
 		// Main colors
     	primary: UThemeConfig.primary-color-style.light,

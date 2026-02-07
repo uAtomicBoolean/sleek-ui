@@ -13,13 +13,13 @@ import { ScrollView } from "std-widgets.slint";
 
 
 export component Sidebar inherits Rectangle {
-    width: 250px * UAppTheme.scale-factor;
+    width: 250px;
     HorizontalLayout {
         UScrollView {
             width: root.width;
             VerticalLayout {
                 width: root.width;
-                padding-bottom: 24px * UAppTheme.scale-factor;
+                padding-bottom: 24px;
                 UMenu {
                     current-link: "home";
                     UMenuLink {

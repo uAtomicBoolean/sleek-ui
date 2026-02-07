@@ -21,8 +21,8 @@ import { PageBase } from "../components/page-base.slint";
 export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
-        padding-top: 64px * UAppTheme.scale-factor;
-        padding-bottom: 24px * UAppTheme.scale-factor;
+        padding-top: 64px;
+        padding-bottom: 24px;
         UTitle {
             level: 1;
             text: "Sleek-ui";
@@ -39,14 +39,14 @@ export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
         UText {
-            text: "Comes with a simple application wide theming system and a custom scale factor.";
+            text: "Comes with a simple application wide theming system.";
         }
     }
 
     HorizontalLayout {
         alignment: center;
         spacing: UAppTheme.spacing-base;
-        padding-top: 100px * UAppTheme.scale-factor;
+        padding-top: 100px;
         UButton {
             variant: primary;
             text: "Primary";
@@ -120,7 +120,7 @@ export component HomePage inherits PageBase {
         alignment: center;
         padding-top: UAppTheme.padding-bigger;
         ULinearProgress {
-            width: 300px * UAppTheme.scale-factor;
+            width: 300px;
             progress: 30%;
             indeterminate: true;
         }
@@ -130,7 +130,7 @@ export component HomePage inherits PageBase {
         alignment: center;
         padding-top: UAppTheme.padding-bigger;
         USlider {
-            width: 350px * UAppTheme.scale-factor;
+            width: 350px;
             value: 30;
         }
     }
@@ -140,12 +140,12 @@ export component HomePage inherits PageBase {
         spacing: UAppTheme.spacing-bigger;
         padding-top: UAppTheme.padding-bigger;
         UInput {
-            width: 150px * UAppTheme.scale-factor;
+            width: 150px;
             placeholder: "Text input";
         }
 
         UInputNumber {
-            width: 150px * UAppTheme.scale-factor;
+            width: 150px;
         }
     }
 

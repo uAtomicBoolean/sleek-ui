@@ -30,8 +30,8 @@ export component USelect inherits ButtonInterface {
     in-out property <[USelectOption]> options;
     out property <string> selected-text;
     out property <string> selected-value;
-    in-out property <length> popup-max-height: 124px * UAppTheme.scale-factor;
-    private property <length> full-options-height: (29px * UAppTheme.scale-factor) * options.length + UAppTheme.padding-base * 2;
+    in-out property <length> popup-max-height: 124px;
+    private property <length> full-options-height: (29px) * options.length + UAppTheme.padding-base * 2;
     callback selected-changed(new-index: int);
     background: UAppTheme.bg-elevated;
     border-width: self.has-tab-focus ? UAppTheme.focus-border-width : UAppTheme.border-width-base;
@@ -90,7 +90,7 @@ export component USelect inherits ButtonInterface {
                         touch.clicked();
                     }
 					// Item contents and properties.
-					height: 29px * UAppTheme.scale-factor;
+					height: 29px;
                     border-radius: UAppTheme.radius-base;
                     width: 100%;
                     VerticalLayout {

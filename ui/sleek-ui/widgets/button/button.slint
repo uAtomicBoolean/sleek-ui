@@ -117,8 +117,8 @@ export component UButton inherits ButtonInterface {
         VerticalLayout {
             alignment: center;
 			// Used to move the text down which improves visual alignment, especially when using icons.
-            padding-top: 1px * UAppTheme.scale-factor;
-            padding-bottom: -1px * UAppTheme.scale-factor;
+            padding-top: 1px;
+            padding-bottom: -1px;
             text-obj := UText {
                 color: get-color(theme.text);
                 font-size: UAppTheme.font-size-base;

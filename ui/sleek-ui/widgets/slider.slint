@@ -58,12 +58,12 @@ export component USlider inherits ButtonInterface {
         }
         return EventResult.reject;
     }
-    width: 14px * UAppTheme.scale-factor;
-    height: 14px * UAppTheme.scale-factor;
+    width: 14px;
+    height: 14px;
     if orientation == Orientation.horizontal: Rectangle {
         background: UAppTheme.color-fill-secondary;
         border-radius: UAppTheme.radius-circle;
-        height: 5px * UAppTheme.scale-factor;
+        height: 5px;
         HorizontalLayout {
             alignment: start;
             h-slider := Rectangle {
@@ -88,7 +88,7 @@ export component USlider inherits ButtonInterface {
 
         // Manage the aura-like border that appears around the handle.
         Rectangle {
-            private property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: 14px;
             x: h-slider.width - size / 2;
             border-radius: UAppTheme.radius-circle;
             width: size;
@@ -97,18 +97,18 @@ export component USlider inherits ButtonInterface {
             states [
                 hover when root.enabled && (root.has-hover || root.has-tab-focus): {
                     background: UAppTheme.primary.base.with-alpha(0.2);
-                    size: 22px * UAppTheme.scale-factor;
+                    size: 22px;
                 }
             ]
         }
 
         // The handle itself.
         Rectangle {
-            private property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: 14px;
             x: h-slider.width - size / 2;
             background: UAppTheme.bg-container;
             border-color: UAppTheme.primary.base;
-            border-width: 2px * UAppTheme.scale-factor;
+            border-width: 2px;
             border-radius: UAppTheme.radius-circle;
             width: size;
             height: size;
@@ -119,7 +119,7 @@ export component USlider inherits ButtonInterface {
                 }
                 hover when root.has-hover || root.has-tab-focus: {
                     border-color: UAppTheme.primary.hover;
-                    size: 18px * UAppTheme.scale-factor;
+                    size: 18px;
                 }
             ]
         }
@@ -127,7 +127,7 @@ export component USlider inherits ButtonInterface {
     if orientation == Orientation.vertical: Rectangle {
         background: UAppTheme.color-fill-secondary;
         border-radius: UAppTheme.radius-circle;
-        width: 5px * UAppTheme.scale-factor;
+        width: 5px;
         VerticalLayout {
             alignment: end;
             v-slider := Rectangle {
@@ -152,7 +152,7 @@ export component USlider inherits ButtonInterface {
 
         // Manage the aura-like border that appears around the handle.
         Rectangle {
-            private property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: 14px;
             y: root.height - (v-slider.height + size / 2);
             border-radius: UAppTheme.radius-circle;
             width: size;
@@ -161,18 +161,18 @@ export component USlider inherits ButtonInterface {
             states [
                 hover when root.has-hover || root.has-tab-focus: {
                     background: UAppTheme.primary.base.with-alpha(0.2);
-                    size: 22px * UAppTheme.scale-factor;
+                    size: 22px;
                 }
             ]
         }
 
         // The handle itself.
         Rectangle {
-            private property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: 14px;
             y: root.height - (v-slider.height + size / 2);
             background: UAppTheme.bg-container;
             border-color: UAppTheme.primary.base;
-            border-width: 2px * UAppTheme.scale-factor;
+            border-width: 2px;
             border-radius: UAppTheme.radius-circle;
             width: size;
             height: size;
@@ -183,7 +183,7 @@ export component USlider inherits ButtonInterface {
                 }
                 hover when root.has-hover || root.has-tab-focus: {
                     border-color: UAppTheme.primary.hover;
-                    size: 18px * UAppTheme.scale-factor;
+                    size: 18px;
                 }
             ]
         }

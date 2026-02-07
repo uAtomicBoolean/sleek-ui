@@ -44,7 +44,7 @@ export component UNotification inherits ButtonInterface {
         return UAppTheme.primary.base;
     }
     callback close <=> close-button.clicked;
-    min-width: 300px * UAppTheme.scale-factor;
+    min-width: 300px;
     background: UAppTheme.bg-elevated;
     border-radius: clamp(UAppTheme.radius-base, 0, UAppTheme.radius-medium);
     border-width: root.has-tab-focus ? UAppTheme.focus-border-width : 0;

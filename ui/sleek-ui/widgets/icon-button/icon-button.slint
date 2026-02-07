@@ -56,7 +56,7 @@ export component UIconButton inherits ButtonInterface {
 	// to 27px (26px for an icon button).
 	// This is a weird thing because the font-size is of 14px in the Button,
 	// which is smaller than the 16px of the icons.
-	private property <length> icon-size: 17px * UAppTheme.scale-factor;
+	private property <length> icon-size: 17px;
     changed enabled => {
         if root.loading && root.enabled {
             root.enabled = false;

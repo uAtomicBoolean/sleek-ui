@@ -19,7 +19,7 @@ export component UAlert inherits Rectangle {
     in-out property <string> message;
     in-out property <bool> display-close-button: false;
     callback close();
-    min-width: 300px * UAppTheme.scale-factor;
+    min-width: 300px;
     border-radius: UAppTheme.radius-base;
     border-width: UAppTheme.border-width-base;
     VerticalLayout {
@@ -40,8 +40,8 @@ export component UAlert inherits Rectangle {
             VerticalLayout {
                 alignment: center;
                 horizontal-stretch: 1;
-                padding-top: UAppTheme.padding-vertical + 1px * UAppTheme.scale-factor;
-                padding-bottom: UAppTheme.padding-vertical - 1px * UAppTheme.scale-factor;
+                padding-top: UAppTheme.padding-vertical + 1px;
+                padding-bottom: UAppTheme.padding-vertical - 1px;
                 UText {
                     text: message;
                     wrap: no-wrap;

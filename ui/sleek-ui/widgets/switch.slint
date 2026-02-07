@@ -13,8 +13,8 @@ export component USwitch inherits ButtonInterface {
 	// Regular properties
     in-out property <bool> checked: true;
     background: checked ? UAppTheme.primary.base : UAppTheme.color-fill;
-    width: 40px * UAppTheme.scale-factor;
-    height: 40px * UAppTheme.scale-factor / 2;
+    width: 40px;
+    height: 40px / 2;
     border-radius: UAppTheme.radius-round;
     border-width: root.has-tab-focus ? UAppTheme.focus-border-width : 0;
     border-color: root.has-tab-focus ? UAppTheme.focus-color : transparent;

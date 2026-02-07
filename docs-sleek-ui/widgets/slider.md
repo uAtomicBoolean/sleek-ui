@@ -32,7 +32,7 @@ export component AppWindow inherits Window {
             USlider {
                     value: 10;
                     step: 5;
-                    height: 300px * UAppTheme.scale-factor;
+                    height: 300px;
             }
         }
 	}

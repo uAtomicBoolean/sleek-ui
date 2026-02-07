@@ -31,7 +31,7 @@ export component OptionsBar inherits Rectangle {
                         { text: "Dark", value: "dark", enabled: true },
                         { text: "System", value: "system", enabled: true }
                     ];
-                    width: 95px * UAppTheme.scale-factor;
+                    width: 95px;
                     current-index: 2;
                     options: color-scheme-options;
                     selected-changed(_) => {
@@ -44,8 +44,8 @@ export component OptionsBar inherits Rectangle {
                 }
 
                 USelect {
-                    width: 150px * UAppTheme.scale-factor;
-                    popup-max-height: 200px * UAppTheme.scale-factor;
+                    width: 150px;
+                    popup-max-height: 200px;
                     current-index: 8;
                     options: [
                         { text: "Dust red", value: "dust-red", enabled: true },
