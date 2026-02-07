@@ -49,10 +49,17 @@ struct DescStyledText {
 }
 
 
-export component DocSection {
+export component DocSection inherits Rectangle {
     in property <string> title;
     in property <[[DescStyledText]]> description;
+    private property <duration> bg-animation: 0;
     callback link-clicked(id: string);
+    animate background { duration: bg-animation; }
+    public function trigger-signal() {
+        self.bg-animation = 0;
+        self.background = Colors.yellow.with-alpha(0.8);
+        echo-timer.start();
+    }
     VerticalLayout {
         DocTitle {
             text: root.title;
@@ -77,6 +84,16 @@ export component DocSection {
                     }
                 }
             }
+        }
+    }
+
+    echo-timer := Timer {
+        running: false;
+        interval: 10ms;
+        triggered => {
+            root.bg-animation = 2s;
+            root.background = Colors.transparent;
+            self.stop();
         }
     }
 }
