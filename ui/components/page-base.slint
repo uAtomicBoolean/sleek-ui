@@ -5,7 +5,10 @@ import { UScrollView } from "../sleek-ui/widgets.slint";
 
 export component PageBase {
     height: 100%;
-    UScrollView {
+    public function scroll-to(pos: length) {
+        scrollview.scroll-y-to(pos);
+    }
+    scrollview := UScrollView {
         VerticalLayout {
             alignment: start;
             padding: UAppTheme.padding-big;
