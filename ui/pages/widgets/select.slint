@@ -42,7 +42,8 @@ export component SelectPage inherits PageBase {
         ];
         link-clicked(id) => {
             if id == "uselectoption" {
-                debug("scroll to uselect option");
+                root.scroll-to(-select-option-section.y);
+                select-option-section.trigger-signal();
             }
         }
     }
@@ -50,18 +51,57 @@ export component SelectPage inherits PageBase {
     WidgetPresentation {
         USelect {
             options: [
-                { text: "France", value: "france", enabled:true },
-                { text: "Germany", value: "germany", enabled:true },
-                { text: "Switzerland", value: "switzerland", enabled:true },
                 { text: "Option 1", value: "option1", enabled:true },
                 { text: "Option 2", value: "option2", enabled:true },
                 { text: "Option 3", value: "option3", enabled:true },
                 { text: "Option 4", value: "option4", enabled:true },
+                { text: "Option 5", value: "option5", enabled:true },
+                { text: "Option 6", value: "option6", enabled:true },
+                { text: "Option 7", value: "option7", enabled:true },
+                { text: "Option 8", value: "option8", enabled:true },
             ];
         }
     }
 
+    DocCode {
+        code: "USelect {\n options: [\n        { text: \"French\", value: \"fr\", enabled: true },\n        { text: \"German\", value: \"de\", enabled: true },\n        { text: \"Italian\", value: \"it\", enabled: true },\n    ];\n}";
+    }
+
     DocSection {
+        title: "Current text and current value";
+        description: [
+            [
+                {
+                    text: "Two out properties are available to directly get the currently selected text and value: "
+                },
+                { code: "selected-text" },
+                { text: " and " },
+                { code: "selected-value" },
+                { text:"." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "USelect {\n    clicked => {\n        debug(self.selected-text);\n        debug(self.selected-value);\n    };\n}";
+    }
+
+    DocSection {
+        title: "Selected changed callback";
+        description: [
+            [
+                { text: "When selecting a value, the " },
+                { code: "selected-changed(new-index: int)" },
+                { text: " callback will be fired." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "USelect {\n    selected-changed(new-index) => {\n        debug(new-index);\n    }\n}";
+    }
+
+    select-option-section := DocSection {
         title: "The USelectOption struct";
         description: [[{ text: "This struct contains the data for one option in a select" }]];
     }
