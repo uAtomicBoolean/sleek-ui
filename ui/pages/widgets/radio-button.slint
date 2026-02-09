@@ -2,8 +2,7 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UText,
     UTitle,
-    URadio,
-    UCenter,
+    URadioButton,
 } from "../../sleek-ui/widgets.slint";
 
 import {
@@ -18,25 +17,30 @@ import { DocumentationLogic } from "../../logic/documentation-logic.slint";
 import { UMenuLogic } from "../../sleek-ui/widgets.slint";
 
 
-export component RadioPage inherits PageBase {
+export component RadioButtonPage inherits PageBase {
     UTitle {
         level: 3;
-        text: "Radio";
+        text: "RadioButton";
     }
 
     DocDescription {
-        text: "A radio input allowing only one choice from a selection.";
+        text: "A radio but displayed as a group of buttons.";
     }
 
     DocSection {
         title: "Example";
         description: [
             [
-                { text: "A radio takes a list of " },
+                { text: "A radio button takes a list of " },
                 { link:"UOptionData", id: "option-data" },
                 { text: " and return the currently selected value with the " },
                 { code: "selected-value" },
                 { text:" property." }
+            ],
+            [
+                { text:"Please note that you can't disable a single option, hence the " },
+                { code:"UOptionData.enabled" },
+                { text: " property is useless for this widget." }
             ]
         ];
         link-clicked(id) => {
@@ -48,11 +52,12 @@ export component RadioPage inherits PageBase {
 
     WidgetPresentation {
         spacing: UAppTheme.spacing-bigger;
-        radio := URadio {
+        radio := URadioButton {
             options: [
-                { text: "Option 1", value:"option1", enabled: true },
-                { text: "Option 2", value:"option2", enabled: true },
-                { text: "Option 3", value:"option3", enabled: false },
+                { text: "Option 1", value:"option1" },
+                { text: "Option 2", value:"option2" },
+                { text: "Option 3", value:"option3" },
+                { text: "Option 4", value:"option4" },
             ];
         }
 
@@ -62,35 +67,35 @@ export component RadioPage inherits PageBase {
     }
 
     DocCode {
-        code: "URadio {\n    options: [\n        {text: \"Option 1\", value: \"option1\", enabled: true},\n        {text: \"Option 2\", value: \"option2\", enabled: true},\n        {text: \"Option 3\", value: \"option3\", enabled: false},\n    ]\n};";
+        code: "URadioButton {\n    options: [\n        {text: \"Option 1\", value: \"option1\"},\n        {text: \"Option 2\", value: \"option2\"},\n        {text: \"Option 3\", value: \"option3\"},\n    ]\n};";
     }
 
     DocSection {
-        title: "Orientation";
+        title: "Primary variant";
         description: [
             [
-                { text: "You can choose the orientation with the " },
-                { code: "orientation" },
-                { text: " property, which is of type " },
-                { code: "Orientation" },
+                { text: "You can change the style of the widget by switching the " },
+                { code: "variant" },
+                { text: " property to " },
+                { code: "primary" },
                 { text: "." }
             ]
         ];
     }
 
     WidgetPresentation {
-        URadio {
-            orientation: horizontal;
+        URadioButton {
+            variant: primary;
             options: [
-                { text: "Option 1", value:"option1", enabled: true },
-                { text: "Option 2", value:"option2", enabled: true },
-                { text: "Option 3", value:"option3", enabled: false },
+                { text: "Option 1", value:"option1" },
+                { text: "Option 2", value:"option2" },
+                { text: "Option 3", value:"option3" },
             ];
         }
     }
 
     DocCode {
-        code: "URadio {\n    orientation: horizontal;\n    // Your code\n};";
+        code: "URadioButton {\n    variant: primary;\n    // Your code\n};";
     }
 
     DocSection {
@@ -105,17 +110,17 @@ export component RadioPage inherits PageBase {
     }
 
     WidgetPresentation {
-        URadio {
+        URadioButton {
             enabled: false;
             options: [
-                { text: "Option 1", value:"option1", enabled: true },
-                { text: "Option 2", value:"option2", enabled: true },
-                { text: "Option 3", value:"option3", enabled: false },
+                { text: "Option 1", value:"option1" },
+                { text: "Option 2", value:"option2" },
+                { text: "Option 3", value:"option3" },
             ];
         }
     }
 
     DocCode {
-        code: "URadio {\n    enabled: false;\n    // Your code\n};";
+        code: "URadioButton {\n    enabled: false;\n    // Your code\n};";
     }
 }

@@ -1,6 +1,7 @@
 import { UAppTheme } from "../app-theme.slint";
 import { ButtonInterface } from "button-interface.slint";
 import { UText } from "./text.slint";
+import { UOptionData } from "../structs/data-structs.slint";
 
 
 export enum URadioButtonVariant {
@@ -57,8 +58,8 @@ export component URadioButton {
         return URadioButtonThemes.default;
     };
     in-out property <bool> enabled: true;
-    in-out property <[string]> options;
-    in-out property <string> selected-value: options[0];
+    in-out property <[UOptionData]> options;
+    in-out property <string> selected-value;
     callback selected(value: string);
     HorizontalLayout {
         for option[idx] in root.options: ButtonInterface {
@@ -75,8 +76,8 @@ export component URadioButton {
                 }
             }
             clicked => {
-                selected-value = option;
-                root.selected(option);
+                selected-value = option.value;
+                root.selected(option.value);
             }
             HorizontalLayout {
                 alignment: center;
@@ -87,7 +88,7 @@ export component URadioButton {
                 VerticalLayout {
                     alignment: center;
                     option-text := UText {
-                        text: option;
+                        text: option.text;
                         color: UAppTheme.text;
                         font-size: UAppTheme.font-size-base;
                         animate color { duration: UAppTheme.animation-duration; }
@@ -96,27 +97,27 @@ export component URadioButton {
             }
 
             states [
-                disabled when !root.enabled && selected-value != option: {
+                disabled when !root.enabled && selected-value != option.value: {
                     background: theme.bg-disabled;
                     border-color: UAppTheme.border-secondary;
                     option-text.color: theme.text-disabled;
                 }
-                disabled-selected when !root.enabled && selected-value == option: {
+                disabled-selected when !root.enabled && selected-value == option.value: {
                     background: theme.bg-selected-disabled;
                     border-color: UAppTheme.primary.disabled;
                     option-text.color: theme.text-selected-disabled;
                 }
-                focus-not-selected-hover when self.has-tab-focus && selected-value != option && self.has-hover: {
+                focus-not-selected-hover when self.has-tab-focus && selected-value != option.value && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                 }
-                focus-selected-hover when self.has-tab-focus && selected-value == option && self.has-hover: {
+                focus-selected-hover when self.has-tab-focus && selected-value == option.value && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                     background: theme.bg-selected-hover;
                     option-text.color: theme.text-selected-hover;
                 }
-                focus-selected when self.has-tab-focus && selected-value == option: {
+                focus-selected when self.has-tab-focus && selected-value == option.value: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                     background: theme.bg-selected;
@@ -126,21 +127,21 @@ export component URadioButton {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                 }
-                active-selected when self.pressed && selected-value == option: {
+                active-selected when self.pressed && selected-value == option.value: {
                     background: theme.bg-selected-active;
                     border-color: UAppTheme.primary.active;
                     option-text.color: theme.text-selected-active;
                 }
-                hover-not-selected when self.has-hover && selected-value != option: {
+                hover-not-selected when self.has-hover && selected-value != option.value: {
                     border-color: UAppTheme.border;
                     option-text.color: UAppTheme.primary.base;
                 }
-                hover-selected when self.has-hover && selected-value == option: {
+                hover-selected when self.has-hover && selected-value == option.value: {
                     background: theme.bg-selected-hover;
                     border-color: UAppTheme.primary.hover;
                     option-text.color: theme.text-selected-hover;
                 }
-                selected when selected-value == option: {
+                selected when selected-value == option.value: {
                     background: theme.bg-selected;
                     border-color: UAppTheme.primary.base;
                     option-text.color: theme.text-selected;
