@@ -10,6 +10,7 @@ import {
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+import { UMenuLogic } from "../../sleek-ui/widgets.slint";
 
 
 export component SelectPage inherits PageBase {
@@ -29,7 +30,7 @@ export component SelectPage inherits PageBase {
                 { text:"You can set the options with the " },
                 { code: "options" },
                 { text: " property, an option being of type " },
-                { link: "USelectOption", id: "uselectoption" },
+                { link: "OptionData", id: "optiondata" },
                 { text:"." }
             ],
             [
@@ -41,9 +42,8 @@ export component SelectPage inherits PageBase {
             ]
         ];
         link-clicked(id) => {
-            if id == "uselectoption" {
-                root.scroll-to(-select-option-section.y);
-                select-option-section.trigger-signal();
+            if id == "optiondata" {
+                UMenuLogic.current-link = "option-data";
             }
         }
     }
@@ -99,14 +99,5 @@ export component SelectPage inherits PageBase {
 
     DocCode {
         code: "USelect {\n    selected-changed(new-index) => {\n        debug(new-index);\n    }\n}";
-    }
-
-    select-option-section := DocSection {
-        title: "The USelectOption struct";
-        description: [[{ text: "This struct contains the data for one option in a select" }]];
-    }
-
-    DocCode {
-        code: "USelectOption {\n    // The visual text of the value.\n    text: string,\n    // The value that can be used in your logic to check the current value.\n    value: string,\n    // Weither the option is enabled or not.\n    // A disabled option will be greyed out and not selectable.\n    // Note that you must set it to true as the default value of a boolean in Slint is false.\n    enabled: bool,\n}";
     }
 }

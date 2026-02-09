@@ -6,13 +6,7 @@ import { UPopover } from "popover.slint";
 import { UText } from "text.slint";
 import { UIcon } from "icon.slint";
 import { UScrollView } from "scrollview.slint";
-
-
-export struct USelectOption {
-	text: string,
-	value: string,
-	enabled: bool,
-}
+import { UOptionData } from "../structs/data-structs.slint";
 
 
 export component USelect inherits ButtonInterface {
@@ -26,7 +20,7 @@ export component USelect inherits ButtonInterface {
     }
 	// Regular properties
     in-out property <int> current-index: -1;
-    in-out property <[USelectOption]> options;
+    in-out property <[UOptionData]> options;
     out property <string> selected-text;
     out property <string> selected-value;
     private property <length> popup-max-height: 124px;

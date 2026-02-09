@@ -28,6 +28,10 @@ import {
     InputPage,
     InputNumberPage,
     SelectPage,
+    RadioPage,
+
+	// Structs
+	OptionDataPage,
 } from "../pages/page-index.slint";
 
 
@@ -62,5 +66,9 @@ export component PageManager {
         if current-page == "input": InputPage { }
         if current-page == "input-number": InputNumberPage { }
         if current-page == "select": SelectPage { }
+        if current-page == "radio": RadioPage { }
+
+		// Structs
+		if current-page == "option-data": OptionDataPage { }
     }
 }

@@ -301,6 +301,15 @@ export component Sidebar inherits Rectangle {
                         }
                     }
 
+                    UMenuSubmenu {
+                        name: "Structs";
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "option-data";
+                            name: "OptionData";
+                        }
+                    }
+
                     UMenuLink {
                         id: "settings";
                         name: "Settings";
