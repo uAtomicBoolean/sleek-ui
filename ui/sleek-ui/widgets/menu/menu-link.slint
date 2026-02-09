@@ -35,6 +35,7 @@ export component UMenuLink inherits Rectangle {
     }
     callback activated();
     ButtonInterface {
+        animate background { duration: 0; }
         enabled: root.enabled;
         clicked => {
             if UMenuLogic.current-link != id {

@@ -35,6 +35,7 @@ export component UMenuSubmenu inherits VerticalLayout {
     }
     alignment: start;
     submenu-trigger := ButtonInterface {
+        animate background { duration: 0; }
         enabled: root.enabled;
         clicked => {
             opened = !opened;
