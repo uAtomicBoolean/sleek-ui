@@ -1,0 +1,124 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UText,
+    UTitle,
+    USlider,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component SliderPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Slider";
+    }
+
+    DocDescription {
+        text: "A slider to select a value in a specified range.";
+    }
+
+    DocSection {
+        title: "Example";
+        description: [
+            [
+                { text: "Define the width of the slider and get its value with the " },
+                { code: "value" },
+                { text: " property, which is of type " },
+                { code: "float" },
+                { text: "." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-bigger;
+        slider := USlider {
+            width: 300px;
+            value: 50;
+        }
+
+        UText {
+            text: "Value: \{slider.value}";
+        }
+    }
+
+    DocCode {
+        code: "USlider {\n    width: 300px;\n}";
+    }
+
+    DocSection {
+        title: "Step and boundaries";
+        description: [
+            [
+                { text: "You can change the step of the slider with the " },
+                { code: "step" },
+                { text: " property." },
+            ],
+            [
+                { text: "You can also change the " },
+                { code: "min-value" },
+                { text: " and " },
+                { code:"max-value" },
+                { text: " properties." }
+            ]
+        ];
+    }
+
+	// TODO Visual bug when using negative values.
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-bigger;
+        padding-left: 100px;
+        slider-step := USlider {
+            width: 300px;
+            step: 10;
+            min-value: -50;
+            max-value: 50;
+        }
+
+        UText {
+            text: "Value: \{slider-step.value}";
+        }
+    }
+
+    DocCode {
+        code: "USlider {\n    width: 300px;\n    step: 10;\n    min-value: -50;\n    max-value: 50;\n}";
+    }
+
+    DocSection {
+        title: "Orientation";
+        description: [
+            [
+                { text: "You can change the step of the slider with the " },
+                { code: "step" },
+                { text: " property." },
+            ],
+            [
+                { text: "You can also change the " },
+                { code: "min-value" },
+                { text: " and " },
+                { code:"max-value" },
+                { text: " properties." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        USlider {
+            height: 300px;
+            orientation: vertical;
+        }
+    }
+
+    DocCode {
+        code: "USlider {\n    height: 300px;\n    orientation: vertical;\n}";
+    }
+}

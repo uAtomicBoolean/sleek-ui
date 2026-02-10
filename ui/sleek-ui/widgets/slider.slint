@@ -31,6 +31,7 @@ export component USlider inherits ButtonInterface {
         value = clamp(root.value, min-value, max-value);
     }
     function update-value() {
+		// TODO Normalize the value / pos to fix bug when using negative boundaries.
         let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
         let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
         let value-diff = mod(raw-value, step);

@@ -1,0 +1,16 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+
+import { DocTitle } from "../components/doc-widgets.slint";
+import { PageBase } from "../components/page-base.slint";
+import { DocumentationLogic } from "../logic/documentation-logic.slint";
+
+
+export component AccessabilityPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Accessability";
+    }
+
+	// TODO Explain how most widgets have some default keyboard interactions (i.e. UButton, USlider, etc).
+}
