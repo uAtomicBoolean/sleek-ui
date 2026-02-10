@@ -29,6 +29,14 @@ slint-build = "1.15.0"
 
 [profile.dev]
 incremental = true
+debug = "line-tables-only"
+
+[profile.dev.package."*"]
+debug = false
+
+[profile.debugging]
+inherits = "dev"
+debug = true
 
 # Applying the profile release on wasm causes an error during build.
 [target.'cfg(not(target_family = "wasm"))'.profile.release]
