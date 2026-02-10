@@ -30,18 +30,18 @@ component Scrollbar inherits Rectangle {
         private property <length> initial-pressed;
         pointer-event(event) => {
             if event.button == PointerEventButton.left && event.kind == PointerEventKind.down {
-                initial-pressed = self.mouse-y;
+                initial-pressed = orientation == Orientation.vertical ? self.mouse-y : self.mouse-x;
             }
         }
         moved => {
             if orientation == Orientation.vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
                 let move-diff = initial-pressed - self.mouse-y;
-                let new-y = max(0px, min(available-space, handle.y - move-diff));
+                let new-y = clamp(handle.y - move-diff, 0px, available-space);
                 initial-pressed = self.mouse-y;
                 value = -(max-scroll-pos * (new-y / available-space));
             } else if orientation == Orientation.horizontal && self.mouse-x >= 0 && self.mouse-x <= root.width {
                 let move-diff = initial-pressed - self.mouse-x;
-                let new-x = max(0px, min(available-space, handle.x - move-diff));
+                let new-x = clamp(handle.x - move-diff, 0px, available-space);
                 initial-pressed = self.mouse-x;
                 value = -(max-scroll-pos * (new-x / available-space));
             }
