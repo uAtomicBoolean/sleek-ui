@@ -1,0 +1,62 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UText,
+    UTitle,
+    USwitch,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component SwitchPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Switch";
+    }
+
+    DocDescription {
+        text: "A basic switch that can act as a toggle.";
+    }
+
+    DocSection {
+        title: "Example";
+        description: [
+            [
+                { text: "Use the " },
+                { code: "checked" },
+                { text: " property to know the current state of the switch." },
+            ],
+            [
+                { text:"You can disable the widget with the " },
+                { code: "enabled" },
+                { text:" property." },
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-bigger;
+        USwitch { }
+
+        USwitch {
+            enabled: false;
+        }
+
+        USwitch {
+            enabled: false;
+            checked: false;
+        }
+    }
+
+    DocCode {
+        code: "USwitch { }\n\nUSwitch {\n    enabled: false;\n}\n\nUSwitch {\n    enabled: false;\n    checked: false;\n}";
+    }
+}
