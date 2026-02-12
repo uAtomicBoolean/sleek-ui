@@ -73,14 +73,12 @@ export component SliderPage inherits PageBase {
         ];
     }
 
-	// TODO Visual bug when using negative values.
     WidgetPresentation {
         spacing: UAppTheme.spacing-bigger;
-        padding-left: 100px;
         slider-step := USlider {
             width: 300px;
-            step: 10;
-            min-value: -50;
+            step: 0.5;
+            min-value: -30;
             max-value: 50;
         }
 
@@ -90,7 +88,7 @@ export component SliderPage inherits PageBase {
     }
 
     DocCode {
-        code: "USlider {\n    width: 300px;\n    step: 10;\n    min-value: -50;\n    max-value: 50;\n}";
+        code: "USlider {\n    width: 300px;\n    step: 0.5;\n    min-value: -30;\n    max-value: 50;\n}";
     }
 
     DocSection {

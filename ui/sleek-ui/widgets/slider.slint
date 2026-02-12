@@ -27,15 +27,15 @@ export component USlider inherits ButtonInterface {
     in-out property <float> min-value: 0;
     in-out property <float> max-value: 100;
     in-out property <Orientation> orientation: horizontal;
+    private property <bool> is-horizontal: orientation == Orientation.horizontal;
     changed value => {
         value = clamp(root.value, min-value, max-value);
     }
     function update-value() {
-		// TODO Normalize the value / pos to fix bug when using negative boundaries.
-        let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
-        let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
-        let value-diff = mod(raw-value, step);
-        value = raw-value - value-diff;
+        let pos-value = is-horizontal ? root.mouse-x : (root.height - root.mouse-y);
+        let max-length = is-horizontal ? root.width : root.height;
+        let raw-value = min-value + (max-value - min-value) * (pos-value / max-length);
+        value = raw-value - mod(raw-value, step);
     }
     clicked => {
         update-value();
@@ -61,17 +61,18 @@ export component USlider inherits ButtonInterface {
     }
     width: 14px;
     height: 14px;
-    if orientation == Orientation.horizontal: Rectangle {
+    if is-horizontal: Rectangle {
         background: UAppTheme.color-fill-secondary;
         border-radius: UAppTheme.radius-circle;
         height: 5px;
         HorizontalLayout {
             alignment: start;
             h-slider := Rectangle {
-                private property <int> curr-width: (value / 1px) * root.width / max-value;
+                private property <length> curr-pos: ((value - min-value) / (max-value - min-value)) * (is-horizontal ? root.width : root.height);
+                // private property <int> curr-pos: (value / 1px) * root.width / max-value;
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
-                width: curr-width * 1px;
+                width: curr-pos;
                 animate background { duration: UAppTheme.animation-duration; }
                 states [
                     disabled when !root.enabled: {
@@ -125,7 +126,7 @@ export component USlider inherits ButtonInterface {
             ]
         }
     }
-    if orientation == Orientation.vertical: Rectangle {
+    if !is-horizontal: Rectangle {
         background: UAppTheme.color-fill-secondary;
         border-radius: UAppTheme.radius-circle;
         width: 5px;
