@@ -23,9 +23,11 @@ export component DocDescription inherits HorizontalLayout {
 
 export component DocCode inherits HorizontalLayout {
     in property <string> code;
+    in property <bool> enable-clipboard;
     padding-top: UAppTheme.padding-base;
     UCode {
         code: root.code;
+        enable-clipboard: root.enable-clipboard;
     }
 }
 

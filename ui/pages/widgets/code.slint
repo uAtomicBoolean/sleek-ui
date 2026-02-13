@@ -1,0 +1,106 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UText,
+    UTitle,
+    UCode,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component CodePage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Code";
+    }
+
+    DocDescription {
+        text: "A widget to display some code, either inline or as a block.";
+    }
+
+    DocSection {
+        title: "Basic usage";
+        description: [
+            [{ text: "The code widget is by default of type " }, { code: "block" }, { text: "." }],
+        ];
+    }
+
+    DocCode {
+        code: "UCode {\n    code: \"some code...\";\n}";
+    }
+
+    DocSection {
+        title: "Inline code";
+        description: [
+            [
+                { text: "With the " },
+                { code: "inline" },
+                { text: " type, you can display some code next to a text." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "HorizontalLayout {\n    UText {\n        text: \"Some random text: \";\n    }\n\n    UCode {\n        type: inline;\n        code: \"some code\";\n    }\n}";
+    }
+
+    DocSection {
+        title: "Text wrapping";
+        description: [
+            [
+                {
+                    text: "By default, the text won't be wrapping, but this can be changed with the "
+                },
+                { code: "wrap" },
+                { text: " property of type " },
+                { code: "TextWrap" },
+                { text:"." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        alignment: start;
+        UCode {
+            wrap: word-wrap;
+            width: 500px;
+            code: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        }
+    }
+
+    DocCode {
+        code: "UCode {\n    wrap: word-wrap;\n    code: \"some long code...\";\n}";
+    }
+
+    DocSection {
+        title: "Clipboard button";
+        description: [
+            [{ text: "You can display a clipboard button when using the block type." }],
+            [
+                { text: "This button is enabled with the " },
+                { code: "enable-clipboard" },
+                { text: " property and fires the " },
+                { code: "copied(string)" },
+                { text:" callback." }
+            ],
+            [
+                {
+                    text: "Please note that you must implement the clipboard logic in your code as it is not supported by Slint."
+                }
+            ]
+        ];
+    }
+
+    DocCode {
+        enable-clipboard: true;
+        code: "UCode {\n    enable-clipboard: true;\n    copied(code: string) => {\n        debug(code);\n    }\n}";
+    }
+}
