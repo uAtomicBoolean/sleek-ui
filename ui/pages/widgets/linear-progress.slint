@@ -1,0 +1,41 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle, ULinearProgress } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component LinearProgressPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Linear progress";
+    }
+
+    DocDescription {
+        text: "A linear progress bar.";
+    }
+
+    DocSection {
+        title: "Basic usage";
+        description: [
+            [
+                { text: "Use the " },
+                { code: "checked" },
+                { text: " property to know the current state of the switch." },
+            ],
+        ];
+    }
+
+    WidgetPresentation { }
+
+    DocCode {
+        code: "ULinearProgress { }";
+    }
+}

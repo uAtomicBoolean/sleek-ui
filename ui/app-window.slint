@@ -18,6 +18,7 @@ import { UAppTheme } from "sleek-ui/app-theme.slint";
 import { Sidebar } from "components/sidebar.slint";
 import { PageManager } from "components/page-manager.slint";
 import { Palette } from "std-widgets.slint";
+import { UMenuLogic } from "sleek-ui/widgets.slint";
 
 export { UAppTheme }
 
@@ -32,6 +33,9 @@ export component AppWindow inherits Window {
     preferred-width: 1280px;
     preferred-height: 720px;
     background: UAppTheme.bg-container;
+    init => {
+        UMenuLogic.current-link = "linear-progress";
+    }
     FocusScope {
         HorizontalLayout {
             Sidebar { }
