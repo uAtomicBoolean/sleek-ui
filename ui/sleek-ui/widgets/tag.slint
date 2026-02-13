@@ -35,8 +35,7 @@ export component UTag inherits Rectangle {
         if icon-placement == IconTextPlacement.start: UIcon {
             source: icon;
             size: UAppTheme.font-size-base;
-            colorize-icon: colorize-icon;
-            color: text-color;
+            colorize: colorize-icon ? text-color : UAppTheme.text;
         }
         badge-text := UText {
             font-size: UAppTheme.font-size-small;
@@ -46,8 +45,7 @@ export component UTag inherits Rectangle {
         if icon-placement == IconTextPlacement.end: UIcon {
             source: icon;
             size: UAppTheme.font-size-base;
-            colorize-icon: colorize-icon;
-            color: text-color;
+            colorize: colorize-icon ? text-color : UAppTheme.text;
         }
     }
 

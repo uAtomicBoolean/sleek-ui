@@ -1,5 +1,5 @@
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
-import { UTitle, UIcon } from "../../sleek-ui/widgets.slint";
+import { UTitle, UIcon, UCenter } from "../../sleek-ui/widgets.slint";
 
 import {
     DocTitle,
@@ -19,28 +19,122 @@ export component IconPage inherits PageBase {
     }
 
     DocDescription {
-        text: "A basic switch that can act as a toggle.";
+        text: "A basic component to display an icon.";
     }
 
     DocSection {
-        title: "Example";
+        title: "Basic usage";
         description: [
             [
-                { text: "Use the " },
-                { code: "checked" },
-                { text: " property to know the current state of the switch." },
+                { text: "This widget inherits from " },
+                { code: "Image" },
+                { text: " hence all its parent properties are available." },
             ],
-            [
-                { text:"You can disable the widget with the " },
-                { code: "enabled" },
-                { text:" property." },
-            ]
         ];
     }
 
-    WidgetPresentation { }
+    WidgetPresentation {
+        UIcon {
+            source: @image-url("../../assets/images/rocket.svg");
+        }
+    }
 
     DocCode {
-        code: "USwitch { }\n\nUSwitch {\n    enabled: false;\n}\n\nUSwitch {\n    enabled: false;\n    checked: false;\n}";
+        code: "UIcon {\n    source: @image-url(\"image-path\");\n}";
+    }
+
+    DocSection {
+        title: "Change the size";
+        description: [
+            [
+                { text: "Use the " },
+                { code: "size" },
+                { text: " property to mange the icon's size." },
+            ],
+            [{ text: "This property sets both the height and width of the image." }]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-base;
+        UCenter {
+            UIcon {
+                size: UAppTheme.icon-size-base;
+                source: @image-url("../../assets/images/rocket.svg");
+            }
+        }
+
+        UCenter {
+            UIcon {
+                size: 24px;
+                source: @image-url("../../assets/images/rocket.svg");
+            }
+        }
+
+        UCenter {
+            UIcon {
+                size: 32px;
+                source: @image-url("../../assets/images/rocket.svg");
+            }
+        }
+
+        UCenter {
+            UIcon {
+                size: 48px;
+                source: @image-url("../../assets/images/rocket.svg");
+            }
+        }
+
+        UCenter {
+            UIcon {
+                size: 64px;
+                source: @image-url("../../assets/images/rocket.svg");
+            }
+        }
+
+        UCenter {
+            UIcon {
+                size: 96px;
+                source: @image-url("../../assets/images/rocket.svg");
+            }
+        }
+    }
+
+    DocCode {
+        code: "UIcon {\n    size: 24px;\n    source: @image-url(\"image-path\");\n}";
+    }
+
+    DocSection {
+        title: "Color";
+        description: [
+            [
+                { text: "By default, the icon's color is set to " },
+                { code: "UAppTheme.text" },
+                { text: ", but you can make it keep its original color by setting " },
+                { code: "colorize" },
+                { text: " to " },
+                { code: "transparent" }
+            ],
+            [{ text: "You can also apply a custom color with the same property." }]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-base;
+        UIcon {
+            size: 32px;
+            source: @image-url("../../assets/images/rocket.svg");
+            colorize: transparent;
+        }
+
+        UIcon {
+            size: 32px;
+            source: @image-url("../../assets/images/rocket.svg");
+            colorize: red;
+        }
+    }
+
+    DocCode {
+        code: "UIcon {\n    colorize: transparent;\n    source: @image-url(\"image-path\");\n}\n\nUIcon {\n    colorize: red;\n    source: @image-url(\"image-path\");\n}";
     }
 }
