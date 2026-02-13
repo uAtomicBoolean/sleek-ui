@@ -1,7 +1,7 @@
 import { UAppTheme } from "../app-theme.slint";
-import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 import { ButtonInterface } from "button-interface.slint";
+import { UIconButton } from "icon-button/icon-button.slint";
 
 
 enum UCodeType {
@@ -32,6 +32,7 @@ export component UCode inherits VerticalLayout {
                 UText {
                     font-size: UAppTheme.font-size-small;
                     text: code;
+                    wrap: root.wrap;
                 }
             }
         }
@@ -41,12 +42,14 @@ export component UCode inherits VerticalLayout {
         border-color: bd-color;
         border-width: bd-width;
         border-radius: bd-radius;
+        clip: true;
         HorizontalLayout {
             alignment: start;
             padding: UAppTheme.padding-medium;
             UText {
                 font-size: UAppTheme.font-size-small;
                 text: code;
+                wrap: root.wrap;
             }
         }
 
@@ -54,28 +57,40 @@ export component UCode inherits VerticalLayout {
             alignment: start;
             HorizontalLayout {
                 alignment: end;
-                padding: UAppTheme.padding-medium;
-                Rectangle {
-                    states [
-                        focus when btn-interface.has-tab-focus: {
-                            border-color: UAppTheme.focus-color;
-                            border-width: UAppTheme.focus-border-width;
+                property <duration> feedback-duration: 1s;
+                property <duration> animation-duration: 0;
+                property <float> feedback-alpha: 0;
+                VerticalLayout {
+                    alignment: center;
+                    Rectangle {
+                        background: bg-color.with-alpha(feedback-alpha);
+                        animate background { duration: animation-duration; }
+                        UText {
+                            text: @tr("Copied!");
+                            color: UAppTheme.text.with-alpha(feedback-alpha);
+                            animate color { duration: animation-duration; }
                         }
-                    ]
-                    UIcon {
-                        colorize: UAppTheme.color-fill-plus;
-                        source: @image-url("../assets/icons/clipboard.svg");
-                        btn-interface := ButtonInterface {
-                            clicked => {
-                                root.copied(code);
-                            }
-                        }
+                    }
+                }
 
-                        states [
-                            hover when btn-interface.has-hover: {
-                                colorize: UAppTheme.color-fill;
-                            }
-                        ]
+                UIconButton {
+                    variant: text-stripped;
+                    icon: @image-url("../assets/icons/clipboard.svg");
+                    clicked => {
+                        root.copied(code);
+                        animation-duration = 0;
+                        feedback-alpha = 1;
+                        feedback-timer.start();
+                    }
+                }
+
+                feedback-timer := Timer {
+                    running: false;
+                    interval: feedback-duration;
+                    triggered => {
+                        animation-duration = feedback-duration;
+                        feedback-alpha = 0;
+                        self.stop();
                     }
                 }
             }
