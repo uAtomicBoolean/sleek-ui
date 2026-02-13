@@ -1,5 +1,5 @@
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
-import { UTitle, USwitch } from "../../sleek-ui/widgets.slint";
+import { UTitle, UIcon } from "../../sleek-ui/widgets.slint";
 
 import {
     DocTitle,
@@ -12,10 +12,10 @@ import { PageBase } from "../../components/page-base.slint";
 import { DocumentationLogic } from "../../logic/documentation-logic.slint";
 
 
-export component SwitchPage inherits PageBase {
+export component IconPage inherits PageBase {
     UTitle {
         level: 3;
-        text: "Switch";
+        text: "Icon";
     }
 
     DocDescription {
@@ -38,19 +38,7 @@ export component SwitchPage inherits PageBase {
         ];
     }
 
-    WidgetPresentation {
-        spacing: UAppTheme.spacing-bigger;
-        USwitch { }
-
-        USwitch {
-            enabled: false;
-        }
-
-        USwitch {
-            enabled: false;
-            checked: false;
-        }
-    }
+    WidgetPresentation { }
 
     DocCode {
         code: "USwitch { }\n\nUSwitch {\n    enabled: false;\n}\n\nUSwitch {\n    enabled: false;\n    checked: false;\n}";
