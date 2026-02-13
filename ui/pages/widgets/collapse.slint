@@ -1,0 +1,121 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UText,
+    UTitle,
+    UCollapse,
+    UButton,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+import { VerticalBox } from "std-widgets.slint";
+
+
+export component CollapsePage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Collapse";
+    }
+
+    DocDescription {
+        text: "A widget allowing you to expend some content when clicking on a text";
+    }
+
+    DocSection {
+        title: "Basic usage";
+        description: [
+            [
+                { text: "Set the collapse's title with the " },
+                { code: "title" },
+                { text: " property." }
+            ],
+            [
+                { text: "The content of the collapse is displayed in a Rectangle containing the " },
+                { code: "@children" },
+                { text :" slot." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UCollapse {
+            title: "What is the original lorem ipsum text.";
+            VerticalLayout {
+                HorizontalLayout {
+                    alignment: start;
+                    width: 500px;
+                    UText {
+                        wrap: word-wrap;
+                        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+                    }
+                }
+            }
+        }
+    }
+
+    DocCode {
+        code: "UCollapse {\n    title: \"What is the original lorem ipsum text.\";\n    VerticalLayout {\n        HorizontalLayout {\n            alignment: start;\n            width: 500px;\n            UText {\n                text: \"lorem ipsum\";\n            }\n        }\n    }";
+    }
+
+    DocSection {
+        title: "Programmatic open";
+        description: [
+            [
+                { text: "Use the " },
+                { code: "collapse-open" },
+                { text: " property to programmatically manage the state of the collapse." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-big;
+        p-collapse := UCollapse {
+            title: "Some random collapse";
+            VerticalLayout {
+                UText {
+                    text: "Some content";
+                }
+            }
+        }
+
+        VerticalBox {
+            alignment: start;
+            UButton {
+                text: "\{p-collapse.collapse-open ? "Close" : "Open"} collapse";
+                clicked => {
+                    p-collapse.collapse-open = !p-collapse.collapse-open;
+                }
+            }
+        }
+    }
+
+    DocSection {
+        title: "Collapse height";
+        description: [
+            [
+                { text: "You can set and get the content's height with the " },
+                { code: "content-height" },
+                { text: " property." }
+            ],
+            [{ text: "Otherwise, the content is using its preferred height." }]
+        ];
+    }
+
+    WidgetPresentation {
+        UCollapse {
+            title: "Fixed height collapse (200px)";
+            content-height: 200px;
+            Rectangle {
+                background: red;
+            }
+        }
+    }
+}
