@@ -1,0 +1,47 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+
+import { DocTitle } from "../components/doc-widgets.slint";
+import { PageBase } from "../components/page-base.slint";
+import { DocumentationLogic } from "../logic/documentation-logic.slint";
+import { AboutSlint } from "std-widgets.slint";
+
+
+export component AboutPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "About";
+    }
+
+    HorizontalLayout {
+        alignment: start;
+        UText {
+            text: "Sleek-ui is a widgets library based on ";
+        }
+
+        ULink {
+            text: "Ant Design";
+            clicked => {
+                DocumentationLogic.open-url("https://ant.design/");
+            }
+        }
+
+        UText {
+            text: " made with only Slint, which makes it compatible with Rust, C++, Python and Javascript.";
+        }
+    }
+
+    HorizontalLayout {
+        UText {
+            text: "It comes with a reactive theming system and a color scheme implementation using the Palette standart global.";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        padding-top: 200px;
+        AboutSlint {
+            width: 200px;
+        }
+    }
+}
