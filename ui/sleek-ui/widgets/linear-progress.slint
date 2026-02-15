@@ -22,13 +22,14 @@ export component ULinearProgress inherits Rectangle {
     private property <brush> progress-color;
     in-out property <ULinearProgressVariant> variant: primary;
     in property <length> default-size: 10px;
+    in property <length> default-radius: UAppTheme.radius-round;
     in property <Orientation> orientation: horizontal;
     in property <ProgressDirection> direction: start;
     in-out property <percent> progress: indeterminate ? 30% : 0%;
     in-out property <bool> indeterminate: false;
     callback reset-x();
     background: UAppTheme.color-fill-secondary;
-    border-radius: UAppTheme.radius-round;
+    border-radius: default-radius;
     clip: true;
     height: default-size;
     width: default-size;
@@ -55,7 +56,7 @@ export component ULinearProgress inherits Rectangle {
         }
         x: get-x-pos();
         background: progress-color;
-        border-radius: UAppTheme.radius-round;
+        border-radius: default-radius;
         width: clamp(progress, 0%, 100%);
         animate width {
             easing: ease-in-out;
@@ -92,7 +93,7 @@ export component ULinearProgress inherits Rectangle {
         }
         y: get-y-pos();
         background: progress-color;
-        border-radius: UAppTheme.radius-round;
+        border-radius: default-radius;
         height: clamp(progress, 0%, 100%);
         animate height {
             easing: ease-in-out;

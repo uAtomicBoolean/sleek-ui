@@ -112,13 +112,16 @@ export component LinearProgressPage inherits PageBase {
     }
 
     DocSection {
-        title: "Default size";
+        title: "Default size and radius";
         description: [
             [
-                { text: "You can increase or decrease the size of the progress with the " },
+                { text: "You can manage the size and radius of the progress with the " },
                 { code:"default-size" },
+                { text:" and " },
+                { code:"default-radius" },
                 { text:" property." }
-            ]
+            ],
+            [{ text: "Use the " }]
         ];
     }
 
@@ -126,11 +129,12 @@ export component LinearProgressPage inherits PageBase {
         ULinearProgress {
             width: 300px;
             default-size: 30px;
+            default-radius: UAppTheme.radius-base;
             progress: 40%;
         }
     }
 
     DocCode {
-        code: "ULinearProgress {\n    width: 300px;\n    default-size: 30px;\n    progress: 40%;\n}";
+        code: "ULinearProgress {\n    width: 300px;\n    default-size: 30px;\n    default-radius: UAppTheme.radius-base;\n    progress: 40%;\n}";
     }
 }
