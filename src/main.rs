@@ -25,7 +25,6 @@ fn main() {
     let doc_logic = ui.global::<DocumentationLogic>();
 
     doc_logic.on_open_url(|url| {
-        // let _ = open::that(url);
         if let Err(err) = webbrowser::open(url.as_str()) {
             println!("Couldn't open the URL in the default browser.");
             println!("URL: {url}");
