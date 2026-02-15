@@ -26,16 +26,111 @@ export component LinearProgressPage inherits PageBase {
         title: "Basic usage";
         description: [
             [
-                { text: "Use the " },
-                { code: "checked" },
-                { text: " property to know the current state of the switch." },
+                { text: "Define the current progress with the " },
+                { code: "progress" },
+                { text: " property." },
+            ],
+            [
+                { text:"Do not forget to set the width or height depending on the orientation." }
             ],
         ];
     }
 
-    WidgetPresentation { }
+    WidgetPresentation {
+        ULinearProgress {
+            width: 300px;
+            progress: 40%;
+            indeterminate: true;
+        }
+    }
 
     DocCode {
-        code: "ULinearProgress { }";
+        code: "ULinearProgress {\n    width: 300px;\n    progress: 40%;\n}";
+    }
+
+    DocSection {
+        title: "Orientation and direction";
+        description: [
+            [
+                { text: "Use the " },
+                { code:"orientation" },
+                { text:" property to choose the progress' orientation." }
+            ],
+            [
+                { text: "Use the " },
+                { code: "direction" },
+                {
+                    text: " property to choose weither the progress start from the start or the end."
+                }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-base;
+        ULinearProgress {
+            height: 100px;
+            orientation: vertical;
+            direction: start;
+            progress: 40%;
+        }
+
+        ULinearProgress {
+            height: 100px;
+            orientation: vertical;
+            direction: end;
+            progress: 40%;
+        }
+    }
+
+    DocCode {
+        code: "ULinearProgress {\n    height: 300px;\n    orientation: vertical;\n    direction: end;\n    progress: 40%;\n}";
+    }
+
+    DocSection {
+        title: "Indeterminate progress";
+        description: [
+            [
+                { text: "Set the " },
+                { code:"indeterminate" },
+                { text:" property to " },
+                { code: "true" },
+                { text: "to set the progress in a loading state." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        ULinearProgress {
+            width: 300px;
+            indeterminate: true;
+        }
+    }
+
+    DocCode {
+        code: "ULinearProgress {\n    width: 300px;\n    indeterminate: true;\n}";
+    }
+
+    DocSection {
+        title: "Default size";
+        description: [
+            [
+                { text: "You can increase or decrease the size of the progress with the " },
+                { code:"default-size" },
+                { text:" property." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        ULinearProgress {
+            width: 300px;
+            default-size: 30px;
+            progress: 40%;
+        }
+    }
+
+    DocCode {
+        code: "ULinearProgress {\n    width: 300px;\n    default-size: 30px;\n    progress: 40%;\n}";
     }
 }
