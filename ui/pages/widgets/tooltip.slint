@@ -1,0 +1,173 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import {
+    UAlert,
+    UTitle,
+    UText,
+    UTooltip,
+    UTooltipLogic,
+} from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component TooltipPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Tooltip";
+    }
+
+    HorizontalLayout {
+        padding-top: UAppTheme.padding-base;
+        padding-bottom: UAppTheme.padding-base;
+        UAlert {
+            variant: warning;
+            message: "This widget will be refactored once an official tooltip widget is released.";
+        }
+    }
+
+    DocDescription {
+        text: "A widget to display some information when hovering something.";
+    }
+
+    DocSection {
+        title: "Usage";
+        description: [
+            [
+                { text: "You can use a tooltip by adding the " },
+                { code: "UTooltip" },
+                { text: " widget at the root of the window after your main elements." }
+            ],
+            [
+                { text: "You can then use the " },
+                { code: "UTooltipLogic.display()" },
+                { text: " function to display a tooltip." }
+            ],
+            [
+                {
+                    text: "This function takes all the following parameters: the tooltip's text, the display position, the absolute position and the width of the targeted element."
+                }
+            ],
+            [
+                { text: "The function signature: " },
+                {
+                    code: "display(text: string, position: string, user_hovering: bool, target_pos: Point, target_width: length, target_height: length)"
+                }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        HorizontalLayout {
+            Rectangle {
+                border-width: 1px;
+                border-color: UAppTheme.text;
+                HorizontalLayout {
+                    padding: UAppTheme.padding-base;
+                    UText {
+                        text: "Hover this text to display the tooltip.";
+                    }
+                }
+
+                TouchArea {
+                    changed has-hover => {
+                        UTooltipLogic.display("A simple tooltip to display some information.", "", self.has-hover, self.absolute-position, self.width, self.height);
+                    }
+                }
+            }
+        }
+    }
+
+    DocCode {
+        code: "// This code is in a component or page somewhere in the window.\nUText {\n    text: \"Some simple text\";\n    TouchArea {\n        changed has-hover => {\n            UTooltipLogic.display(\"The tooltip's text.\", \"\", self.has-hover, self.absolute-position, self.width, self.height);\n        }\n    }\n}";
+    }
+
+    DocCode {
+        code: "export component AppWindow inherits Window {\n    // Your elements...\n    UTooltip {\n        id: \"tooltip-ex\";\n        text: \"Your tooltip's text.\";\n    }\n}";
+    }
+
+    DocSection {
+        title: "Tooltip position";
+        description: [
+            [
+                {
+                    text: "A tooltip can be placed to the following positions around the targeted element: "
+                },
+                { code: "top" },
+                { text: ", " },
+                { code: "bottom" },
+                { text: ", " },
+                { code: "left" },
+                { text: " and " },
+                { code: "right" },
+                { text: "." },
+            ],
+            [
+                { text: "Its position is defined in the " },
+                { code: "display" },
+                { text: " function as the second parameter." }
+            ],
+            [
+                { text: "Sending an empty string will result in the " },
+                { code: "top" },
+                { text: " position being used." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        HorizontalLayout {
+            Rectangle {
+                border-width: 1px;
+                border-color: UAppTheme.text;
+                HorizontalLayout {
+                    padding: UAppTheme.padding-base;
+                    UText {
+                        text: "Hover this text to display the tooltip on the right.";
+                    }
+                }
+
+                TouchArea {
+                    changed has-hover => {
+                        UTooltipLogic.display("A simple tooltip to display some information.", "right", self.has-hover, self.absolute-position, self.width, self.height);
+                    }
+                }
+            }
+        }
+    }
+
+    DocCode {
+        code: "UTooltipLogic.display(\"The tooltip's text.\", \"right\", ...);";
+    }
+
+    DocSection {
+        title: "Tooltip configuration";
+        description: [
+            [
+                { text: "You can modify the following settings on the tooltip: " },
+                { code: "delay" },
+                { text: ", " },
+                { code: "tooltip-max-width" },
+                { text: " and " },
+                { code: "tooltip-max-height" },
+                { text: "." }
+            ],
+            [
+                {
+                    text: "All three properties are declared in the tooltip to allow application wide configuration."
+                }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UTooltip {\n    delay: 1s;\n    tooltip-max-width: 200px;\n    tooltip-max-height: 200px;\n}";
+    }
+}
