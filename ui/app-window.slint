@@ -18,7 +18,7 @@ import { UAppTheme } from "sleek-ui/app-theme.slint";
 import { Sidebar } from "components/sidebar.slint";
 import { PageManager } from "components/page-manager.slint";
 import { Palette } from "std-widgets.slint";
-import { UMenuLogic } from "sleek-ui/widgets.slint";
+import { UMenuLogic, UTooltip } from "sleek-ui/widgets.slint";
 
 export { UAppTheme }
 
@@ -34,7 +34,7 @@ export component AppWindow inherits Window {
     preferred-height: 720px;
     background: UAppTheme.bg-container;
     init => {
-        UMenuLogic.current-link = "tag";
+        UMenuLogic.current-link = "tooltip";
     }
     FocusScope {
         HorizontalLayout {
@@ -43,6 +43,8 @@ export component AppWindow inherits Window {
             PageManager { }
         }
     }
+
+    UTooltip { }
 
     // modal := UModal {
     //     title: "Modal example";
