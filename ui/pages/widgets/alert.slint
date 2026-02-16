@@ -1,0 +1,97 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle, UAlert } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component AlertPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Alert";
+    }
+
+    DocDescription {
+        text: "An alert to display an informational message.";
+    }
+
+    DocSection {
+        title: "How to use";
+        description: [
+            [
+                { text: "The alert widget comes with four variants: " },
+                { code: "info (default)" },
+                { text: ", " },
+                { code: "success" },
+                { text: ", " },
+                { code: "warning" },
+                { text: " and " },
+                { code: "danger" },
+                { text: "." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        full-width: true;
+        VerticalLayout {
+            spacing: UAppTheme.spacing-base;
+            UAlert {
+                message: "This is an info alert.";
+            }
+
+            UAlert {
+                variant: success;
+                message: "This is an success alert.";
+            }
+
+            UAlert {
+                variant: warning;
+                message: "This is an warning alert.";
+            }
+
+            UAlert {
+                variant: danger;
+                message: "This is an danger alert.";
+            }
+        }
+    }
+
+    DocCode {
+        code: "UAlert {\n    message: \"This is an info alert.\";\n}\n\nUAlert {\n    variant: success;\n    message: \"This is a success alert.\";\n}\n\nUAlert {\n    variant: warning;\n    message: \"This is a warning alert.\";\n}\n\nUAlert {\n    variant: danger;\n    message: \"This is a danger alert.\";\n}";
+    }
+
+    DocSection {
+        title: "Close button";
+        description: [
+            [
+                { text: "You can display a close button in the alert with the " },
+                { code: "display-close-button" },
+                { text: " property." }
+            ],
+            [{ text: "This button will fire the " }, { code: "close" }, { text: " callback." }]
+        ];
+    }
+
+    WidgetPresentation {
+        full-width: true;
+        UAlert {
+            display-close-button: true;
+            message: "This is an alert.";
+            close => {
+                debug("Closing the alert.");
+            }
+        }
+    }
+
+    DocCode {
+        code: "UAlert {\n    message: \"This is an alert.\";\n    close => {\n        // Your code.\n    }\n}";
+    }
+}

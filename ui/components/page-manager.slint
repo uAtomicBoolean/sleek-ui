@@ -46,6 +46,9 @@ import {
     TitlePage,
     TooltipPage,
 
+	// Feedback widgets
+	AlertPage,
+
 	// Structs
 	OptionDataPage,
 } from "../pages/page-index.slint";
@@ -99,6 +102,9 @@ export component PageManager {
         if current-page == "text": TextPage { }
         if current-page == "title": TitlePage { }
         if current-page == "tooltip": TooltipPage { }
+
+		// Feedback widgets
+		if current-page == "alert": AlertPage { }
 
 		// Structs
 		if current-page == "option-data": OptionDataPage { }
