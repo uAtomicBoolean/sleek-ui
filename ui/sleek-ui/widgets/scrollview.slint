@@ -52,10 +52,10 @@ component Scrollbar inherits Rectangle {
 export component UScrollView inherits Rectangle {
     in-out property <bool> interactive: false;
     out property <length> scrollbar-area: 8px;
-    out property <length> viewport-x <=> flickable.viewport-x;
-    out property <length> viewport-y <=> flickable.viewport-y;
-    out property <length> viewport-width <=> flickable.viewport-width;
-    out property <length> viewport-height <=> flickable.viewport-height;
+    in-out property <length> viewport-x <=> flickable.viewport-x;
+    in-out property <length> viewport-y <=> flickable.viewport-y;
+    in-out property <length> viewport-width <=> flickable.viewport-width;
+    in-out property <length> viewport-height <=> flickable.viewport-height;
     private property <length> min-handle-size: 30px;
     private property <duration> scroll-anim-duration: !v-scrollbar.pressed && !h-scrollbar.pressed ? UAppTheme.animation-duration : 0;
     public function scroll-x-to(new-x: length) {

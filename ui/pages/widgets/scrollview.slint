@@ -1,0 +1,109 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle, UScrollView } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component ScrollviewPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Scrollview";
+    }
+
+    DocDescription {
+        text: "A scrollview with a custom look and feel.";
+    }
+
+    DocSection {
+        title: "How to use";
+        description: [
+            [
+                {
+                    text: "This widget works like a standart scroll view. It computes automatically the viewport unless you use a "
+                },
+                { code: "for" },
+                { text: " loop.	" }
+            ],
+            [
+                { text: "The standart properties of " },
+                { code: "Flickable" },
+                { text: " (viewport-*, interactive) are available on the UScrollView." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        Rectangle {
+            width: 200px;
+            height: 200px;
+            border-width: 1px;
+            border-color: UAppTheme.text;
+            UScrollView {
+                width: 200px;
+                height: 200px;
+                viewport-width: 400px;
+                viewport-height: 400px;
+                Rectangle {
+                    width: 30px;
+                    height: 30px;
+                    x: 275px;
+                    y: 250px;
+                    background: blue;
+                }
+
+                Rectangle {
+                    width: 30px;
+                    height: 30px;
+                    x: 175px;
+                    y: 130px;
+                    background: red;
+                }
+
+                Rectangle {
+                    width: 30px;
+                    height: 30px;
+                    x: 25px;
+                    y: 210px;
+                    background: yellow;
+                }
+
+                Rectangle {
+                    width: 30px;
+                    height: 30px;
+                    x: 98px;
+                    y: 55px;
+                    background: orange;
+                }
+            }
+        }
+    }
+
+    DocCode {
+        code: "UScrollView {\n    width: 200px;\n    height: 200px;\n    viewport-width: 400px;\n    viewport-height: 400px;\n    Rectangle {\n        width: 30px;\n        height: 30px;\n        x: 25px;\n        y: 210px;\n    }\n}";
+    }
+
+    DocSection {
+        title: "Scrollbar area";
+        description: [
+            [
+                {
+                    text: "By default, the scrollbars are drawn above the content. However, you can use the "
+                },
+                { code: "scrollbar-area" },
+                { text: " property to get the length of the scrollbars." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "UScrollView {\n    VerticalLayout {\n        padding-right: parent.scrollbar-area;\n        // Your elements.\n    }\n}";
+    }
+}
