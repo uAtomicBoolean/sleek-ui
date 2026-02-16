@@ -1,0 +1,88 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+
+
+export component ButtonInterfacePage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Button interface";
+    }
+
+    DocDescription {
+        text: "A widget that is used to build interactive widgets with a implementation of both TouchArea and FocusScope.";
+    }
+
+    DocSection {
+        title: "Enabled and mouse cursor";
+        description: [
+            [
+                { text: "The " },
+                { code: "enabled" },
+                { text: " will disable both the FocusScope and the TouchArea." }
+            ]
+        ];
+    }
+
+    DocSection {
+        title: "TouchArea implementation";
+        description: [
+            [
+                { text: "All the properties and callbacks are available in the " },
+                { code: "ButtonInterface" }
+            ],
+        ];
+    }
+
+    DocSection {
+        title: "FocusScope implementation";
+        description: [
+            [
+                { text: "With the exception of the " },
+                { code: "focus()" },
+                { text: " and " },
+                { code: "clear-focus()" },
+                { text: " functions, all the properties, callbacks and functions are available." }
+            ],
+            [
+                { text: "However, the " },
+                { code: "set-focus()" },
+                { text: " and " },
+                { code: "release-focus()" },
+                { text: " functions are available to manage the focus on the interface." }
+            ]
+        ];
+    }
+
+    DocSection {
+        title: "The has-tab-focus property";
+        description: [
+            [
+                { text: "The " },
+                { code: "has-tab-focus" },
+                {
+                    text: " property allows you to know when a widget gains the focus from a tab navigation."
+                }
+            ],
+            [
+                {
+                    text: "This means that a widget can get the focus while this property keeps being false."
+                }
+            ],
+            [
+                {
+                    text: "In SleekUI, this property is used to display the focus when navigating with tab, and to focus a widget without displaying the keyboard focus style."
+                }
+            ]
+        ];
+    }
+}
