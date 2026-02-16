@@ -2,7 +2,6 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import {
     UTitle,
     USpinner,
-    UCenter,
 } from "../../sleek-ui/widgets.slint";
 
 import {
@@ -52,34 +51,39 @@ export component SpinnerPage inherits PageBase {
     }
 
     WidgetPresentation {
-        UCenter {
+        VerticalLayout {
+            alignment: center;
             USpinner {
                 size: 16px;
             }
         }
 
-        UCenter {
+        VerticalLayout {
+            alignment: center;
             USpinner {
                 size: 24px;
                 colorize: UAppTheme.success.base;
             }
         }
 
-        UCenter {
+        VerticalLayout {
+            alignment: center;
             USpinner {
                 size: 32px;
                 colorize: UAppTheme.warning.base;
             }
         }
 
-        UCenter {
+        VerticalLayout {
+            alignment: center;
             USpinner {
                 size: 48px;
                 colorize: UAppTheme.danger.base;
             }
         }
 
-        UCenter {
+        VerticalLayout {
+            alignment: center;
             USpinner {
                 size: 64px;
                 colorize: UAppTheme.text;
