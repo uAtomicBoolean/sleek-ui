@@ -1,7 +1,18 @@
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
-import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+    ULink,
+    UMenuLogic,
+    UButton,
+} from "../sleek-ui/widgets.slint";
 
-import { DocTitle } from "../components/doc-widgets.slint";
+import {
+    DocTitle,
+    DocSection,
+    WidgetPresentation,
+} from "../components/doc-widgets.slint";
 import { PageBase } from "../components/page-base.slint";
 import { DocumentationLogic } from "../logic/documentation-logic.slint";
 
@@ -12,5 +23,93 @@ export component AccessabilityPage inherits PageBase {
         text: "Accessability";
     }
 
-	// TODO Explain how most widgets have some default keyboard interactions (i.e. UButton, USlider, etc).
+    DocSection {
+        title: "Accessability properties";
+        description: [
+            [
+                {
+                    text: "All widgets implement some basis of accessabity such as the role, the default action, etc."
+                }
+            ],
+            [
+                {
+                    text: "However, it is recommended to fine tune these properties to fit your application as much as possible."
+                }
+            ],
+            [
+                { text: "You can look at the " },
+                { link: "UButton", id: "button" },
+                { text: " or " },
+                { link: "USlider", id: "slider" },
+                { text: " implementation to get an idea of what has been done in SleekUI." },
+            ]
+        ];
+        link-clicked(id) => {
+            if id == "button" {
+                DocumentationLogic.open-url("https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/widgets/button/button.slint");
+            } else if id == "slider" {
+                DocumentationLogic.open-url("https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/widgets/slider.slint");
+            }
+        }
+    }
+
+    DocSection {
+        title: "Keyboard integration";
+        description: [
+            [
+                {
+                    text: "Some widgets have some level of keyboard integration allow to manipulate the linked value."
+                }
+            ],
+            [
+                { text: "Take the " },
+                { link: "slider", id: "slider" },
+                { text: " as an example, you can change its value with the keyboard arrow keys." }
+            ],
+            [
+                { text: "Moreover, the " },
+                { link: "ButtonInterface", id: "button-interface" },
+                { text: " widget fires the " },
+                { code: "clicked" },
+                {
+                    text: " callback the space bar or the enter key are pressed on a focused widget."
+                }
+            ]
+        ];
+        link-clicked(id) => {
+            UMenuLogic.current-link = id;
+        }
+    }
+
+    DocSection {
+        title: "Tab navigation";
+        description: [
+            [
+                {
+                    text: "In order to ease the tab navigation, all widgets implements a strong display of the focused state when gaining the focus from tab navigation."
+                }
+            ],
+            [
+                { text: "This is made possible with the " },
+                { code: "has-tab-focus" },
+                { text: "property from " },
+                { link: "ButtonInterface", id: "button-interface" }
+            ],
+            [{ text: "You can check the tab navigation display by pressing tab." }]
+        ];
+        link-clicked(id) => {
+            UMenuLogic.current-link = id;
+        }
+    }
+
+    WidgetPresentation {
+        UButton {
+            variant: primary;
+            text: "Click me";
+        }
+
+        UButton {
+            text: "Click me";
+        }
+    }
 }
