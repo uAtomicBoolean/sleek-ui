@@ -5,7 +5,9 @@ import { ULightColors, UDarkColors } from "colors.slint";
 
 export global UAppTheme {
     in-out property <UAppThemeConfig> theme: Palette.color-scheme == ColorScheme.dark ? root.dark : root.light;
-    in-out property <duration> animation-duration: 150ms;
+    
+	// Animation duration
+	out property <duration> animation-duration: root.theme.animation-duration;
 
     // Main colors
     out property <UPrimaryColor> primary: root.theme.primary;
@@ -83,7 +85,13 @@ export global UAppTheme {
     out property <length> radius-large: root.theme.radius-large;
     out property <length> radius-round: root.theme.radius-round;
     out property <length> radius-circle: root.theme.radius-circle;
+
+	// Theming configurations
     in-out property <UAppThemeConfig> light: {
+		// Animation duration
+		animation-duration: 150ms,
+
+		// Primary colors
         primary: ULightColors.daybreak-blue,
         success: ULightColors.success,
         warning: ULightColors.warning,
@@ -161,6 +169,10 @@ export global UAppTheme {
         radius-circle: 9999px,
     };
     in-out property <UAppThemeConfig> dark: {
+		// Animation duration
+		animation-duration: 150ms,
+
+		// Primary colors
         primary: UDarkColors.daybreak-blue,
         success: UDarkColors.success,
         warning: UDarkColors.warning,
