@@ -19,7 +19,7 @@ export global UAppTheme {
     out property <brush> bg-layout: root.theme.bg-layout;
     out property <brush> bg-container: root.theme.bg-container;
     out property <brush> bg-elevated: root.theme.bg-elevated;
-    out property <brush> bg-inverse: root.theme.bg-inverse;
+    out property <brush> bg-spotlight: root.theme.bg-spotlight;
 
     // Fill colors
     out property <brush> color-fill-plus: root.theme.color-fill-plus;
@@ -45,6 +45,8 @@ export global UAppTheme {
     out property <length> focus-border-width: root.theme.focus-border-width;
 
     // Text colors
+	// Color used for the text in widgets with a primary color as a background.
+	out property <brush> primary-text: root.theme.primary-text;
     out property <brush> inverse-text: root.theme.inverse-text;
     out property <brush> text: root.theme.text;
     out property <brush> text-secondary: root.theme.text-secondary;
@@ -93,15 +95,15 @@ export global UAppTheme {
 
 		// Primary colors
         primary: ULightColors.daybreak-blue,
-        success: ULightColors.success,
-        warning: ULightColors.warning,
-        danger: ULightColors.danger,
+        success: ULightColors.polar-green,
+        warning: ULightColors.calendula-gold,
+        danger: ULightColors.dust-red,
 
 		// Background colors
 		bg-layout: #F5F5F5,
         bg-container: Colors.white,
         bg-elevated: Colors.white,
-        bg-inverse: #262626,
+        bg-spotlight: #262626,
 
     	// Fill colors
 		color-fill-plus: rgb(192, 192, 192),
@@ -127,7 +129,9 @@ export global UAppTheme {
         focus-border-width: 2px,
 
     	// Text colors
-    	inverse-text: #FFFFFFD9,
+		// Color used for the text in widgets with a primary color as a background.
+		primary-text: #ffffff,
+        inverse-text: #FFFFFFD9,
         text: #000000E0,
         text-secondary: #000000A6,
         text-heading: #000000E0,
@@ -174,15 +178,15 @@ export global UAppTheme {
 
 		// Primary colors
         primary: UDarkColors.daybreak-blue,
-        success: UDarkColors.success,
-        warning: UDarkColors.warning,
-        danger: UDarkColors.danger,
+        success: UDarkColors.polar-green,
+        warning: UDarkColors.calendula-gold,
+        danger: UDarkColors.dust-red,
 
 		// Background colors
 		bg-layout: Colors.black,
         bg-container: #141414,
         bg-elevated: #1f1f1f,
-        bg-inverse: #424242,
+        bg-spotlight: #424242,
 
     	// Fill colors
 		color-fill-plus: rgb(86, 86, 86),
@@ -208,7 +212,9 @@ export global UAppTheme {
         focus-border-width: 2px,
 
     	// Text colors
-    	inverse-text: #000000E0,
+		// Color used for the text in widgets with a primary color as a background.
+		primary-text: #ffffff,
+        inverse-text: #000000E0,
         text: #FFFFFFD9,
         text-secondary: #FFFFFFA6,
         text-heading: #FFFFFFD9,
