@@ -14,6 +14,7 @@ import {
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { AppLogic } from "../../app-logic.slint";
+import { Slider } from "std-widgets.slint";
 
 
 export component SliderPage inherits PageBase {
@@ -64,6 +65,13 @@ export component SliderPage inherits PageBase {
                 { text: " property." },
             ],
             [
+                { text: "Set the " },
+                { code: "display-steps" },
+                { text: " property to " },
+                { code: "true" },
+                { text: " to display the steps in the slider." }
+            ],
+            [
                 { text: "You can also change the " },
                 { code: "min-value" },
                 { text: " and " },
@@ -77,7 +85,8 @@ export component SliderPage inherits PageBase {
         spacing: UAppTheme.spacing-bigger;
         slider-step := USlider {
             width: 300px;
-            step: 0.5;
+            step: 10;
+            display-steps: true;
             min-value: -30;
             max-value: 50;
         }

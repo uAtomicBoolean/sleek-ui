@@ -25,8 +25,11 @@ export component USlider inherits ButtonInterface {
     in-out property <float> step: 1;
     in-out property <float> min-value: 0;
     in-out property <float> max-value: 100;
+    in-out property <bool> display-steps: false;
     in-out property <Orientation> orientation: horizontal;
     private property <bool> is-horizontal: orientation == Orientation.horizontal;
+    private property <length> handle-pos: ((value - min-value) / (max-value - min-value)) * (is-horizontal ? root.width : root.height);
+    private property <int> number-of-steps: (Math.abs(min-value) + Math.abs(max-value)) / step;
     changed value => {
         value = clamp(root.value, min-value, max-value);
     }
@@ -64,14 +67,21 @@ export component USlider inherits ButtonInterface {
         background: UAppTheme.color-fill-secondary;
         border-radius: UAppTheme.radius-circle;
         height: 5px;
+        if display-steps: Rectangle {
+            private property <length> step-spacing: parent.width / number-of-steps;
+            for i in number-of-steps: Rectangle {
+                x: i * step-spacing - self.width / 2;
+                width: 5px;
+                background: self.x > 0 ? UAppTheme.color-fill : transparent;
+                border-radius: UAppTheme.radius-round;
+            }
+        }
         HorizontalLayout {
             alignment: start;
             h-slider := Rectangle {
-                private property <length> curr-pos: ((value - min-value) / (max-value - min-value)) * (is-horizontal ? root.width : root.height);
-                // private property <int> curr-pos: (value / 1px) * root.width / max-value;
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
-                width: curr-pos;
+                width: handle-pos;
                 animate background { duration: UAppTheme.animation-duration; }
                 states [
                     disabled when !root.enabled: {
@@ -129,13 +139,21 @@ export component USlider inherits ButtonInterface {
         background: UAppTheme.color-fill-secondary;
         border-radius: UAppTheme.radius-circle;
         width: 5px;
+        if display-steps:Rectangle {
+            private property <length> step-spacing: parent.height / number-of-steps;
+            for i in number-of-steps: Rectangle {
+                y: i * step-spacing - self.height / 2;
+                height: 5px;
+                background: self.y > 0 ? UAppTheme.color-fill : transparent;
+                border-radius: UAppTheme.radius-round;
+            }
+        }
         VerticalLayout {
             alignment: end;
             v-slider := Rectangle {
-                private property <int> curr-height: (value / 1px) * root.height / max-value;
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
-                height: curr-height * 1px;
+                height: handle-pos;
                 animate background { duration: UAppTheme.animation-duration; }
                 states [
                     disabled when !root.enabled: {
