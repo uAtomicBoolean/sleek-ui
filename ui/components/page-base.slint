@@ -6,7 +6,7 @@ import { UScrollView } from "../sleek-ui/widgets.slint";
 export component PageBase inherits FocusScope {
     height: 100%;
     public function scroll-to(pos: length) {
-        scrollview.scroll-y-to(pos);
+        scrollview.scroll-y-to(-pos);
     }
     scrollview := UScrollView {
         VerticalLayout {

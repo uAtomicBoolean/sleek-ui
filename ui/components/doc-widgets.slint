@@ -63,10 +63,9 @@ export component DocSection inherits Rectangle {
         echo-timer.start();
     }
     VerticalLayout {
-        DocTitle {
+        if title != "": DocTitle {
             text: root.title;
         }
-
         if description.length != 0: VerticalLayout {
             alignment: start;
             for line in description: HorizontalLayout {
