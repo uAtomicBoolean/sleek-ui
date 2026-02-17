@@ -3,7 +3,7 @@ import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
 
 import { DocTitle, DocSection, DocCode } from "../components/doc-widgets.slint";
 import { PageBase } from "../components/page-base.slint";
-import { DocumentationLogic } from "../logic/documentation-logic.slint";
+import { AppLogic } from "../app-logic.slint";
 
 
 export component HowToUsePage inherits PageBase {
@@ -37,9 +37,9 @@ export component HowToUsePage inherits PageBase {
         ];
         link-clicked(id) => {
             if id == "github" {
-                DocumentationLogic.open-url("https://github.com/uAtomicBoolean/sleek-ui/releases");
+                AppLogic.open-url("https://github.com/uAtomicBoolean/sleek-ui/releases");
             } else if id == "official-doc" {
-                DocumentationLogic.open-url("https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries");
+                AppLogic.open-url("https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries");
             }
         }
     }
@@ -75,7 +75,7 @@ export component HowToUsePage inherits PageBase {
             ]
         ];
         link-clicked(id) => {
-            DocumentationLogic.open-url("https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/app-theme.slint");
+            AppLogic.open-url("https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/app-theme.slint");
         }
     }
 

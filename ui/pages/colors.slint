@@ -5,7 +5,7 @@ import { ULightColors, UDarkColors } from "../sleek-ui/colors.slint";
 
 import { DocTitle, DocSection, DocCode } from "../components/doc-widgets.slint";
 import { PageBase } from "../components/page-base.slint";
-import { DocumentationLogic } from "../logic/documentation-logic.slint";
+import { AppLogic } from "../app-logic.slint";
 
 
 component ColorRect inherits Rectangle {
@@ -125,7 +125,7 @@ export component ColorsPage inherits PageBase {
             ]
         ];
         link-clicked(id) => {
-            DocumentationLogic.open-url("https://ant.design/docs/spec/colors");
+            AppLogic.open-url("https://ant.design/docs/spec/colors");
         }
     }
 

@@ -16,9 +16,11 @@ import {
 import { UMenuLogic } from "../sleek-ui/widgets.slint";
 
 import { PageBase } from "../components/page-base.slint";
+import { AppLogic } from "../app-logic.slint";
 
 
 export component HomePage inherits PageBase {
+    private property <bool> is-wasm: AppLogic.is-wasm();
     HorizontalLayout {
         alignment: center;
         padding-top: 64px;
@@ -26,6 +28,16 @@ export component HomePage inherits PageBase {
         UTitle {
             level: 1;
             text: "Sleek-ui";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        padding-top: UAppTheme.padding-bigger;
+        padding-bottom: UAppTheme.padding-bigger;
+        UAlert {
+            variant: warning;
+            message: "Please note that the rendering might be flawed in WASM due to femtovg.";
         }
     }
 

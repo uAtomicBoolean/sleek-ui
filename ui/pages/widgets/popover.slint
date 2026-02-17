@@ -9,7 +9,7 @@ import {
     DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
-import { DocumentationLogic } from "../../logic/documentation-logic.slint";
+import { AppLogic } from "../../app-logic.slint";
 
 
 export component PopoverPage inherits PageBase {
@@ -35,7 +35,7 @@ export component PopoverPage inherits PageBase {
             ]
         ];
         link-clicked(id) => {
-            DocumentationLogic.open-url("https://docs.slint.dev/latest/docs/slint/reference/window/popupwindow/");
+            AppLogic.open-url("https://docs.slint.dev/latest/docs/slint/reference/window/popupwindow/");
         }
     }
 

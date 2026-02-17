@@ -10,7 +10,7 @@ fn main() {
 
     ui.invoke_switch_theme_to_light();
 
-    let doc_logic = ui.global::<DocumentationLogic>();
+    let doc_logic = ui.global::<AppLogic>();
 
     doc_logic.on_open_url(|url| {
         if let Err(err) = webbrowser::open(url.as_str()) {

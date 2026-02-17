@@ -35,7 +35,7 @@ export component AppWindow inherits Window {
     preferred-height: 720px;
     background: UAppTheme.bg-container;
     init => {
-        UMenuLogic.current-link = "modal";
+        UMenuLogic.current-link = "home";
     }
     FocusScope {
         HorizontalLayout {
@@ -62,4 +62,4 @@ export component AppWindow inherits Window {
     // }
 }
 
-export { DocumentationLogic } from "logic/documentation-logic.slint";
+export { AppLogic } from "app-logic.slint";

@@ -3,7 +3,7 @@ import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
 
 import { DocTitle } from "../components/doc-widgets.slint";
 import { PageBase } from "../components/page-base.slint";
-import { DocumentationLogic } from "../logic/documentation-logic.slint";
+import { AppLogic } from "../app-logic.slint";
 import { AboutSlint } from "std-widgets.slint";
 
 
@@ -22,7 +22,7 @@ export component AboutPage inherits PageBase {
         ULink {
             text: "Ant Design";
             clicked => {
-                DocumentationLogic.open-url("https://ant.design/");
+                AppLogic.open-url("https://ant.design/");
             }
         }
 

@@ -22,7 +22,7 @@ fn main() {
     //         .dispatch_event(slint::platform::WindowEvent::ScaleFactorChanged { scale_factor: sf });
     // });
 
-    let doc_logic = ui.global::<DocumentationLogic>();
+    let doc_logic = ui.global::<AppLogic>();
 
     doc_logic.on_open_url(|url| {
         if let Err(err) = webbrowser::open(url.as_str()) {
