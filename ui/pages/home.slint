@@ -31,7 +31,7 @@ export component HomePage inherits PageBase {
         }
     }
 
-    HorizontalLayout {
+    if is-wasm: HorizontalLayout {
         alignment: center;
         padding-top: UAppTheme.padding-bigger;
         padding-bottom: UAppTheme.padding-bigger;
@@ -40,7 +40,6 @@ export component HomePage inherits PageBase {
             message: "Please note that the rendering might be flawed in WASM due to femtovg.";
         }
     }
-
     HorizontalLayout {
         alignment: center;
         UText {

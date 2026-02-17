@@ -10,9 +10,13 @@ fn main() {
 
     ui.invoke_switch_theme_to_light();
 
-    let doc_logic = ui.global::<AppLogic>();
+    let app_logic = ui.global::<AppLogic>();
 
-    doc_logic.on_open_url(|url| {
+    app_logic.on_is_wasm(|| {
+        return true;
+    });
+
+    app_logic.on_open_url(|url| {
         if let Err(err) = webbrowser::open(url.as_str()) {
             println!("Couldn't open the URL in the default browser.");
             println!("URL: {url}");
