@@ -9,8 +9,10 @@ import { DocumentationLogic } from "../logic/documentation-logic.slint";
 export component ThemingPage inherits PageBase {
     UTitle {
         level: 3;
-        text: "Application theming";
+        text: "Theming";
     }
 
-	// TODO Split this page into the following pages: use the application's theme with UAppTheme, modify the theme with ThemeConfig, Default colors.
+	// TODO explain that the application's theme is automatically updated with Palette.color-scheme, but they can force a color scheme or change the Palette color scheme.
+	// TODO explain how to change the application's theme: how the theme works, the UAppThemeConfigStruct (display it somewhere or link to github), make their own struct, set their struct in the UAppTheme global.
+	// TODO also explain that all the properties are only out (except for both light and dark properties).
 }
