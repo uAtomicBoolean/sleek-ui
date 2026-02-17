@@ -48,6 +48,7 @@ import {
 
 	// Feedback widgets
 	AlertPage,
+    ModalPage,
     PopoverPage,
 	
 	// Misc
@@ -110,6 +111,7 @@ export component PageManager {
 
 		// Feedback widgets
 		if current-page == "alert": AlertPage { }
+        if current-page == "modal": ModalPage { }
         if current-page == "popover": PopoverPage { }
 
 		// Misc
