@@ -1,9 +1,9 @@
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
-import { UPrimaryColors } from "../sleek-ui/styling/colors.slint";
-import { UColorSchemeVariantsColor } from "../sleek-ui/structs/colors.slint";
 import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+import { UPrimaryColor } from "../sleek-ui/structs/theme.slint";
+import { ULightColors, UDarkColors } from "../sleek-ui/colors.slint";
 
-import { DocTitle } from "../components/doc-widgets.slint";
+import { DocTitle, DocSection, DocCode } from "../components/doc-widgets.slint";
 import { PageBase } from "../components/page-base.slint";
 import { DocumentationLogic } from "../logic/documentation-logic.slint";
 
@@ -19,7 +19,8 @@ component ColorRect inherits Rectangle {
 
 component ColorPresentation {
     in property <string> color-name;
-    in property <UColorSchemeVariantsColor> colors;
+    in property <UPrimaryColor> light;
+    in property <UPrimaryColor> dark;
     VerticalLayout {
         alignment: start;
         spacing: UAppTheme.spacing-big;
@@ -34,45 +35,45 @@ component ColorPresentation {
             alignment: space-around;
             HorizontalLayout {
                 ColorRect {
-                    color-brush: colors.light.base;
+                    color-brush: light.base;
                 }
 
                 ColorRect {
-                    color-brush: colors.light.hover;
+                    color-brush: light.hover;
                 }
 
                 ColorRect {
-                    color-brush: colors.light.active;
+                    color-brush: light.active;
                 }
 
                 ColorRect {
-                    color-brush: colors.light.disabled;
+                    color-brush: light.disabled;
                 }
 
                 ColorRect {
-                    color-brush: colors.light.selected;
+                    color-brush: light.selected;
                 }
             }
 
             HorizontalLayout {
                 ColorRect {
-                    color-brush: colors.dark.base;
+                    color-brush: dark.base;
                 }
 
                 ColorRect {
-                    color-brush: colors.dark.hover;
+                    color-brush: dark.hover;
                 }
 
                 ColorRect {
-                    color-brush: colors.dark.active;
+                    color-brush: dark.active;
                 }
 
                 ColorRect {
-                    color-brush: colors.dark.disabled;
+                    color-brush: dark.disabled;
                 }
 
                 ColorRect {
-                    color-brush: colors.dark.selected;
+                    color-brush: dark.selected;
                 }
             }
         }
@@ -85,136 +86,136 @@ export component ColorsPage inherits PageBase {
         text: "Default colors";
     }
 
-    DocTitle {
-        text: "Colors global and struct";
+    DocSection {
+        title: "Primary color struct";
+        description: [
+            [
+                { text: "A primary color is represented by the " },
+                { code: "UPrimaryColor" },
+                { text: " struct." }
+            ],
+            [
+                { text: "This struct is available in the " },
+                { code: "@sleek-ui/structs/theme.slint" },
+                { text: " file." }
+            ]
+        ];
     }
 
-    UText {
-        wrap: word-wrap;
-        text: "Sleek-ui comes with a set of default colors available in the \"UPrimaryColors\" global. Each property of this global is of the type \"UColorSchemeVariantsColor\" with the following structure:";
+    DocCode {
+        code: "UPrimaryColor {\n    base: brush,\n    hover: brush,\n    active: brush,\n    disabled: brush,\n    selected: brush,\n}";
     }
 
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        padding-bottom: UAppTheme.padding-big;
-        UCode {
-            code: "import { UPrimaryColors } from \"@/sleek-ui/styling/colors.slint\";";
+    DocSection {
+        title: "Default colors";
+        description: [
+            [
+                { text: "The default colors are available in the " },
+                { code: "ULightColors" },
+                { text: " and " },
+                { code: "UDarkColors" },
+                { text: " globals from the " },
+                { code: "@sleek-ui/colors.slint" },
+                { text: " file." }
+            ],
+            [
+                { text: "All colors are available on the " },
+                { link: "And Design website" },
+                { text: "." }
+            ]
+        ];
+        link-clicked(id) => {
+            DocumentationLogic.open-url("https://ant.design/docs/spec/colors");
         }
-    }
-
-    UText {
-        text: "Each property of this global is of the type \"UColorSchemeVariantsColor\" with the following structure:";
-    }
-
-    HorizontalLayout {
-        padding-top: UAppTheme.padding-base;
-        UCode {
-            code: "struct UColorSchemeVariantsColor {\n    light: {\n        base: brush,\n        hover: brush,\n        active: brush,\n        disabled: brush,\n        selected: brush,\n    },\n    dark: {\n        base: brush,\n        hover: brush,\n        active: brush,\n        disabled: brush,\n        selected: brush,\n    }\n}";
-        }
-    }
-
-    DocTitle {
-        text: "Default colors";
-    }
-
-    UText {
-        text: "Each color has a light and dark variant, with each variant having the following fields: base, hover, active, disabled, selected.";
-    }
-
-    HorizontalLayout {
-        alignment: start;
-        UText {
-            text: "All colors are available on the ";
-        }
-
-        ULink {
-            text: "Ant Design website";
-            clicked => {
-                DocumentationLogic.open-url("https://ant.design/docs/spec/colors");
-            }
-        }
-
-        UText {
-            text: ".";
-        }
-    }
-
-    Rectangle {
-        height: UAppTheme.spacing-bigger;
     }
 
     ColorPresentation {
         color-name: "Success";
-        colors: UPrimaryColors.success;
+        light: ULightColors.success;
+        dark: UDarkColors.success;
     }
 
     ColorPresentation {
         color-name: "Warning";
-        colors: UPrimaryColors.warning;
+        light: ULightColors.warning;
+        dark: UDarkColors.warning;
     }
 
     ColorPresentation {
         color-name: "Danger";
-        colors: UPrimaryColors.danger;
+        light: ULightColors.danger;
+        dark: UDarkColors.danger;
     }
 
     ColorPresentation {
         color-name: "Dust red";
-        colors: UPrimaryColors.dust-red;
+        light: ULightColors.dust-red;
+        dark: UDarkColors.dust-red;
     }
 
     ColorPresentation {
         color-name: "Volcano";
-        colors: UPrimaryColors.volcano;
+        light: ULightColors.volcano;
+        dark: UDarkColors.volcano;
     }
 
     ColorPresentation {
         color-name: "Sunset orange";
-        colors: UPrimaryColors.sunset-orange;
+        light: ULightColors.sunset-orange;
+        dark: UDarkColors.sunset-orange;
     }
 
     ColorPresentation {
         color-name: "Calendula gold";
-        colors: UPrimaryColors.calendula-gold;
+        light: ULightColors.calendula-gold;
+        dark: UDarkColors.calendula-gold;
     }
 
     ColorPresentation {
         color-name: "Sunrise yellow";
-        colors: UPrimaryColors.sunrise-yellow;
+        light: ULightColors.sunrise-yellow;
+        dark: UDarkColors.sunrise-yellow;
     }
 
     ColorPresentation {
         color-name: "Lime";
-        colors: UPrimaryColors.lime;
+        light: ULightColors.lime;
+        dark: UDarkColors.lime;
     }
 
     ColorPresentation {
         color-name: "Polar green";
-        colors: UPrimaryColors.polar-green;
+        light: ULightColors.polar-green;
+        dark: UDarkColors.polar-green;
     }
 
     ColorPresentation {
         color-name: "Cyan";
-        colors: UPrimaryColors.cyan;
+        light: ULightColors.cyan;
+        dark: UDarkColors.cyan;
     }
 
     ColorPresentation {
         color-name: "Daybreak blue";
-        colors: UPrimaryColors.daybreak-blue;
+        light: ULightColors.daybreak-blue;
+        dark: UDarkColors.daybreak-blue;
     }
 
     ColorPresentation {
         color-name: "Geek blue";
-        colors: UPrimaryColors.geek-blue;
+        light: ULightColors.geek-blue;
+        dark: UDarkColors.geek-blue;
     }
 
     ColorPresentation {
         color-name: "Golden purple";
-        colors: UPrimaryColors.golden-purple;
+        light: ULightColors.golden-purple;
+        dark: UDarkColors.golden-purple;
     }
 
     ColorPresentation {
         color-name: "French magenta";
-        colors: UPrimaryColors.french-magenta;
+        light: ULightColors.french-magenta;
+        dark: UDarkColors.french-magenta;
     }
 }

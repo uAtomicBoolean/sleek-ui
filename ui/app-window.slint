@@ -22,6 +22,7 @@ import { UMenuLogic, UTooltip } from "sleek-ui/widgets.slint";
 
 export { UAppTheme }
 
+
 export component AppWindow inherits Window {
 	// Used to force light theme in the documentation.
     public function switch-theme-to-light() {
@@ -34,7 +35,7 @@ export component AppWindow inherits Window {
     preferred-height: 720px;
     background: UAppTheme.bg-container;
     init => {
-        UMenuLogic.current-link = "button-interface";
+        UMenuLogic.current-link = "modal";
     }
     FocusScope {
         HorizontalLayout {
