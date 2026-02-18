@@ -94,4 +94,42 @@ export component AlertPage inherits PageBase {
     DocCode {
         code: "UAlert {\n    message: \"This is an alert.\";\n    close => {\n        // Your code.\n    }\n}";
     }
+
+    DocSection {
+        title: "Custom colors and icon";
+        description: [
+            [
+                { text: "You can use custom colors with the " },
+                { code: "border-color" },
+                { text: ", " },
+                { code: "background" },
+                { code: "icon-color" },
+                { text: " and " },
+                { code: "text-color" },
+                { text: " properties." },
+            ],
+            [
+                { text: "You can set a custom icon with the " },
+                { code: "icon" },
+                { text: " property." },
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        full-width: true;
+        UAlert {
+            message: "Alert using custom colors";
+            background: UAppTheme.golden-purple.selected;
+            border-color: UAppTheme.golden-purple.base;
+            text-color: UAppTheme.golden-purple.base;
+            icon: @image-url("../../assets/images/rocket.svg");
+            icon-color: UAppTheme.golden-purple.base;
+            display-close-button: true;
+        }
+    }
+
+    DocCode {
+        code: "UAlert {\n    message: \"This is an alert.\";\n    background: UAppTheme.golden-purple.selected;\n    border-color: UAppTheme.golden-purple.base;\n    text-color: UAppTheme.golden-purple.base;\n    icon: @image-url(your-path);\n    icon-color: UAppTheme.golden-purple.base;\n}";
+    }
 }
