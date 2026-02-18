@@ -29,7 +29,7 @@ export component USlider inherits ButtonInterface {
     in-out property <Orientation> orientation: horizontal;
     private property <bool> is-horizontal: orientation == Orientation.horizontal;
     private property <length> handle-pos: ((value - min-value) / (max-value - min-value)) * (is-horizontal ? root.width : root.height);
-    private property <int> number-of-steps: (Math.abs(min-value) + Math.abs(max-value)) / step;
+    private property <int> number-of-steps: Math.abs(min-value - max-value) / step;
     changed value => {
         value = clamp(root.value, min-value, max-value);
     }
