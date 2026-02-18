@@ -27,8 +27,9 @@ export component USlider inherits ButtonInterface {
     in-out property <float> max-value: 100;
     in-out property <bool> display-steps: false;
     in-out property <Orientation> orientation: horizontal;
+    out property <length> handle-pos: ((value - min-value) / (max-value - min-value)) * (is-horizontal ? root.width : root.height);
+    private property <length> base-handle-size: 14px;
     private property <bool> is-horizontal: orientation == Orientation.horizontal;
-    private property <length> handle-pos: ((value - min-value) / (max-value - min-value)) * (is-horizontal ? root.width : root.height);
     private property <int> number-of-steps: Math.abs(min-value - max-value) / step;
     changed value => {
         value = clamp(root.value, min-value, max-value);
@@ -105,7 +106,7 @@ export component USlider inherits ButtonInterface {
 
         // Manage the aura-like border that appears around the handle.
         Rectangle {
-            private property <length> size: 14px;
+            private property <length> size: base-handle-size;
             x: h-slider.width - size / 2;
             border-radius: UAppTheme.radius-circle;
             width: size;
@@ -121,7 +122,7 @@ export component USlider inherits ButtonInterface {
 
         // The handle itself.
         Rectangle {
-            private property <length> size: 14px;
+            private property <length> size: base-handle-size;
             x: h-slider.width - size / 2;
             background: UAppTheme.bg-container;
             border-color: UAppTheme.primary.base;
@@ -177,7 +178,7 @@ export component USlider inherits ButtonInterface {
 
         // Manage the aura-like border that appears around the handle.
         Rectangle {
-            private property <length> size: 14px;
+            private property <length> size: base-handle-size;
             y: root.height - (v-slider.height + size / 2);
             border-radius: UAppTheme.radius-circle;
             width: size;
@@ -193,7 +194,7 @@ export component USlider inherits ButtonInterface {
 
         // The handle itself.
         Rectangle {
-            private property <length> size: 14px;
+            private property <length> size: base-handle-size;
             y: root.height - (v-slider.height + size / 2);
             background: UAppTheme.bg-container;
             border-color: UAppTheme.primary.base;
