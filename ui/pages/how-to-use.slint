@@ -1,5 +1,11 @@
 import { UAppTheme } from "../sleek-ui/app-theme.slint";
-import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+import {
+    UTitle,
+    UText,
+    UCode,
+    ULink,
+    UMenuLogic,
+} from "../sleek-ui/widgets.slint";
 
 import { DocTitle, DocSection, DocCode } from "../components/doc-widgets.slint";
 import { PageBase } from "../components/page-base.slint";
@@ -77,14 +83,23 @@ export component HowToUsePage inherits PageBase {
                 {
                     text: " This allows you to keep the same look and feel across your whole application."
                 }
+            ],
+            [
+                { text: "The global also re-export all the " },
+                { link: "default colors", url:"default-colors" },
+                { text: " as properties synced to the color scheme." }
             ]
         ];
         link-clicked(url) => {
-            AppLogic.open-url(url);
+            if url == "default-colors" {
+                UMenuLogic.current-link = url;
+            } else {
+                AppLogic.open-url(url);
+            }
         }
     }
 
     DocCode {
-        code: "import { UAppTheme } from \"@sleek-ui/app-theme.slint\";\n\n export component CustomCard inherits Rectangle {\n    border-radius: UAppTheme.radius-base;\n    border-width: UAppTheme.border-width-base;\n    border-color: UAppTheme.border;\n    // Your code...\n}";
+        code: "import { UAppTheme } from \"@sleek-ui/app-theme.slint\";\n\n export component CustomCard inherits Rectangle {\n    border-radius: UAppTheme.radius-base;\n    border-width: UAppTheme.border-width-base;\n    border-color: UAppTheme.border;\n    background: UAppTheme.golden-purple.base;\n    // Your code...\n}";
     }
 }
