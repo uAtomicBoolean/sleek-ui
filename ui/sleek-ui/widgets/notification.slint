@@ -13,9 +13,8 @@ export enum UNotificationVariant {
 	danger,
 }
 
-export component UNotification inherits ButtonInterface {
-	// Regular properties
-	in-out property <UNotificationVariant> variant: info;
+export component UNotification inherits Rectangle {
+    in-out property <UNotificationVariant> variant: info;
     in-out property <string> title;
     in-out property <string> message;
     in-out property <bool> single-line-message: true;
@@ -44,66 +43,68 @@ export component UNotification inherits ButtonInterface {
         return UAppTheme.primary.base;
     }
     callback close <=> close-button.clicked;
-    min-width: 300px;
+    callback clicked <=> btn-interface.clicked;
+    width: 300px;
     background: UAppTheme.bg-elevated;
     border-radius: clamp(UAppTheme.radius-base, 0, UAppTheme.radius-medium);
-    border-width: root.has-tab-focus ? UAppTheme.focus-border-width : 0;
-    border-color: root.has-tab-focus ? UAppTheme.focus-color : transparent;
+    border-width: btn-interface.has-tab-focus ? UAppTheme.focus-border-width : 0;
+    border-color: btn-interface.has-tab-focus ? UAppTheme.focus-color : transparent;
     drop-shadow-blur: UAppTheme.shadow-blur;
     drop-shadow-color: UAppTheme.shadow-color;
     drop-shadow-offset-y: UAppTheme.shadow-y-offset;
-    VerticalLayout {
-        padding: UAppTheme.padding-base;
-        HorizontalLayout {
-            padding-top: UAppTheme.padding-medium;
-            padding-bottom: UAppTheme.padding-medium;
-            padding-left: UAppTheme.padding-big;
-            padding-right: UAppTheme.padding-big;
-            VerticalLayout {
-                alignment: center;
-                padding-right: UAppTheme.padding-medium;
-                UIcon {
-                    source: notif-icon;
-                    colorize: notif-icon-color;
-                    size: UAppTheme.font-size-big;
-                    accessible-role: none;
+    btn-interface := ButtonInterface {
+        VerticalLayout {
+            padding: UAppTheme.padding-base;
+            HorizontalLayout {
+                padding-top: UAppTheme.padding-medium;
+                padding-bottom: UAppTheme.padding-medium;
+                padding-left: UAppTheme.padding-big;
+                padding-right: UAppTheme.padding-big;
+                VerticalLayout {
+                    alignment: center;
+                    padding-right: UAppTheme.padding-medium;
+                    UIcon {
+                        source: notif-icon;
+                        colorize: notif-icon-color;
+                        size: UAppTheme.font-size-big;
+                        accessible-role: none;
+                    }
                 }
-            }
 
-            VerticalLayout {
-                alignment: center;
-                horizontal-stretch: 1;
-                UText {
-                    text: title;
-                    wrap: no-wrap;
-                    overflow: elide;
-                    font-size: UAppTheme.font-size-medium;
+                VerticalLayout {
+                    alignment: center;
+                    horizontal-stretch: 1;
+                    UText {
+                        text: title;
+                        wrap: no-wrap;
+                        overflow: elide;
+                        font-size: UAppTheme.font-size-medium;
+                    }
                 }
-            }
 
-            VerticalLayout {
-                alignment: center;
-                close-button := UIconButton {
-                    variant: text;
-                    icon: @image-url("../assets/icons/x.svg");
-                    accessible-label: @tr("Close button for notification");
-                    accessible-action-default => {
-                        self.clicked();
+                VerticalLayout {
+                    alignment: center;
+                    close-button := UIconButton {
+                        variant: text;
+                        icon: @image-url("../assets/icons/x.svg");
+                        accessible-label: @tr("Close notification");
+                        accessible-action-default => {
+                            self.clicked();
+                        }
                     }
                 }
             }
-        }
 
-        if message != "": HorizontalLayout {
-            padding-bottom: UAppTheme.padding-medium;
-            padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base;
-            padding-right: UAppTheme.padding-big;
-            alignment: start;
-            UText {
-                overflow: root.single-line-message ? elide : clip;
-                wrap: root.single-line-message ? no-wrap : word-wrap;
-                text: root.message;
-                accessible-label: @tr("Notification content");
+            if message != "": HorizontalLayout {
+                padding-bottom: UAppTheme.padding-medium;
+                padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base;
+                padding-right: UAppTheme.padding-big;
+                alignment: start;
+                UText {
+                    overflow: root.single-line-message ? elide : clip;
+                    wrap: root.single-line-message ? no-wrap : word-wrap;
+                    text: root.message;
+                }
             }
         }
     }

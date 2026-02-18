@@ -55,7 +55,7 @@ export component DocSection inherits Rectangle {
     in property <string> title;
     in property <[[DescStyledText]]> description;
     private property <duration> bg-animation: 0;
-    callback link-clicked(id: string);
+    callback link-clicked(url: string);
     animate background { duration: bg-animation; }
     public function trigger-signal() {
         self.bg-animation = 0;
