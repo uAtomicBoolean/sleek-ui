@@ -181,8 +181,12 @@ export component NotificationPage inherits PageBase {
     WidgetPresentation {
         UNotification {
             title: "Custom icon";
-            notif-icon: @image-url("../../assets/images/rocket.svg");
-            notif-icon-color: purple;
+            icon: @image-url("../../assets/images/rocket.svg");
+            icon-color: purple;
         }
+    }
+
+    DocCode {
+        code: "UNotification {\n    title: \"Custom icon\";\n    icon: @image-url(your-path);\n    icon-color: purple;\n}";
     }
 }

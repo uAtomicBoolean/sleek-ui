@@ -18,30 +18,8 @@ export component UNotification inherits Rectangle {
     in-out property <string> title;
     in-out property <string> message;
     in-out property <bool> single-line-message: true;
-    in-out property <image> notif-icon: {
-        if variant == UNotificationVariant.success {
-            return @image-url("../assets/icons/circle-check.svg");
-        }
-        if variant == UNotificationVariant.warning {
-            return @image-url("../assets/icons/info.svg");
-        }
-        if variant == UNotificationVariant.danger {
-            return @image-url("../assets/icons/triangle-alert.svg");
-        }
-        return @image-url("../assets/icons/info.svg");
-    }
-    in-out property <brush> notif-icon-color: {
-        if variant == UNotificationVariant.success {
-            return UAppTheme.success.base;
-        }
-        if variant == UNotificationVariant.warning {
-            return UAppTheme.warning.base;
-        }
-        if variant == UNotificationVariant.danger {
-            return UAppTheme.danger.base;
-        }
-        return UAppTheme.primary.base;
-    }
+    in-out property <image> icon;
+    in-out property <brush> icon-color;
     callback close <=> close-button.clicked;
     callback clicked <=> btn-interface.clicked;
     width: 300px;
@@ -64,8 +42,8 @@ export component UNotification inherits Rectangle {
                     alignment: center;
                     padding-right: UAppTheme.padding-medium;
                     UIcon {
-                        source: notif-icon;
-                        colorize: notif-icon-color;
+                        source: icon;
+                        colorize: icon-color;
                         size: UAppTheme.font-size-big;
                         accessible-role: none;
                     }
@@ -108,4 +86,23 @@ export component UNotification inherits Rectangle {
             }
         }
     }
+
+    states [
+        info when variant == UNotificationVariant.info: {
+            icon: @image-url("../assets/icons/circle-check.svg");
+            icon-color: UAppTheme.primary.base;
+        }
+        success when variant == UNotificationVariant.success: {
+            icon: @image-url("../assets/icons/circle-check.svg");
+            icon-color: UAppTheme.success.base;
+        }
+        warning when variant == UNotificationVariant.warning: {
+            icon: @image-url("../assets/icons/circle-check.svg");
+            icon-color: UAppTheme.warning.base;
+        }
+        danger when variant == UNotificationVariant.danger: {
+            icon: @image-url("../assets/icons/circle-check.svg");
+            icon-color: UAppTheme.danger.base;
+        }
+    ]
 }
