@@ -1,5 +1,5 @@
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
-import { UTitle } from "../../sleek-ui/widgets.slint";
+import { UTitle, UButton, UModalLogic } from "../../sleek-ui/widgets.slint";
 
 import {
     DocTitle,
@@ -9,7 +9,6 @@ import {
     DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
-import { AppLogic } from "../../app-logic.slint";
 
 
 export component ModalPage inherits PageBase {
@@ -24,10 +23,234 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description: [];
+        description: [
+            [
+                {
+                    text: "The modal is a complex widget that, like the tooltip, must be placed at the root of the project / page to be rendered above all the content."
+                }
+            ],
+            [
+                { text: "It comes with a " },
+                { code: "@children" },
+                {
+                    text: " slot to allow you to put anything inside, however, the its title is set throught the "
+                },
+                { code: "title" },
+                { text :" property." }
+            ],
+            [
+                { text: "To open a modal, you must set its " },
+                { code: "id" },
+                { text: " property, and then call the " },
+                { code: "UModalLogic.open-modal(id: string)" },
+                { text: " global function." }
+            ],
+            [
+                { text: "You can close the modal with its button, or call the " },
+                { code: "UModalLogic.close-modal()" },
+                { text: " function." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UButton {
+            text: "Open modal";
+            clicked => {
+                UModalLogic.open-modal("modal-base");
+            }
+        }
     }
 
     DocCode {
-        code: "";
+        code: "// Your button to open the modal somewhere in your app.\nUButton {\n    text: \"Open modal\";\n    clicked => {\n        UModalLogic.open-modal(\"form-modal\");\n    }\n}\n\n// Your modal in your window.\nexport component AppWindow inherits Window {\n    // Your app's code.\n\n    UModal {\n        id: \"form-modal\";\n        title: \"Add a user\";\n        // Your modal's code.\n    }\n}";
+    }
+
+    DocSection {
+        title: "Callbacks";
+        description: [
+            [
+                { text: "The modal comes with four callbacks: " },
+                { code: "showed" },
+                { text: ", " },
+                { code: "closed" },
+                { text: ", " },
+                { code: "accepted" },
+                { text: " and " },
+                { code: "rejected" },
+                { text: "." },
+            ],
+            [
+                { text: "The " },
+                { code: "accepted" },
+                { text: " and " },
+                { code: "rejected" },
+                { text: " callbacks are linked to the accept and cancel buttons." }
+            ],
+            [
+                { text: "The " },
+                { code: "showed" },
+                { text: " and " },
+                { code: "closed" },
+                {
+                    text: " callbacks are always called, even when the accepted/rejected callbacks are called."
+                }
+            ]
+        ];
+    }
+
+    DocSection {
+        title: "Modal width and height";
+        description: [
+            [
+                {
+                    text: "The modal's width and height are computed based on its content, but you can use the "
+                },
+                { code: "modal-min/max-*" },
+                { text: " properties to customize them." }
+            ],
+            [
+                { text: "The max values are by default " },
+                { code: "600px" },
+                { text: ", the minimum width is set by default to " },
+                { code: "300px" },
+                { text:" and there is no default value for the minimum height." }
+            ],
+        ];
+    }
+
+    WidgetPresentation {
+        UButton {
+            text: "Open modal";
+            clicked => {
+                UModalLogic.open-modal("modal-dimensions");
+            }
+        }
+    }
+
+    DocCode {
+        code: "UModal {\n    id: \"dimensions-modal\";\n    title: \"Custom limits on width and height\";\n    modal-min-width: 200px;\n    modal-min-height: 200px;\n    modal-max-width: 400px;\n    modal-max-height: 400px;\n    // Your modal's code.\n}";
+    }
+
+    DocSection {
+        title: "Close comportment";
+        description: [
+            [
+                {
+                    text: "By default, the modal will only close when clicking on the close button or the Accept/Cancel buttons."
+                }
+            ],
+            [
+                { text: "You change change this by settings the " },
+                { code: "close-on-accept" },
+                { text: " and " },
+                { code: "close-on-cancel" },
+                { text: " boolean properties." }
+            ],
+            [
+                {
+                    text: "You can also close the modal when clicking on the greyed background when enabling the "
+                },
+                { code: "close-on-click-outside" },
+                { text: " property." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UButton {
+            text: "Open modal";
+            clicked => {
+                UModalLogic.open-modal("modal-close");
+            }
+        }
+    }
+
+    DocCode {
+        code: "UModal {\n    id: \"close-modal\";\n    title: \"Custom close comportment\";\n    close-on-click-outside: true;\n    close-on-accept: false;\n    close-on-cancel: false;\n    // Your modal's code.\n}";
+    }
+
+    DocSection {
+        title: "Content dividers";
+        description: [
+            [
+                {
+                    text: "You can display dividers to have a clear separation between the content and the top and bottom spaces."
+                }
+            ],
+            [
+                { text: "Use the " },
+                { code: "top-divider" },
+                { text: " and " },
+                { code: "bottom-divider" },
+                { text: "properties to enable them." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UButton {
+            text: "Open modal";
+            clicked => {
+                UModalLogic.open-modal("modal-dividers");
+            }
+        }
+    }
+
+    DocCode {
+        code: "UModal {\n    id: \"dividers-modal\";\n    title: \"Display content dividers\";\n    top-divider: true;\n    bottom-divider: true;\n    // Your modal's code.\n}";
+    }
+
+    DocSection {
+        title: "Buttons style";
+        description: [
+            [
+                { text: "You can manage the buttons' variants, danger state and text with the " },
+                { code: "accept/cancel-btn-*" },
+                { text: " properties." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UButton {
+            text: "Open modal";
+            clicked => {
+                UModalLogic.open-modal("modal-buttons-style");
+            }
+        }
+    }
+
+    DocCode {
+        code: "UModal {\n    id: \"buttons-style-modal\";\n    title: \"Custom buttons\";\n    cancel-btn-variant: filled;\n    accept-btn-text: \"Delete\";\n    accept-btn-danger: true;\n    // Your modal's code.\n}";
+    }
+
+    DocSection {
+        title: "Buttons enabled status and toggle";
+        description: [
+            [
+                { text: "You can disable the accept and cancel buttons with the " },
+                { code: "accept/cancel-btn-enabled" },
+                { text: " properties." }
+            ],
+            [
+                { text: "You can hide the buttons with the " },
+                { code: "accept/cancel-btn-toggle" },
+                { text: " properties." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UButton {
+            text: "Open modal";
+            clicked => {
+                UModalLogic.open-modal("modal-buttons-toggles");
+            }
+        }
+    }
+
+    DocCode {
+        code: "UModal {\n    id: \"buttons-toggles-modal\";\n    title: \"Disabled and hidden buttons\";\n    accept-btn-enabled: false;\n    cancel-btn-toggle: false;\n    // Your modal's code.\n}";
     }
 }

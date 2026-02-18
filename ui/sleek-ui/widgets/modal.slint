@@ -6,9 +6,22 @@ import { UButton, UButtonVariant } from "button/button.slint";
 import { UIconButton, UIconButtonVariant } from "icon-button/icon-button.slint";
 import { UTitle } from "title.slint";
 
+export global UModalLogic {
+    out property <string> current-id;
+    out property <bool> show-modal;
+    public function open-modal(id: string) {
+        self.current-id = id;
+        self.show-modal = true;
+    }
+    public function close-modal() {
+        self.show-modal = false;
+    }
+}
 
 export component UModal {
+    private property <bool> is-opened: id == UModalLogic.current-id && UModalLogic.show-modal;
 	// Regular properties
+	in-out property <string> id;
     in-out property <string> title;
     in-out property <bool> top-divider: false;
     in-out property <bool> bottom-divider: false;
@@ -35,14 +48,15 @@ export component UModal {
     // Both callbacks are linked to the Cancel/No and Accept/Done/Ok buttons.
 	callback accepted();
     callback rejected();
-    public function show() {
-        self.visible = true;
-        rect-background-focus.focus();
-        self.showed();
-    }
-    public function close() {
-        self.visible = false;
-        self.closed();
+    changed is-opened => {
+        if is-opened {
+            self.visible = true;
+            rect-background-focus.focus();
+            self.showed();
+        } else {
+            self.visible = false;
+            self.closed();
+        }
     }
     visible: false;
     width: 100%;
@@ -50,18 +64,20 @@ export component UModal {
     Rectangle {
         width: 100%;
         height: 100%;
-        background: UAppTheme.color-fill-plus;
-        touch-background := TouchArea {
-            clicked => {
-                if root.close-on-click-outside {
-                    root.close();
-                }
-            }
-        }
+        background: UAppTheme.color-fill-plus.with-alpha(0.5);
 
         // Used to skip focus directly to the modal.
 		// This avoid having to focus all the elements in the window before getting to the modal.
 		rect-background-focus := FocusScope { }
+
+        touch-background := TouchArea {
+            clicked => {
+                debug("testeing");
+                if root.close-on-click-outside {
+                    UModalLogic.close-modal();
+                }
+            }
+        }
     }
 
     VerticalLayout {
@@ -102,7 +118,7 @@ export component UModal {
                                 variant: text;
                                 icon: @image-url("../assets/icons/x.svg");
                                 clicked => {
-                                    root.close();
+                                    UModalLogic.close-modal();
                                 }
                                 accessible-label: @tr("Close the modal.");
                             }
@@ -140,7 +156,7 @@ export component UModal {
                                     root.rejected();
                                     self.loading = false;
                                     if close-on-cancel {
-                                        root.close();
+                                        UModalLogic.close-modal();
                                     }
                                 }
                             }
@@ -154,7 +170,7 @@ export component UModal {
                                     root.accepted();
                                     self.loading = false;
                                     if close-on-accept {
-                                        root.close();
+                                        UModalLogic.close-modal();
                                     }
                                 }
                             }

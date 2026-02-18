@@ -63,6 +63,7 @@ export component DocSection inherits Rectangle {
         echo-timer.start();
     }
     VerticalLayout {
+        padding-top: UAppTheme.padding-big;
         if title != "": DocTitle {
             text: root.title;
         }

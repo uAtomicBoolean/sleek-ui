@@ -18,9 +18,11 @@ import { UAppTheme } from "sleek-ui/app-theme.slint";
 import { Sidebar } from "components/sidebar.slint";
 import { PageManager } from "components/page-manager.slint";
 import { Palette } from "std-widgets.slint";
-import { UMenuLogic, UTooltip } from "sleek-ui/widgets.slint";
+import { UMenuLogic, UTooltip, UModal, UText } from "sleek-ui/widgets.slint";
+import { AppLogic } from "app-logic.slint";
 
-export { UAppTheme }
+
+export { UAppTheme, AppLogic }
 
 
 export component AppWindow inherits Window {
@@ -35,7 +37,7 @@ export component AppWindow inherits Window {
     preferred-height: 720px;
     background: UAppTheme.bg-container;
     init => {
-        UMenuLogic.current-link = "radio-button";
+        UMenuLogic.current-link = "modal";
     }
     FocusScope {
         HorizontalLayout {
@@ -47,19 +49,111 @@ export component AppWindow inherits Window {
 
     UTooltip { }
 
-    // modal := UModal {
-    //     title: "Modal example";
-    //     modal-min-width: 400px;
-    //     modal-max-width: 400px;
-    //     modal-min-height: 200px;
-    //     modal-max-height: 400px;
-    //     VerticalLayout {
-    //         alignment: start;
-    //         UText {
-    //             text: "This part of the modal takes children components hence is fully customizable.";
-    //         }
-    //     }
-    // }
-}
+    UModal {
+        id: "modal-base";
+        title: "Modal example";
+        VerticalLayout {
+            alignment: start;
+            UText {
+                text: "This part of the modal takes children components hence is fully customizable.";
+                wrap: word-wrap;
+            }
+        }
+    }
 
-export { AppLogic } from "app-logic.slint";
+    UModal {
+        id: "modal-dimensions";
+        title: "Custom limits on width and height";
+        modal-min-width: 200px;
+        modal-max-width: 400px;
+        modal-min-height: 200px;
+        modal-max-height: 400px;
+        VerticalLayout {
+            alignment: start;
+            UText {
+                text: "This part of the modal takes children components hence is fully customizable.";
+                wrap: word-wrap;
+            }
+        }
+    }
+
+    UModal {
+        id: "modal-close";
+        title: "Custom close comportment";
+        modal-min-width: 200px;
+        modal-max-width: 400px;
+        modal-min-height: 200px;
+        modal-max-height: 400px;
+        close-on-click-outside: true;
+        close-on-accept: false;
+        close-on-cancel: false;
+        VerticalLayout {
+            alignment: start;
+            spacing: UAppTheme.spacing-base;
+            UText {
+                text: "Both the Accept and Cancel buttons do not close the modal anymore.";
+                wrap: word-wrap;
+            }
+
+            UText {
+                text: "However, you can now close the modal by clicking on the greyed background.";
+                wrap: word-wrap;
+            }
+        }
+    }
+
+    UModal {
+        id: "modal-dividers";
+        title: "Display content dividers";
+        modal-min-width: 200px;
+        modal-max-width: 400px;
+        modal-min-height: 200px;
+        modal-max-height: 400px;
+        top-divider: true;
+        bottom-divider: true;
+        VerticalLayout {
+            alignment: start;
+            UText {
+                text: "The main content is now clearly separated from the top and bottom spaces.";
+                wrap: word-wrap;
+            }
+        }
+    }
+
+    UModal {
+        id: "modal-buttons-style";
+        title: "Custom buttons style";
+        modal-min-width: 200px;
+        modal-max-width: 400px;
+        modal-min-height: 200px;
+        modal-max-height: 400px;
+        cancel-btn-variant: filled;
+        accept-btn-text: "Delete";
+        accept-btn-danger: true;
+        VerticalLayout {
+            alignment: start;
+            UText {
+                text: "The accept and cancel buttons can be customized to suit your needs.";
+                wrap: word-wrap;
+            }
+        }
+    }
+
+    UModal {
+        id: "modal-buttons-toggles";
+        title: "Disabled and hidden buttons";
+        modal-min-width: 200px;
+        modal-max-width: 400px;
+        modal-min-height: 200px;
+        modal-max-height: 400px;
+        accept-btn-enabled: false;
+        cancel-btn-toggle: false;
+        VerticalLayout {
+            alignment: start;
+            UText {
+                text: "The accept button is now disabled and the cancel button is hidden.";
+                wrap: word-wrap;
+            }
+        }
+    }
+}
