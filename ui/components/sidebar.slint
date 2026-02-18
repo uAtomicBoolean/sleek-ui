@@ -16,10 +16,11 @@ export component Sidebar inherits Rectangle {
     width: 250px;
     HorizontalLayout {
         UScrollView {
-            width: root.width;
+            width: parent.width;
             VerticalLayout {
-                width: root.width;
-                padding-bottom: 24px;
+                padding: UAppTheme.padding-base;
+                padding-right: parent.scrollbar-area;
+                padding-bottom: 32px;
                 UMenu {
                     current-link: "home";
                     UMenuLink {
