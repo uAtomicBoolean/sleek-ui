@@ -106,7 +106,10 @@ export component ThemingPage inherits PageBase {
         description: [
             [
                 { text: "As mentioned previously, SleekUI uses the " },
-                { link: "Palette.color-scheme", id: "palette" },
+                {
+                    link: "Palette.color-scheme",
+                    url: "https://docs.slint.dev/latest/docs/slint/reference/std-widgets/globals/palette/"
+                },
                 { text: " property to determine which theme to use." }
             ],
             [
@@ -122,10 +125,8 @@ export component ThemingPage inherits PageBase {
                 { text: " property which then defines the values of all the design tokens." }
             ]
         ];
-        link-clicked(id) => {
-            if id == "palette" {
-                AppLogic.open-url("https://docs.slint.dev/latest/docs/slint/reference/std-widgets/globals/palette/");
-            }
+        link-clicked(url) => {
+            AppLogic.open-url(url);
         }
     }
 
@@ -134,24 +135,22 @@ export component ThemingPage inherits PageBase {
         description: [
             [
                 { text: "As SleekUI is based on " },
-                { link: "Ant Design", id: "ant-design" },
+                { link: "Ant Design", url: "https://ant.design/" },
                 { text: ", you have a set of pre-declared colors available " },
-                { link: "here", id: "default-colors" },
+                { link: "here", url: "default-colors" },
                 { text: "." }
             ],
             [
                 { text: "You can also use the official " },
-                { link: "Ant Design theme editor", id: "theme-editor" },
+                { link: "Ant Design theme editor", url: "https://ant.design/theme-editor" },
                 { text: "To easily generate colors for your application." }
             ]
         ];
-        link-clicked(id) => {
-            if id == "default-colors" {
+        link-clicked(url) => {
+            if url == "default-colors" {
                 UMenuLogic.current-link = "default-colors";
-            } else if id == "ant-design" {
-                AppLogic.open-url("https://ant.design/");
-            } else if id == "theme-editor" {
-                AppLogic.open-url("https://ant.design/theme-editor");
+            } else {
+                AppLogic.open-url(url);
             }
         }
     }

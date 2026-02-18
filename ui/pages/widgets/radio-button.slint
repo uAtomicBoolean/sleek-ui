@@ -32,7 +32,7 @@ export component RadioButtonPage inherits PageBase {
         description: [
             [
                 { text: "A radio button takes a list of " },
-                { link:"UOptionData", id: "option-data" },
+                { link:"UOptionData", url: "option-data" },
                 { text: " and return the currently selected value with the " },
                 { code: "selected-value" },
                 { text:" property." }
@@ -43,10 +43,8 @@ export component RadioButtonPage inherits PageBase {
                 { text: " property is useless for this widget." }
             ]
         ];
-        link-clicked(id) => {
-            if id == "option-data" {
-                UMenuLogic.current-link = "option-data";
-            }
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
         }
     }
 

@@ -30,7 +30,7 @@ export component SelectPage inherits PageBase {
                 { text:"You can set the options with the " },
                 { code: "options" },
                 { text: " property, an option being of type " },
-                { link: "OptionData", id: "optiondata" },
+                { link: "OptionData", url: "optiondata" },
                 { text:"." }
             ],
             [
@@ -41,10 +41,8 @@ export component SelectPage inherits PageBase {
                 }
             ]
         ];
-        link-clicked(id) => {
-            if id == "optiondata" {
-                UMenuLogic.current-link = "option-data";
-            }
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
         }
     }
 

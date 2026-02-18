@@ -21,7 +21,10 @@ export component HowToUsePage inherits PageBase {
         description: [
             [
                 { text: "1. Download the library from the latest release on its " },
-                { link: "github repository", id: "github" },
+                {
+                    link: "github repository",
+                    url: "https://github.com/uAtomicBoolean/sleek-ui/releases"
+                },
                 { text: "." }
             ],
             [
@@ -31,16 +34,15 @@ export component HowToUsePage inherits PageBase {
             ],
             [
                 { text: "3. Add Sleek-ui as a library following the " },
-                { link: "official documentation", id: "official-doc" },
+                {
+                    link: "official documentation",
+                    url: "https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries"
+                },
                 { text: "." }
             ]
         ];
-        link-clicked(id) => {
-            if id == "github" {
-                AppLogic.open-url("https://github.com/uAtomicBoolean/sleek-ui/releases");
-            } else if id == "official-doc" {
-                AppLogic.open-url("https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries");
-            }
+        link-clicked(url) => {
+            AppLogic.open-url(url);
         }
     }
 
@@ -65,7 +67,10 @@ export component HowToUsePage inherits PageBase {
         description: [
             [
                 { text: "SleekUI comes with design tokens fully available in the " },
-                { link: "UAppTheme", id: "app-theme" },
+                {
+                    link: "UAppTheme",
+                    url: "https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/app-theme.slint"
+                },
                 { text: " global." }
             ],
             [
@@ -74,8 +79,8 @@ export component HowToUsePage inherits PageBase {
                 }
             ]
         ];
-        link-clicked(id) => {
-            AppLogic.open-url("https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/app-theme.slint");
+        link-clicked(url) => {
+            AppLogic.open-url(url);
         }
     }
 

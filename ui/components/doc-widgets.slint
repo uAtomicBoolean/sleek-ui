@@ -44,7 +44,7 @@ export component WidgetPresentation inherits HorizontalLayout {
 
 // Elements for the description of DocSection.
 struct DescStyledText {
-	id: string,
+	url: string,
 	text: string,
 	link: string,
 	code: string,
@@ -77,7 +77,7 @@ export component DocSection inherits Rectangle {
                     }
                     if item.link != "": ULink {
                         text: item.link;
-                        clicked => root.link-clicked(item.id);
+                        clicked => root.link-clicked(item.url);
                     }
                     if item.code != "": UCode {
                         type: inline;

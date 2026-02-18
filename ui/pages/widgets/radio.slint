@@ -32,16 +32,14 @@ export component RadioPage inherits PageBase {
         description: [
             [
                 { text: "A radio takes a list of " },
-                { link:"UOptionData", id: "option-data" },
+                { link:"UOptionData", url: "option-data" },
                 { text: " and return the currently selected value with the " },
                 { code: "selected-value" },
                 { text:" property." }
             ]
         ];
-        link-clicked(id) => {
-            if id == "option-data" {
-                UMenuLogic.current-link = "option-data";
-            }
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
         }
     }
 

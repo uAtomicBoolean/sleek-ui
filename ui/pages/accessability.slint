@@ -35,18 +35,20 @@ export component AccessabilityPage inherits PageBase {
             ],
             [
                 { text: "You can look at the " },
-                { link: "UButton", id: "button" },
+                {
+                    link: "UButton",
+                    url: "https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/widgets/button/button.slint"
+                },
                 { text: " or " },
-                { link: "USlider", id: "slider" },
+                {
+                    link: "USlider",
+                    url: "https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/widgets/slider.slint"
+                },
                 { text: " implementation to get an idea of what has been done in SleekUI." },
             ]
         ];
-        link-clicked(id) => {
-            if id == "button" {
-                AppLogic.open-url("https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/widgets/button/button.slint");
-            } else if id == "slider" {
-                AppLogic.open-url("https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/widgets/slider.slint");
-            }
+        link-clicked(url) => {
+            AppLogic.open-url(url);
         }
     }
 
@@ -60,12 +62,12 @@ export component AccessabilityPage inherits PageBase {
             ],
             [
                 { text: "Take the " },
-                { link: "slider", id: "slider" },
+                { link: "slider", url: "slider" },
                 { text: " as an example, you can change its value with the keyboard arrow keys." }
             ],
             [
                 { text: "Moreover, the " },
-                { link: "ButtonInterface", id: "button-interface" },
+                { link: "ButtonInterface", url: "button-interface" },
                 { text: " widget fires the " },
                 { code: "clicked" },
                 {
@@ -73,8 +75,8 @@ export component AccessabilityPage inherits PageBase {
                 }
             ]
         ];
-        link-clicked(id) => {
-            UMenuLogic.current-link = id;
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
         }
     }
 
@@ -90,12 +92,12 @@ export component AccessabilityPage inherits PageBase {
                 { text: "This is made possible with the " },
                 { code: "has-tab-focus" },
                 { text: " property from " },
-                { link: "ButtonInterface", id: "button-interface" }
+                { link: "ButtonInterface", url: "button-interface" }
             ],
             [{ text: "You can check the tab navigation display by pressing tab." }]
         ];
-        link-clicked(id) => {
-            UMenuLogic.current-link = id;
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
         }
     }
 
