@@ -62,14 +62,6 @@ export component UModal {
         // Used to skip focus directly to the modal.
 		// This avoid having to focus all the elements in the window before getting to the modal.
 		rect-background-focus := FocusScope { }
-
-        accessible-role: button;
-        accessible-label: @tr("Background panel for modal.");
-        accessible-description: @tr("Close the modal if is is enabled.");
-        accessible-enabled: close-on-click-outside;
-        accessible-action-default => {
-            touch-background.clicked();
-        }
     }
 
     VerticalLayout {
@@ -101,7 +93,6 @@ export component UModal {
                                 text: title;
                                 wrap: no-wrap;
                                 overflow: elide;
-                                accessible-label: @tr("Title for the modal");
                             }
                         }
 
@@ -113,7 +104,7 @@ export component UModal {
                                 clicked => {
                                     root.close();
                                 }
-                                accessible-label: @tr("Close button for modal.");
+                                accessible-label: @tr("Close the modal.");
                             }
                         }
                     }
@@ -152,7 +143,6 @@ export component UModal {
                                         root.close();
                                     }
                                 }
-                                accessible-label: @tr("Cancel or refuse button for modal.");
                             }
                             if accept-btn-toggle: UButton {
                                 variant: accept-btn-variant;
@@ -167,7 +157,6 @@ export component UModal {
                                         root.close();
                                     }
                                 }
-                                accessible-label: @tr("Accept or done button for modal.");
                             }
                         }
                     }
