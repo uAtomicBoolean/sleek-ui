@@ -1,4 +1,4 @@
-# SleekUI <!-- omit in toc -->
+# sleek-ui <!-- omit in toc -->
 A UI components library built with/for [Slint](https://github.com/slint-ui/slint) based on [ant design](https://ant.design).  
 <br />
 <br />
@@ -11,7 +11,7 @@ A UI components library built with/for [Slint](https://github.com/slint-ui/slint
 <br />
 
 ## Documentation
-[Check out the interactive documentation.](https://uatomicboolean.github.io/SleekUI/)
+[Check out the interactive documentation.](https://uatomicboolean.github.io/sleek-ui/)
 
 ## Installation
 1. Download the library's archive from the latest release.
