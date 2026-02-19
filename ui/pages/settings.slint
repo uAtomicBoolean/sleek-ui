@@ -140,7 +140,7 @@ export component SettingsPage inherits PageBase {
                 step: 25;
                 display-steps: true;
                 released(value) => {
-                    debug(value);
+                    AppLogic.update-scale-factor(value);
                 }
             }
         }
