@@ -1,4 +1,9 @@
+import { UPrimaryColor } from "sleek-ui/structs/theme.slint";
+
+
 export global AppLogic {
+    in-out property <float> scale-factor: 100;
     pure callback is-wasm() -> bool;
     pure callback open-url(url: string);
+    pure callback change-primary-color(color: UPrimaryColor);
 }
