@@ -12,6 +12,17 @@ fn main() {
 
     let app_logic = ui.global::<AppLogic>();
 
+	app_logic.set_scale_factor(ui.window().scale_factor() * 100.0);
+
+    let ui_weak = ui.as_weak();
+    app_logic.on_update_scale_factor(move |sf| {
+        let ui = ui_weak.upgrade().unwrap();
+        ui.window()
+            .dispatch_event(slint::platform::WindowEvent::ScaleFactorChanged {
+                scale_factor: sf / 100.0,
+            });
+    });
+
     app_logic.on_is_wasm(|| {
         return true;
     });
@@ -23,17 +34,6 @@ fn main() {
             println!("{}", err.to_string());
         }
     });
-
-    // let options_bar_logic = ui.global::<OptionsBarLogic>();
-
-    // options_bar_logic.on_change_primary_color({
-    //     let ui_weak = ui.as_weak();
-    //     move |style| {
-    //         let ui = ui_weak.unwrap();
-    //         let app_theme = ui.global::<UAppTheme>();
-    //         app_theme.set_primary_color_style(style);
-    //     }
-    // });
 
     ui.run().unwrap();
 }
