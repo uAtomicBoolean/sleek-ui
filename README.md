@@ -3,19 +3,15 @@ A UI components library built with/for [Slint](https://github.com/slint-ui/slint
 <br />
 <br />
 <br />
-
 <p align="center">
-	<img src="images/widgets_gallery.png" width="500px" />
+	<img src="images/home-page.png" />
 </p>
 <br />
 <br />
 <br />
 
-## Table of content <!-- omit in toc -->
-- [Installation](#installation)
-- [How to use](#how-to-use)
-	- [Use the widgets](#use-the-widgets)
-- [Resources](#resources)
+## Documentation
+[Check out the interactive documentation.](https://uatomicboolean.github.io/SleekUI/)
 
 ## Installation
 1. Download the library's archive from the latest release.
@@ -23,9 +19,7 @@ A UI components library built with/for [Slint](https://github.com/slint-ui/slint
 3. [Add a library path](https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries) to use it with `@sleek-ui` in your slint code.
 
 ## How to use
-### Use the widgets
 Import the widgets from the `@sleek-ui/widgets.slint` file.  
-Import the widgets' themes from the `@sleek-ui/widget-themes.slint` file.  
 
 ```slint
 import { UText, UButton } from "@sleek-ui/widgets.slint";
@@ -39,7 +33,6 @@ export component AppWindow inherits Window {
 
 		HorizontalLayout {
 			alignment: center;
-			// Using the default theme.
 			UText {
 				text: "Counter: \{counter}";
 			}
@@ -47,8 +40,7 @@ export component AppWindow inherits Window {
 
 		HorizontalLayout {
 			alignment: center;
-			spacing: 4px;
-			// Using one of the premade theme.
+			spacing: UAppTheme.spacing-base;
 			UButton {
 				variant: primary;
 				text: "Decrement";
@@ -64,7 +56,6 @@ export component AppWindow inherits Window {
 				}
 			}
 
-			// Each button's theme has a danger variant.
 			UButton {
 				variant: primary;
 				danger: true;
