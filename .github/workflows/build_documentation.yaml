@@ -1,11 +1,7 @@
 name: Build & deploy documentation
 run-name: Build & deploy documentation
 
-on:
-  push:
-    tags:
-      - '*.*.*'
-  workflow_dispatch:
+on: workflow_dispatch
 
 permissions:
   contents: read
@@ -48,7 +44,7 @@ jobs:
         with:
           # Upload entire repository
           path: 'index.html'
-	
+  
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
