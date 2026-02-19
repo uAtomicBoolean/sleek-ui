@@ -3,7 +3,7 @@ run-name: Build & deploy documentation to Github Pages
 
 on:
   push:
-    branches: ["33-chore-build-a-real-documentation"]
+    branches: ["main"]
     #tags:
     #  - '*.*.*'
   # Allows you to run this workflow manually from the Actions tab
