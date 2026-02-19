@@ -1,10 +1,12 @@
-name: Build & deploy documentation
-run-name: Build & deploy documentation
+name: Build & deploy documentation to Github Pages
+run-name: Build & deploy documentation to Github Pages
 
 on:
   push:
-    tags:
-      - '*.*.*'
+    branches: ["main"]
+    #tags:
+    #  - '*.*.*'
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 permissions:
@@ -38,17 +40,16 @@ jobs:
         run: cargo install wasm-pack
 
       - name: Build WASM
-        run: wasm-pack build --released --target web
-      
+        run: wasm-pack build --release --target web --out-dir wasm-doc/pkg
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: 'index.html'
-	
+          path: 'wasm-doc/'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
