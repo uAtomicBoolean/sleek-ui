@@ -46,6 +46,12 @@ export component USlider inherits ButtonInterface {
             value = next-step-down;
         }
     }
+    callback released(value: float);
+    changed pressed => {
+        if !root.pressed {
+            root.released(root.value)
+        }
+    }
     clicked => {
         update-value();
     }

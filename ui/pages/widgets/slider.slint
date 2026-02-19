@@ -101,6 +101,28 @@ export component SliderPage inherits PageBase {
     }
 
     DocSection {
+        title: "Handle position and released callback";
+        description: [
+            [
+                {
+                    text: "You can get the current handle's position (relative to the slider) with the "
+                },
+                { code: "handle-pos" },
+                { text: " property." }
+            ],
+            [
+                { text: "When releasing the slider after dragging it or clicking on it, the " },
+                { code: "released(value: float)" },
+                { text: " callback will be fired." }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "slider := USlider {\n    width: 300px;\n    released(value) => {\n        debug(value);\n    }\n}\n\nUText {\n    text: \"\\{slider.handle-pos}\";\n}";
+    }
+
+    DocSection {
         title: "Orientation";
         description: [
             [
