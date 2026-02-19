@@ -158,7 +158,7 @@ export component SettingsPage inherits PageBase {
         }
     }
 
-    DocSection {
+    if !AppLogic.is-wasm(): DocSection {
         title: "Scale factor";
         description: [
             [
@@ -166,8 +166,7 @@ export component SettingsPage inherits PageBase {
             ]
         ];
     }
-
-    CompleteSlider {
+    if !AppLogic.is-wasm(): CompleteSlider {
         min-value: 50;
         max-value: 200;
         step: 25;
@@ -177,7 +176,6 @@ export component SettingsPage inherits PageBase {
             AppLogic.update-scale-factor(value);
         }
     }
-
     DocSection {
         title: "Base radius";
         description: [
