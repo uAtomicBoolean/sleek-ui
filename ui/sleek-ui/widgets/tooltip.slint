@@ -48,7 +48,7 @@ export component UTooltip {
     content := Rectangle {
         z: 100;
         background: UAppTheme.bg-spotlight;
-        border-radius: UAppTheme.radius-base;
+        border-radius: clamp(UAppTheme.radius-base, 0, 4px);
         opacity: has_waited ? 1 : 0;
         HorizontalLayout {
             padding: UAppTheme.padding-base;

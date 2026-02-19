@@ -30,7 +30,7 @@ export component USlider inherits ButtonInterface {
     out property <length> handle-pos: ((value - min-value) / (max-value - min-value)) * (is-horizontal ? root.width : root.height);
     private property <length> base-handle-size: 14px;
     private property <bool> is-horizontal: orientation == Orientation.horizontal;
-    private property <int> number-of-steps: Math.abs(min-value - max-value) / step;
+    private property <int> number-of-steps: abs(min-value - max-value) / step;
     changed value => {
         value = clamp(root.value, min-value, max-value);
     }
@@ -38,8 +38,8 @@ export component USlider inherits ButtonInterface {
         let pos-value = is-horizontal ? root.mouse-x : (root.height - root.mouse-y);
         let max-length = is-horizontal ? root.width : root.height;
         let raw-value = min-value + (max-value - min-value) * (pos-value / max-length);
-        let next-step-up = Math.ceil(raw-value / step) * step;
-        let next-step-down = Math.floor(raw-value / step) * step;
+        let next-step-up = ceil(raw-value / step) * step;
+        let next-step-down = floor(raw-value / step) * step;
         if (raw-value >= value && raw-value >= next-step-up - (step / 2)) {
             value = next-step-up;
         } else if (raw-value < value && raw-value <= next-step-down + (step / 2)) {

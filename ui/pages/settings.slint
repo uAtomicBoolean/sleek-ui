@@ -69,6 +69,52 @@ component ColorDisplay inherits Rectangle {
     }
 }
 
+component CompleteSlider inherits VerticalLayout {
+    in-out property <float> value <=> slider.value;
+    in-out property <float> min-value;
+    in-out property <float> max-value;
+    in-out property <float> step;
+    in-out property <string> value-suffix;
+    callback released <=> slider.released;
+    HorizontalLayout {
+        alignment: start;
+        spacing: UAppTheme.spacing-big;
+        padding-top: UAppTheme.padding-big;
+        text-left := UText {
+            text: "\{min-value}\{value-suffix}";
+            font-weight: 600;
+        }
+
+        VerticalLayout {
+            alignment: center;
+            slider := USlider {
+                width: 300px;
+                min-value: root.min-value;
+                max-value: root.max-value;
+                step: step;
+                display-steps: true;
+            }
+        }
+
+        UText {
+            text: "\{max-value}\{value-suffix}";
+            font-weight: 600;
+        }
+    }
+
+    HorizontalLayout {
+        alignment: start;
+        padding-top: UAppTheme.padding-base;
+        VerticalLayout {
+            Text {
+                x: text-left.width + slider.handle-pos;
+                text: "\{value}\{value-suffix}";
+                font-weight: 600;
+            }
+        }
+    }
+}
+
 export component SettingsPage inherits PageBase {
     private property <[{ name: string, color: UPrimaryColor}]> colors: [
         { name: "Dust red", color: UAppTheme.dust-red },
@@ -121,45 +167,43 @@ export component SettingsPage inherits PageBase {
         ];
     }
 
-    HorizontalLayout {
-        alignment: start;
-        spacing: UAppTheme.spacing-big;
-        padding-top: UAppTheme.padding-big;
-        text-left := UText {
-            text: "50%";
-            font-weight: 600;
-        }
-
-        VerticalLayout {
-            alignment: center;
-            slider := USlider {
-                width: 300px;
-                value <=> AppLogic.scale-factor;
-                min-value: 50;
-                max-value: 200;
-                step: 25;
-                display-steps: true;
-                released(value) => {
-                    AppLogic.update-scale-factor(value);
-                }
-            }
-        }
-
-        UText {
-            text: "200%";
-            font-weight: 600;
+    CompleteSlider {
+        min-value: 50;
+        max-value: 200;
+        step: 25;
+        value <=> AppLogic.scale-factor;
+        value-suffix: "%";
+        released(value) => {
+            AppLogic.update-scale-factor(value);
         }
     }
 
-    HorizontalLayout {
-        alignment: start;
-        padding-top: UAppTheme.padding-base;
-        VerticalLayout {
-            Text {
-                x: text-left.width + slider.handle-pos;
-                text: "\{AppLogic.scale-factor}%";
-                font-weight: 600;
-            }
+    DocSection {
+        title: "Base radius";
+        description: [
+            [
+                { text: "Change the application's scale factor using the slint's scale factor." }
+            ],
+            [
+                {
+                    text: "Please note that some widgets are clamped to a maximum border radius (4px)."
+                }
+            ],
+            [
+                { text: "This avoid having weird looking widgets (UCard, UModal, UTooltip, etc)." }
+            ]
+        ];
+    }
+
+    CompleteSlider {
+        min-value: 0;
+        max-value: 20;
+        value: UAppTheme.radius-base / 1px;
+        step: 2;
+        value-suffix: "px";
+        released(value) => {
+            UAppTheme.light.radius-base = value * 1px;
+            UAppTheme.dark.radius-base = value * 1px;
         }
     }
 }

@@ -24,7 +24,7 @@ export component UNotification inherits Rectangle {
     callback clicked <=> btn-interface.clicked;
     width: 300px;
     background: UAppTheme.bg-elevated;
-    border-radius: clamp(UAppTheme.radius-base, 0, UAppTheme.radius-medium);
+    border-radius: clamp(UAppTheme.radius-base, 0, 4px);
     border-width: btn-interface.has-tab-focus ? UAppTheme.focus-border-width : 0;
     border-color: btn-interface.has-tab-focus ? UAppTheme.focus-color : transparent;
     drop-shadow-blur: UAppTheme.shadow-blur;
