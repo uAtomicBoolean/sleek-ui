@@ -1,6 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
 import { ButtonInterface } from "button-interface.slint";
-import { IconTextPlacement } from "../structs/icon-placement.slint";
+import { IconTextPlacement } from "../structs/data-structs.slint";
 import { UText } from "text.slint";
 
 
@@ -17,7 +17,7 @@ export component UCheckbox inherits ButtonInterface {
     in-out property <string> text;
     in-out property <IconTextPlacement> text-placement: text != "" ? start : hidden;
     in-out property <LayoutAlignment> alignment: space-between;
-    border-radius: clamp(UAppTheme.radius-base, 0, UAppTheme.radius-medium);
+    border-radius: clamp(UAppTheme.radius-base, 0, 4px);
     HorizontalLayout {
         alignment: root.alignment;
         spacing: UAppTheme.spacing-base;
@@ -37,7 +37,7 @@ export component UCheckbox inherits ButtonInterface {
             alignment: center;
             Rectangle {
                 border-width: UAppTheme.border-width-base;
-                border-radius: clamp(UAppTheme.radius-base, 0, UAppTheme.radius-medium);
+                border-radius: clamp(UAppTheme.radius-base, 0, 4px);
                 border-color: UAppTheme.border;
                 width: UAppTheme.icon-size-base;
                 height: UAppTheme.icon-size-base;

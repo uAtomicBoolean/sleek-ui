@@ -1,28 +1,42 @@
 import { UText } from "text.slint";
-import { UCenter } from "../layouts/center.slint";
 import { UAppTheme } from "../app-theme.slint";
 
 
-enum TooltipPosition {
+enum UTooltipPosition {
 	top,
 	bottom,
 	left,
 	right
 }
 
+export global UTooltipLogic {
+    out property <bool> user_hovering;
+    out property <string> text;
+    out property <UTooltipPosition> position;
+    out property <length> x;
+    out property <length> y;
+    out property <length> width;
+    out property <length> height;
+    public function display(text: string, position: string, user_hovering: bool, coords: Point, width: length, height: length) {
+        self.user_hovering = user-hovering;
+        if self.user_hovering {
+            self.text = text;
+            self.position = position == "left" ? UTooltipPosition.left : position == "right" ? UTooltipPosition.right : position == "bottom" ? UTooltipPosition.bottom : UTooltipPosition.top;
+            self.x = coords.x;
+            self.y = coords.y;
+            self.width = width;
+            self.height = height;
+        }
+    }
+}
+
 export component UTooltip {
 	// Regular properties
-    in-out property <string> text;
-    in-out property <TooltipPosition> position: top;
     in-out property <duration> delay: 250ms;
-    in-out property <bool> user_is_hovering: false;
-    in-out property <length> inner-x;
-    in-out property <length> inner-y;
-    in-out property <length> inner-width;
-    in-out property <length> inner-height;
-    in-out property <length> tooltip-max-width: 150px * UAppTheme.scale-factor;
+    in-out property <length> tooltip-max-width: 150px;
     in-out property <length> tooltip-max-height;
     private property <bool> has_waited: false;
+    private property <bool> user_is_hovering: UTooltipLogic.user_hovering;
     z: 100;
     x: compute-x-position();
     y: compute-y-position();
@@ -33,31 +47,28 @@ export component UTooltip {
     }
     content := Rectangle {
         z: 100;
-        Rectangle {
-            z: 100;
-            background: UAppTheme.bg-inverse;
-            border-radius: UAppTheme.radius-base;
-            opacity: has_waited ? 1 : 0;
-            HorizontalLayout {
-                padding: UAppTheme.padding-base;
-                UText {
-                    opacity: has_waited ? 1 : 0;
-                    text: text;
-                    color: UAppTheme.inverse-text;
-                    font-size: UAppTheme.font-size-small;
-                    wrap: word-wrap;
-                    max-width: tooltip-max-width;
-                    max-height: tooltip-max-height;
-                    animate opacity { duration: UAppTheme.animation-duration; }
-                }
+        background: UAppTheme.bg-spotlight;
+        border-radius: clamp(UAppTheme.radius-base, 0, 4px);
+        opacity: has_waited ? 1 : 0;
+        HorizontalLayout {
+            padding: UAppTheme.padding-base;
+            UText {
+                opacity: has_waited ? 1 : 0;
+                text: UTooltipLogic.text;
+                color: UAppTheme.inverse-text;
+                font-size: UAppTheme.font-size-small;
+                wrap: word-wrap;
+                max-width: tooltip-max-width;
+                max-height: tooltip-max-height;
+                animate opacity { duration: UAppTheme.animation-duration; }
             }
-
-            animate opacity { duration: UAppTheme.animation-duration; }
         }
+
+        animate opacity { duration: UAppTheme.animation-duration; }
     }
 
     Timer {
-        running: parent.user_is_hovering;
+        running: user_is_hovering;
         interval: delay;
         triggered => {
             has_waited = true;
@@ -65,23 +76,23 @@ export component UTooltip {
     }
 
     function compute-x-position() -> length {
-        if (position == TooltipPosition.top || position == TooltipPosition.bottom) {
-            return inner-x - (content.width / 2 - inner-width / 2);
-        } else if (position == TooltipPosition.left) {
-            return inner-x - content.width - UAppTheme.spacing-base;
-        } else if (position == TooltipPosition.right) {
-            return inner-x + inner-width + UAppTheme.spacing-base;
+        if (UTooltipLogic.position == UTooltipPosition.left) {
+            return UTooltipLogic.x - content.width - UAppTheme.spacing-base;
+        } else if (UTooltipLogic.position == UTooltipPosition.right) {
+            return UTooltipLogic.x + UTooltipLogic.width + UAppTheme.spacing-base;
+        } else if (UTooltipLogic.position == UTooltipPosition.top || UTooltipLogic.position == UTooltipPosition.bottom) {
+            return UTooltipLogic.x - (content.width - UTooltipLogic.width) / 2;
         }
-        return inner-x;
+        return UTooltipLogic.x;
     }
     function compute-y-position() -> length {
-        if (position == TooltipPosition.top) {
-            return inner-y - content.height - UAppTheme.spacing-base;
-        } else if (position == TooltipPosition.bottom) {
-            return inner-y + inner-height + UAppTheme.spacing-base;
-        } else if (position == TooltipPosition.left || position == TooltipPosition.right) {
-            return inner-y - (content.height / 2 - inner-height / 2);
+        if (UTooltipLogic.position == UTooltipPosition.top) {
+            return UTooltipLogic.y - content.height - UAppTheme.spacing-base;
+        } else if (UTooltipLogic.position == UTooltipPosition.bottom) {
+            return UTooltipLogic.y + UTooltipLogic.height + UAppTheme.spacing-base;
+        } else if (UTooltipLogic.position == UTooltipPosition.left || UTooltipLogic.position == UTooltipPosition.right) {
+            return UTooltipLogic.y - (content.height - UTooltipLogic.height) / 2;
         }
-        return inner-y;
+        return UTooltipLogic.y;
     }
 }

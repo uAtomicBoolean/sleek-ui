@@ -5,15 +5,8 @@ import { ButtonInterface } from "button-interface.slint";
 import { UPopover } from "popover.slint";
 import { UText } from "text.slint";
 import { UIcon } from "icon.slint";
-
-import { ScrollView } from "std-widgets.slint";
-
-
-export struct USelectOption {
-	text: string,
-	value: string,
-	enabled: bool,
-}
+import { UScrollView } from "scrollview.slint";
+import { UOptionData } from "../structs/data-structs.slint";
 
 
 export component USelect inherits ButtonInterface {
@@ -27,16 +20,18 @@ export component USelect inherits ButtonInterface {
     }
 	// Regular properties
     in-out property <int> current-index: -1;
-    in-out property <[USelectOption]> options;
+    in-out property <[UOptionData]> options;
     out property <string> selected-text;
     out property <string> selected-value;
-    in-out property <length> popup-max-height: 124px * UAppTheme.scale-factor;
-    private property <length> full-options-height: (29px * UAppTheme.scale-factor) * options.length + UAppTheme.padding-base * 2;
+    private property <length> popup-max-height: 124px;
+    private property <length> option-height: 29px;
+    private property <length> full-options-height: option-height * options.length + UAppTheme.padding-base * 2;
     callback selected-changed(new-index: int);
     background: UAppTheme.bg-elevated;
     border-width: self.has-tab-focus ? UAppTheme.focus-border-width : UAppTheme.border-width-base;
     border-color: self.has-tab-focus ? UAppTheme.focus-color : UAppTheme.border;
     border-radius: UAppTheme.radius-base;
+    preferred-width: 150px;
     clicked => {
         popup.show();
     }
@@ -72,12 +67,16 @@ export component USelect inherits ButtonInterface {
     }
 
     popup := UPopover {
+        private property <length> y-current-option;
         close-policy: close-on-click-outside;
         width: root.width;
         height: root.full-options-height > popup-max-height ? popup-max-height : root.full-options-height;
-        y: root.y + root.height + 1px;
-        ScrollView {
+        y: root.height + 1px;
+        inner-scrollview := UScrollView {
             height: parent.height;
+            init => {
+                self.scroll-y-to(y-current-option + self.height / 2 - option-height / 2);
+            }
             list-contents := VerticalLayout {
                 padding: UAppTheme.padding-base;
                 for option[index] in root.options: select-item := Rectangle {
@@ -90,9 +89,14 @@ export component USelect inherits ButtonInterface {
                         touch.clicked();
                     }
 					// Item contents and properties.
-					height: 29px * UAppTheme.scale-factor;
+					height: option-height;
                     border-radius: UAppTheme.radius-base;
                     width: 100%;
+                    init => {
+                        if index == current-index {
+                            y-current-option = -self.y;
+                        }
+                    }
                     VerticalLayout {
                         alignment: center;
                         padding-left: UAppTheme.padding-horizontal;
@@ -105,9 +109,6 @@ export component USelect inherits ButtonInterface {
                             states [
                                 disabled when !option.enabled: {
                                     color: UAppTheme.text-disabled;
-                                }
-                                selected when options[current-index].value == option.value: {
-                                    font-weight: 800;
                                 }
                             ]
                         }

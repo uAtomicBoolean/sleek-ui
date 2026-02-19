@@ -18,8 +18,11 @@ export component UAlert inherits Rectangle {
 	in-out property <UAlertVariant> variant: info;
     in-out property <string> message;
     in-out property <bool> display-close-button: false;
+    in-out property <brush> text-color: UAppTheme.text;
+    in-out property <image> icon;
+    in-out property <brush> icon-color;
     callback close();
-    min-width: 300px * UAppTheme.scale-factor;
+    min-width: 300px;
     border-radius: UAppTheme.radius-base;
     border-width: UAppTheme.border-width-base;
     VerticalLayout {
@@ -31,7 +34,9 @@ export component UAlert inherits Rectangle {
             VerticalLayout {
                 alignment: center;
                 padding-right: UAppTheme.padding-big;
-                icon := UIcon {
+                UIcon {
+                    source: icon;
+                    colorize: icon-color;
                     size: UAppTheme.icon-size-base;
                     accessible-role: none;
                 }
@@ -40,9 +45,10 @@ export component UAlert inherits Rectangle {
             VerticalLayout {
                 alignment: center;
                 horizontal-stretch: 1;
-                padding-top: UAppTheme.padding-vertical;
-                padding-bottom: UAppTheme.padding-vertical;
+                padding-top: UAppTheme.padding-vertical + 1px;
+                padding-bottom: UAppTheme.padding-vertical - 1px;
                 UText {
+                    color: text-color;
                     text: message;
                     wrap: no-wrap;
                     overflow: elide;
@@ -71,26 +77,26 @@ export component UAlert inherits Rectangle {
         info when variant == UAlertVariant.info: {
             background: UAppTheme.primary.selected;
             border-color: UAppTheme.primary.base;
-            icon.source: @image-url("../assets/icons/info.svg");
-            icon.colorize: UAppTheme.primary.base;
+            icon: @image-url("../assets/icons/info.svg");
+            icon-color: UAppTheme.primary.base;
         }
         success when variant == UAlertVariant.success: {
             background: UAppTheme.success.selected;
             border-color: UAppTheme.success.base;
-            icon.source: @image-url("../assets/icons/circle-check.svg");
-            icon.colorize: UAppTheme.success.base;
+            icon: @image-url("../assets/icons/circle-check.svg");
+            icon-color: UAppTheme.success.base;
         }
         warning when variant == UAlertVariant.warning: {
             background: UAppTheme.warning.selected;
             border-color: UAppTheme.warning.base;
-            icon.source: @image-url("../assets/icons/info.svg");
-            icon.colorize: UAppTheme.warning.base;
+            icon: @image-url("../assets/icons/info.svg");
+            icon-color: UAppTheme.warning.base;
         }
         danger when variant == UAlertVariant.danger: {
             background: UAppTheme.danger.selected;
             border-color: UAppTheme.danger.base;
-            icon.source: @image-url("../assets/icons/circle-x.svg");
-            icon.colorize: UAppTheme.danger.base;
+            icon: @image-url("../assets/icons/triangle-alert.svg");
+            icon-color: UAppTheme.danger.base;
         }
     ]
 }

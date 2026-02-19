@@ -17,7 +17,7 @@ export component UBreadcrumb inherits Rectangle {
                 spacing: UAppTheme.spacing-medium;
                 ButtonInterface {
                     enabled: idx != steps.length - 1;
-                    touch-mouse-cursor: idx == steps.length - 1 ? default : pointer;
+                    mouse-cursor: idx == steps.length - 1 ? default : pointer;
                     UText {
                         text: step;
                         color: idx == steps.length - 1 ? UAppTheme.primary.base : UAppTheme.text-secondary;

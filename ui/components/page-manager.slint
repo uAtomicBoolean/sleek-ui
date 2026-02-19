@@ -1,0 +1,128 @@
+import { UMenuLogic } from "../sleek-ui/widgets.slint";
+
+import {
+    HomePage,
+    HowToUsePage,
+    ColorsPage,
+    ThemingPage,
+    AccessabilityPage,
+    SettingsPage,
+    AboutPage,
+
+	// General widgets.
+    ButtonPage,
+    DividerPage,
+    IconButtonPage,
+    FloatingButtonPage,
+    FloatingIconButtonPage,
+    LinkPage,
+    SpinnerPage,
+
+	// Navigation widgets.
+	BreadcrumbPage,
+    TabsPage,
+    MenuPageHowTo,
+    MenuPageLink,
+    MenuPageSubmenu,
+    MenuPageGroupTitle,
+
+	// Data entry widgets
+	CheckboxPage,
+    InputPage,
+    InputNumberPage,
+    SelectPage,
+    RadioPage,
+    RadioButtonPage,
+    SliderPage,
+    SwitchPage,
+
+	// Data display widgets
+	CardPage,
+    CodePage,
+    CollapsePage,
+    IconPage,
+    LinearProgressPage,
+    TagPage,
+    TextPage,
+    TitlePage,
+    TooltipPage,
+
+	// Feedback widgets
+	AlertPage,
+    ModalPage,
+    NotificationPage,
+    PopoverPage,
+	
+	// Misc
+	ButtonInterfacePage,
+    ScrollviewPage,
+
+	// Structs
+	OptionDataPage,
+} from "../pages/page-index.slint";
+
+
+export component PageManager {
+    in property <string> current-page: UMenuLogic.current-link;
+    VerticalLayout {
+        alignment: start;
+        if current-page == "home": HomePage { }
+        if current-page == "how-to-use": HowToUsePage { }
+        if current-page == "default-colors": ColorsPage { }
+        if current-page == "theming": ThemingPage { }
+        if current-page == "accessability": AccessabilityPage { }
+        if current-page == "settings": SettingsPage { }
+        if current-page == "about": AboutPage { }
+		
+		// General widgets
+        if current-page == "button": ButtonPage { }
+        if current-page == "divider": DividerPage { }
+        if current-page == "icon-button": IconButtonPage { }
+        if current-page == "floating-button": FloatingButtonPage { }
+        if current-page == "floating-icon-button": FloatingIconButtonPage { }
+        if current-page == "link": LinkPage { }
+        if current-page == "spinner": SpinnerPage { }
+
+        // Navigation widgets
+		if current-page == "breadcrumb": BreadcrumbPage { }
+        if current-page == "tabs": TabsPage { }
+        if current-page == "menu-how-to": MenuPageHowTo { }
+        if current-page == "menu-link": MenuPageLink { }
+        if current-page == "menu-submenu": MenuPageSubmenu { }
+        if current-page == "menu-group-title": MenuPageGroupTitle { }
+
+        // Data entry widgets
+		if current-page == "checkbox": CheckboxPage { }
+        if current-page == "input": InputPage { }
+        if current-page == "input-number": InputNumberPage { }
+        if current-page == "select": SelectPage { }
+        if current-page == "radio": RadioPage { }
+        if current-page == "radio-button": RadioButtonPage { }
+        if current-page == "slider": SliderPage { }
+        if current-page == "switch": SwitchPage { }
+
+		// Data display widgets
+		if current-page == "card": CardPage { }
+        if current-page == "code": CodePage { }
+        if current-page == "collapse": CollapsePage { }
+        if current-page == "icon": IconPage { }
+        if current-page == "linear-progress": LinearProgressPage { }
+        if current-page == "tag": TagPage { }
+        if current-page == "text": TextPage { }
+        if current-page == "title": TitlePage { }
+        if current-page == "tooltip": TooltipPage { }
+
+		// Feedback widgets
+		if current-page == "alert": AlertPage { }
+        if current-page == "modal": ModalPage { }
+        if current-page == "notification": NotificationPage { }
+        if current-page == "popover": PopoverPage { }
+
+		// Misc
+		if current-page == "button-interface": ButtonInterfacePage { }
+        if current-page == "scrollview": ScrollviewPage { }
+
+		// Structs
+		if current-page == "option-data": OptionDataPage { }
+    }
+}

@@ -1,21 +1,36 @@
 [package]
-name = "sleek-ui"
+name = "SleekUI"
 version = "1.0.0"
 edition = "2024"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "sleek_ui_lib"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[[bin]]
+name = "sleek-ui"
+path = "src/main.rs"
 
 [dependencies]
-dotenv = "0.15.0"
-slint = { version = "1.14.1", features = ["renderer-skia"] }
+webbrowser = { version = "1.0.6", features = ["hardened"] }
+
+# Use skia renderer on all platforms but wasm as it is not supported. 
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+slint = { version = "1.15.0", features = ["renderer-skia"] }
+
+[target.'cfg(target_family = "wasm")'.dependencies]
+slint = { version = "1.15.0" }
+wasm-bindgen = { version = "0.2" }
 
 [build-dependencies]
-slint-build = "1.14.1"
+slint-build = "1.15.0"
 
 [profile.dev]
 incremental = true
 
-[profile.release]
+# Applying the profile release on wasm causes an error during build.
+[target.'cfg(not(target_family = "wasm"))'.profile.release]
 codegen-units = 1
 lto = true
 opt-level = "s"

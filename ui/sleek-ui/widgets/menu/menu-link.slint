@@ -22,15 +22,26 @@ export component UMenuLink inherits Rectangle {
     };
     in-out property <string> id;
     in-out property <string> name;
-    in-out property <string> parent-id;
     in-out property <bool> enabled: true;
     out property <bool> is-selected: UMenuLogic.current-link == id;
+    in-out property <int> parent-child-opened;
+    init => {
+        if is-selected {
+            parent-child-opened += 1;
+        }
+    }
+    changed is-selected => {
+        parent-child-opened += is-selected ? 1 : -1;
+    }
     callback activated();
     ButtonInterface {
+        animate background { duration: 0; }
         enabled: root.enabled;
         clicked => {
-            UMenuLogic.current-link = id;
-            root.activated();
+            if UMenuLogic.current-link != id {
+                UMenuLogic.current-link = id;
+                root.activated();
+            }
         }
         border-radius: UAppTheme.radius-base;
         HorizontalLayout {

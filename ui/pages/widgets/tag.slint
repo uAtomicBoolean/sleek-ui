@@ -1,0 +1,146 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle, UTag } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocDescription,
+    WidgetPresentation,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+import { AppLogic } from "../../app-logic.slint";
+
+
+export component TagPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Tag";
+    }
+
+    DocDescription {
+        text: "A tag to display some data.";
+    }
+
+    DocSection {
+        title: "Basic usage";
+        description: [
+            [
+                { text: "Use the " },
+                { code: "text" },
+                { text: " property to set the tag's text." },
+            ],
+            [
+                { text: "Use the " },
+                { code: "variant" },
+                { text: " property to change the visual style of the tag." }
+            ],
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-base;
+        UTag {
+            text: "Info";
+        }
+
+        UTag {
+            variant: success;
+            text: "Success";
+        }
+
+        UTag {
+            variant: warning;
+            text: "Warning";
+        }
+
+        UTag {
+            variant: danger;
+            text: "Danger";
+        }
+    }
+
+    DocCode {
+        code: "UTag {\n    text: \"Info\";\n}\n\nUTag {\n    variant: success;\n    text: \"Success\";\n}";
+    }
+
+    DocSection {
+        title: "Icons";
+        description: [
+            [
+                { text: "You can add an icon, either at the start or end of the tag, with the " },
+                { code: "icon" },
+                { text: " property." }
+            ],
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-base;
+        UTag {
+            text: "Rocket";
+            icon: @image-url("../../assets/images/rocket.svg");
+            icon-placement: start;
+        }
+
+        UTag {
+            variant: danger;
+            text: "Rocket";
+            icon: @image-url("../../assets/images/rocket.svg");
+            icon-placement: end;
+        }
+    }
+
+    DocCode {
+        code: "UTag {\n    text: \"Rocket\";\n    icon: @image-url(your url...);\n    icon-placement: start;\n}\n\nUTag {\n    variant: danger;\n    text: \"Rocket\";\n    icon: @image-url(your url...);\n    icon-placement: end;\n}";
+    }
+
+    DocSection {
+        title: "Colored icon";
+        description: [
+            [
+                { text: "Keep the original color of your icon with the " },
+                { code: "colorize-icon" },
+                { text: " property." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UTag {
+            text: "Colorized icon";
+            icon: @image-url("../../assets/images/rocket.svg");
+            icon-placement: start;
+            colorize-icon: false;
+        }
+    }
+
+    DocCode {
+        code: "UTag {\n    text: \"Rocket\";\n    icon: @image-url(your url...);\n    icon-placement: start;\n    colorize-icon: false;\n}";
+    }
+
+    DocSection {
+        title: "Custom colors";
+        description: [
+            [
+                { text: "You can change the tag's colors with the " },
+                { code: "text-color" },
+                { text: " and " },
+                { code: "background-color" },
+                { text: " properties." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        UTag {
+            text: "Custom purple";
+            text-color: purple;
+            background-color: purple.with-alpha(0.1);
+        }
+    }
+
+    DocCode {
+        code: "UTag {\n    text: \"Custom purple\";\n    text-color: purple;\n    background-color: purple.with-alpha(0.1);\n}";
+    }
+}

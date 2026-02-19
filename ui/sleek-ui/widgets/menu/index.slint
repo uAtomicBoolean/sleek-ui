@@ -26,26 +26,24 @@ export struct UMenuLinkTheme {
 export global UMenuLinkThemes {
     out property <UMenuLinkTheme> default: {
         text: UAppTheme.text,
-        text-selected: UAppTheme.primary.base,
+        text-selected: UAppTheme.primary-text,
         text-disabled: UAppTheme.text-disabled,
         bg-hover: UAppTheme.color-fill-secondary,
-        bg-selected: UAppTheme.primary.selected,
+        bg-selected: UAppTheme.primary.base,
     };
-
     out property <UMenuLinkTheme> light: {
         text: UAppTheme.light.text,
-        text-selected: UAppTheme.light.primary.base,
+        text-selected: UAppTheme.primary-text,
         text-disabled: UAppTheme.light.text-disabled,
         bg-hover: UAppTheme.light.color-fill-secondary,
-        bg-selected: UAppTheme.light.primary.selected,
+        bg-selected: UAppTheme.light.primary.base,
     };
-
     out property <UMenuLinkTheme> dark: {
         text: UAppTheme.dark.text,
-        text-selected: UAppTheme.dark.primary.base,
+        text-selected: UAppTheme.primary-text,
         text-disabled: UAppTheme.dark.text-disabled,
         bg-hover: UAppTheme.dark.color-fill-secondary,
-        bg-selected: UAppTheme.dark.primary.selected,
+        bg-selected: UAppTheme.dark.primary.base,
     };
 }
 
@@ -63,7 +61,6 @@ export global UMenuSubMenuThemes {
         text-disabled: UAppTheme.text-disabled,
         bg-hover: UAppTheme.color-fill-secondary,
     };
-
     out property <UMenuSubMenuTheme> light: {
         text: UAppTheme.light.text,
         text-selected: UAppTheme.light.primary.base,

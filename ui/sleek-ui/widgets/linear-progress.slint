@@ -1,7 +1,7 @@
 import { UAppTheme } from "../app-theme.slint";
 
 
-enum ProgressAlignment {
+enum ProgressDirection {
 	start,
 	end,
 }
@@ -19,16 +19,17 @@ export component ULinearProgress inherits Rectangle {
     accessible-value-minimum: 0;
     accessible-value-maximum: 100;
 	// Regular properties
-    in-out property <ULinearProgressVariant> variant: primary;
     private property <brush> progress-color;
-    in property <length> default-size: 10px * UAppTheme.scale-factor;
+    in-out property <ULinearProgressVariant> variant: primary;
+    in property <length> default-size: 10px;
+    in property <length> default-radius: UAppTheme.radius-round;
     in property <Orientation> orientation: horizontal;
-    in property <ProgressAlignment> alignment: start;
+    in property <ProgressDirection> direction: start;
     in-out property <percent> progress: indeterminate ? 30% : 0%;
     in-out property <bool> indeterminate: false;
     callback reset-x();
     background: UAppTheme.color-fill-secondary;
-    border-radius: UAppTheme.radius-round;
+    border-radius: default-radius;
     clip: true;
     height: default-size;
     width: default-size;
@@ -48,14 +49,14 @@ export component ULinearProgress inherits Rectangle {
             if indeterminate {
                 return x-pos;
             }
-            if alignment == ProgressAlignment.end {
+            if direction == ProgressDirection.end {
                 return root.width - self.width;
             }
             return 0;
         }
         x: get-x-pos();
         background: progress-color;
-        border-radius: UAppTheme.radius-round;
+        border-radius: default-radius;
         width: clamp(progress, 0%, 100%);
         animate width {
             easing: ease-in-out;
@@ -65,13 +66,13 @@ export component ULinearProgress inherits Rectangle {
             running: indeterminate;
             interval: 5ms;
             triggered => {
-                if alignment == ProgressAlignment.start {
-                    parent.x-pos += 1px * UAppTheme.scale-factor;
+                if direction == ProgressDirection.start {
+                    parent.x-pos += 1px;
                     if parent.x-pos > root.width {
                         parent.x-pos = -parent.width;
                     }
                 } else {
-                    parent.x-pos -= 1px * UAppTheme.scale-factor;
+                    parent.x-pos -= 1px;
                     if parent.x-pos < -parent.width {
                         parent.x-pos = root.width - parent.width;
                     }
@@ -85,14 +86,14 @@ export component ULinearProgress inherits Rectangle {
             if indeterminate {
                 return y-pos;
             }
-            if alignment == ProgressAlignment.end {
+            if direction == ProgressDirection.end {
                 return root.height - self.height;
             }
             return 0;
         }
         y: get-y-pos();
         background: progress-color;
-        border-radius: UAppTheme.radius-round;
+        border-radius: default-radius;
         height: clamp(progress, 0%, 100%);
         animate height {
             easing: ease-in-out;
@@ -102,13 +103,13 @@ export component ULinearProgress inherits Rectangle {
             running: indeterminate;
             interval: 10ms;
             triggered => {
-                if alignment == ProgressAlignment.start {
-                    parent.y-pos += 1px * UAppTheme.scale-factor;
+                if direction == ProgressDirection.start {
+                    parent.y-pos += 1px;
                     if parent.y-pos > root.height {
                         parent.y-pos = -parent.height;
                     }
                 } else {
-                    parent.y-pos -= 1px * UAppTheme.scale-factor;
+                    parent.y-pos -= 1px;
                     if parent.y-pos < -parent.height {
                         parent.y-pos = root.height;
                     }

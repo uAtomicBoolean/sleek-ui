@@ -1,0 +1,165 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UTitle, UText, UCode, ULink } from "../sleek-ui/widgets.slint";
+
+import { DocTitle, DocSection, DocCode } from "../components/doc-widgets.slint";
+import { PageBase } from "../components/page-base.slint";
+import { AppLogic } from "../app-logic.slint";
+import { UMenuLogic } from "../sleek-ui/widgets/menu/menu.slint";
+
+
+component Spacer inherits Rectangle {
+    height: UAppTheme.spacing-bigger;
+}
+
+export component ThemingPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Theming";
+    }
+
+    DocSection {
+        title: "Theme configuration";
+        description: [
+            [
+                { text: "The " },
+                { code: "UAppTheme" },
+                {
+                    text: " global comes with all the design token used in SleekUI, however, all the design token properties are "
+                },
+                { code: "out" },
+                { text: "." }
+            ],
+            [
+                { text: "The only modifiable properties are the following: " },
+                { code: "light" },
+                { text: " and " },
+                { code: "dark" },
+                { text: " which are of type " },
+                { link: "UAppThemeConfig" },
+                { text: "." }
+            ],
+            [
+                {
+                    text: "This allows the application theme to automatically switch between the light and dark color schemes using the "
+                },
+                { code: "Palette.color-scheme" },
+                { text: " property." }
+            ]
+        ];
+        link-clicked(id) => {
+            root.scroll-to(config-struct.y);
+            config-struct.trigger-signal();
+        }
+    }
+
+    Spacer { }
+
+    DocSection {
+        description: [
+            [
+                { text: "Start by creating a global with a property of type " },
+                { code: "UAppThemeConfig" },
+                { text: " that will contain your custom theme." }
+            ],
+            [
+                { text: "You can use the default theme configuration in " },
+                { link: "UAppTheme" },
+                { text: " to start with a base in your theme." }
+            ]
+        ];
+        link-clicked(id) => {
+            AppLogic.open-url("https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/app-theme.slint");
+        }
+    }
+
+    DocCode {
+        code: "import { UAppThemeConfig } from \"@sleek-ui/structs/theme.slint\";\n\nexport global MyCustomTheme {\n    in-out property <UAppThemeConfig> custom-light: {\n        // Your theme declaration.\n    };\n    in-out property <UAppThemeConfig> custom-dark: {\n        // Your theme declaration.\n    };\n}";
+    }
+
+    Spacer { }
+
+    DocSection {
+        description: [
+            [
+                {
+                    text: "In your logic, you can then replace the default theme with your custom theme."
+                },
+            ],
+            [
+                { text: "Don't forget to export both the " },
+                { code: "UAppTheme" },
+                { text: " and " },
+                { code: "MyCustomTheme" },
+                {
+                    text: " globals from your main slint file to make them available in your backend."
+                }
+            ]
+        ];
+    }
+
+    DocCode {
+        code: "// Here the example is in Rust.\nlet ui = AppWindow::new();\n\nlet app_theme = ui.global::<UAppTheme>();\nlet custom_theme = ui.global::<MyCustomTheme>();\n\napp_theme.set_light(custom_theme.get_custom_light());\napp_theme.set_light(custom_theme.get_custom_dark());";
+    }
+
+    DocSection {
+        title: "Color scheme management";
+        description: [
+            [
+                { text: "As mentioned previously, SleekUI uses the " },
+                {
+                    link: "Palette.color-scheme",
+                    url: "https://docs.slint.dev/latest/docs/slint/reference/std-widgets/globals/palette/"
+                },
+                { text: " property to determine which theme to use." }
+            ],
+            [
+                {
+                    text: "You can programmatically switch the color scheme by changing the value of the "
+                },
+                { code: "Palette.color-scheme" },
+                { text: " property." }
+            ],
+            [
+                { text: "Or you can set one of the light and dark themes as the value of the " },
+                { code: "UAppTheme.theme" },
+                { text: " property which then defines the values of all the design tokens." }
+            ]
+        ];
+        link-clicked(url) => {
+            AppLogic.open-url(url);
+        }
+    }
+
+    DocSection {
+        title: "Default colors and ant design editor";
+        description: [
+            [
+                { text: "As SleekUI is based on " },
+                { link: "Ant Design", url: "https://ant.design/" },
+                { text: ", you have a set of pre-declared colors available " },
+                { link: "here", url: "default-colors" },
+                { text: "." }
+            ],
+            [
+                { text: "You can also use the official " },
+                { link: "Ant Design theme editor", url: "https://ant.design/theme-editor" },
+                { text: "To easily generate colors for your application." }
+            ]
+        ];
+        link-clicked(url) => {
+            if url == "default-colors" {
+                UMenuLogic.current-link = "default-colors";
+            } else {
+                AppLogic.open-url(url);
+            }
+        }
+    }
+
+    config-struct := DocSection {
+        title: "UAppThemeConfig struct";
+    }
+
+    DocCode {
+        code: "struct UAppThemeConfig {\n    // Animation duration\n    animation-duration: duration,\n\n    // Primary colors\n    primary: UPrimaryColor,\n    success: UPrimaryColor,\n    warning: UPrimaryColor,\n    danger: UPrimaryColor,\n\n    // Background colors\n    bg-layout: brush,\n    bg-container: brush,\n    bg-elevated: brush,\n    bg-spotlight: brush,\n\n    // Fill colors\n    color-fill-plus: brush,\n    color-fill: brush,\n    color-fill-secondary: brush,\n    color-fill-tertiary: brush,\n    color-fill-quaternary: brush,\n\n    // Borders\n    border-width-base: length,\n    border: brush,\n    border-secondary: brush,\n    separator: brush,\n\n    // Shadow\n    shadow-color: brush,\n    shadow-blur: length,\n    shadow-x-offset: length,\n    shadow-y-offset: length,\n\n    // Focus display\n    focus-color: brush,\n    focus-border-width: length,\n\n    // Text colors\n    // Color used for the text in widgets with a primary color as a background.\n    primary-text: brush,\n    inverse-text: brush,\n    text: brush,\n    text-secondary: brush,\n    text-heading: brush,\n    text-disabled: brush,\n\n    // Font sizes\n    font-size-smaller: length,\n    font-size-small: length,\n    font-size-base: length,\n    font-size-medium: length,\n    font-size-big: length,\n    font-size-bigger: length,\n    \n    // Icons\n    icon-size-base: length,\n\n    // Padding\n    padding-vertical: length,\n    padding-horizontal: length,\n    padding-small: length,\n    padding-base: length,\n    padding-medium: length,\n    padding-big: length,\n    padding-bigger: length,\n\n    // Spacing\n    spacing-small: length,\n    spacing-base: length,\n    spacing-medium: length,\n    spacing-big: length,\n    spacing-bigger: length,\n\n    // Radius\n    radius-small: length,\n    radius-base: length,\n    radius-medium: length,\n    radius-large: length,\n    radius-round: length,\n    radius-circle: length,}";
+    }
+}

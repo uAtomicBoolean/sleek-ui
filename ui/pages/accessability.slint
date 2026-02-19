@@ -1,0 +1,114 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import {
+    UTitle,
+    UMenuLogic,
+    UButton,
+} from "../sleek-ui/widgets.slint";
+
+import {
+    DocTitle,
+    DocSection,
+    WidgetPresentation,
+} from "../components/doc-widgets.slint";
+import { PageBase } from "../components/page-base.slint";
+import { AppLogic } from "../app-logic.slint";
+
+
+export component AccessabilityPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Accessability";
+    }
+
+    DocSection {
+        title: "Accessability properties";
+        description: [
+            [
+                {
+                    text: "All widgets implement some basis of accessabity such as the role, the default action, etc."
+                }
+            ],
+            [
+                {
+                    text: "However, it is recommended to fine tune these properties to fit your application as much as possible."
+                }
+            ],
+            [
+                { text: "You can look at the " },
+                {
+                    link: "UButton",
+                    url: "https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/widgets/button/button.slint"
+                },
+                { text: " or " },
+                {
+                    link: "USlider",
+                    url: "https://github.com/uAtomicBoolean/SleekUI/blob/main/ui/sleek-ui/widgets/slider.slint"
+                },
+                { text: " implementation to get an idea of what has been done in SleekUI." },
+            ]
+        ];
+        link-clicked(url) => {
+            AppLogic.open-url(url);
+        }
+    }
+
+    DocSection {
+        title: "Keyboard integration";
+        description: [
+            [
+                {
+                    text: "Some widgets have some level of keyboard integration allow to manipulate the linked value."
+                }
+            ],
+            [
+                { text: "Take the " },
+                { link: "slider", url: "slider" },
+                { text: " as an example, you can change its value with the keyboard arrow keys." }
+            ],
+            [
+                { text: "Moreover, the " },
+                { link: "ButtonInterface", url: "button-interface" },
+                { text: " widget fires the " },
+                { code: "clicked" },
+                {
+                    text: " callback the space bar or the enter key are pressed on a focused widget."
+                }
+            ]
+        ];
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocSection {
+        title: "Tab navigation";
+        description: [
+            [
+                {
+                    text: "In order to ease the tab navigation, all widgets implements a strong display of the focused state when gaining the focus from tab navigation."
+                }
+            ],
+            [
+                { text: "This is made possible with the " },
+                { code: "has-tab-focus" },
+                { text: " property from " },
+                { link: "ButtonInterface", url: "button-interface" }
+            ],
+            [{ text: "You can check the tab navigation display by pressing tab." }]
+        ];
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    WidgetPresentation {
+        UButton {
+            variant: primary;
+            text: "Click me";
+        }
+
+        UButton {
+            text: "Click me";
+        }
+    }
+}

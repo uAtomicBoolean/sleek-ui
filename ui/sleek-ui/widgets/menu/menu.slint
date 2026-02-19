@@ -8,13 +8,14 @@ import { UMenuSubmenu } from "menu-submenu.slint";
 import { UMenuGroupTitle } from "menu-group-title.slint";
 
 
-export { UMenuVariant, UMenuLink, UMenuGroupTitle, UMenuSubmenu }
+export { UMenuVariant, UMenuLink, UMenuGroupTitle, UMenuSubmenu, UMenuLogic }
 
 export component UMenu inherits Rectangle {
     in-out property <UMenuVariant> variant: default;
     in-out property <string> current-link;
     init => {
         UMenuLogic.variant = variant;
+        UMenuLogic.current-link = current-link;
     }
     changed variant => {
         UMenuLogic.variant = variant;
@@ -29,7 +30,6 @@ export component UMenu inherits Rectangle {
     };
     VerticalLayout {
         alignment: start;
-        padding: UAppTheme.padding-base;
         @children
     }
 }

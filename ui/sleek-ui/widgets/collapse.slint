@@ -18,7 +18,6 @@ export component UCollapse inherits ButtonInterface {
 	// Regular properties
     in-out property <string> title <=> collapse-title.text;
     in-out property <bool> collapse-open: false;
-    in-out property <length> content-width <=> collapse-content.width;
     in-out property <length> content-height: collapse-content.preferred-height;
     clicked => {
         collapse-open = !collapse-open;
@@ -29,7 +28,7 @@ export component UCollapse inherits ButtonInterface {
             alignment: start;
             spacing: UAppTheme.spacing-base;
             UIcon {
-                size: 20px * UAppTheme.scale-factor;
+                size: 20px;
                 colorize: UAppTheme.primary.base;
                 source: @image-url("../assets/icons/chevron-down.svg");
                 transform-rotation: root.collapse-open ? 180deg : 0deg;

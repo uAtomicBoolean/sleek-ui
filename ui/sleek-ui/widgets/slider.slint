@@ -1,6 +1,5 @@
 import { UAppTheme } from "../app-theme.slint";
 import { ButtonInterface } from "button-interface.slint";
-import { UPrimaryColors } from "../styling/colors.slint";
 
 
 export component USlider inherits ButtonInterface {
@@ -26,15 +25,32 @@ export component USlider inherits ButtonInterface {
     in-out property <float> step: 1;
     in-out property <float> min-value: 0;
     in-out property <float> max-value: 100;
+    in-out property <bool> display-steps: false;
     in-out property <Orientation> orientation: horizontal;
+    out property <length> handle-pos: ((value - min-value) / (max-value - min-value)) * (is-horizontal ? root.width : root.height);
+    private property <length> base-handle-size: 14px;
+    private property <bool> is-horizontal: orientation == Orientation.horizontal;
+    private property <int> number-of-steps: abs(min-value - max-value) / step;
     changed value => {
         value = clamp(root.value, min-value, max-value);
     }
     function update-value() {
-        let pos-value = orientation == Orientation.horizontal ? root.mouse-x : (root.height - root.mouse-y);
-        let raw-value = pos-value * max-value / (orientation == Orientation.horizontal ? root.width : root.height);
-        let value-diff = mod(raw-value, step);
-        value = raw-value - value-diff;
+        let pos-value = is-horizontal ? root.mouse-x : (root.height - root.mouse-y);
+        let max-length = is-horizontal ? root.width : root.height;
+        let raw-value = min-value + (max-value - min-value) * (pos-value / max-length);
+        let next-step-up = ceil(raw-value / step) * step;
+        let next-step-down = floor(raw-value / step) * step;
+        if (raw-value >= value && raw-value >= next-step-up - (step / 2)) {
+            value = next-step-up;
+        } else if (raw-value < value && raw-value <= next-step-down + (step / 2)) {
+            value = next-step-down;
+        }
+    }
+    callback released(value: float);
+    changed pressed => {
+        if !root.pressed {
+            root.released(root.value)
+        }
     }
     clicked => {
         update-value();
@@ -58,19 +74,27 @@ export component USlider inherits ButtonInterface {
         }
         return EventResult.reject;
     }
-    width: 14px * UAppTheme.scale-factor;
-    height: 14px * UAppTheme.scale-factor;
-    if orientation == Orientation.horizontal: Rectangle {
+    width: 14px;
+    height: 14px;
+    if is-horizontal: Rectangle {
         background: UAppTheme.color-fill-secondary;
         border-radius: UAppTheme.radius-circle;
-        height: 5px * UAppTheme.scale-factor;
+        height: 5px;
+        if display-steps: Rectangle {
+            private property <length> step-spacing: parent.width / number-of-steps;
+            for i in number-of-steps: Rectangle {
+                x: i * step-spacing - self.width / 2;
+                width: 5px;
+                background: self.x > 0 ? UAppTheme.color-fill : transparent;
+                border-radius: UAppTheme.radius-round;
+            }
+        }
         HorizontalLayout {
             alignment: start;
             h-slider := Rectangle {
-                private property <int> curr-width: (value / 1px) * root.width / max-value;
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
-                width: curr-width * 1px;
+                width: handle-pos;
                 animate background { duration: UAppTheme.animation-duration; }
                 states [
                     disabled when !root.enabled: {
@@ -88,7 +112,7 @@ export component USlider inherits ButtonInterface {
 
         // Manage the aura-like border that appears around the handle.
         Rectangle {
-            private property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: base-handle-size;
             x: h-slider.width - size / 2;
             border-radius: UAppTheme.radius-circle;
             width: size;
@@ -97,18 +121,18 @@ export component USlider inherits ButtonInterface {
             states [
                 hover when root.enabled && (root.has-hover || root.has-tab-focus): {
                     background: UAppTheme.primary.base.with-alpha(0.2);
-                    size: 22px * UAppTheme.scale-factor;
+                    size: 22px;
                 }
             ]
         }
 
         // The handle itself.
         Rectangle {
-            private property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: base-handle-size;
             x: h-slider.width - size / 2;
             background: UAppTheme.bg-container;
             border-color: UAppTheme.primary.base;
-            border-width: 2px * UAppTheme.scale-factor;
+            border-width: 2px;
             border-radius: UAppTheme.radius-circle;
             width: size;
             height: size;
@@ -119,22 +143,30 @@ export component USlider inherits ButtonInterface {
                 }
                 hover when root.has-hover || root.has-tab-focus: {
                     border-color: UAppTheme.primary.hover;
-                    size: 18px * UAppTheme.scale-factor;
+                    size: 18px;
                 }
             ]
         }
     }
-    if orientation == Orientation.vertical: Rectangle {
+    if !is-horizontal: Rectangle {
         background: UAppTheme.color-fill-secondary;
         border-radius: UAppTheme.radius-circle;
-        width: 5px * UAppTheme.scale-factor;
+        width: 5px;
+        if display-steps:Rectangle {
+            private property <length> step-spacing: parent.height / number-of-steps;
+            for i in number-of-steps: Rectangle {
+                y: i * step-spacing - self.height / 2;
+                height: 5px;
+                background: self.y > 0 ? UAppTheme.color-fill : transparent;
+                border-radius: UAppTheme.radius-round;
+            }
+        }
         VerticalLayout {
             alignment: end;
             v-slider := Rectangle {
-                private property <int> curr-height: (value / 1px) * root.height / max-value;
                 background: UAppTheme.primary.base;
                 border-radius: UAppTheme.radius-circle;
-                height: curr-height * 1px;
+                height: handle-pos;
                 animate background { duration: UAppTheme.animation-duration; }
                 states [
                     disabled when !root.enabled: {
@@ -152,7 +184,7 @@ export component USlider inherits ButtonInterface {
 
         // Manage the aura-like border that appears around the handle.
         Rectangle {
-            private property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: base-handle-size;
             y: root.height - (v-slider.height + size / 2);
             border-radius: UAppTheme.radius-circle;
             width: size;
@@ -161,18 +193,18 @@ export component USlider inherits ButtonInterface {
             states [
                 hover when root.has-hover || root.has-tab-focus: {
                     background: UAppTheme.primary.base.with-alpha(0.2);
-                    size: 22px * UAppTheme.scale-factor;
+                    size: 22px;
                 }
             ]
         }
 
         // The handle itself.
         Rectangle {
-            private property <length> size: 14px * UAppTheme.scale-factor;
+            private property <length> size: base-handle-size;
             y: root.height - (v-slider.height + size / 2);
             background: UAppTheme.bg-container;
             border-color: UAppTheme.primary.base;
-            border-width: 2px * UAppTheme.scale-factor;
+            border-width: 2px;
             border-radius: UAppTheme.radius-circle;
             width: size;
             height: size;
@@ -183,9 +215,15 @@ export component USlider inherits ButtonInterface {
                 }
                 hover when root.has-hover || root.has-tab-focus: {
                     border-color: UAppTheme.primary.hover;
-                    size: 18px * UAppTheme.scale-factor;
+                    size: 18px;
                 }
             ]
         }
     }
+    states [
+        focus when root.has-tab-focus: {
+            border-color: UAppTheme.focus-color;
+            border-width: UAppTheme.focus-border-width;
+        }
+    ]
 }

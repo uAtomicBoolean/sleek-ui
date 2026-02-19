@@ -1,28 +1,44 @@
 // Prevent console window in addition to Slint window in Windows release builds when, e.g., starting the app via file manager. Ignored on other platforms.
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use dotenv::dotenv;
-use std::error::Error;
-
 slint::include_modules!();
 
-fn main() -> Result<(), Box<dyn Error>> {
-    dotenv().ok();
+#[allow(dead_code)]
+fn main() {
+    let selector = slint::BackendSelector::new()
+        .backend_name("winit".to_owned())
+        .renderer_name("skia".to_owned());
+    if let Err(err) = selector.select() {
+        eprintln!("Error while selecting the backend and renderer.");
+        eprintln!("{}", err.to_string());
+    }
 
-    let ui = AppWindow::new()?;
+    let ui = AppWindow::new().unwrap();
 
-    // let options_bar_logic = ui.global::<OptionsBarLogic>();
+    let app_logic = ui.global::<AppLogic>();
 
-    // options_bar_logic.on_change_primary_color({
-    //     let ui_weak = ui.as_weak();
-    //     move |style| {
-    //         let ui = ui_weak.unwrap();
-    //         let app_theme = ui.global::<UAppTheme>();
-    //         app_theme.set_primary_color_style(style);
-    //     }
-    // });
+    app_logic.set_scale_factor(ui.window().scale_factor() * 100.0);
 
-    ui.run()?;
+    let ui_weak = ui.as_weak();
+    app_logic.on_update_scale_factor(move |sf| {
+        let ui = ui_weak.upgrade().unwrap();
+        ui.window()
+            .dispatch_event(slint::platform::WindowEvent::ScaleFactorChanged {
+                scale_factor: sf / 100.0,
+            });
+    });
 
-    Ok(())
+    app_logic.on_is_wasm(|| {
+        return false;
+    });
+
+    app_logic.on_open_url(|url| {
+        if let Err(err) = webbrowser::open(url.as_str()) {
+            println!("Couldn't open the URL in the default browser.");
+            println!("URL: {url}");
+            println!("{}", err.to_string());
+        }
+    });
+
+    ui.run().unwrap();
 }

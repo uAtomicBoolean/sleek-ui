@@ -3,7 +3,7 @@ import { UAppTheme } from "../../app-theme.slint";
 import { UButtonTheme, UButtonThemes, UButtonThemeColor } from "theme.slint";
 
 import { ButtonInterface } from "../button-interface.slint";
-import { IconTextPlacement } from "../../structs/icon-placement.slint";
+import { IconTextPlacement } from "../../structs/data-structs.slint";
 
 import { UIcon } from "../icon.slint";
 import { USpinner } from "../spinner.slint";
@@ -116,6 +116,9 @@ export component UButton inherits ButtonInterface {
         }
         VerticalLayout {
             alignment: center;
+			// Used to move the text down which improves visual alignment, especially when using icons.
+            padding-top: 1px;
+            padding-bottom: -1px;
             text-obj := UText {
                 color: get-color(theme.text);
                 font-size: UAppTheme.font-size-base;
@@ -176,7 +179,7 @@ export component UButton inherits ButtonInterface {
     }
     states [
         loading when root.loading: {
-            touch-mouse-cursor: wait;
+            mouse-cursor: wait;
             background: get-color(theme.bg-loading);
             border-color: get-color(theme.border);
         }

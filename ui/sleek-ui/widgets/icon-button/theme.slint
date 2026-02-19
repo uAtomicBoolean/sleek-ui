@@ -35,11 +35,14 @@ export global UIconButtonThemes {
         bg-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
         bg-disabled: { base: UAppTheme.primary.disabled, danger: UAppTheme.danger.disabled },
         bg-loading: { base: UAppTheme.primary.disabled, danger: UAppTheme.danger.disabled },
-        text: { base: Colors.white, danger: Colors.white },
-        text-hover: { base: Colors.white, danger: Colors.white },
-        text-active: { base: Colors.white, danger: Colors.white },
-        text-checked: { base: Colors.white, danger: Colors.white },
-        text-disabled: { base: Colors.white.with-alpha(0.8), danger: Colors.white.with-alpha(0.8) },
+        text: { base: UAppTheme.primary-text, danger: UAppTheme.primary-text },
+        text-hover: { base: UAppTheme.primary-text, danger: UAppTheme.primary-text },
+        text-active: { base: UAppTheme.primary-text, danger: UAppTheme.primary-text },
+        text-checked: { base: UAppTheme.primary-text, danger: UAppTheme.primary-text },
+        text-disabled: {
+            base: UAppTheme.primary-text.with-alpha(0.8),
+            danger: UAppTheme.primary-text.with-alpha(0.8)
+        },
     };
     out property <UIconButtonTheme> default: {
         border-width: UAppTheme.border-width-base,

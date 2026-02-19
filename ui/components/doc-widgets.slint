@@ -1,0 +1,101 @@
+import { UAppTheme } from "../sleek-ui/app-theme.slint";
+import { UText, UTitle, ULink, UCode } from "../sleek-ui/widgets.slint";
+
+
+export component DocTitle inherits HorizontalLayout {
+    in property <string> text;
+    padding-top: UAppTheme.padding-bigger;
+    padding-bottom: UAppTheme.padding-base;
+    UTitle {
+        level: 5;
+        text: root.text;
+    }
+}
+
+export component DocDescription inherits HorizontalLayout {
+    in property <string> text;
+    padding-top: UAppTheme.padding-bigger;
+    padding-bottom: UAppTheme.padding-base;
+    UText {
+        text: root.text;
+    }
+}
+
+export component DocCode inherits HorizontalLayout {
+    in property <string> code;
+    in property <bool> enable-clipboard;
+    padding-top: UAppTheme.padding-base;
+    UCode {
+        code: root.code;
+        enable-clipboard: root.enable-clipboard;
+    }
+}
+
+export component WidgetPresentation inherits HorizontalLayout {
+    in property <bool> full-width: false;
+    width: 100%;
+    alignment: full-width ? stretch : start;
+    padding-top: UAppTheme.padding-big;
+    padding-bottom: UAppTheme.padding-base;
+    spacing: UAppTheme.spacing-base;
+    @children
+}
+
+
+// Elements for the description of DocSection.
+struct DescStyledText {
+	url: string,
+	text: string,
+	link: string,
+	code: string,
+}
+
+
+export component DocSection inherits Rectangle {
+    in property <string> title;
+    in property <[[DescStyledText]]> description;
+    private property <duration> bg-animation: 0;
+    callback link-clicked(url: string);
+    animate background { duration: bg-animation; }
+    public function trigger-signal() {
+        self.bg-animation = 0;
+        self.background = Colors.yellow.with-alpha(0.8);
+        echo-timer.start();
+    }
+    VerticalLayout {
+        padding-top: UAppTheme.padding-big;
+        if title != "": DocTitle {
+            text: root.title;
+        }
+        if description.length != 0: VerticalLayout {
+            alignment: start;
+            for line in description: HorizontalLayout {
+                alignment: start;
+                for item in line: HorizontalLayout {
+                    alignment: start;
+                    if item.text != "": UText {
+                        text: item.text;
+                    }
+                    if item.link != "": ULink {
+                        text: item.link;
+                        clicked => root.link-clicked(item.url);
+                    }
+                    if item.code != "": UCode {
+                        type: inline;
+                        code: item.code;
+                    }
+                }
+            }
+        }
+    }
+
+    echo-timer := Timer {
+        running: false;
+        interval: 10ms;
+        triggered => {
+            root.bg-animation = 2s;
+            root.background = Colors.transparent;
+            self.stop();
+        }
+    }
+}

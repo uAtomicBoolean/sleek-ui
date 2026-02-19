@@ -1,52 +1,97 @@
 import { UAppTheme } from "../app-theme.slint";
-import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 import { ButtonInterface } from "button-interface.slint";
+import { UIconButton } from "icon-button/icon-button.slint";
 
 
-export component UCode inherits Rectangle {
+enum UCodeType {
+	inline,
+	block,
+}
+
+
+export component UCode inherits VerticalLayout {
+    in-out property <UCodeType> type: block;
     in-out property <string> code;
     in-out property <bool> enable-clipboard: false;
+    in-out property <TextWrap> wrap: no-wrap;
     callback copied(code: string);
-    background: UAppTheme.color-fill-secondary;
-    border-color: UAppTheme.border;
-    border-width: UAppTheme.border-width-base;
-    border-radius: UAppTheme.radius-small;
-    HorizontalLayout {
-        alignment: start;
-        padding: UAppTheme.padding-medium;
-        UText {
-            font-size: UAppTheme.font-size-small;
-            text: code;
+    private property <brush> bg-color: UAppTheme.color-fill-secondary;
+    private property <brush> bd-color: UAppTheme.border;
+    private property <length> bd-width: UAppTheme.border-width-base;
+    private property <length> bd-radius: UAppTheme.radius-small;
+    if type == UCodeType.inline: Rectangle {
+        Rectangle {
+            background: bg-color;
+            border-color: bd-color;
+            border-width: bd-width;
+            border-radius: bd-radius;
+            HorizontalLayout {
+                alignment: start;
+                padding: UAppTheme.padding-small;
+                UText {
+                    font-size: UAppTheme.font-size-small;
+                    text: code;
+                    wrap: root.wrap;
+                }
+            }
         }
     }
-
-    if enable-clipboard: VerticalLayout {
-        alignment: start;
+    if type == UCodeType.block: Rectangle {
+        background: bg-color;
+        border-color: bd-color;
+        border-width: bd-width;
+        border-radius: bd-radius;
+        clip: true;
         HorizontalLayout {
-            alignment: end;
+            alignment: start;
             padding: UAppTheme.padding-medium;
-            Rectangle {
-                states [
-                    focus when btn-interface.has-tab-focus: {
-                        border-color: UAppTheme.focus-color;
-                        border-width: UAppTheme.focus-border-width;
-                    }
-                ]
-                UIcon {
-                    colorize: UAppTheme.color-fill-plus;
-                    source: @image-url("../assets/icons/clipboard.svg");
-                    btn-interface := ButtonInterface {
-                        clicked => {
-                            root.copied(code);
-                        }
-                    }
+            UText {
+                font-size: UAppTheme.font-size-small;
+                text: code;
+                wrap: root.wrap;
+            }
+        }
 
-                    states [
-                        hover when btn-interface.has-hover: {
-                            colorize: UAppTheme.color-fill;
+        if enable-clipboard: VerticalLayout {
+            alignment: start;
+            HorizontalLayout {
+                alignment: end;
+                property <duration> feedback-duration: 1s;
+                property <duration> animation-duration: 0;
+                property <float> feedback-alpha: 0;
+                VerticalLayout {
+                    alignment: center;
+                    Rectangle {
+                        background: bg-color.with-alpha(feedback-alpha);
+                        animate background { duration: animation-duration; }
+                        UText {
+                            text: @tr("Copied!");
+                            color: UAppTheme.text.with-alpha(feedback-alpha);
+                            animate color { duration: animation-duration; }
                         }
-                    ]
+                    }
+                }
+
+                UIconButton {
+                    variant: text-stripped;
+                    icon: @image-url("../assets/icons/clipboard.svg");
+                    clicked => {
+                        root.copied(code);
+                        animation-duration = 0;
+                        feedback-alpha = 1;
+                        feedback-timer.start();
+                    }
+                }
+
+                feedback-timer := Timer {
+                    running: false;
+                    interval: feedback-duration;
+                    triggered => {
+                        animation-duration = feedback-duration;
+                        feedback-alpha = 0;
+                        self.stop();
+                    }
                 }
             }
         }

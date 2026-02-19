@@ -1,4 +1,4 @@
-# sleek-ui <!-- omit in toc -->
+# SleekUI <!-- omit in toc -->
 A UI components library built with/for [Slint](https://github.com/slint-ui/slint) based on [ant design](https://ant.design).  
 <br />
 <br />
@@ -15,16 +15,6 @@ A UI components library built with/for [Slint](https://github.com/slint-ui/slint
 - [Installation](#installation)
 - [How to use](#how-to-use)
 	- [Use the widgets](#use-the-widgets)
-	- [Use the application's theme](#use-the-applications-theme)
-		- [Use your own themes](#use-your-own-themes)
-		- [Scale factor](#scale-factor)
-- [Documentation](#documentation)
-- [Widgets](#widgets)
-	- [General](#general)
-	- [Data entry](#data-entry)
-	- [Data display](#data-display)
-	- [Feedback](#feedback)
-	- [Miscs](#miscs)
 - [Resources](#resources)
 
 ## Installation
@@ -87,81 +77,6 @@ export component AppWindow inherits Window {
 	}
 }
 ```
-
-### Use the application's theme
-The application's theme is defined in the `@sleek-ui/app-theme.slint` file.  
-It implements a scale-factor property to increase/reduce the size of all widgets in the window.  
-A `UAppTheme.color-scheme` property is also available to choose which color theme to use. The available values are : `light`, `dark` and `system`. The system value uses the `Palette.color-scheme` to decide which one to use.
-
-
-#### Use your own themes
-You can modify all the properties from the application theme to create your own theme.
-
-[Check the documentation for more informations](./docs-sleek-ui/theming.md).
-
-#### Scale factor
-Sleek-ui comes with a scale-factor integrated that allows you to increase or decrease all sizes.  
-It takes effect in the `UAppTheme` global and all widgets.  
-You can modify it in the backend whenever you want : 
-```rust
-let ui = AppWindow::new()?;
-
-let app_theme_global = ui.global::<UAppTheme>();
-app_theme_global.set_scale_factor(1.5);
-
-ui.run()?;
-```
-
-## Documentation
-The documentation is available in the [ui-docs](./docs-sleek-ui/) folder. You can also click on one of the widgets in the list below to go to its documentation.
-
-Documentation pages :
-- [Theming](docs-sleek-ui/theming.md)
-- [Widgets documentation](docs-sleek-ui/widgets.md)
-
-## Widgets
-### General
-- [x] Button
-- [ ] ButtonGroup
-- [x] Card
-- [x] Divider
-- [ ] Dropdown
-- [x] FloatingButton
-- [x] FloatingIconButton
-- [x] Icon
-- [x] IconButton
-- [x] Typography
-
-### Data entry
-- [x] Checkbox
-- [ ] DatePicker
-- [x] Input
-- [x] InputNumber
-- [x] Radio
-- [x] RadioButton
-- [x] Select
-- [x] Slider
-- [x] Switch
-- [ ] TimePicker
-
-### Data display
-- [x] Collapse
-- [x] Popover
-- [x] Tabs
-- [x] Tag
-- [x] Tooltip
-
-### Feedback
-- [x] Modal
-- [x] LinearProgress
-- [ ] CircleProgress
-- [x] Spinner
-- [x] Alert
-- [x] Notification
-
-### Miscs
-- [ ] Context menu
-- [x] Breadcrumb
 
 ## Resources
 - Ant Design Theme editor : https://ant.design/theme-editor
