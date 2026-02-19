@@ -14,15 +14,6 @@ fn main() {
 
 	app_logic.set_scale_factor(ui.window().scale_factor() * 100.0);
 
-    let ui_weak = ui.as_weak();
-    app_logic.on_update_scale_factor(move |sf| {
-        let ui = ui_weak.upgrade().unwrap();
-        ui.window()
-            .dispatch_event(slint::platform::WindowEvent::ScaleFactorChanged {
-                scale_factor: sf / 100.0,
-            });
-    });
-
     app_logic.on_is_wasm(|| {
         return true;
     });
