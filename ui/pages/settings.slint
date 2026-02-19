@@ -44,7 +44,8 @@ component ColorDisplay inherits Rectangle {
 
             touch := ButtonInterface {
                 clicked => {
-                    AppLogic.change-primary-color(theme-color);
+                    UAppTheme.light.primary = theme-color;
+                    UAppTheme.dark.primary = theme-color;
                 }
             }
 

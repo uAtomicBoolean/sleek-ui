@@ -36,17 +36,5 @@ fn main() {
         }
     });
 
-    let ui_weak = ui.as_weak();
-    app_logic.on_change_primary_color(move |color| {
-        let ui = ui_weak.upgrade().unwrap();
-        let app_theme = ui.global::<UAppTheme>();
-        let mut light = app_theme.get_light();
-        let mut dark = app_theme.get_dark();
-        light.primary = color.clone();
-        dark.primary = color;
-        app_theme.set_light(light);
-        app_theme.set_dark(dark);
-    });
-
     ui.run().unwrap();
 }
