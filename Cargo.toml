@@ -1,7 +1,10 @@
 [package]
 name = "SleekUI"
-version = "1.0.0"
+description = "A widgets library made with/for Slint based on Ant Design."
+version = "1.4.0"
 edition = "2024"
+license-file = "LICENSE"
+repository = "https://github.com/uAtomicBoolean/SleekUI"
 
 [lib]
 name = "sleek_ui_lib"
