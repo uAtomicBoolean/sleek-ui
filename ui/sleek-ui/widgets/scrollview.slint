@@ -9,6 +9,7 @@ component Scrollbar inherits Rectangle {
     out property <bool> pressed <=> touch.pressed;
     private property <length> available-space: (orientation == Orientation.vertical ? self.height : self.width) - handle-size;
     private property <float> min-handle-pct: 0.05;
+    private property <bool> is-being-dragged;
     width: orientation == Orientation.vertical ? 8px : 0;
     height: orientation == Orientation.horizontal ? 8px : 0;
     handle := Rectangle {
@@ -28,12 +29,27 @@ component Scrollbar inherits Rectangle {
 
     touch := TouchArea {
         private property <length> initial-pressed;
+        clicked => {
+            if is-being-dragged {
+                is-being-dragged = false;
+                return;
+            }
+            let mouse-pos = orientation == Orientation.vertical ? self.mouse-y : self.mouse-x;
+            if orientation == Orientation.vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
+                let new-y = clamp(mouse-pos - handle.height / 2, 0px, available-space);
+                value = -(max-scroll-pos * (new-y / available-space));
+            } else if orientation == Orientation.horizontal && self.mouse-x >= 0 && self.mouse-x <= root.width {
+                let new-x = clamp(mouse-pos - handle.width / 2, 0px, available-space);
+                value = -(max-scroll-pos * (new-x / available-space));
+            }
+        }
         pointer-event(event) => {
             if event.button == PointerEventButton.left && event.kind == PointerEventKind.down {
                 initial-pressed = orientation == Orientation.vertical ? self.mouse-y : self.mouse-x;
             }
         }
         moved => {
+            is-being-dragged = true;
             if orientation == Orientation.vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
                 let move-diff = initial-pressed - self.mouse-y;
                 let new-y = clamp(handle.y - move-diff, 0px, available-space);
