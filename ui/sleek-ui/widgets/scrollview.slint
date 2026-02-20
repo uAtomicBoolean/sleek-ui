@@ -121,11 +121,19 @@ export component UScrollView inherits FocusScope {
                 self.viewport-x -= self.viewport-width * 0.1;
             } else if event.text == Key.PageUp {
                 self.viewport-x += self.viewport-width * 0.1;
+            } else if event.text == Key.Home {
+                self.viewport-x += self.viewport-width;
+            } else if event.text == Key.End {
+                self.viewport-x -= self.viewport-width;
             }
         } else if event.text == Key.PageDown {
             self.viewport-y -= self.viewport-height * 0.1;
         } else if event.text == Key.PageUp {
             self.viewport-y += self.viewport-height * 0.1;
+        } else if event.text == Key.Home {
+            self.viewport-y += self.viewport-height;
+        } else if event.text == Key.End {
+            self.viewport-y -= self.viewport-height;
         }
         reject
     }
