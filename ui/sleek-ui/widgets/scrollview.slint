@@ -7,16 +7,17 @@ component Scrollbar inherits Rectangle {
     in-out property <length> max-scroll-pos;
     in property <length> handle-size;
     out property <bool> pressed <=> touch.pressed;
-    private property <length> available-space: (orientation == Orientation.vertical ? self.height : self.width) - handle-size;
+    private property <bool> is-vertical: orientation == Orientation.vertical;
+    private property <length> available-space: (is-vertical ? self.height : self.width) - handle-size;
     private property <float> min-handle-pct: 0.05;
     private property <bool> is-being-dragged;
-    width: orientation == Orientation.vertical ? 8px : 0;
-    height: orientation == Orientation.horizontal ? 8px : 0;
+    width: root.is-vertical ? 8px : 0;
+    height: !root.is-vertical ? 8px : 0;
     handle := Rectangle {
-        x: orientation == Orientation.horizontal ? -value / max-scroll-pos * (root.width - handle-size) : 1px;
-        y: orientation == Orientation.vertical ? -value / max-scroll-pos * (root.height - handle-size) : 1px;
-        width: orientation == Orientation.vertical ? 6px : handle-size;
-        height: orientation == Orientation.horizontal ? 6px : handle-size;
+        x: !root.is-vertical ? -value / max-scroll-pos * (root.width - handle-size) : 1px;
+        y: root.is-vertical ? -value / max-scroll-pos * (root.height - handle-size) : 1px;
+        width: root.is-vertical ? 6px : handle-size;
+        height: !root.is-vertical ? 6px : handle-size;
         background: UAppTheme.color-fill;
         border-radius: UAppTheme.radius-circle;
         animate background { duration: UAppTheme.animation-duration; }
@@ -34,38 +35,39 @@ component Scrollbar inherits Rectangle {
                 is-being-dragged = false;
                 return;
             }
-            let mouse-pos = orientation == Orientation.vertical ? self.mouse-y : self.mouse-x;
-            if orientation == Orientation.vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
-                let new-y = clamp(mouse-pos - handle.height / 2, 0px, available-space);
-                value = -(max-scroll-pos * (new-y / available-space));
-            } else if orientation == Orientation.horizontal && self.mouse-x >= 0 && self.mouse-x <= root.width {
-                let new-x = clamp(mouse-pos - handle.width / 2, 0px, available-space);
-                value = -(max-scroll-pos * (new-x / available-space));
+            let mouse-pos = root.is-vertical ? self.mouse-y : self.mouse-x;
+            if root.is-vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
+                compute-pos(mouse-pos - handle.height / 2);
+            } else if !root.is-vertical && self.mouse-x >= 0 && self.mouse-x <= root.width {
+                compute-pos(mouse-pos - handle.width / 2);
             }
         }
         pointer-event(event) => {
             if event.button == PointerEventButton.left && event.kind == PointerEventKind.down {
-                initial-pressed = orientation == Orientation.vertical ? self.mouse-y : self.mouse-x;
+                initial-pressed = root.is-vertical ? self.mouse-y : self.mouse-x;
             }
         }
         moved => {
             is-being-dragged = true;
-            if orientation == Orientation.vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
+            if root.is-vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
                 let move-diff = initial-pressed - self.mouse-y;
-                let new-y = clamp(handle.y - move-diff, 0px, available-space);
                 initial-pressed = self.mouse-y;
-                value = -(max-scroll-pos * (new-y / available-space));
-            } else if orientation == Orientation.horizontal && self.mouse-x >= 0 && self.mouse-x <= root.width {
+                compute-pos(handle.y - move-diff);
+            } else if !root.is-vertical && self.mouse-x >= 0 && self.mouse-x <= root.width {
                 let move-diff = initial-pressed - self.mouse-x;
-                let new-x = clamp(handle.x - move-diff, 0px, available-space);
                 initial-pressed = self.mouse-x;
-                value = -(max-scroll-pos * (new-x / available-space));
+                compute-pos(handle.x - move-diff);
             }
         }
     }
+
+    function compute-pos(move: length) {
+        let new-pos = clamp(move, 0px, available-space);
+        value = -(max-scroll-pos * (new-pos / available-space));
+    }
 }
 
-export component UScrollView inherits Rectangle {
+export component UScrollView inherits FocusScope {
     in-out property <bool> interactive: false;
     out property <length> scrollbar-area: 8px;
     in-out property <length> viewport-x <=> flickable.viewport-x;
@@ -111,5 +113,20 @@ export component UScrollView inherits Rectangle {
         visible: flickable.viewport-width > flickable.width;
         max-scroll-pos: flickable.viewport-width - flickable.width;
         handle-size: raw-handle-size < min-handle-size ? min-handle-size : raw-handle-size;
+    }
+
+    capture-key-pressed(event) => {
+        if event.modifiers.shift {
+            if event.text == Key.PageDown {
+                self.viewport-x -= self.viewport-width * 0.1;
+            } else if event.text == Key.PageUp {
+                self.viewport-x += self.viewport-width * 0.1;
+            }
+        } else if event.text == Key.PageDown {
+            self.viewport-y -= self.viewport-height * 0.1;
+        } else if event.text == Key.PageUp {
+            self.viewport-y += self.viewport-height * 0.1;
+        }
+        reject
     }
 }

@@ -3,7 +3,7 @@ import { UAppTheme } from "../sleek-ui/app-theme.slint";
 import { UScrollView } from "../sleek-ui/widgets.slint";
 
 
-export component PageBase inherits FocusScope {
+export component PageBase {
     height: 100%;
     public function scroll-to(pos: length) {
         scrollview.scroll-y-to(-pos);
@@ -23,7 +23,7 @@ export component PageBase inherits FocusScope {
         interval: 10ms;
         triggered => {
             self.stop();
-            root.focus();
+            scrollview.focus();
         }
     }
 }
