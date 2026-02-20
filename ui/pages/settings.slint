@@ -143,16 +143,18 @@ export component SettingsPage inherits PageBase {
     HorizontalLayout {
         alignment: start;
         padding-top: UAppTheme.padding-base;
-        UScrollView {
+        Rectangle {
             height: 200px;
             width: 600px;
             border-width: UAppTheme.border-width-base;
             border-color: UAppTheme.border;
             border-radius: UAppTheme.radius-base;
-            VerticalLayout {
-                for color[idx] in colors: ColorDisplay {
-                    name: color.name;
-                    theme-color: color.color;
+            UScrollView {
+                VerticalLayout {
+                    for color[idx] in colors: ColorDisplay {
+                        name: color.name;
+                        theme-color: color.color;
+                    }
                 }
             }
         }
