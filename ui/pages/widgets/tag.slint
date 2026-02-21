@@ -41,27 +41,261 @@ export component TagPage inherits PageBase {
     WidgetPresentation {
         spacing: UAppTheme.spacing-base;
         UTag {
-            text: "Info";
+            text: "Filled";
         }
 
         UTag {
-            variant: success;
-            text: "Success";
+            variant: solid;
+            text: "Solid";
         }
 
         UTag {
-            variant: warning;
-            text: "Warning";
-        }
-
-        UTag {
-            variant: danger;
-            text: "Danger";
+            variant: outline;
+            text: "Outline";
         }
     }
 
     DocCode {
-        code: "UTag {\n    text: \"Info\";\n}\n\nUTag {\n    variant: success;\n    text: \"Success\";\n}";
+        code: "UTag {\n    text: \"Filled\";\n}\n\nUTag {\n    variant: solid;\n    text: \"Solid\";\n}\n\nUTag {\n    variant: outline;\n    text: \"Outline\";\n}";
+    }
+
+    DocSection {
+        title: "Color presets";
+        description: [
+            [
+                { text: "Using the " },
+                { code: "preset" },
+                {
+                    text: " property, you can change the tag's color to use one of the default colors."
+                },
+            ],
+            [
+                { text: "You can also directly change the " },
+                { code: "preset-color" },
+                { text: " property to use a custom color. However, it must be of type " },
+                { code: "UPrimaryColor" },
+                { text: "." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-base;
+        UTag {
+            preset: red;
+            text: "red";
+        }
+
+        UTag {
+            preset: volcano;
+            text: "volcano";
+        }
+
+        UTag {
+            preset: orange;
+            text: "orange";
+        }
+
+        UTag {
+            preset: gold;
+            text: "gold";
+        }
+
+        UTag {
+            preset: yellow;
+            text: "yellow";
+        }
+
+        UTag {
+            preset: lime;
+            text: "lime";
+        }
+
+        UTag {
+            preset: green;
+            text: "green";
+        }
+
+        UTag {
+            preset: cyan;
+            text: "cyan";
+        }
+
+        UTag {
+            preset: blue;
+            text: "blue";
+        }
+
+        UTag {
+            preset: geekblue;
+            text: "geekblue";
+        }
+
+        UTag {
+            preset: purple;
+            text: "purple";
+        }
+
+        UTag {
+            preset: magenta;
+            text: "magenta";
+        }
+    }
+
+    WidgetPresentation {
+        padding-top: 0;
+        spacing: UAppTheme.spacing-base;
+        UTag {
+            variant: solid;
+            preset: red;
+            text: "red";
+        }
+
+        UTag {
+            variant: solid;
+            preset: volcano;
+            text: "volcano";
+        }
+
+        UTag {
+            variant: solid;
+            preset: orange;
+            text: "orange";
+        }
+
+        UTag {
+            variant: solid;
+            preset: gold;
+            text: "gold";
+        }
+
+        UTag {
+            variant: solid;
+            preset: yellow;
+            text: "yellow";
+        }
+
+        UTag {
+            variant: solid;
+            preset: lime;
+            text: "lime";
+        }
+
+        UTag {
+            variant: solid;
+            preset: green;
+            text: "green";
+        }
+
+        UTag {
+            variant: solid;
+            preset: cyan;
+            text: "cyan";
+        }
+
+        UTag {
+            variant: solid;
+            preset: blue;
+            text: "blue";
+        }
+
+        UTag {
+            variant: solid;
+            preset: geekblue;
+            text: "geekblue";
+        }
+
+        UTag {
+            variant: solid;
+            preset: purple;
+            text: "purple";
+        }
+
+        UTag {
+            variant: solid;
+            preset: magenta;
+            text: "magenta";
+        }
+    }
+
+    WidgetPresentation {
+        padding-top: 0;
+        spacing: UAppTheme.spacing-base;
+        UTag {
+            variant: outline;
+            preset: red;
+            text: "red";
+        }
+
+        UTag {
+            variant: outline;
+            preset: volcano;
+            text: "volcano";
+        }
+
+        UTag {
+            variant: outline;
+            preset: orange;
+            text: "orange";
+        }
+
+        UTag {
+            variant: outline;
+            preset: gold;
+            text: "gold";
+        }
+
+        UTag {
+            variant: outline;
+            preset: yellow;
+            text: "yellow";
+        }
+
+        UTag {
+            variant: outline;
+            preset: lime;
+            text: "lime";
+        }
+
+        UTag {
+            variant: outline;
+            preset: green;
+            text: "green";
+        }
+
+        UTag {
+            variant: outline;
+            preset: cyan;
+            text: "cyan";
+        }
+
+        UTag {
+            variant: outline;
+            preset: blue;
+            text: "blue";
+        }
+
+        UTag {
+            variant: outline;
+            preset: geekblue;
+            text: "geekblue";
+        }
+
+        UTag {
+            variant: outline;
+            preset: purple;
+            text: "purple";
+        }
+
+        UTag {
+            variant: outline;
+            preset: magenta;
+            text: "magenta";
+        }
+    }
+
+    DocCode {
+        code: "UTag {\n    preset: red;\n    text: \"red\";\n}\n\nUTag {\n    variant: solid;\n    preset: blue;\n    text: \"blue\";\n}\n\nUTag {\n    variant: outline;\n    preset: purple;\n    text: \"purple\";\n}";
     }
 
     DocSection {
@@ -84,7 +318,7 @@ export component TagPage inherits PageBase {
         }
 
         UTag {
-            variant: danger;
+            preset: red;
             text: "Rocket";
             icon: @image-url("../../assets/images/rocket.svg");
             icon-placement: end;
@@ -92,7 +326,7 @@ export component TagPage inherits PageBase {
     }
 
     DocCode {
-        code: "UTag {\n    text: \"Rocket\";\n    icon: @image-url(your url...);\n    icon-placement: start;\n}\n\nUTag {\n    variant: danger;\n    text: \"Rocket\";\n    icon: @image-url(your url...);\n    icon-placement: end;\n}";
+        code: "UTag {\n    text: \"Rocket\";\n    icon: @image-url(your url...);\n    icon-placement: start;\n}\n\nUTag {\n    preset: red;\n    text: \"Rocket\";\n    icon: @image-url(your url...);\n    icon-placement: end;\n}";
     }
 
     DocSection {
@@ -120,13 +354,17 @@ export component TagPage inherits PageBase {
     }
 
     DocSection {
-        title: "Custom colors";
+        title: "Fully custom colors";
         description: [
             [
-                { text: "You can change the tag's colors with the " },
+                { text: "You can change the tag's colors without a " },
+                { code: "UPrimaryColor" },
+                { text: " with the " },
                 { code: "text-color" },
-                { text: " and " },
-                { code: "background-color" },
+                { text: ", " },
+                { code: "background" },
+                { text: ", " },
+                { code: "border-color" },
                 { text: " properties." }
             ]
         ];
@@ -134,13 +372,15 @@ export component TagPage inherits PageBase {
 
     WidgetPresentation {
         UTag {
-            text: "Custom purple";
-            text-color: purple;
-            background-color: purple.with-alpha(0.1);
+            text: "Custom gradient";
+            text-color: @linear-gradient(90deg, red 0%, green 50%, blue 100%);
+            background: gray;
+            border-color: @linear-gradient(90deg, red 0%, green 50%, blue 100%);
+            border-width: 1px;
         }
     }
 
     DocCode {
-        code: "UTag {\n    text: \"Custom purple\";\n    text-color: purple;\n    background-color: purple.with-alpha(0.1);\n}";
+        code: "UTag {\n    text: \"Custom gradient\";\n    text-color: @linear-gradient(90deg, red 0%, green 50%, blue 100%);\n    background: gray;\n    border-color: @linear-gradient(90deg, red 0%, green 50%, blue 100%);\n    border-width: 1px;\n}";
     }
 }

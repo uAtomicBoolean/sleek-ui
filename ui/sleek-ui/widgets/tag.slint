@@ -1,15 +1,29 @@
 import { UAppTheme } from "../app-theme.slint";
-
+import { UPrimaryColor } from "../structs/theme.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 import { IconTextPlacement } from "../structs/data-structs.slint";
 
 
 export enum UTagVariant {
-	info,
-	success,
-	warning,
-	danger,
+	filled,
+	solid,
+	outline,
+}
+
+export enum UTagPreset {
+	red,
+	volcano,
+	orange,
+	gold,
+	yellow,
+	lime,
+	green,
+	cyan,
+	blue,
+	geekblue,
+	purple,
+	magenta,
 }
 
 export component UTag inherits Rectangle {
@@ -17,14 +31,14 @@ export component UTag inherits Rectangle {
 	accessible-role: AccessibleRole.text;
     accessible-label: self.text;
 	// Regular properties
-    in-out property <UTagVariant> variant: info;
-    in-out property <color> text-color;
-    in-out property <color> background-color;
+    in-out property <UTagVariant> variant: filled;
+    in-out property <UTagPreset> preset: blue;
+    in-out property <UPrimaryColor> preset-color: get-preset-color();
+    in-out property <brush> text-color;
     in-out property <string> text <=> tag-text.text;
     in-out property <image> icon;
     in-out property <bool> colorize-icon: true;
     in-out property <IconTextPlacement> icon-placement: hidden;
-    background: background-color;
     border-radius: UAppTheme.radius-base;
     HorizontalLayout {
         spacing: UAppTheme.spacing-small;
@@ -54,21 +68,47 @@ export component UTag inherits Rectangle {
     }
 
     states [
-        info when variant == UTagVariant.info: {
-            background-color: UAppTheme.primary.selected;
-            text-color: UAppTheme.primary.base;
+        filled when variant == UTagVariant.filled: {
+            background: preset-color.selected;
+            text-color: preset-color.base;
         }
-        success when variant == UTagVariant.success: {
-            background-color: UAppTheme.success.selected;
-            text-color: UAppTheme.success.base;
+        solid when variant == UTagVariant.solid: {
+            background: preset-color.base;
+            text-color: preset-color.selected;
         }
-        warning when variant == UTagVariant.warning: {
-            background-color: UAppTheme.warning.selected;
-            text-color: UAppTheme.warning.base;
-        }
-        danger when variant == UTagVariant.danger: {
-            background-color: UAppTheme.danger.selected;
-            text-color: UAppTheme.danger.base;
+        outline when variant == UTagVariant.outline: {
+            background: preset-color.selected;
+            text-color: preset-color.base;
+            border-color: preset-color.disabled;
+            border-width: 1px;
         }
     ]
+    function get-preset-color() -> UPrimaryColor {
+        if self.preset == UTagPreset.red {
+            return UAppTheme.dust-red;
+        } else if self.preset == UTagPreset.volcano {
+            return UAppTheme.volcano;
+        } else if self.preset == UTagPreset.orange {
+            return UAppTheme.sunset-orange;
+        } else if self.preset == UTagPreset.gold {
+            return UAppTheme.calendula-gold;
+        } else if self.preset == UTagPreset.yellow {
+            return UAppTheme.sunrise-yellow;
+        } else if self.preset == UTagPreset.lime {
+            return UAppTheme.lime;
+        } else if self.preset == UTagPreset.green {
+            return UAppTheme.polar-green;
+        } else if self.preset == UTagPreset.cyan {
+            return UAppTheme.cyan;
+        } else if self.preset == UTagPreset.blue {
+            return UAppTheme.daybreak-blue;
+        } else if self.preset == UTagPreset.geekblue {
+            return UAppTheme.geek-blue;
+        } else if self.preset == UTagPreset.purple {
+            return UAppTheme.golden-purple;
+        } else if self.preset == UTagPreset.magenta {
+            return UAppTheme.french-magenta;
+        }
+        return UAppTheme.primary;
+    }
 }
