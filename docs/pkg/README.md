@@ -69,5 +69,10 @@ export component AppWindow inherits Window {
 }
 ```
 
+## Build the interactive documentation as WASM
+```
+wasm-pack build --release --target web --out-dir docs/pkg
+```
+
 ## Resources
 - Ant Design Theme editor : https://ant.design/theme-editor
