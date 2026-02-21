@@ -1,0 +1,21 @@
+{
+  "name": "sleek-ui",
+  "type": "module",
+  "description": "A widgets library made with/for Slint based on Ant Design.",
+  "version": "1.4.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uAtomicBoolean/sleek-ui"
+  },
+  "files": [
+    "sleek_ui_lib_bg.wasm",
+    "sleek_ui_lib.js",
+    "sleek_ui_lib.d.ts"
+  ],
+  "main": "sleek_ui_lib.js",
+  "types": "sleek_ui_lib.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
