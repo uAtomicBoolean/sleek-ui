@@ -2,7 +2,7 @@
   "name": "sleek-ui",
   "type": "module",
   "description": "A widgets library made with/for Slint based on Ant Design.",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
