@@ -2,14 +2,16 @@ import { UAppTheme } from "../app-theme.slint";
 
 import { ButtonInterface } from "button-interface.slint";
 import { UText } from "text.slint";
+import { UIcon } from "icon.slint";
+import { IconTextPlacement } from "../structs/data-structs.slint";
 
 
 export component ULink inherits Rectangle {
 	// Regular properties
 	in-out property <string> text <=> link-text.text;
-    in-out property <TextWrap> wrap: no-wrap;
+    in-out property <IconTextPlacement> icon-placement: hidden;
     callback clicked();
-    ButtonInterface {
+    touch := ButtonInterface {
 		// Accessability properties
 		accessible-role: button;
         accessible-label: text;
@@ -23,6 +25,23 @@ export component ULink inherits Rectangle {
 		// Using this horizontal layout to limit the width of the underline to the text's width.
 		HorizontalLayout {
             alignment: start;
+            spacing: UAppTheme.spacing-base;
+            if icon-placement == IconTextPlacement.start: VerticalLayout {
+                alignment: center;
+                UIcon {
+                    size: UAppTheme.font-size-base;
+                    source: @image-url("../assets/icons/external-link.svg");
+                    colorize: UAppTheme.primary.base;
+                    states [
+                        active when touch.pressed: {
+                            colorize: UAppTheme.primary.active;
+                        }
+                        hover when touch.has-hover: {
+                            colorize: UAppTheme.primary.hover;
+                        }
+                    ]
+                }
+            }
             VerticalLayout {
                 alignment: center;
                 spacing: -1px;
@@ -34,6 +53,23 @@ export component ULink inherits Rectangle {
                 underline := Rectangle {
                     height: UAppTheme.border-width-base;
                     background: UAppTheme.primary.base;
+                }
+            }
+
+            if icon-placement == IconTextPlacement.end: VerticalLayout {
+                alignment: center;
+                UIcon {
+                    size: UAppTheme.font-size-base;
+                    source: @image-url("../assets/icons/external-link.svg");
+                    colorize: UAppTheme.primary.base;
+                    states [
+                        active when touch.pressed: {
+                            colorize: UAppTheme.primary.active;
+                        }
+                        hover when touch.has-hover: {
+                            colorize: UAppTheme.primary.hover;
+                        }
+                    ]
                 }
             }
         }
