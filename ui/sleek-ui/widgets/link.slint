@@ -29,6 +29,8 @@ export component ULink inherits Rectangle {
             spacing: UAppTheme.spacing-base;
             if icon-placement == IconTextPlacement.start: VerticalLayout {
                 alignment: center;
+                padding-top: -1px;
+                padding-bottom: 1px;
                 UIcon {
                     size: UAppTheme.font-size-base;
                     source: @image-url("../assets/icons/external-link.svg");
@@ -44,10 +46,8 @@ export component ULink inherits Rectangle {
                 }
             }
             VerticalLayout {
-                alignment: end;
+                alignment: start;
                 spacing: -1px;
-                padding-top: 1px;
-                padding-bottom: -1px;
                 link-text := UText {
                     color: UAppTheme.primary.base;
                     font-size: UAppTheme.font-size-base;
@@ -69,6 +69,8 @@ export component ULink inherits Rectangle {
 
             if icon-placement == IconTextPlacement.end: VerticalLayout {
                 alignment: center;
+                padding-top: -1px;
+                padding-bottom: 1px;
                 UIcon {
                     size: UAppTheme.font-size-base;
                     source: @image-url("../assets/icons/external-link.svg");
