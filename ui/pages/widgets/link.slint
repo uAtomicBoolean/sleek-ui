@@ -82,4 +82,35 @@ export component LinkPage inherits PageBase {
     DocCode {
         code: "ULink {\n    text: \"External link\";\n    icon-placement: start;\n}\n\nULink {\n    text: \"External link\";\n    icon-placement: end;\n}";
     }
+
+    DocSection {
+        title: "Disable the underline";
+        description: [
+            [
+                { text: "You can disable the underline by setting the " },
+                { code: "disable-underline" },
+                { text: " to " },
+                { code: "true" },
+                { text: "." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        spacing: UAppTheme.spacing-big;
+        ULink {
+            text: "Underline disabled";
+            disable-underline: true;
+        }
+
+        ULink {
+            text: "Underline disabled";
+            disable-underline: true;
+            icon-placement: start;
+        }
+    }
+
+    DocCode {
+        code: "ULink {\n    text: \"Disabled underline\";\n    disable-underline: true;\n}\n\nULink {\n    text: \"Disabled underline\";\n    disable-underline: true;\n    icon-placement: start;\n}";
+    }
 }
