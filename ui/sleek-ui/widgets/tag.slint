@@ -46,10 +46,13 @@ export component UTag inherits Rectangle {
         padding-bottom: UAppTheme.padding-vertical / 1.5;
         padding-left: UAppTheme.padding-horizontal / 1.5;
         padding-right: UAppTheme.padding-horizontal / 1.5;
-        if icon-placement == IconTextPlacement.start: UIcon {
-            source: icon;
-            size: UAppTheme.font-size-base;
-            colorize: colorize-icon ? text-color : transparent;
+        if icon-placement == IconTextPlacement.start: VerticalLayout {
+            alignment: center;
+            UIcon {
+                source: icon;
+                size: UAppTheme.font-size-base;
+                colorize: colorize-icon ? text-color : transparent;
+            }
         }
         VerticalLayout {
             padding-top: 1px;
@@ -60,10 +63,13 @@ export component UTag inherits Rectangle {
             }
         }
 
-        if icon-placement == IconTextPlacement.end: UIcon {
-            source: icon;
-            size: UAppTheme.font-size-base;
-            colorize: colorize-icon ? text-color : transparent;
+        if icon-placement == IconTextPlacement.end: VerticalLayout {
+            alignment: center;
+            UIcon {
+                source: icon;
+                size: UAppTheme.font-size-base;
+                colorize: colorize-icon ? text-color : transparent;
+            }
         }
     }
 
