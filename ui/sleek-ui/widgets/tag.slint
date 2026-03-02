@@ -35,7 +35,7 @@ export component UTag inherits Rectangle {
     in-out property <UTagPreset> preset: blue;
     in-out property <UPrimaryColor> preset-color: get-preset-color();
     in-out property <brush> text-color;
-    in-out property <string> text <=> tag-text.text;
+    in-out property <string> text;
     in-out property <image> icon;
     in-out property <bool> colorize-icon: true;
     in-out property <IconTextPlacement> icon-placement: hidden;
@@ -57,9 +57,10 @@ export component UTag inherits Rectangle {
         VerticalLayout {
             padding-top: 1px;
             padding-bottom: -1px;
-            tag-text := UText {
-                font-size: UAppTheme.font-size-small;
+            UText {
+                text: root.text;
                 color: text-color;
+                font-size: UAppTheme.font-size-small;
             }
         }
 
