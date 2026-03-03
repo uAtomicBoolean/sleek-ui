@@ -6,11 +6,11 @@ import { UIcon } from "icon.slint";
 import { IconTextPlacement } from "../structs/data-structs.slint";
 
 
-export component ULink inherits Rectangle {
+export component ULink {
 	// Regular properties
 	in-out property <string> text <=> link-text.text;
     in-out property <IconTextPlacement> icon-placement: hidden;
-    in-out property <bool> disable-underline;
+    in-out property <TextWrap> wrap: char-wrap;
     callback clicked();
     touch := ButtonInterface {
 		// Accessability properties
@@ -23,14 +23,11 @@ export component ULink inherits Rectangle {
         clicked => {
             root.clicked();
         }
-		// Using this horizontal layout to limit the width of the underline to the text's width.
-		HorizontalLayout {
+        HorizontalLayout {
             alignment: start;
             spacing: UAppTheme.spacing-base;
             if icon-placement == IconTextPlacement.start: VerticalLayout {
-                alignment: center;
-                padding-top: -1px;
-                padding-bottom: 1px;
+                alignment: start;
                 UIcon {
                     size: UAppTheme.font-size-base;
                     source: @image-url("../assets/icons/external-link.svg");
@@ -45,32 +42,14 @@ export component ULink inherits Rectangle {
                     ]
                 }
             }
-            VerticalLayout {
-                alignment: start;
-                spacing: -1px;
-                link-text := UText {
-                    color: UAppTheme.primary.base;
-                    font-size: UAppTheme.font-size-base;
-                }
-
-                if !disable-underline: Rectangle {
-                    height: UAppTheme.border-width-base;
-                    background: UAppTheme.primary.base;
-                    states [
-                        active when touch.pressed: {
-                            visible: false;
-                        }
-                        hover when touch.has-hover: {
-                            visible: false;
-                        }
-                    ]
-                }
+            link-text := UText {
+                color: UAppTheme.primary.base;
+                font-size: UAppTheme.font-size-base;
+                wrap: wrap;
             }
 
             if icon-placement == IconTextPlacement.end: VerticalLayout {
-                alignment: center;
-                padding-top: -1px;
-                padding-bottom: 1px;
+                alignment: start;
                 UIcon {
                     size: UAppTheme.font-size-base;
                     source: @image-url("../assets/icons/external-link.svg");

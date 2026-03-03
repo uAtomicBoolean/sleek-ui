@@ -84,33 +84,30 @@ export component LinkPage inherits PageBase {
     }
 
     DocSection {
-        title: "Disable the underline";
+        title: "Wrapping";
         description: [
             [
-                { text: "You can disable the underline by setting the " },
-                { code: "disable-underline" },
-                { text: " to " },
-                { code: "true" },
-                { text: "." }
+                { text: "By default, the link will wrap using the " },
+                { code: "TextWrap.char-wrap" },
+                { text: " value. You can change it using the " },
+                { code: "wrap" },
+                { text: " property." }
             ]
         ];
     }
 
     WidgetPresentation {
         spacing: UAppTheme.spacing-big;
-        ULink {
-            text: "Underline disabled";
-            disable-underline: true;
-        }
-
-        ULink {
-            text: "Underline disabled";
-            disable-underline: true;
-            icon-placement: start;
+        HorizontalLayout {
+            width: 200px;
+            ULink {
+                text: "Very long link that will wrap on multiple lines using the word-wrap value.";
+                wrap: word-wrap;
+            }
         }
     }
 
     DocCode {
-        code: "ULink {\n    text: \"Disabled underline\";\n    disable-underline: true;\n}\n\nULink {\n    text: \"Disabled underline\";\n    disable-underline: true;\n    icon-placement: start;\n}";
+        code: "ULink {\n    text: \"Very long link that will wrap on multiple lines using the word-wrap value.\";\n    wrap: word-wrap;\n}";
     }
 }
