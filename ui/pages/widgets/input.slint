@@ -36,18 +36,25 @@ export component InputPage inherits PageBase {
     }
 
     DocSection {
-        title: "Disabled input";
-        description: [[{ text: "Use the " }, { code: "enabled" }, { text:" property to disable the input." }]];
+        title: "Read only input";
+        description: [
+            [
+                { text: "Use the " },
+                { code: "read-only" },
+                { text:" property to make the input read only." }
+            ]
+        ];
     }
 
     WidgetPresentation {
         UInput {
-            enabled: false;
+            text: "This input is read only";
+            read-only: true;
         }
     }
 
     DocCode {
-        code: "UInput {\n    enabled: false;\n}";
+        code: "UInput {\n    read-only: true;\n}";
     }
 
     DocSection {
@@ -142,8 +149,15 @@ export component InputPage inherits PageBase {
     }
 
     DocSection {
-        title: "Functions and callbacks";
+        title: "TextInput properties, functions and callbacks";
         description: [
+            [
+                { text: "Almost all the properties of " },
+                { code: "TextInput" },
+                {
+                    text: " are available on the widget with the exception of a few that are not compatible with the widget's use."
+                },
+            ],
             [
                 { text: "With the exception of both " },
                 { code: "focus()" },

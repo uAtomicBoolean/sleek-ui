@@ -17,7 +17,7 @@ export component UInput inherits Rectangle {
     }
 	// Regular properties
     in-out property <string> text <=> input.text;
-    in-out property <bool> enabled <=> input.enabled;
+    in-out property <bool> read-only;
     in-out property <InputType> input-type: InputType.text;
     in-out property <string> placeholder: "";
     in-out property <bool> clearable: false;
@@ -43,7 +43,7 @@ export component UInput inherits Rectangle {
                     width: max(parent.width, self.preferred-width);
                     x: min(x-pos, 0px);
                     input-type: show ? InputType.text : input-type;
-                    read-only: !root.enabled;
+                    read-only: root.read-only;
                     font-size: UAppTheme.font-size-base;
                     color: UAppTheme.text;
                     vertical-alignment: center;
@@ -126,7 +126,7 @@ export component UInput inherits Rectangle {
     }
 
     states [
-        disabled when !input.enabled: {
+        disabled when input.read-only: {
             background: UAppTheme.bg-elevated.with-alpha(0.4);
             border-color: UAppTheme.border-secondary;
             input.color: UAppTheme.text-disabled;
@@ -141,6 +141,21 @@ export component UInput inherits Rectangle {
         }
     ]
 
+	// Reexport the properties of the TextInput widget.
+	in-out property <brush> i-color <=> input.color;
+    in-out property <string> i-font-family <=> input.font-family;
+    in-out property <length> i-font-size <=> input.font-size;
+    in-out property <int> i-font-weight <=> input.font-weight;
+    in-out property <bool> i-font-italic <=> input.font-italic;
+    out property <FontMetrics> i-font-metrics <=> input.font-metrics;
+    out property <bool> i-has-focus <=> input.has-focus;
+    in-out property <TextHorizontalAlignment> i-horizontal-alignment <=> input.horizontal-alignment;
+    in-out property <length> i-letter-spacing <=> input.letter-spacing;
+    in-out property <length> i-page-height <=> input.page-height;
+    in-out property <color> i-selection-background-color <=> input.selection-background-color;
+    in-out property <color> i-selection-foreground-color <=> input.selection-foreground-color;
+    in-out property <length> i-text-cursor-width <=> input.text-cursor-width;
+    in-out property <TextVerticalAlignment> i-vertical-alignment <=> input.vertical-alignment;
     // Link the functions and callback of TextInput to child.
 	public function set-selection-offsets(start: int, end: int) {
         input.set-selection-offsets(start, end);
