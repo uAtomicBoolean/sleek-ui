@@ -77,15 +77,15 @@ export component UTag inherits Rectangle {
     states [
         filled when variant == UTagVariant.filled: {
             background: preset-color.selected;
-            text-color: preset-color.base;
+            text-color: preset-color.hover;
         }
         solid when variant == UTagVariant.solid: {
             background: preset-color.base;
-            text-color: preset-color.selected;
+            text-color: UAppTheme.primary-text;
         }
         outline when variant == UTagVariant.outline: {
             background: preset-color.selected;
-            text-color: preset-color.base;
+            text-color: preset-color.hover;
             border-color: preset-color.disabled;
             border-width: 1px;
         }
