@@ -24,10 +24,18 @@ export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
         padding-top: 64px;
-        padding-bottom: 24px;
         UTitle {
             level: 1;
             text: "Sleek-ui";
+        }
+    }
+
+    HorizontalLayout {
+        alignment: center;
+        padding-bottom: 24px;
+        UText {
+            text: "Version \{AppLogic.get-version-number()}";
+            font-size: UAppTheme.font-size-small;
         }
     }
 

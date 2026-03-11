@@ -12,7 +12,11 @@ fn main() {
 
     let app_logic = ui.global::<AppLogic>();
 
-	app_logic.set_scale_factor(ui.window().scale_factor() * 100.0);
+    app_logic.on_get_version_number(|| {
+        std::env::var("CARGO_PKG_VERSION")
+            .unwrap_or_default()
+            .into()
+    });
 
     app_logic.on_is_wasm(|| {
         return true;

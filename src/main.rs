@@ -17,6 +17,13 @@ fn main() {
 
     let app_logic = ui.global::<AppLogic>();
 
+    app_logic.on_get_version_number(|| {
+        std::env::var("CARGO_PKG_VERSION")
+            .unwrap_or_default()
+            .into()
+    });
+
+    // Update AppLogic's scale factor as it doesn't know it by itself.
     app_logic.set_scale_factor(ui.window().scale_factor() * 100.0);
 
     let ui_weak = ui.as_weak();
