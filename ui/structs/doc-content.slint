@@ -1,0 +1,23 @@
+@rust-attr(cfg_attr(feature="serde", derive(Serialize, Deserialize)))
+export struct SlintDocPageStyledText {
+	text: string,
+	code: string,
+	link: string,
+	url: string,
+	local: bool,
+}
+
+@rust-attr(cfg_attr(feature="serde", derive(Serialize, Deserialize)))
+export struct SlintDocPageSection {
+	title: string,
+	description: [[SlintDocPageStyledText]],
+	widget-id: string,
+	code: string,
+}
+
+@rust-attr(cfg_attr(feature="serde", derive(Serialize, Deserialize)))
+export struct SlintDocPage {
+	title: string,
+	description: string,
+	sections: [SlintDocPageSection]
+}

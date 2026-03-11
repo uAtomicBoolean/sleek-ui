@@ -1,4 +1,4 @@
-import { UPrimaryColor } from "sleek-ui/structs/theme.slint";
+import { SlintDocPage } from "structs/doc-content.slint";
 
 
 export global AppLogic {
@@ -7,4 +7,5 @@ export global AppLogic {
     pure callback is-wasm() -> bool;
     pure callback open-url(url: string);
     pure callback update-scale-factor(scale-factor: float);
+    pure callback get-page-content(page-id: string) -> SlintDocPage;
 }

@@ -3,6 +3,8 @@
 
 slint::include_modules!();
 
+pub mod page_manager;
+
 #[allow(dead_code)]
 fn main() {
     let selector = slint::BackendSelector::new()
@@ -16,6 +18,8 @@ fn main() {
     let ui = AppWindow::new().unwrap();
 
     let app_logic = ui.global::<AppLogic>();
+
+    app_logic.on_get_page_content(|page_id| page_manager::get_page_content(page_id.to_string()));
 
     app_logic.on_get_version_number(|| {
         std::env::var("CARGO_PKG_VERSION")

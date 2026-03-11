@@ -16,11 +16,13 @@ name = "sleek-ui"
 path = "src/main.rs"
 
 [dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+serde_yaml = "0.9.34"
 webbrowser = { version = "1.0.6", features = ["hardened"] }
 
 # Use skia renderer on all platforms but wasm as it is not supported. 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
-slint = { version = "1.15.0", features = ["renderer-skia"] }
+slint = { version = "1.15.0", features = ["renderer-skia", "serde"] }
 
 [target.'cfg(target_family = "wasm")'.dependencies]
 slint = { version = "1.15.0" }

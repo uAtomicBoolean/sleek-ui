@@ -7,7 +7,11 @@ import {
     UMenuLogic,
 } from "../sleek-ui/widgets.slint";
 
-import { DocTitle, DocSection, DocCode } from "../components/doc-widgets.slint";
+import {
+    DocSection,
+    DocCode,
+    DocDescription,
+} from "../components/doc-widgets.slint";
 import { PageBase } from "../components/page-base.slint";
 import { AppLogic } from "../app-logic.slint";
 
@@ -15,11 +19,7 @@ import { AppLogic } from "../app-logic.slint";
 export component HowToUsePage inherits PageBase {
     UTitle {
         level: 3;
-        text: "How to use Sleek-ui";
-    }
-
-    DocTitle {
-        text: "Add the library to your project";
+        text: "How to use";
     }
 
     DocSection {
