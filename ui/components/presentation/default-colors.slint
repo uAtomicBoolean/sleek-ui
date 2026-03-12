@@ -1,0 +1,152 @@
+import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UTitle } from "../../sleek-ui/widgets.slint";
+import { UPrimaryColor } from "../../sleek-ui/structs/theme.slint";
+import { ULightColors, UDarkColors } from "../../sleek-ui/colors.slint";
+
+
+component ColorRect inherits Rectangle {
+    in property <brush> color-brush;
+    width: 80px;
+    height: 40px;
+    background: color-brush;
+    border-width: UAppTheme.border-width-base;
+    border-color: UAppTheme.focus-color;
+}
+
+export component ColorLine {
+    in property <string> color-name;
+    in property <UPrimaryColor> light;
+    in property <UPrimaryColor> dark;
+    VerticalLayout {
+        alignment: start;
+        spacing: UAppTheme.spacing-big;
+        padding-top: UAppTheme.padding-big;
+        padding-bottom: UAppTheme.padding-big;
+        UTitle {
+            level: 6;
+            text: color-name;
+        }
+
+        HorizontalLayout {
+            alignment: space-around;
+            HorizontalLayout {
+                ColorRect {
+                    color-brush: light.base;
+                }
+
+                ColorRect {
+                    color-brush: light.hover;
+                }
+
+                ColorRect {
+                    color-brush: light.active;
+                }
+
+                ColorRect {
+                    color-brush: light.disabled;
+                }
+
+                ColorRect {
+                    color-brush: light.selected;
+                }
+            }
+
+            HorizontalLayout {
+                ColorRect {
+                    color-brush: dark.base;
+                }
+
+                ColorRect {
+                    color-brush: dark.hover;
+                }
+
+                ColorRect {
+                    color-brush: dark.active;
+                }
+
+                ColorRect {
+                    color-brush: dark.disabled;
+                }
+
+                ColorRect {
+                    color-brush: dark.selected;
+                }
+            }
+        }
+    }
+}
+
+export component ColorPresentation inherits VerticalLayout {
+    alignment: start;
+    ColorLine {
+        color-name: "Dust red";
+        light: ULightColors.dust-red;
+        dark: UDarkColors.dust-red;
+    }
+
+    ColorLine {
+        color-name: "Volcano";
+        light: ULightColors.volcano;
+        dark: UDarkColors.volcano;
+    }
+
+    ColorLine {
+        color-name: "Sunset orange";
+        light: ULightColors.sunset-orange;
+        dark: UDarkColors.sunset-orange;
+    }
+
+    ColorLine {
+        color-name: "Calendula gold";
+        light: ULightColors.calendula-gold;
+        dark: UDarkColors.calendula-gold;
+    }
+
+    ColorLine {
+        color-name: "Sunrise yellow";
+        light: ULightColors.sunrise-yellow;
+        dark: UDarkColors.sunrise-yellow;
+    }
+
+    ColorLine {
+        color-name: "Lime";
+        light: ULightColors.lime;
+        dark: UDarkColors.lime;
+    }
+
+    ColorLine {
+        color-name: "Polar green";
+        light: ULightColors.polar-green;
+        dark: UDarkColors.polar-green;
+    }
+
+    ColorLine {
+        color-name: "Cyan";
+        light: ULightColors.cyan;
+        dark: UDarkColors.cyan;
+    }
+
+    ColorLine {
+        color-name: "Daybreak blue";
+        light: ULightColors.daybreak-blue;
+        dark: UDarkColors.daybreak-blue;
+    }
+
+    ColorLine {
+        color-name: "Geek blue";
+        light: ULightColors.geek-blue;
+        dark: UDarkColors.geek-blue;
+    }
+
+    ColorLine {
+        color-name: "Golden purple";
+        light: ULightColors.golden-purple;
+        dark: UDarkColors.golden-purple;
+    }
+
+    ColorLine {
+        color-name: "French magenta";
+        light: ULightColors.french-magenta;
+        dark: UDarkColors.french-magenta;
+    }
+}

@@ -1,0 +1,30 @@
+title: Default colors
+description: ""
+sections:
+  - title: Primary color struct
+    description:
+      -
+        - text: "A primary color is represented by the "
+        - code: UPrimaryColor
+        - text: " struct."
+      -
+        - text: "This struct is available in the "
+        - code: "@sleek-ui/structs/theme.slint"
+        - text: " file."
+    code: "UPrimaryColor {\n    base: brush,\n    hover: brush,\n    active: brush,\n    disabled: brush,\n    selected: brush,\n}"
+  - title: Default colors
+    description:
+      -
+        - text: "The default colors are available in the "
+        - code: ULightColors
+        - text: " and "
+        - code: UDarkColors
+        - text: " globals from the "
+        - code: "@sleek-ui/colors.slint"
+        - text: " file."
+      -
+        - text: "All colors are available on the "
+        - link: And Design website
+          url: https://ant.design/docs/spec/colors
+        - text: "."
+    widget_id: color-presentation

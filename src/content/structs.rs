@@ -3,15 +3,6 @@ use serde::{Deserialize, Serialize};
 use slint::{ModelRc, VecModel};
 use std::rc::Rc;
 
-pub fn get_page_content(page_id: String) -> SlintDocPage {
-    let file_path = format!("docs-content/en/{page_id}.yaml");
-    let file_content = std::fs::read_to_string(file_path).unwrap_or_default();
-
-    serde_yaml::from_str::<DocPage>(&file_content)
-        .unwrap_or_default()
-        .into()
-}
-
 #[derive(Default, Debug, Serialize, Deserialize)]
 struct DocPageStyledText {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -34,11 +25,13 @@ struct DocPageSection {
     #[serde(skip_serializing_if = "Option::is_none")]
     widget_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    widget_variant: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     code: Option<String>,
 }
 
 #[derive(Default, Debug, Serialize, Deserialize)]
-struct DocPage {
+pub struct DocPage {
     title: String,
     description: String,
     sections: Vec<DocPageSection>,
@@ -78,6 +71,7 @@ impl Into<SlintDocPageSection> for DocPageSection {
             title: self.title.into(),
             description: ModelRc::new(description),
             widget_id: self.widget_id.unwrap_or_default().into(),
+            widget_variant: self.widget_variant.unwrap_or_default(),
             code: self.code.unwrap_or_default().into(),
         }
     }

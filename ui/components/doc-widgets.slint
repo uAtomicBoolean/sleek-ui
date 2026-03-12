@@ -9,6 +9,9 @@ import {
 import { SlintDocPageStyledText } from "../structs/doc-content.slint";
 import { AppLogic } from "../app-logic.slint";
 
+// Widget presentation components.
+import { ColorPresentation } from "presentation/default-colors.slint";
+
 
 export component DocDescription inherits HorizontalLayout {
     in property <string> text;
@@ -89,10 +92,8 @@ export component DocSection inherits Rectangle {
                 }
             }
         }
-
-		// TODO Implement widget ID selection
-
-		if code != "": DocCode {
+        if widget-id == "color-presentation": ColorPresentation { }
+        if code != "": DocCode {
             code: root.code;
         }
     }

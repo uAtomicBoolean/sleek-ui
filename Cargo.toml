@@ -22,10 +22,10 @@ webbrowser = { version = "1.0.6", features = ["hardened"] }
 
 # Use skia renderer on all platforms but wasm as it is not supported. 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
-slint = { version = "1.15.0", features = ["renderer-skia", "serde"] }
+slint = { version = "1.15.0", features = ["renderer-skia"] }
 
 [target.'cfg(target_family = "wasm")'.dependencies]
-slint = { version = "1.15.0" }
+slint = "1.15.0"
 wasm-bindgen = { version = "0.2" }
 
 [build-dependencies]
