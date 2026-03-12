@@ -22,6 +22,8 @@ import { AppLogic } from "app-logic.slint";
 
 import { HomePage } from "pages/home.slint";
 import { ContentPage } from  "pages/content-page.slint";
+import { SettingsPage } from "pages/settings.slint";
+import { AboutPage } from "pages/about.slint";
 
 
 export { UAppTheme, AppLogic }
@@ -33,7 +35,7 @@ export component AppWindow inherits Window {
         Palette.color-scheme = ColorScheme.light;
     }
     init => {
-        UMenuLogic.current-link = "default-colors";
+        UMenuLogic.current-link = "accessability";
     }
     title: "Sleek-ui Documentation";
     default-font-family: "Inter";
@@ -50,7 +52,9 @@ export component AppWindow inherits Window {
             VerticalLayout {
                 alignment: start;
                 if UMenuLogic.current-link == "home": HomePage { }
-                if UMenuLogic.current-link != "home": ContentPage { }
+                if UMenuLogic.current-link != "home" && UMenuLogic.current-link != "settings" && UMenuLogic.current-link != "about": ContentPage { }
+                if UMenuLogic.current-link == "settings": SettingsPage { }
+                if UMenuLogic.current-link == "about": AboutPage { }
             }
         }
     }
