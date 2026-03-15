@@ -46,6 +46,14 @@ export component ULink {
                 color: UAppTheme.primary.base;
                 font-size: UAppTheme.font-size-base;
                 wrap: wrap;
+                states [
+                    active when touch.pressed: {
+                        color: UAppTheme.primary.active;
+                    }
+                    hover when touch.has-hover: {
+                        color: UAppTheme.primary.hover;
+                    }
+                ]
             }
 
             if icon-placement == IconTextPlacement.end: VerticalLayout {
@@ -70,12 +78,6 @@ export component ULink {
             focus when self.has-tab-focus: {
                 border-width: UAppTheme.focus-border-width;
                 border-color: UAppTheme.focus-color;
-            }
-            active when self.pressed: {
-                link-text.color: UAppTheme.primary.active;
-            }
-            hover when self.has-hover: {
-                link-text.color: UAppTheme.primary.hover;
             }
         ]
     }
