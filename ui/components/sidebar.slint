@@ -57,14 +57,20 @@ export component Sidebar inherits Rectangle {
 
                         UMenuLink {
                             parent-child-opened <=> parent.child-opened;
-                            id: "button";
-                            name: "Button";
+                            id: "icon";
+                            name: "Icon";
                         }
 
                         UMenuLink {
                             parent-child-opened <=> parent.child-opened;
                             id: "divider";
                             name: "Divider";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "button";
+                            name: "Button";
                         }
 
                         UMenuLink {
@@ -213,12 +219,6 @@ export component Sidebar inherits Rectangle {
                             parent-child-opened <=> parent.child-opened;
                             id: "collapse";
                             name: "Collapse";
-                        }
-
-                        UMenuLink {
-                            parent-child-opened <=> parent.child-opened;
-                            id: "icon";
-                            name: "Icon";
                         }
 
                         UMenuLink {
