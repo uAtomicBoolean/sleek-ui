@@ -25,7 +25,7 @@ struct DocPageSection {
     #[serde(skip_serializing_if = "Option::is_none")]
     widget_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    widget_variant: Option<i32>,
+    widget_variant: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     code: Option<String>,
 }
@@ -71,7 +71,7 @@ impl Into<SlintDocPageSection> for DocPageSection {
             title: self.title.into(),
             description: ModelRc::new(description),
             widget_id: self.widget_id.unwrap_or_default().into(),
-            widget_variant: self.widget_variant.unwrap_or_default(),
+            widget_variant: self.widget_variant.unwrap_or_default().into(),
             code: self.code.unwrap_or_default().into(),
         }
     }

@@ -11,6 +11,7 @@ import { AppLogic } from "../app-logic.slint";
 
 // Widget presentation components.
 import { ColorPresentation } from "presentation/default-colors.slint";
+import { ButtonPresentation } from "presentation/button.slint";
 
 
 export component DocDescription inherits HorizontalLayout {
@@ -93,6 +94,7 @@ export component DocSection inherits Rectangle {
             }
         }
         if widget-id == "color-presentation": ColorPresentation { }
+        if widget-id == "button-presentation": ButtonPresentation { }
         if code != "": DocCode {
             code: root.code;
         }

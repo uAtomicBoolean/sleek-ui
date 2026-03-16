@@ -1,0 +1,7 @@
+title: Button
+description: A simple button to execute an action on click.
+sections:
+  - title: Simple buttons
+    description:
+      -
+        - text: "The button widget comes with 4 variants: primary, default, filled and text."
