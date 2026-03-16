@@ -72,10 +72,12 @@ export component UModal {
 
         touch-background := TouchArea {
             clicked => {
-                debug("testeing");
                 if root.close-on-click-outside {
                     UModalLogic.close-modal();
                 }
+            }
+            scroll-event(event) => {
+                accept
             }
         }
     }
