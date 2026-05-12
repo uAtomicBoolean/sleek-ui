@@ -67,7 +67,6 @@ export component USelect inherits ButtonInterface {
     }
 
     popup := UPopover {
-        private property <length> y-current-option;
         close-policy: close-on-click-outside;
         width: root.width;
         height: root.full-options-height > popup-max-height ? popup-max-height : root.full-options-height;
@@ -75,7 +74,9 @@ export component USelect inherits ButtonInterface {
         inner-scrollview := UScrollView {
             height: parent.height;
             init => {
-                self.scroll-y-to(y-current-option + self.height / 2 - option-height / 2);
+                if root.full-options-height > root.popup-max-height && current-index != -1 {
+                    self.scroll-y-to(current-index * root.option-height - root.popup-max-height / 2 + root.option-height / 1.5);
+                }
             }
             list-contents := VerticalLayout {
                 padding: UAppTheme.padding-base;
@@ -92,11 +93,6 @@ export component USelect inherits ButtonInterface {
 					height: option-height;
                     border-radius: UAppTheme.radius-base;
                     width: 100%;
-                    init => {
-                        if index == current-index {
-                            y-current-option = -self.y;
-                        }
-                    }
                     VerticalLayout {
                         alignment: center;
                         padding-left: UAppTheme.padding-horizontal;
