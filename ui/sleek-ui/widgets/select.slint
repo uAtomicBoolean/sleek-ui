@@ -73,6 +73,7 @@ export component USelect inherits ButtonInterface {
         y: root.height + 1px;
         inner-scrollview := UScrollView {
             height: parent.height;
+            focus-on-tab-navigation: false;
             init => {
                 if root.full-options-height > root.popup-max-height && current-index != -1 {
                     self.scroll-y-to(current-index * root.option-height - root.popup-max-height / 2 + root.option-height / 1.5);
@@ -80,15 +81,26 @@ export component USelect inherits ButtonInterface {
             }
             list-contents := VerticalLayout {
                 padding: UAppTheme.padding-base;
-                for option[index] in root.options: select-item := Rectangle {
+                for option[index] in root.options: select-item := ButtonInterface {
 					// List item accessability
 					accessible-role: list-item;
                     accessible-item-selectable: true;
                     accessible-item-selected: options[current-index].value == option.value;
                     accessible-value: option.text;
                     accessible-action-default => {
-                        touch.clicked();
+                        self.clicked();
                     }
+					// TouchArea management.
+					enabled: option.enabled;
+                    mouse-cursor: pointer;
+                    clicked => {
+                        current-index = index;
+                        selected-text = option.text;
+                        selected-value = option.value;
+                        selected-changed(index);
+                        popup.close();
+                    }
+
 					// Item contents and properties.
 					height: option-height;
                     border-radius: UAppTheme.radius-base;
@@ -110,24 +122,21 @@ export component USelect inherits ButtonInterface {
                         }
                     }
 
-                    touch := TouchArea {
-                        enabled: option.enabled;
-                        mouse-cursor: pointer;
-                        clicked => {
-                            current-index = index;
-                            selected-text = option.text;
-                            selected-value = option.value;
-                            selected-changed(index);
-                            popup.close();
-                        }
-                    }
-
                     animate background { duration: UAppTheme.animation-duration; }
                     states [
+                        selected-focus when options[current-index].value == option.value && option.enabled && self.has-tab-focus: {
+                            background: UAppTheme.primary.base.with-alpha(0.2);
+                            border-width: UAppTheme.focus-border-width;
+                            border-color: UAppTheme.focus-color;
+                        }
+                        focus when self.has-tab-focus: {
+                            border-width: UAppTheme.focus-border-width;
+                            border-color: UAppTheme.focus-color;
+                        }
                         selected when options[current-index].value == option.value && option.enabled: {
                             background: UAppTheme.primary.base.with-alpha(0.2);
                         }
-                        hover when touch.has-hover && option.enabled: {
+                        hover when self.has-hover && option.enabled: {
                             background: UAppTheme.color-fill-tertiary;
                         }
                     ]
