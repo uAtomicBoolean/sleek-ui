@@ -12,12 +12,6 @@ fn main() {
 
     let app_logic = ui.global::<AppLogic>();
 
-    app_logic.on_get_version_number(|| {
-        std::env::var("CARGO_PKG_VERSION")
-            .unwrap_or_default()
-            .into()
-    });
-
     app_logic.on_is_wasm(|| {
         return true;
     });
