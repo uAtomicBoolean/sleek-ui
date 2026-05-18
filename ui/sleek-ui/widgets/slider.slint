@@ -40,9 +40,9 @@ export component USlider inherits ButtonInterface {
         let raw-value = min-value + (max-value - min-value) * (pos-value / max-length);
         let next-step-up = ceil(raw-value / step) * step;
         let next-step-down = floor(raw-value / step) * step;
-        if (raw-value >= value && raw-value >= next-step-up - (step / 2)) {
+        if (raw-value >= next-step-up - (step / 2)) {
             value = next-step-up;
-        } else if (raw-value < value && raw-value <= next-step-down + (step / 2)) {
+        } else if (raw-value <= next-step-down + (step / 2)) {
             value = next-step-down;
         }
     }
