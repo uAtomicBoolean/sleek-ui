@@ -76,6 +76,7 @@ export component UInput inherits Rectangle {
         if clearable && input-type != InputType.password: VerticalLayout {
             alignment: center;
             padding-left: -UAppTheme.padding-horizontal / 2;
+            padding-right: 2px;
             Rectangle {
                 height: 100%;
                 width: UAppTheme.icon-size-base + UAppTheme.padding-horizontal / 2;
@@ -99,6 +100,7 @@ export component UInput inherits Rectangle {
         if input-type == InputType.password: VerticalLayout {
             alignment: center;
             padding-left: -UAppTheme.padding-horizontal / 2;
+            padding-right: 2px;
             Rectangle {
                 height: 100%;
                 width: UAppTheme.icon-size-base + UAppTheme.padding-horizontal / 2;
@@ -141,7 +143,7 @@ export component UInput inherits Rectangle {
         }
     ]
 
-	// Reexport the properties of the TextInput widget.
+    // Reexport the properties of the TextInput widget.
 	in-out property <brush> i-color <=> input.color;
     in-out property <string> i-font-family <=> input.font-family;
     in-out property <length> i-font-size <=> input.font-size;
