@@ -82,7 +82,7 @@ component CompleteSlider inherits VerticalLayout {
         padding-top: UAppTheme.padding-big;
         text-left := UText {
             text: "\{min-value}\{value-suffix}";
-            font-weight: 600;
+            font-weight: FontWeight.semi-bold;
         }
 
         VerticalLayout {
@@ -98,7 +98,7 @@ component CompleteSlider inherits VerticalLayout {
 
         UText {
             text: "\{max-value}\{value-suffix}";
-            font-weight: 600;
+            font-weight: FontWeight.semi-bold;
         }
     }
 
@@ -109,7 +109,7 @@ component CompleteSlider inherits VerticalLayout {
             Text {
                 x: text-left.width + slider.handle-pos;
                 text: "\{value}\{value-suffix}";
-                font-weight: 600;
+                font-weight: FontWeight.semi-bold;
             }
         }
     }
