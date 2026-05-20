@@ -23,8 +23,10 @@ export component USelect inherits ButtonInterface {
     in-out property <[UOptionData]> options;
     out property <string> selected-text;
     out property <string> selected-value;
-    private property <length> popup-max-height: 124px;
+    in-out property <int> max-visible-options: 5;
+    in-out property <bool> display-all-options: false;
     private property <length> option-height: 29px;
+    private property <length> popup-max-height: display-all-options ? full-options-height : max-visible-options * option-height + UAppTheme.padding-base * 2;
     private property <length> full-options-height: option-height * options.length + UAppTheme.padding-base * 2;
     callback selected-changed(new-index: int);
     background: UAppTheme.bg-elevated;
