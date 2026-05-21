@@ -30,7 +30,7 @@ export component SelectPage inherits PageBase {
                 { text:"You can set the options with the " },
                 { code: "options" },
                 { text: " property, an option being of type " },
-                { link: "OptionData", url: "optiondata" },
+                { link: "OptionData", url: "option-data" },
                 { text:"." }
             ],
             [
@@ -97,5 +97,70 @@ export component SelectPage inherits PageBase {
 
     DocCode {
         code: "USelect {\n    selected-changed(new-index) => {\n        debug(new-index);\n    }\n}";
+    }
+
+    DocSection {
+        title: "Change the number of visible options";
+        description: [
+            [
+                {
+                    text: "By default, the select will show at most 5 options at once, but you can change this with the "
+                },
+                { code: "max-visible-options" },
+                { text: " property." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+        USelect {
+            max-visible-options: 2;
+            options: [
+                { text: "Option 1", value: "option1", enabled:true },
+                { text: "Option 2", value: "option2", enabled:true },
+                { text: "Option 3", value: "option3", enabled:true },
+                { text: "Option 4", value: "option4", enabled:true },
+                { text: "Option 5", value: "option5", enabled:true },
+                { text: "Option 6", value: "option6", enabled:true },
+                { text: "Option 7", value: "option7", enabled:true },
+                { text: "Option 8", value: "option8", enabled:true },
+            ];
+        }
+    }
+
+    DocCode {
+        code: "USelect {\n    max-visible-options: 2;\n    options: [// Your options here];\n}";
+    }
+
+    DocSection {
+        title: "Display all options";
+        description: [
+            [
+                { text: "If you want to display all options without any limit, you can set the " },
+                { code: "display-all-options" },
+                { text: " property to true." }
+            ]
+        ];
+    }
+
+    WidgetPresentation {
+
+        USelect {
+            display-all-options: true;
+            options: [
+                { text: "Option 1", value: "option1", enabled:true },
+                { text: "Option 2", value: "option2", enabled:true },
+                { text: "Option 3", value: "option3", enabled:true },
+                { text: "Option 4", value: "option4", enabled:true },
+                { text: "Option 5", value: "option5", enabled:true },
+                { text: "Option 6", value: "option6", enabled:true },
+                { text: "Option 7", value: "option7", enabled:true },
+                { text: "Option 8", value: "option8", enabled:true },
+            ];
+        }
+    }
+
+    DocCode {
+        code: "USelect {\n    display-all-options: true;\n    options: [// Your options here];\n}";
     }
 }

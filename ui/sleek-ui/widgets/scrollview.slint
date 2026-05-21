@@ -61,9 +61,20 @@ component Scrollbar inherits Rectangle {
         }
     }
 
-    function compute-pos(move: length) {
+    public function compute-pos(move: length) {
         let new-pos = clamp(move, 0px, available-space);
         value = -(max-scroll-pos * (new-pos / available-space));
+    }
+
+    public function scroll-to(target: length) {
+        if target >= max-scroll-pos {
+            value = -max-scroll-pos;
+            return;
+        } else if target <= 0 {
+            value = 0;
+            return;
+        }
+        value = -target;
     }
 }
 
@@ -77,10 +88,10 @@ export component UScrollView inherits FocusScope {
     private property <length> min-handle-size: 30px;
     private property <duration> scroll-anim-duration: !v-scrollbar.pressed && !h-scrollbar.pressed ? UAppTheme.animation-duration : 0;
     public function scroll-x-to(new-x: length) {
-        self.viewport-x = new-x;
+        v-scrollbar.scroll-to(new-x);
     }
     public function scroll-y-to(new-y: length) {
-        self.viewport-y = new-y;
+        v-scrollbar.scroll-to(new-y);
     }
     VerticalLayout {
         flickable := Flickable {

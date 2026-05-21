@@ -10,6 +10,7 @@ import {
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
 import { AppLogic } from "../../app-logic.slint";
+import { UText } from "../../sleek-ui/widgets/text.slint";
 
 
 export component TabsPage inherits PageBase {
@@ -38,11 +39,20 @@ export component TabsPage inherits PageBase {
     WidgetPresentation {
         UTabs {
             tabs: ["First tab", "Second tab", "Third tab"];
+            if self.current-index == 0: UText {
+                text: "First tab content";
+            }
+            if self.current-index == 1: UText {
+                text: "Second tab content";
+            }
+            if self.current-index == 2: UText {
+                text: "Third tab content";
+            }
         }
     }
 
     DocCode {
-        code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"]\n}";
+        code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"]\n    if self.current-index == 0: UText {\n        text: \"First tab content\";\n    }\n     if self.current-index == 1: UText {\n        text: \"Second tab content\";\n    }\n    if self.current-index == 2: UText {\n        text: \"Third tab content\";\n    }\n}";
     }
 
     DocSection {
@@ -64,7 +74,7 @@ export component TabsPage inherits PageBase {
         full-width: true;
         UTabs {
             tabs: ["First tab", "Second tab", "Third tab"];
-            tabs-alignement: stretch;
+            tabs-alignment: stretch;
         }
     }
 

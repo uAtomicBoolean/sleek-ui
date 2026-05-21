@@ -38,29 +38,40 @@ export component UTooltip {
     private property <bool> has_waited: false;
     private property <bool> user_is_hovering: UTooltipLogic.user_hovering;
     z: 100;
-    x: compute-x-position();
-    y: compute-y-position();
+    width: 100%;
+    height: 100%;
     changed user_is_hovering => {
         if !user_is_hovering && has_waited {
             has_waited = false;
         }
     }
-    content := Rectangle {
+    Rectangle {
         z: 100;
-        background: UAppTheme.bg-spotlight;
-        border-radius: clamp(UAppTheme.radius-base, 0, 4px);
-        opacity: has_waited ? 1 : 0;
-        HorizontalLayout {
-            padding: UAppTheme.padding-base;
-            UText {
-                opacity: has_waited ? 1 : 0;
-                text: UTooltipLogic.text;
-                color: UAppTheme.inverse-text;
-                font-size: UAppTheme.font-size-small;
-                wrap: word-wrap;
-                max-width: tooltip-max-width;
-                max-height: tooltip-max-height;
-                animate opacity { duration: UAppTheme.animation-duration; }
+        x: compute-x-position();
+        y: compute-y-position();
+        VerticalLayout {
+            alignment: start;
+            HorizontalLayout {
+                alignment: start;
+                content := Rectangle {
+                    background: UAppTheme.bg-spotlight;
+                    border-radius: clamp(UAppTheme.radius-base, 0, 4px);
+                    opacity: has_waited ? 1 : 0;
+                    HorizontalLayout {
+                        padding: UAppTheme.padding-base;
+                        alignment: start;
+                        UText {
+                            opacity: has_waited ? 1 : 0;
+                            text: UTooltipLogic.text;
+                            color: UAppTheme.inverse-text;
+                            font-size: UAppTheme.font-size-small;
+                            wrap: word-wrap;
+                            max-width: tooltip-max-width;
+                            max-height: tooltip-max-height;
+                            animate opacity { duration: UAppTheme.animation-duration; }
+                        }
+                    }
+                }
             }
         }
 

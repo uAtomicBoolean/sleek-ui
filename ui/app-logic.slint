@@ -2,8 +2,8 @@ import { UPrimaryColor } from "sleek-ui/structs/theme.slint";
 
 
 export global AppLogic {
+    out property <string> version: "v1.4.7";
     in-out property <float> scale-factor: 100;
-    pure callback get-version-number() -> string;
     pure callback is-wasm() -> bool;
     pure callback open-url(url: string);
     pure callback update-scale-factor(scale-factor: float);

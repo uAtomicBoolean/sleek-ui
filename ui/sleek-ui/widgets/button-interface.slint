@@ -1,7 +1,9 @@
+import { UAppTheme } from "../app-theme.slint";
+
+
 // A simple component used to implement a button-like comportment.
 // This is used to manage clicking with the left mouse button, with 
 // the space and return keys and to manage focus.
-import { UAppTheme } from "../app-theme.slint";
 export component ButtonInterface inherits Rectangle {
     in-out property <bool> enabled: true;
     in-out property <MouseCursor> mouse-cursor: pointer;

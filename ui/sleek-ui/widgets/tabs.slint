@@ -13,13 +13,13 @@ export component UTabs inherits Rectangle {
 	// Regular properties
     in-out property <[string]> tabs;
     in-out property <int> current-index: 0;
-    in-out property <TabsAlignmentType> tabs-alignement: start;
+    in-out property <TabsAlignmentType> tabs-alignment: start;
     private property <length> underline-x: 0px;
     private property <length> underline-width: 0px;
     VerticalLayout {
         alignment: start;
         HorizontalLayout {
-            alignment: tabs-alignement == TabsAlignmentType.start ? start : stretch;
+            alignment: tabs-alignment == TabsAlignmentType.start ? start : stretch;
             padding-bottom: UAppTheme.padding-base;
             for tab[idx] in tabs: ButtonInterface {
                 clicked => {

@@ -1,7 +1,7 @@
 [package]
 name = "sleek-ui"
 description = "A widgets library made with/for Slint based on Ant Design."
-version = "1.5.0"
+version = "1.4.9"
 edition = "2024"
 license-file = "LICENSE"
 repository = "https://github.com/uAtomicBoolean/sleek-ui"
@@ -20,14 +20,14 @@ webbrowser = { version = "1.0.6", features = ["hardened"] }
 
 # Use skia renderer on all platforms but wasm as it is not supported. 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
-slint = { version = "1.15.0", features = ["renderer-skia"] }
+slint = { version = "1.16.1", features = ["renderer-skia"] }
 
 [target.'cfg(target_family = "wasm")'.dependencies]
-slint = { version = "1.15.0" }
+slint = { version = "1.16.1" }
 wasm-bindgen = { version = "0.2" }
 
 [build-dependencies]
-slint-build = "1.15.0"
+slint-build = "1.16.1"
 
 [profile.dev]
 incremental = true

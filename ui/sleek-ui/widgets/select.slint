@@ -23,8 +23,10 @@ export component USelect inherits ButtonInterface {
     in-out property <[UOptionData]> options;
     out property <string> selected-text;
     out property <string> selected-value;
-    private property <length> popup-max-height: 124px;
+    in-out property <int> max-visible-options: 5;
+    in-out property <bool> display-all-options: false;
     private property <length> option-height: 29px;
+    private property <length> popup-max-height: display-all-options ? full-options-height : max-visible-options * option-height + UAppTheme.padding-base * 2;
     private property <length> full-options-height: option-height * options.length + UAppTheme.padding-base * 2;
     callback selected-changed(new-index: int);
     background: UAppTheme.bg-elevated;
@@ -40,8 +42,8 @@ export component USelect inherits ButtonInterface {
         spacing: UAppTheme.spacing-base;
         padding-top: UAppTheme.padding-vertical;
         padding-bottom: UAppTheme.padding-vertical;
-        padding-left: UAppTheme.padding-horizontal;
-        padding-right: UAppTheme.padding-horizontal / 2;
+        padding-left: UAppTheme.padding-horizontal / 2;
+        padding-right: 5px;
         VerticalLayout {
             alignment: center;
             text-obj := UText {
@@ -67,36 +69,44 @@ export component USelect inherits ButtonInterface {
     }
 
     popup := UPopover {
-        private property <length> y-current-option;
         close-policy: close-on-click-outside;
         width: root.width;
         height: root.full-options-height > popup-max-height ? popup-max-height : root.full-options-height;
         y: root.height + 1px;
         inner-scrollview := UScrollView {
             height: parent.height;
+            focus-on-tab-navigation: false;
             init => {
-                self.scroll-y-to(y-current-option + self.height / 2 - option-height / 2);
+                if root.full-options-height > root.popup-max-height && current-index != -1 {
+                    self.scroll-y-to(current-index * root.option-height - root.popup-max-height / 2 + root.option-height / 1.5);
+                }
             }
             list-contents := VerticalLayout {
                 padding: UAppTheme.padding-base;
-                for option[index] in root.options: select-item := Rectangle {
+                for option[index] in root.options: select-item := ButtonInterface {
 					// List item accessability
 					accessible-role: list-item;
                     accessible-item-selectable: true;
                     accessible-item-selected: options[current-index].value == option.value;
                     accessible-value: option.text;
                     accessible-action-default => {
-                        touch.clicked();
+                        self.clicked();
                     }
+					// TouchArea management.
+					enabled: option.enabled;
+                    mouse-cursor: pointer;
+                    clicked => {
+                        current-index = index;
+                        selected-text = option.text;
+                        selected-value = option.value;
+                        selected-changed(index);
+                        popup.close();
+                    }
+
 					// Item contents and properties.
 					height: option-height;
                     border-radius: UAppTheme.radius-base;
                     width: 100%;
-                    init => {
-                        if index == current-index {
-                            y-current-option = -self.y;
-                        }
-                    }
                     VerticalLayout {
                         alignment: center;
                         padding-left: UAppTheme.padding-horizontal;
@@ -114,24 +124,21 @@ export component USelect inherits ButtonInterface {
                         }
                     }
 
-                    touch := TouchArea {
-                        enabled: option.enabled;
-                        mouse-cursor: pointer;
-                        clicked => {
-                            current-index = index;
-                            selected-text = option.text;
-                            selected-value = option.value;
-                            selected-changed(index);
-                            popup.close();
-                        }
-                    }
-
                     animate background { duration: UAppTheme.animation-duration; }
                     states [
+                        selected-focus when options[current-index].value == option.value && option.enabled && self.has-tab-focus: {
+                            background: UAppTheme.primary.base.with-alpha(0.2);
+                            border-width: UAppTheme.focus-border-width;
+                            border-color: UAppTheme.focus-color;
+                        }
+                        focus when self.has-tab-focus: {
+                            border-width: UAppTheme.focus-border-width;
+                            border-color: UAppTheme.focus-color;
+                        }
                         selected when options[current-index].value == option.value && option.enabled: {
                             background: UAppTheme.primary.base.with-alpha(0.2);
                         }
-                        hover when touch.has-hover && option.enabled: {
+                        hover when self.has-hover && option.enabled: {
                             background: UAppTheme.color-fill-tertiary;
                         }
                     ]
