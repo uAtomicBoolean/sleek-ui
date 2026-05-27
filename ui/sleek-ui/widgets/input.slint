@@ -38,10 +38,10 @@ export component UInput inherits Rectangle {
                 height: UAppTheme.font-size-base + UAppTheme.padding-vertical * 3;
                 clip: true;
                 input := TextInput {
-                    private property <length> cursor-padding: UAppTheme.padding-horizontal / 2 * 3;
-                    private property <length> x-pos;
-                    width: max(parent.width, self.preferred-width);
-                    x: min(x-pos, 0px);
+                    private property <length> right-margin: UAppTheme.padding-horizontal;
+                    private property <length> computed-x;
+                    width: max(parent.width, self.preferred_width + self.text-cursor-width);
+                    x: min(0px, max(parent.width - self.width - self.text-cursor-width, self.computed-x));
                     input-type: show ? InputType.text : input-type;
                     read-only: root.read-only;
                     font-size: UAppTheme.font-size-base;
@@ -53,10 +53,10 @@ export component UInput inherits Rectangle {
                     // Disable the TextInput accessability as the widget takes care of that.
                     accessible-role: none;
                     cursor-position-changed(cpos) => {
-                        if cpos.x - self.cursor-padding < - self.x-pos {
-                            self.x-pos = self.cursor-padding - cpos.x;
-                        } else if cpos.x + self.x-pos > parent.width - self.text-cursor-width {
-                            self.x-pos = parent.width - cpos.x - self.text-cursor-width;
+                        if cpos.x + self.computed-x < self.right-margin {
+                            self.computed-x = - cpos.x + self.right-margin;
+                        } else if cpos.x + self.computed-x > parent.width - self.text-cursor-width {
+                            self.computed-x = parent.width - cpos.x - self.text-cursor-width;
                         }
                     }
                     if self.text == "" && placeholder != "": HorizontalLayout {

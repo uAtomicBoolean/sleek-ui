@@ -56,11 +56,11 @@ export component UInputNumber inherits Rectangle {
                 height: UAppTheme.font-size-base + UAppTheme.padding-vertical * 3;
                 clip: true;
                 input := TextInput {
-                    private property <length> h-padding: UAppTheme.padding-horizontal / 2 * 2;
-                    private property <length> computed_x;
+                    private property <length> right-margin: UAppTheme.padding-horizontal;
+                    private property <length> computed-x;
+                    width: max(parent.width, self.preferred_width + self.text-cursor-width);
+                    x: min(0px, max(parent.width - self.width - self.text-cursor-width, self.computed-x));
                     text: root.value;
-                    width: max(parent.width, self.preferred-width);
-                    x: min(computed_x, 0px);
                     input-type: root.number ? InputType.number : InputType.decimal;
                     read-only: !root.enabled;
                     font-size: UAppTheme.font-size-base;
@@ -69,13 +69,13 @@ export component UInputNumber inherits Rectangle {
                     horizontal-alignment: left;
                     single-line: true;
                     wrap: no-wrap;
-					// Shamelessly taken from Surrealisme UI
-					// Source : https://github.com/Surrealism-All/SurrealismUI/blob/main/src/input/input.slint
-					cursor-position-changed(cpos) => {
-                        if cpos.x + self.computed_x < self.h-padding {
-                            self.computed_x = - cpos.x + self.h-padding;
-                        } else if cpos.x + self.computed_x > parent.width - self.text-cursor-width {
-                            self.computed_x = parent.width - cpos.x - self.text-cursor-width;
+                    // Disable the TextInput accessability as the widget takes care of that.
+                    accessible-role: none;
+                    cursor-position-changed(cpos) => {
+                        if cpos.x + self.computed-x < self.right-margin {
+                            self.computed-x = - cpos.x + self.right-margin;
+                        } else if cpos.x + self.computed-x > parent.width - self.text-cursor-width {
+                            self.computed-x = parent.width - cpos.x - self.text-cursor-width;
                         }
                     }
                     edited => {
