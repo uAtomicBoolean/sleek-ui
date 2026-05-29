@@ -124,7 +124,6 @@ export component USelect inherits ButtonInterface {
                         }
                     }
 
-                    animate background { duration: UAppTheme.animation-duration; }
                     states [
                         selected-focus when options[current-index].value == option.value && option.enabled && self.has-tab-focus: {
                             background: UAppTheme.primary.base.with-alpha(0.2);
