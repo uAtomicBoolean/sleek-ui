@@ -15,9 +15,6 @@ crate-type = ["cdylib"]
 name = "sleek-ui"
 path = "src/main.rs"
 
-[dependencies]
-webbrowser = { version = "1.0.6", features = ["hardened"] }
-
 # Use skia renderer on all platforms but wasm as it is not supported. 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 slint = { version = "1.16.1", features = ["renderer-skia"] }

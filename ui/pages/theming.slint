@@ -68,7 +68,7 @@ export component ThemingPage inherits PageBase {
             ]
         ];
         link-clicked(id) => {
-            AppLogic.open-url("https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint");
+            Platform.open-url("https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint");
         }
     }
 
@@ -126,7 +126,7 @@ export component ThemingPage inherits PageBase {
             ]
         ];
         link-clicked(url) => {
-            AppLogic.open-url(url);
+            Platform.open-url(url);
         }
     }
 
@@ -150,7 +150,7 @@ export component ThemingPage inherits PageBase {
             if url == "default-colors" {
                 UMenuLogic.current-link = "default-colors";
             } else {
-                AppLogic.open-url(url);
+                Platform.open-url(url);
             }
         }
     }

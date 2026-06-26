@@ -16,13 +16,5 @@ fn main() {
         return true;
     });
 
-    app_logic.on_open_url(|url| {
-        if let Err(err) = webbrowser::open(url.as_str()) {
-            println!("Couldn't open the URL in the default browser.");
-            println!("URL: {url}");
-            println!("{}", err.to_string());
-        }
-    });
-
     ui.run().unwrap();
 }

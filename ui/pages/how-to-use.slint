@@ -48,7 +48,7 @@ export component HowToUsePage inherits PageBase {
             ]
         ];
         link-clicked(url) => {
-            AppLogic.open-url(url);
+            Platform.open-url(url);
         }
     }
 
@@ -94,7 +94,7 @@ export component HowToUsePage inherits PageBase {
             if url == "default-colors" {
                 UMenuLogic.current-link = url;
             } else {
-                AppLogic.open-url(url);
+                Platform.open-url(url);
             }
         }
     }
