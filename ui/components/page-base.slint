@@ -6,7 +6,7 @@ import { UScrollView } from "../sleek-ui/widgets.slint";
 export component PageBase {
     height: 100%;
     public function scroll-to(pos: length) {
-        scrollview.scroll-y-to(-pos);
+        scrollview.scroll-y-to(pos);
     }
     scrollview := UScrollView {
         VerticalLayout {
@@ -17,7 +17,7 @@ export component PageBase {
         }
     }
 
-	// Allows to skip the sidebar when navigating with tab.
+    // Allows to skip the sidebar when navigating with tab.
     Timer {
         running: true;
         interval: 10ms;

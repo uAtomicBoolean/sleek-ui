@@ -79,14 +79,14 @@ component Scrollbar inherits Rectangle {
 }
 
 export component UScrollView inherits FocusScope {
-    in-out property <bool> interactive: false;
     out property <length> scrollbar-area: 8px;
+    in-out property <bool> interactive: false;
     in-out property <length> viewport-x <=> flickable.viewport-x;
     in-out property <length> viewport-y <=> flickable.viewport-y;
     in-out property <length> viewport-width <=> flickable.viewport-width;
     in-out property <length> viewport-height <=> flickable.viewport-height;
     private property <length> min-handle-size: 30px;
-    private property <duration> scroll-anim-duration: !v-scrollbar.pressed && !h-scrollbar.pressed ? UAppTheme.animation-duration : 0;
+    private property <duration> scroll-to-anim-duration: UAppTheme.animation-duration;
     public function scroll-x-to(new-x: length) {
         v-scrollbar.scroll-to(new-x);
     }
@@ -100,7 +100,10 @@ export component UScrollView inherits FocusScope {
             interactive: root.interactive;
             viewport-y <=> v-scrollbar.value;
             viewport-x <=> h-scrollbar.value;
-            animate viewport-x, viewport-y { duration: scroll-anim-duration; }
+            animate viewport-x, viewport-y {
+                enabled: !v-scrollbar.pressed && !h-scrollbar.pressed;
+                duration: scroll-to-anim-duration;
+            }
             @children
         }
     }
