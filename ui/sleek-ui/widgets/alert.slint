@@ -7,21 +7,22 @@ import { UIconButton, UIconButtonVariant } from "icon-button/icon-button.slint";
 
 
 export enum UAlertVariant {
-	info,
-	success,
-	warning,
-	danger,
+    info,
+    success,
+    warning,
+    danger,
 }
 
 export component UAlert inherits Rectangle {
 	// Regular properties
 	in-out property <UAlertVariant> variant: info;
-    in-out property <string> message;
+    in-out property <styled-text> message;
     in-out property <bool> display-close-button: false;
     in-out property <brush> text-color: UAppTheme.text;
     in-out property <image> icon;
     in-out property <brush> icon-color;
     callback close();
+    callback link-clicked(link: string);
     min-width: 300px;
     border-radius: UAppTheme.radius-base;
     border-width: UAppTheme.border-width-base;
@@ -47,13 +48,22 @@ export component UAlert inherits Rectangle {
                 horizontal-stretch: 1;
                 padding-top: UAppTheme.padding-vertical + 1px;
                 padding-bottom: UAppTheme.padding-vertical - 1px;
-                UText {
-                    color: text-color;
+                StyledText {
                     text: message;
-                    wrap: no-wrap;
-                    overflow: elide;
-                    font-size: UAppTheme.font-size-base;
+                    default-color: text-color;
+                    default-font-size: UAppTheme.font-size-base;
+                    link-color: UAppTheme.primary.base;
+                    link-clicked(link) => {
+                        root.link-clicked(link);
+                    }
                 }
+                // UText {
+                //     color: text-color;
+                //     text: message;
+                //     wrap: no-wrap;
+                //     overflow: elide;
+                //     font-size: UAppTheme.font-size-base;
+                // }
             }
 
             if display-close-button: VerticalLayout {

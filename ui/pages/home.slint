@@ -45,7 +45,7 @@ export component HomePage inherits PageBase {
         padding-bottom: UAppTheme.padding-bigger;
         UAlert {
             variant: warning;
-            message: "Please note that the border-radius rendering might be flawed in WASM due to femtovg.";
+            message: @markdown("Please note that the border-radius rendering might be flawed in WASM due to femtovg.");
         }
     }
     HorizontalLayout {
@@ -173,7 +173,7 @@ export component HomePage inherits PageBase {
         padding-top: UAppTheme.padding-bigger;
         UAlert {
             variant: info;
-            message: "Simple alert to display a message to the user.";
+            message: @markdown("Simple alert to display a message to the user.");
         }
     }
 

@@ -35,6 +35,16 @@ export component AlertPage inherits PageBase {
                 { text: " and " },
                 { code: "danger" },
                 { text: "." }
+            ],
+            [
+                { text: "The message property is of type " },
+                { code: "styled-text" },
+                { text: " so that you can include rich text formatting." }
+            ],
+            [
+                { text: "You can use the " },
+                { code: "link-clicked" },
+                { text: " callback to handle clicks on links in the message." }
             ]
         ];
     }
@@ -44,28 +54,28 @@ export component AlertPage inherits PageBase {
         VerticalLayout {
             spacing: UAppTheme.spacing-base;
             UAlert {
-                message: "This is an info alert.";
+                message: @markdown("This is an info alert.");
             }
 
             UAlert {
                 variant: success;
-                message: "This is an success alert.";
+                message: @markdown("This is an success alert.");
             }
 
             UAlert {
                 variant: warning;
-                message: "This is an warning alert.";
+                message: @markdown("This is an warning alert.");
             }
 
             UAlert {
                 variant: danger;
-                message: "This is an danger alert.";
+                message: @markdown("This is an danger alert with a [link that redirects to nothing]().");
             }
         }
     }
 
     DocCode {
-        code: "UAlert {\n    message: \"This is an info alert.\";\n}\n\nUAlert {\n    variant: success;\n    message: \"This is a success alert.\";\n}\n\nUAlert {\n    variant: warning;\n    message: \"This is a warning alert.\";\n}\n\nUAlert {\n    variant: danger;\n    message: \"This is a danger alert.\";\n}";
+        code: "UAlert {\n    message: @markdown(\"This is an info alert.\");\n}\n\nUAlert {\n    variant: success;\n    message: @markdown(\"This is a success alert.\");\n}\n\nUAlert {\n    variant: warning;\n    message: @markdown(\"This is a warning alert.\");\n}\n\nUAlert {\n    variant: danger;\n    message: @markdown(\"This is a danger alert with a [link that redirects to nothing]().\");\n    link-clicked(link) => {\n        // Your code.\n    }\n}";
     }
 
     DocSection {
@@ -84,7 +94,7 @@ export component AlertPage inherits PageBase {
         full-width: true;
         UAlert {
             display-close-button: true;
-            message: "This is an alert.";
+            message: @markdown("This is an alert.");
             close => {
                 debug("Closing the alert.");
             }
@@ -92,7 +102,7 @@ export component AlertPage inherits PageBase {
     }
 
     DocCode {
-        code: "UAlert {\n    message: \"This is an alert.\";\n    close => {\n        // Your code.\n    }\n}";
+        code: "UAlert {\n    message: @markdown(\"This is an alert.\");\n    close => {\n        // Your code.\n    }\n}";
     }
 
     DocSection {
@@ -119,7 +129,7 @@ export component AlertPage inherits PageBase {
     WidgetPresentation {
         full-width: true;
         UAlert {
-            message: "Alert using custom colors";
+            message: @markdown("Alert using custom colors");
             background: UAppTheme.golden-purple.selected;
             border-color: UAppTheme.golden-purple.base;
             text-color: UAppTheme.golden-purple.base;
@@ -130,6 +140,6 @@ export component AlertPage inherits PageBase {
     }
 
     DocCode {
-        code: "UAlert {\n    message: \"This is an alert.\";\n    background: UAppTheme.golden-purple.selected;\n    border-color: UAppTheme.golden-purple.base;\n    text-color: UAppTheme.golden-purple.base;\n    icon: @image-url(your-path);\n    icon-color: UAppTheme.golden-purple.base;\n}";
+        code: "UAlert {\n    message: @markdown(\"This is an alert.\");\n    background: UAppTheme.golden-purple.selected;\n    border-color: UAppTheme.golden-purple.base;\n    text-color: UAppTheme.golden-purple.base;\n    icon: @image-url(your-path);\n    icon-color: UAppTheme.golden-purple.base;\n}";
     }
 }
