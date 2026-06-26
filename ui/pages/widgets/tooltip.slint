@@ -24,17 +24,16 @@ export component TooltipPage inherits PageBase {
         text: "Tooltip";
     }
 
+    DocDescription {
+        text: "A widget to display some information when hovering something.";
+    }
+
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         padding-bottom: UAppTheme.padding-base;
         UAlert {
-            variant: warning;
-            message: "This widget will be refactored once an official tooltip widget is released.";
+            message: "You can also use the official Tooltip widget from slint which allows you to have custom content.";
         }
-    }
-
-    DocDescription {
-        text: "A widget to display some information when hovering something.";
     }
 
     DocSection {
