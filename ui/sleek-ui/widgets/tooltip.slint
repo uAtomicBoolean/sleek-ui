@@ -2,22 +2,17 @@ import { UText } from "text.slint";
 import { UAppTheme } from "../app-theme.slint";
 
 
-enum UTooltipPosition {
-	top,
-	bottom,
-	left,
-	right
-}
+enum UTooltipPosition { top, bottom, left, right }
 
 export global UTooltipLogic {
     out property <bool> user_hovering;
-    out property <string> text;
+    out property <styled-text> text;
     out property <UTooltipPosition> position;
     out property <length> x;
     out property <length> y;
     out property <length> width;
     out property <length> height;
-    public function display(text: string, position: string, user_hovering: bool, coords: Point, width: length, height: length) {
+    public function display(text: styled-text, position: string, user_hovering: bool, coords: Point, width: length, height: length) {
         self.user_hovering = user-hovering;
         if self.user_hovering {
             self.text = text;
@@ -60,12 +55,11 @@ export component UTooltip {
                     HorizontalLayout {
                         padding: UAppTheme.padding-base;
                         alignment: start;
-                        UText {
+                        StyledText {
                             opacity: has_waited ? 1 : 0;
                             text: UTooltipLogic.text;
-                            color: UAppTheme.inverse-text;
-                            font-size: UAppTheme.font-size-small;
-                            wrap: word-wrap;
+                            default-color: UAppTheme.inverse-text;
+                            default-font-size: UAppTheme.font-size-small;
                             max-width: tooltip-max-width;
                             max-height: tooltip-max-height;
                             animate opacity { duration: UAppTheme.animation-duration; }

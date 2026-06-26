@@ -25,7 +25,7 @@ export component TooltipPage inherits PageBase {
     }
 
     DocDescription {
-        text: "A widget to display some information when hovering something.";
+        text: "A widget to display some information with styled text when hovering something.";
     }
 
     HorizontalLayout {
@@ -51,13 +51,13 @@ export component TooltipPage inherits PageBase {
             ],
             [
                 {
-                    text: "This function takes all the following parameters: the tooltip's text, the display position, the absolute position and the width of the targeted element."
+                    text: "This function takes all the following parameters: the tooltip's styled text, the display position, the absolute position and the width of the targeted element."
                 }
             ],
             [
                 { text: "The function signature: " },
                 {
-                    code: "display(text: string, position: string, user_hovering: bool, target_pos: Point, target_width: length, target_height: length)"
+                    code: "display(text: styled-text, position: string, user_hovering: bool, target_pos: Point, target_width: length, target_height: length)"
                 }
             ]
         ];
@@ -77,7 +77,7 @@ export component TooltipPage inherits PageBase {
 
                 TouchArea {
                     changed has-hover => {
-                        UTooltipLogic.display("A simple tooltip to display some information.", "", self.has-hover, self.absolute-position, self.width, self.height);
+                        UTooltipLogic.display(@markdown("A simple tooltip to display some information."), "", self.has-hover, self.absolute-position, self.width, self.height);
                     }
                 }
             }
@@ -85,7 +85,7 @@ export component TooltipPage inherits PageBase {
     }
 
     DocCode {
-        code: "// This code is in a component or page somewhere in the window.\nUText {\n    text: \"Some simple text\";\n    TouchArea {\n        changed has-hover => {\n            UTooltipLogic.display(\"The tooltip's text.\", \"\", self.has-hover, self.absolute-position, self.width, self.height);\n        }\n    }\n}";
+        code: "// This code is in a component or page somewhere in the window.\nUText {\n    text: \"Some simple text\";\n    TouchArea {\n        changed has-hover => {\n            UTooltipLogic.display(@markdown(\"The tooltip's text.\"), \"\", self.has-hover, self.absolute-position, self.width, self.height);\n        }\n    }\n}";
     }
 
     DocCode {
@@ -135,7 +135,7 @@ export component TooltipPage inherits PageBase {
 
                 TouchArea {
                     changed has-hover => {
-                        UTooltipLogic.display("A simple tooltip to display some information.", "right", self.has-hover, self.absolute-position, self.width, self.height);
+                        UTooltipLogic.display(@markdown("A simple tooltip to display some information."), "right", self.has-hover, self.absolute-position, self.width, self.height);
                     }
                 }
             }
@@ -143,7 +143,7 @@ export component TooltipPage inherits PageBase {
     }
 
     DocCode {
-        code: "UTooltipLogic.display(\"The tooltip's text.\", \"right\", ...);";
+        code: "UTooltipLogic.display(@markdown(\"The tooltip's text.\"), \"right\", ...);";
     }
 
     DocSection {
