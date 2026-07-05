@@ -46,24 +46,22 @@ export component UTooltip {
         y: compute-y-position();
         VerticalLayout {
             alignment: start;
-            HorizontalLayout {
-                alignment: start;
-                content := Rectangle {
-                    background: UAppTheme.bg-spotlight;
-                    border-radius: clamp(UAppTheme.radius-base, 0, 4px);
-                    opacity: has_waited ? 1 : 0;
-                    HorizontalLayout {
-                        padding: UAppTheme.padding-base;
-                        alignment: start;
-                        StyledText {
-                            opacity: has_waited ? 1 : 0;
-                            text: UTooltipLogic.text;
-                            default-color: UAppTheme.inverse-text;
-                            default-font-size: UAppTheme.font-size-small;
-                            max-width: tooltip-max-width;
-                            max-height: tooltip-max-height;
-                            animate opacity { duration: UAppTheme.animation-duration; }
-                        }
+            cross-axis-alignment: start;
+            content := Rectangle {
+                background: UAppTheme.bg-spotlight;
+                border-radius: clamp(UAppTheme.radius-base, 0, 4px);
+                opacity: has_waited ? 1 : 0;
+                HorizontalLayout {
+                    padding: UAppTheme.padding-base;
+                    alignment: start;
+                    StyledText {
+                        opacity: has_waited ? 1 : 0;
+                        text: UTooltipLogic.text;
+                        default-color: UAppTheme.inverse-text;
+                        default-font-size: UAppTheme.font-size-small;
+                        max-width: tooltip-max-width;
+                        max-height: tooltip-max-height;
+                        animate opacity { duration: UAppTheme.animation-duration; }
                     }
                 }
             }
