@@ -24,86 +24,81 @@ component URadioOption inherits ButtonInterface {
     }
     HorizontalLayout {
         alignment: start;
+        cross-axis-alignment: center;
         spacing: UAppTheme.spacing-base;
-        VerticalLayout {
-            alignment: center;
-            Rectangle {
-                width: UAppTheme.font-size-base;
-                height: UAppTheme.font-size-base;
-                background: UAppTheme.bg-elevated;
-                border-width: UAppTheme.border-width-base;
-                border-radius: UAppTheme.radius-circle;
-                border-color: UAppTheme.border;
-                animate background, border-color { duration: UAppTheme.animation-duration; }
-                VerticalLayout {
-                    alignment: center;
-                    cross-axis-alignment: center;
-                    Rectangle {
-                        opacity: root.is-selected ? 1 : 0;
-                        width: UAppTheme.font-size-base / 3;
-                        height: UAppTheme.font-size-base / 3;
-                        background: white;
-                        border-radius: UAppTheme.radius-circle;
-                        animate opacity { duration: UAppTheme.animation-duration; }
-                        states [
-                            disabled when !root.enabled: {
-                                background: white.with-alpha(0.8);
-                            }
-                        ]
-                    }
+        Rectangle {
+            width: UAppTheme.font-size-base;
+            height: UAppTheme.font-size-base;
+            background: UAppTheme.bg-elevated;
+            border-width: UAppTheme.border-width-base;
+            border-radius: UAppTheme.radius-circle;
+            border-color: UAppTheme.border;
+            animate background, border-color { duration: UAppTheme.animation-duration; }
+            VerticalLayout {
+                alignment: center;
+                cross-axis-alignment: center;
+                Rectangle {
+                    opacity: root.is-selected ? 1 : 0;
+                    width: UAppTheme.font-size-base / 3;
+                    height: UAppTheme.font-size-base / 3;
+                    background: white;
+                    border-radius: UAppTheme.radius-circle;
+                    animate opacity { duration: UAppTheme.animation-duration; }
+                    states [
+                        disabled when !root.enabled: {
+                            background: white.with-alpha(0.8);
+                        }
+                    ]
                 }
-
-                states [
-                    disabled-unselected when !root.enabled && !root.is-selected: {
-                        border-color: UAppTheme.border;
-                        background: UAppTheme.color-fill-tertiary;
-                    }
-                    disabled-selected when !root.enabled && root.is-selected: {
-                        border-color: UAppTheme.primary.disabled;
-                        background: UAppTheme.primary.disabled;
-                    }
-                    focused-hover-selected when root.has-tab-focus && root.is-selected && root.has-hover: {
-                        border-color: UAppTheme.focus-color;
-                        border-width: UAppTheme.focus-border-width;
-                        background: UAppTheme.primary.hover;
-                    }
-                    focused-selected when root.has-tab-focus && root.is-selected: {
-                        border-color: UAppTheme.focus-color;
-                        border-width: UAppTheme.focus-border-width;
-                        background: UAppTheme.primary.base;
-                    }
-                    focused when root.has-tab-focus: {
-                        border-color: UAppTheme.focus-color;
-                        border-width: UAppTheme.focus-border-width;
-                    }
-                    hover-unselected when root.has-hover && !root.is-selected: {
-                        border-color: UAppTheme.primary.hover;
-                    }
-                    hover-selected when root.has-hover && root.is-selected: {
-                        border-color: UAppTheme.primary.hover;
-                        background: UAppTheme.primary.hover;
-                    }
-                    selected when root.is-selected: {
-                        border-color: UAppTheme.primary.base;
-                        background: UAppTheme.primary.base;
-                    }
-                ]
             }
+
+            states [
+                disabled-unselected when !root.enabled && !root.is-selected: {
+                    border-color: UAppTheme.border;
+                    background: UAppTheme.color-fill-tertiary;
+                }
+                disabled-selected when !root.enabled && root.is-selected: {
+                    border-color: UAppTheme.primary.disabled;
+                    background: UAppTheme.primary.disabled;
+                }
+                focused-hover-selected when root.has-tab-focus && root.is-selected && root.has-hover: {
+                    border-color: UAppTheme.focus-color;
+                    border-width: UAppTheme.focus-border-width;
+                    background: UAppTheme.primary.hover;
+                }
+                focused-selected when root.has-tab-focus && root.is-selected: {
+                    border-color: UAppTheme.focus-color;
+                    border-width: UAppTheme.focus-border-width;
+                    background: UAppTheme.primary.base;
+                }
+                focused when root.has-tab-focus: {
+                    border-color: UAppTheme.focus-color;
+                    border-width: UAppTheme.focus-border-width;
+                }
+                hover-unselected when root.has-hover && !root.is-selected: {
+                    border-color: UAppTheme.primary.hover;
+                }
+                hover-selected when root.has-hover && root.is-selected: {
+                    border-color: UAppTheme.primary.hover;
+                    background: UAppTheme.primary.hover;
+                }
+                selected when root.is-selected: {
+                    border-color: UAppTheme.primary.base;
+                    background: UAppTheme.primary.base;
+                }
+            ]
         }
 
-        VerticalLayout {
-            alignment: center;
-            UText {
-                text: root.option.text;
-                color: UAppTheme.text;
-                font-size: UAppTheme.font-size-base;
-                animate color { duration: UAppTheme.animation-duration; }
-                states [
-                    disabled when !root.enabled: {
-                        color: UAppTheme.text-disabled;
-                    }
-                ]
-            }
+        UText {
+            text: root.option.text;
+            color: UAppTheme.text;
+            font-size: UAppTheme.font-size-base;
+            animate color { duration: UAppTheme.animation-duration; }
+            states [
+                disabled when !root.enabled: {
+                    color: UAppTheme.text-disabled;
+                }
+            ]
         }
     }
 }

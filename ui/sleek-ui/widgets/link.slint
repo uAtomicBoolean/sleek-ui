@@ -10,7 +10,7 @@ export component ULink {
 	// Regular properties
 	in-out property <string> text <=> link-text.text;
     in-out property <IconTextPlacement> icon-placement: hidden;
-    in-out property <TextWrap> wrap: char-wrap;
+    in-out property <TextWrap> wrap: word-wrap;
     callback clicked();
     touch := ButtonInterface {
 		// Accessability properties
@@ -25,22 +25,20 @@ export component ULink {
         }
         HorizontalLayout {
             alignment: start;
+            cross-axis-alignment: start;
             spacing: UAppTheme.spacing-base;
-            if icon-placement == IconTextPlacement.start: VerticalLayout {
-                alignment: start;
-                UIcon {
-                    size: UAppTheme.font-size-base;
-                    source: @image-url("../assets/icons/external-link.svg");
-                    colorize: UAppTheme.primary.base;
-                    states [
-                        active when touch.pressed: {
-                            colorize: UAppTheme.primary.active;
-                        }
-                        hover when touch.has-hover: {
-                            colorize: UAppTheme.primary.hover;
-                        }
-                    ]
-                }
+            if icon-placement == IconTextPlacement.start: UIcon {
+                size: UAppTheme.font-size-base;
+                source: @image-url("../assets/icons/external-link.svg");
+                colorize: UAppTheme.primary.base;
+                states [
+                    active when touch.pressed: {
+                        colorize: UAppTheme.primary.active;
+                    }
+                    hover when touch.has-hover: {
+                        colorize: UAppTheme.primary.hover;
+                    }
+                ]
             }
             link-text := UText {
                 color: UAppTheme.primary.base;
@@ -48,21 +46,18 @@ export component ULink {
                 wrap: wrap;
             }
 
-            if icon-placement == IconTextPlacement.end: VerticalLayout {
-                alignment: start;
-                UIcon {
-                    size: UAppTheme.font-size-base;
-                    source: @image-url("../assets/icons/external-link.svg");
-                    colorize: UAppTheme.primary.base;
-                    states [
-                        active when touch.pressed: {
-                            colorize: UAppTheme.primary.active;
-                        }
-                        hover when touch.has-hover: {
-                            colorize: UAppTheme.primary.hover;
-                        }
-                    ]
-                }
+            if icon-placement == IconTextPlacement.end: UIcon {
+                size: UAppTheme.font-size-base;
+                source: @image-url("../assets/icons/external-link.svg");
+                colorize: UAppTheme.primary.base;
+                states [
+                    active when touch.pressed: {
+                        colorize: UAppTheme.primary.active;
+                    }
+                    hover when touch.has-hover: {
+                        colorize: UAppTheme.primary.hover;
+                    }
+                ]
             }
         }
 
