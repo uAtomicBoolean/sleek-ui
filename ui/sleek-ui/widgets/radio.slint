@@ -35,23 +35,21 @@ component URadioOption inherits ButtonInterface {
                 border-radius: UAppTheme.radius-circle;
                 border-color: UAppTheme.border;
                 animate background, border-color { duration: UAppTheme.animation-duration; }
-                HorizontalLayout {
+                VerticalLayout {
                     alignment: center;
-                    VerticalLayout {
-                        alignment: center;
-                        Rectangle {
-                            opacity: root.is-selected ? 1 : 0;
-                            width: UAppTheme.font-size-base / 3;
-                            height: UAppTheme.font-size-base / 3;
-                            background: white;
-                            border-radius: UAppTheme.radius-circle;
-                            animate opacity { duration: UAppTheme.animation-duration; }
-                            states [
-                                disabled when !root.enabled: {
-                                    background: white.with-alpha(0.8);
-                                }
-                            ]
-                        }
+                    cross-axis-alignment: center;
+                    Rectangle {
+                        opacity: root.is-selected ? 1 : 0;
+                        width: UAppTheme.font-size-base / 3;
+                        height: UAppTheme.font-size-base / 3;
+                        background: white;
+                        border-radius: UAppTheme.radius-circle;
+                        animate opacity { duration: UAppTheme.animation-duration; }
+                        states [
+                            disabled when !root.enabled: {
+                                background: white.with-alpha(0.8);
+                            }
+                        ]
                     }
                 }
 
