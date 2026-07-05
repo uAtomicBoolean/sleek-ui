@@ -53,6 +53,7 @@ struct DescStyledText {
 
 export component DocSection inherits Rectangle {
     in property <string> title;
+    in property <styled-text> description-md;
     in property <[[DescStyledText]]> description;
     private property <duration> bg-animation: 0;
     callback link-clicked(url: string);
@@ -66,6 +67,13 @@ export component DocSection inherits Rectangle {
         padding-top: UAppTheme.padding-big;
         if title != "": DocTitle {
             text: root.title;
+        }
+        if description-md != @markdown(""): StyledText {
+            text: description-md;
+            link-color: UAppTheme.primary.base;
+            link-clicked(link) => {
+                root.link-clicked(link);
+            }
         }
         if description.length != 0: VerticalLayout {
             alignment: start;
