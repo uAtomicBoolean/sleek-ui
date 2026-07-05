@@ -13,8 +13,6 @@ import {
     ButtonPage,
     DividerPage,
     IconButtonPage,
-    FloatingButtonPage,
-    FloatingIconButtonPage,
     LinkPage,
     SpinnerPage,
 
@@ -73,13 +71,11 @@ export component PageManager {
         if current-page == "accessability": AccessabilityPage { }
         if current-page == "settings": SettingsPage { }
         if current-page == "about": AboutPage { }
-		
-		// General widgets
+
+        // General widgets
         if current-page == "button": ButtonPage { }
         if current-page == "divider": DividerPage { }
         if current-page == "icon-button": IconButtonPage { }
-        if current-page == "floating-button": FloatingButtonPage { }
-        if current-page == "floating-icon-button": FloatingIconButtonPage { }
         if current-page == "link": LinkPage { }
         if current-page == "spinner": SpinnerPage { }
 
@@ -101,7 +97,7 @@ export component PageManager {
         if current-page == "slider": SliderPage { }
         if current-page == "switch": SwitchPage { }
 
-		// Data display widgets
+        // Data display widgets
 		if current-page == "card": CardPage { }
         if current-page == "code": CodePage { }
         if current-page == "collapse": CollapsePage { }
@@ -112,17 +108,17 @@ export component PageManager {
         if current-page == "title": TitlePage { }
         if current-page == "tooltip": TooltipPage { }
 
-		// Feedback widgets
+        // Feedback widgets
 		if current-page == "alert": AlertPage { }
         if current-page == "modal": ModalPage { }
         if current-page == "notification": NotificationPage { }
         if current-page == "popover": PopoverPage { }
 
-		// Misc
+        // Misc
 		if current-page == "button-interface": ButtonInterfacePage { }
         if current-page == "scrollview": ScrollviewPage { }
 
-		// Structs
+        // Structs
 		if current-page == "option-data": OptionDataPage { }
     }
 }

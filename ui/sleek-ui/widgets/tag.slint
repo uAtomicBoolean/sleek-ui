@@ -6,24 +6,24 @@ import { IconTextPlacement } from "../structs/data-structs.slint";
 
 
 export enum UTagVariant {
-	filled,
-	solid,
-	outline,
+    filled,
+    solid,
+    outline,
 }
 
 export enum UTagPreset {
-	red,
-	volcano,
-	orange,
-	gold,
-	yellow,
-	lime,
-	green,
-	cyan,
-	blue,
-	geekblue,
-	purple,
-	magenta,
+    red,
+    volcano,
+    orange,
+    gold,
+    yellow,
+    lime,
+    green,
+    cyan,
+    blue,
+    geekblue,
+    purple,
+    magenta,
 }
 
 export component UTag inherits Rectangle {
@@ -41,36 +41,27 @@ export component UTag inherits Rectangle {
     in-out property <IconTextPlacement> icon-placement: hidden;
     border-radius: UAppTheme.radius-base;
     HorizontalLayout {
+        cross-axis-alignment: center;
         spacing: UAppTheme.spacing-small;
         padding-top: UAppTheme.padding-vertical / 1.5;
         padding-bottom: UAppTheme.padding-vertical / 1.5;
         padding-left: UAppTheme.padding-horizontal / 1.5;
         padding-right: UAppTheme.padding-horizontal / 1.5;
-        if icon-placement == IconTextPlacement.start: VerticalLayout {
-            alignment: center;
-            UIcon {
-                source: icon;
-                size: UAppTheme.font-size-base;
-                colorize: colorize-icon ? text-color : transparent;
-            }
+        if icon-placement == IconTextPlacement.start: UIcon {
+            source: icon;
+            size: UAppTheme.font-size-base;
+            colorize: colorize-icon ? text-color : transparent;
         }
-        VerticalLayout {
-            padding-top: 1px;
-            padding-bottom: -1px;
-            UText {
-                text: root.text;
-                color: text-color;
-                font-size: UAppTheme.font-size-small;
-            }
+        UText {
+            text: root.text;
+            color: text-color;
+            font-size: UAppTheme.font-size-small;
         }
 
-        if icon-placement == IconTextPlacement.end: VerticalLayout {
-            alignment: center;
-            UIcon {
-                source: icon;
-                size: UAppTheme.font-size-base;
-                colorize: colorize-icon ? text-color : transparent;
-            }
+        if icon-placement == IconTextPlacement.end: UIcon {
+            source: icon;
+            size: UAppTheme.font-size-base;
+            colorize: colorize-icon ? text-color : transparent;
         }
     }
 

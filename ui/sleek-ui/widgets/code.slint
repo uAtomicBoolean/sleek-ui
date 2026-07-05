@@ -5,8 +5,8 @@ import { UIconButton } from "icon-button/icon-button.slint";
 
 
 enum UCodeType {
-	inline,
-	block,
+    inline,
+    block,
 }
 
 
@@ -15,11 +15,15 @@ export component UCode inherits VerticalLayout {
     in-out property <string> code;
     in-out property <bool> enable-clipboard: false;
     in-out property <TextWrap> wrap: no-wrap;
-    callback copied(code: string);
+    callback copied(code: string) -> bool;
     private property <brush> bg-color: UAppTheme.color-fill-secondary;
     private property <brush> bd-color: UAppTheme.border;
     private property <length> bd-width: UAppTheme.border-width-base;
     private property <length> bd-radius: UAppTheme.radius-small;
+    copied => {
+        true
+    }
+
     if type == UCodeType.inline: Rectangle {
         Rectangle {
             background: bg-color;
@@ -60,16 +64,13 @@ export component UCode inherits VerticalLayout {
                 property <duration> feedback-duration: 1s;
                 property <duration> animation-duration: 0;
                 property <float> feedback-alpha: 0;
-                VerticalLayout {
-                    alignment: center;
-                    Rectangle {
-                        background: bg-color.with-alpha(feedback-alpha);
-                        animate background { duration: animation-duration; }
-                        UText {
-                            text: @tr("Copied!");
-                            color: UAppTheme.text.with-alpha(feedback-alpha);
-                            animate color { duration: animation-duration; }
-                        }
+                Rectangle {
+                    background: bg-color.with-alpha(feedback-alpha);
+                    animate background { duration: animation-duration; }
+                    UText {
+                        text: @tr("Copied!");
+                        color: UAppTheme.text.with-alpha(feedback-alpha);
+                        animate color { duration: animation-duration; }
                     }
                 }
 
@@ -77,10 +78,11 @@ export component UCode inherits VerticalLayout {
                     variant: text-stripped;
                     icon: @image-url("../assets/icons/clipboard.svg");
                     clicked => {
-                        root.copied(code);
-                        animation-duration = 0;
-                        feedback-alpha = 1;
-                        feedback-timer.start();
+                        if root.copied(code) {
+                            animation-duration = 0;
+                            feedback-alpha = 1;
+                            feedback-timer.start();
+                        }
                     }
                 }
 

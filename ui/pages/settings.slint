@@ -24,6 +24,7 @@ component ColorDisplay inherits Rectangle {
         Rectangle {
             HorizontalLayout {
                 spacing: UAppTheme.spacing-big;
+                cross-axis-alignment: center;
                 Rectangle {
                     width: 40px;
                     height: 30px;
@@ -33,12 +34,9 @@ component ColorDisplay inherits Rectangle {
                     border-color: UAppTheme.border;
                 }
 
-                VerticalLayout {
-                    alignment: center;
-                    color-name := UText {
-                        text: name;
-                        animate color { duration: UAppTheme.animation-duration; }
-                    }
+                color-name := UText {
+                    text: name;
+                    animate color { duration: UAppTheme.animation-duration; }
                 }
             }
 
@@ -60,11 +58,8 @@ component ColorDisplay inherits Rectangle {
             ]
         }
 
-        HorizontalLayout {
-            alignment: center;
-            UDivider {
-                width: 580px;
-            }
+        UDivider {
+            width: 580px;
         }
     }
 }
@@ -78,6 +73,7 @@ component CompleteSlider inherits VerticalLayout {
     callback released <=> slider.released;
     HorizontalLayout {
         alignment: start;
+        cross-axis-alignment: center;
         spacing: UAppTheme.spacing-big;
         padding-top: UAppTheme.padding-big;
         text-left := UText {
@@ -85,15 +81,12 @@ component CompleteSlider inherits VerticalLayout {
             font-weight: FontWeight.semi-bold;
         }
 
-        VerticalLayout {
-            alignment: center;
-            slider := USlider {
-                width: 300px;
-                min-value: root.min-value;
-                max-value: root.max-value;
-                step: step;
-                display-steps: true;
-            }
+        slider := USlider {
+            width: 300px;
+            min-value: root.min-value;
+            max-value: root.max-value;
+            step: step;
+            display-steps: true;
         }
 
         UText {
@@ -116,7 +109,7 @@ component CompleteSlider inherits VerticalLayout {
 }
 
 export component SettingsPage inherits PageBase {
-    private property <[{ name: string, color: UPrimaryColor}]> colors: [
+    private property <[{ name: string, color: UPrimaryColor }]> colors: [
         { name: "Dust red", color: UAppTheme.dust-red },
         { name: "Volcano", color: UAppTheme.volcano },
         { name: "Sunset orange", color: UAppTheme.sunset-orange },

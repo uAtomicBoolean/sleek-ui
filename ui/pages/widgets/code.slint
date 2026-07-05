@@ -84,8 +84,18 @@ export component CodePage inherits PageBase {
                 { text: "This button is enabled with the " },
                 { code: "enable-clipboard" },
                 { text: " property and fires the " },
-                { code: "copied(string)" },
+                { code: "copied(string) -> bool" },
                 { text:" callback." }
+            ],
+            [
+                {
+                    text: "Returning true from the callback will display a \"Copied !\" message next to the button."
+                }
+            ],
+            [
+                {
+                    text: "The widget has a default implementation of the callback that always returns true."
+                }
             ],
             [
                 {

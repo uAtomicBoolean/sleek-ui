@@ -7,10 +7,10 @@ import { UIconButton, UIconButtonVariant } from "icon-button/icon-button.slint";
 
 
 export enum UNotificationVariant {
-	info,
-	success,
-	warning,
-	danger,
+    info,
+    success,
+    warning,
+    danger,
 }
 
 export component UNotification inherits Rectangle {
@@ -34,6 +34,7 @@ export component UNotification inherits Rectangle {
         VerticalLayout {
             padding: UAppTheme.padding-base;
             HorizontalLayout {
+                cross-axis-alignment: center;
                 padding-top: UAppTheme.padding-medium;
                 padding-bottom: UAppTheme.padding-medium;
                 padding-left: UAppTheme.padding-big;
@@ -49,26 +50,20 @@ export component UNotification inherits Rectangle {
                     }
                 }
 
-                VerticalLayout {
-                    alignment: center;
+                UText {
                     horizontal-stretch: 1;
-                    UText {
-                        text: title;
-                        wrap: no-wrap;
-                        overflow: elide;
-                        font-size: UAppTheme.font-size-medium;
-                    }
+                    text: title;
+                    wrap: no-wrap;
+                    overflow: elide;
+                    font-size: UAppTheme.font-size-medium;
                 }
 
-                VerticalLayout {
-                    alignment: center;
-                    close-button := UIconButton {
-                        variant: text;
-                        icon: @image-url("../assets/icons/x.svg");
-                        accessible-label: @tr("Close notification");
-                        accessible-action-default => {
-                            self.clicked();
-                        }
+                close-button := UIconButton {
+                    variant: text;
+                    icon: @image-url("../assets/icons/x.svg");
+                    accessible-label: @tr("Close notification");
+                    accessible-action-default => {
+                        self.clicked();
                     }
                 }
             }

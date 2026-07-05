@@ -11,10 +11,10 @@ import { UText } from "../text.slint";
 
 
 export enum UButtonVariant {
-	primary,
-	default,
-	filled,
-	text,
+    primary,
+    default,
+    filled,
+    text,
 }
 
 
@@ -70,18 +70,17 @@ export component UButton inherits ButtonInterface {
         border-radius: UAppTheme.radius-base;
         border-width: theme.border-width;
         border-color: get-color(theme.border);
-        HorizontalLayout {
+        VerticalLayout {
             alignment: center;
-            VerticalLayout {
-                alignment: center;
-                USpinner {
-                    colorize: get-color(theme.text);
-                }
+            cross-axis-alignment: center;
+            USpinner {
+                colorize: get-color(theme.text);
             }
         }
     }
     HorizontalLayout {
         alignment: center;
+        cross-axis-alignment: center;
         spacing: UAppTheme.spacing-base;
         padding-top: UAppTheme.padding-vertical;
         padding-bottom: UAppTheme.padding-vertical;
@@ -116,9 +115,6 @@ export component UButton inherits ButtonInterface {
         }
         VerticalLayout {
             alignment: center;
-			// Used to move the text down which improves visual alignment, especially when using icons.
-            padding-top: 1px;
-            padding-bottom: -1px;
             text-obj := UText {
                 color: get-color(theme.text);
                 font-size: UAppTheme.font-size-base;

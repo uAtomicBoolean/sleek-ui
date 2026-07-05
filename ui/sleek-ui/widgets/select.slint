@@ -39,32 +39,27 @@ export component USelect inherits ButtonInterface {
     }
     HorizontalLayout {
         alignment: space-between;
+        cross-axis-alignment: center;
         spacing: UAppTheme.spacing-base;
         padding-top: UAppTheme.padding-vertical;
         padding-bottom: UAppTheme.padding-vertical;
         padding-left: UAppTheme.padding-horizontal / 2;
         padding-right: 5px;
-        VerticalLayout {
-            alignment: center;
-            text-obj := UText {
-                text: current-index != -1 ? options[current-index].text : "";
-                overflow: elide;
-                font-size: UAppTheme.font-size-base;
-            }
+        text-obj := UText {
+            text: current-index != -1 ? options[current-index].text : "";
+            overflow: elide;
+            font-size: UAppTheme.font-size-base;
         }
 
-        VerticalLayout {
-            alignment: center;
-            UIcon {
-                source: @image-url("../assets/icons/chevron-up-down.svg");
-                size: UAppTheme.icon-size-base;
-                colorize: UAppTheme.text-secondary;
-                states [
-                    disabled when !root.enabled: {
-                        colorize: UAppTheme.text-disabled;
-                    }
-                ]
-            }
+        UIcon {
+            source: @image-url("../assets/icons/chevron-up-down.svg");
+            size: UAppTheme.icon-size-base;
+            colorize: UAppTheme.text-secondary;
+            states [
+                disabled when !root.enabled: {
+                    colorize: UAppTheme.text-disabled;
+                }
+            ]
         }
     }
 
