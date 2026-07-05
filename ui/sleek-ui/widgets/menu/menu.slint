@@ -8,8 +8,6 @@ import { UMenuSubmenu } from "menu-submenu.slint";
 import { UMenuGroupTitle } from "menu-group-title.slint";
 
 
-export { UMenuVariant, UMenuLink, UMenuGroupTitle, UMenuSubmenu, UMenuLogic }
-
 export component UMenu inherits Rectangle {
     in-out property <UMenuVariant> variant: default;
     in-out property <string> current-link;
@@ -32,4 +30,13 @@ export component UMenu inherits Rectangle {
         alignment: start;
         @children
     }
+}
+
+
+export {
+    UMenuVariant,
+    UMenuLink,
+    UMenuGroupTitle,
+    UMenuSubmenu,
+    UMenuLogic,
 }

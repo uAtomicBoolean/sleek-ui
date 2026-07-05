@@ -26,7 +26,7 @@ export component ButtonInterface inherits Rectangle {
     callback moved();
     callback pointer-event();
     callback scroll-event() -> EventResult;
-	// FocusScope callbacks
+    // FocusScope callbacks
 	callback capture-key-pressed <=> focus-scope.capture-key-pressed;
     callback capture-key-released <=> focus-scope.capture-key-released;
     callback key-pressed <=> focus-scope.key-pressed;
