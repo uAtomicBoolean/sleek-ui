@@ -37,6 +37,7 @@ export component TabsPage inherits PageBase {
     }
 
     WidgetPresentation {
+        full-width: true;
         UTabs {
             tabs: ["First tab", "Second tab", "Third tab"];
             if self.current-index == 0: UText {
@@ -56,15 +57,17 @@ export component TabsPage inherits PageBase {
     }
 
     DocSection {
-        title: "Stretched tabs";
+        title: "Tabs alignment";
         description: [
             [
                 { text: "You can use set the " },
                 { code: "tabs-alignment" },
                 { text: " property to " },
-                { code: "stretch" },
-                { text: " to have tabs that take the while width of the page (defaults to " },
                 { code: "start" },
+                {
+                    text: " to have tabs that takes the minimum width to display their text (defaults to "
+                },
+                { code: "stretch" },
                 { text: ")." }
             ]
         ];
@@ -74,7 +77,7 @@ export component TabsPage inherits PageBase {
         full-width: true;
         UTabs {
             tabs: ["First tab", "Second tab", "Third tab"];
-            tabs-alignment: stretch;
+            tabs-alignment: start;
         }
     }
 
