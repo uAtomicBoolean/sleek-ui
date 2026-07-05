@@ -58,43 +58,29 @@ export component SpinnerPage inherits PageBase {
     }
 
     WidgetPresentation {
-        VerticalLayout {
-            alignment: center;
-            USpinner {
-                size: 16px;
-            }
+        cross-axis-alignment: center;
+        USpinner {
+            size: 16px;
         }
 
-        VerticalLayout {
-            alignment: center;
-            USpinner {
-                size: 24px;
-                colorize: UAppTheme.success.base;
-            }
+        USpinner {
+            size: 24px;
+            colorize: UAppTheme.success.base;
         }
 
-        VerticalLayout {
-            alignment: center;
-            USpinner {
-                size: 32px;
-                colorize: UAppTheme.warning.base;
-            }
+        USpinner {
+            size: 32px;
+            colorize: UAppTheme.warning.base;
         }
 
-        VerticalLayout {
-            alignment: center;
-            USpinner {
-                size: 48px;
-                colorize: UAppTheme.danger.base;
-            }
+        USpinner {
+            size: 48px;
+            colorize: UAppTheme.danger.base;
         }
 
-        VerticalLayout {
-            alignment: center;
-            USpinner {
-                size: 64px;
-                colorize: UAppTheme.text;
-            }
+        USpinner {
+            size: 64px;
+            colorize: UAppTheme.text;
         }
     }
 
