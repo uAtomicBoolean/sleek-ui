@@ -26,58 +26,49 @@ export component UAlert inherits Rectangle {
     min-width: 300px;
     border-radius: UAppTheme.radius-base;
     border-width: UAppTheme.border-width-base;
-    VerticalLayout {
+    HorizontalLayout {
         padding-top: UAppTheme.padding-vertical;
         padding-bottom: UAppTheme.padding-vertical;
         padding-left: UAppTheme.padding-horizontal;
         padding-right: UAppTheme.padding-horizontal;
-        HorizontalLayout {
-            VerticalLayout {
-                alignment: center;
-                padding-right: UAppTheme.padding-big;
-                UIcon {
-                    source: icon;
-                    colorize: icon-color;
-                    size: UAppTheme.icon-size-base;
-                    accessible-role: none;
+        VerticalLayout {
+            alignment: center;
+            padding-right: UAppTheme.padding-big;
+            UIcon {
+                source: icon;
+                colorize: icon-color;
+                size: UAppTheme.icon-size-base;
+                accessible-role: none;
+            }
+        }
+
+        VerticalLayout {
+            alignment: center;
+            horizontal-stretch: 1;
+            padding-top: UAppTheme.padding-vertical;
+            padding-bottom: UAppTheme.padding-vertical;
+            StyledText {
+                text: message;
+                default-color: text-color;
+                default-font-size: UAppTheme.font-size-base;
+                link-color: UAppTheme.primary.base;
+                link-clicked(link) => {
+                    root.link-clicked(link);
                 }
             }
+        }
 
-            VerticalLayout {
-                alignment: center;
-                horizontal-stretch: 1;
-                padding-top: UAppTheme.padding-vertical + 1px;
-                padding-bottom: UAppTheme.padding-vertical - 1px;
-                StyledText {
-                    text: message;
-                    default-color: text-color;
-                    default-font-size: UAppTheme.font-size-base;
-                    link-color: UAppTheme.primary.base;
-                    link-clicked(link) => {
-                        root.link-clicked(link);
-                    }
+        if display-close-button: VerticalLayout {
+            alignment: center;
+            close-button := UIconButton {
+                variant: UIconButtonVariant.text-stripped;
+                icon: @image-url("../assets/icons/x.svg");
+                accessible-label: @tr("Close button for alert");
+                accessible-action-default => {
+                    self.clicked();
                 }
-                // UText {
-                //     color: text-color;
-                //     text: message;
-                //     wrap: no-wrap;
-                //     overflow: elide;
-                //     font-size: UAppTheme.font-size-base;
-                // }
-            }
-
-            if display-close-button: VerticalLayout {
-                alignment: center;
-                close-button := UIconButton {
-                    variant: UIconButtonVariant.text-stripped;
-                    icon: @image-url("../assets/icons/x.svg");
-                    accessible-label: @tr("Close button for alert");
-                    accessible-action-default => {
-                        self.clicked();
-                    }
-                    clicked => {
-                        root.close();
-                    }
+                clicked => {
+                    root.close();
                 }
             }
         }
