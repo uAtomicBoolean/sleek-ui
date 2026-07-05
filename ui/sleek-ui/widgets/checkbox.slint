@@ -43,20 +43,18 @@ export component UCheckbox inherits ButtonInterface {
                 height: UAppTheme.icon-size-base;
                 VerticalLayout {
                     alignment: center;
-                    HorizontalLayout {
-                        alignment: center;
-                        Image {
-                            source: @image-url("../assets/icons/check.svg");
-                            colorize: white;
-                            width: checked ? UAppTheme.font-size-smaller : 0px;
-                            height: checked ? UAppTheme.font-size-smaller : 0px;
-                            animate width, height { duration: UAppTheme.animation-duration; }
-                            states [
-                                disabled when !root.enabled: {
-                                    colorize: white.with-alpha(0.8);
-                                }
-                            ]
-                        }
+                    cross-axis-alignment: center;
+                    Image {
+                        source: @image-url("../assets/icons/check.svg");
+                        colorize: white;
+                        width: checked ? UAppTheme.font-size-smaller : 0px;
+                        height: checked ? UAppTheme.font-size-smaller : 0px;
+                        animate width, height { duration: UAppTheme.animation-duration; }
+                        states [
+                            disabled when !root.enabled: {
+                                colorize: white.with-alpha(0.8);
+                            }
+                        ]
                     }
                 }
 
