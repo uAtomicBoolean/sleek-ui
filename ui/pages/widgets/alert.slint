@@ -24,29 +24,10 @@ export component AlertPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description: [
-            [
-                { text: "The alert widget comes with four variants: " },
-                { code: "info (default)" },
-                { text: ", " },
-                { code: "success" },
-                { text: ", " },
-                { code: "warning" },
-                { text: " and " },
-                { code: "danger" },
-                { text: "." }
-            ],
-            [
-                { text: "The message property is of type " },
-                { code: "styled-text" },
-                { text: " so that you can include rich text formatting." }
-            ],
-            [
-                { text: "You can use the " },
-                { code: "link-clicked" },
-                { text: " callback to handle clicks on links in the message." }
-            ]
-        ];
+        description-md: @markdown(
+			"The alert widget comes with four variants: `info (default)`, `success`, `warning` and `danger`."
+			"\nThe `message` property is of type `styled-text` so that you can include rich text formatting, and a `link-clicked` callback is available to handle clicks on links in the message."
+		);
     }
 
     WidgetPresentation {
@@ -69,7 +50,10 @@ export component AlertPage inherits PageBase {
 
             UAlert {
                 variant: danger;
-                message: @markdown("This is an danger alert with a [link that redirects to nothing]().");
+                message: @markdown("This is an danger alert with a [link that redirects to nothing](empty-link).");
+                link-clicked(link) => {
+                    debug("Link clicked in alert: " + link);
+                }
             }
         }
     }
@@ -80,14 +64,9 @@ export component AlertPage inherits PageBase {
 
     DocSection {
         title: "Close button";
-        description: [
-            [
-                { text: "You can display a close button in the alert with the " },
-                { code: "display-close-button" },
-                { text: " property." }
-            ],
-            [{ text: "This button will fire the " }, { code: "close" }, { text: " callback." }]
-        ];
+        description-md: @markdown(
+			"You can display a close button in the alert with the `display-close-button` property. It will fire the `close` callback when clicked."
+		);
     }
 
     WidgetPresentation {
@@ -107,23 +86,9 @@ export component AlertPage inherits PageBase {
 
     DocSection {
         title: "Custom colors and icon";
-        description: [
-            [
-                { text: "You can use custom colors with the " },
-                { code: "border-color" },
-                { text: ", " },
-                { code: "background" },
-                { code: "icon-color" },
-                { text: " and " },
-                { code: "text-color" },
-                { text: " properties." },
-            ],
-            [
-                { text: "You can set a custom icon with the " },
-                { code: "icon" },
-                { text: " property." },
-            ]
-        ];
+        description-md: @markdown(
+			"You can use custom colors with the `border-color`, `background`, `icon-color` and `text-color` properties, and set a custom icon with the `icon` property."
+		);
     }
 
     WidgetPresentation {

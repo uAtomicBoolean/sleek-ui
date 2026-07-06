@@ -170,7 +170,10 @@ export component SettingsPage inherits PageBase {
     }
     DocSection {
         title: "Base radius";
-        description-md: @markdown("Change the application's base radius. This will affect all widgets that use the base radius.\nSome widgets have their radius clamped to a maximum value to avoid looking weird, such as UCard or UTooltip.");
+        description-md: @markdown(
+			"Change the application's base radius. This will affect all widgets that use the base radius.\n"
+			"Some widgets have their radius clamped to a maximum value to avoid looking weird, such as UCard or UTooltip."
+		);
     }
 
     CompleteSlider {

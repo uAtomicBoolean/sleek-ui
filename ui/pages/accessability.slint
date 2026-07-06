@@ -35,13 +35,13 @@ export component AccessabilityPage inherits PageBase {
         title: "Keyboard integration";
         description-md: @markdown(
 			"Some widgets have some level of keyboard integration to manipulate the linked value.\n"
-			"Take a look at the [USlider](http://slider) widget and change its value with the keyboard arrow keys.\n"
-			"Moreover, the [ButtonInterface](http://button-interface) widget fires the `clicked` callback when the space bar or the enter key are pressed on a focused widget."
+			"Take a look at the [USlider](slider) widget and change its value with the keyboard arrow keys.\n"
+			"Moreover, the [ButtonInterface](button-interface) widget fires the `clicked` callback when the space bar or the enter key are pressed on a focused widget."
 		);
         link-clicked(url) => {
-            if url == "http://slider" {
+            if url == "slider" {
                 UMenuLogic.current-link = "slider";
-            } else if url == "http://button-interface" {
+            } else if url == "button-interface" {
                 UMenuLogic.current-link = "button-interface";
             }
         }
@@ -51,11 +51,11 @@ export component AccessabilityPage inherits PageBase {
         title: "Tab navigation";
         description-md: @markdown(
 			"In order to ease the tab navigation, all widgets implements a strong display of the focused state when gaining the focus from tab navigation.\n"
-			"This is made possible with the `has-tab-focus` property from [ButtonInterface](http://button-interface).\n"
+			"This is made possible with the `has-tab-focus` property from [ButtonInterface](button-interface).\n"
 			"You can check out the tab navigation display by pressing tab."
 		);
-        link-clicked(_) => {
-            UMenuLogic.current-link = "button-interface";
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
         }
     }
 
