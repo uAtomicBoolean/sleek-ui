@@ -24,15 +24,10 @@ export component BreadcrumbPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description: [
-            [
-                { text: "The widget takes the current path as a list of string with the " },
-                { code: "steps" },
-                { text: " property, and calls the " },
-                { code: "step-clicked(step: string)" },
-                { text: " callback when a step is clicked." }
-            ]
-        ];
+        description-md: @markdown(
+			"The widget takes the current path as a list of string with the `steps` property, and calls the `step-clicked(step: string)` "
+			"callback when a step is clicked."
+		);
     }
 
     WidgetPresentation {
