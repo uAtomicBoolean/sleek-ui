@@ -30,18 +30,10 @@ export component CollapsePage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text: "Set the collapse's title with the " },
-                { code: "title" },
-                { text: " property." }
-            ],
-            [
-                { text: "The content of the collapse is displayed in a Rectangle containing the " },
-                { code: "@children" },
-                { text :" slot." }
-            ]
-        ];
+        description-md: @markdown(
+			"Set the collapse's title with the `title` property.\n"
+			"The content of the collapse is displayed in a Rectangle containing the `@children` slot."
+		);
     }
 
     WidgetPresentation {
@@ -66,13 +58,7 @@ export component CollapsePage inherits PageBase {
 
     DocSection {
         title: "Programmatic open";
-        description: [
-            [
-                { text: "Use the " },
-                { code: "collapse-open" },
-                { text: " property to programmatically manage the state of the collapse." }
-            ]
-        ];
+        description-md: @markdown("Use the `collapse-open` property to programmatically manage the state of the collapse.");
     }
 
     WidgetPresentation {
@@ -99,14 +85,10 @@ export component CollapsePage inherits PageBase {
 
     DocSection {
         title: "Collapse height";
-        description: [
-            [
-                { text: "You can set and get the content's height with the " },
-                { code: "content-height" },
-                { text: " property." }
-            ],
-            [{ text: "Otherwise, the content is using its preferred height." }]
-        ];
+        description-md: @markdown(
+			"You can set and get the content's height with the `content-height` property.\n"
+			"Otherwise, the content is using its preferred height."
+		);
     }
 
     WidgetPresentation {

@@ -39,7 +39,7 @@ export component InputNumberPage inherits PageBase {
 
     DocSection {
         title: "Disabled input";
-        description: [[{ text: "Use the " }, { code: "enabled" }, { text:" property to disable the input." }]];
+        description-md: @markdown("Use the `enabled` property to enable/disable the input.");
     }
 
     WidgetPresentation {
@@ -55,10 +55,10 @@ export component InputNumberPage inherits PageBase {
 
     DocSection {
         title: "Define the step";
-        description: [
-            [{ text:"You can set the step with the " }, { code: "step" }, { text:" property" }],
-            [{ text:"You can use the up/down arrow keys to increase/decrease the value." }]
-        ];
+        description-md: @markdown(
+			"You can set the step with the `step` property.\n"
+			"The users can use the up/down arrow keys to increase/decrease the value."
+		);
     }
 
     WidgetPresentation {
@@ -74,27 +74,14 @@ export component InputNumberPage inherits PageBase {
 
     DocSection {
         title: "Minimum and maximum values";
-        description: [
-            [
-                { text: "Enable the minimum and maximum values by setting the " },
-                { code:"enable-min-max" },
-                { text: " property to " },
-                { code:"true" },
-                { text:"." }
-            ],
-            [
-                { text: "You can then set the " },
-                { code: "min" },
-                { text:" and " },
-                { code: "max" },
-                { text: " properties." }
-            ]
-        ];
+        description-md: @markdown(
+			"Enable the minimum and maximum values by setting the `enable-min-max` property to `true`.\n"
+			"You can then define the range using the `min` and `max` properties.\n"
+		);
     }
 
     WidgetPresentation {
         UInputNumber {
-            enable-min-max: true;
             min-value: 10;
             max-value: 20;
         }
@@ -106,13 +93,7 @@ export component InputNumberPage inherits PageBase {
 
     DocSection {
         title: "Errored input";
-        description: [
-            [
-                { text: "You can set the input to an error state with the " },
-                { code:"error" },
-                { text: " properties." }
-            ]
-        ];
+        description-md: @markdown("You can set the input to an error state with the `error` properties.\n");
     }
 
     WidgetPresentation {
@@ -127,17 +108,9 @@ export component InputNumberPage inherits PageBase {
 
     DocSection {
         title: "Functions and callbacks";
-        description: [
-            [
-                { text: "With the exception of both " },
-                { code: "focus()" },
-                { text: " and " },
-                { code:"clear-focus()" },
-                { text:" , all of " },
-                { code: "TextInput" },
-                { text: " functions and callbacks are available." }
-            ]
-        ];
+        description-md: @markdown(
+			"With the exception of both `focus()` and `clear-focus()`, all of the `TextInput` functions and callbacks are available.\n"
+		);
     }
 
     DocCode {

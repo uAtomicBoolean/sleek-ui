@@ -24,23 +24,16 @@ export component LinearProgressPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text: "Define the current progress with the " },
-                { code: "progress" },
-                { text: " property." },
-            ],
-            [
-                { text:"Do not forget to set the width or height depending on the orientation." }
-            ],
-        ];
+        description-md: @markdown(
+			"Define the current progress with the `progress` property. "
+			"Do not forget to set the width or height depending on the orientation."
+		);
     }
 
     WidgetPresentation {
         ULinearProgress {
             width: 300px;
             progress: 40%;
-            indeterminate: true;
         }
     }
 
@@ -50,20 +43,10 @@ export component LinearProgressPage inherits PageBase {
 
     DocSection {
         title: "Orientation and direction";
-        description: [
-            [
-                { text: "Use the " },
-                { code:"orientation" },
-                { text:" property to choose the progress' orientation." }
-            ],
-            [
-                { text: "Use the " },
-                { code: "direction" },
-                {
-                    text: " property to choose weither the progress start from the start or the end."
-                }
-            ]
-        ];
+        description-md: @markdown(
+			"Use the `orientation` property to choose the progress' orientation.\n"
+			"Use the `direction` property to choose weither the progress start from the start or the end."
+		);
     }
 
     WidgetPresentation {
@@ -89,15 +72,9 @@ export component LinearProgressPage inherits PageBase {
 
     DocSection {
         title: "Indeterminate progress";
-        description: [
-            [
-                { text: "Set the " },
-                { code:"indeterminate" },
-                { text:" property to " },
-                { code: "true" },
-                { text: "to set the progress in a loading state." }
-            ]
-        ];
+        description-md: @markdown(
+			"Set the `indeterminate` property to `true` to set the progress in a loading state."
+		);
     }
 
     WidgetPresentation {
@@ -113,16 +90,9 @@ export component LinearProgressPage inherits PageBase {
 
     DocSection {
         title: "Default size and radius";
-        description: [
-            [
-                { text: "You can manage the size and radius of the progress with the " },
-                { code:"default-size" },
-                { text:" and " },
-                { code:"default-radius" },
-                { text:" property." }
-            ],
-            [{ text: "Use the " }]
-        ];
+        description-md: @markdown(
+			"You can manage the size and radius of the progress with the `default-size` and `default-radius` property."
+		);
     }
 
     WidgetPresentation {
