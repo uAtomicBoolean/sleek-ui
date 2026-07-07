@@ -18,7 +18,8 @@ export component ULinearProgress inherits Rectangle {
 	accessible-role: progress-indicator;
     accessible-value-minimum: 0;
     accessible-value-maximum: 100;
-	// Regular properties
+    accessible-orientation: orientation;
+    // Regular properties
     private property <brush> progress-color;
     in-out property <ULinearProgressVariant> variant: primary;
     in property <length> default-size: 10px;
