@@ -10,7 +10,7 @@ import { UOptionData } from "../structs/data-structs.slint";
 
 
 export component USelect inherits ButtonInterface {
-	// Accessability properties
+	// Accessibility properties
 	accessible-role: combobox;
     accessible-expandable: true;
     accessible-value: self.selected-text;
@@ -79,7 +79,7 @@ export component USelect inherits ButtonInterface {
             list-contents := VerticalLayout {
                 padding: UAppTheme.padding-base;
                 for option[index] in root.options: select-item := ButtonInterface {
-					// List item accessability
+					// List item accessibility
 					accessible-role: list-item;
                     accessible-item-selectable: true;
                     accessible-item-selected: options[current-index].value == option.value;

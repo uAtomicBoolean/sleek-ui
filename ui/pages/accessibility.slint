@@ -14,16 +14,16 @@ import { PageBase } from "../components/page-base.slint";
 import { AppLogic } from "../app-logic.slint";
 
 
-export component AccessabilityPage inherits PageBase {
+export component AccessibilityPage inherits PageBase {
     UTitle {
         level: 3;
-        text: "Accessability";
+        text: "Accessibility";
     }
 
     DocSection {
-        title: "Accessability properties";
+        title: "Accessibility properties";
         description-md: @markdown(
-			"While all widgets implement some basis of accessabity such as the role, the default action, etc, it is recommended to fine tune these properties to fit your application as much as possible.\n"
+			"While all widgets implement some basis of accessibility such as the role, the default action, etc, it is recommended to fine tune these properties to fit your application as much as possible.\n"
 			"You can look at the [UButton](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/widgets/button/button.slint) or [USlider](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/widgets/slider.slint) implementation to get an idea of what has been done in sleek-ui."
 		);
         link-clicked(url) => {
@@ -50,7 +50,7 @@ export component AccessabilityPage inherits PageBase {
     DocSection {
         title: "Tab navigation";
         description-md: @markdown(
-			"In order to ease the tab navigation, all widgets implements a strong display of the focused state when gaining the focus from tab navigation.\n"
+			"In order to ease the tab navigation, all widgets implement a strong display of the focused state when gaining the focus from tab navigation.\n"
 			"This is made possible with the `has-tab-focus` property from [ButtonInterface](button-interface).\n"
 			"You can check out the tab navigation display by pressing tab."
 		);

@@ -126,16 +126,18 @@ export component SliderPage inherits PageBase {
         title: "Orientation";
         description: [
             [
-                { text: "You can change the step of the slider with the " },
-                { code: "step" },
-                { text: " property." },
+                { text: "You can change the slider's orientation with the " },
+                { code: "orientation" },
+                { text: " property. It defaults to " },
+                { code: "horizontal" },
+                { text: "." }
             ],
             [
-                { text: "You can also change the " },
-                { code: "min-value" },
-                { text: " and " },
-                { code:"max-value" },
-                { text: " properties." }
+                { text: "Remember to set the " },
+                { code: "height" },
+                { text: " (or " },
+                { code: "width" },
+                { text: ") depending on the chosen orientation." }
             ]
         ];
     }

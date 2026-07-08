@@ -4,7 +4,7 @@ import { UText } from "text.slint";
 
 
 export component UInput inherits Rectangle {
-	// Accessability properties
+	// Accessibility properties
 	accessible-role: text-input;
     accessible-read-only: input.read-only;
     accessible-value: self.text;
@@ -50,7 +50,7 @@ export component UInput inherits Rectangle {
                     horizontal-alignment: left;
                     single-line: true;
                     wrap: no-wrap;
-                    // Disable the TextInput accessability as the widget takes care of that.
+                    // Disable the TextInput accessibility as the widget takes care of that.
                     accessible-role: none;
                     cursor-position-changed(cpos) => {
                         if cpos.x + self.computed-x < self.right-margin {

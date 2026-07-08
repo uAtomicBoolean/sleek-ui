@@ -18,14 +18,14 @@ export component ModalPage inherits PageBase {
     }
 
     DocDescription {
-        text: "A modal that takes the whole screen that contains custom code.";
+        text: "A full-screen modal that contains custom code.";
     }
 
     DocSection {
         title: "How to use";
         description-md: @markdown(
 			"The modal is a complex widget that, like the tooltip, must be placed at the root of the project / page to be rendered above all the content.\n"
-			"It comes with a `@children` slot to allow you to put anything in its body. Its title is set throught the `title` property.\n"
+			"It comes with a `@children` slot to allow you to put anything in its body. Its title is set through the `title` property.\n"
 			"To open a modal, you must set its `id` property, and then call the `UModalLogic.open-modal(id: string)` global function.\n"
 			"You can close the modal with its button, or call the `UModalLogic.close-modal()` function."
 		);
@@ -75,10 +75,10 @@ export component ModalPage inherits PageBase {
     }
 
     DocSection {
-        title: "Close comportment";
+        title: "Close behavior";
         description-md: @markdown(
 			"By default, the modal will only close when clicking on the close button or the Accept/Cancel buttons.\n"
-			"You can change this by settings the `close-on-accept` and `close-on-cancel` boolean properties.\n"
+			"You can change this by setting the `close-on-accept` and `close-on-cancel` boolean properties.\n"
 			"You can also close the modal when clicking on the greyed background when enabling the `close-on-click-outside` property."
 		);
     }
@@ -93,7 +93,7 @@ export component ModalPage inherits PageBase {
     }
 
     DocCode {
-        code: "UModal {\n    id: \"close-modal\";\n    title: \"Custom close comportment\";\n    close-on-click-outside: true;\n    close-on-accept: false;\n    close-on-cancel: false;\n    // Your modal's code.\n}";
+        code: "UModal {\n    id: \"close-modal\";\n    title: \"Custom close behavior\";\n    close-on-click-outside: true;\n    close-on-accept: false;\n    close-on-cancel: false;\n    // Your modal's code.\n}";
     }
 
     DocSection {

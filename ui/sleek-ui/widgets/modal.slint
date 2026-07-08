@@ -67,7 +67,7 @@ export component UModal {
         background: UAppTheme.color-fill-plus.with-alpha(0.5);
 
         // Used to skip focus directly to the modal.
-		// This avoid having to focus all the elements in the window before getting to the modal.
+		// This avoids having to focus all the elements in the window before getting to the modal.
 		rect-background-focus := FocusScope { }
 
         touch-background := TouchArea {
@@ -93,7 +93,7 @@ export component UModal {
                 max-width: modal-max-width;
                 max-height: modal-max-height;
 
-                // Used to prevent clicks made in the modal to count as clicks made in the background.
+                // Used to prevent clicks made in the modal from counting as clicks made in the background.
                 TouchArea { }
 
                 VerticalLayout {

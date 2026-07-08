@@ -5,7 +5,7 @@ export component UDivider inherits Rectangle {
     in property <Orientation> orientation: horizontal;
     in-out property <length> t-thickness: UAppTheme.border-width-base;
     background: UAppTheme.separator;
-	// Using init so that the divider takes all the space by default event though 
+	// Using init so that the divider takes all the space by default even though
 	// we shouldn't according to the official documentation.
 	init => {
         if orientation == Orientation.horizontal {
