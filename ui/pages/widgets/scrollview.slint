@@ -24,20 +24,11 @@ export component ScrollviewPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description: [
-            [
-                {
-                    text: "This widget works like a standard scroll view. It computes automatically the viewport unless you use a "
-                },
-                { code: "for" },
-                { text: " loop." }
-            ],
-            [
-                { text: "The standard properties of " },
-                { code: "Flickable" },
-                { text: " (viewport-*, interactive) are available on the UScrollView." }
-            ]
-        ];
+        description-md: @markdown(
+			"This widget works like a standard scrollview. It computes automatically the viewport "
+			"unless you use a `for` loop. The standard properties of `Flickable` (viewport-*, interactive) "
+			"are available in the widget."
+		);
     }
 
     WidgetPresentation {
@@ -92,15 +83,10 @@ export component ScrollviewPage inherits PageBase {
 
     DocSection {
         title: "Scrollbar area";
-        description: [
-            [
-                {
-                    text: "By default, the scrollbars are drawn above the content. However, you can use the "
-                },
-                { code: "scrollbar-area" },
-                { text: " property to get the length of the scrollbars." }
-            ]
-        ];
+        description-md: @markdown(
+			"By default, the scrollbars are drawn above the content. You can use the `scrollbar-area` "
+			"property to get the length/width of the scrollbar."
+		);
     }
 
     DocCode {

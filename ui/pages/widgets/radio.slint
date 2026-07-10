@@ -29,15 +29,10 @@ export component RadioPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description: [
-            [
-                { text: "A radio takes a list of " },
-                { link:"UOptionData", url: "option-data" },
-                { text: " and returns the currently selected value with the " },
-                { code: "selected-value" },
-                { text:" property." }
-            ]
-        ];
+        description-md: @markdown(
+			"A radio takes a list of [UOptionData](option-data) and returns the currently "
+			"selected value with the `selected-value` property."
+		);
         link-clicked(url) => {
             UMenuLogic.current-link = url;
         }
@@ -64,15 +59,9 @@ export component RadioPage inherits PageBase {
 
     DocSection {
         title: "Orientation";
-        description: [
-            [
-                { text: "You can choose the orientation with the " },
-                { code: "orientation" },
-                { text: " property, which is of type " },
-                { code: "Orientation" },
-                { text: "." }
-            ]
-        ];
+        description-md: @markdown(
+			"Use the `orientation` property to set the widget to a vertical or horizontal orientation."
+		);
     }
 
     WidgetPresentation {
@@ -92,13 +81,7 @@ export component RadioPage inherits PageBase {
 
     DocSection {
         title: "Disable the whole widget";
-        description: [
-            [
-                { text: "You can disable all the options with the " },
-                { code: "enabled" },
-                { text: " property." }
-            ]
-        ];
+        description-md: @markdown("You can disable all the options with the `enabled` property.");
     }
 
     WidgetPresentation {

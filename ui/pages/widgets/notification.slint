@@ -24,32 +24,12 @@ export component NotificationPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description: [
-            [
-                {
-                    text: "As the notification widget doesn't implement any logic, you must use it in a custom notification system like "
-                },
-                {
-                    link: "this one",
-                    url: "https://github.com/uAtomicBoolean/scriptboard/blob/main/ui/components/notifications-overlay.slint"
-                },
-                { text: "." }
-            ],
-            [
-                { text: "To help with the implementation, it comes with two callbacks: " },
-                { code: "close" },
-                { text: " and " },
-                { code: "clicked" },
-                { text: "." }
-            ],
-            [
-                { text: "The " },
-                { code: "close" },
-                { text: " callback is fired when clicking on the close button, and the " },
-                { code: "clicked" },
-                { text: " when clicking anywhere else in the notification." }
-            ],
-        ];
+        description-md: @markdown(
+			"As the notification widget doesn't implement any logic, you must use it in a custom notification "
+			"system like [this one](https://github.com/uAtomicBoolean/scriptboard/blob/main/ui/components/notifications-overlay.slint).\n"
+			"To help with the implementation, it comes with two callbacks: `close` and `clicked`. The close "
+			"callback is fired when clicking on the close button, and the clicked when clicking anywhere else in the notification."
+		);
         link-clicked(url) => {
             Platform.open-url(url);
         }
@@ -67,29 +47,12 @@ export component NotificationPage inherits PageBase {
 
     DocSection {
         title: "Notification content";
-        description: [
-            [
-                { text: "You can add a message in the notification using the " },
-                { code: "message" },
-                { text: " property." }
-            ],
-            [
-                {
-                    text: "The message will be, by default, displayed on one line. But you can change that by setting "
-                },
-                { code: "single-line-message" },
-                { text: " to " },
-                { code: "false" },
-                { text: "." }
-            ],
-            [
-                { text: "Please note that the notification has a fixed width of " },
-                { code: "300px" },
-                { text: ". You are free to change that with the regular " },
-                { code: "Rectangle" },
-                { text: " properties." }
-            ]
-        ];
+        description-md: @markdown(
+			"You can add a message in the notification using the `message` property. The message "
+			"will, by default, be displayed on one line. But you can change that by setting `single-line-message` "
+			"to `false`.\nPlease note that the notification has a fixed width of `300px`. You are free to change "
+			"that with the regular `Rectangle` properties."
+		);
     }
 
     WidgetPresentation {
@@ -117,20 +80,9 @@ export component NotificationPage inherits PageBase {
 
     DocSection {
         title: "Notification variants";
-        description: [
-            [
-                { text: "The notification widget comes with four different variants: " },
-                { code: "info" },
-                { text: ", " },
-                { code: "success" },
-                { text: ", " },
-                { code: "warning" },
-                { text: " and " },
-                { code: "danger" },
-                { text: "." }
-            ],
-            [{ text: "The default variant is " }, { code: "info" }, { text:"." }]
-        ];
+        description-md: @markdown(
+			"The notification widget comes with four different variants: `info`, `success`, `warning` and `danger`. The default variant is `info`."
+		);
     }
 
     WidgetPresentation {
@@ -167,15 +119,9 @@ export component NotificationPage inherits PageBase {
 
     DocSection {
         title: "Custom icon";
-        description: [
-            [
-                { text: "You can change the icon and its color with the " },
-                { code: "notif-icon" },
-                { text: " and " },
-                { code: "notif-icon-color" },
-                { text: " properties." }
-            ]
-        ];
+        description-md: @markdown(
+			"You can change the icon and its color with the `notif-icon` and `notif-icon-color` properties."
+		);
     }
 
     WidgetPresentation {

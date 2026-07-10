@@ -29,20 +29,10 @@ export component RadioButtonPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description: [
-            [
-                { text: "A radio button takes a list of " },
-                { link:"UOptionData", url: "option-data" },
-                { text: " and returns the currently selected value with the " },
-                { code: "selected-value" },
-                { text:" property." }
-            ],
-            [
-                { text:"Please note that you can't disable a single option, hence the " },
-                { code:"UOptionData.enabled" },
-                { text: " property is useless for this widget." }
-            ]
-        ];
+        description-md: @markdown(
+			"A radio button takes a list of [UOptionData](option-data) and returns the currently "
+			"selected value with the `selected-value` property."
+		);
         link-clicked(url) => {
             UMenuLogic.current-link = url;
         }
@@ -70,20 +60,15 @@ export component RadioButtonPage inherits PageBase {
 
     DocSection {
         title: "Primary variant";
-        description: [
-            [
-                { text: "You can change the style of the widget by switching the " },
-                { code: "variant" },
-                { text: " property to " },
-                { code: "primary" },
-                { text: "." }
-            ]
-        ];
+        description-md: @markdown(
+			"You can change the style of the widget by switching the `variant` property to `primary`."
+		);
     }
 
     WidgetPresentation {
         URadioButton {
             variant: primary;
+            selected-value: "option1";
             options: [
                 { text: "Option 1", value:"option1" },
                 { text: "Option 2", value:"option2" },
@@ -98,13 +83,7 @@ export component RadioButtonPage inherits PageBase {
 
     DocSection {
         title: "Disable the whole widget";
-        description: [
-            [
-                { text: "You can disable all the options with the " },
-                { code: "enabled" },
-                { text: " property." }
-            ]
-        ];
+        description-md: @markdown("You can disable all the options with the `enabled` property.");
     }
 
     WidgetPresentation {
