@@ -21,6 +21,9 @@ export component AppWindow inherits Window {
     preferred-width: 1280px;
     preferred-height: 720px;
     background: UAppTheme.bg-container;
+    init => {
+        UMenuLogic.current-link = "slider";
+    }
     FocusScope {
         HorizontalLayout {
             Sidebar { }
@@ -59,7 +62,7 @@ export component AppWindow inherits Window {
 
     UModal {
         id: "modal-close";
-        title: "Custom close comportment";
+        title: "Custom close behavior";
         modal-min-width: 200px;
         modal-max-width: 400px;
         modal-min-height: 200px;
