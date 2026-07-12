@@ -23,7 +23,7 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description-md: @markdown(
+        description: @markdown(
 			"The modal is a complex widget that, like the tooltip, must be placed at the root of the project / page to be rendered above all the content.\n"
 			"It comes with a `@children` slot to allow you to put anything in its body. Its title is set through the `title` property.\n"
 			"To open a modal, you must set its `id` property, and then call the `UModalLogic.open-modal(id: string)` global function.\n"
@@ -46,7 +46,7 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Callbacks";
-        description-md: @markdown(
+        description: @markdown(
 			"The modal comes with four callbacks: `showed`, `closed`, `accepted` and `rejected`.\n"
 			"The `accepted` and `rejected` callbacks are linked to the accept and cancel buttons.\n"
 			"The `showed` and `closed` callbacks are always called, even when the accepted/rejected callbacks are called."
@@ -55,7 +55,7 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Modal width and height";
-        description-md: @markdown(
+        description: @markdown(
 			"The modal's width and height are computed based on its content, but you can use the `modal-min/max-*` properties to customize them.\n"
 			"The max values are by default `600px`, the minimum width is set by default to `300px` and there is no default value for the minimum height."
 		);
@@ -76,7 +76,7 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Close behavior";
-        description-md: @markdown(
+        description: @markdown(
 			"By default, the modal will only close when clicking on the close button or the Accept/Cancel buttons.\n"
 			"You can change this by setting the `close-on-accept` and `close-on-cancel` boolean properties.\n"
 			"You can also close the modal when clicking on the greyed background when enabling the `close-on-click-outside` property."
@@ -98,7 +98,7 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Content dividers";
-        description-md: @markdown(
+        description: @markdown(
 			"You can display dividers to have a clear separation between the content and the top and bottom spaces.\n"
 			"Use the `top-divider` and `bottom-divider` properties to enable them."
 		);
@@ -119,7 +119,7 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Buttons style";
-        description-md: @markdown("You can manage the buttons' variants, danger state and text with the `accept/cancel-btn-*` properties.");
+        description: @markdown("You can manage the buttons' variants, danger state and text with the `accept/cancel-btn-*` properties.");
     }
 
     WidgetPresentation {
@@ -137,7 +137,7 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Buttons enabled status and toggle";
-        description-md: @markdown(
+        description: @markdown(
 			"You can disable the accept and cancel buttons with the `accept/cancel-btn-enabled` properties.\n"
 			"You can hide the buttons with the `accept/cancel-btn-toggle` properties."
 		);

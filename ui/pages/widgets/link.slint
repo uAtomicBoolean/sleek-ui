@@ -37,7 +37,7 @@ export component LinkPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description-md: @markdown(
+        description: @markdown(
 			"The link widget doesn't automatically open URLs but instead triggers the `clicked` callback. "
 			"This allows you to implement your own logic to open URLs, for example using the `Platform.open-url()` "
 			"method or linking to another part in your application."
@@ -62,7 +62,7 @@ export component LinkPage inherits PageBase {
 
     DocSection {
         title: "External link icon";
-        description-md: @markdown(
+        description: @markdown(
 			"You can display an icon showing that the link is an external one by enabling the `icon-placement` property."
 		);
     }
@@ -86,7 +86,7 @@ export component LinkPage inherits PageBase {
 
     DocSection {
         title: "Wrapping";
-        description-md: @markdown(
+        description: @markdown(
 			"By default, the link will wrap using the `TextWrap.char-wrap` value. You can change it using the `wrap` property."
 		);
     }

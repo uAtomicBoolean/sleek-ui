@@ -38,7 +38,7 @@ export component TooltipPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description-md: @markdown(
+        description: @markdown(
 			"You can use a tooltip by adding the `UTooltip` widget at the "
 			"root of the window after your main elements. This ensures that "
 			"the tooltip will be displayed above the other elements in your "
@@ -82,7 +82,7 @@ export component TooltipPage inherits PageBase {
 
     DocSection {
         title: "Tooltip position";
-        description-md: @markdown(
+        description: @markdown(
 			"A tooltip can be placed at the following positions: `top`, `bottom`, "
 			"`left` and `right`.\nIts position is defined in the second parameter of "
 			"the `UTooltipLogic.display()` method.\nSending an empty string defaults to `top`."
@@ -116,7 +116,7 @@ export component TooltipPage inherits PageBase {
 
     DocSection {
         title: "Tooltip configuration";
-        description-md: @markdown(
+        description: @markdown(
 			"You can modify the following settings on the tooltip: `delay`, "
 			"`tooltip-max-width` and `tooltip-max-height`.\nAll three properties "
 			"are declared in the tooltip's widget to allow application wide configuration "

@@ -30,7 +30,7 @@ export component CollapsePage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description-md: @markdown(
+        description: @markdown(
 			"Set the collapse's title with the `title` property.\n"
 			"The content of the collapse is displayed in a Rectangle containing the `@children` slot."
 		);
@@ -58,7 +58,7 @@ export component CollapsePage inherits PageBase {
 
     DocSection {
         title: "Programmatic open";
-        description-md: @markdown("Use the `collapse-open` property to programmatically manage the state of the collapse.");
+        description: @markdown("Use the `collapse-open` property to programmatically manage the state of the collapse.");
     }
 
     WidgetPresentation {
@@ -85,7 +85,7 @@ export component CollapsePage inherits PageBase {
 
     DocSection {
         title: "Collapse height";
-        description-md: @markdown(
+        description: @markdown(
 			"You can set and get the content's height with the `content-height` property.\n"
 			"Otherwise, the content is using its preferred height."
 		);

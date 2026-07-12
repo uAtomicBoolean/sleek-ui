@@ -24,7 +24,7 @@ export component CodePage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description-md: @markdown("The code widget is by default of type `block`.");
+        description: @markdown("The code widget is by default of type `block`.");
     }
 
     DocCode {
@@ -33,7 +33,7 @@ export component CodePage inherits PageBase {
 
     DocSection {
         title: "Inline code";
-        description-md: @markdown("With the `inline` type, you can display some code next to a text.");
+        description: @markdown("With the `inline` type, you can display some code next to a text.");
     }
 
     DocCode {
@@ -47,7 +47,7 @@ export component CodePage inherits PageBase {
 
     DocSection {
         title: "Text wrapping";
-        description-md: @markdown("The `wrap` default value is `TextWrap.no-wrap`.");
+        description: @markdown("The `wrap` default value is `TextWrap.no-wrap`.");
     }
 
     WidgetPresentation {
@@ -65,7 +65,7 @@ export component CodePage inherits PageBase {
 
     DocSection {
         title: "Clipboard button";
-        description-md: @markdown(
+        description: @markdown(
 			"The clipboard button is only available when using the block type.\n"
 			"This button is enabled with the `enable-clipboard` property and fires the `copied(string) -> bool` callback which will display a \"Copied !\" "
 			"message when returning `true`.\n"

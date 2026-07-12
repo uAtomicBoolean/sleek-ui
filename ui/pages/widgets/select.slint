@@ -25,7 +25,7 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description-md: @markdown(
+        description: @markdown(
 			"You can set the options with the `options` property of type [UOptionData](option-data).\n"
 			"The `current-index` property defaults to `-1` until the user selects a value or you change it."
 		);
@@ -55,7 +55,7 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Current text and current value";
-        description-md: @markdown(
+        description: @markdown(
 			"Both `selected-text` and `selected-value` are available as `out` properties to directly get the selected values."
 		);
     }
@@ -66,7 +66,7 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Selected changed callback";
-        description-md: @markdown("The `selected-changed(new-index: int)` callback will be fired when the user selects a new value.");
+        description: @markdown("The `selected-changed(new-index: int)` callback will be fired when the user selects a new value.");
     }
 
     DocCode {
@@ -75,7 +75,7 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Change the number of visible options";
-        description-md: @markdown(
+        description: @markdown(
 			"The widget will show, by default, at most 5 options. You can change this with the `max-visible-options` property."
 		);
     }
@@ -102,7 +102,7 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Display all options";
-        description-md: @markdown(
+        description: @markdown(
 			"You can display all the options with the `display-all-options` boolean property."
 		);
     }

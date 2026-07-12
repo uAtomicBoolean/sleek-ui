@@ -24,7 +24,7 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description-md: @markdown("You only need to set the `name` property to use a submenu.");
+        description: @markdown("You only need to set the `name` property to use a submenu.");
     }
 
     DocCode {
@@ -33,7 +33,7 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocSection {
         title: "Disabled menu";
-        description-md: @markdown("You can disable a menu by setting the `enabled` property to false.");
+        description: @markdown("You can disable a menu by setting the `enabled` property to false.");
     }
 
     DocCode {
@@ -42,7 +42,7 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocSection {
         title: "Programmatically open a submenu";
-        description-md: @markdown("You can open/close a submenu using the `opened` boolean property.");
+        description: @markdown("You can open/close a submenu using the `opened` boolean property.");
     }
 
     DocCode {
@@ -51,7 +51,7 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocSection {
         title: "Parent submenus";
-        description-md: @markdown(
+        description: @markdown(
 			"When using submenus, you can use the `parent-child-opened` and `child-opened` properties to display the current path.\n"
 			"This will allow the parent submenus of the currently selected link to be highlighted."
 		);

@@ -24,7 +24,7 @@ export component AlertPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description-md: @markdown(
+        description: @markdown(
 			"The alert widget comes with four variants: `info (default)`, `success`, `warning` and `danger`."
 			"\nThe `message` property is of type `styled-text` so that you can include rich text formatting, and a `link-clicked` callback is available to handle clicks on links in the message."
 		);
@@ -64,7 +64,7 @@ export component AlertPage inherits PageBase {
 
     DocSection {
         title: "Close button";
-        description-md: @markdown(
+        description: @markdown(
 			"You can display a close button in the alert with the `display-close-button` property. It will fire the `close` callback when clicked."
 		);
     }
@@ -86,7 +86,7 @@ export component AlertPage inherits PageBase {
 
     DocSection {
         title: "Custom colors and icon";
-        description-md: @markdown(
+        description: @markdown(
 			"You can use custom colors with the `border-color`, `background`, `icon-color` and `text-color` properties, and set a custom icon with the `icon` property."
 		);
     }

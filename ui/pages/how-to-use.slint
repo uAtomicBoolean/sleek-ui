@@ -24,7 +24,7 @@ export component HowToUsePage inherits PageBase {
 
     DocSection {
         title: "Add the library to your project";
-        description-md: @markdown(
+        description: @markdown(
 			"1. Download the library from the latest release on its [github repository](https://github.com/uAtomicBoolean/sleek-ui/releases).\n"
 			"2. Unzip the library and move it either to your project, or to another folder on your computer.\n"
 			"3. Add Sleek-ui as a library following the [official documentation](https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries)."
@@ -36,7 +36,7 @@ export component HowToUsePage inherits PageBase {
 
     DocSection {
         title: "Use the widgets in your code";
-        description-md: @markdown("All widgets can be imported from the `@sleek-ui/widgets.slint` file. They can then be used like a native widget.");
+        description: @markdown("All widgets can be imported from the `@sleek-ui/widgets.slint` file. They can then be used like a native widget.");
     }
 
     DocCode {
@@ -45,7 +45,7 @@ export component HowToUsePage inherits PageBase {
 
     DocSection {
         title: "Use the library's theme";
-        description-md: @markdown(
+        description: @markdown(
 			"Sleek-ui comes with a global [UAppTheme](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint) that contains "
 			"design tokens and [default colors](default-colors). You can use them in your code to keep the same look and feel across your whole application."
 		);

@@ -29,7 +29,7 @@ export component SliderPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description-md: @markdown(
+        description: @markdown(
 			"Define the width of the slider and get its value with the `value` float property."
 		);
     }
@@ -52,7 +52,7 @@ export component SliderPage inherits PageBase {
 
     DocSection {
         title: "Step and boundaries";
-        description-md: @markdown(
+        description: @markdown(
 			"Use the `step` property to change the slider's step.\n"
 			"The `display-steps` property allows you to display dots "
 			"representing the steps in the slider.\n"
@@ -81,7 +81,7 @@ export component SliderPage inherits PageBase {
 
     DocSection {
         title: "Handle position and released callback";
-        description-md: @markdown(
+        description: @markdown(
 			"The handle's position is available with the `handle-pos` property.\n"
 			"The `release(value: float)` callback will be fired when the slider is "
 			"clicked or a dragging action ended."
@@ -94,7 +94,7 @@ export component SliderPage inherits PageBase {
 
     DocSection {
         title: "Orientation";
-        description-md: @markdown(
+        description: @markdown(
 			"Use the `orientation` property to set the slider to the vertical or horizontal (default).\n"
 			"Remember to set the height or width depending on the chosen orientation."
 		);

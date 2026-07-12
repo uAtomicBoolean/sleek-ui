@@ -24,7 +24,7 @@ export component MenuPageLink inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description-md: @markdown(
+        description: @markdown(
 			"Add a link to a menu by setting the `id` and `name`."
 		);
     }
@@ -35,7 +35,7 @@ export component MenuPageLink inherits PageBase {
 
     DocSection {
         title: "Disabled link";
-        description-md: @markdown(
+        description: @markdown(
 			"You can disable a link by setting the `enabled` property to false."
 		);
     }
@@ -46,7 +46,7 @@ export component MenuPageLink inherits PageBase {
 
     DocSection {
         title: "Selected link";
-        description-md: @markdown(
+        description: @markdown(
 			"You can check if a link is selected by checking the `is-selected` property or "
 			"the `UMenuLogic.current-link` global property."
 		);
@@ -58,7 +58,7 @@ export component MenuPageLink inherits PageBase {
 
     DocSection {
         title: "Activated callback";
-        description-md: @markdown(
+        description: @markdown(
 			"Clicking on the link will fire the `activated` callback (only if the link is not the current link)."
 		);
     }

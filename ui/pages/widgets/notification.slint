@@ -24,7 +24,7 @@ export component NotificationPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description-md: @markdown(
+        description: @markdown(
 			"As the notification widget doesn't implement any logic, you must use it in a custom notification "
 			"system like [this one](https://github.com/uAtomicBoolean/scriptboard/blob/main/ui/components/notifications-overlay.slint).\n"
 			"To help with the implementation, it comes with two callbacks: `close` and `clicked`. The close "
@@ -47,7 +47,7 @@ export component NotificationPage inherits PageBase {
 
     DocSection {
         title: "Notification content";
-        description-md: @markdown(
+        description: @markdown(
 			"You can add a message in the notification using the `message` property. The message "
 			"will, by default, be displayed on one line. But you can change that by setting `single-line-message` "
 			"to `false`.\nPlease note that the notification has a fixed width of `300px`. You are free to change "
@@ -80,7 +80,7 @@ export component NotificationPage inherits PageBase {
 
     DocSection {
         title: "Notification variants";
-        description-md: @markdown(
+        description: @markdown(
 			"The notification widget comes with four different variants: `info`, `success`, `warning` and `danger`. The default variant is `info`."
 		);
     }
@@ -119,7 +119,7 @@ export component NotificationPage inherits PageBase {
 
     DocSection {
         title: "Custom icon";
-        description-md: @markdown(
+        description: @markdown(
 			"You can change the icon and its color with the `notif-icon` and `notif-icon-color` properties."
 		);
     }

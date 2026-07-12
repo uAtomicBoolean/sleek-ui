@@ -24,7 +24,7 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description-md: @markdown(
+        description: @markdown(
 			"Use the `text` property to set the tag's text and the variant "
 			"to change the visual style."
 		);
@@ -53,7 +53,7 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Color presets";
-        description-md: @markdown(
+        description: @markdown(
 			"Change the tag's color to one of the library's default one with "
 			"the `preset` property.\nYou can also directly change the `preset-color` property "
 			"to use a custom color, which must be of type [UPrimaryColor](default-colors)."
@@ -284,7 +284,7 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Icons";
-        description-md: @markdown(
+        description: @markdown(
 			"Add an icon at the start or end with the `icon` and `icon-placement` properties."
 		);
     }
@@ -311,7 +311,7 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Colored icon";
-        description-md: @markdown(
+        description: @markdown(
 			"Keep your icon's original color by setting the `colorize-icon` property to `false`."
 		);
     }
@@ -331,23 +331,10 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Fully custom colors";
-        description-md: @markdown(
+        description: @markdown(
 			"Changing the tag's color without a `UPrimaryColor` is possible thanks "
 			"to the `text-color`, `background` and `border-color` properties."
 		);
-        description: [
-            [
-                { text: "You can change the tag's colors without a " },
-                { code: "UPrimaryColor" },
-                { text: " with the " },
-                { code: "text-color" },
-                { text: ", " },
-                { code: "background" },
-                { text: ", " },
-                { code: "border-color" },
-                { text: " properties." }
-            ]
-        ];
     }
 
     WidgetPresentation {

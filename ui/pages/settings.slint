@@ -130,7 +130,7 @@ export component SettingsPage inherits PageBase {
 
     DocSection {
         title: "Primary color";
-        description-md: @markdown("Change the current primary color.");
+        description: @markdown("Change the current primary color.");
     }
 
     HorizontalLayout {
@@ -155,7 +155,7 @@ export component SettingsPage inherits PageBase {
 
     if !AppLogic.is-wasm(): DocSection {
         title: "Zoom level";
-        description-md: @markdown("Change the application's zoom level.");
+        description: @markdown("Change the application's zoom level.");
     }
 
     if !AppLogic.is-wasm(): CompleteSlider {
@@ -170,7 +170,7 @@ export component SettingsPage inherits PageBase {
     }
     DocSection {
         title: "Base radius";
-        description-md: @markdown(
+        description: @markdown(
 			"Change the application's base radius. This will affect all widgets that use the base radius.\n"
 			"Some widgets have their radius clamped to a maximum value to avoid looking weird, such as UCard or UTooltip."
 		);
