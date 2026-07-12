@@ -23,7 +23,7 @@ export component AccessibilityPage inherits PageBase {
     DocSection {
         title: "Accessibility properties";
         description-md: @markdown(
-			"While all widgets implement some basis of accessibility such as the role, the default action, etc, it is recommended to fine tune these properties to fit your application as much as possible.\n"
+			"While all widgets implement some basis of accessibility such as the role, the default action, etc., it is recommended to fine tune these properties to fit your application as much as possible.\n"
 			"You can look at the [UButton](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/widgets/button/button.slint) or [USlider](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/widgets/slider.slint) implementation to get an idea of what has been done in sleek-ui."
 		);
         link-clicked(url) => {
@@ -36,7 +36,7 @@ export component AccessibilityPage inherits PageBase {
         description-md: @markdown(
 			"Some widgets have some level of keyboard integration to manipulate the linked value.\n"
 			"Take a look at the [USlider](slider) widget and change its value with the keyboard arrow keys.\n"
-			"Moreover, the [ButtonInterface](button-interface) widget fires the `clicked` callback when the space bar or the enter key are pressed on a focused widget."
+			"Moreover, the [ButtonInterface](button-interface) widget fires the `clicked` callback when the space bar or the enter key is pressed on a focused widget."
 		);
         link-clicked(url) => {
             if url == "slider" {
