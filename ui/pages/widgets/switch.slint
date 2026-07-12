@@ -24,18 +24,10 @@ export component SwitchPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description: [
-            [
-                { text: "Use the " },
-                { code: "checked" },
-                { text: " property to know the current state of the switch." },
-            ],
-            [
-                { text:"You can disable the widget with the " },
-                { code: "enabled" },
-                { text:" property." },
-            ]
-        ];
+        description-md: @markdown(
+			"Use the `checked` property to get the current state of the switch "
+			"and use the `enabled` property to enable/disable the it."
+		);
     }
 
     WidgetPresentation {

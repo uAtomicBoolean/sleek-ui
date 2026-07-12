@@ -1,5 +1,5 @@
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
-import { UTitle, UTag } from "../../sleek-ui/widgets.slint";
+import { UMenuLogic, UTitle, UTag } from "../../sleek-ui/widgets.slint";
 
 import {
     DocTitle,
@@ -24,18 +24,10 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text: "Use the " },
-                { code: "text" },
-                { text: " property to set the tag's text." },
-            ],
-            [
-                { text: "Use the " },
-                { code: "variant" },
-                { text: " property to change the visual style of the tag." }
-            ],
-        ];
+        description-md: @markdown(
+			"Use the `text` property to set the tag's text and the variant "
+			"to change the visual style."
+		);
     }
 
     WidgetPresentation {
@@ -61,22 +53,14 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Color presets";
-        description: [
-            [
-                { text: "Using the " },
-                { code: "preset" },
-                {
-                    text: " property, you can change the tag's color to use one of the default colors."
-                },
-            ],
-            [
-                { text: "You can also directly change the " },
-                { code: "preset-color" },
-                { text: " property to use a custom color. However, it must be of type " },
-                { code: "UPrimaryColor" },
-                { text: "." }
-            ]
-        ];
+        description-md: @markdown(
+			"Change the tag's color to one of the library's default one with "
+			"the `preset` property.\nYou can also directly change the `preset-color` property "
+			"to use a custom color, which must be of type [UPrimaryColor](default-colors)."
+		);
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
     }
 
     WidgetPresentation {
@@ -300,13 +284,9 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Icons";
-        description: [
-            [
-                { text: "You can add an icon, either at the start or end of the tag, with the " },
-                { code: "icon" },
-                { text: " property." }
-            ],
-        ];
+        description-md: @markdown(
+			"Add an icon and the start or end with the `icon` and `icon-placement` properties."
+		);
     }
 
     WidgetPresentation {
@@ -331,13 +311,9 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Colored icon";
-        description: [
-            [
-                { text: "Keep the original color of your icon with the " },
-                { code: "colorize-icon" },
-                { text: " property." }
-            ]
-        ];
+        description-md: @markdown(
+			"Keep your icon's original color by setting the `colorize-icon` property to `false`."
+		);
     }
 
     WidgetPresentation {
@@ -355,6 +331,10 @@ export component TagPage inherits PageBase {
 
     DocSection {
         title: "Fully custom colors";
+        description-md: @markdown(
+			"Changing the tag's color without a `UPrimaryColor` is possible thanks "
+			"to the `text-color`, `background` and `border-color` properties."
+		);
         description: [
             [
                 { text: "You can change the tag's colors without a " },

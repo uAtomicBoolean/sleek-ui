@@ -24,22 +24,10 @@ export component TitlePage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description: [
-            [
-                { text: "This widget inherits from the standard Text widget, but adds a new " },
-                { code: "level" },
-                { text: " property." }
-            ],
-            [
-                { text: "The levels go from " },
-                { code: "1" },
-                { text: " to " },
-                { code: "6" },
-                { text: " , with " },
-                { code: "1" },
-                { text: " being the biggest title." }
-            ]
-        ];
+        description-md: @markdown(
+			"This widget inherits from the standard `Text` widget and adds "
+			"a new `level` property. The levels go from `1` to `6`, with `1` being the biggest title."
+		);
     }
 
     WidgetPresentation {

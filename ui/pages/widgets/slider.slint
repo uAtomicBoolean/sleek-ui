@@ -29,15 +29,9 @@ export component SliderPage inherits PageBase {
 
     DocSection {
         title: "Example";
-        description: [
-            [
-                { text: "Define the width of the slider and get its value with the " },
-                { code: "value" },
-                { text: " property, which is of type " },
-                { code: "float" },
-                { text: "." }
-            ]
-        ];
+        description-md: @markdown(
+			"Define the width of the slider and get its value with the `value` float property."
+		);
     }
 
     WidgetPresentation {
@@ -58,27 +52,12 @@ export component SliderPage inherits PageBase {
 
     DocSection {
         title: "Step and boundaries";
-        description: [
-            [
-                { text: "You can change the step of the slider with the " },
-                { code: "step" },
-                { text: " property." },
-            ],
-            [
-                { text: "Set the " },
-                { code: "display-steps" },
-                { text: " property to " },
-                { code: "true" },
-                { text: " to display the steps in the slider." }
-            ],
-            [
-                { text: "You can also change the " },
-                { code: "min-value" },
-                { text: " and " },
-                { code:"max-value" },
-                { text: " properties." }
-            ]
-        ];
+        description-md: @markdown(
+			"Use the `step` property to change the slider's step.\n"
+			"The `display-steps` property allows you to display dots "
+			"representing the steps in the slider.\n"
+			"Use the `min-value` and `max-value` to update the slider's range."
+		);
     }
 
     WidgetPresentation {
@@ -102,20 +81,11 @@ export component SliderPage inherits PageBase {
 
     DocSection {
         title: "Handle position and released callback";
-        description: [
-            [
-                {
-                    text: "You can get the current handle's position (relative to the slider) with the "
-                },
-                { code: "handle-pos" },
-                { text: " property." }
-            ],
-            [
-                { text: "When releasing the slider after dragging it or clicking on it, the " },
-                { code: "released(value: float)" },
-                { text: " callback will be fired." }
-            ]
-        ];
+        description-md: @markdown(
+			"The handle's position is available with the `handle-pos` property.\n"
+			"The `release(value: float)` callback will be fired when the slider is "
+			"clicked or a dragging action ended."
+		);
     }
 
     DocCode {
@@ -124,22 +94,10 @@ export component SliderPage inherits PageBase {
 
     DocSection {
         title: "Orientation";
-        description: [
-            [
-                { text: "You can change the slider's orientation with the " },
-                { code: "orientation" },
-                { text: " property. It defaults to " },
-                { code: "horizontal" },
-                { text: "." }
-            ],
-            [
-                { text: "Remember to set the " },
-                { code: "height" },
-                { text: " (or " },
-                { code: "width" },
-                { text: ") depending on the chosen orientation." }
-            ]
-        ];
+        description-md: @markdown(
+			"Use the `orientation` property to set the slider to the vertical or horizontal (default).\n"
+			"Remember to set the height or width depending on the choosen orientation."
+		);
     }
 
     WidgetPresentation {

@@ -39,22 +39,10 @@ export component SpinnerPage inherits PageBase {
 
     DocSection {
         title: "Customization";
-        description: [
-            [
-                { text: "As the spinner inherits from " },
-                { code: "Path" },
-                { text: ", you can use the standard properties of " },
-                { code: "Path" },
-                { text: "." }
-            ],
-            [
-                { text: "You can use the " },
-                { code: "size" },
-                { text: " property to modify the spinner's size and the " },
-                { code: "colorize" },
-                { text: " property to change its color." }
-            ]
-        ];
+        description-md: @markdown(
+			"You can use the properties of the `Path` widget in the spinner thanks to inheritance.\n"
+			"Use the `size` and `colorize` properties to customize the spinner."
+		);
     }
 
     WidgetPresentation {
