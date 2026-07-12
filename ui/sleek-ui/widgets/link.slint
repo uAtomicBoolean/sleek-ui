@@ -13,10 +13,10 @@ export component ULink {
     in-out property <TextWrap> wrap: word-wrap;
     callback clicked();
     touch := ButtonInterface {
-		// Accessability properties
+		// Accessibility properties
 		accessible-role: button;
         accessible-label: text;
-        accessible-description: @tr("A link that opens an URL or window when clicked");
+        accessible-description: @tr("A link that opens a URL or window when clicked");
         accessible-action-default => {
             root.clicked()
         }

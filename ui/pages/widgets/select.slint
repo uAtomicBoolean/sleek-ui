@@ -25,22 +25,10 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text:"You can set the options with the " },
-                { code: "options" },
-                { text: " property, an option being of type " },
-                { link: "OptionData", url: "option-data" },
-                { text:"." }
-            ],
-            [
-                { text: "By default, the " },
-                { code: "current-index" },
-                {
-                    text: " property will be set to -1 until the user select a value or you set it to another value."
-                }
-            ]
-        ];
+        description: @markdown(
+			"You can set the options with the `options` property of type [UOptionData](option-data).\n"
+			"The `current-index` property defaults to `-1` until the user selects a value or you change it."
+		);
         link-clicked(url) => {
             UMenuLogic.current-link = url;
         }
@@ -67,17 +55,9 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Current text and current value";
-        description: [
-            [
-                {
-                    text: "Two out properties are available to directly get the currently selected text and value: "
-                },
-                { code: "selected-text" },
-                { text: " and " },
-                { code: "selected-value" },
-                { text:"." }
-            ]
-        ];
+        description: @markdown(
+			"Both `selected-text` and `selected-value` are available as `out` properties to directly get the selected values."
+		);
     }
 
     DocCode {
@@ -86,13 +66,7 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Selected changed callback";
-        description: [
-            [
-                { text: "When selecting a value, the " },
-                { code: "selected-changed(new-index: int)" },
-                { text: " callback will be fired." }
-            ]
-        ];
+        description: @markdown("The `selected-changed(new-index: int)` callback will be fired when the user selects a new value.");
     }
 
     DocCode {
@@ -101,15 +75,9 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Change the number of visible options";
-        description: [
-            [
-                {
-                    text: "By default, the select will show at most 5 options at once, but you can change this with the "
-                },
-                { code: "max-visible-options" },
-                { text: " property." }
-            ]
-        ];
+        description: @markdown(
+			"The widget will show, by default, at most 5 options. You can change this with the `max-visible-options` property."
+		);
     }
 
     WidgetPresentation {
@@ -134,13 +102,9 @@ export component SelectPage inherits PageBase {
 
     DocSection {
         title: "Display all options";
-        description: [
-            [
-                { text: "If you want to display all options without any limit, you can set the " },
-                { code: "display-all-options" },
-                { text: " property to true." }
-            ]
-        ];
+        description: @markdown(
+			"You can display all the options with the `display-all-options` boolean property."
+		);
     }
 
     WidgetPresentation {

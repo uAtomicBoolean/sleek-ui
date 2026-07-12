@@ -19,33 +19,11 @@ export component ThemingPage inherits PageBase {
 
     DocSection {
         title: "Theme configuration";
-        description: [
-            [
-                { text: "The " },
-                { code: "UAppTheme" },
-                {
-                    text: " global comes with all the design token used in sleek-ui, however, all the design token properties are "
-                },
-                { code: "out" },
-                { text: "." }
-            ],
-            [
-                { text: "The only modifiable properties are the following: " },
-                { code: "light" },
-                { text: " and " },
-                { code: "dark" },
-                { text: " which are of type " },
-                { link: "UAppThemeConfig" },
-                { text: "." }
-            ],
-            [
-                {
-                    text: "This allows the application theme to automatically switch between the light and dark color schemes using the "
-                },
-                { code: "Palette.color-scheme" },
-                { text: " property." }
-            ]
-        ];
+        description: @markdown(
+			"The `UAppTheme` global comes with all the design tokens used in sleek-ui, however, all the design token properties are `out`.\n"
+			"In order to modify the theme, you must use the `light` and `dark` properties of type [UAppThemeConfig]() so that the application theme can automatically "
+			"switch between the light and dark color schemes using the `Palette.color-scheme` property."
+		);
         link-clicked(id) => {
             root.scroll-to(config-struct.y);
             config-struct.trigger-signal();
@@ -55,20 +33,12 @@ export component ThemingPage inherits PageBase {
     Spacer { }
 
     DocSection {
-        description: [
-            [
-                { text: "Start by creating a global with a property of type " },
-                { code: "UAppThemeConfig" },
-                { text: " that will contain your custom theme." }
-            ],
-            [
-                { text: "You can use the default theme configuration in " },
-                { link: "UAppTheme" },
-                { text: " to start with a base in your theme." }
-            ]
-        ];
-        link-clicked(id) => {
-            Platform.open-url("https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint");
+        description: @markdown(
+			"Start by creating a global with two properties of type `UAppThemeConfig` that will contain your custom light and dark themes.\n"
+			"You can use the default theme configuration in [UAppTheme](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint) to start with a base in your theme."
+		);
+        link-clicked(url) => {
+            Platform.open-url(url);
         }
     }
 
@@ -79,22 +49,10 @@ export component ThemingPage inherits PageBase {
     Spacer { }
 
     DocSection {
-        description: [
-            [
-                {
-                    text: "In your logic, you can then replace the default theme with your custom theme."
-                },
-            ],
-            [
-                { text: "Don't forget to export both the " },
-                { code: "UAppTheme" },
-                { text: " and " },
-                { code: "MyCustomTheme" },
-                {
-                    text: " globals from your main slint file to make them available in your backend."
-                }
-            ]
-        ];
+        description: @markdown(
+			"In your logic, you can then replace the default theme with your custom theme.\n"
+			"Don't forget to export both the `UAppTheme` and `MyCustomTheme` globals from your main slint file to make them available in your backend."
+		);
     }
 
     DocCode {
@@ -103,52 +61,25 @@ export component ThemingPage inherits PageBase {
 
     DocSection {
         title: "Color scheme management";
-        description: [
-            [
-                { text: "As mentioned previously, sleek-ui uses the " },
-                {
-                    link: "Palette.color-scheme",
-                    url: "https://docs.slint.dev/latest/docs/slint/reference/std-widgets/globals/palette/"
-                },
-                { text: " property to determine which theme to use." }
-            ],
-            [
-                {
-                    text: "You can programmatically switch the color scheme by changing the value of the "
-                },
-                { code: "Palette.color-scheme" },
-                { text: " property." }
-            ],
-            [
-                { text: "Or you can set one of the light and dark themes as the value of the " },
-                { code: "UAppTheme.theme" },
-                { text: " property which then defines the values of all the design tokens." }
-            ]
-        ];
+        description: @markdown(
+			"As mentioned previously, sleek-ui uses the [Palette.color-scheme](https://docs.slint.dev/latest/docs/slint/reference/std-widgets/globals/palette/) property to determine which theme to use.\n"
+			"You can programmatically switch the color scheme by changing the value of the `Palette.color-scheme` property.\n"
+			"Or you can set one of the light and dark themes as the value of the `UAppTheme.theme` property which then defines the values of all the design tokens. Doing so will result in no automatic color scheme switch."
+		);
         link-clicked(url) => {
             Platform.open-url(url);
         }
     }
 
     DocSection {
-        title: "Default colors and ant design editor";
-        description: [
-            [
-                { text: "As sleek-ui is based on " },
-                { link: "Ant Design", url: "https://ant.design/" },
-                { text: ", you have a set of pre-declared colors available " },
-                { link: "here", url: "default-colors" },
-                { text: "." }
-            ],
-            [
-                { text: "You can also use the official " },
-                { link: "Ant Design theme editor", url: "https://ant.design/theme-editor" },
-                { text: "To easily generate colors for your application." }
-            ]
-        ];
+        title: "Default colors and Ant Design editor";
+        description: @markdown(
+			"As sleek-ui is based on [Ant Design](https://ant.design/), you have a set of pre-declared colors available [here](default-colors).\n"
+			"You can also use the official [Ant Design theme editor](https://ant.design/theme-editor) to easily generate colors for your application."
+		);
         link-clicked(url) => {
             if url == "default-colors" {
-                UMenuLogic.current-link = "default-colors";
+                UMenuLogic.current-link = url;
             } else {
                 Platform.open-url(url);
             }

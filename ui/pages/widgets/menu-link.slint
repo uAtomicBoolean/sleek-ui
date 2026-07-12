@@ -24,15 +24,9 @@ export component MenuPageLink inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text: "Add a link to a menu by setting the " },
-                { code: "id" },
-                { text: " and " },
-                { code: "name" },
-                { text: "." },
-            ]
-        ];
+        description: @markdown(
+			"Add a link to a menu by setting the `id` and `name`."
+		);
     }
 
     DocCode {
@@ -41,13 +35,9 @@ export component MenuPageLink inherits PageBase {
 
     DocSection {
         title: "Disabled link";
-        description: [
-            [
-                { text: "You can disable a link by setting the " },
-                { code: "enabled" },
-                { text:" property to false." }
-            ]
-        ];
+        description: @markdown(
+			"You can disable a link by setting the `enabled` property to false."
+		);
     }
 
     DocCode {
@@ -56,17 +46,10 @@ export component MenuPageLink inherits PageBase {
 
     DocSection {
         title: "Selected link";
-        description: [
-            [
-                {
-                    text: "You can check a link is selected either by checking the current value of "
-                },
-                { code: "UMenuLogic.current-link" },
-                { text:" or by checking the " },
-                { code:"is-selected" },
-                { text: " property." }
-            ]
-        ];
+        description: @markdown(
+			"You can check if a link is selected by checking the `is-selected` property or "
+			"the `UMenuLogic.current-link` global property."
+		);
     }
 
     DocCode {
@@ -75,13 +58,9 @@ export component MenuPageLink inherits PageBase {
 
     DocSection {
         title: "Activated callback";
-        description: [
-            [
-                { text:"Clicking on the link will fire the " },
-                { code:"activated" },
-                { text: " callback (only if the link is not the current link)." }
-            ]
-        ];
+        description: @markdown(
+			"Clicking on the link will fire the `activated` callback (only if the link is not the current link)."
+		);
     }
 
     DocCode {

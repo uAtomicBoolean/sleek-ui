@@ -38,29 +38,17 @@ export component TooltipPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description: [
-            [
-                { text: "You can use a tooltip by adding the " },
-                { code: "UTooltip" },
-                { text: " widget at the root of the window after your main elements." }
-            ],
-            [
-                { text: "You can then use the " },
-                { code: "UTooltipLogic.display()" },
-                { text: " function to display a tooltip." }
-            ],
-            [
-                {
-                    text: "This function takes all the following parameters: the tooltip's styled text, the display position, the absolute position and the width of the targeted element."
-                }
-            ],
-            [
-                { text: "The function signature: " },
-                {
-                    code: "display(text: styled-text, position: string, user_hovering: bool, target_pos: Point, target_width: length, target_height: length)"
-                }
-            ]
-        ];
+        description: @markdown(
+			"You can use a tooltip by adding the `UTooltip` widget at the "
+			"root of the window after your main elements. This ensures that "
+			"the tooltip will be displayed above the other elements in your "
+			"window.\nUse the `UTooltipLogic.display()` method to display "
+			"a tooltip. This function takes all the following parameters: "
+			"the tooltip's styled text, the display position, the absolute "
+			"position and the width of the targeted element.\nThe full method's "
+			"signature is the following:\n"
+			"`display(text: styled-text, position: string, user_hovering: bool, target_pos: Point, target_width: length, target_height: length)`"
+		);
     }
 
     WidgetPresentation {
@@ -94,31 +82,11 @@ export component TooltipPage inherits PageBase {
 
     DocSection {
         title: "Tooltip position";
-        description: [
-            [
-                {
-                    text: "A tooltip can be placed to the following positions around the targeted element: "
-                },
-                { code: "top" },
-                { text: ", " },
-                { code: "bottom" },
-                { text: ", " },
-                { code: "left" },
-                { text: " and " },
-                { code: "right" },
-                { text: "." },
-            ],
-            [
-                { text: "Its position is defined in the " },
-                { code: "display" },
-                { text: " function as the second parameter." }
-            ],
-            [
-                { text: "Sending an empty string will result in the " },
-                { code: "top" },
-                { text: " position being used." }
-            ]
-        ];
+        description: @markdown(
+			"A tooltip can be placed at the following positions: `top`, `bottom`, "
+			"`left` and `right`.\nIts position is defined in the second parameter of "
+			"the `UTooltipLogic.display()` method.\nSending an empty string defaults to `top`."
+		);
     }
 
     WidgetPresentation {
@@ -148,22 +116,12 @@ export component TooltipPage inherits PageBase {
 
     DocSection {
         title: "Tooltip configuration";
-        description: [
-            [
-                { text: "You can modify the following settings on the tooltip: " },
-                { code: "delay" },
-                { text: ", " },
-                { code: "tooltip-max-width" },
-                { text: " and " },
-                { code: "tooltip-max-height" },
-                { text: "." }
-            ],
-            [
-                {
-                    text: "All three properties are declared in the tooltip to allow application wide configuration."
-                }
-            ]
-        ];
+        description: @markdown(
+			"You can modify the following settings on the tooltip: `delay`, "
+			"`tooltip-max-width` and `tooltip-max-height`.\nAll three properties "
+			"are declared in the tooltip's widget to allow application wide configuration "
+			"and to reduce the amount of parameters in the display method."
+		);
     }
 
     DocCode {

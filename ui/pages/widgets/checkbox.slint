@@ -24,15 +24,7 @@ export component CheckboxPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text: "Display text with the " },
-                { code: "text" },
-                { text: " property and use the " },
-                { code: "checked" },
-                { text: " property to check weither the checkbox is checked or not." }
-            ]
-        ];
+        description: @markdown("Display text with the `text` property and use the `checked` property to know the status of the checkbox.");
     }
 
     WidgetPresentation {
@@ -47,33 +39,10 @@ export component CheckboxPage inherits PageBase {
 
     DocSection {
         title: "Text position and alignment";
-        description: [
-            [
-                { text: "You can choose the text position with the " },
-                { code: "text-placement" },
-                { text:" property." }
-            ],
-            [
-                { text:"The placement can be either " },
-                { code: "start" },
-                { text: ", " },
-                { code: "end" },
-                { text: ", " },
-                { code: "hidden" },
-                { text:" and defaults to " },
-                { code:"start" },
-                { text:"." }
-            ],
-            [
-                {
-                    text: "The alignment between the text and the checkbox itself can be modified with the "
-                },
-                { code:"alignment" },
-                { text: " property. It defaults to " },
-                { code: "LayoutAligment.space-between" },
-                { text:"." }
-            ]
-        ];
+        description: @markdown(
+			"You can choose the text position with the `text-placement` property. It can be either `start`, `end`, `hidden` and defaults to `start`.\n"
+			"The alignment between the text and the checkbox itself can be modified with the `alignment` property. It defaults to `LayoutAlignment.space-between`."
+		);
     }
 
     WidgetPresentation {

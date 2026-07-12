@@ -11,7 +11,7 @@ export enum URadioButtonVariant {
 
 // Used to manage the different variant styles.
 // Only the properties with differences are declared in the struct.
-struct URadionButtonTheme {
+struct URadioButtonTheme {
     bg-selected: brush,
     bg-selected-hover: brush,
     bg-selected-active: brush,
@@ -25,14 +25,14 @@ struct URadionButtonTheme {
 }
 
 global URadioButtonThemes {
-    out property <URadionButtonTheme> default: {
+    out property <URadioButtonTheme> default: {
         text-selected: UAppTheme.primary.base,
         text-selected-hover: UAppTheme.primary.hover,
         text-selected-active: UAppTheme.primary.active,
         text-disabled: UAppTheme.text-disabled,
         text-selected-disabled: UAppTheme.primary.disabled,
     };
-    out property <URadionButtonTheme> primary: {
+    out property <URadioButtonTheme> primary: {
         bg-selected: UAppTheme.primary.base,
         bg-selected-hover: UAppTheme.primary.hover,
         bg-selected-active: UAppTheme.primary.active,
@@ -51,7 +51,7 @@ export component URadioButton {
     accessible-value: selected-value;
 	// Regular properties
 	in-out property <URadioButtonVariant> variant: default;
-    private property <URadionButtonTheme> theme: {
+    private property <URadioButtonTheme> theme: {
         if variant == URadioButtonVariant.primary {
             return URadioButtonThemes.primary;
         }

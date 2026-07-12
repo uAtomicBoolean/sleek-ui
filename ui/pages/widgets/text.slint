@@ -24,13 +24,10 @@ export component TextPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description: [
-            [
-                {
-                    text: "This widget inherits from the standart Text widget and define a style. There is no additional properties."
-                },
-            ]
-        ];
+        description: @markdown(
+			"This widget inherits from the standard Text widget and "
+			"defines a style. There are no additional properties."
+		);
     }
 
     WidgetPresentation { }

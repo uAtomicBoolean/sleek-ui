@@ -18,39 +18,17 @@ export component ModalPage inherits PageBase {
     }
 
     DocDescription {
-        text: "A modal that takes the whole screen that contains custom code.";
+        text: "A full-screen modal that contains custom code.";
     }
 
     DocSection {
         title: "How to use";
-        description: [
-            [
-                {
-                    text: "The modal is a complex widget that, like the tooltip, must be placed at the root of the project / page to be rendered above all the content."
-                }
-            ],
-            [
-                { text: "It comes with a " },
-                { code: "@children" },
-                {
-                    text: " slot to allow you to put anything inside, however, the its title is set throught the "
-                },
-                { code: "title" },
-                { text :" property." }
-            ],
-            [
-                { text: "To open a modal, you must set its " },
-                { code: "id" },
-                { text: " property, and then call the " },
-                { code: "UModalLogic.open-modal(id: string)" },
-                { text: " global function." }
-            ],
-            [
-                { text: "You can close the modal with its button, or call the " },
-                { code: "UModalLogic.close-modal()" },
-                { text: " function." }
-            ]
-        ];
+        description: @markdown(
+			"The modal is a complex widget that, like the tooltip, must be placed at the root of the project / page to be rendered above all the content.\n"
+			"It comes with a `@children` slot to allow you to put anything in its body. Its title is set through the `title` property.\n"
+			"To open a modal, you must set its `id` property, and then call the `UModalLogic.open-modal(id: string)` global function.\n"
+			"You can close the modal with its button, or call the `UModalLogic.close-modal()` function."
+		);
     }
 
     WidgetPresentation {
@@ -68,55 +46,19 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Callbacks";
-        description: [
-            [
-                { text: "The modal comes with four callbacks: " },
-                { code: "showed" },
-                { text: ", " },
-                { code: "closed" },
-                { text: ", " },
-                { code: "accepted" },
-                { text: " and " },
-                { code: "rejected" },
-                { text: "." },
-            ],
-            [
-                { text: "The " },
-                { code: "accepted" },
-                { text: " and " },
-                { code: "rejected" },
-                { text: " callbacks are linked to the accept and cancel buttons." }
-            ],
-            [
-                { text: "The " },
-                { code: "showed" },
-                { text: " and " },
-                { code: "closed" },
-                {
-                    text: " callbacks are always called, even when the accepted/rejected callbacks are called."
-                }
-            ]
-        ];
+        description: @markdown(
+			"The modal comes with four callbacks: `showed`, `closed`, `accepted` and `rejected`.\n"
+			"The `accepted` and `rejected` callbacks are linked to the accept and cancel buttons.\n"
+			"The `showed` and `closed` callbacks are always called, even when the accepted/rejected callbacks are called."
+		);
     }
 
     DocSection {
         title: "Modal width and height";
-        description: [
-            [
-                {
-                    text: "The modal's width and height are computed based on its content, but you can use the "
-                },
-                { code: "modal-min/max-*" },
-                { text: " properties to customize them." }
-            ],
-            [
-                { text: "The max values are by default " },
-                { code: "600px" },
-                { text: ", the minimum width is set by default to " },
-                { code: "300px" },
-                { text:" and there is no default value for the minimum height." }
-            ],
-        ];
+        description: @markdown(
+			"The modal's width and height are computed based on its content, but you can use the `modal-min/max-*` properties to customize them.\n"
+			"The max values are by default `600px`, the minimum width is set by default to `300px` and there is no default value for the minimum height."
+		);
     }
 
     WidgetPresentation {
@@ -133,28 +75,12 @@ export component ModalPage inherits PageBase {
     }
 
     DocSection {
-        title: "Close comportment";
-        description: [
-            [
-                {
-                    text: "By default, the modal will only close when clicking on the close button or the Accept/Cancel buttons."
-                }
-            ],
-            [
-                { text: "You change change this by settings the " },
-                { code: "close-on-accept" },
-                { text: " and " },
-                { code: "close-on-cancel" },
-                { text: " boolean properties." }
-            ],
-            [
-                {
-                    text: "You can also close the modal when clicking on the greyed background when enabling the "
-                },
-                { code: "close-on-click-outside" },
-                { text: " property." }
-            ]
-        ];
+        title: "Close behavior";
+        description: @markdown(
+			"By default, the modal will only close when clicking on the close button or the Accept/Cancel buttons.\n"
+			"You can change this by setting the `close-on-accept` and `close-on-cancel` boolean properties.\n"
+			"You can also close the modal when clicking on the greyed background when enabling the `close-on-click-outside` property."
+		);
     }
 
     WidgetPresentation {
@@ -167,25 +93,15 @@ export component ModalPage inherits PageBase {
     }
 
     DocCode {
-        code: "UModal {\n    id: \"close-modal\";\n    title: \"Custom close comportment\";\n    close-on-click-outside: true;\n    close-on-accept: false;\n    close-on-cancel: false;\n    // Your modal's code.\n}";
+        code: "UModal {\n    id: \"close-modal\";\n    title: \"Custom close behavior\";\n    close-on-click-outside: true;\n    close-on-accept: false;\n    close-on-cancel: false;\n    // Your modal's code.\n}";
     }
 
     DocSection {
         title: "Content dividers";
-        description: [
-            [
-                {
-                    text: "You can display dividers to have a clear separation between the content and the top and bottom spaces."
-                }
-            ],
-            [
-                { text: "Use the " },
-                { code: "top-divider" },
-                { text: " and " },
-                { code: "bottom-divider" },
-                { text: "properties to enable them." }
-            ]
-        ];
+        description: @markdown(
+			"You can display dividers to have a clear separation between the content and the top and bottom spaces.\n"
+			"Use the `top-divider` and `bottom-divider` properties to enable them."
+		);
     }
 
     WidgetPresentation {
@@ -203,13 +119,7 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Buttons style";
-        description: [
-            [
-                { text: "You can manage the buttons' variants, danger state and text with the " },
-                { code: "accept/cancel-btn-*" },
-                { text: " properties." }
-            ]
-        ];
+        description: @markdown("You can manage the buttons' variants, danger state and text with the `accept/cancel-btn-*` properties.");
     }
 
     WidgetPresentation {
@@ -227,18 +137,10 @@ export component ModalPage inherits PageBase {
 
     DocSection {
         title: "Buttons enabled status and toggle";
-        description: [
-            [
-                { text: "You can disable the accept and cancel buttons with the " },
-                { code: "accept/cancel-btn-enabled" },
-                { text: " properties." }
-            ],
-            [
-                { text: "You can hide the buttons with the " },
-                { code: "accept/cancel-btn-toggle" },
-                { text: " properties." }
-            ]
-        ];
+        description: @markdown(
+			"You can disable the accept and cancel buttons with the `accept/cancel-btn-enabled` properties.\n"
+			"You can hide the buttons with the `accept/cancel-btn-toggle` properties."
+		);
     }
 
     WidgetPresentation {

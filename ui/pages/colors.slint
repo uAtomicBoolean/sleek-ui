@@ -88,18 +88,10 @@ export component ColorsPage inherits PageBase {
 
     DocSection {
         title: "Primary color struct";
-        description: [
-            [
-                { text: "A primary color is represented by the " },
-                { code: "UPrimaryColor" },
-                { text: " struct." }
-            ],
-            [
-                { text: "This struct is available in the " },
-                { code: "@sleek-ui/structs/theme.slint" },
-                { text: " file." }
-            ]
-        ];
+        description: @markdown(
+			"A primary color is represented by the `UPrimaryColor` struct. This struct is available in the "
+			"[@sleek-ui/structs/theme.slint](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/structs/theme.slint) file."
+		);
     }
 
     DocCode {
@@ -108,24 +100,14 @@ export component ColorsPage inherits PageBase {
 
     DocSection {
         title: "Default colors";
-        description: [
-            [
-                { text: "The default colors are available in the " },
-                { code: "ULightColors" },
-                { text: " and " },
-                { code: "UDarkColors" },
-                { text: " globals from the " },
-                { code: "@sleek-ui/colors.slint" },
-                { text: " file." }
-            ],
-            [
-                { text: "All colors are available on the " },
-                { link: "And Design website" },
-                { text: "." }
-            ]
-        ];
-        link-clicked(id) => {
-            Platform.open-url("https://ant.design/docs/spec/colors");
+        description: @markdown(
+			"Sleek-ui comes with a set of default colors from [AntDesign](https://ant.design/docs/spec/colors) that can be used in your application. "
+			"They are available in the `UAppTheme` global as `UAppTheme.<color-name>` and will follow the current color scheme.\n"
+			"Otherwise, you can get them from the `ULightColors` and `UDarkColors` globals from the "
+			"[@sleek-ui/colors.slint](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/colors.slint) file."
+		);
+        link-clicked(url) => {
+            Platform.open-url(url);
         }
     }
 

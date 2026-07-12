@@ -24,18 +24,13 @@ export component PopoverPage inherits PageBase {
 
     DocSection {
         title: "How to use";
-        description: [
-            [
-                { text: "This widget is used as a container with children." },
-            ],
-            [
-                { text: "As it inherits from " },
-                { link: "PopupWindow" },
-                { text: ", you can configure the popover with the official properties." }
-            ]
-        ];
-        link-clicked(id) => {
-            Platform.open-url("https://docs.slint.dev/latest/docs/slint/reference/window/popupwindow/");
+        description: @markdown(
+			"This widget is used as a container with children. As it inherits from "
+			"[PopupWindow](https://docs.slint.dev/latest/docs/slint/reference/window/popupwindow/), "
+			"you can configure the popover with the official properties."
+		);
+        link-clicked(url) => {
+            Platform.open-url(url);
         }
     }
 

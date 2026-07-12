@@ -130,7 +130,7 @@ export component SettingsPage inherits PageBase {
 
     DocSection {
         title: "Primary color";
-        description: [[{ text: "Change the current primary color." }]];
+        description: @markdown("Change the current primary color.");
     }
 
     HorizontalLayout {
@@ -154,12 +154,8 @@ export component SettingsPage inherits PageBase {
     }
 
     if !AppLogic.is-wasm(): DocSection {
-        title: "Scale factor";
-        description: [
-            [
-                { text: "Change the application's scale factor using the slint's scale factor." }
-            ]
-        ];
+        title: "Zoom level";
+        description: @markdown("Change the application's zoom level.");
     }
 
     if !AppLogic.is-wasm(): CompleteSlider {
@@ -174,19 +170,10 @@ export component SettingsPage inherits PageBase {
     }
     DocSection {
         title: "Base radius";
-        description: [
-            [
-                { text: "Change the application's scale factor using the slint's scale factor." }
-            ],
-            [
-                {
-                    text: "Please note that some widgets are clamped to a maximum border radius (4px)."
-                }
-            ],
-            [
-                { text: "This avoid having weird looking widgets (UCard, UModal, UTooltip, etc)." }
-            ]
-        ];
+        description: @markdown(
+			"Change the application's base radius. This will affect all widgets that use the base radius.\n"
+			"Some widgets have their radius clamped to a maximum value to avoid looking weird, such as UCard or UTooltip."
+		);
     }
 
     CompleteSlider {

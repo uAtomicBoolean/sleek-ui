@@ -34,19 +34,10 @@ export component MenuPageHowTo inherits PageBase {
 
     DocSection {
         title: "Example";
-        description: [
-            [
-                { text: "The menu is made from several subwidgets: " },
-                { code: "UMenu" },
-                { text: ", " },
-                { code: "UMenuLink" },
-                { text: ", " },
-                { code: "UMenuSubmenu" },
-                { text: ", " },
-                { code: "UMenuGroupTitle" },
-                { text: ", each widget having its own properties." },
-            ]
-        ];
+        description: @markdown(
+			"The menu is made from several subwidgets: `UMenu`, `UMenuLink`, `UMenuSubmenu`, `UMenuGroupTitle`, each "
+			"widget having its own properties."
+		);
     }
 
     HorizontalLayout {
@@ -64,31 +55,11 @@ export component MenuPageHowTo inherits PageBase {
 
     DocSection {
         title: "Theming";
-        description: [
-            [
-                { text: "The " },
-                { code: "UMenu" },
-                { text: " widget comes with a " },
-                { code: "variant" },
-                { text: " property that can be one of the following choices: " },
-                { code: "default" },
-                { text: ", " },
-                { code: "light" },
-                { text: ", " },
-                { code: "dark" },
-                { text: "." },
-            ],
-            [
-                {
-                    text: "Using the default variant will give you a menu that follows the current coor scheme."
-                }
-            ],
-            [
-                {
-                    text:"Meanwhile, the light and dark variants will force their equivalent color schemes."
-                }
-            ]
-        ];
+        description: @markdown(
+			"The menu comes with a `variant` property that can be one of the following choices: `default`, `light`, `dark`.\n"
+			"The default variant will give you a menu that follows the current color scheme, while the light and dark variants "
+			"will force their equivalent color schemes."
+		);
     }
 
     DocCode {

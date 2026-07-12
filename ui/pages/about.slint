@@ -13,27 +13,14 @@ export component AboutPage inherits PageBase {
         text: "About";
     }
 
-    HorizontalLayout {
-        alignment: start;
-        UText {
-            text: "Sleek-ui is a widgets library based on ";
-        }
-
-        ULink {
-            text: "Ant Design";
-            clicked => {
-                Platform.open-url("https://ant.design/");
-            }
-        }
-
-        UText {
-            text: " made with only Slint, which makes it compatible with Rust, C++, Python and Javascript.";
-        }
-    }
-
-    HorizontalLayout {
-        UText {
-            text: "It comes with a reactive theming system and a color scheme implementation using the Palette standart global.";
+    StyledText {
+        text: @markdown(
+			"Sleek-ui is a widgets library based on [Ant Design](https://ant.design/) made with only Slint, which makes it compatible with"
+			" Rust, C++, Python and Javascript.\nIt comes with a reactive theming system and a color scheme implementation using the Palette standard global."
+		);
+        link-color: UAppTheme.primary.base;
+        link-clicked(link) => {
+            Platform.open-url(link);
         }
     }
 

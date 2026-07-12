@@ -24,13 +24,7 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text: "To use a submenu, you only need to set the " },
-                { code: "name" },
-                { text: " property." }
-            ]
-        ];
+        description: @markdown("You only need to set the `name` property to use a submenu.");
     }
 
     DocCode {
@@ -39,13 +33,7 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocSection {
         title: "Disabled menu";
-        description: [
-            [
-                { text: "You can disable a menu with the " },
-                { code: "enabled" },
-                { text: " property." }
-            ]
-        ];
+        description: @markdown("You can disable a menu by setting the `enabled` property to false.");
     }
 
     DocCode {
@@ -54,13 +42,7 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocSection {
         title: "Programmatically open a submenu";
-        description: [
-            [
-                { text: "You can open a submenu using the " },
-                { code: "opened" },
-                { text: " property." }
-            ]
-        ];
+        description: @markdown("You can open/close a submenu using the `opened` boolean property.");
     }
 
     DocCode {
@@ -69,20 +51,10 @@ export component MenuPageSubmenu inherits PageBase {
 
     DocSection {
         title: "Parent submenus";
-        description: [
-            [
-                { text: "When using submenus, you can use the " },
-                { code: "parent-child-opened" },
-                { text: " and " },
-                { code: "child-opened" },
-                { text: " properties to display the current path." },
-            ],
-            [
-                {
-                    text: "This will allow the parents submenus of the currently selected link to be highlighted."
-                }
-            ],
-        ];
+        description: @markdown(
+			"When using submenus, you can use the `parent-child-opened` and `child-opened` properties to display the current path.\n"
+			"This will allow the parent submenus of the currently selected link to be highlighted."
+		);
     }
 
     DocCode {

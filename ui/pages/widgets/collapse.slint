@@ -25,28 +25,20 @@ export component CollapsePage inherits PageBase {
     }
 
     DocDescription {
-        text: "A widget allowing you to expend some content when clicking on a text";
+        text: "A widget allowing you to expand some content when clicking on a text.";
     }
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text: "Set the collapse's title with the " },
-                { code: "title" },
-                { text: " property." }
-            ],
-            [
-                { text: "The content of the collapse is displayed in a Rectangle containing the " },
-                { code: "@children" },
-                { text :" slot." }
-            ]
-        ];
+        description: @markdown(
+			"Set the collapse's title with the `title` property.\n"
+			"The content of the collapse is displayed in a Rectangle containing the `@children` slot."
+		);
     }
 
     WidgetPresentation {
         UCollapse {
-            title: "What is the original lorem ipsum text.";
+            title: "What is the original lorem ipsum text?";
             VerticalLayout {
                 HorizontalLayout {
                     alignment: start;
@@ -61,18 +53,12 @@ export component CollapsePage inherits PageBase {
     }
 
     DocCode {
-        code: "UCollapse {\n    title: \"What is the original lorem ipsum text.\";\n    VerticalLayout {\n        HorizontalLayout {\n            alignment: start;\n            width: 500px;\n            UText {\n                text: \"lorem ipsum\";\n            }\n        }\n    }";
+        code: "UCollapse {\n    title: \"What is the original lorem ipsum text?\";\n    VerticalLayout {\n        HorizontalLayout {\n            alignment: start;\n            width: 500px;\n            UText {\n                text: \"lorem ipsum\";\n            }\n        }\n    }";
     }
 
     DocSection {
         title: "Programmatic open";
-        description: [
-            [
-                { text: "Use the " },
-                { code: "collapse-open" },
-                { text: " property to programmatically manage the state of the collapse." }
-            ]
-        ];
+        description: @markdown("Use the `collapse-open` property to programmatically manage the state of the collapse.");
     }
 
     WidgetPresentation {
@@ -99,14 +85,10 @@ export component CollapsePage inherits PageBase {
 
     DocSection {
         title: "Collapse height";
-        description: [
-            [
-                { text: "You can set and get the content's height with the " },
-                { code: "content-height" },
-                { text: " property." }
-            ],
-            [{ text: "Otherwise, the content is using its preferred height." }]
-        ];
+        description: @markdown(
+			"You can set and get the content's height with the `content-height` property.\n"
+			"Otherwise, the content is using its preferred height."
+		);
     }
 
     WidgetPresentation {

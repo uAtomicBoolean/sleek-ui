@@ -1,5 +1,5 @@
 import { UAppTheme } from "../../sleek-ui/app-theme.slint";
-import { UTitle, UCode } from "../../sleek-ui/widgets.slint";
+import { UAlert, UTitle, UCode } from "../../sleek-ui/widgets.slint";
 
 import {
     DocTitle,
@@ -24,9 +24,7 @@ export component CodePage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [{ text: "The code widget is by default of type " }, { code: "block" }, { text: "." }],
-        ];
+        description: @markdown("The code widget is by default of type `block`.");
     }
 
     DocCode {
@@ -35,32 +33,21 @@ export component CodePage inherits PageBase {
 
     DocSection {
         title: "Inline code";
-        description: [
-            [
-                { text: "With the " },
-                { code: "inline" },
-                { text: " type, you can display some code next to a text." }
-            ]
-        ];
+        description: @markdown("With the `inline` type, you can display some code next to a text.");
     }
 
     DocCode {
+        padding-bottom: 10px;
         code: "HorizontalLayout {\n    UText {\n        text: \"Some random text: \";\n    }\n\n    UCode {\n        type: inline;\n        code: \"some code\";\n    }\n}";
+    }
+
+    UAlert {
+        message: @markdown("You can also use the `StyledText` standard widget to display some inline code.");
     }
 
     DocSection {
         title: "Text wrapping";
-        description: [
-            [
-                {
-                    text: "By default, the text won't be wrapping, but this can be changed with the "
-                },
-                { code: "wrap" },
-                { text: " property of type " },
-                { code: "TextWrap" },
-                { text:"." }
-            ]
-        ];
+        description: @markdown("The `wrap` default value is `TextWrap.no-wrap`.");
     }
 
     WidgetPresentation {
@@ -78,31 +65,13 @@ export component CodePage inherits PageBase {
 
     DocSection {
         title: "Clipboard button";
-        description: [
-            [{ text: "You can display a clipboard button when using the block type." }],
-            [
-                { text: "This button is enabled with the " },
-                { code: "enable-clipboard" },
-                { text: " property and fires the " },
-                { code: "copied(string) -> bool" },
-                { text:" callback." }
-            ],
-            [
-                {
-                    text: "Returning true from the callback will display a \"Copied !\" message next to the button."
-                }
-            ],
-            [
-                {
-                    text: "The widget has a default implementation of the callback that always returns true."
-                }
-            ],
-            [
-                {
-                    text: "Please note that you must implement the clipboard logic in your code as it is not supported by Slint."
-                }
-            ]
-        ];
+        description: @markdown(
+			"The clipboard button is only available when using the block type.\n"
+			"This button is enabled with the `enable-clipboard` property and fires the `copied(string) -> bool` callback which will display a \"Copied !\" "
+			"message when returning `true`.\n"
+			"The widget has a default implementation of the callback that always returns true.\n"
+			"Please note that you must implement the clipboard logic in your code as it is not supported by Slint."
+		);
     }
 
     DocCode {

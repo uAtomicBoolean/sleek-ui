@@ -24,13 +24,7 @@ export component IconPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: [
-            [
-                { text: "This widget inherits from " },
-                { code: "Image" },
-                { text: " hence all its parent properties are available." },
-            ],
-        ];
+        description: @markdown("This widget inherits from `Image` hence all its parent properties are available.");
     }
 
     WidgetPresentation {
@@ -45,14 +39,9 @@ export component IconPage inherits PageBase {
 
     DocSection {
         title: "Change the size";
-        description: [
-            [
-                { text: "Use the " },
-                { code: "size" },
-                { text: " property to mange the icon's size." },
-            ],
-            [{ text: "This property sets both the height and width of the image." }]
-        ];
+        description: @markdown(
+			"Use the `size` property to manage the icon's size. This property sets both the height and width of the image."
+		);
     }
 
     WidgetPresentation {
@@ -95,17 +84,10 @@ export component IconPage inherits PageBase {
 
     DocSection {
         title: "Color";
-        description: [
-            [
-                { text: "By default, the icon's color is set to " },
-                { code: "UAppTheme.text" },
-                { text: ", but you can make it keep its original color by setting " },
-                { code: "colorize" },
-                { text: " to " },
-                { code: "transparent" }
-            ],
-            [{ text: "You can also apply a custom color with the same property." }]
-        ];
+        description: @markdown(
+			"By default, the icon's color is set to `UAppTheme.text`, but you can make it keep its original color by setting "
+			"`colorize` to `transparent`.\nYou can also apply a custom color with the same property."
+		);
     }
 
     WidgetPresentation {

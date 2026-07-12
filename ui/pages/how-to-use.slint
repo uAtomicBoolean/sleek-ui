@@ -24,29 +24,11 @@ export component HowToUsePage inherits PageBase {
 
     DocSection {
         title: "Add the library to your project";
-        description: [
-            [
-                { text: "1. Download the library from the latest release on its " },
-                {
-                    link: "github repository",
-                    url: "https://github.com/uAtomicBoolean/sleek-ui/releases"
-                },
-                { text: "." }
-            ],
-            [
-                {
-                    text: "2. Unzip the library and move it either to your project, or to another folder on your computer."
-                }
-            ],
-            [
-                { text: "3. Add Sleek-ui as a library following the " },
-                {
-                    link: "official documentation",
-                    url: "https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries"
-                },
-                { text: "." }
-            ]
-        ];
+        description: @markdown(
+			"1. Download the library from the latest release on its [github repository](https://github.com/uAtomicBoolean/sleek-ui/releases).\n"
+			"2. Unzip the library and move it either to your project, or to another folder on your computer.\n"
+			"3. Add Sleek-ui as a library following the [official documentation](https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#component-libraries)."
+		);
         link-clicked(url) => {
             Platform.open-url(url);
         }
@@ -54,14 +36,7 @@ export component HowToUsePage inherits PageBase {
 
     DocSection {
         title: "Use the widgets in your code";
-        description: [
-            [
-                { text: "All widgets can be imported from the " },
-                { code: "@sleek-ui/widgets.slint" },
-                { text: "file." }
-            ],
-            [{ text: "They can be then used like a native widget:" }]
-        ];
+        description: @markdown("All widgets can be imported from the `@sleek-ui/widgets.slint` file. They can then be used like a native widget.");
     }
 
     DocCode {
@@ -69,27 +44,11 @@ export component HowToUsePage inherits PageBase {
     }
 
     DocSection {
-        title: "Use the library's theme.";
-        description: [
-            [
-                { text: "sleek-ui comes with design tokens fully available in the " },
-                {
-                    link: "UAppTheme",
-                    url: "https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint"
-                },
-                { text: " global." }
-            ],
-            [
-                {
-                    text: " This allows you to keep the same look and feel across your whole application."
-                }
-            ],
-            [
-                { text: "The global also re-export all the " },
-                { link: "default colors", url:"default-colors" },
-                { text: " as properties synced to the color scheme." }
-            ]
-        ];
+        title: "Use the library's theme";
+        description: @markdown(
+			"Sleek-ui comes with a global [UAppTheme](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint) that contains "
+			"design tokens and [default colors](default-colors). You can use them in your code to keep the same look and feel across your whole application."
+		);
         link-clicked(url) => {
             if url == "default-colors" {
                 UMenuLogic.current-link = url;

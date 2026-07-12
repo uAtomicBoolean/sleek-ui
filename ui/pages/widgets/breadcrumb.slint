@@ -19,20 +19,15 @@ export component BreadcrumbPage inherits PageBase {
     }
 
     DocDescription {
-        text: "An interactive widget that display the current path of your page, allowing the user to go back to parent pages.";
+        text: "An interactive widget that displays the current path of your page, allowing the user to go back to parent pages.";
     }
 
     DocSection {
         title: "Example";
-        description: [
-            [
-                { text: "The widget takes the current path as a list of string with the " },
-                { code: "steps" },
-                { text: " property, and calls the " },
-                { code: "step-clicked(step: string)" },
-                { text: " callback when a step is clicked." }
-            ]
-        ];
+        description: @markdown(
+			"The widget takes the current path as a list of strings with the `steps` property, and calls the `step-clicked(step: string)` "
+			"callback when a step is clicked."
+		);
     }
 
     WidgetPresentation {
@@ -42,6 +37,6 @@ export component BreadcrumbPage inherits PageBase {
     }
 
     DocCode {
-        code: "UBreadcrumb {\n    steps: [\"Settings\", \"General\", \"Appareance\"];\n    step-clicked(step) => {\n        // Your navigation logic.\n    }\n}";
+        code: "UBreadcrumb {\n    steps: [\"Settings\", \"General\", \"Appearance\"];\n    step-clicked(step) => {\n        // Your navigation logic.\n    }\n}";
     }
 }
