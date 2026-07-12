@@ -17,14 +17,14 @@ path = "src/main.rs"
 
 # Use skia renderer on all platforms but wasm as it is not supported. 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
-slint = { version = "1.16.1", features = ["renderer-skia"] }
+slint = { version = "1.17.1", features = ["renderer-skia"] }
 
 [target.'cfg(target_family = "wasm")'.dependencies]
-slint = { version = "1.16.1" }
+slint = { version = "1.17.1" }
 wasm-bindgen = { version = "0.2" }
 
 [build-dependencies]
-slint-build = "1.16.1"
+slint-build = "1.17.1"
 
 [profile.dev]
 incremental = true
