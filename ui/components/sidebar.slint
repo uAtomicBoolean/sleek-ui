@@ -205,6 +205,12 @@ export component Sidebar inherits Rectangle {
 
                         UMenuLink {
                             parent-child-opened <=> parent.child-opened;
+                            id: "inline-code";
+                            name: "Inline code";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
                             id: "collapse";
                             name: "Collapse";
                         }

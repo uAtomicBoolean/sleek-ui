@@ -1,0 +1,20 @@
+import { UAppTheme } from "../app-theme.slint";
+import { UText } from "text.slint";
+
+
+export component UInlineCode inherits Rectangle {
+    in-out property <string> code;
+    background: UAppTheme.color-fill-secondary;
+    border-color: UAppTheme.border;
+    border-width: UAppTheme.border-width-base;
+    border-radius: UAppTheme.radius-small;
+    HorizontalLayout {
+        alignment: start;
+        padding: UAppTheme.padding-small;
+        UText {
+            font-size: UAppTheme.font-size-small;
+            text: code;
+            wrap: no-wrap;
+        }
+    }
+}
