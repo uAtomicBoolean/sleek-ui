@@ -17,7 +17,6 @@ export component UNotification inherits Rectangle {
     in-out property <UNotificationVariant> variant: info;
     in-out property <string> title;
     in-out property <string> message;
-    in-out property <bool> single-line-message: true;
     in-out property <image> icon;
     in-out property <brush> icon-color;
     callback close <=> close-button.clicked;
@@ -31,52 +30,52 @@ export component UNotification inherits Rectangle {
     drop-shadow-color: UAppTheme.shadow-color;
     drop-shadow-offset-y: UAppTheme.shadow-y-offset;
     btn-interface := ButtonInterface {
-        VerticalLayout {
+        HorizontalLayout {
             padding: UAppTheme.padding-base;
-            HorizontalLayout {
-                cross-axis-alignment: center;
-                padding-top: UAppTheme.padding-medium;
-                padding-bottom: UAppTheme.padding-medium;
-                padding-left: UAppTheme.padding-big;
-                padding-right: UAppTheme.padding-big;
-                VerticalLayout {
-                    alignment: center;
-                    padding-right: UAppTheme.padding-medium;
-                    UIcon {
-                        source: icon;
-                        colorize: icon-color;
-                        size: UAppTheme.font-size-big;
-                        accessible-role: none;
+            GridLayout {
+                padding-top: UAppTheme.padding-base;
+                padding-bottom: UAppTheme.padding-base;
+                padding-left: UAppTheme.padding-medium;
+                padding-right: UAppTheme.padding-medium;
+                spacing-horizontal: UAppTheme.spacing-medium;
+                Row {
+                    VerticalLayout {
+                        alignment: center;
+                        UIcon {
+                            source: icon;
+                            colorize: icon-color;
+                            size: UAppTheme.font-size-big;
+                            accessible-role: none;
+                        }
+                    }
+
+                    VerticalLayout {
+                        alignment: center;
+                        UText {
+                            text: title;
+                            wrap: no-wrap;
+                            overflow: elide;
+                            font-size: UAppTheme.font-size-medium;
+                        }
+                    }
+
+                    close-button := UIconButton {
+                        variant: text;
+                        icon: @image-url("../assets/icons/x.svg");
+                        accessible-label: @tr("Close notification");
+                        accessible-action-default => {
+                            self.clicked();
+                        }
                     }
                 }
 
-                UText {
-                    horizontal-stretch: 1;
-                    text: title;
-                    wrap: no-wrap;
-                    overflow: elide;
-                    font-size: UAppTheme.font-size-medium;
-                }
-
-                close-button := UIconButton {
-                    variant: text;
-                    icon: @image-url("../assets/icons/x.svg");
-                    accessible-label: @tr("Close notification");
-                    accessible-action-default => {
-                        self.clicked();
+                Row {
+                    if message != "": UText {
+                        col: 1;
+                        overflow: clip;
+                        wrap: word-wrap;
+                        text: root.message;
                     }
-                }
-            }
-
-            if message != "": HorizontalLayout {
-                padding-bottom: UAppTheme.padding-medium;
-                padding-left: UAppTheme.font-size-big + UAppTheme.font-size-medium + UAppTheme.padding-base;
-                padding-right: UAppTheme.padding-big;
-                alignment: start;
-                UText {
-                    overflow: root.single-line-message ? elide : clip;
-                    wrap: root.single-line-message ? no-wrap : word-wrap;
-                    text: root.message;
                 }
             }
         }

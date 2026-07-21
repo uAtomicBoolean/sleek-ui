@@ -48,34 +48,33 @@ export component NotificationPage inherits PageBase {
     DocSection {
         title: "Notification content";
         description: @markdown(
-			"You can add a message in the notification using the `message` property. The message "
-			"will, by default, be displayed on one line. But you can change that by setting `single-line-message` "
-			"to `false`.\nPlease note that the notification has a fixed width of `300px`. You are free to change "
+			"You can add a message in the notification using the `message` property."
+			"\nPlease note that the notification has a fixed width of `300px`. You are free to change "
 			"that with the regular `Rectangle` properties."
 		);
     }
 
     WidgetPresentation {
-        HorizontalLayout {
-            spacing: UAppTheme.spacing-bigger;
-            VerticalLayout {
-                alignment: start;
-                UNotification {
-                    title: "Single line message";
-                    message: "This message is displayed only on one line to keep the notification with a small size.";
-                }
-            }
-
+        VerticalLayout {
+            alignment: start;
             UNotification {
-                title: "Multi-line message";
-                single-line-message: false;
-                message: "This message is displayed on multiple lines to be fully visible.";
+                title: "Notification message";
+                message: "This notification has a message to display more informations.";
+            }
+        }
+
+        VerticalLayout {
+            alignment: start;
+            UNotification {
+                width: 500px;
+                title: "Increased width";
+                message: "This notification has a message to display more informations, but with a higher width.";
             }
         }
     }
 
     DocCode {
-        code: "UNotification {\n    title: \"Single line message\";\n    message: \"This message is displayed only on one line to keep the notification with a small size.\";\n}\n\nUNotification {\n    title: \"Multi-line message\";\n    single-line-message: false;\n    message: \"This message is displayed on multiple lines to be fully visible.\";\n}";
+        code: "UNotification {\n    title: \"Notification message\";\n    message: \"This notification has a message to display more informations.\";\n}\n\nUNotification {\n    width: 500px;\n    title: \"Notification message\";\n    message: \"This notification has a message to display more informations, but with a higher width.\";\n}";
     }
 
     DocSection {
