@@ -63,7 +63,6 @@ export component UInputNumber inherits Rectangle {
                     x: min(0px, max(parent.width - self.width - self.text-cursor-width, self.computed-x));
                     text: root.value;
                     input-type: root.number ? InputType.number : InputType.decimal;
-                    read-only: !root.enabled;
                     font-size: UAppTheme.font-size-base;
                     color: UAppTheme.text;
                     vertical-alignment: center;
