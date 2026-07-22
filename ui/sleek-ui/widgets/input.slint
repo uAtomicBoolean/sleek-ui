@@ -16,8 +16,9 @@ export component UInput inherits Rectangle {
         input.text = value;
     }
 	// Regular properties
+    in-out property <bool> enabled <=> input.enabled;
+    in-out property <bool> read-only <=> input.read-only;
     in-out property <string> text <=> input.text;
-    in-out property <bool> read-only;
     in-out property <InputType> input-type: InputType.text;
     in-out property <string> placeholder: "";
     in-out property <bool> clearable: false;
@@ -43,7 +44,6 @@ export component UInput inherits Rectangle {
                     width: max(parent.width, self.preferred_width + self.text-cursor-width);
                     x: min(0px, max(parent.width - self.width - self.text-cursor-width, self.computed-x));
                     input-type: show ? InputType.text : input-type;
-                    read-only: root.read-only;
                     font-size: UAppTheme.font-size-base;
                     color: UAppTheme.text;
                     vertical-alignment: center;
@@ -128,7 +128,7 @@ export component UInput inherits Rectangle {
     }
 
     states [
-        disabled when input.read-only: {
+        disabled when !enabled: {
             background: UAppTheme.bg-elevated.with-alpha(0.4);
             border-color: UAppTheme.border-secondary;
             input.color: UAppTheme.text-disabled;

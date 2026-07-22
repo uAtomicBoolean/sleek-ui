@@ -177,23 +177,23 @@ export component UButton inherits ButtonInterface {
         loading when root.loading: {
             mouse-cursor: wait;
             background: get-color(theme.bg-loading);
-            border-color: get-color(theme.border);
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border);
         }
         disabled when !root.enabled: {
             background: get-color(theme.bg-disabled);
-            border-color: get-color(theme.border-disabled);
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border-disabled);
         }
         checked when root.checked: {
             background: get-color(theme.bg-checked);
-            border-color: get-color(theme.border-checked);
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border-checked);
         }
         active when root.pressed && !root.loading: {
             background: get-color(theme.bg-active);
-            border-color: get-color(theme.border-active);
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border-active);
         }
         hover when root.has-hover && !root.loading: {
             background: get-color(theme.bg-hover);
-            border-color: get-color(theme.border-hover);
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border-hover);
         }
     ]
 }
