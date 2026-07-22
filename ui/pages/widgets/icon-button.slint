@@ -67,6 +67,18 @@ export component IconButtonPage inherits PageBase {
             enabled: false;
             icon: @image-url("../../assets/images/search.svg");
         }
+
+        UIconButton {
+            enabled: false;
+            variant: filled;
+            icon: @image-url("../../assets/images/rocket.svg");
+        }
+
+        UIconButton {
+            enabled: false;
+            variant: text;
+            icon: @image-url("../../assets/images/minus.svg");
+        }
     }
 
     DocCode {
@@ -89,6 +101,18 @@ export component IconButtonPage inherits PageBase {
             loading: true;
             icon: @image-url("../../assets/images/search.svg");
         }
+
+        UIconButton {
+            loading: true;
+            variant: filled;
+            icon: @image-url("../../assets/images/rocket.svg");
+        }
+
+        UIconButton {
+            loading: true;
+            variant: text;
+            icon: @image-url("../../assets/images/minus.svg");
+        }
     }
 
     DocCode {
@@ -104,7 +128,24 @@ export component IconButtonPage inherits PageBase {
         UIconButton {
             danger: true;
             variant: primary;
+            icon: @image-url("../../assets/images/plus.svg");
+        }
+
+        UIconButton {
+            danger: true;
             icon: @image-url("../../assets/images/search.svg");
+        }
+
+        UIconButton {
+            danger: true;
+            variant: filled;
+            icon: @image-url("../../assets/images/rocket.svg");
+        }
+
+        UIconButton {
+            danger: true;
+            variant: text;
+            icon: @image-url("../../assets/images/minus.svg");
         }
     }
 
@@ -120,7 +161,34 @@ export component IconButtonPage inherits PageBase {
     WidgetPresentation {
         UIconButton {
             checked: true;
+            variant: primary;
             icon: @image-url("../../assets/images/plus.svg");
+            clicked => {
+                self.checked = !self.checked;
+            }
+        }
+
+        UIconButton {
+            checked: true;
+            icon: @image-url("../../assets/images/search.svg");
+            clicked => {
+                self.checked = !self.checked;
+            }
+        }
+
+        UIconButton {
+            checked: true;
+            variant: filled;
+            icon: @image-url("../../assets/images/rocket.svg");
+            clicked => {
+                self.checked = !self.checked;
+            }
+        }
+
+        UIconButton {
+            checked: true;
+            variant: text;
+            icon: @image-url("../../assets/images/minus.svg");
             clicked => {
                 self.checked = !self.checked;
             }
