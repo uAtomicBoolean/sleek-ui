@@ -13,7 +13,6 @@ import { AppLogic } from "../../app-logic.slint";
 
 
 export component InputNumberPage inherits PageBase {
-    private property <length> input-width: 150px;
     UTitle {
         level: 3;
         text: "InputNumber";
@@ -28,13 +27,27 @@ export component InputNumberPage inherits PageBase {
     }
 
     WidgetPresentation {
-        UInputNumber {
-            width: input-width;
-        }
+        UInputNumber { }
     }
 
     DocCode {
         code: "UInputNumber {\n    accepted => {\n        debug(self.text);\n    }\n}";
+    }
+
+    DocSection {
+        title: "Read only input";
+        description: @markdown("Use the `read-only` property to make the input read-only.");
+    }
+
+    WidgetPresentation {
+        UInputNumber {
+            read-only: true;
+            value: 100;
+        }
+    }
+
+    DocCode {
+        code: "UInputNumber {\n    read-only: true;\n}";
     }
 
     DocSection {
@@ -44,7 +57,6 @@ export component InputNumberPage inherits PageBase {
 
     WidgetPresentation {
         UInputNumber {
-            width: input-width;
             enabled: false;
         }
     }

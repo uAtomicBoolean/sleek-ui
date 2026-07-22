@@ -24,8 +24,9 @@ export component UInputNumber inherits Rectangle {
         btn-increase.clicked();
     }
 	// Regular properties
-    in-out property <float> value: 0;
     in-out property <bool> enabled <=> input.enabled;
+    in-out property <bool> read-only <=> input.read-only;
+    in-out property <float> value: 0;
     in-out property <float> step: 1;
     in-out property <bool> number: false;
     in-out property <bool> error: false;
@@ -125,7 +126,7 @@ export component UInputNumber inherits Rectangle {
                     accessible-label: @tr("Decrease number input value.");
                     mouse-cursor: MouseCursor.pointer;
                     clicked => {
-                        if !root.enabled {
+                        if !root.enabled || root.read-only {
                             return;
                         }
                         if root.enable-min-max && root.value <= root.min-value {
@@ -163,7 +164,7 @@ export component UInputNumber inherits Rectangle {
                     accessible-label: @tr("Increase number input value.");
                     mouse-cursor: MouseCursor.pointer;
                     clicked => {
-                        if !root.enabled {
+                        if !root.enabled || root.read-only {
                             return;
                         }
                         if root.enable-min-max && root.value >= root.max-value {

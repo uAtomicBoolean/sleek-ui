@@ -41,13 +41,30 @@ export component InputPage inherits PageBase {
 
     WidgetPresentation {
         UInput {
-            text: "This input is read only";
+            width: 200px;
+            text: "This input is read only.";
             read-only: true;
         }
     }
 
     DocCode {
         code: "UInput {\n    read-only: true;\n}";
+    }
+
+    DocSection {
+        title: "Disabled input";
+        description: @markdown("Use the `enabled` property to enable / disable the widget.");
+    }
+
+    WidgetPresentation {
+        UInput {
+            enabled: false;
+            text: "This input is disabled.";
+        }
+    }
+
+    DocCode {
+        code: "UInput {\n    enabled: false;\n}";
     }
 
     DocSection {
