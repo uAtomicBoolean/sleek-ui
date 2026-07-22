@@ -61,20 +61,6 @@ component URadioOption inherits ButtonInterface {
                     border-color: UAppTheme.primary.disabled;
                     background: UAppTheme.primary.disabled;
                 }
-                focused-hover-selected when root.has-tab-focus && root.is-selected && root.has-hover: {
-                    border-color: UAppTheme.focus-color;
-                    border-width: UAppTheme.focus-border-width;
-                    background: UAppTheme.primary.hover;
-                }
-                focused-selected when root.has-tab-focus && root.is-selected: {
-                    border-color: UAppTheme.focus-color;
-                    border-width: UAppTheme.focus-border-width;
-                    background: UAppTheme.primary.base;
-                }
-                focused when root.has-tab-focus: {
-                    border-color: UAppTheme.focus-color;
-                    border-width: UAppTheme.focus-border-width;
-                }
                 hover-unselected when root.has-hover && !root.is-selected: {
                     border-color: UAppTheme.primary.hover;
                 }
@@ -101,6 +87,13 @@ component URadioOption inherits ButtonInterface {
             ]
         }
     }
+
+    states [
+        focused when root.has-tab-focus: {
+            border-color: UAppTheme.focus-color;
+            border-width: UAppTheme.focus-border-width;
+        }
+    ]
 }
 
 export component URadio {
