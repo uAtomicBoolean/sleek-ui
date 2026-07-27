@@ -31,7 +31,7 @@ incremental = true
 
 # Applying the profile release on wasm causes an error during build.
 [target.'cfg(not(target_family = "wasm"))'.profile.release]
-codegen-units = 1
+codegen-units = 16
 lto = true
 opt-level = "s"
 panic = "abort"
