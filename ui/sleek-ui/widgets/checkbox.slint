@@ -17,10 +17,11 @@ export component UCheckbox inherits ButtonInterface {
     in-out property <string> text;
     in-out property <IconTextPlacement> text-placement: text != "" ? start : hidden;
     in-out property <LayoutAlignment> alignment: space-between;
+    in-out property <length> inner-spacing: UAppTheme.spacing-base;
     border-radius: clamp(UAppTheme.radius-base, 0, 4px);
     HorizontalLayout {
         alignment: root.alignment;
-        spacing: UAppTheme.spacing-base;
+        spacing: inner-spacing;
         if text-placement == IconTextPlacement.start: UText {
             text: text;
             color: UAppTheme.text;

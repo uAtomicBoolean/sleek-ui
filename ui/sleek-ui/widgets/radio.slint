@@ -16,6 +16,7 @@ component URadioOption inherits ButtonInterface {
 	// Regular properties
     in-out property <UOptionData> option;
     in-out property <string> selected-value;
+    in property <length> inner-spacing;
     private property <bool> is-selected: selected-value == option.value;
     callback selected(value: string);
     clicked => {
@@ -25,7 +26,7 @@ component URadioOption inherits ButtonInterface {
     HorizontalLayout {
         alignment: start;
         cross-axis-alignment: center;
-        spacing: UAppTheme.spacing-base;
+        spacing: root.inner-spacing;
         Rectangle {
             width: UAppTheme.font-size-base;
             height: UAppTheme.font-size-base;
@@ -104,14 +105,17 @@ export component URadio {
     in-out property <[UOptionData]> options;
     in-out property <string> selected-value;
     in-out property <Orientation> orientation: vertical;
+    in-out property <LayoutAlignment> alignment: start;
+    in-out property <length> inner-spacing: UAppTheme.spacing-base;
     callback selected(value: string);
     VerticalLayout {
         if orientation == Orientation.vertical: VerticalLayout {
-            alignment: start;
+            alignment: root.alignment;
             spacing: UAppTheme.spacing-base;
             for option in root.options: URadioOption {
                 enabled: root.enabled && option.enabled;
                 option: option;
+                inner-spacing: root.inner-spacing;
                 selected-value <=> root.selected-value;
                 selected(value) => {
                     root.selected(value);
@@ -119,11 +123,12 @@ export component URadio {
             }
         }
         if orientation == Orientation.horizontal: HorizontalLayout {
-            alignment: start;
+            alignment: root.alignment;
             spacing: UAppTheme.spacing-base;
             for option in root.options: URadioOption {
                 enabled: root.enabled && option.enabled;
                 option: option;
+                inner-spacing: root.inner-spacing;
                 selected-value <=> root.selected-value;
                 selected(value) => {
                     root.selected(value);

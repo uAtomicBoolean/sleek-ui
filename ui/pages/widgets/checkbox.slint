@@ -38,6 +38,25 @@ export component CheckboxPage inherits PageBase {
     }
 
     DocSection {
+        title: "Inner spacing";
+        description: @markdown(
+			"Using the `inner-spacing` property, you can define the space between the checkbox itself and the text."
+		);
+    }
+
+    WidgetPresentation {
+        UCheckbox {
+            inner-spacing: 40px;
+            text-placement: end;
+            text: "Checkbox with 40px of inner spacing.";
+        }
+    }
+
+    DocCode {
+        code: "UCheckbox {\n    inner-spacing: 40px;\n    text-placement: end;\n    text: \"Checkbox with 40px of inner spacing.\";\n}";
+    }
+
+    DocSection {
         title: "Text position and alignment";
         description: @markdown(
 			"You can choose the text position with the `text-placement` property. It can be either `start`, `end`, `hidden` and defaults to `start`.\n"

@@ -58,14 +58,16 @@ export component RadioPage inherits PageBase {
     }
 
     DocSection {
-        title: "Orientation";
+        title: "Orientation and alignment";
         description: @markdown(
-			"Use the `orientation` property to set the widget to a vertical or horizontal orientation."
+			"Use the `orientation` property to set the widget to a vertical or horizontal orientation. The `alignment` property is explicit."
 		);
     }
 
     WidgetPresentation {
         URadio {
+            width: 300px;
+            alignment: space-around;
             orientation: horizontal;
             options: [
                 { text: "Option 1", value:"option1", enabled: true },
@@ -76,7 +78,29 @@ export component RadioPage inherits PageBase {
     }
 
     DocCode {
-        code: "URadio {\n    orientation: horizontal;\n    // Your code\n};";
+        code: "URadio {\n    width: 300px\n    alignment: space-around;\n    orientation: horizontal;\n    options: [...];\n};";
+    }
+
+    DocSection {
+        title: "Inner spacing";
+        description: @markdown(
+			"Using the `inner-spacing` property, you can define the space between the radio itself and the text."
+		);
+    }
+
+    WidgetPresentation {
+        URadio {
+            inner-spacing: 40px;
+            options: [
+                { text: "Option 1", value:"option1", enabled: true },
+                { text: "Option 2", value:"option2", enabled: true },
+                { text: "Option 3", value:"option3", enabled: false },
+            ];
+        }
+    }
+
+    DocCode {
+        code: "URadio {\n    inner-spacing: 40px;\n    options: [...];\n};";
     }
 
     DocSection {
