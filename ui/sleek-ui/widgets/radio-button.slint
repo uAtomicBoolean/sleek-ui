@@ -80,6 +80,8 @@ export component URadioButton {
                 root.selected(option.value);
             }
             HorizontalLayout {
+                alignment: center;
+                cross-axis-alignment: center;
                 padding-top: UAppTheme.padding-vertical;
                 padding-bottom: UAppTheme.padding-vertical;
                 padding-left: UAppTheme.padding-horizontal;
@@ -130,7 +132,7 @@ export component URadioButton {
                 }
                 hover-not-selected when self.has-hover && selected-value != option.value: {
                     border-color: UAppTheme.border;
-                    option-text.color: UAppTheme.primary.base;
+                    option-text.color: UAppTheme.primary.hover;
                 }
                 hover-selected when self.has-hover && selected-value == option.value: {
                     background: theme.bg-selected-hover;
