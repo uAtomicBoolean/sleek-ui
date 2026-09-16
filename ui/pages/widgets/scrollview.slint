@@ -25,9 +25,9 @@ export component ScrollviewPage inherits PageBase {
     DocSection {
         title: "How to use";
         description: @markdown(
-			"This widget works like a standard scrollview. It computes automatically the viewport "
-			"unless you use a `for` loop. The standard properties of `Flickable` (viewport-*, interactive) "
-			"are available in the widget."
+			"This widget works like a standard scrollview. It automatically computes the content's size "
+			"unless you use a `for` loop. The standard properties of `Flickable` (content-*, interactive) "
+			"are available on the widget."
 		);
     }
 
@@ -40,8 +40,8 @@ export component ScrollviewPage inherits PageBase {
             UScrollView {
                 width: 200px;
                 height: 200px;
-                viewport-width: 400px;
-                viewport-height: 400px;
+                content-width: 400px;
+                content-height: 400px;
                 Rectangle {
                     width: 30px;
                     height: 30px;
@@ -78,7 +78,7 @@ export component ScrollviewPage inherits PageBase {
     }
 
     DocCode {
-        code: "UScrollView {\n    width: 200px;\n    height: 200px;\n    viewport-width: 400px;\n    viewport-height: 400px;\n    Rectangle {\n        width: 30px;\n        height: 30px;\n        x: 25px;\n        y: 210px;\n    }\n}";
+        code: "UScrollView {\n    width: 200px;\n    height: 200px;\n    content-width: 400px;\n    content-height: 400px;\n    Rectangle {\n        width: 30px;\n        height: 30px;\n        x: 25px;\n        y: 210px;\n    }\n}";
     }
 
     DocSection {
@@ -91,5 +91,22 @@ export component ScrollviewPage inherits PageBase {
 
     DocCode {
         code: "UScrollView {\n    VerticalLayout {\n        padding-right: parent.scrollbar-area;\n        // Your elements.\n    }\n}";
+    }
+
+    DocSection {
+        title: "Scroll to and scroll by functions";
+        description: @markdown(
+			"Four functions let you scroll programmatically: `scroll-x-to(pos)` / `scroll-y-to(pos)` move to an "
+			"absolute content position, while `scroll-x-by(delta)` / `scroll-y-by(delta)` move by a relative offset. "
+			"All of them are clamped to the content bounds and animated."
+		);
+    }
+
+    DocSection {
+        title: "Keyboard navigation";
+        description: @markdown(
+			"When the widget is focused, `PageUp` / `PageDown` scroll vertically and `Home` / `End` jump to the top "
+			"and bottom. Hold `Shift` to scroll horizontally instead. These movements are animated as well."
+		);
     }
 }

@@ -2,22 +2,34 @@ import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 
 
 component Scrollbar inherits Rectangle {
-    in-out property <Orientation> orientation: vertical;
-    in-out property <length> value;
-    in-out property <length> max-scroll-pos;
+    in property <Orientation> orientation: vertical;
+    in property <length> max-scroll-pos;
     in property <length> handle-size;
+    in-out property <length> value;
     out property <bool> pressed <=> touch.pressed;
+    // Active l'animation du contenu pour les scrolls programmatiques (touches, scroll-to/-by).
+    // Remis à false par le drag de la scrollbar et par la molette/flick, qui restent instantanés.
+    in-out property <bool> animated;
+
     private property <bool> is-vertical: orientation == Orientation.vertical;
     private property <length> available-space: (is-vertical ? self.height : self.width) - handle-size;
-    private property <float> min-handle-pct: 0.05;
-    private property <bool> is-being-dragged;
-    width: root.is-vertical ? 8px : 0;
-    height: !root.is-vertical ? 8px : 0;
+    private property <float> progress: max-scroll-pos > 0px ? -value / max-scroll-pos : 0;
+    private property <length> handle-pos: clamp(progress, 0, 1) * available-space;
+
+    animate value {
+        enabled: animated;
+        duration: UAppTheme.animation-duration;
+        easing: ease-out;
+    }
+
+    width: is-vertical ? 8px : 0;
+    height: is-vertical ? 0 : 8px;
+
     handle := Rectangle {
-        x: !root.is-vertical ? -value / max-scroll-pos * (root.width - handle-size) : 1px;
-        y: root.is-vertical ? -value / max-scroll-pos * (root.height - handle-size) : 1px;
-        width: root.is-vertical ? 6px : handle-size;
-        height: !root.is-vertical ? 6px : handle-size;
+        x: is-vertical ? 1px : handle-pos;
+        y: is-vertical ? handle-pos : 1px;
+        width: is-vertical ? 6px : handle-size;
+        height: is-vertical ? handle-size : 6px;
         background: UAppTheme.color-fill;
         border-radius: UAppTheme.radius-circle;
         animate background { duration: UAppTheme.animation-duration; }
@@ -29,70 +41,74 @@ component Scrollbar inherits Rectangle {
     }
 
     touch := TouchArea {
-        private property <length> initial-pressed;
-        clicked => {
-            if is-being-dragged {
-                is-being-dragged = false;
-                return;
-            }
-            let mouse-pos = root.is-vertical ? self.mouse-y : self.mouse-x;
-            if root.is-vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
-                compute-pos(mouse-pos - handle.height / 2);
-            } else if !root.is-vertical && self.mouse-x >= 0 && self.mouse-x <= root.width {
-                compute-pos(mouse-pos - handle.width / 2);
-            }
+        private property <length> grab-offset;
+
+        function mouse-along() -> length {
+            return root.is-vertical ? self.mouse-y : self.mouse-x;
         }
+
         pointer-event(event) => {
             if event.button == PointerEventButton.left && event.kind == PointerEventKind.down {
-                initial-pressed = root.is-vertical ? self.mouse-y : self.mouse-x;
+                let m = self.mouse-along();
+                if m >= root.handle-pos && m <= root.handle-pos + root.handle-size {
+                    self.grab-offset = m - root.handle-pos;
+                } else {
+                    self.grab-offset = root.handle-size / 2;
+                    root.move-handle-to(m - self.grab-offset);
+                }
             }
         }
         moved => {
-            is-being-dragged = true;
-            if root.is-vertical && self.mouse-y >= 0 && self.mouse-y <= root.height {
-                let move-diff = initial-pressed - self.mouse-y;
-                initial-pressed = self.mouse-y;
-                compute-pos(handle.y - move-diff);
-            } else if !root.is-vertical && self.mouse-x >= 0 && self.mouse-x <= root.width {
-                let move-diff = initial-pressed - self.mouse-x;
-                initial-pressed = self.mouse-x;
-                compute-pos(handle.x - move-diff);
-            }
+            root.move-handle-to(self.mouse-along() - self.grab-offset);
         }
     }
 
-    public function compute-pos(move: length) {
-        let new-pos = clamp(move, 0px, available-space);
-        value = -(max-scroll-pos * (new-pos / available-space));
+    function move-handle-to(handle-target: length) {
+        animated = false;
+        let clamped = clamp(handle-target, 0px, available-space);
+        value = available-space > 0px ? -(max-scroll-pos * (clamped / available-space)) : 0px;
     }
 
-    public function scroll-to(target: length) {
-        if target >= max-scroll-pos {
-            value = -max-scroll-pos;
-            return;
-        } else if target <= 0 {
-            value = 0;
-            return;
-        }
-        value = -target;
+    public function scroll-to(content-pos: length) {
+        animated = true;
+        value = -clamp(content-pos, 0px, max-scroll-pos);
+    }
+
+    public function scroll-by(delta: length) {
+        self.scroll-to(-value + delta);
     }
 }
 
 export component UScrollView inherits FocusScope {
     out property <length> scrollbar-area: 8px;
     in-out property <bool> interactive: false;
+    private property <length> min-handle-size: 30px;
+	// To be removed as deprecated.
     in-out property <length> viewport-x <=> flickable.content-x;
     in-out property <length> viewport-y <=> flickable.content-y;
     in-out property <length> viewport-width <=> flickable.content-width;
     in-out property <length> viewport-height <=> flickable.content-height;
-    private property <length> min-handle-size: 30px;
-    private property <duration> scroll-to-anim-duration: UAppTheme.animation-duration;
-    public function scroll-x-to(new-x: length) {
-        v-scrollbar.scroll-to(new-x);
+	// New properties following the naming convention of Flickable.
+    in-out property <length> content-x <=> flickable.content-x;
+    in-out property <length> content-y <=> flickable.content-y;
+    in-out property <length> content-width <=> flickable.content-width;
+    in-out property <length> content-height <=> flickable.content-height;
+
+    public function scroll-x-to(content-pos: length) {
+        h-scrollbar.scroll-to(content-pos);
     }
-    public function scroll-y-to(new-y: length) {
-        v-scrollbar.scroll-to(new-y);
+    public function scroll-y-to(content-pos: length) {
+        v-scrollbar.scroll-to(content-pos);
     }
+
+    public function scroll-x-by(delta: length) {
+        h-scrollbar.scroll-by(delta);
+    }
+
+    public function scroll-y-by(delta: length) {
+        v-scrollbar.scroll-by(delta);
+    }
+
     VerticalLayout {
         flickable := Flickable {
             horizontal-stretch: 2;
@@ -100,54 +116,54 @@ export component UScrollView inherits FocusScope {
             interactive: root.interactive;
             content-y <=> v-scrollbar.value;
             content-x <=> h-scrollbar.value;
-            animate content-x, content-y {
-                enabled: !v-scrollbar.pressed && !h-scrollbar.pressed;
-                duration: scroll-to-anim-duration;
+            flicked => {
+                v-scrollbar.animated = false;
+                h-scrollbar.animated = false;
             }
             @children
         }
     }
 
     v-scrollbar := Scrollbar {
-        property <length> raw-handle-size: flickable.height / flickable.content-height * self.height;
         y: 0;
         x: root.width - self.width;
         height: root.height - (h-scrollbar.visible ? h-scrollbar.height : 0);
         visible: flickable.content-height > flickable.height;
         max-scroll-pos: flickable.content-height - flickable.height;
-        handle-size: raw-handle-size < min-handle-size ? min-handle-size : raw-handle-size;
+        handle-size: max(min-handle-size, flickable.height / flickable.content-height * self.height);
     }
 
     h-scrollbar := Scrollbar {
-        property <length> raw-handle-size: flickable.width / flickable.content-width * self.width;
         orientation: horizontal;
         x: 0;
         y: root.height - self.height;
         width: root.width - (v-scrollbar.visible ? v-scrollbar.width : 0);
         visible: flickable.content-width > flickable.width;
         max-scroll-pos: flickable.content-width - flickable.width;
-        handle-size: raw-handle-size < min-handle-size ? min-handle-size : raw-handle-size;
+        handle-size: max(min-handle-size, flickable.width / flickable.content-width * self.width);
     }
 
     capture-key-pressed(event) => {
         if event.modifiers.shift {
             if event.text == Key.PageDown {
-                self.viewport-x -= self.viewport-width * 0.1;
+                h-scrollbar.scroll-by(self.content-width * 0.1);
             } else if event.text == Key.PageUp {
-                self.viewport-x += self.viewport-width * 0.1;
+                h-scrollbar.scroll-by(-self.content-width * 0.1);
             } else if event.text == Key.Home {
-                self.viewport-x += self.viewport-width;
+                h-scrollbar.scroll-to(0);
             } else if event.text == Key.End {
-                self.viewport-x -= self.viewport-width;
+                h-scrollbar.scroll-to(h-scrollbar.max-scroll-pos);
             }
-        } else if event.text == Key.PageDown {
-            self.viewport-y -= self.viewport-height * 0.1;
-        } else if event.text == Key.PageUp {
-            self.viewport-y += self.viewport-height * 0.1;
-        } else if event.text == Key.Home {
-            self.viewport-y += self.viewport-height;
-        } else if event.text == Key.End {
-            self.viewport-y -= self.viewport-height;
+        } else {
+            if event.text == Key.PageDown {
+                v-scrollbar.scroll-by(self.content-height * 0.1);
+            } else if event.text == Key.PageUp {
+                v-scrollbar.scroll-by(-self.content-height * 0.1);
+            } else if event.text == Key.Home {
+                v-scrollbar.scroll-to(0);
+            } else if event.text == Key.End {
+                v-scrollbar.scroll-to(v-scrollbar.max-scroll-pos);
+            }
         }
         reject
     }
