@@ -5,14 +5,6 @@ slint::include_modules!();
 
 #[allow(dead_code)]
 fn main() {
-    let selector = slint::BackendSelector::new()
-        .backend_name("winit".to_owned())
-        .renderer_name("skia".to_owned());
-    if let Err(err) = selector.select() {
-        eprintln!("Error while selecting the backend and renderer.");
-        eprintln!("{}", err.to_string());
-    }
-
     let ui = AppWindow::new().unwrap();
 
     let app_logic = ui.global::<AppLogic>();
