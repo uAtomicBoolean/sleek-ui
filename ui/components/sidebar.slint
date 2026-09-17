@@ -211,8 +211,14 @@ export component Sidebar inherits Rectangle {
 
                         UMenuLink {
                             parent-child-opened <=> parent.child-opened;
-                            id: "linear-progress";
-                            name: "Linear progress";
+                            id: "circle-progress";
+                            name: "Circle progress";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "line-progress";
+                            name: "Line progress";
                         }
 
                         UMenuLink {

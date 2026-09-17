@@ -1,32 +1,21 @@
 import { UAppTheme } from "../app-theme.slint";
+import { ProgressDirection } from "common/enums.slint";
 
 
-enum ProgressDirection {
-    start,
-    end,
-}
-
-export enum ULinearProgressVariant {
-    primary,
-    success,
-    warning,
-    danger,
-}
-
-export component ULinearProgress inherits Rectangle {
+export component ULineProgress inherits Rectangle {
 	// Accessibility properties
 	accessible-role: progress-indicator;
+    accessible-value: indeterminate ? 0 : progress;
     accessible-value-minimum: 0;
     accessible-value-maximum: 100;
     accessible-orientation: orientation;
     // Regular properties
-    in-out property <brush> progress-color;
-    in-out property <ULinearProgressVariant> variant: primary;
+    in-out property <brush> progress-color: UAppTheme.primary.base;
     in property <length> default-size: 10px;
     in property <length> default-radius: UAppTheme.radius-round;
     in property <Orientation> orientation: horizontal;
     in property <ProgressDirection> direction: start;
-    in-out property <percent> progress: indeterminate ? 30% : 0%;
+    in-out property <percent> progress;
     in-out property <bool> indeterminate: false;
     callback reset-x();
     background: UAppTheme.color-fill-secondary;
@@ -34,31 +23,12 @@ export component ULinearProgress inherits Rectangle {
     clip: true;
     height: default-size;
     width: default-size;
-    changed progress => {
-        if indeterminate {
-            progress = 30%;
-        }
-    }
-    changed indeterminate => {
-        if indeterminate {
-            progress = 30%;
-        }
-    }
     if orientation == Orientation.horizontal: Rectangle {
         private property <length> x-pos: 0;
-        function get-x-pos() -> length {
-            if indeterminate {
-                return x-pos;
-            }
-            if direction == ProgressDirection.end {
-                return root.width - self.width;
-            }
-            return 0;
-        }
-        x: get-x-pos();
+        x: indeterminate ? x-pos : direction == end ? root.width - self.width : 0;
         background: progress-color;
         border-radius: default-radius;
-        width: clamp(progress, 0%, 100%);
+        width: indeterminate ? 30% : clamp(progress, 0%, 100%);
         animate width {
             easing: ease-in-out;
             duration: 350ms;
@@ -83,19 +53,10 @@ export component ULinearProgress inherits Rectangle {
     }
     if orientation == Orientation.vertical: Rectangle {
         private property <length> y-pos: 0;
-        function get-y-pos() -> length {
-            if indeterminate {
-                return y-pos;
-            }
-            if direction == ProgressDirection.end {
-                return root.height - self.height;
-            }
-            return 0;
-        }
-        y: get-y-pos();
+        y: indeterminate ? y-pos : direction == end ? root.height - self.height : 0;
         background: progress-color;
         border-radius: default-radius;
-        height: clamp(progress, 0%, 100%);
+        height: indeterminate ? 30% : clamp(progress, 0%, 100%);
         animate height {
             easing: ease-in-out;
             duration: 350ms;
@@ -118,18 +79,4 @@ export component ULinearProgress inherits Rectangle {
             }
         }
     }
-    states [
-        primary when variant == primary: {
-            progress-color: UAppTheme.primary.base;
-        }
-        success when variant == success: {
-            progress-color: UAppTheme.success.base;
-        }
-        warning when variant == warning: {
-            progress-color: UAppTheme.warning.base;
-        }
-        danger when variant == danger: {
-            progress-color: UAppTheme.danger.base;
-        }
-    ]
 }
