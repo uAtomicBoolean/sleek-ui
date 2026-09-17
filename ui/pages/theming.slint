@@ -21,12 +21,11 @@ export component ThemingPage inherits PageBase {
         title: "Theme configuration";
         description: @markdown(
 			"The `UAppTheme` global comes with all the design tokens used in sleek-ui, however, all the design token properties are `out`.\n"
-			"In order to modify the theme, you must use the `light` and `dark` properties of type [UAppThemeConfig]() so that the application theme can automatically "
-			"switch between the light and dark color schemes using the `Palette.color-scheme` property."
+			"In order to modify the theme, you must use the `light` and `dark` properties of type [UAppThemeConfig](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/app-theme.slint) "
+			"so that the application theme can automatically switch between the light and dark color schemes using the `Palette.color-scheme` property."
 		);
-        link-clicked(id) => {
-            root.scroll-to(config-struct.y);
-            config-struct.trigger-signal();
+        link-clicked(url) => {
+            Platform.open-url(url);
         }
     }
 
