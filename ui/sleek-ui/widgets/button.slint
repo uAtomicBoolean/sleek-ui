@@ -51,6 +51,9 @@ export component UButton inherits ButtonInterface {
         root.enabled = !root.loading;
     }
     init => {
+        if variant == text-stripped {
+            debug("The 'text-stripped' variant is not supported in the 'UButton' widget. Defaulting to 'default'.");
+        }
         if root.loading {
             root.enabled = false;
         }
