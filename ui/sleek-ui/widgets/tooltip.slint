@@ -12,11 +12,11 @@ export global UTooltipLogic {
     out property <length> y;
     out property <length> width;
     out property <length> height;
-    public function display(text: styled-text, position: string, user_hovering: bool, coords: Point, width: length, height: length) {
+    public function display(text: styled-text, position: UTooltipPosition, user_hovering: bool, coords: Point, width: length, height: length) {
         self.user_hovering = user-hovering;
         if self.user_hovering {
             self.text = text;
-            self.position = position == "left" ? UTooltipPosition.left : position == "right" ? UTooltipPosition.right : position == "bottom" ? UTooltipPosition.bottom : UTooltipPosition.top;
+            self.position = position;
             self.x = coords.x;
             self.y = coords.y;
             self.width = width;

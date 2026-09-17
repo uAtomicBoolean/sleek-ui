@@ -47,7 +47,7 @@ export component TooltipPage inherits PageBase {
 			"the tooltip's styled text, the display position, the absolute "
 			"position and the width of the targeted element.\nThe full method's "
 			"signature is the following:\n"
-			"`display(text: styled-text, position: string, user_hovering: bool, target_pos: Point, target_width: length, target_height: length)`"
+			"`display(text: styled-text, position: UTooltipPosition, user_hovering: bool, target_pos: Point, target_width: length, target_height: length)`"
 		);
     }
 
@@ -65,7 +65,7 @@ export component TooltipPage inherits PageBase {
 
                 TouchArea {
                     changed has-hover => {
-                        UTooltipLogic.display(@markdown("A simple tooltip to display some information."), "", self.has-hover, self.absolute-position, self.width, self.height);
+                        UTooltipLogic.display(@markdown("A simple tooltip to display some information."), top, self.has-hover, self.absolute-position, self.width, self.height);
                     }
                 }
             }
@@ -85,7 +85,7 @@ export component TooltipPage inherits PageBase {
         description: @markdown(
 			"A tooltip can be placed at the following positions: `top`, `bottom`, "
 			"`left` and `right`.\nIts position is defined in the second parameter of "
-			"the `UTooltipLogic.display()` method.\nSending an empty string defaults to `top`."
+			"the `UTooltipLogic.display()` method."
 		);
     }
 
@@ -103,7 +103,7 @@ export component TooltipPage inherits PageBase {
 
                 TouchArea {
                     changed has-hover => {
-                        UTooltipLogic.display(@markdown("A simple tooltip to display some information."), "right", self.has-hover, self.absolute-position, self.width, self.height);
+                        UTooltipLogic.display(@markdown("A simple tooltip to display some information."), right, self.has-hover, self.absolute-position, self.width, self.height);
                     }
                 }
             }
