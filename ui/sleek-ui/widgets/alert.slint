@@ -4,11 +4,11 @@ import { ButtonInterface } from "button-interface.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 import { UIconButton } from "icon-button.slint";
-import { UColorVariant } from "common/enums.slint";
+import { UVariantType } from "common/enums.slint";
 
 
 export component UAlert inherits Rectangle {
-    in-out property <UColorVariant> variant: info;
+    in-out property <UVariantType> variant: info;
     in-out property <styled-text> message;
     in-out property <bool> display-close-button: false;
     in-out property <brush> text-color: UAppTheme.text;
@@ -86,7 +86,7 @@ export component UAlert inherits Rectangle {
             icon: @image-url("../assets/icons/info.svg");
             icon-color: UAppTheme.warning.base;
         }
-        danger when variant == danger: {
+        danger when variant == error: {
             background: UAppTheme.danger.selected;
             border-color: UAppTheme.danger.base;
             icon: @image-url("../assets/icons/triangle-alert.svg");

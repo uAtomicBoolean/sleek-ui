@@ -31,7 +31,10 @@ export component ButtonPage inherits PageBase {
 
     DocSection {
         title: "Simple buttons";
-        description: @markdown("The button widget comes with 4 variants: `primary`, `default`, `filled` and `text`.");
+        description: @markdown(
+			"The button widget comes with 4 variants: `primary`, `default`, `filled` and `text`.\n"
+			"The `UButtonVariant` can be imported from the [@sleek-ui/common.slint](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/common.slint) file."
+		);
     }
 
     WidgetPresentation {

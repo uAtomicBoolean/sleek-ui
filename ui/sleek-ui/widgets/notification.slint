@@ -4,11 +4,11 @@ import { ButtonInterface } from "button-interface.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 import { UIconButton } from "icon-button.slint";
-import { UColorVariant } from "common/enums.slint";
+import { UVariantType } from "common/enums.slint";
 
 
 export component UNotification inherits Rectangle {
-    in-out property <UColorVariant> variant: info;
+    in-out property <UVariantType> variant: info;
     in-out property <string> title;
     in-out property <string> message;
     in-out property <image> icon;
@@ -88,7 +88,7 @@ export component UNotification inherits Rectangle {
             icon: @image-url("../assets/icons/circle-check.svg");
             icon-color: UAppTheme.warning.base;
         }
-        danger when variant == danger: {
+        danger when variant == error: {
             icon: @image-url("../assets/icons/circle-check.svg");
             icon-color: UAppTheme.danger.base;
         }

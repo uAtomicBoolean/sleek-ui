@@ -80,7 +80,8 @@ export component NotificationPage inherits PageBase {
     DocSection {
         title: "Notification variants";
         description: @markdown(
-			"The notification widget comes with four different variants: `info`, `success`, `warning` and `danger`. The default variant is `info`."
+			"The notification widget comes with four different variants: `info` (default), `success`, `warning` and `error`.\n"
+			"You can import the `UVariantType` enum from the [@sleek-ui/common.slint](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/common.slint) file.\n"
 		);
     }
 
@@ -106,7 +107,7 @@ export component NotificationPage inherits PageBase {
             }
 
             UNotification {
-                variant: danger;
+                variant: error;
                 title: "Danger variant";
             }
         }
