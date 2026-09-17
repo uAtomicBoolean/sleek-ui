@@ -92,6 +92,9 @@ export component ColorsPage inherits PageBase {
 			"A primary color is represented by the `UPrimaryColor` struct. This struct is available in the "
 			"[@sleek-ui/colors.slint](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/colors.slint) file."
 		);
+        link-clicked(url) => {
+            Platform.open-url(url);
+        }
     }
 
     DocCode {
