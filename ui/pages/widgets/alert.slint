@@ -25,7 +25,8 @@ export component AlertPage inherits PageBase {
     DocSection {
         title: "How to use";
         description: @markdown(
-			"The alert widget comes with four variants: `info (default)`, `success`, `warning` and `danger`."
+			"The alert widget comes with four variants: `info (default)`, `success`, `warning` and `danger`.\n"
+			"You can import the `UVariantType` enum from the [@sleek-ui/common.slint](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/common.slint) file.\n"
 			"\nThe `message` property is of type `styled-text` so that you can include rich text formatting, and a `link-clicked` callback is available to handle clicks on links in the message."
 		);
     }
@@ -49,7 +50,7 @@ export component AlertPage inherits PageBase {
             }
 
             UAlert {
-                variant: danger;
+                variant: error;
                 message: @markdown("This is a danger alert with a [link that redirects to nothing](empty-link).");
                 link-clicked(link) => {
                     debug("Link clicked in alert: " + link);

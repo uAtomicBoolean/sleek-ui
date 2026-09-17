@@ -3,18 +3,12 @@ import { ButtonInterface } from "button-interface.slint";
 
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
-import { UIconButton, UIconButtonVariant } from "icon-button/icon-button.slint";
+import { UIconButton } from "icon-button.slint";
+import { UVariantType } from "common/enums.slint";
 
-
-export enum UNotificationVariant {
-    info,
-    success,
-    warning,
-    danger,
-}
 
 export component UNotification inherits Rectangle {
-    in-out property <UNotificationVariant> variant: info;
+    in-out property <UVariantType> variant: info;
     in-out property <string> title;
     in-out property <string> message;
     in-out property <image> icon;
@@ -82,19 +76,19 @@ export component UNotification inherits Rectangle {
     }
 
     states [
-        info when variant == UNotificationVariant.info: {
+        info when variant == info: {
             icon: @image-url("../assets/icons/circle-check.svg");
             icon-color: UAppTheme.primary.base;
         }
-        success when variant == UNotificationVariant.success: {
+        success when variant == success: {
             icon: @image-url("../assets/icons/circle-check.svg");
             icon-color: UAppTheme.success.base;
         }
-        warning when variant == UNotificationVariant.warning: {
+        warning when variant == warning: {
             icon: @image-url("../assets/icons/circle-check.svg");
             icon-color: UAppTheme.warning.base;
         }
-        danger when variant == UNotificationVariant.danger: {
+        danger when variant == error: {
             icon: @image-url("../assets/icons/circle-check.svg");
             icon-color: UAppTheme.danger.base;
         }

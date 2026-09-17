@@ -1,21 +1,17 @@
-import { UAppTheme } from "../../app-theme.slint";
+import { UAppTheme } from "../app-theme.slint";
 
-import { UButtonTheme, UButtonThemes, UButtonThemeColor } from "theme.slint";
+import {
+    UButtonVariant,
+    UButtonTheme,
+    UButtonThemes,
+} from "common/button.slint";
 
-import { ButtonInterface } from "../button-interface.slint";
-import { IconTextPlacement } from "../../structs/data-structs.slint";
+import { ButtonInterface } from "button-interface.slint";
+import { IconTextPlacement } from "common/enums.slint";
 
-import { UIcon } from "../icon.slint";
-import { USpinner } from "../spinner.slint";
-import { UText } from "../text.slint";
-
-
-export enum UButtonVariant {
-    primary,
-    default,
-    filled,
-    text,
-}
+import { UIcon } from "icon.slint";
+import { USpinner } from "spinner.slint";
+import { UText } from "text.slint";
 
 
 export component UButton inherits ButtonInterface {
@@ -28,16 +24,16 @@ export component UButton inherits ButtonInterface {
 	// Regular properties
     in-out property <UButtonVariant> variant: default;
     private property <UButtonTheme> theme: {
-        if variant == UButtonVariant.primary {
-            return UButtonThemes.primary;
+        if variant == primary {
+            return danger ? UButtonThemes.primary-danger : UButtonThemes.primary;
         }
-        if variant == UButtonVariant.filled {
-            return UButtonThemes.filled;
+        if variant == filled {
+            return danger ? UButtonThemes.filled-danger : UButtonThemes.filled;
         }
         if variant == UButtonVariant.text {
-            return UButtonThemes.text;
+            return danger ? UButtonThemes.text-danger : UButtonThemes.text;
         }
-        return UButtonThemes.default;
+        return danger ? UButtonThemes.default-danger : UButtonThemes.default;
     };
     in-out property <string> text <=> text-obj.text;
     in-out property <bool> danger: false;
@@ -55,26 +51,29 @@ export component UButton inherits ButtonInterface {
         root.enabled = !root.loading;
     }
     init => {
+        if variant == text-stripped {
+            debug("The 'text-stripped' variant is not supported in the 'UButton' widget. Defaulting to 'default'.");
+        }
         if root.loading {
             root.enabled = false;
         }
     }
-    background: get-color(theme.bg);
+    background: theme.bg;
     border-radius: UAppTheme.radius-base;
     border-width: self.has-tab-focus ? UAppTheme.focus-border-width : theme.border-width;
-    border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border);
+    border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border;
     if loading: Rectangle {
         z: 10;
         width: parent.width;
         height: parent.height;
         border-radius: UAppTheme.radius-base;
         border-width: theme.border-width;
-        border-color: get-color(theme.border);
+        border-color: theme.border;
         VerticalLayout {
             alignment: center;
             cross-axis-alignment: center;
             USpinner {
-                colorize: get-color(theme.text);
+                colorize: theme.text;
             }
         }
     }
@@ -91,7 +90,7 @@ export component UButton inherits ButtonInterface {
             icon-start := UIcon {
                 visible: !loading;
                 source: icon;
-                colorize: colorize-icon ? get-color(theme.text) : transparent;
+                colorize: colorize-icon ? theme.text : transparent;
                 size: UAppTheme.icon-size-base;
                 animate colorize { duration: UAppTheme.animation-duration; }
                 states [
@@ -99,16 +98,16 @@ export component UButton inherits ButtonInterface {
                         colorize: transparent;
                     }
                     disabled when !root.enabled: {
-                        colorize: colorize-icon ? get-color(theme.text-disabled) : transparent;
+                        colorize: colorize-icon ? theme.text-disabled : transparent;
                     }
                     checked when root.checked: {
-                        colorize: colorize-icon ? get-color(theme.text-checked) : transparent;
+                        colorize: colorize-icon ? theme.text-checked : transparent;
                     }
                     active when root.pressed: {
-                        colorize: colorize-icon ? get-color(theme.text-active) : transparent;
+                        colorize: colorize-icon ? theme.text-active : transparent;
                     }
                     hover when root.has-hover: {
-                        colorize: colorize-icon ? get-color(theme.text-hover) : transparent;
+                        colorize: colorize-icon ? theme.text-hover : transparent;
                     }
                 ]
             }
@@ -116,7 +115,7 @@ export component UButton inherits ButtonInterface {
         VerticalLayout {
             alignment: center;
             text-obj := UText {
-                color: get-color(theme.text);
+                color: theme.text;
                 font-size: UAppTheme.font-size-base;
                 animate color { duration: UAppTheme.animation-duration; }
 				// Managing the text's states here as the states' order is different from the
@@ -126,16 +125,16 @@ export component UButton inherits ButtonInterface {
                         color: transparent;
                     }
                     disabled when !root.enabled: {
-                        color: !root.loading ? get-color(theme.text-disabled) : transparent;
+                        color: !root.loading ? theme.text-disabled : transparent;
                     }
                     checked when root.checked: {
-                        color: !root.loading ? get-color(theme.text-checked) : transparent;
+                        color: !root.loading ? theme.text-checked : transparent;
                     }
                     active when root.pressed: {
-                        color: !root.loading ? get-color(theme.text-active) : transparent;
+                        color: !root.loading ? theme.text-active : transparent;
                     }
                     hover when root.has-hover: {
-                        color: !root.loading ? get-color(theme.text-hover) : transparent;
+                        color: !root.loading ? theme.text-hover : transparent;
                     }
                 ]
             }
@@ -146,7 +145,7 @@ export component UButton inherits ButtonInterface {
             icon-end := UIcon {
                 visible: !loading;
                 source: icon;
-                colorize: colorize-icon ? get-color(theme.text) : transparent;
+                colorize: colorize-icon ? theme.text : transparent;
                 size: UAppTheme.icon-size-base;
                 animate colorize { duration: UAppTheme.animation-duration; }
                 states [
@@ -154,46 +153,43 @@ export component UButton inherits ButtonInterface {
                         colorize: transparent;
                     }
                     disabled when !root.enabled: {
-                        colorize: colorize-icon ? get-color(theme.text-disabled) : transparent;
+                        colorize: colorize-icon ? theme.text-disabled : transparent;
                     }
                     checked when root.checked: {
-                        colorize: colorize-icon ? get-color(theme.text-checked) : transparent;
+                        colorize: colorize-icon ? theme.text-checked : transparent;
                     }
                     active when root.pressed: {
-                        colorize: colorize-icon ? get-color(theme.text-active) : transparent;
+                        colorize: colorize-icon ? theme.text-active : transparent;
                     }
                     hover when root.has-hover: {
-                        colorize: colorize-icon ? get-color(theme.text-hover) : transparent;
+                        colorize: colorize-icon ? theme.text-hover : transparent;
                     }
                 ]
             }
         }
     }
 
-    function get-color(c: UButtonThemeColor) -> brush {
-        return self.danger ? c.danger : c.base;
-    }
     states [
         loading when root.loading: {
             mouse-cursor: wait;
-            background: get-color(theme.bg-loading);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border);
+            background: theme.bg-loading;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border;
         }
         disabled when !root.enabled: {
-            background: get-color(theme.bg-disabled);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border-disabled);
+            background: theme.bg-disabled;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-disabled;
         }
         checked when root.checked: {
-            background: get-color(theme.bg-checked);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border-checked);
+            background: theme.bg-checked;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-checked;
         }
         active when root.pressed && !root.loading: {
-            background: get-color(theme.bg-active);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border-active);
+            background: theme.bg-active;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-active;
         }
         hover when root.has-hover && !root.loading: {
-            background: get-color(theme.bg-hover);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : get-color(theme.border-hover);
+            background: theme.bg-hover;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-hover;
         }
     ]
 }

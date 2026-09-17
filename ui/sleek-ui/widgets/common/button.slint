@@ -1,0 +1,155 @@
+import { UAppTheme } from "../../app-theme.slint";
+
+
+export enum UButtonVariant {
+    primary,
+    default,
+    filled,
+    text,
+    text-stripped,
+}
+
+export struct UButtonTheme {
+    border-width: length,
+    bg: brush,
+    bg-hover: brush,
+    bg-active: brush,
+    bg-checked: brush,
+    bg-disabled: brush,
+    bg-loading: brush,
+    text: brush,
+    text-hover: brush,
+    text-active: brush,
+    text-checked: brush,
+    text-disabled: brush,
+    border: brush,
+    border-hover: brush,
+    border-active: brush,
+    border-checked: brush,
+    border-disabled: brush,
+}
+
+export global UButtonThemes {
+    out property <UButtonTheme> primary: {
+        border-width: UAppTheme.border-width-base,
+        bg: UAppTheme.primary.base,
+        bg-hover: UAppTheme.primary.hover,
+        bg-active: UAppTheme.primary.active,
+        bg-checked: UAppTheme.primary.active,
+        bg-disabled: UAppTheme.primary.disabled,
+        bg-loading: UAppTheme.primary.disabled,
+        text: UAppTheme.primary-text,
+        text-hover: UAppTheme.primary-text,
+        text-active: UAppTheme.primary-text,
+        text-checked: UAppTheme.primary-text,
+        text-disabled: UAppTheme.primary-text.with-alpha(0.8),
+    };
+
+    out property <UButtonTheme> primary-danger: {
+        border-width: UAppTheme.border-width-base,
+        bg: UAppTheme.danger.base,
+        bg-hover: UAppTheme.danger.hover,
+        bg-active: UAppTheme.danger.active,
+        bg-checked: UAppTheme.danger.active,
+        bg-disabled: UAppTheme.danger.disabled,
+        bg-loading: UAppTheme.danger.disabled,
+        text: UAppTheme.primary-text,
+        text-hover: UAppTheme.primary-text,
+        text-active: UAppTheme.primary-text,
+        text-checked: UAppTheme.primary-text,
+        text-disabled: UAppTheme.primary-text.with-alpha(0.8),
+    };
+
+    out property <UButtonTheme> default: {
+        border-width: UAppTheme.border-width-base,
+        bg-hover: UAppTheme.color-fill-secondary,
+        bg-active: UAppTheme.color-fill,
+        bg-checked: UAppTheme.primary.selected,
+        bg-loading: UAppTheme.color-fill-secondary,
+        text: UAppTheme.text,
+        text-hover: UAppTheme.text,
+        text-active: UAppTheme.text,
+        text-checked: UAppTheme.primary.base,
+        text-disabled: UAppTheme.text-disabled,
+        border: UAppTheme.border,
+        border-hover: UAppTheme.border,
+        border-active: UAppTheme.border,
+        border-checked: UAppTheme.primary.base,
+        border-disabled: UAppTheme.border,
+    };
+
+    out property <UButtonTheme> default-danger: {
+        border-width: UAppTheme.border-width-base,
+        bg-hover: Colors.transparent,
+        bg-active: UAppTheme.danger.selected,
+        bg-checked: UAppTheme.danger.selected,
+        bg-loading: Colors.transparent,
+        text: UAppTheme.danger.base,
+        text-hover: UAppTheme.danger.hover,
+        text-active: UAppTheme.danger.active,
+        text-checked: UAppTheme.danger.base,
+        text-disabled: UAppTheme.text-disabled,
+        border: UAppTheme.danger.base,
+        border-hover: UAppTheme.danger.hover,
+        border-active: UAppTheme.danger.active,
+        border-checked: UAppTheme.danger.base,
+        border-disabled: UAppTheme.border,
+    };
+
+    out property <UButtonTheme> filled: {
+        bg: UAppTheme.color-fill-tertiary,
+        bg-hover: UAppTheme.color-fill-secondary,
+        bg-active: UAppTheme.color-fill,
+        bg-checked: UAppTheme.primary.selected,
+        bg-loading: UAppTheme.color-fill-secondary,
+        text: UAppTheme.text,
+        text-hover: UAppTheme.text,
+        text-active: UAppTheme.text,
+        text-checked: UAppTheme.primary.base,
+        text-disabled: UAppTheme.text-disabled,
+    };
+
+    out property <UButtonTheme> filled-danger: {
+        bg:  UAppTheme.danger.base.with-alpha(0.1),
+        bg-hover: UAppTheme.danger.hover.with-alpha(0.3),
+        bg-active: UAppTheme.danger.active.with-alpha(0.4),
+        bg-checked: UAppTheme.danger.selected,
+        bg-loading: UAppTheme.danger.hover.with-alpha(0.3),
+        text:  UAppTheme.danger.base,
+        text-hover: UAppTheme.danger.hover,
+        text-active: UAppTheme.danger.active,
+        text-checked: UAppTheme.danger.base,
+        text-disabled: UAppTheme.text-disabled,
+    };
+
+    out property <UButtonTheme> text: {
+        bg-hover: UAppTheme.color-fill-secondary,
+        bg-active: UAppTheme.color-fill,
+        bg-loading: UAppTheme.color-fill-secondary,
+        bg-checked: UAppTheme.primary.selected,
+        text: UAppTheme.text,
+        text-hover: UAppTheme.text,
+        text-active: UAppTheme.text,
+        text-checked: UAppTheme.primary.base,
+        text-disabled: UAppTheme.text-disabled,
+    };
+
+    out property <UButtonTheme> text-danger: {
+        bg-hover: UAppTheme.danger.hover.with-alpha(0.1),
+        bg-active: UAppTheme.danger.active.with-alpha(0.3),
+        bg-loading: UAppTheme.danger.hover.with-alpha(0.1),
+        bg-checked: UAppTheme.danger.selected,
+        text:  UAppTheme.danger.base,
+        text-hover: UAppTheme.danger.hover,
+        text-active: UAppTheme.danger.active,
+        text-checked: UAppTheme.danger.base,
+        text-disabled: UAppTheme.text-disabled,
+    };
+
+    out property <UButtonTheme> text-stripped: {
+        text: UAppTheme.text-secondary,
+        text-hover: UAppTheme.text,
+        text-active: UAppTheme.text,
+        text-disabled: UAppTheme.text-disabled,
+    };
+}
