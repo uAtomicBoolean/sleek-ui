@@ -25,20 +25,41 @@ export component LinearProgressPage inherits PageBase {
     DocSection {
         title: "Basic usage";
         description: @markdown(
-			"Define the current progress with the `progress` property. "
-			"Do not forget to set the width or height depending on the orientation."
+			"Define the current progress with the `progress` property and change its color using the `variant` property."
+
 		);
     }
 
     WidgetPresentation {
-        ULinearProgress {
-            width: 300px;
-            progress: 40%;
+        VerticalLayout {
+            spacing: UAppTheme.spacing-base;
+            ULinearProgress {
+                width: 300px;
+                progress: 40%;
+            }
+
+            ULinearProgress {
+                variant: success;
+                width: 300px;
+                progress: 100%;
+            }
+
+            ULinearProgress {
+                variant: warning;
+                width: 300px;
+                progress: 60%;
+            }
+
+            ULinearProgress {
+                variant: danger;
+                width: 300px;
+                progress: 20%;
+            }
         }
     }
 
     DocCode {
-        code: "ULinearProgress {\n    width: 300px;\n    progress: 40%;\n}";
+        code: "ULinearProgress {\n    width: 300px;\n    progress: 40%;\n}\n\nULinearProgress {\n    variant: success;\n    width: 300px;\n    progress: 100%;\n}\n\nULinearProgress {\n    variant: warning;\n    width: 300px;\n    progress: 60%;\n}\n\nULinearProgress {\n    variant: danger;\n    width: 300px;\n    progress: 20%;\n}\n\n";
     }
 
     DocSection {

@@ -1,16 +1,10 @@
 import { UAppTheme } from "../app-theme.slint";
+import { UColorVariant } from "common/enums.slint";
 
 
 enum ProgressDirection {
     start,
     end,
-}
-
-export enum ULinearProgressVariant {
-    primary,
-    success,
-    warning,
-    danger,
 }
 
 export component ULinearProgress inherits Rectangle {
@@ -21,7 +15,7 @@ export component ULinearProgress inherits Rectangle {
     accessible-orientation: orientation;
     // Regular properties
     in-out property <brush> progress-color;
-    in-out property <ULinearProgressVariant> variant: primary;
+    in-out property <UColorVariant> variant: info;
     in property <length> default-size: 10px;
     in property <length> default-radius: UAppTheme.radius-round;
     in property <Orientation> orientation: horizontal;
@@ -119,16 +113,16 @@ export component ULinearProgress inherits Rectangle {
         }
     }
     states [
-        primary when variant == ULinearProgressVariant.primary: {
+        primary when variant == info: {
             progress-color: UAppTheme.primary.base;
         }
-        success when variant == ULinearProgressVariant.success: {
+        success when variant == success: {
             progress-color: UAppTheme.success.base;
         }
-        warning when variant == ULinearProgressVariant.warning: {
+        warning when variant == warning: {
             progress-color: UAppTheme.warning.base;
         }
-        danger when variant == ULinearProgressVariant.danger: {
+        danger when variant == danger: {
             progress-color: UAppTheme.danger.base;
         }
     ]

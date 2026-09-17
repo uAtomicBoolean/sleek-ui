@@ -4,18 +4,11 @@ import { ButtonInterface } from "button-interface.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 import { UIconButton } from "icon-button.slint";
+import { UColorVariant } from "common/enums.slint";
 
-
-export enum UAlertVariant {
-    info,
-    success,
-    warning,
-    danger,
-}
 
 export component UAlert inherits Rectangle {
-	// Regular properties
-	in-out property <UAlertVariant> variant: info;
+    in-out property <UColorVariant> variant: info;
     in-out property <styled-text> message;
     in-out property <bool> display-close-button: false;
     in-out property <brush> text-color: UAppTheme.text;
@@ -75,25 +68,25 @@ export component UAlert inherits Rectangle {
     }
 
     states [
-        info when variant == UAlertVariant.info: {
+        info when variant == info: {
             background: UAppTheme.primary.selected;
             border-color: UAppTheme.primary.base;
             icon: @image-url("../assets/icons/info.svg");
             icon-color: UAppTheme.primary.base;
         }
-        success when variant == UAlertVariant.success: {
+        success when variant == success: {
             background: UAppTheme.success.selected;
             border-color: UAppTheme.success.base;
             icon: @image-url("../assets/icons/circle-check.svg");
             icon-color: UAppTheme.success.base;
         }
-        warning when variant == UAlertVariant.warning: {
+        warning when variant == warning: {
             background: UAppTheme.warning.selected;
             border-color: UAppTheme.warning.base;
             icon: @image-url("../assets/icons/info.svg");
             icon-color: UAppTheme.warning.base;
         }
-        danger when variant == UAlertVariant.danger: {
+        danger when variant == danger: {
             background: UAppTheme.danger.selected;
             border-color: UAppTheme.danger.base;
             icon: @image-url("../assets/icons/triangle-alert.svg");
