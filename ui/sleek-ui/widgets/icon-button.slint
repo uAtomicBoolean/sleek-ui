@@ -21,20 +21,20 @@ export component UIconButton inherits ButtonInterface {
 	// Regular properties
     in-out property <UButtonVariant> variant: default;
     private property <UButtonTheme> theme: {
-        if variant == UButtonVariant.primary {
-            return UButtonThemes.primary;
+        if variant == primary {
+            return danger ? UButtonThemes.primary-danger : UButtonThemes.primary;
         }
-        if variant == UButtonVariant.filled {
-            return UButtonThemes.filled;
+        if variant == filled {
+            return danger ? UButtonThemes.filled-danger : UButtonThemes.filled;
         }
         if variant == UButtonVariant.text {
-            return UButtonThemes.text;
+            return danger ? UButtonThemes.text-danger : UButtonThemes.text;
         }
         if variant == UButtonVariant.text-stripped {
             return UButtonThemes.text-stripped;
         }
-        return UButtonThemes.default;
-    }
+        return danger ? UButtonThemes.default-danger : UButtonThemes.default;
+    };
     in-out property <bool> danger: false;
     in-out property <bool> loading: false;
     in-out property <bool> checked: false;
@@ -59,10 +59,10 @@ export component UIconButton inherits ButtonInterface {
             root.enabled = false;
         }
     }
-    background: UButtonThemes.get-color(root.danger, theme.bg);
+    background: theme.bg;
     border-radius: UAppTheme.radius-circle;
     border-width: self.has-tab-focus ? UAppTheme.focus-border-width : theme.border-width;
-    border-color: self.has-tab-focus ? UAppTheme.focus-color : UButtonThemes.get-color(root.danger, theme.border);
+    border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border;
     VerticalLayout {
         alignment: center;
         cross-axis-alignment: center;
@@ -73,53 +73,53 @@ export component UIconButton inherits ButtonInterface {
         if !loading: UIcon {
             size: icon-size;
             source: icon;
-            colorize: colorize-icon ? UButtonThemes.get-color(root.danger, theme.text) : transparent;
+            colorize: colorize-icon ? theme.text : transparent;
             animate colorize { duration: UAppTheme.animation-duration; }
             states [
                 loading when root.loading: {
                     colorize: transparent;
                 }
                 disabled when !root.enabled: {
-                    colorize: colorize-icon ? UButtonThemes.get-color(root.danger, theme.text-disabled) : transparent;
+                    colorize: colorize-icon ? theme.text-disabled : transparent;
                 }
                 checked when root.checked: {
-                    colorize: colorize-icon ? UButtonThemes.get-color(root.danger, theme.text-checked) : transparent;
+                    colorize: colorize-icon ? theme.text-checked : transparent;
                 }
                 active when root.pressed: {
-                    colorize: colorize-icon ? UButtonThemes.get-color(root.danger, theme.text-active) : transparent;
+                    colorize: colorize-icon ? theme.text-active : transparent;
                 }
                 hover when root.has-hover: {
-                    colorize: colorize-icon ? UButtonThemes.get-color(root.danger, theme.text-hover) : transparent;
+                    colorize: colorize-icon ? theme.text-hover : transparent;
                 }
             ]
         }
         if loading: USpinner {
             size: icon-size;
-            colorize: UButtonThemes.get-color(root.danger, theme.text);
+            colorize: theme.text;
         }
     }
 
     states [
         loading when root.loading: {
             mouse-cursor: wait;
-            background: UButtonThemes.get-color(root.danger, theme.bg-loading);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : UButtonThemes.get-color(root.danger, theme.border);
+            background: theme.bg-loading;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border;
         }
         disabled when !root.enabled: {
-            background: UButtonThemes.get-color(root.danger, theme.bg-disabled);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : UButtonThemes.get-color(root.danger, theme.border-disabled);
+            background: theme.bg-disabled;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-disabled;
         }
         checked when root.checked: {
-            background: UButtonThemes.get-color(root.danger, theme.bg-checked);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : UButtonThemes.get-color(root.danger, theme.border-checked);
+            background: theme.bg-checked;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-checked;
         }
         active when root.pressed && !root.loading: {
-            background: UButtonThemes.get-color(root.danger, theme.bg-active);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : UButtonThemes.get-color(root.danger, theme.border-active);
+            background: theme.bg-active;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-active;
         }
         hover when root.has-hover && !root.loading: {
-            background: UButtonThemes.get-color(root.danger, theme.bg-hover);
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : UButtonThemes.get-color(root.danger, theme.border-hover);
+            background: theme.bg-hover;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-hover;
         }
     ]
 }
