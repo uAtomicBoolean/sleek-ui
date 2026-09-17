@@ -1,0 +1,105 @@
+import { UAppTheme } from "../app-theme.slint";
+import { ProgressDirection } from "common/enums.slint";
+
+
+enum UCircleProgressGapPosition {
+    top,
+    bottom,
+    left,
+    right,
+}
+
+// Draws a clockwise arc between two angles, measured clockwise from the top of the circle.
+component CircleArc inherits Path {
+    in property <angle> start-angle;
+    in property <angle> end-angle;
+    in property <length> line-width;
+    private property <float> center-x: self.viewbox-width / 2;
+    private property <float> center-y: self.viewbox-height / 2;
+    private property <float> radius: max(0, (min(self.width, self.height) - line-width) / 2 / 1px);
+    // The arc is split in two halves so that a complete circle (360deg) can be drawn.
+    private property <angle> middle-angle: (start-angle + end-angle) / 2;
+    viewbox-width: self.width / 1px;
+    viewbox-height: self.height / 1px;
+    stroke-width: line-width;
+    stroke-line-cap: round;
+    // Avoid drawing a dot because of the round line cap when the arc is empty.
+    visible: end-angle - start-angle > 0.01deg;
+    MoveTo {
+        x: root.center-x + root.radius * sin(root.start-angle);
+        y: root.center-y - root.radius * cos(root.start-angle);
+    }
+
+    ArcTo {
+        radius-x: root.radius;
+        radius-y: root.radius;
+        x: root.center-x + root.radius * sin(root.middle-angle);
+        y: root.center-y - root.radius * cos(root.middle-angle);
+        sweep: true;
+    }
+
+    ArcTo {
+        radius-x: root.radius;
+        radius-y: root.radius;
+        x: root.center-x + root.radius * sin(root.end-angle);
+        y: root.center-y - root.radius * cos(root.end-angle);
+        sweep: true;
+    }
+}
+
+export component UCircleProgress inherits Rectangle {
+    // Accessibility properties
+    accessible-role: progress-indicator;
+    accessible-value-minimum: 0;
+    accessible-value-maximum: 100;
+    accessible-value: indeterminate ? 0 : progress;
+    // Regular properties
+    in-out property <brush> progress-color: UAppTheme.primary.base;
+    in-out property <brush> track-color: UAppTheme.color-fill-secondary;
+    in property <length> default-size: 120px;
+    in property <length> line-width: default-size * 6 / 100;
+    in property <angle> gap-degree: 0deg;
+    in property <UCircleProgressGapPosition> gap-position: bottom;
+    in property <ProgressDirection> direction: start;
+    in-out property <percent> progress: 0%;
+    in-out property <bool> indeterminate: false;
+	// Inner properties to manage the gap and track.
+    private property <angle> gap: clamp(gap-degree, 0deg, 295deg);
+    private property <angle> gap-center: gap-position == top ? 0deg : gap-position == right ? 90deg : gap-position == left ? 270deg : 180deg;
+    // Without a gap, the progress starts from the top of the circle.
+    private property <angle> track-start: gap > 0 ? gap-center + gap / 2 : 0deg;
+    private property <angle> track-sweep: 360deg - gap;
+    private property <float> shown-progress: clamp(progress / 100%, 0, 1);
+    animate shown-progress {
+        easing: ease-in-out;
+        duration: 350ms;
+    }
+    // Position of the indeterminate arc's start along the track, the arc covers 30% of the track.
+    // With a gap, the arc goes out of the track before coming back, like the line progress.
+    private property <float> indeterminate-offset: indeterminate ? (gap > 0 ? mod(animation-tick() / 1500ms, 1.3) - 0.3 : mod(animation-tick() / 1500ms, 1)) : 0;
+    private property <float> arc-start: indeterminate ? (gap > 0 ? max(indeterminate-offset, 0) : indeterminate-offset) : 0;
+    private property <float> arc-end: indeterminate ? (gap > 0 ? min(indeterminate-offset + 0.3, 1) : indeterminate-offset + 0.3) : shown-progress;
+    background: transparent;
+    width: default-size;
+    height: default-size;
+
+    CircleArc {
+        width: 100%;
+        height: 100%;
+        stroke: root.track-color;
+        line-width: root.line-width;
+        start-angle: root.track-start;
+        end-angle: root.track-start + root.track-sweep;
+    }
+
+    CircleArc {
+        width: 100%;
+        height: 100%;
+        stroke: root.progress-color;
+        line-width: root.line-width;
+        start-angle: root.direction == ProgressDirection.end ? root.track-start + (1 - root.arc-end) * root.track-sweep : root.track-start + root.arc-start * root.track-sweep;
+        end-angle: root.direction == ProgressDirection.end ? root.track-start + (1 - root.arc-start) * root.track-sweep : root.track-start + root.arc-end * root.track-sweep;
+    }
+
+    @children
+}
