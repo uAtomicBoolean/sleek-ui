@@ -6,22 +6,14 @@ enum ProgressDirection {
     end,
 }
 
-export enum ULinearProgressVariant {
-    primary,
-    success,
-    warning,
-    danger,
-}
-
-export component ULinearProgress inherits Rectangle {
+export component ULineProgress inherits Rectangle {
 	// Accessibility properties
 	accessible-role: progress-indicator;
     accessible-value-minimum: 0;
     accessible-value-maximum: 100;
     accessible-orientation: orientation;
     // Regular properties
-    in-out property <brush> progress-color;
-    in-out property <ULinearProgressVariant> variant: primary;
+    in-out property <brush> progress-color: UAppTheme.primary.base;
     in property <length> default-size: 10px;
     in property <length> default-radius: UAppTheme.radius-round;
     in property <Orientation> orientation: horizontal;
@@ -118,18 +110,4 @@ export component ULinearProgress inherits Rectangle {
             }
         }
     }
-    states [
-        primary when variant == primary: {
-            progress-color: UAppTheme.primary.base;
-        }
-        success when variant == success: {
-            progress-color: UAppTheme.success.base;
-        }
-        warning when variant == warning: {
-            progress-color: UAppTheme.warning.base;
-        }
-        danger when variant == danger: {
-            progress-color: UAppTheme.danger.base;
-        }
-    ]
 }
