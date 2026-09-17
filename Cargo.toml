@@ -3,8 +3,12 @@ name = "sleek-ui"
 description = "A widgets library made with/for Slint based on Ant Design."
 version = "1.6.0"
 edition = "2024"
+authors = ["uAtomicBoolean <uatomicboolean@proton.me>"]
 license-file = "LICENSE"
 repository = "https://github.com/uAtomicBoolean/sleek-ui"
+homepage = "https://github.com/uAtomicBoolean/sleek-ui"
+documentation = "https://uatomicboolean.github.io/sleek-ui/"
+readme = "README.md"
 
 [lib]
 name = "sleek_ui_lib"
