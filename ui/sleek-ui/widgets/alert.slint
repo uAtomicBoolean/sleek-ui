@@ -3,7 +3,7 @@ import { ButtonInterface } from "button-interface.slint";
 
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
-import { UIconButton, UIconButtonVariant } from "icon-button/icon-button.slint";
+import { UIconButton } from "icon-button.slint";
 
 
 export enum UAlertVariant {
@@ -61,7 +61,7 @@ export component UAlert inherits Rectangle {
         if display-close-button: VerticalLayout {
             alignment: center;
             close-button := UIconButton {
-                variant: UIconButtonVariant.text-stripped;
+                variant: text-stripped;
                 icon: @image-url("../assets/icons/x.svg");
                 accessible-label: @tr("Close button for alert");
                 accessible-action-default => {

@@ -1,33 +1,46 @@
 import { UAppTheme } from "../../app-theme.slint";
 
-export struct UIconButtonThemeColor {
+
+export enum UButtonVariant {
+    primary,
+    default,
+    filled,
+    text,
+    text-stripped,
+}
+
+
+export struct UButtonThemeColor {
     base: brush,
     danger: brush,
 }
 
-export struct UIconButtonTheme {
+export struct UButtonTheme {
     border-width: length,
-    bg: UIconButtonThemeColor,
-    bg-hover: UIconButtonThemeColor,
-    bg-active: UIconButtonThemeColor,
-    bg-checked: UIconButtonThemeColor,
-    bg-disabled: UIconButtonThemeColor,
-    bg-loading: UIconButtonThemeColor,
-    text: UIconButtonThemeColor,
-    text-hover: UIconButtonThemeColor,
-    text-active: UIconButtonThemeColor,
-    text-checked: UIconButtonThemeColor,
-    text-disabled: UIconButtonThemeColor,
-    border: UIconButtonThemeColor,
-    border-hover: UIconButtonThemeColor,
-    border-active: UIconButtonThemeColor,
-    border-checked: UIconButtonThemeColor,
-    border-disabled: UIconButtonThemeColor,
+    bg: UButtonThemeColor,
+    bg-hover: UButtonThemeColor,
+    bg-active: UButtonThemeColor,
+    bg-checked: UButtonThemeColor,
+    bg-disabled: UButtonThemeColor,
+    bg-loading: UButtonThemeColor,
+    text: UButtonThemeColor,
+    text-hover: UButtonThemeColor,
+    text-active: UButtonThemeColor,
+    text-checked: UButtonThemeColor,
+    text-disabled: UButtonThemeColor,
+    border: UButtonThemeColor,
+    border-hover: UButtonThemeColor,
+    border-active: UButtonThemeColor,
+    border-checked: UButtonThemeColor,
+    border-disabled: UButtonThemeColor,
 }
 
+export global UButtonThemes {
+    public pure function get-color(danger: bool, c: UButtonThemeColor) -> brush {
+        return danger ? c.danger : c.base;
+    }
 
-export global UIconButtonThemes {
-    out property <UIconButtonTheme> primary: {
+    out property <UButtonTheme> primary: {
         border-width: UAppTheme.border-width-base,
         bg: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
         bg-hover: { base: UAppTheme.primary.hover, danger: UAppTheme.danger.hover },
@@ -44,7 +57,8 @@ export global UIconButtonThemes {
             danger: UAppTheme.primary-text.with-alpha(0.8)
         },
     };
-    out property <UIconButtonTheme> default: {
+
+    out property <UButtonTheme> default: {
         border-width: UAppTheme.border-width-base,
         bg-hover: { base: UAppTheme.color-fill-secondary, danger: Colors.transparent },
         bg-active: { base: UAppTheme.color-fill, danger: UAppTheme.danger.selected },
@@ -61,7 +75,8 @@ export global UIconButtonThemes {
         border-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
         border-disabled: { base: UAppTheme.border, danger: UAppTheme.border },
     };
-    out property <UIconButtonTheme> filled: {
+
+    out property <UButtonTheme> filled: {
         bg: { base: UAppTheme.color-fill-tertiary, danger: UAppTheme.danger.base.with-alpha(0.1) },
         bg-hover: {
             base: UAppTheme.color-fill-secondary,
@@ -79,7 +94,8 @@ export global UIconButtonThemes {
         text-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
         text-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled },
     };
-    out property <UIconButtonTheme> text: {
+
+    out property <UButtonTheme> text: {
         bg-hover: {
             base: UAppTheme.color-fill-secondary,
             danger: UAppTheme.danger.hover.with-alpha(0.1)
@@ -95,7 +111,8 @@ export global UIconButtonThemes {
         text-checked: { base: UAppTheme.primary.base, danger: UAppTheme.danger.base },
         text-disabled: { base: UAppTheme.text-disabled, danger: UAppTheme.text-disabled },
     };
-    out property <UIconButtonTheme> text-stripped: {
+
+    out property <UButtonTheme> text-stripped: {
         text: { base: UAppTheme.text-secondary, danger: UAppTheme.text-secondary },
         text-hover: { base: UAppTheme.text, danger: UAppTheme.text },
         text-active: { base: UAppTheme.text, danger: UAppTheme.text },
