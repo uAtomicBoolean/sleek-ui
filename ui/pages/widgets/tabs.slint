@@ -48,7 +48,7 @@ export component TabsPage inherits PageBase {
     }
 
     DocCode {
-        code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"]\n    if self.current-index == 0: UText {\n        text: \"First tab content\";\n    }\n     if self.current-index == 1: UText {\n        text: \"Second tab content\";\n    }\n    if self.current-index == 2: UText {\n        text: \"Third tab content\";\n    }\n}";
+        code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"];\n    if self.current-index == 0: UText {\n        text: \"First tab content\";\n    }\n    if self.current-index == 1: UText {\n        text: \"Second tab content\";\n    }\n    if self.current-index == 2: UText {\n        text: \"Third tab content\";\n    }\n}";
     }
 
     DocSection {
@@ -56,7 +56,8 @@ export component TabsPage inherits PageBase {
         description: @markdown(
 			"You can set the `tabs-alignment` property to `start` to have "
 			"tabs that take the minimum width to display their text.\n"
-			"Otherwise, the property defaults to `stretch`."
+			"Otherwise, the property defaults to `stretch`.\n"
+			"If necessary, you can import the `UTabsAlignment` enum from the `@sleek-ui/widgets.slint` file."
 		);
     }
 
@@ -69,6 +70,6 @@ export component TabsPage inherits PageBase {
     }
 
     DocCode {
-        code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"]\n    tabs-alignment: start;\n}";
+        code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"];\n    tabs-alignment: start;\n}";
     }
 }

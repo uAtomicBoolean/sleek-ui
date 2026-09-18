@@ -4,24 +4,41 @@ import { UDivider } from "divider.slint";
 import { ButtonInterface } from "button-interface.slint";
 
 
-enum TabsAlignmentType {
+export enum UTabsAlignment {
     start,
     stretch,
 }
 
 export component UTabs inherits Rectangle {
+    accessible-role: tab-list;
 	// Regular properties
-    in-out property <[string]> tabs;
+    in property <[string]> tabs;
     in-out property <int> current-index: 0;
-    in-out property <TabsAlignmentType> tabs-alignment: stretch;
+    in property <UTabsAlignment> tabs-alignment: stretch;
     private property <length> underline-x: 0px;
     private property <length> underline-width: 0px;
     VerticalLayout {
         alignment: start;
         HorizontalLayout {
-            alignment: tabs-alignment == TabsAlignmentType.start ? start : stretch;
+            alignment: tabs-alignment == start ? start : stretch;
             padding-bottom: UAppTheme.padding-base;
             for tab[idx] in tabs: ButtonInterface {
+                accessible-role: AccessibleRole.tab;
+                accessible-label: tab;
+                property <bool> is-current: current-index == idx;
+                function update-underline() {
+                    if is-current {
+                        underline-x = self.x;
+                        underline-width = self.width;
+                    }
+                }
+                changed is-current => { update-underline() }
+                changed x => { update-underline() }
+                changed width => { update-underline() }
+                // Used to render the underline for the first time.
+				init => {
+                    update-underline();
+                }
                 clicked => {
                     current-index = idx;
                     underline-x = self.x;
@@ -30,31 +47,17 @@ export component UTabs inherits Rectangle {
                 border-color: UAppTheme.focus-color;
                 border-width: self.has-tab-focus ? UAppTheme.focus-border-width : 0px;
                 border-radius: UAppTheme.radius-base;
-                VerticalLayout {
-                    HorizontalLayout {
-                        alignment: center;
-                        padding-top: UAppTheme.padding-vertical;
-                        padding-bottom: UAppTheme.padding-vertical;
-                        padding-left: UAppTheme.padding-horizontal;
-                        padding-right: UAppTheme.padding-horizontal;
-                        tab-text := UText {
-                            text: tab;
-                            font-size: UAppTheme.font-size-base;
-                            color: current-index == idx ? UAppTheme.primary.base : UAppTheme.text;
-                            animate color { duration: UAppTheme.animation-duration; }
-                        }
-                    }
-                }
-
-                // Used to initialize the underline-width property.
-				// This is due to a recursion error when trying to get the ButtonInterface's 
-				// width before it being rendered.
-                Timer {
-                    interval: 1ms;
-                    running: current-index == idx;
-                    triggered => {
-                        underline-width = parent.width;
-                        self.running = false;
+                HorizontalLayout {
+                    alignment: center;
+                    padding-top: UAppTheme.padding-vertical;
+                    padding-bottom: UAppTheme.padding-vertical;
+                    padding-left: UAppTheme.padding-horizontal;
+                    padding-right: UAppTheme.padding-horizontal;
+                    tab-text := UText {
+                        text: tab;
+                        font-size: UAppTheme.font-size-base;
+                        color: current-index == idx ? UAppTheme.primary.base : UAppTheme.text;
+                        animate color { duration: UAppTheme.animation-duration; }
                     }
                 }
 
@@ -62,7 +65,7 @@ export component UTabs inherits Rectangle {
                     pressed when self.pressed: {
                         tab-text.color: UAppTheme.primary.base;
                     }
-                    hover when self.has-hover: {
+                    hover when self.has-hover && !is-current: {
                         tab-text.color: UAppTheme.primary.hover;
                     }
                 ]
@@ -83,6 +86,7 @@ export component UTabs inherits Rectangle {
         }
 
         VerticalLayout {
+            accessible-role: tab-panel;
             padding-top: UAppTheme.spacing-bigger;
             @children
         }
