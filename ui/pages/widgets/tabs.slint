@@ -26,15 +26,20 @@ export component TabsPage inherits PageBase {
     DocSection {
         title: "Default tabs";
         description: @markdown(
-			"The widget takes a list of strings with the `tabs` property and "
-			"updates the `current-index` property when a tab is selected."
+			"The widget takes a list of `UTabData` with the `tabs` property and "
+			"updates the `current-index` property when a tab is selected.\n"
+			"The `UTabData` struct is available from the `@sleek-ui/widgets.slint` file."
 		);
     }
 
     WidgetPresentation {
         full-width: true;
         UTabs {
-            tabs: ["First tab", "Second tab", "Third tab"];
+            tabs: [
+                { title: "First tab" },
+                { title: "Second tab" },
+                { title: "Third tab" },
+            ];
             if self.current-index == 0: UText {
                 text: "First tab content";
             }
@@ -48,7 +53,40 @@ export component TabsPage inherits PageBase {
     }
 
     DocCode {
-        code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"];\n    if self.current-index == 0: UText {\n        text: \"First tab content\";\n    }\n    if self.current-index == 1: UText {\n        text: \"Second tab content\";\n    }\n    if self.current-index == 2: UText {\n        text: \"Third tab content\";\n    }\n}";
+        code: "UTabs {\n    tabs: [ { title: \"First tab\"}, { title: \"Second tab\" }, { title: \"Third tab\" } ];\n    if self.current-index == 0: UText {\n        text: \"First tab content\";\n    }\n    if self.current-index == 1: UText {\n        text: \"Second tab content\";\n    }\n    if self.current-index == 2: UText {\n        text: \"Third tab content\";\n    }\n}";
+    }
+
+    DocSection {
+        title: "Icons";
+        description: @markdown("You can add icons to your tabs either at the start or end position.");
+    }
+
+    WidgetPresentation {
+        UTabs {
+            tabs-alignment: start;
+            tabs: [
+                {
+                    title: "Start position",
+                    icon: @image-url("../../assets/images/search.svg"),
+                    icon-placement: start
+                },
+                {
+                    title: "End position",
+                    icon: @image-url("../../assets/images/rocket.svg"),
+                    icon-placement: end
+                },
+            ];
+            if self.current-index == 0: UText {
+                text: "First tab content";
+            }
+            if self.current-index == 1: UText {
+                text: "Second tab content";
+            }
+        }
+    }
+
+    DocCode {
+        code: "UTabs {\n    tabs-alignment: start;\n    tabs: [\n        { title: \"Start position\", icon: @image-url(\"your/icon/path.svg\"), icon-placement: start },\n        { title: \"End position\", icon: @image-url(\"your/icon/path.svg\"), icon-placement: end },\n    ];\n    if self.current-index == 0: UText {\n        text: \"First tab content\";\n    }\n    if self.current-index == 1: UText {\n        text: \"Second tab content\";\n    }\n}";
     }
 
     DocSection {
@@ -64,12 +102,16 @@ export component TabsPage inherits PageBase {
     WidgetPresentation {
         full-width: true;
         UTabs {
-            tabs: ["First tab", "Second tab", "Third tab"];
+            tabs: [
+                { title: "First tab" },
+                { title: "Second tab" },
+                { title: "Third tab" },
+            ];
             tabs-alignment: start;
         }
     }
 
     DocCode {
-        code: "UTabs {\n    tabs: [\"First tab\", \"Second tab\", \"Third tab\"];\n    tabs-alignment: start;\n}";
+        code: "UTabs {\n    tabs: [{ title: \"First tab\" }, { title: \"Second tab\" }, { title: \"Third tab\" } ];\n    tabs-alignment: start;\n}";
     }
 }

@@ -1,7 +1,9 @@
 import { UAppTheme } from "../app-theme.slint";
 import { UText } from "text.slint";
 import { UDivider } from "divider.slint";
+import { UIcon } from "icon.slint";
 import { ButtonInterface } from "button-interface.slint";
+import { IconTextPlacement } from "common/enums.slint";
 
 
 export enum UTabsAlignment {
@@ -9,10 +11,39 @@ export enum UTabsAlignment {
     stretch,
 }
 
+
+export struct UTabData {
+    title: string,
+    icon: image,
+    icon-placement: IconTextPlacement = IconTextPlacement.hidden,
+}
+
+component TabIcon inherits UIcon {
+    in property <image> icon;
+    in property <bool> is-current;
+    in property <bool> pressed;
+    in property <bool> has-hover;
+    source: icon;
+    animate colorize { duration: UAppTheme.animation-duration; }
+    states [
+        current when is-current: {
+            colorize: UAppTheme.primary.base;
+        }
+        pressed when pressed: {
+            colorize: UAppTheme.primary.base;
+        }
+        hover when has-hover: {
+            colorize: UAppTheme.primary.hover;
+        }
+    ]
+}
+
+
 export component UTabs inherits Rectangle {
     accessible-role: tab-list;
+    accessible-item-count: tabs.length;
 	// Regular properties
-    in property <[string]> tabs;
+    in property <[UTabData]> tabs;
     in-out property <int> current-index: 0;
     in property <UTabsAlignment> tabs-alignment: stretch;
     private property <length> underline-x: 0px;
@@ -22,9 +53,12 @@ export component UTabs inherits Rectangle {
         HorizontalLayout {
             alignment: tabs-alignment == start ? start : stretch;
             padding-bottom: UAppTheme.padding-base;
-            for tab[idx] in tabs: ButtonInterface {
+            for tab[idx] in tabs: tab-btn := ButtonInterface {
                 accessible-role: AccessibleRole.tab;
-                accessible-label: tab;
+                accessible-label: tab.title;
+                accessible-item-index: idx;
+                accessible-item-selectable: true;
+                accessible-item-selected: is-current;
                 property <bool> is-current: current-index == idx;
                 function update-underline() {
                     if is-current {
@@ -41,34 +75,50 @@ export component UTabs inherits Rectangle {
                 }
                 clicked => {
                     current-index = idx;
-                    underline-x = self.x;
-                    underline-width = self.width;
+                    update-underline();
                 }
                 border-color: UAppTheme.focus-color;
                 border-width: self.has-tab-focus ? UAppTheme.focus-border-width : 0px;
                 border-radius: UAppTheme.radius-base;
                 HorizontalLayout {
                     alignment: center;
+                    cross-axis-alignment: center;
+                    spacing: UAppTheme.spacing-base;
                     padding-top: UAppTheme.padding-vertical;
                     padding-bottom: UAppTheme.padding-vertical;
                     padding-left: UAppTheme.padding-horizontal;
                     padding-right: UAppTheme.padding-horizontal;
-                    tab-text := UText {
-                        text: tab;
+                    if tab.icon-placement == IconTextPlacement.start: TabIcon {
+                        source: tab.icon;
+                        is-current: is-current;
+                        pressed: tab-btn.pressed;
+                        has-hover: tab-btn.has-hover;
+                    }
+
+                    UText {
+                        text: tab.title;
                         font-size: UAppTheme.font-size-base;
-                        color: current-index == idx ? UAppTheme.primary.base : UAppTheme.text;
                         animate color { duration: UAppTheme.animation-duration; }
+                        states [
+                            current when tab-btn.is-current: {
+                                color: UAppTheme.primary.base;
+                            }
+                            pressed when tab-btn.pressed: {
+                                color: UAppTheme.primary.base;
+                            }
+                            hover when tab-btn.has-hover: {
+                                color: UAppTheme.primary.hover;
+                            }
+                        ]
+                    }
+
+                    if tab.icon-placement == IconTextPlacement.end: TabIcon {
+                        source: tab.icon;
+                        is-current: is-current;
+                        pressed: tab-btn.pressed;
+                        has-hover: tab-btn.has-hover;
                     }
                 }
-
-                states [
-                    pressed when self.pressed: {
-                        tab-text.color: UAppTheme.primary.base;
-                    }
-                    hover when self.has-hover && !is-current: {
-                        tab-text.color: UAppTheme.primary.hover;
-                    }
-                ]
             }
         }
 
