@@ -15,7 +15,7 @@ export global UMenuLogic {
     in-out property <string> current-link;
 }
 
-export struct UMenuLinkTheme {
+export struct UMenuItemTheme {
     text: brush,
     text-selected: brush,
     text-disabled: brush,
@@ -24,21 +24,21 @@ export struct UMenuLinkTheme {
 }
 
 export global UMenuLinkThemes {
-    out property <UMenuLinkTheme> default: {
+    out property <UMenuItemTheme> default: {
         text: UAppTheme.text,
         text-selected: UAppTheme.primary-text,
         text-disabled: UAppTheme.text-disabled,
         bg-hover: UAppTheme.color-fill-secondary,
         bg-selected: UAppTheme.primary.base,
     };
-    out property <UMenuLinkTheme> light: {
+    out property <UMenuItemTheme> light: {
         text: UAppTheme.light.text,
         text-selected: UAppTheme.primary-text,
         text-disabled: UAppTheme.light.text-disabled,
         bg-hover: UAppTheme.light.color-fill-secondary,
         bg-selected: UAppTheme.light.primary.base,
     };
-    out property <UMenuLinkTheme> dark: {
+    out property <UMenuItemTheme> dark: {
         text: UAppTheme.dark.text,
         text-selected: UAppTheme.primary-text,
         text-disabled: UAppTheme.dark.text-disabled,
@@ -47,27 +47,20 @@ export global UMenuLinkThemes {
     };
 }
 
-export struct UMenuSubMenuTheme {
-    text: brush,
-    text-selected: brush,
-    text-disabled: brush,
-    bg-hover: brush,
-}
-
 export global UMenuSubMenuThemes {
-    out property <UMenuSubMenuTheme> default: {
+    out property <UMenuItemTheme> default: {
         text: UAppTheme.text,
         text-selected: UAppTheme.primary.base,
         text-disabled: UAppTheme.text-disabled,
         bg-hover: UAppTheme.color-fill-secondary,
     };
-    out property <UMenuSubMenuTheme> light: {
+    out property <UMenuItemTheme> light: {
         text: UAppTheme.light.text,
         text-selected: UAppTheme.light.primary.base,
         text-disabled: UAppTheme.light.text-disabled,
         bg-hover: UAppTheme.light.color-fill-secondary,
     };
-    out property <UMenuSubMenuTheme> dark: {
+    out property <UMenuItemTheme> dark: {
         text: UAppTheme.dark.text,
         text-selected: UAppTheme.dark.primary.base,
         text-disabled: UAppTheme.dark.text-disabled,

@@ -6,13 +6,13 @@ import { ButtonInterface } from "../button-interface.slint";
 import {
     UMenuLogic,
     UMenuVariant,
-    UMenuLinkTheme,
+    UMenuItemTheme,
     UMenuLinkThemes,
 } from "index.slint";
 
 
 export component UMenuLink inherits Rectangle {
-    private property <UMenuLinkTheme> theme: {
+    private property <UMenuItemTheme> theme: {
         if UMenuLogic.variant == UMenuVariant.light {
             return UMenuLinkThemes.light;
         } else if UMenuLogic.variant == UMenuVariant.dark {

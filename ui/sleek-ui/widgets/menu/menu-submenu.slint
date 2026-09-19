@@ -6,13 +6,13 @@ import { ButtonInterface } from "../button-interface.slint";
 import {
     UMenuLogic,
     UMenuVariant,
-    UMenuSubMenuTheme,
+    UMenuItemTheme,
     UMenuSubMenuThemes,
 } from "index.slint";
 
 
 export component UMenuSubmenu inherits VerticalLayout {
-    private property <UMenuSubMenuTheme> theme: {
+    private property <UMenuItemTheme> theme: {
         if UMenuLogic.variant == UMenuVariant.light {
             return UMenuSubMenuThemes.light;
         } else if UMenuLogic.variant == UMenuVariant.dark {
