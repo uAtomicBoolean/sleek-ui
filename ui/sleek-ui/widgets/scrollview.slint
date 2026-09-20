@@ -143,26 +143,34 @@ export component UScrollView inherits FocusScope {
         handle-size: max(min-handle-size, flickable.width / flickable.content-width * self.width);
     }
 
-    capture-key-pressed(event) => {
+    key-pressed(event) => {
         if event.modifiers.shift {
             if event.text == Key.PageDown {
                 h-scrollbar.scroll-by(self.content-width * 0.1);
+                return accept;
             } else if event.text == Key.PageUp {
                 h-scrollbar.scroll-by(-self.content-width * 0.1);
+                return accept;
             } else if event.text == Key.Home {
                 h-scrollbar.scroll-to(0);
+                return accept;
             } else if event.text == Key.End {
                 h-scrollbar.scroll-to(h-scrollbar.max-scroll-pos);
+                return accept;
             }
         } else {
             if event.text == Key.PageDown {
                 v-scrollbar.scroll-by(self.content-height * 0.1);
+                return accept;
             } else if event.text == Key.PageUp {
                 v-scrollbar.scroll-by(-self.content-height * 0.1);
+                return accept;
             } else if event.text == Key.Home {
                 v-scrollbar.scroll-to(0);
+                return accept;
             } else if event.text == Key.End {
                 v-scrollbar.scroll-to(v-scrollbar.max-scroll-pos);
+                return accept;
             }
         }
         reject
