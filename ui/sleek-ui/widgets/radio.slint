@@ -104,14 +104,15 @@ export component URadio {
 	in-out property <bool> enabled: true;
     in-out property <[UOptionData]> options;
     in-out property <string> selected-value;
-    in-out property <Orientation> orientation: vertical;
-    in-out property <LayoutAlignment> alignment: start;
-    in-out property <length> inner-spacing: UAppTheme.spacing-base;
+    in property <Orientation> orientation: vertical;
+    in property <LayoutAlignment> alignment: start;
+    in property <length> options-spacing: UAppTheme.spacing-base;
+    in property <length> inner-spacing: UAppTheme.spacing-base;
     callback selected(value: string);
     VerticalLayout {
         if orientation == Orientation.vertical: VerticalLayout {
             alignment: root.alignment;
-            spacing: UAppTheme.spacing-base;
+            spacing: options-spacing;
             for option in root.options: URadioOption {
                 enabled: root.enabled && option.enabled;
                 option: option;
@@ -124,7 +125,7 @@ export component URadio {
         }
         if orientation == Orientation.horizontal: HorizontalLayout {
             alignment: root.alignment;
-            spacing: UAppTheme.spacing-base;
+            spacing: options-spacing;
             for option in root.options: URadioOption {
                 enabled: root.enabled && option.enabled;
                 option: option;

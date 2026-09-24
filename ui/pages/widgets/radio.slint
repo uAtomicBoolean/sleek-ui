@@ -82,14 +82,16 @@ export component RadioPage inherits PageBase {
     }
 
     DocSection {
-        title: "Inner spacing";
+        title: "Spacing";
         description: @markdown(
-			"Using the `inner-spacing` property, you can define the space between the radio itself and the text."
+			"Use the `options-spacing` property to define the spacign between each option.\n"
+			"Use the `inner-spacing` property to define the spacing between the radio itself and the text."
 		);
     }
 
     WidgetPresentation {
         URadio {
+            options-spacing: 20px;
             inner-spacing: 40px;
             options: [
                 { text: "Option 1", value:"option1", enabled: true },
@@ -100,7 +102,7 @@ export component RadioPage inherits PageBase {
     }
 
     DocCode {
-        code: "URadio {\n    inner-spacing: 40px;\n    options: [...];\n};";
+        code: "URadio {\n    options-spacing: 20px;\n    inner-spacing: 40px;\n    options: [...];\n};";
     }
 
     DocSection {
