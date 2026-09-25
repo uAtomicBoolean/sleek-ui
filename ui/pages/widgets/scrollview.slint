@@ -12,10 +12,10 @@ import { PageBase } from "../../components/page-base.slint";
 import { AppLogic } from "../../app-logic.slint";
 
 
-export component ScrollviewPage inherits PageBase {
+export component ScrollViewPage inherits PageBase {
     UTitle {
         level: 3;
-        text: "Scrollview";
+        text: "ScrollView";
     }
 
     DocDescription {
@@ -106,7 +106,11 @@ export component ScrollviewPage inherits PageBase {
         title: "Keyboard navigation";
         description: @markdown(
 			"When the widget is focused, `PageUp` / `PageDown` scroll vertically and `Home` / `End` jump to the top "
-			"and bottom. Hold `Shift` to scroll horizontally instead. These movements are animated as well."
+			"and bottom. Hold `Shift` to scroll horizontally instead. These movements are animated as well.\n"
+			"The `UScrollView` widget uses the `FocusScope.key-pressed()` handler to manage the keyboard navigation. "
+			"This allows an inner scrollview to receive and accept the keyboard events before an outer scrollview.\n"
+			"However, if a `FocusScope` element captures the keyboard input before the scrollview, the user won't be "
+			"able to scroll using the keyboard."
 		);
     }
 }
