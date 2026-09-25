@@ -66,14 +66,11 @@ export component UButton inherits ButtonInterface {
         z: 10;
         width: parent.width;
         height: parent.height;
-        border-radius: UAppTheme.radius-base;
-        border-width: theme.border-width;
-        border-color: theme.border;
         VerticalLayout {
             alignment: center;
             cross-axis-alignment: center;
             USpinner {
-                colorize: theme.text;
+                colorize: theme.text-disabled;
             }
         }
     }
@@ -94,9 +91,6 @@ export component UButton inherits ButtonInterface {
                 size: UAppTheme.icon-size-base;
                 animate colorize { duration: UAppTheme.animation-duration; }
                 states [
-                    loading when root.loading: {
-                        colorize: transparent;
-                    }
                     disabled when !root.enabled: {
                         colorize: colorize-icon ? theme.text-disabled : transparent;
                     }
@@ -115,26 +109,24 @@ export component UButton inherits ButtonInterface {
         VerticalLayout {
             alignment: center;
             text-obj := UText {
+                visible: !loading;
                 color: theme.text;
                 font-size: UAppTheme.font-size-base;
                 animate color { duration: UAppTheme.animation-duration; }
 				// Managing the text's states here as the states' order is different from the
 				// component.
 				states [
-                    loading when root.loading: {
-                        color: transparent;
-                    }
                     disabled when !root.enabled: {
-                        color: !root.loading ? theme.text-disabled : transparent;
+                        color: theme.text-disabled;
                     }
                     checked when root.checked: {
-                        color: !root.loading ? theme.text-checked : transparent;
+                        color: theme.text-checked;
                     }
                     active when root.pressed: {
-                        color: !root.loading ? theme.text-active : transparent;
+                        color: theme.text-active;
                     }
                     hover when root.has-hover: {
-                        color: !root.loading ? theme.text-hover : transparent;
+                        color: theme.text-hover;
                     }
                 ]
             }
@@ -149,9 +141,6 @@ export component UButton inherits ButtonInterface {
                 size: UAppTheme.icon-size-base;
                 animate colorize { duration: UAppTheme.animation-duration; }
                 states [
-                    loading when root.loading: {
-                        colorize: transparent;
-                    }
                     disabled when !root.enabled: {
                         colorize: colorize-icon ? theme.text-disabled : transparent;
                     }
@@ -173,11 +162,11 @@ export component UButton inherits ButtonInterface {
         loading when root.loading: {
             mouse-cursor: wait;
             background: theme.bg-loading;
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border;
+            border-color: theme.border-disabled;
         }
         disabled when !root.enabled: {
             background: theme.bg-disabled;
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-disabled;
+            border-color: theme.border-disabled;
         }
         checked when root.checked: {
             background: theme.bg-checked;
