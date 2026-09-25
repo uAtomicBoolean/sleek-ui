@@ -71,14 +71,12 @@ export component UIconButton inherits ButtonInterface {
         padding-left: UAppTheme.padding-vertical;
         padding-right: UAppTheme.padding-vertical;
         if !loading: UIcon {
+            visible: !loading;
             size: icon-size;
             source: icon;
             colorize: colorize-icon ? theme.text : transparent;
             animate colorize { duration: UAppTheme.animation-duration; }
             states [
-                loading when root.loading: {
-                    colorize: transparent;
-                }
                 disabled when !root.enabled: {
                     colorize: colorize-icon ? theme.text-disabled : transparent;
                 }
@@ -103,11 +101,11 @@ export component UIconButton inherits ButtonInterface {
         loading when root.loading: {
             mouse-cursor: wait;
             background: theme.bg-loading;
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border;
+            border-color: theme.border-disabled;
         }
         disabled when !root.enabled: {
             background: theme.bg-disabled;
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-disabled;
+            border-color: theme.border-disabled;
         }
         checked when root.checked: {
             background: theme.bg-checked;

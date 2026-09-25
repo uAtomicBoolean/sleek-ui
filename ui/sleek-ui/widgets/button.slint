@@ -66,9 +66,6 @@ export component UButton inherits ButtonInterface {
         z: 10;
         width: parent.width;
         height: parent.height;
-        border-radius: UAppTheme.radius-base;
-        border-width: theme.border-width;
-        border-color: theme.border;
         VerticalLayout {
             alignment: center;
             cross-axis-alignment: center;
@@ -165,11 +162,11 @@ export component UButton inherits ButtonInterface {
         loading when root.loading: {
             mouse-cursor: wait;
             background: theme.bg-loading;
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border;
+            border-color: theme.border-disabled;
         }
         disabled when !root.enabled: {
             background: theme.bg-disabled;
-            border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border-disabled;
+            border-color: theme.border-disabled;
         }
         checked when root.checked: {
             background: theme.bg-checked;
