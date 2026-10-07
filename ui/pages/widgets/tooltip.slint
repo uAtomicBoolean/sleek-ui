@@ -32,7 +32,8 @@ export component TooltipPage inherits PageBase {
         padding-top: UAppTheme.padding-base;
         padding-bottom: UAppTheme.padding-base;
         UAlert {
-            message: @markdown("You can also use the official Tooltip widget from slint which allows you to have custom content.");
+            variant: warning;
+            message: @markdown("This widget will, due to its complexity, be deprecated in one of the next version in favor of the official `Tooltip` wdiget.");
         }
     }
 
@@ -73,7 +74,7 @@ export component TooltipPage inherits PageBase {
     }
 
     DocCode {
-        code: "// This code is in a component or page somewhere in the window.\nUText {\n    text: \"Some simple text\";\n    TouchArea {\n        changed has-hover => {\n            UTooltipLogic.display(@markdown(\"The tooltip's text.\"), \"\", self.has-hover, self.absolute-position, self.width, self.height);\n        }\n    }\n}";
+        code: "// This code is in a component or page somewhere in the window.\nUText {\n    text: \"Some simple text\";\n    TouchArea {\n        changed has-hover => {\n            UTooltipLogic.display(@markdown(\"The tooltip's text.\"), top, self.has-hover, self.absolute-position, self.width, self.height);\n        }\n    }\n}";
     }
 
     DocCode {
@@ -111,7 +112,7 @@ export component TooltipPage inherits PageBase {
     }
 
     DocCode {
-        code: "UTooltipLogic.display(@markdown(\"The tooltip's text.\"), \"right\", ...);";
+        code: "UTooltipLogic.display(@markdown(\"The tooltip's text.\"), right, ...);";
     }
 
     DocSection {
