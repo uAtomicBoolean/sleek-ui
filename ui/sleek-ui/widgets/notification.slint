@@ -74,7 +74,7 @@ export component UNotification inherits Rectangle {
 
     states [
         info when variant == info: {
-            icon: @image-url("../assets/icons/circle-check.svg");
+            icon: @image-url("../assets/icons/info.svg");
             icon-color: UAppTheme.primary.base;
         }
         success when variant == success: {
@@ -82,11 +82,11 @@ export component UNotification inherits Rectangle {
             icon-color: UAppTheme.success.base;
         }
         warning when variant == warning: {
-            icon: @image-url("../assets/icons/circle-check.svg");
+            icon: @image-url("../assets/icons/info.svg");
             icon-color: UAppTheme.warning.base;
         }
         danger when variant == error: {
-            icon: @image-url("../assets/icons/circle-check.svg");
+            icon: @image-url("../assets/icons/triangle-alert.svg");
             icon-color: UAppTheme.danger.base;
         }
     ]
