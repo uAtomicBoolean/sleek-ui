@@ -1,11 +1,12 @@
 import { UAppTheme } from "../app-theme.slint";
+
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 
 
 export component UInput inherits Rectangle {
-	// Accessibility properties
-	accessible-role: text-input;
+    // Accessibility properties
+    accessible-role: text-input;
     accessible-read-only: input.read-only;
     accessible-value: self.text;
     accessible-placeholder-text: self.placeholder;
@@ -15,7 +16,7 @@ export component UInput inherits Rectangle {
     accessible-action-set-value(value) => {
         input.text = value;
     }
-	// Regular properties
+    // Regular properties
     in-out property <bool> enabled <=> input.enabled;
     in-out property <bool> read-only <=> input.read-only;
     in-out property <string> text <=> input.text;
@@ -54,7 +55,7 @@ export component UInput inherits Rectangle {
                     accessible-role: none;
                     cursor-position-changed(cpos) => {
                         if cpos.x + self.computed-x < self.right-margin {
-                            self.computed-x = - cpos.x + self.right-margin;
+                            self.computed-x = -cpos.x + self.right-margin;
                         } else if cpos.x + self.computed-x > parent.width - self.text-cursor-width {
                             self.computed-x = parent.width - cpos.x - self.text-cursor-width;
                         }
@@ -144,7 +145,7 @@ export component UInput inherits Rectangle {
     ]
 
     // Reexport the properties of the TextInput widget.
-	in-out property <brush> i-color <=> input.color;
+    in-out property <brush> i-color <=> input.color;
     in-out property <string> i-font-family <=> input.font-family;
     in-out property <length> i-font-size <=> input.font-size;
     in-out property <int> i-font-weight <=> input.font-weight;
@@ -159,7 +160,7 @@ export component UInput inherits Rectangle {
     in-out property <length> i-text-cursor-width <=> input.text-cursor-width;
     in-out property <TextVerticalAlignment> i-vertical-alignment <=> input.vertical-alignment;
     // Link the functions and callback of TextInput to child.
-	public function set-selection-offsets(start: int, end: int) {
+    public function set-selection-offsets(start: int, end: int) {
         input.set-selection-offsets(start, end);
     }
     public function select-all() {

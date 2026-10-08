@@ -1,11 +1,11 @@
 import { UAppTheme } from "../app-theme.slint";
+
 import { UIcon } from "icon.slint";
-import { UText } from "text.slint";
 
 
 export component UInputNumber inherits Rectangle {
-	// Accessibility properties
-	accessible-role: spinbox;
+    // Accessibility properties
+    accessible-role: spinbox;
     accessible-read-only: input.read-only;
     accessible-value: self.value;
     accessible-value-step: self.step;
@@ -23,7 +23,7 @@ export component UInputNumber inherits Rectangle {
     accessible-action-increment => {
         btn-increase.clicked();
     }
-	// Regular properties
+    // Regular properties
     in-out property <bool> enabled <=> input.enabled;
     in-out property <bool> read-only <=> input.read-only;
     in-out property <float> value: 0;
@@ -73,7 +73,7 @@ export component UInputNumber inherits Rectangle {
                     accessible-role: none;
                     cursor-position-changed(cpos) => {
                         if cpos.x + self.computed-x < self.right-margin {
-                            self.computed-x = - cpos.x + self.right-margin;
+                            self.computed-x = -cpos.x + self.right-margin;
                         } else if cpos.x + self.computed-x > parent.width - self.text-cursor-width {
                             self.computed-x = parent.width - cpos.x - self.text-cursor-width;
                         }
@@ -196,7 +196,7 @@ export component UInputNumber inherits Rectangle {
     ]
 
     // Link the functions and callback of TextInput to child.
-	public function set-selection-offsets(start: int, end: int) {
+    public function set-selection-offsets(start: int, end: int) {
         input.set-selection-offsets(start, end);
     }
     public function select-all() {

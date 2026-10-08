@@ -1,7 +1,8 @@
 import { UAppTheme } from "../app-theme.slint";
-import { ButtonInterface } from "button-interface.slint";
-import { UText } from "./text.slint";
 import { UOptionData } from "common/structs.slint";
+
+import { ButtonInterface } from "button-interface.slint";
+import { UText } from "text.slint";
 
 
 export enum URadioButtonVariant {
@@ -49,8 +50,8 @@ export component URadioButton {
     accessible-role: radio-button;
     accessible-label: "Radio button";
     accessible-value: selected-value;
-	// Regular properties
-	in-out property <URadioButtonVariant> variant: default;
+    // Regular properties
+    in-out property <URadioButtonVariant> variant: default;
     private property <URadioButtonTheme> theme: {
         if variant == URadioButtonVariant.primary {
             return URadioButtonThemes.primary;

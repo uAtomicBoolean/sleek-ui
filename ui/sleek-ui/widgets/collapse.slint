@@ -1,13 +1,13 @@
 import { UAppTheme } from "../app-theme.slint";
-import { ButtonInterface } from "button-interface.slint";
 
+import { ButtonInterface } from "button-interface.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 
 
 export component UCollapse inherits ButtonInterface {
-	// Accessibility properties
-	accessible-role: button;
+    // Accessibility properties
+    accessible-role: button;
     accessible-label: self.title;
     accessible-description: @tr("A collapse hiding widgets when closed and showing them when opened.");
     accessible-expandable: true;
@@ -15,7 +15,7 @@ export component UCollapse inherits ButtonInterface {
     accessible-action-default => {
         self.clicked()
     }
-	// Regular properties
+    // Regular properties
     in-out property <string> title <=> collapse-title.text;
     in-out property <bool> collapse-open: false;
     in-out property <length> content-height: collapse-content.preferred-height;

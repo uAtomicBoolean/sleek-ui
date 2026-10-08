@@ -1,27 +1,25 @@
 import { UAppTheme } from "../app-theme.slint";
-
 import {
     UButtonVariant,
     UButtonTheme,
     UButtonThemes,
 } from "common/button.slint";
-
-import { ButtonInterface } from "button-interface.slint";
 import { IconTextPlacement } from "common/enums.slint";
 
+import { ButtonInterface } from "button-interface.slint";
 import { UIcon } from "icon.slint";
 import { USpinner } from "spinner.slint";
 import { UText } from "text.slint";
 
 
 export component UButton inherits ButtonInterface {
-	// Accessibility properties
-	accessible-role: button;
+    // Accessibility properties
+    accessible-role: button;
     accessible-label: self.text;
     accessible-action-default => {
         self.clicked()
     }
-	// Regular properties
+    // Regular properties
     in-out property <UButtonVariant> variant: default;
     private property <UButtonTheme> theme: {
         if variant == primary {
@@ -113,9 +111,9 @@ export component UButton inherits ButtonInterface {
                 color: theme.text;
                 font-size: UAppTheme.font-size-base;
                 animate color { duration: UAppTheme.animation-duration; }
-				// Managing the text's states here as the states' order is different from the
-				// component.
-				states [
+                // Managing the text's states here as the states' order is different from the
+                // component.
+                states [
                     disabled when !root.enabled: {
                         color: theme.text-disabled;
                     }

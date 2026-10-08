@@ -1,4 +1,4 @@
-import { UAppTheme } from "../../sleek-ui/app-theme.slint";
+import { UAppTheme } from "../app-theme.slint";
 
 
 component Scrollbar inherits Rectangle {
@@ -7,8 +7,8 @@ component Scrollbar inherits Rectangle {
     in property <length> handle-size;
     in-out property <length> value;
     out property <bool> pressed <=> touch.pressed;
-    // Active l'animation du contenu pour les scrolls programmatiques (touches, scroll-to/-by).
-    // Remis à false par le drag de la scrollbar et par la molette/flick, qui restent instantanés.
+    // Enables the content animation for programmatic scrolls (keys, scroll-to/-by).
+    // Reset to false when dragging the scrollbar and on mouse wheel/flick, which stay instant.
     in-out property <bool> animated;
 
     private property <bool> is-vertical: orientation == Orientation.vertical;
@@ -83,12 +83,12 @@ export component UScrollView inherits FocusScope {
     out property <length> scrollbar-area: 8px;
     in-out property <bool> interactive: false;
     private property <length> min-handle-size: 30px;
-	// To be removed as deprecated.
+    // To be removed as deprecated.
     in-out property <length> viewport-x <=> flickable.content-x;
     in-out property <length> viewport-y <=> flickable.content-y;
     in-out property <length> viewport-width <=> flickable.content-width;
     in-out property <length> viewport-height <=> flickable.content-height;
-	// New properties following the naming convention of Flickable.
+    // New properties following the naming convention of Flickable.
     in-out property <length> content-x <=> flickable.content-x;
     in-out property <length> content-y <=> flickable.content-y;
     in-out property <length> content-width <=> flickable.content-width;

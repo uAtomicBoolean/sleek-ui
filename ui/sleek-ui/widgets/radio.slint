@@ -1,19 +1,20 @@
 import { UAppTheme } from "../app-theme.slint";
+import { UOptionData } from "common/structs.slint";
+
 import { ButtonInterface } from "button-interface.slint";
 import { UText } from "text.slint";
-import { UOptionData } from "common/structs.slint";
 
 
 component URadioOption inherits ButtonInterface {
-	// Accessibility properties
-	accessible-role: radio-button;
+    // Accessibility properties
+    accessible-role: radio-button;
     accessible-label: self.option.text;
     accessible-item-selectable: true;
     accessible-item-selected: is-selected;
     accessible-action-default => {
         self.clicked();
     }
-	// Regular properties
+    // Regular properties
     in-out property <UOptionData> option;
     in-out property <string> selected-value;
     in property <length> inner-spacing;
@@ -100,8 +101,8 @@ component URadioOption inherits ButtonInterface {
 export component URadio {
     accessible-role: groupbox;
     accessible-item-count: self.options.length;
-	// Regular properties
-	in-out property <bool> enabled: true;
+    // Regular properties
+    in-out property <bool> enabled: true;
     in-out property <[UOptionData]> options;
     in-out property <string> selected-value;
     in property <Orientation> orientation: vertical;

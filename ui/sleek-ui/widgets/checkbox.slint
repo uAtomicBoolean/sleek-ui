@@ -1,18 +1,19 @@
 import { UAppTheme } from "../app-theme.slint";
-import { ButtonInterface } from "button-interface.slint";
 import { IconTextPlacement } from "common/enums.slint";
+
+import { ButtonInterface } from "button-interface.slint";
 import { UText } from "text.slint";
 
 
 export component UCheckbox inherits ButtonInterface {
-	// Accessibility properties
-	accessible-role: AccessibleRole.checkbox;
+    // Accessibility properties
+    accessible-role: AccessibleRole.checkbox;
     accessible-checkable: true;
     accessible-checked: self.checked;
     accessible-action-default => {
         self.clicked()
     }
-	// Regular properties
+    // Regular properties
     in-out property <bool> checked: false;
     in-out property <string> text;
     in-out property <IconTextPlacement> text-placement: text != "" ? start : hidden;
@@ -78,8 +79,7 @@ export component UCheckbox inherits ButtonInterface {
             ]
         }
 
-        if text-placement == IconTextPlacement.end: 
-            UText {
+        if text-placement == IconTextPlacement.end: UText {
             text: text;
             color: UAppTheme.text;
             states [

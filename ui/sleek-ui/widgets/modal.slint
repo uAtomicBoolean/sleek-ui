@@ -1,11 +1,12 @@
 import { UAppTheme } from "../app-theme.slint";
+import { UButtonVariant } from "common/button.slint";
 
+import { UButton } from "button.slint";
 import { UCard } from "card.slint";
 import { UDivider } from "divider.slint";
-import { UButton } from "button.slint";
 import { UIconButton } from "icon-button.slint";
 import { UTitle } from "title.slint";
-import { UButtonVariant } from "common/button.slint";
+
 
 export global UModalLogic {
     out property <string> current-id;
@@ -21,8 +22,8 @@ export global UModalLogic {
 
 export component UModal {
     private property <bool> is-opened: id == UModalLogic.current-id && UModalLogic.show-modal;
-	// Regular properties
-	in-out property <string> id;
+    // Regular properties
+    in-out property <string> id;
     in-out property <string> title;
     in-out property <bool> top-divider: false;
     in-out property <bool> bottom-divider: false;
@@ -34,7 +35,7 @@ export component UModal {
     in-out property <length> modal-max-width: 600px;
     in-out property <length> modal-max-height: 600px;
     // Bottom buttons properties.
-	in-out property <UButtonVariant> accept-btn-variant: primary;
+    in-out property <UButtonVariant> accept-btn-variant: primary;
     in-out property <UButtonVariant> cancel-btn-variant: default;
     in-out property <string> accept-btn-text: @tr("Done");
     in-out property <string> cancel-btn-text: @tr("Cancel");
@@ -47,7 +48,7 @@ export component UModal {
     callback showed();
     callback closed();
     // Both callbacks are linked to the Cancel/No and Accept/Done/Ok buttons.
-	callback accepted();
+    callback accepted();
     callback rejected();
     changed is-opened => {
         if is-opened {
@@ -68,8 +69,8 @@ export component UModal {
         background: UAppTheme.color-fill-plus.with-alpha(0.5);
 
         // Used to skip focus directly to the modal.
-		// This avoids having to focus all the elements in the window before getting to the modal.
-		rect-background-focus := FocusScope { }
+        // This avoids having to focus all the elements in the window before getting to the modal.
+        rect-background-focus := FocusScope { }
 
         touch-background := TouchArea {
             clicked => {

@@ -1,8 +1,9 @@
 import { UAppTheme } from "../app-theme.slint";
 import { UPrimaryColor } from "../colors.slint";
+import { IconTextPlacement } from "common/enums.slint";
+
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
-import { IconTextPlacement } from "common/enums.slint";
 
 
 export enum UTagVariant {
@@ -27,10 +28,10 @@ export enum UTagPreset {
 }
 
 export component UTag inherits Rectangle {
-	// Accessibility properties
-	accessible-role: AccessibleRole.text;
+    // Accessibility properties
+    accessible-role: AccessibleRole.text;
     accessible-label: self.text;
-	// Regular properties
+    // Regular properties
     in-out property <UTagVariant> variant: filled;
     in-out property <UTagPreset> preset: blue;
     in-out property <UPrimaryColor> preset-color: get-preset-color();

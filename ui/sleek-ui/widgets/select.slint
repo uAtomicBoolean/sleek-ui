@@ -1,24 +1,23 @@
 import { UAppTheme } from "../app-theme.slint";
+import { UOptionData } from "common/structs.slint";
 
 import { ButtonInterface } from "button-interface.slint";
-
-import { UPopover } from "popover.slint";
-import { UText } from "text.slint";
 import { UIcon } from "icon.slint";
+import { UPopover } from "popover.slint";
 import { UScrollView } from "scrollview.slint";
-import { UOptionData } from "common/structs.slint";
+import { UText } from "text.slint";
 
 
 export component USelect inherits ButtonInterface {
-	// Accessibility properties
-	accessible-role: combobox;
+    // Accessibility properties
+    accessible-role: combobox;
     accessible-expandable: true;
     accessible-value: self.selected-text;
     accessible-item-count: self.options.length;
     accessible-action-default => {
         self.clicked();
     }
-	// Regular properties
+    // Regular properties
     in-out property <int> current-index: -1;
     in-out property <[UOptionData]> options;
     out property <string> selected-text;
@@ -79,16 +78,16 @@ export component USelect inherits ButtonInterface {
             list-contents := VerticalLayout {
                 padding: UAppTheme.padding-base;
                 for option[index] in root.options: select-item := ButtonInterface {
-					// List item accessibility
-					accessible-role: list-item;
+                    // List item accessibility
+                    accessible-role: list-item;
                     accessible-item-selectable: true;
                     accessible-item-selected: options[current-index].value == option.value;
                     accessible-value: option.text;
                     accessible-action-default => {
                         self.clicked();
                     }
-					// TouchArea management.
-					enabled: option.enabled;
+                    // TouchArea management.
+                    enabled: option.enabled;
                     mouse-cursor: pointer;
                     clicked => {
                         current-index = index;
@@ -98,8 +97,8 @@ export component USelect inherits ButtonInterface {
                         popup.close();
                     }
 
-					// Item contents and properties.
-					height: option-height;
+                    // Item contents and properties.
+                    height: option-height;
                     border-radius: UAppTheme.radius-base;
                     width: 100%;
                     VerticalLayout {

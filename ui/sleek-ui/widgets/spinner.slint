@@ -10,7 +10,7 @@ export component USpinner inherits Path {
     private property <float> start: 0;
     private property <float> progress: 0.8;
     transform-rotation: 240deg * animation-tick() / 1s;
-	// Used to apply the transform rotation, otherwise the "transform-rotation" warning will be fired and it won't be applied.
+    // Used to apply the transform rotation, otherwise the "transform-rotation" warning will be fired and it won't be applied.
     animate transform-rotation { }
     viewbox-width: 100;
     viewbox-height: 100;
@@ -25,7 +25,7 @@ export component USpinner inherits Path {
     }
 
     // Workaround for femtovg not filling complete circle
-	LineTo {
+    LineTo {
         x: start-x - radius * sin(-root.start * 360deg);
         y: start-y - radius * cos(-root.start * 360deg);
     }

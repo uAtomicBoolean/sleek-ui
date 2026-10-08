@@ -1,10 +1,11 @@
 import { UAppTheme } from "../app-theme.slint";
 
+
 export component UTitle inherits Text {
-	// Accessibility properties
-	accessible-role: text;
+    // Accessibility properties
+    accessible-role: text;
     accessible-value: self.text;
-	// Regular properties
+    // Regular properties
     in-out property <int> level: 1;
     color: UAppTheme.text;
     font-size: 36px;

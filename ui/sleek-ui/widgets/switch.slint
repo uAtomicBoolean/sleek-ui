@@ -1,16 +1,17 @@
 import { UAppTheme } from "../app-theme.slint";
+
 import { ButtonInterface } from "button-interface.slint";
 
 
 export component USwitch inherits ButtonInterface {
-	// Accessibility properties
-	accessible-role: switch;
+    // Accessibility properties
+    accessible-role: switch;
     accessible-checkable: true;
     accessible-checked: true;
     accessible-action-default => {
         self.clicked();
     }
-	// Regular properties
+    // Regular properties
     in-out property <bool> checked: true;
     background: checked ? UAppTheme.primary.base : UAppTheme.color-fill;
     width: 40px;

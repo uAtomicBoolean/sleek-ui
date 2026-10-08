@@ -2,12 +2,12 @@ import { UAppTheme } from "../app-theme.slint";
 
 
 // A simple component used to implement a button-like behavior.
-// This is used to manage clicking with the left mouse button, with 
+// This is used to manage clicking with the left mouse button, with
 // the space and return keys and to manage focus.
 export component ButtonInterface inherits Rectangle {
     in-out property <bool> enabled: true;
     in-out property <MouseCursor> mouse-cursor: pointer;
-	// TouchArea properties
+    // TouchArea properties
     out property <bool> has-hover: enabled && touch.has-hover;
     out property <bool> pressed: enabled && touch.pressed;
     out property <length> mouse-x <=> touch.mouse-x;
@@ -15,7 +15,7 @@ export component ButtonInterface inherits Rectangle {
     out property <length> pressed-x <=> touch.pressed-x;
     out property <length> pressed-y <=> touch.pressed-y;
     // FocusScope properties
-	out property <bool> has-tab-focus: false;
+    out property <bool> has-tab-focus: false;
     out property <bool> has-focus: focus-scope.has-focus;
     in-out property <bool> focus-on-click <=> focus-scope.focus-on-click;
     in-out property <bool> focus-on-tab-navigation <=> focus-scope.focus-on-tab-navigation;
@@ -27,7 +27,7 @@ export component ButtonInterface inherits Rectangle {
     callback pointer-event();
     callback scroll-event() -> EventResult;
     // FocusScope callbacks
-	callback capture-key-pressed <=> focus-scope.capture-key-pressed;
+    callback capture-key-pressed <=> focus-scope.capture-key-pressed;
     callback capture-key-released <=> focus-scope.capture-key-released;
     callback key-pressed <=> focus-scope.key-pressed;
     callback key-released <=> focus-scope.key-released;

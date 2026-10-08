@@ -1,16 +1,16 @@
 import { UAppTheme } from "../app-theme.slint";
-import { UText } from "text.slint";
+import { IconTextPlacement } from "common/enums.slint";
+
+import { ButtonInterface } from "button-interface.slint";
 import { UDivider } from "divider.slint";
 import { UIcon } from "icon.slint";
-import { ButtonInterface } from "button-interface.slint";
-import { IconTextPlacement } from "common/enums.slint";
+import { UText } from "text.slint";
 
 
 export enum UTabsAlignment {
     start,
     stretch,
 }
-
 
 export struct UTabData {
     title: string,
@@ -38,11 +38,10 @@ component TabIcon inherits UIcon {
     ]
 }
 
-
 export component UTabs inherits Rectangle {
     accessible-role: tab-list;
     accessible-item-count: tabs.length;
-	// Regular properties
+    // Regular properties
     in property <[UTabData]> tabs;
     in-out property <int> current-index: 0;
     in property <UTabsAlignment> tabs-alignment: stretch;
@@ -70,7 +69,7 @@ export component UTabs inherits Rectangle {
                 changed x => { update-underline() }
                 changed width => { update-underline() }
                 // Used to render the underline for the first time.
-				init => {
+                init => {
                     update-underline();
                 }
                 clicked => {

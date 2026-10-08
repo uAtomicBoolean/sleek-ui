@@ -63,7 +63,7 @@ export component UCircleProgress inherits Rectangle {
     in property <ProgressDirection> direction: start;
     in-out property <percent> progress: 0%;
     in-out property <bool> indeterminate: false;
-	// Inner properties to manage the gap and track.
+    // Inner properties to manage the gap and track.
     private property <angle> gap: clamp(gap-degree, 0deg, 295deg);
     private property <angle> gap-center: gap-position == top ? 0deg : gap-position == right ? 90deg : gap-position == left ? 270deg : 180deg;
     // Without a gap, the progress starts from the top of the circle.

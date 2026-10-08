@@ -1,5 +1,4 @@
 import { UAppTheme } from "../app-theme.slint";
-
 import {
     UButtonVariant,
     UButtonTheme,
@@ -7,18 +6,17 @@ import {
 } from "common/button.slint";
 
 import { ButtonInterface } from "button-interface.slint";
-
 import { UIcon } from "icon.slint";
 import { USpinner } from "spinner.slint";
 
 
 export component UIconButton inherits ButtonInterface {
-	// Accessibility properties
-	accessible-role: button;
+    // Accessibility properties
+    accessible-role: button;
     accessible-action-default => {
         self.clicked()
-    }	
-	// Regular properties
+    }
+    // Regular properties
     in-out property <UButtonVariant> variant: default;
     private property <UButtonTheme> theme: {
         if variant == primary {
@@ -40,12 +38,12 @@ export component UIconButton inherits ButtonInterface {
     in-out property <bool> checked: false;
     in-out property <image> icon;
     in-out property <bool> colorize-icon: true;
-	// Using a custom size to have the same height as the Button.
-	// When using 16px as the icon's size, there will be a difference
-	// of 1px between the height of the IconButton and the Button.
-	// This is due to the text in the Button that increases the height 
-	// to 27px (26px for an icon button).
-	private property <length> icon-size: 17px;
+    // Using a custom size to have the same height as the Button.
+    // When using 16px as the icon's size, there will be a difference
+    // of 1px between the height of the IconButton and the Button.
+    // This is due to the text in the Button that increases the height
+    // to 27px (26px for an icon button).
+    private property <length> icon-size: 17px;
     changed enabled => {
         if root.loading && root.enabled {
             root.enabled = false;
