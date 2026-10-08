@@ -5,7 +5,7 @@ import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 
 
-export component UCollapse inherits ButtonInterface {
+export component UCollapse inherits Rectangle {
     // Accessibility properties
     accessible-role: button;
     accessible-label: self.title;
@@ -13,33 +13,35 @@ export component UCollapse inherits ButtonInterface {
     accessible-expandable: true;
     accessible-expanded: self.collapse-open;
     accessible-action-default => {
-        self.clicked()
+        touch.clicked()
     }
     // Regular properties
     in-out property <string> title <=> collapse-title.text;
     in-out property <bool> collapse-open: false;
     in-out property <length> content-height: collapse-content.preferred-height;
-    clicked => {
-        collapse-open = !collapse-open;
-    }
     VerticalLayout {
         alignment: start;
-        HorizontalLayout {
-            alignment: start;
-            spacing: UAppTheme.spacing-base;
-            UIcon {
-                size: 20px;
-                colorize: UAppTheme.primary.base;
-                source: @image-url("../assets/icons/chevron-down.svg");
-                transform-rotation: root.collapse-open ? 180deg : 0deg;
-                animate transform-rotation { duration: UAppTheme.animation-duration; }
+        touch := ButtonInterface {
+            clicked => {
+                collapse-open = !collapse-open;
             }
+            HorizontalLayout {
+                alignment: start;
+                spacing: UAppTheme.spacing-base;
+                UIcon {
+                    size: 20px;
+                    colorize: UAppTheme.primary.base;
+                    source: @image-url("../assets/icons/chevron-down.svg");
+                    transform-rotation: root.collapse-open ? 180deg : 0deg;
+                    animate transform-rotation { duration: UAppTheme.animation-duration; }
+                }
 
-            VerticalLayout {
-                alignment: center;
-                collapse-title := UText {
-                    color: UAppTheme.primary.base;
-                    font-size: UAppTheme.font-size-base;
+                VerticalLayout {
+                    alignment: center;
+                    collapse-title := UText {
+                        color: UAppTheme.primary.base;
+                        font-size: UAppTheme.font-size-base;
+                    }
                 }
             }
         }
@@ -53,7 +55,7 @@ export component UCollapse inherits ButtonInterface {
     }
 
     states [
-        focused when root.has-tab-focus: {
+        focused when touch.has-tab-focus: {
             border-color: UAppTheme.focus-color;
             border-width: UAppTheme.focus-border-width;
         }
