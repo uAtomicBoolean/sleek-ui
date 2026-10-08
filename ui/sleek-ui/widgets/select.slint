@@ -147,7 +147,7 @@ export component USelect inherits ButtonInterface {
             text-obj.color: UAppTheme.text-disabled;
         }
         hover when self.has-hover: {
-            border-color: self.has-tab-focus ? black : UAppTheme.primary.hover;
+            border-color: self.has-tab-focus ? UAppTheme.focus-color : UAppTheme.primary.hover;
         }
     ]
 }

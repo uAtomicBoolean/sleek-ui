@@ -193,7 +193,7 @@ export component USlider inherits ButtonInterface {
             height: size;
             animate size { duration: UAppTheme.animation-duration; }
             states [
-                hover when root.has-hover || root.has-tab-focus: {
+                hover when root.enabled && (root.has-hover || root.has-tab-focus): {
                     background: UAppTheme.primary.base.with-alpha(0.2);
                     size: 22px;
                 }

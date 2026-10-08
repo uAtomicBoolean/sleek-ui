@@ -7,12 +7,12 @@ export component USwitch inherits ButtonInterface {
     // Accessibility properties
     accessible-role: switch;
     accessible-checkable: true;
-    accessible-checked: true;
+    accessible-checked: self.checked;
     accessible-action-default => {
         self.clicked();
     }
     // Regular properties
-    in-out property <bool> checked: true;
+    in-out property <bool> checked;
     background: checked ? UAppTheme.primary.base : UAppTheme.color-fill;
     width: 40px;
     height: 40px / 2;
