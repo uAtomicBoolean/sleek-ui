@@ -55,9 +55,6 @@ export component UAlert inherits Rectangle {
                 variant: text-stripped;
                 icon: @image-url("../assets/icons/x.svg");
                 accessible-label: @tr("Close button for alert");
-                accessible-action-default => {
-                    self.clicked();
-                }
                 clicked => {
                     root.close();
                 }

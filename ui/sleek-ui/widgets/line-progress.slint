@@ -17,7 +17,6 @@ export component ULineProgress inherits Rectangle {
     in property <ProgressDirection> direction: start;
     in-out property <percent> progress;
     in-out property <bool> indeterminate: false;
-    callback reset-x();
     background: UAppTheme.color-fill-secondary;
     border-radius: default-radius;
     clip: true;

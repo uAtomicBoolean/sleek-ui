@@ -57,9 +57,6 @@ export component UNotification inherits Rectangle {
                         variant: text;
                         icon: @image-url("../assets/icons/x.svg");
                         accessible-label: @tr("Close notification");
-                        accessible-action-default => {
-                            self.clicked();
-                        }
                     }
                 }
 

@@ -19,11 +19,9 @@ export struct UTabData {
 }
 
 component TabIcon inherits UIcon {
-    in property <image> icon;
     in property <bool> is-current;
     in property <bool> pressed;
     in property <bool> has-hover;
-    source: icon;
     animate colorize { duration: UAppTheme.animation-duration; }
     states [
         current when is-current: {
