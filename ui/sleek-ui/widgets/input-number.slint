@@ -59,7 +59,7 @@ export component UInputNumber inherits Rectangle {
                 input := TextInput {
                     private property <length> right-margin: UAppTheme.padding-horizontal;
                     private property <length> computed-x;
-                    width: max(parent.width, self.preferred_width + self.text-cursor-width);
+                    width: max(parent.width, self.preferred-width + self.text-cursor-width);
                     x: min(0px, max(parent.width - self.width - self.text-cursor-width, self.computed-x));
                     text: root.value;
                     input-type: root.number ? InputType.number : InputType.decimal;

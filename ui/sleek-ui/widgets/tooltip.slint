@@ -4,16 +4,16 @@ import { UAppTheme } from "../app-theme.slint";
 enum UTooltipPosition { top, bottom, left, right }
 
 export global UTooltipLogic {
-    out property <bool> user_hovering;
+    out property <bool> user-hovering;
     out property <styled-text> text;
     out property <UTooltipPosition> position;
     out property <length> x;
     out property <length> y;
     out property <length> width;
     out property <length> height;
-    public function display(text: styled-text, position: UTooltipPosition, user_hovering: bool, coords: Point, width: length, height: length) {
-        self.user_hovering = user-hovering;
-        if self.user_hovering {
+    public function display(text: styled-text, position: UTooltipPosition, user-hovering: bool, coords: Point, width: length, height: length) {
+        self.user-hovering = user-hovering;
+        if self.user-hovering {
             self.text = text;
             self.position = position;
             self.x = coords.x;
@@ -29,14 +29,14 @@ export component UTooltip {
     in-out property <duration> delay: 250ms;
     in-out property <length> tooltip-max-width: 150px;
     in-out property <length> tooltip-max-height: 150px;
-    private property <bool> has_waited: false;
-    private property <bool> user_is_hovering: UTooltipLogic.user_hovering;
+    private property <bool> has-waited: false;
+    private property <bool> user-is-hovering: UTooltipLogic.user-hovering;
     z: 100;
     width: 100%;
     height: 100%;
-    changed user_is_hovering => {
-        if !user_is_hovering && has_waited {
-            has_waited = false;
+    changed user-is-hovering => {
+        if !user-is-hovering && has-waited {
+            has-waited = false;
         }
     }
     Rectangle {
@@ -49,12 +49,12 @@ export component UTooltip {
             content := Rectangle {
                 background: UAppTheme.bg-spotlight;
                 border-radius: clamp(UAppTheme.radius-base, 0, 4px);
-                opacity: has_waited ? 1 : 0;
+                opacity: has-waited ? 1 : 0;
                 HorizontalLayout {
                     padding: UAppTheme.padding-base;
                     alignment: start;
                     StyledText {
-                        opacity: has_waited ? 1 : 0;
+                        opacity: has-waited ? 1 : 0;
                         text: UTooltipLogic.text;
                         default-color: UAppTheme.inverse-text;
                         default-font-size: UAppTheme.font-size-small;
@@ -70,10 +70,10 @@ export component UTooltip {
     }
 
     Timer {
-        running: user_is_hovering;
+        running: user-is-hovering;
         interval: delay;
         triggered => {
-            has_waited = true;
+            has-waited = true;
         }
     }
 
