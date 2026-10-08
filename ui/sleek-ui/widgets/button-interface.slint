@@ -24,8 +24,8 @@ export component ButtonInterface inherits Rectangle {
     callback clicked();
     callback double-clicked();
     callback moved();
-    callback pointer-event();
-    callback scroll-event() -> EventResult;
+    callback pointer-event(event: PointerEvent);
+    callback scroll-event(event: PointerScrollEvent) -> EventResult;
     // FocusScope callbacks
     callback capture-key-pressed <=> focus-scope.capture-key-pressed;
     callback capture-key-released <=> focus-scope.capture-key-released;
@@ -94,14 +94,14 @@ export component ButtonInterface inherits Rectangle {
                 root.moved();
             }
         }
-        pointer-event => {
+        pointer-event(event) => {
             if root.enabled {
-                root.pointer-event();
+                root.pointer-event(event);
             }
         }
-        scroll-event => {
+        scroll-event(event) => {
             if root.enabled {
-                return root.scroll-event();
+                return root.scroll-event(event);
             }
             EventResult.reject
         }
