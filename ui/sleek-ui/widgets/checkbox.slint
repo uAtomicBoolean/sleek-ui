@@ -10,6 +10,7 @@ export component UCheckbox inherits ButtonInterface {
     accessible-role: AccessibleRole.checkbox;
     accessible-checkable: true;
     accessible-checked: self.checked;
+    accessible-label: text;
     accessible-action-default => {
         self.clicked()
     }
