@@ -8,10 +8,13 @@ import { UMenuSubmenu } from "menu-submenu.slint";
 
 export component UMenu inherits Rectangle {
     in-out property <UMenuVariant> variant: default;
-    in-out property <string> current-link;
+	// Used to initialize the UMenuLogic global, and also to display
+	// a page when first loading the menu.
+	// Changing this property doesn't have any effect on the navigation.
+    in property <string> default-link;
     init => {
         UMenuLogic.variant = variant;
-        UMenuLogic.current-link = current-link;
+        UMenuLogic.current-link = default-link;
     }
     changed variant => {
         UMenuLogic.variant = variant;

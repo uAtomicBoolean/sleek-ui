@@ -44,7 +44,7 @@ export component UInput inherits Rectangle {
                     private property <length> computed-x;
                     width: max(parent.width, self.preferred-width + self.text-cursor-width);
                     x: min(0px, max(parent.width - self.width - self.text-cursor-width, self.computed-x));
-                    input-type: show ? InputType.text : input-type;
+                    input-type: show ? InputType.text : root.input-type;
                     font-size: UAppTheme.font-size-base;
                     color: UAppTheme.text;
                     vertical-alignment: center;

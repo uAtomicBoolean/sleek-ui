@@ -36,7 +36,9 @@ export component MenuPageHowTo inherits PageBase {
         title: "Example";
         description: @markdown(
 			"The menu is made from several subwidgets: `UMenu`, `UMenuLink`, `UMenuSubmenu`, `UMenuGroupTitle`, each "
-			"widget having its own properties."
+			"widget having its own properties.\n"
+			"The `default-link` property can be set to define the opened page when first loading the menu. However, changing"
+			" this property later won't change the current link of the menu."
 		);
     }
 
@@ -50,7 +52,7 @@ export component MenuPageHowTo inherits PageBase {
     }
 
     DocCode {
-        code: "UMenu {\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
+        code: "UMenu {\n    default-link: \"first-page\";\n    UMenuLink {\n        id: \"first-page\";\n        name: \"First page\";\n    }\n\n    UMenuSubmenu {\n        name: \"Sub-pages\";\n        UMenuLink {\n            id: \"Subpage\";\n            name: \"Subpage\";\n        }\n    }\n\n    UMenuGroupTitle {\n        title: \"Settings pages\";\n    }\n\n    UMenuLink {\n        id: \"settings-page\";\n        name: \"Settings\";\n    }\n}";
     }
 
     DocSection {
