@@ -17,14 +17,17 @@ export component ULineProgress inherits Rectangle {
     in property <ProgressDirection> direction: start;
     in-out property <percent> progress;
     in-out property <bool> indeterminate: false;
+    // Position of the indeterminate bar's start along the track, as a ratio of the track's length.
+    // The bar covers 30% of the track and goes completely out of it before coming back.
+    private property <float> indeterminate-offset: indeterminate ? mod(animation-tick() / 1500ms, 1.3) - 0.3 : 0;
+    private property <float> indeterminate-start: direction == ProgressDirection.end ? 0.7 - indeterminate-offset : indeterminate-offset;
     background: UAppTheme.color-fill-secondary;
     border-radius: default-radius;
     clip: true;
     height: default-size;
     width: default-size;
     if orientation == Orientation.horizontal: Rectangle {
-        private property <length> x-pos: 0;
-        x: indeterminate ? x-pos : direction == end ? root.width - self.width : 0;
+        x: indeterminate ? root.width * root.indeterminate-start : direction == end ? root.width - self.width : 0;
         background: progress-color;
         border-radius: default-radius;
         width: indeterminate ? 30% : clamp(progress, 0%, 100%);
@@ -32,50 +35,15 @@ export component ULineProgress inherits Rectangle {
             easing: ease-in-out;
             duration: 350ms;
         }
-        Timer {
-            running: indeterminate;
-            interval: 5ms;
-            triggered => {
-                if direction == ProgressDirection.start {
-                    parent.x-pos += 1px;
-                    if parent.x-pos > root.width {
-                        parent.x-pos = -parent.width;
-                    }
-                } else {
-                    parent.x-pos -= 1px;
-                    if parent.x-pos < -parent.width {
-                        parent.x-pos = root.width - parent.width;
-                    }
-                }
-            }
-        }
     }
     if orientation == Orientation.vertical: Rectangle {
-        private property <length> y-pos: 0;
-        y: indeterminate ? y-pos : direction == end ? root.height - self.height : 0;
+        y: indeterminate ? root.height * root.indeterminate-start : direction == end ? root.height - self.height : 0;
         background: progress-color;
         border-radius: default-radius;
         height: indeterminate ? 30% : clamp(progress, 0%, 100%);
         animate height {
             easing: ease-in-out;
             duration: 350ms;
-        }
-        Timer {
-            running: indeterminate;
-            interval: 10ms;
-            triggered => {
-                if direction == ProgressDirection.start {
-                    parent.y-pos += 1px;
-                    if parent.y-pos > root.height {
-                        parent.y-pos = -parent.height;
-                    }
-                } else {
-                    parent.y-pos -= 1px;
-                    if parent.y-pos < -parent.height {
-                        parent.y-pos = root.height;
-                    }
-                }
-            }
         }
     }
 }
