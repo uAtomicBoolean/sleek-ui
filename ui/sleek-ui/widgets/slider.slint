@@ -61,16 +61,16 @@ export component USlider inherits ButtonInterface {
         update-value();
     }
     key-pressed(event) => {
-        if event.text == Key.UpArrow {
+        if event.text == Key.Home {
             value = max-value;
             return EventResult.accept;
-        } else if event.text == Key.DownArrow {
+        } else if event.text == Key.End {
             value = min-value;
             return EventResult.accept;
-        } else if event.text == Key.RightArrow {
+        } else if event.text == Key.RightArrow || event.text == Key.UpArrow {
             value += step;
             return EventResult.accept;
-        } else if event.text == Key.LeftArrow {
+        } else if event.text == Key.LeftArrow || event.text == Key.DownArrow {
             value -= step;
             return EventResult.accept;
         }
