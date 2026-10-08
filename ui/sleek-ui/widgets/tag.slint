@@ -79,7 +79,8 @@ export component UTag inherits Rectangle {
             background: preset-color.selected;
             text-color: preset-color.hover;
             border-color: preset-color.disabled;
-            border-width: 1px;
+            // Fix to 1px as the UTag is a small widget.
+			border-width: 1px;
         }
     ]
     function get-preset-color() -> UPrimaryColor {
