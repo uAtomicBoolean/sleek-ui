@@ -8,7 +8,7 @@ import { UText } from "text.slint";
 export component UBreadcrumb inherits Rectangle {
     // Regular properties
     in-out property <[string]> steps: [];
-    callback step-clicked(step: string);
+    callback step-clicked(step-index: int);
     HorizontalLayout {
         spacing: UAppTheme.spacing-medium;
         cross-axis-alignment: center;
@@ -30,7 +30,7 @@ export component UBreadcrumb inherits Rectangle {
                 }
 
                 clicked => {
-                    step-clicked(step);
+                    step-clicked(idx);
                 }
                 states [
                     focused when self.has-tab-focus: {

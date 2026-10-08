@@ -25,8 +25,8 @@ export component BreadcrumbPage inherits PageBase {
     DocSection {
         title: "Example";
         description: @markdown(
-			"The widget takes the current path as a list of strings with the `steps` property, and calls the `step-clicked(step: string)` "
-			"callback when a step is clicked."
+			"The widget takes the current path as a list of strings with the `steps` property, and calls the `step-clicked(step-index: int)` "
+			"callback when a step is clicked. Returning the step's index avoids confusion when two steps have the same name."
 		);
     }
 
@@ -37,6 +37,6 @@ export component BreadcrumbPage inherits PageBase {
     }
 
     DocCode {
-        code: "UBreadcrumb {\n    steps: [\"Settings\", \"General\", \"Appearance\"];\n    step-clicked(step) => {\n        // Your navigation logic.\n    }\n}";
+        code: "UBreadcrumb {\n    steps: [\"Settings\", \"General\", \"Appearance\"];\n    step-clicked(step-index) => {\n        // Your navigation logic.\n    }\n}";
     }
 }
