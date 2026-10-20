@@ -41,6 +41,15 @@ export component MenuPageSubmenu inherits PageBase {
     }
 
     DocSection {
+        title: "Opening / closing animation";
+        description: @markdown("The submenu is, by default, animated. Set the `enable-animation` property to `false` to disable that.");
+    }
+
+    DocCode {
+        code: "UMenuSubmenu {\n    enable-animation: false;\n}";
+    }
+
+    DocSection {
         title: "Programmatically open a submenu";
         description: @markdown("You can open/close a submenu using the `opened` boolean property.");
     }
