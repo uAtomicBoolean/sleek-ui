@@ -94,13 +94,14 @@ export component InputNumberPage inherits PageBase {
 
     WidgetPresentation {
         UInputNumber {
-            min-value: 10;
+            enable-min-max: true;
+            min-value: -10;
             max-value: 20;
         }
     }
 
     DocCode {
-        code: "UInputNumber {\n    enable-min-max: true;\n    min: 10;\n    max: 20;\n}";
+        code: "UInputNumber {\n    enable-min-max: true;\n    min: -10;\n    max: 20;\n}";
     }
 
     DocSection {
