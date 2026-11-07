@@ -62,25 +62,47 @@ export component URadioButton {
     in-out property <[UOptionData]> options;
     in-out property <string> selected-value;
     callback selected(value: string);
+
+    // Allow the options to be always aligned on the pixel grid.
+    pure function snap-to-pixel(value: length) -> length {
+        return ceil(value / 1phx) * 1phx;
+    }
+
     HorizontalLayout {
+		// Each option overlap its previous neighbor by one border with. 
+		// This result in a common separator between two adjacent options instead of drawing
+		// two borders side by side.
+        spacing: -UAppTheme.border-width-base;
+
         for option[idx] in root.options: ButtonInterface {
+            private property <bool> is-selected: root.selected-value == option.value;
+            private property <bool> is-first: idx == 0;
+            private property <bool> is-last: idx == root.options.length - 1;
+
+            // Make sure that the highlighted option's border is rendered above its neighbors.
+            z: self.has-tab-focus ? 2 : is-selected ? 1 : 0;
+            animate z {
+                enabled: self.enable-animations;
+                duration: UAppTheme.animation-duration;
+            }
+
+            min-width: root.snap-to-pixel(content.min-width);
+            preferred-width: root.snap-to-pixel(content.preferred-width);
+            min-height: root.snap-to-pixel(content.min-height);
+            preferred-height: root.snap-to-pixel(content.preferred-height);
+
             enabled: root.enabled;
             border-width: UAppTheme.border-width-base;
             border-color: UAppTheme.border;
-            init => {
-                if idx == 0 {
-                    self.border-top-left-radius = UAppTheme.radius-base;
-                    self.border-bottom-left-radius = UAppTheme.radius-base;
-                } else if idx == options.length - 1 {
-                    self.border-top-right-radius = UAppTheme.radius-base;
-                    self.border-bottom-right-radius = UAppTheme.radius-base;
-                }
-            }
+            border-top-left-radius: is-first ? UAppTheme.radius-base : 0;
+            border-bottom-left-radius: is-first ? UAppTheme.radius-base : 0;
+            border-top-right-radius: is-last ? UAppTheme.radius-base : 0;
+            border-bottom-right-radius: is-last ? UAppTheme.radius-base : 0;
             clicked => {
                 selected-value = option.value;
                 root.selected(option.value);
             }
-            HorizontalLayout {
+            content := HorizontalLayout {
                 alignment: center;
                 cross-axis-alignment: center;
                 padding-top: UAppTheme.padding-vertical;
@@ -96,27 +118,27 @@ export component URadioButton {
             }
 
             states [
-                disabled when !root.enabled && selected-value != option.value: {
+                disabled when !root.enabled && !is-selected: {
                     background: theme.bg-disabled;
                     border-color: UAppTheme.border-secondary;
                     option-text.color: theme.text-disabled;
                 }
-                disabled-selected when !root.enabled && selected-value == option.value: {
+                disabled-selected when !root.enabled && is-selected: {
                     background: theme.bg-selected-disabled;
                     border-color: UAppTheme.primary.disabled;
                     option-text.color: theme.text-selected-disabled;
                 }
-                focus-not-selected-hover when self.has-tab-focus && selected-value != option.value && self.has-hover: {
+                focus-not-selected-hover when self.has-tab-focus && !is-selected && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                 }
-                focus-selected-hover when self.has-tab-focus && selected-value == option.value && self.has-hover: {
+                focus-selected-hover when self.has-tab-focus && is-selected && self.has-hover: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                     background: theme.bg-selected-hover;
                     option-text.color: theme.text-selected-hover;
                 }
-                focus-selected when self.has-tab-focus && selected-value == option.value: {
+                focus-selected when self.has-tab-focus && is-selected: {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                     background: theme.bg-selected;
@@ -126,21 +148,21 @@ export component URadioButton {
                     border-width: UAppTheme.focus-border-width;
                     border-color: UAppTheme.focus-color;
                 }
-                active-selected when self.pressed && selected-value == option.value: {
+                active-selected when self.pressed && is-selected: {
                     background: theme.bg-selected-active;
                     border-color: UAppTheme.primary.active;
                     option-text.color: theme.text-selected-active;
                 }
-                hover-not-selected when self.has-hover && selected-value != option.value: {
+                hover-not-selected when self.has-hover && !is-selected: {
                     border-color: UAppTheme.border;
                     option-text.color: UAppTheme.primary.hover;
                 }
-                hover-selected when self.has-hover && selected-value == option.value: {
+                hover-selected when self.has-hover && is-selected: {
                     background: theme.bg-selected-hover;
                     border-color: UAppTheme.primary.hover;
                     option-text.color: theme.text-selected-hover;
                 }
-                selected when selected-value == option.value: {
+                selected when is-selected: {
                     background: theme.bg-selected;
                     border-color: UAppTheme.primary.base;
                     option-text.color: theme.text-selected;
