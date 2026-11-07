@@ -34,7 +34,6 @@ export component UMenuLink inherits Rectangle {
     }
     callback activated();
     ButtonInterface {
-        animate background { enabled: false; }
         enabled: root.enabled;
         clicked => {
             if UMenuLogic.current-link != id {
@@ -65,10 +64,22 @@ export component UMenuLink inherits Rectangle {
                 link-text.color: theme.text-selected;
                 border-color: UAppTheme.focus-color;
                 border-width: UAppTheme.focus-border-width;
+                in {
+                    animate background { duration: UAppTheme.animation-duration; }
+                }
+                out {
+                    animate background { duration: UAppTheme.animation-duration; }
+                }
             }
             selected when root.is-selected: {
                 background: theme.bg-selected;
                 link-text.color: theme.text-selected;
+                in {
+                    animate background { duration: UAppTheme.animation-duration; }
+                }
+                out {
+                    animate background { duration: UAppTheme.animation-duration; }
+                }
             }
             focus-hover when self.has-tab-focus && self.has-hover: {
                 border-color: UAppTheme.focus-color;
