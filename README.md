@@ -74,5 +74,17 @@ export component AppWindow inherits Window {
 wasm-pack build --release --target web --out-dir docs/pkg
 ```
 
+## Development
+Run the documentation with the live preview and MCP server (if you use AI) for faster iterations:
+```
+# Linux
+SLINT_LIVE_PREVIEW=1 SLINT_MCP_PORT=25515 cargo run --features slint/live-preview slint/mcp
+
+# Windows
+$env:SLINT_MCP_PORT=25515
+$env:SLINT_LIVE_PREVIEW=1
+cargo run --features slint/live-preview slint/mcp
+```
+
 ## Resources
 - Ant Design Theme editor : https://ant.design/theme-editor
