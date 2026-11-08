@@ -6,7 +6,7 @@ import {
     UMenuSubMenuThemes,
 } from "index.slint";
 
-import { ButtonInterface } from "../button-interface.slint";
+import { UInteractiveBase } from "../interactive-base.slint";
 import { UIcon } from "../icon.slint";
 import { UText } from "../text.slint";
 
@@ -35,7 +35,7 @@ export component UMenuSubmenu inherits VerticalLayout {
         parent-child-opened += child-opened != 0 ? 1 : -1;
     }
     alignment: start;
-    submenu-trigger := ButtonInterface {
+    submenu-trigger := UInteractiveBase {
         animate background { enabled: false; }
         enabled: root.enabled;
         clicked => {

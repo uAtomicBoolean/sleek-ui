@@ -1,7 +1,7 @@
 import { UAppTheme } from "../app-theme.slint";
 import { IconTextPlacement } from "common/enums.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 
@@ -12,7 +12,7 @@ export component ULink {
     in-out property <IconTextPlacement> icon-placement: hidden;
     in-out property <TextWrap> wrap: word-wrap;
     callback clicked();
-    touch := ButtonInterface {
+    touch := UInteractiveBase {
         // Accessibility properties
         accessible-role: button;
         accessible-label: text;

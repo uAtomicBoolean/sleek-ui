@@ -5,12 +5,12 @@ import {
     UButtonThemes,
 } from "common/button.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UIcon } from "icon.slint";
 import { USpinner } from "spinner.slint";
 
 
-export component UIconButton inherits ButtonInterface {
+export component UIconButton inherits UInteractiveBase {
     // Accessibility properties
     accessible-role: button;
     accessible-action-default => {

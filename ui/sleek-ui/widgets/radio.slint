@@ -1,11 +1,11 @@
 import { UAppTheme } from "../app-theme.slint";
 import { UOptionData } from "common/structs.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UText } from "text.slint";
 
 
-component URadioOption inherits ButtonInterface {
+component URadioOption inherits UInteractiveBase {
     // Accessibility properties
     accessible-role: radio-button;
     accessible-label: self.option.text;

@@ -1,7 +1,7 @@
 import { UAppTheme } from "../app-theme.slint";
 import { IconTextPlacement } from "common/enums.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UDivider } from "divider.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
@@ -50,7 +50,7 @@ export component UTabs inherits Rectangle {
         HorizontalLayout {
             alignment: tabs-alignment == start ? start : stretch;
             padding-bottom: UAppTheme.padding-base;
-            for tab[idx] in tabs: tab-btn := ButtonInterface {
+            for tab[idx] in tabs: tab-btn := UInteractiveBase {
                 accessible-role: AccessibleRole.tab;
                 accessible-label: tab.title;
                 accessible-item-index: idx;

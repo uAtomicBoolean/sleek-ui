@@ -1,11 +1,11 @@
 import { UAppTheme } from "../app-theme.slint";
 import { IconTextPlacement } from "common/enums.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UText } from "text.slint";
 
 
-export component UCheckbox inherits ButtonInterface {
+export component UCheckbox inherits UInteractiveBase {
     // Accessibility properties
     accessible-role: AccessibleRole.checkbox;
     accessible-checkable: true;

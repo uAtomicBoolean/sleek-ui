@@ -1,7 +1,7 @@
 import { UAppTheme } from "../app-theme.slint";
 import { UOptionData } from "common/structs.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UText } from "text.slint";
 
 
@@ -74,7 +74,7 @@ export component URadioButton {
 		// two borders side by side.
         spacing: -UAppTheme.border-width-base;
 
-        for option[idx] in root.options: ButtonInterface {
+        for option[idx] in root.options: UInteractiveBase {
             private property <bool> is-selected: root.selected-value == option.value;
             private property <bool> is-first: idx == 0;
             private property <bool> is-last: idx == root.options.length - 1;

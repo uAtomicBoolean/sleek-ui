@@ -6,7 +6,7 @@ import {
     UMenuLinkThemes,
 } from "index.slint";
 
-import { ButtonInterface } from "../button-interface.slint";
+import { UInteractiveBase } from "../interactive-base.slint";
 import { UText } from "../text.slint";
 
 
@@ -33,7 +33,7 @@ export component UMenuLink inherits Rectangle {
         parent-child-opened += is-selected ? 1 : -1;
     }
     callback activated();
-    ButtonInterface {
+    UInteractiveBase {
         enabled: root.enabled;
         clicked => {
             if UMenuLogic.current-link != id {

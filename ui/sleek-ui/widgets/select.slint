@@ -1,14 +1,14 @@
 import { UAppTheme } from "../app-theme.slint";
 import { UOptionData } from "common/structs.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UIcon } from "icon.slint";
 import { UPopover } from "popover.slint";
 import { UScrollView } from "scrollview.slint";
 import { UText } from "text.slint";
 
 
-export component USelect inherits ButtonInterface {
+export component USelect inherits UInteractiveBase {
     // Accessibility properties
     accessible-role: combobox;
     accessible-expandable: true;
@@ -77,7 +77,7 @@ export component USelect inherits ButtonInterface {
             }
             list-contents := VerticalLayout {
                 padding: UAppTheme.padding-base;
-                for option[index] in root.options: select-item := ButtonInterface {
+                for option[index] in root.options: select-item := UInteractiveBase {
                     // List item accessibility
                     accessible-role: list-item;
                     accessible-item-selectable: true;

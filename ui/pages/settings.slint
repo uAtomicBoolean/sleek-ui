@@ -6,7 +6,7 @@ import {
     UText,
     USlider,
     UScrollView,
-    ButtonInterface,
+    UInteractiveBase,
 } from "../sleek-ui/widgets.slint";
 
 import { DocTitle, DocSection, DocCode } from "../components/doc-widgets.slint";
@@ -40,7 +40,7 @@ component ColorDisplay inherits Rectangle {
                 }
             }
 
-            touch := ButtonInterface {
+            touch := UInteractiveBase {
                 clicked => {
                     UAppTheme.light.primary = theme-color;
                     UAppTheme.dark.primary = theme-color;

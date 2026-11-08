@@ -1,10 +1,10 @@
 import { UAppTheme } from "../app-theme.slint";
 
 
-// A simple component used to implement a button-like behavior.
+// A simple component used to implement an interactive behavior.
 // This is used to manage clicking with the left mouse button, with
 // the space and return keys and to manage focus.
-export component ButtonInterface inherits Rectangle {
+export component UInteractiveBase inherits Rectangle {
     forward-focus: focus-scope;
     in-out property <bool> enable-animations: true;
     in-out property <bool> enabled: true;

@@ -6,13 +6,13 @@ import {
 } from "common/button.slint";
 import { IconTextPlacement } from "common/enums.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UIcon } from "icon.slint";
 import { USpinner } from "spinner.slint";
 import { UText } from "text.slint";
 
 
-export component UButton inherits ButtonInterface {
+export component UButton inherits UInteractiveBase {
     // Accessibility properties
     accessible-role: button;
     accessible-label: self.text;

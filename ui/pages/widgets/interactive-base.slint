@@ -1,21 +1,16 @@
-import { UAppTheme } from "../../sleek-ui/app-theme.slint";
 import { UTitle } from "../../sleek-ui/widgets.slint";
 
 import {
-    DocTitle,
     DocDescription,
-    WidgetPresentation,
     DocSection,
-    DocCode,
 } from "../../components/doc-widgets.slint";
 import { PageBase } from "../../components/page-base.slint";
-import { AppLogic } from "../../app-logic.slint";
 
 
-export component ButtonInterfacePage inherits PageBase {
+export component InteractiveBasePage inherits PageBase {
     UTitle {
         level: 3;
-        text: "Button interface";
+        text: "Interactive base";
     }
 
     DocDescription {
@@ -28,22 +23,14 @@ export component ButtonInterfacePage inherits PageBase {
     }
 
     DocSection {
-        title: "TouchArea implementation";
-        description: @markdown("All the properties and callbacks are available in the `ButtonInterface`.");
-    }
-
-    DocSection {
-        title: "FocusScope implementation";
-        description: @markdown(
-			"With the exception of the `focus()` and `clear-focus()` functions, all the properties, callbacks and functions are available.\n"
-			"However, the `set-focus()` and `release-focus()` functions are available to manage the focus on the interface."
-		);
+        title: "TouchArea and FocusScope implementations";
+        description: @markdown("All the properties and callbacks for both are availables in the `UInteractiveBase` widget.");
     }
 
     DocSection {
         title: "Background and border color animations";
         description: @markdown(
-			"The `ButtonInterface` widget has animated border color and background by default.\n"
+			"The `UInteractiveBase` widget has animated border color and background by default.\n"
 			"You can override the animations manually or simply disable them with the `enable-animations` property."
 		);
     }

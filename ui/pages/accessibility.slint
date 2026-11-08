@@ -23,8 +23,11 @@ export component AccessibilityPage inherits PageBase {
     DocSection {
         title: "Accessibility properties";
         description: @markdown(
-			"While all widgets implement some basis of accessibility such as the role, the default action, etc., it is recommended to fine tune these properties to fit your application as much as possible.\n"
-			"You can look at the [UButton](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/widgets/button/button.slint) or [USlider](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/widgets/slider.slint) implementation to get an idea of what has been done in sleek-ui."
+			"While all widgets implement some basis of accessibility such as the role, the default action, etc., it is recommended to fine "
+			"tune these properties to fit your application as much as possible.\n"
+			"You can look at the [UButton](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/widgets/button.slint) "
+			"or [USlider](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/widgets/slider.slint) implementation to get an "
+			"idea of what has been done in sleek-ui."
 		);
         link-clicked(url) => {
             Platform.open-url(url);
@@ -36,13 +39,13 @@ export component AccessibilityPage inherits PageBase {
         description: @markdown(
 			"Some widgets have some level of keyboard integration to manipulate the linked value.\n"
 			"Take a look at the [USlider](slider) widget and change its value with the keyboard arrow keys.\n"
-			"Moreover, the [ButtonInterface](button-interface) widget fires the `clicked` callback when the space bar or the enter key is pressed on a focused widget."
+			"Moreover, the [UInteractiveBase](interactive-base) widget fires the `clicked` callback when the space bar or the enter key is pressed on a focused widget."
 		);
         link-clicked(url) => {
             if url == "slider" {
                 UMenuLogic.current-link = "slider";
-            } else if url == "button-interface" {
-                UMenuLogic.current-link = "button-interface";
+            } else if url == "interactive-base" {
+                UMenuLogic.current-link = "interactive-base";
             }
         }
     }
@@ -51,7 +54,7 @@ export component AccessibilityPage inherits PageBase {
         title: "Tab navigation";
         description: @markdown(
 			"In order to ease the tab navigation, all widgets implement a strong display of the focused state when gaining the focus from tab navigation.\n"
-			"This is made possible with the `has-tab-focus` property from [ButtonInterface](button-interface).\n"
+			"This is made possible with the `has-tab-focus` property from [UInteractiveBase](interactive-base).\n"
 			"You can check out the tab navigation display by pressing tab."
 		);
         link-clicked(url) => {

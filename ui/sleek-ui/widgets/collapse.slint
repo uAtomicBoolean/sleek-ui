@@ -1,6 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 
@@ -21,7 +21,7 @@ export component UCollapse inherits Rectangle {
     in-out property <length> content-height: collapse-content.preferred-height;
     VerticalLayout {
         alignment: start;
-        touch := ButtonInterface {
+        touch := UInteractiveBase {
             clicked => {
                 collapse-open = !collapse-open;
             }

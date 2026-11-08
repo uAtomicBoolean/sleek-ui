@@ -1,9 +1,9 @@
 import { UAppTheme } from "../app-theme.slint";
 
-import { ButtonInterface } from "button-interface.slint";
+import { UInteractiveBase } from "interactive-base.slint";
 
 
-export component USlider inherits ButtonInterface {
+export component USlider inherits UInteractiveBase {
     // Accessibility properties
     accessible-role: slider;
     accessible-value: root.value;
