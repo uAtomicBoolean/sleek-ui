@@ -1,0 +1,63 @@
+import { UTitle, UMenuLogic } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocDescription,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+
+
+export component StructsPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Structs";
+    }
+
+    DocDescription {
+        text: "The structs used by the widgets' properties.";
+    }
+
+    DocSection {
+        title: "How to import";
+        description: @markdown("All the structs can be imported from the [@sleek-ui/common.slint](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/common.slint) file.");
+        link-clicked(url) => {
+            Platform.open-url(url);
+        }
+    }
+
+    DocCode {
+        code: "import { UOptionData, UTabData } from \"@sleek-ui/common.slint\";";
+    }
+
+    DocSection {
+        title: "UOptionData";
+        description: @markdown(
+            "A struct used to define the choices in the [USelect](select), [URadio](radio) and [URadioButton](radio-button) widgets "
+            "with their `options` property.\n"
+            "The `enabled` field has no effect in the `URadioButton` widget."
+        );
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "struct UOptionData {\n    // The visual text of the value.\n    text: string,\n\n    // The value that can be used in your logic to check the current value.\n    value: string,\n\n    // Whether the option is enabled or not.\n    // A disabled option will be greyed out and not selectable.\n    enabled: bool = true,\n}";
+    }
+
+    DocSection {
+        title: "UTabData";
+        description: @markdown(
+            "A struct used to define the tabs of the [UTabs](tabs) widget with its `tabs` property.\n"
+            "The `icon-placement` field uses the [UIconTextPlacement](enums) enum."
+        );
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "struct UTabData {\n    // The text displayed in the tab.\n    title: string,\n\n    // The icon displayed next to the title.\n    icon: image,\n\n    // Where the icon is displayed relative to the title.\n    // The icon is hidden by default.\n    icon-placement: UIconTextPlacement = UIconTextPlacement.hidden,\n}";
+    }
+}
