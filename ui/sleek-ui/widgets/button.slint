@@ -1,6 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
 import { UButtonTheme, UButtonThemes } from "common/button.slint";
-import { UButtonVariant, IconTextPlacement } from "common/enums.slint";
+import { UButtonVariant, UIconTextPlacement } from "common/enums.slint";
 
 import { UInteractiveBase } from "interactive-base.slint";
 import { UIcon } from "icon.slint";
@@ -35,7 +35,7 @@ export component UButton inherits UInteractiveBase {
     in-out property <bool> checked: false;
     in-out property <image> icon;
     in-out property <bool> colorize-icon: true;
-    in-out property <IconTextPlacement> icon-placement: IconTextPlacement.hidden;
+    in-out property <UIconTextPlacement> icon-placement: UIconTextPlacement.hidden;
     changed enabled => {
         if root.loading && root.enabled {
             root.enabled = false;
@@ -72,7 +72,7 @@ export component UButton inherits UInteractiveBase {
         padding-bottom: UAppTheme.padding-vertical;
         padding-left: UAppTheme.padding-horizontal;
         padding-right: UAppTheme.padding-horizontal;
-        if icon-placement == IconTextPlacement.start: VerticalLayout {
+        if icon-placement == UIconTextPlacement.start: VerticalLayout {
             alignment: center;
 
             icon-start := UIcon {
@@ -124,7 +124,7 @@ export component UButton inherits UInteractiveBase {
             }
         }
 
-        if icon-placement == IconTextPlacement.end: VerticalLayout {
+        if icon-placement == UIconTextPlacement.end: VerticalLayout {
             alignment: center;
 
             icon-end := UIcon {

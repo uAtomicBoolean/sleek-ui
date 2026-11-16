@@ -1,5 +1,5 @@
 import { UAppTheme } from "../app-theme.slint";
-import { IconTextPlacement } from "common/enums.slint";
+import { UIconTextPlacement } from "common/enums.slint";
 
 import { UInteractiveBase } from "interactive-base.slint";
 import { UText } from "text.slint";
@@ -17,14 +17,14 @@ export component UCheckbox inherits UInteractiveBase {
     // Regular properties
     in-out property <bool> checked: false;
     in-out property <string> text;
-    in-out property <IconTextPlacement> text-placement: text != "" ? start : hidden;
+    in-out property <UIconTextPlacement> text-placement: text != "" ? start : hidden;
     in-out property <LayoutAlignment> alignment: space-between;
     in-out property <length> inner-spacing: UAppTheme.spacing-base;
     border-radius: clamp(UAppTheme.radius-base, 0, 4px);
     HorizontalLayout {
         alignment: root.alignment;
         spacing: inner-spacing;
-        if text-placement == IconTextPlacement.start: UText {
+        if text-placement == UIconTextPlacement.start: UText {
             text: text;
             color: UAppTheme.text;
             states [
@@ -80,7 +80,7 @@ export component UCheckbox inherits UInteractiveBase {
             ]
         }
 
-        if text-placement == IconTextPlacement.end: UText {
+        if text-placement == UIconTextPlacement.end: UText {
             text: text;
             color: UAppTheme.text;
             states [

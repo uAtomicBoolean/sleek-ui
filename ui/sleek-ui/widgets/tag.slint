@@ -1,6 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
 import { UPrimaryColor } from "../colors.slint";
-import { IconTextPlacement, UTagPreset, UTagVariant } from "common/enums.slint";
+import { UIconTextPlacement, UTagPreset, UTagVariant } from "common/enums.slint";
 
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
@@ -18,7 +18,7 @@ export component UTag inherits Rectangle {
     in-out property <string> text;
     in-out property <image> icon;
     in-out property <bool> colorize-icon: true;
-    in-out property <IconTextPlacement> icon-placement: hidden;
+    in-out property <UIconTextPlacement> icon-placement: hidden;
     border-radius: UAppTheme.radius-base;
     HorizontalLayout {
         cross-axis-alignment: center;
@@ -27,7 +27,7 @@ export component UTag inherits Rectangle {
         padding-bottom: UAppTheme.padding-vertical / 1.5;
         padding-left: UAppTheme.padding-horizontal / 1.5;
         padding-right: UAppTheme.padding-horizontal / 1.5;
-        if icon-placement == IconTextPlacement.start: UIcon {
+        if icon-placement == UIconTextPlacement.start: UIcon {
             source: icon;
             size: UAppTheme.font-size-base;
             colorize: colorize-icon ? text-color : transparent;
@@ -38,7 +38,7 @@ export component UTag inherits Rectangle {
             font-size: UAppTheme.font-size-small;
         }
 
-        if icon-placement == IconTextPlacement.end: UIcon {
+        if icon-placement == UIconTextPlacement.end: UIcon {
             source: icon;
             size: UAppTheme.font-size-base;
             colorize: colorize-icon ? text-color : transparent;
