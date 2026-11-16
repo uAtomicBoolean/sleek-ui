@@ -1,17 +1,16 @@
 import { UAppTheme } from "../app-theme.slint";
+import { UPosition } from "common/enums.slint";
 
-
-enum UTooltipPosition { top, bottom, left, right }
 
 export global UTooltipLogic {
     out property <bool> user-hovering;
     out property <styled-text> text;
-    out property <UTooltipPosition> position;
+    out property <UPosition> position;
     out property <length> x;
     out property <length> y;
     out property <length> width;
     out property <length> height;
-    public function display(text: styled-text, position: UTooltipPosition, user-hovering: bool, coords: Point, width: length, height: length) {
+    public function display(text: styled-text, position: UPosition, user-hovering: bool, coords: Point, width: length, height: length) {
         self.user-hovering = user-hovering;
         if self.user-hovering {
             self.text = text;
@@ -78,21 +77,21 @@ export component UTooltip {
     }
 
     function compute-x-position() -> length {
-        if (UTooltipLogic.position == UTooltipPosition.left) {
+        if (UTooltipLogic.position == UPosition.left) {
             return UTooltipLogic.x - content.width - UAppTheme.spacing-base;
-        } else if (UTooltipLogic.position == UTooltipPosition.right) {
+        } else if (UTooltipLogic.position == UPosition.right) {
             return UTooltipLogic.x + UTooltipLogic.width + UAppTheme.spacing-base;
-        } else if (UTooltipLogic.position == UTooltipPosition.top || UTooltipLogic.position == UTooltipPosition.bottom) {
+        } else if (UTooltipLogic.position == UPosition.top || UTooltipLogic.position == UPosition.bottom) {
             return UTooltipLogic.x - (content.width - UTooltipLogic.width) / 2;
         }
         return UTooltipLogic.x;
     }
     function compute-y-position() -> length {
-        if (UTooltipLogic.position == UTooltipPosition.top) {
+        if (UTooltipLogic.position == UPosition.top) {
             return UTooltipLogic.y - content.height - UAppTheme.spacing-base;
-        } else if (UTooltipLogic.position == UTooltipPosition.bottom) {
+        } else if (UTooltipLogic.position == UPosition.bottom) {
             return UTooltipLogic.y + UTooltipLogic.height + UAppTheme.spacing-base;
-        } else if (UTooltipLogic.position == UTooltipPosition.left || UTooltipLogic.position == UTooltipPosition.right) {
+        } else if (UTooltipLogic.position == UPosition.left || UTooltipLogic.position == UPosition.right) {
             return UTooltipLogic.y - (content.height - UTooltipLogic.height) / 2;
         }
         return UTooltipLogic.y;

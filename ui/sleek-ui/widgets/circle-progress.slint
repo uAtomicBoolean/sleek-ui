@@ -1,13 +1,6 @@
 import { UAppTheme } from "../app-theme.slint";
-import { ProgressDirection } from "common/enums.slint";
+import { UPosition, UProgressDirection } from "common/enums.slint";
 
-
-enum UCircleProgressGapPosition {
-    top,
-    bottom,
-    left,
-    right,
-}
 
 // Draws a clockwise arc between two angles, measured clockwise from the top of the circle.
 component CircleArc inherits Path {
@@ -60,8 +53,8 @@ export component UCircleProgress inherits Rectangle {
     in property <length> default-size: 120px;
     in property <length> line-width: default-size * 6 / 100;
     in property <angle> gap-degree: 0deg;
-    in property <UCircleProgressGapPosition> gap-position: bottom;
-    in property <ProgressDirection> direction: start;
+    in property <UPosition> gap-position: bottom;
+    in property <UProgressDirection> direction: start;
     in-out property <percent> progress: 0%;
     in-out property <bool> indeterminate: false;
     // Inner properties to manage the gap and track.
@@ -97,8 +90,8 @@ export component UCircleProgress inherits Rectangle {
         height: 100%;
         stroke: root.progress-color;
         line-width: root.line-width;
-        start-angle: root.direction == ProgressDirection.end ? root.track-start + (1 - root.arc-end) * root.track-sweep : root.track-start + root.arc-start * root.track-sweep;
-        end-angle: root.direction == ProgressDirection.end ? root.track-start + (1 - root.arc-start) * root.track-sweep : root.track-start + root.arc-end * root.track-sweep;
+        start-angle: root.direction == UProgressDirection.end ? root.track-start + (1 - root.arc-end) * root.track-sweep : root.track-start + root.arc-start * root.track-sweep;
+        end-angle: root.direction == UProgressDirection.end ? root.track-start + (1 - root.arc-start) * root.track-sweep : root.track-start + root.arc-end * root.track-sweep;
     }
 
     @children

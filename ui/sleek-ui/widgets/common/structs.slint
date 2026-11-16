@@ -1,5 +1,14 @@
+import { UIconTextPlacement } from "enums.slint";
+
+
 export struct UOptionData {
     text: string,
     value: string,
     enabled: bool = true,
+}
+
+export struct UTabData {
+    title: string,
+    icon: image,
+    icon-placement: UIconTextPlacement = UIconTextPlacement.hidden,
 }

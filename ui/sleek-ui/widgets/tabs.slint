@@ -1,22 +1,12 @@
 import { UAppTheme } from "../app-theme.slint";
-import { IconTextPlacement } from "common/enums.slint";
+import { UIconTextPlacement, UTabsAlignment } from "common/enums.slint";
+import { UTabData } from "common/structs.slint";
 
 import { UInteractiveBase } from "interactive-base.slint";
 import { UDivider } from "divider.slint";
 import { UIcon } from "icon.slint";
 import { UText } from "text.slint";
 
-
-export enum UTabsAlignment {
-    start,
-    stretch,
-}
-
-export struct UTabData {
-    title: string,
-    icon: image,
-    icon-placement: IconTextPlacement = IconTextPlacement.hidden,
-}
 
 component TabIcon inherits UIcon {
     in property <bool> is-current;
@@ -90,7 +80,7 @@ export component UTabs inherits Rectangle {
                     padding-bottom: UAppTheme.padding-vertical;
                     padding-left: UAppTheme.padding-horizontal;
                     padding-right: UAppTheme.padding-horizontal;
-                    if tab.icon-placement == IconTextPlacement.start: TabIcon {
+                    if tab.icon-placement == UIconTextPlacement.start: TabIcon {
                         source: tab.icon;
                         is-current: is-current;
                         pressed: tab-btn.pressed;
@@ -114,7 +104,7 @@ export component UTabs inherits Rectangle {
                         ]
                     }
 
-                    if tab.icon-placement == IconTextPlacement.end: TabIcon {
+                    if tab.icon-placement == UIconTextPlacement.end: TabIcon {
                         source: tab.icon;
                         is-current: is-current;
                         pressed: tab-btn.pressed;

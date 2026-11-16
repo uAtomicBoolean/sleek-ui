@@ -56,8 +56,9 @@ import {
 	InteractiveBasePage,
     ScrollViewPage,
 
-	// Structs
-	OptionDataPage,
+	// Common types
+	StructsPage,
+    EnumsPage,
 } from "../pages/page-index.slint";
 
 
@@ -120,7 +121,8 @@ export component PageManager {
 		if current-page == "interactive-base": InteractiveBasePage { }
         if current-page == "scrollview": ScrollViewPage { }
 
-        // Structs
-		if current-page == "option-data": OptionDataPage { }
+        // Common types
+        if current-page == "structs": StructsPage { }
+        if current-page == "enums": EnumsPage { }
     }
 }

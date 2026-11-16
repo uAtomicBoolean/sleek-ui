@@ -294,13 +294,19 @@ export component Sidebar inherits Rectangle {
                         }
 
                         UMenuGroupTitle {
-                            title: "Structs";
+                            title: "Common types";
                         }
 
                         UMenuLink {
                             parent-child-opened <=> parent.child-opened;
-                            id: "option-data";
-                            name: "OptionData";
+                            id: "structs";
+                            name: "Structs";
+                        }
+
+                        UMenuLink {
+                            parent-child-opened <=> parent.child-opened;
+                            id: "enums";
+                            name: "Enums";
                         }
                     }
 

@@ -1,0 +1,168 @@
+import { UTitle, UMenuLogic } from "../../sleek-ui/widgets.slint";
+
+import {
+    DocDescription,
+    DocSection,
+    DocCode,
+} from "../../components/doc-widgets.slint";
+import { PageBase } from "../../components/page-base.slint";
+
+
+export component EnumsPage inherits PageBase {
+    UTitle {
+        level: 3;
+        text: "Enums";
+    }
+
+    DocDescription {
+        text: "The enums used by the widgets' properties and functions.";
+    }
+
+    DocSection {
+        title: "How to import";
+        description: @markdown(
+            "All the enums can be imported from the [@sleek-ui/common.slint](https://github.com/uAtomicBoolean/sleek-ui/blob/main/ui/sleek-ui/common.slint) file.\n"
+            "Importing an enum is only required to use it in your own code. A widget's property can be set directly "
+            "with the value's name, e.g. `variant: primary;`."
+        );
+        link-clicked(url) => {
+            Platform.open-url(url);
+        }
+    }
+
+    DocCode {
+        code: "import { UButtonVariant } from \"@sleek-ui/common.slint\";\n\nexport component MyButton {\n    in property <UButtonVariant> variant: UButtonVariant.primary;\n}";
+    }
+
+    DocSection {
+        title: "UVariantType";
+        description: @markdown("The state displayed by the [UAlert](alert) and [UNotification](notification) widgets with their `variant` property.");
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UVariantType {\n    info,\n    success,\n    warning,\n    error,\n}";
+    }
+
+    DocSection {
+        title: "UIconTextPlacement";
+        description: @markdown(
+            "The placement of an icon or a text in a widget. It is used by the `icon-placement` property of "
+            "[UButton](button), [ULink](link), [UTag](tag) and [UTabData](structs), and by the `text-placement` "
+            "property of [UCheckbox](checkbox).\n"
+            "The `IconTextPlacement` enum is a deprecated alias of `UIconTextPlacement` and will be removed in a next release."
+        );
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UIconTextPlacement {\n    // The icon or text is not displayed.\n    hidden,\n\n    // The icon or text is displayed before the rest of the widget.\n    start,\n\n    // The icon or text is displayed after the rest of the widget.\n    end,\n}";
+    }
+
+    DocSection {
+        title: "UProgressDirection";
+        description: @markdown("The direction in which the progress fills the track of the [UCircleProgress](circle-progress) and [ULineProgress](line-progress) widgets with their `direction` property.");
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UProgressDirection {\n    // The progress starts from the start of the track (clockwise for UCircleProgress).\n    start,\n\n    // The progress starts from the end of the track (counter-clockwise for UCircleProgress).\n    end,\n}";
+    }
+
+    DocSection {
+        title: "UPosition";
+        description: @markdown(
+            "A side of an element. It is used by the `gap-position` property of [UCircleProgress](circle-progress) "
+            "to place the gap, and by the `UTooltipLogic.display()` function of [UTooltip](tooltip) to choose on "
+            "which side of the targeted element the tooltip is displayed."
+        );
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UPosition {\n    top,\n    bottom,\n    left,\n    right,\n}";
+    }
+
+    DocSection {
+        title: "UButtonVariant";
+        description: @markdown(
+            "The style of the [UButton](button) and [UIconButton](icon-button) widgets with their `variant` property. "
+            "It is also used by the `accept-btn-variant` and `cancel-btn-variant` properties of [UModal](modal)."
+        );
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UButtonVariant {\n    // Background in the primary color.\n    primary,\n\n    // Transparent background with a border.\n    default,\n\n    // Light grey background without border.\n    filled,\n\n    // No background nor border, a background is displayed on hover.\n    text,\n\n    // Only the text color changes on hover.\n    // Only supported by UIconButton, a UButton uses the default variant instead.\n    text-stripped,\n}";
+    }
+
+    DocSection {
+        title: "URadioButtonVariant";
+        description: @markdown("The style of the [URadioButton](radio-button) widget with its `variant` property.");
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum URadioButtonVariant {\n    // The selected option has its text and border in the primary color.\n    default,\n\n    // The selected option has a background in the primary color.\n    primary,\n}";
+    }
+
+    DocSection {
+        title: "UTagVariant";
+        description: @markdown("The style of the [UTag](tag) widget with its `variant` property.");
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UTagVariant {\n    // Light background with a colored text.\n    filled,\n\n    // Background in the tag's color with the UAppTheme.primary-text color for the text.\n    solid,\n\n    // Same as filled, with a colored border.\n    outline,\n}";
+    }
+
+    DocSection {
+        title: "UTagPreset";
+        description: @markdown("The color of the [UTag](tag) widget with its `preset` property. Each preset uses one of the [default colors](default-colors).");
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UTagPreset {\n    red, // UAppTheme.dust-red\n    volcano, // UAppTheme.volcano\n    orange, // UAppTheme.sunset-orange\n    gold, // UAppTheme.calendula-gold\n    yellow, // UAppTheme.sunrise-yellow\n    lime, // UAppTheme.lime\n    green, // UAppTheme.polar-green\n    cyan, // UAppTheme.cyan\n    blue, // UAppTheme.daybreak-blue\n    geekblue, // UAppTheme.geek-blue\n    purple, // UAppTheme.golden-purple\n    magenta, // UAppTheme.french-magenta\n}";
+    }
+
+    DocSection {
+        title: "UTabsAlignment";
+        description: @markdown("The way the tabs of the [UTabs](tabs) widget share the available width with its `tabs-alignment` property.");
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UTabsAlignment {\n    // The tabs take the minimum width to display their content.\n    start,\n\n    // The tabs share the whole width of the widget.\n    stretch,\n}";
+    }
+
+    DocSection {
+        title: "UMenuVariant";
+        description: @markdown("The color scheme of the [UMenu](menu-how-to) widget with its `variant` property.");
+        link-clicked(url) => {
+            UMenuLogic.current-link = url;
+        }
+    }
+
+    DocCode {
+        code: "enum UMenuVariant {\n    // Follows the current color scheme.\n    default,\n\n    // Forces the light color scheme.\n    light,\n\n    // Forces the dark color scheme.\n    dark,\n}";
+    }
+}

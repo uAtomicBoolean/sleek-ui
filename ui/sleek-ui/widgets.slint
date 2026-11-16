@@ -16,7 +16,6 @@ export {
     UMenuLink,
     UMenuGroupTitle,
     UMenuSubmenu,
-    UMenuVariant,
     UMenuLogic,
 } from "widgets/menu/menu.slint";
 export { UModal, UModalLogic } from "widgets/modal.slint";
@@ -25,17 +24,25 @@ export { UCircleProgress } from "widgets/circle-progress.slint";
 export { ULineProgress } from "widgets/line-progress.slint";
 export { UPopover } from "widgets/popover.slint";
 export { URadio } from "widgets/radio.slint";
-export { URadioButton, URadioButtonVariant } from "widgets/radio-button.slint";
+export { URadioButton } from "widgets/radio-button.slint";
 export { UScrollView } from "widgets/scrollview.slint";
 export { USelect } from "widgets/select.slint";
 export { USlider } from "widgets/slider.slint";
 export { USpinner } from "widgets/spinner.slint";
 export { USwitch } from "widgets/switch.slint";
-export { UTabs, UTabsAlignment, UTabData } from "widgets/tabs.slint";
-export { UTag, UTagVariant } from "widgets/tag.slint";
+export { UTabs } from "widgets/tabs.slint";
+export { UTag } from "widgets/tag.slint";
 export { UText } from "widgets/text.slint";
 export { UTitle } from "widgets/title.slint";
 export { UTooltip, UTooltipLogic } from "widgets/tooltip.slint";
+
+// Deprecated: these types must now be imported from `common.slint`.
+// They are still exported here to avoid breaking existing imports.
+export {
+    URadioButtonVariant,
+    UTagVariant,
+    UMenuVariant,
+} from "widgets/common/enums.slint";
 
 // UInteractiveBase export to help build interactive components.
 export { UInteractiveBase } from "widgets/interactive-base.slint";

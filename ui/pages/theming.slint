@@ -42,7 +42,7 @@ export component ThemingPage inherits PageBase {
     }
 
     DocCode {
-        code: "import { UAppThemeConfig } from \"@sleek-ui/structs/theme.slint\";\n\nexport global MyCustomTheme {\n    in-out property <UAppThemeConfig> custom-light: {\n        // Your theme declaration.\n    };\n    in-out property <UAppThemeConfig> custom-dark: {\n        // Your theme declaration.\n    };\n}";
+        code: "import { UAppThemeConfig } from \"@sleek-ui/app-theme.slint\";\n\nexport global MyCustomTheme {\n    in-out property <UAppThemeConfig> custom-light: {\n        // Your theme declaration.\n    };\n    in-out property <UAppThemeConfig> custom-dark: {\n        // Your theme declaration.\n    };\n}";
     }
 
     Spacer { }

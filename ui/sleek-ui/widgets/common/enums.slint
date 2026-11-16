@@ -1,3 +1,52 @@
 export enum UVariantType { info, success, warning, error }
-export enum IconTextPlacement { hidden, start, end }
-export enum ProgressDirection { start, end }
+export enum UIconTextPlacement { hidden, start, end }
+// Deprecated, will be removed in a next release. Use UIconTextPlacement instead.
+// Exported as an alias so that it stays the same type as UIconTextPlacement.
+export { UIconTextPlacement as IconTextPlacement }
+export enum UProgressDirection { start, end }
+export enum UPosition { top, bottom, left, right }
+
+export enum UButtonVariant {
+    primary,
+    default,
+    filled,
+    text,
+    text-stripped,
+}
+
+export enum URadioButtonVariant {
+    default,
+    primary,
+}
+
+export enum UTagVariant {
+    filled,
+    solid,
+    outline,
+}
+
+export enum UTagPreset {
+    red,
+    volcano,
+    orange,
+    gold,
+    yellow,
+    lime,
+    green,
+    cyan,
+    blue,
+    geekblue,
+    purple,
+    magenta,
+}
+
+export enum UTabsAlignment {
+    start,
+    stretch,
+}
+
+export enum UMenuVariant {
+    default,
+    light,
+    dark,
+}
