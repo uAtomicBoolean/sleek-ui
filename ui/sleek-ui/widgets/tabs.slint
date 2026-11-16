@@ -1,5 +1,5 @@
 import { UAppTheme } from "../app-theme.slint";
-import { UIconTextPlacement, UTabsAlignment } from "common/enums.slint";
+import { UIconTextPlacement } from "common/enums.slint";
 import { UTabData } from "common/structs.slint";
 
 import { UInteractiveBase } from "interactive-base.slint";
@@ -32,13 +32,13 @@ export component UTabs inherits Rectangle {
     // Regular properties
     in property <[UTabData]> tabs;
     in-out property <int> current-index: 0;
-    in property <UTabsAlignment> tabs-alignment: stretch;
+    in property <LayoutAlignment> tabs-alignment: stretch;
     private property <length> underline-x: 0px;
     private property <length> underline-width: 0px;
     VerticalLayout {
         alignment: start;
         HorizontalLayout {
-            alignment: tabs-alignment == start ? start : stretch;
+            alignment: tabs-alignment;
             padding-bottom: UAppTheme.padding-base;
             for tab[idx] in tabs: tab-btn := UInteractiveBase {
                 accessible-role: AccessibleRole.tab;

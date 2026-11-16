@@ -142,18 +142,6 @@ export component EnumsPage inherits PageBase {
     }
 
     DocSection {
-        title: "UTabsAlignment";
-        description: @markdown("The way the tabs of the [UTabs](tabs) widget share the available width with its `tabs-alignment` property.");
-        link-clicked(url) => {
-            UMenuLogic.current-link = url;
-        }
-    }
-
-    DocCode {
-        code: "enum UTabsAlignment {\n    // The tabs take the minimum width to display their content.\n    start,\n\n    // The tabs share the whole width of the widget.\n    stretch,\n}";
-    }
-
-    DocSection {
         title: "UMenuVariant";
         description: @markdown("The color scheme of the [UMenu](menu-how-to) widget with its `variant` property.");
         link-clicked(url) => {

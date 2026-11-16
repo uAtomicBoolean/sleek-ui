@@ -92,26 +92,38 @@ export component TabsPage inherits PageBase {
     DocSection {
         title: "Tabs alignment";
         description: @markdown(
-			"You can set the `tabs-alignment` property to `start` to have "
-			"tabs that take the minimum width to display their text.\n"
-			"Otherwise, the property defaults to `stretch`.\n"
-			"If necessary, you can import the `UTabsAlignment` enum from the `@sleek-ui/common.slint` file."
+			"The `tabs-alignment` property uses Slint's built-in `LayoutAlignment` enum and defaults to `stretch`, "
+			"so that the tabs share the whole width of the widget.\n"
+			"Set it to `start` to have tabs that take the minimum width to display their text, "
+			"or use any other alignment such as `center`, `end` or `space-between`."
 		);
     }
 
     WidgetPresentation {
         full-width: true;
-        UTabs {
-            tabs: [
-                { title: "First tab" },
-                { title: "Second tab" },
-                { title: "Third tab" },
-            ];
-            tabs-alignment: start;
+        VerticalLayout {
+            spacing: UAppTheme.spacing-bigger;
+            UTabs {
+                tabs: [
+                    { title: "First tab" },
+                    { title: "Second tab" },
+                    { title: "Third tab" },
+                ];
+                tabs-alignment: start;
+            }
+
+            UTabs {
+                tabs: [
+                    { title: "First tab" },
+                    { title: "Second tab" },
+                    { title: "Third tab" },
+                ];
+                tabs-alignment: center;
+            }
         }
     }
 
     DocCode {
-        code: "UTabs {\n    tabs: [{ title: \"First tab\" }, { title: \"Second tab\" }, { title: \"Third tab\" } ];\n    tabs-alignment: start;\n}";
+        code: "UTabs {\n    tabs: [{ title: \"First tab\" }, { title: \"Second tab\" }, { title: \"Third tab\" } ];\n    tabs-alignment: start;\n}\n\nUTabs {\n    tabs: [{ title: \"First tab\" }, { title: \"Second tab\" }, { title: \"Third tab\" } ];\n    tabs-alignment: center;\n}";
     }
 }
