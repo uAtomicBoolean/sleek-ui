@@ -37,10 +37,10 @@ export component UInteractiveBase inherits Rectangle {
     callback focus-gained <=> focus-scope.focus-gained;
     callback focus-lost <=> focus-scope.focus-lost;
 
-    @deprecated("Use the 'focus()' method instead.") public function set-focus() {
+    @deprecated("Use the 'focus()' function instead.") public function set-focus() {
         focus-scope.focus();
     }
-    @deprecated("Use the 'clear-focus()' method instead.") public function release-focus() {
+    @deprecated("Use the 'clear-focus()' function instead.") public function release-focus() {
         focus-scope.clear-focus();
     }
 
