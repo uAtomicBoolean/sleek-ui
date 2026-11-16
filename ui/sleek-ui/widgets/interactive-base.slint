@@ -37,6 +37,13 @@ export component UInteractiveBase inherits Rectangle {
     callback focus-gained <=> focus-scope.focus-gained;
     callback focus-lost <=> focus-scope.focus-lost;
 
+    @deprecated("Use the 'focus()' method instead.") public function set-focus() {
+        focus-scope.focus();
+    }
+    @deprecated("Use the 'clear-focus()' method instead.") public function release-focus() {
+        focus-scope.clear-focus();
+    }
+
     changed enabled => {
         if !enabled {
             has-tab-focus = false;
@@ -46,12 +53,13 @@ export component UInteractiveBase inherits Rectangle {
         enabled: enable-animations;
         duration: UAppTheme.animation-duration;
     }
+
     focus-scope := FocusScope {
         enabled: root.enabled;
         key-pressed(event) => {
             if event.text == Key.Space || event.text == Key.Return {
                 root.clicked();
-                accept
+                return accept;
             }
             if event.text == Key.Escape {
                 self.clear-focus();
