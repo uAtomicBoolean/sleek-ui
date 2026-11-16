@@ -84,10 +84,10 @@ export component UScrollView inherits FocusScope {
     in-out property <bool> interactive: false;
     private property <length> min-handle-size: 30px;
     // To be removed as deprecated.
-    in-out property <length> viewport-x <=> flickable.content-x;
-    in-out property <length> viewport-y <=> flickable.content-y;
-    in-out property <length> viewport-width <=> flickable.content-width;
-    in-out property <length> viewport-height <=> flickable.content-height;
+    @deprecated("Use 'content-x' instead") in-out property <length> viewport-x <=> flickable.content-x;
+    @deprecated("Use 'content-y' instead") in-out property <length> viewport-y <=> flickable.content-y;
+    @deprecated("Use 'content-width' instead") in-out property <length> viewport-width <=> flickable.content-width;
+    @deprecated("Use 'content-height' instead") in-out property <length> viewport-height <=> flickable.content-height;
     // New properties following the naming convention of Flickable.
     in-out property <length> content-x <=> flickable.content-x;
     in-out property <length> content-y <=> flickable.content-y;
