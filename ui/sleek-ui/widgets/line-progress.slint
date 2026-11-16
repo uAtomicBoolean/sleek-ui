@@ -1,5 +1,5 @@
 import { UAppTheme } from "../app-theme.slint";
-import { ProgressDirection } from "common/enums.slint";
+import { UProgressDirection } from "common/enums.slint";
 
 
 export component ULineProgress inherits Rectangle {
@@ -14,13 +14,13 @@ export component ULineProgress inherits Rectangle {
     in property <length> default-size: 10px;
     in property <length> default-radius: UAppTheme.radius-round;
     in property <Orientation> orientation: horizontal;
-    in property <ProgressDirection> direction: start;
+    in property <UProgressDirection> direction: start;
     in-out property <percent> progress;
     in-out property <bool> indeterminate: false;
     // Position of the indeterminate bar's start along the track, as a ratio of the track's length.
     // The bar covers 30% of the track and goes completely out of it before coming back.
     private property <float> indeterminate-offset: indeterminate ? mod(animation-tick() / 1500ms, 1.3) - 0.3 : 0;
-    private property <float> indeterminate-start: direction == ProgressDirection.end ? 0.7 - indeterminate-offset : indeterminate-offset;
+    private property <float> indeterminate-start: direction == UProgressDirection.end ? 0.7 - indeterminate-offset : indeterminate-offset;
     background: UAppTheme.color-fill-secondary;
     border-radius: default-radius;
     clip: true;
