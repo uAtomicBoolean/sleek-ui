@@ -6,7 +6,6 @@ edition = "2024"
 authors = ["uAtomicBoolean <uatomicboolean@proton.me>"]
 license-file = "LICENSE"
 repository = "https://github.com/uAtomicBoolean/sleek-ui"
-homepage = "https://github.com/uAtomicBoolean/sleek-ui"
 documentation = "https://uatomicboolean.github.io/sleek-ui/"
 readme = "README.md"
 
