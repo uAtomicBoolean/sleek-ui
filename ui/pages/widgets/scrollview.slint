@@ -37,11 +37,13 @@ export component ScrollViewPage inherits PageBase {
             height: 200px;
             border-width: 1px;
             border-color: UAppTheme.text;
+
             UScrollView {
                 width: 200px;
                 height: 200px;
                 content-width: 400px;
                 content-height: 400px;
+
                 Rectangle {
                     width: 30px;
                     height: 30px;
@@ -94,12 +96,14 @@ export component ScrollViewPage inherits PageBase {
     }
 
     DocSection {
-        title: "Scroll to and scroll by functions";
+        title: "Programmatic scroll";
         description: @markdown(
-			"Four functions let you scroll programmatically: `scroll-x-to(pos)` / `scroll-y-to(pos)` move to an "
-			"absolute content position, while `scroll-x-by(delta)` / `scroll-y-by(delta)` move by a relative offset. "
-			"All of them are clamped to the content bounds and animated."
+			"Use the Flickable's [scroll-to()](https://docs.slint.dev/latest/docs/slint/reference/gestures/flickable/#scroll-topos-point-behavior-scrollbehavior) function to scroll to a specific point in the content.\n"
+			"You can also use the [ensure-visible()](https://docs.slint.dev/latest/docs/slint/reference/common/#ensure-visiblebehavior-scrollbehavior) function on any component in your UI to bring it into view."
 		);
+        link-clicked(url) => {
+            Platform.open-url(url)
+        }
     }
 
     DocSection {
