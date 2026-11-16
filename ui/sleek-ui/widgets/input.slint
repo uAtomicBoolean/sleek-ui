@@ -7,6 +7,7 @@ import { UText } from "text.slint";
 export component UInput inherits Rectangle {
     // Accessibility properties
     accessible-role: text-input;
+    accessible-enabled: input.enabled;
     accessible-read-only: input.read-only;
     accessible-value: self.text;
     accessible-placeholder-text: self.placeholder;
@@ -25,6 +26,7 @@ export component UInput inherits Rectangle {
     in-out property <bool> clearable: false;
     in-out property <bool> error: false;
     private property <bool> show: false;
+    forward-focus: input;
     border-width: UAppTheme.border-width-base;
     border-radius: UAppTheme.radius-base;
     border-color: UAppTheme.border;
@@ -153,20 +155,38 @@ export component UInput inherits Rectangle {
     ]
 
     // Reexport the properties of the TextInput widget.
+    // `color` keeps its prefix as it would override the `Rectangle.color` property.
     in-out property <brush> i-color <=> input.color;
-    in-out property <string> i-font-family <=> input.font-family;
-    in-out property <length> i-font-size <=> input.font-size;
-    in-out property <int> i-font-weight <=> input.font-weight;
-    in-out property <bool> i-font-italic <=> input.font-italic;
-    out property <FontMetrics> i-font-metrics <=> input.font-metrics;
-    out property <bool> i-has-focus <=> input.has-focus;
-    in-out property <TextHorizontalAlignment> i-horizontal-alignment <=> input.horizontal-alignment;
-    in-out property <length> i-letter-spacing <=> input.letter-spacing;
-    in-out property <length> i-page-height <=> input.page-height;
-    in-out property <color> i-selection-background-color <=> input.selection-background-color;
-    in-out property <color> i-selection-foreground-color <=> input.selection-foreground-color;
-    in-out property <length> i-text-cursor-width <=> input.text-cursor-width;
-    in-out property <TextVerticalAlignment> i-vertical-alignment <=> input.vertical-alignment;
+    in-out property <string> font-family <=> input.font-family;
+    in-out property <length> font-size <=> input.font-size;
+    in-out property <int> font-weight <=> input.font-weight;
+    in-out property <bool> font-italic <=> input.font-italic;
+    out property <FontMetrics> font-metrics <=> input.font-metrics;
+    out property <bool> has-focus <=> input.has-focus;
+    out property <bool> has-selection <=> input.has-selection;
+    in-out property <TextHorizontalAlignment> horizontal-alignment <=> input.horizontal-alignment;
+    in-out property <InputMethodHints> input-method-hints <=> input.input-method-hints;
+    in-out property <length> letter-spacing <=> input.letter-spacing;
+    in-out property <float> line-height-factor <=> input.line-height-factor;
+    in-out property <length> page-height <=> input.page-height;
+    in-out property <color> selection-background-color <=> input.selection-background-color;
+    in-out property <color> selection-foreground-color <=> input.selection-foreground-color;
+    in-out property <length> text-cursor-width <=> input.text-cursor-width;
+    in-out property <TextVerticalAlignment> vertical-alignment <=> input.vertical-alignment;
+    // Old prefixed properties, kept for compatibility.
+    @deprecated("Use 'font-family' instead") in-out property <string> i-font-family <=> input.font-family;
+    @deprecated("Use 'font-size' instead") in-out property <length> i-font-size <=> input.font-size;
+    @deprecated("Use 'font-weight' instead") in-out property <int> i-font-weight <=> input.font-weight;
+    @deprecated("Use 'font-italic' instead") in-out property <bool> i-font-italic <=> input.font-italic;
+    @deprecated("Use 'font-metrics' instead") out property <FontMetrics> i-font-metrics <=> input.font-metrics;
+    @deprecated("Use 'has-focus' instead") out property <bool> i-has-focus <=> input.has-focus;
+    @deprecated("Use 'horizontal-alignment' instead") in-out property <TextHorizontalAlignment> i-horizontal-alignment <=> input.horizontal-alignment;
+    @deprecated("Use 'letter-spacing' instead") in-out property <length> i-letter-spacing <=> input.letter-spacing;
+    @deprecated("Use 'page-height' instead") in-out property <length> i-page-height <=> input.page-height;
+    @deprecated("Use 'selection-background-color' instead") in-out property <color> i-selection-background-color <=> input.selection-background-color;
+    @deprecated("Use 'selection-foreground-color' instead") in-out property <color> i-selection-foreground-color <=> input.selection-foreground-color;
+    @deprecated("Use 'text-cursor-width' instead") in-out property <length> i-text-cursor-width <=> input.text-cursor-width;
+    @deprecated("Use 'vertical-alignment' instead") in-out property <TextVerticalAlignment> i-vertical-alignment <=> input.vertical-alignment;
     // Link the functions and callback of TextInput to child.
     public function set-selection-offsets(start: int, end: int) {
         input.set-selection-offsets(start, end);
@@ -185,6 +205,12 @@ export component UInput inherits Rectangle {
     }
     public function paste() {
         input.paste();
+    }
+    public function undo() {
+        input.undo();
+    }
+    public function redo() {
+        input.redo();
     }
     callback accepted <=> input.accepted;
     callback cursor-position-changed <=> input.cursor-position-changed;

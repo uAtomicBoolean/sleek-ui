@@ -31,7 +31,7 @@ export component InputNumberPage inherits PageBase {
     }
 
     DocCode {
-        code: "UInputNumber {\n    accepted => {\n        debug(self.text);\n    }\n}";
+        code: "UInputNumber {\n    accepted => {\n        debug(self.value);\n    }\n}";
     }
 
     DocSection {
@@ -88,7 +88,7 @@ export component InputNumberPage inherits PageBase {
         title: "Minimum and maximum values";
         description: @markdown(
 			"Enable the minimum and maximum values by setting the `enable-min-max` property to `true`.\n"
-			"You can then define the range using the `min` and `max` properties.\n"
+			"You can then define the range using the `min-value` and `max-value` properties.\n"
 		);
     }
 
@@ -120,9 +120,12 @@ export component InputNumberPage inherits PageBase {
     }
 
     DocSection {
-        title: "Functions and callbacks";
+        title: "TextInput properties, functions and callbacks";
         description: @markdown(
-			"With the exception of both `focus()` and `clear-focus()`, all of the `TextInput` functions and callbacks are available.\n"
+			"All the properties of `TextInput` are available on the widget with the exception of `wrap` and `single-line`, as the input only displays a single line.\n"
+			"The `text` and `input-type` properties are replaced by `value` and `number`.\n"
+			"The `color` property is available as `i-color` because `Rectangle`, which is used by the widget,  already defines a `color` property.\n"
+			"All of the `TextInput` functions and callbacks are available."
 		);
     }
 

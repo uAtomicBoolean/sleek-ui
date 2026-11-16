@@ -122,6 +122,7 @@ export component InputPage inherits PageBase {
 
     WidgetPresentation {
         spacing: UAppTheme.spacing-base;
+
         UInput {
             input-type: password;
         }
@@ -139,8 +140,9 @@ export component InputPage inherits PageBase {
     DocSection {
         title: "TextInput properties, functions and callbacks";
         description: @markdown(
-			"Almost all the properties of `TextInput` are available on the widget with the exception of a few that are not compatible with the widget's use.\n"
-			"With the exception of both `focus()` and `clear-focus()`, all of the `TextInput` functions and callbacks are available."
+			"All the properties of `TextInput` are available on the widget with the exception of `wrap` and `single-line`, as the input only displays a single line.\n"
+			"The `color` property is available as `i-color` as `Rectangle`, which is used by the widget, already defines a `color` property.\n"
+			"All of the `TextInput` functions and callbacks are available."
 		);
     }
 
