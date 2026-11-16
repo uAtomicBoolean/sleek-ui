@@ -36,6 +36,7 @@ export component USelect inherits UInteractiveBase {
     clicked => {
         popup.show();
     }
+
     HorizontalLayout {
         alignment: space-between;
         cross-axis-alignment: center;
@@ -44,6 +45,7 @@ export component USelect inherits UInteractiveBase {
         padding-bottom: UAppTheme.padding-vertical;
         padding-left: UAppTheme.padding-horizontal / 2;
         padding-right: 5px;
+
         text-obj := UText {
             text: current-index != -1 ? options[current-index].text : "";
             overflow: elide;
@@ -67,14 +69,19 @@ export component USelect inherits UInteractiveBase {
         width: root.width;
         height: root.full-options-height > popup-max-height ? popup-max-height : root.full-options-height;
         y: root.height + 1px;
+
         inner-scrollview := UScrollView {
             height: parent.height;
             focus-on-tab-navigation: false;
             init => {
                 if root.full-options-height > root.popup-max-height && current-index != -1 {
-                    self.scroll-y-to(current-index * root.option-height - root.popup-max-height / 2 + root.option-height / 1.5);
+                    self.scroll-to({
+                        x: 0,
+                        y: current-index * root.option-height - root.popup-max-height / 2 + root.option-height / 1.5
+                    }, smooth);
                 }
             }
+
             list-contents := VerticalLayout {
                 padding: UAppTheme.padding-base;
                 for option[index] in root.options: select-item := UInteractiveBase {
@@ -102,10 +109,12 @@ export component USelect inherits UInteractiveBase {
                     border-radius: UAppTheme.radius-base;
                     width: 100%;
                     enable-animations: false;
+
                     VerticalLayout {
                         alignment: center;
                         padding-left: UAppTheme.padding-horizontal;
                         padding-right: UAppTheme.padding-horizontal;
+
                         UText {
                             text: option.text;
                             font-size: UAppTheme.font-size-base;

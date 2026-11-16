@@ -21,6 +21,7 @@ export component AppWindow inherits Window {
     preferred-width: 1280px;
     preferred-height: 720px;
     background: UAppTheme.bg-container;
+
     FocusScope {
         HorizontalLayout {
             Sidebar { }
@@ -32,8 +33,10 @@ export component AppWindow inherits Window {
     UModal {
         id: "modal-base";
         title: "Modal example";
+
         VerticalLayout {
             alignment: start;
+
             UText {
                 text: "This part of the modal takes children components hence is fully customizable.";
                 wrap: word-wrap;
@@ -48,8 +51,10 @@ export component AppWindow inherits Window {
         modal-max-width: 400px;
         modal-min-height: 200px;
         modal-max-height: 400px;
+
         VerticalLayout {
             alignment: start;
+
             UText {
                 text: "This part of the modal takes children components hence is fully customizable.";
                 wrap: word-wrap;
@@ -67,9 +72,11 @@ export component AppWindow inherits Window {
         close-on-click-outside: true;
         close-on-accept: false;
         close-on-cancel: false;
+
         VerticalLayout {
             alignment: start;
             spacing: UAppTheme.spacing-base;
+
             UText {
                 text: "Both the Accept and Cancel buttons do not close the modal anymore.";
                 wrap: word-wrap;
@@ -91,8 +98,10 @@ export component AppWindow inherits Window {
         modal-max-height: 400px;
         top-divider: true;
         bottom-divider: true;
+
         VerticalLayout {
             alignment: start;
+
             UText {
                 text: "The main content is now clearly separated from the top and bottom spaces.";
                 wrap: word-wrap;
@@ -110,8 +119,10 @@ export component AppWindow inherits Window {
         cancel-btn-variant: filled;
         accept-btn-text: "Delete";
         accept-btn-danger: true;
+
         VerticalLayout {
             alignment: start;
+
             UText {
                 text: "The accept and cancel buttons can be customized to suit your needs.";
                 wrap: word-wrap;
@@ -128,8 +139,10 @@ export component AppWindow inherits Window {
         modal-max-height: 400px;
         accept-btn-enabled: false;
         cancel-btn-toggle: false;
+
         VerticalLayout {
             alignment: start;
+
             UText {
                 text: "The accept button is now disabled and the cancel button is hidden.";
                 wrap: word-wrap;

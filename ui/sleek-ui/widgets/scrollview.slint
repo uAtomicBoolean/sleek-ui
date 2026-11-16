@@ -94,18 +94,22 @@ export component UScrollView inherits FocusScope {
     in-out property <length> content-width <=> flickable.content-width;
     in-out property <length> content-height <=> flickable.content-height;
 
-    public function scroll-x-to(content-pos: length) {
+    public function scroll-to(point: Point, behavior: ScrollBehavior) {
+        flickable.scroll-to(point, behavior)
+    }
+
+    @deprecated("Use the 'scroll-to()' method instead") public function scroll-x-to(content-pos: length) {
         h-scrollbar.scroll-to(content-pos);
     }
-    public function scroll-y-to(content-pos: length) {
+    @deprecated("Use the 'scroll-to()' method instead") public function scroll-y-to(content-pos: length) {
         v-scrollbar.scroll-to(content-pos);
     }
 
-    public function scroll-x-by(delta: length) {
+    @deprecated("Use the 'scroll-to()' method instead") public function scroll-x-by(delta: length) {
         h-scrollbar.scroll-by(delta);
     }
 
-    public function scroll-y-by(delta: length) {
+    @deprecated("Use the 'scroll-to()' method instead") public function scroll-y-by(delta: length) {
         v-scrollbar.scroll-by(delta);
     }
 
