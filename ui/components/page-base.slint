@@ -17,7 +17,6 @@ export component PageBase {
 
     // Allows to skip the sidebar when navigating with tab.
     Timer {
-        running: true;
         interval: 10ms;
         triggered => {
             self.stop();

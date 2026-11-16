@@ -26,6 +26,7 @@ export component MenuPageHowTo inherits PageBase {
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         padding-bottom: UAppTheme.padding-base;
+
         UAlert {
             variant: warning;
             message: @markdown("As the menu uses a global to store the current link, only one menu can be displayed at the same time.");
@@ -45,8 +46,8 @@ export component MenuPageHowTo inherits PageBase {
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         padding-bottom: UAppTheme.padding-base;
+
         UAlert {
-            variant: info;
             message: @markdown("Check out the sidebar for a running example of a menu.");
         }
     }

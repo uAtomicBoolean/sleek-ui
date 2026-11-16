@@ -95,7 +95,6 @@ export component USelect inherits UInteractiveBase {
                     }
                     // TouchArea management.
                     enabled: option.enabled;
-                    mouse-cursor: pointer;
                     clicked => {
                         current-index = index;
                         selected-text = option.text;
@@ -119,7 +118,6 @@ export component USelect inherits UInteractiveBase {
                             text: option.text;
                             font-size: UAppTheme.font-size-base;
                             overflow: elide;
-                            wrap: no-wrap;
                             states [
                                 disabled when !option.enabled: {
                                     color: UAppTheme.text-disabled;

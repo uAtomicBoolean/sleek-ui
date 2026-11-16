@@ -23,18 +23,22 @@ export component UNotification inherits Rectangle {
     drop-shadow-blur: UAppTheme.shadow-blur;
     drop-shadow-color: UAppTheme.shadow-color;
     drop-shadow-offset-y: UAppTheme.shadow-y-offset;
+
     interactive-base := UInteractiveBase {
         HorizontalLayout {
             padding: UAppTheme.padding-base;
+
             GridLayout {
                 padding-top: UAppTheme.padding-base;
                 padding-bottom: UAppTheme.padding-base;
                 padding-left: UAppTheme.padding-medium;
                 padding-right: UAppTheme.padding-medium;
                 spacing-horizontal: UAppTheme.spacing-medium;
+
                 Row {
                     VerticalLayout {
                         alignment: center;
+
                         UIcon {
                             source: icon;
                             colorize: icon-color;
@@ -45,9 +49,9 @@ export component UNotification inherits Rectangle {
 
                     VerticalLayout {
                         alignment: center;
+
                         UText {
                             text: title;
-                            wrap: no-wrap;
                             overflow: elide;
                             font-size: UAppTheme.font-size-medium;
                         }
@@ -63,7 +67,6 @@ export component UNotification inherits Rectangle {
                 Row {
                     if message != "": UText {
                         col: 1;
-                        overflow: clip;
                         wrap: word-wrap;
                         text: root.message;
                     }

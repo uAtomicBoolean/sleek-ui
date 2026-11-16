@@ -27,6 +27,7 @@ export component LinkPage inherits PageBase {
     HorizontalLayout {
         padding-top: UAppTheme.padding-base;
         padding-bottom: UAppTheme.padding-base;
+
         UAlert {
             message: @markdown("You can also use the StyledText widget to display a link using markdown syntax.");
         }
@@ -63,6 +64,7 @@ export component LinkPage inherits PageBase {
 
     WidgetPresentation {
         spacing: UAppTheme.spacing-big;
+
         ULink {
             text: "External link";
             icon-placement: start;
@@ -87,11 +89,12 @@ export component LinkPage inherits PageBase {
 
     WidgetPresentation {
         spacing: UAppTheme.spacing-big;
+
         HorizontalLayout {
             width: 200px;
+
             ULink {
                 text: "Very long link that will wrap on multiple lines using the word-wrap value.";
-                wrap: word-wrap;
             }
         }
     }

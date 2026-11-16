@@ -25,6 +25,7 @@ component CircleArc inherits Path {
     stroke-line-cap: round;
     // Avoid drawing a dot because of the round line cap when the arc is empty.
     visible: end-angle - start-angle > 0.01deg;
+
     MoveTo {
         x: root.center-x + root.radius * sin(root.start-angle);
         y: root.center-y - root.radius * cos(root.start-angle);
@@ -79,7 +80,6 @@ export component UCircleProgress inherits Rectangle {
     private property <float> indeterminate-offset: indeterminate ? (gap > 0 ? mod(animation-tick() / 1500ms, 1.3) - 0.3 : mod(animation-tick() / 1500ms, 1)) : 0;
     private property <float> arc-start: indeterminate ? (gap > 0 ? max(indeterminate-offset, 0) : indeterminate-offset) : 0;
     private property <float> arc-end: indeterminate ? (gap > 0 ? min(indeterminate-offset + 0.3, 1) : indeterminate-offset + 0.3) : shown-progress;
-    background: transparent;
     width: default-size;
     height: default-size;
 

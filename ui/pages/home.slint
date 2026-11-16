@@ -23,8 +23,8 @@ export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
         padding-top: 64px;
+
         UTitle {
-            level: 1;
             text: "Sleek-ui";
         }
     }
@@ -32,6 +32,7 @@ export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
         padding-bottom: 24px;
+
         UText {
             text: "Version \{AppLogic.version}";
             font-size: UAppTheme.font-size-small;
@@ -40,6 +41,7 @@ export component HomePage inherits PageBase {
 
     HorizontalLayout {
         alignment: center;
+
         UText {
             text: "A widgets library built with/for Slint and based on Ant Design.";
         }
@@ -47,6 +49,7 @@ export component HomePage inherits PageBase {
 
     HorizontalLayout {
         alignment: center;
+
         UText {
             text: "Comes with a simple application wide theming system.";
         }
@@ -56,13 +59,13 @@ export component HomePage inherits PageBase {
         alignment: center;
         spacing: UAppTheme.spacing-base;
         padding-top: 100px;
+
         UButton {
             variant: primary;
             text: "Primary";
         }
 
         UButton {
-            variant: default;
             text: "Default";
         }
 
@@ -93,6 +96,7 @@ export component HomePage inherits PageBase {
         alignment: center;
         spacing: UAppTheme.spacing-base;
         padding-top: UAppTheme.padding-bigger;
+
         UTag {
             text: "Primary";
         }
@@ -117,6 +121,7 @@ export component HomePage inherits PageBase {
         alignment: center;
         spacing: UAppTheme.spacing-bigger;
         padding-top: UAppTheme.padding-bigger;
+
         USwitch {
             checked: true;
         }
@@ -130,6 +135,7 @@ export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
         padding-top: UAppTheme.padding-bigger;
+
         ULineProgress {
             width: 300px;
             progress: 30%;
@@ -140,6 +146,7 @@ export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
         padding-top: UAppTheme.padding-bigger;
+
         USlider {
             width: 350px;
             value: 30;
@@ -150,6 +157,7 @@ export component HomePage inherits PageBase {
         alignment: center;
         spacing: UAppTheme.spacing-bigger;
         padding-top: UAppTheme.padding-bigger;
+
         UInput {
             width: 150px;
             placeholder: "Text input";
@@ -163,8 +171,8 @@ export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
         padding-top: UAppTheme.padding-bigger;
+
         UAlert {
-            variant: info;
             message: @markdown("Simple alert to display a message to the user.");
         }
     }
@@ -172,6 +180,7 @@ export component HomePage inherits PageBase {
     HorizontalLayout {
         alignment: center;
         padding-top: UAppTheme.padding-bigger;
+
         ULink {
             text: "How to use";
             clicked => {

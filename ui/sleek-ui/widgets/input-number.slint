@@ -48,14 +48,18 @@ export component UInputNumber inherits Rectangle {
             }
         }
     }
+
     HorizontalLayout {
         width: root.width;
+
         HorizontalLayout {
             padding-left: UAppTheme.padding-horizontal / 2;
             padding-right: UAppTheme.padding-horizontal / 2;
+
             Rectangle {
                 height: UAppTheme.font-size-base + UAppTheme.padding-vertical * 3;
                 clip: true;
+
                 input := TextInput {
                     private property <length> right-margin: UAppTheme.padding-horizontal;
                     private property <length> computed-x;
@@ -67,8 +71,6 @@ export component UInputNumber inherits Rectangle {
                     color: UAppTheme.text;
                     vertical-alignment: center;
                     horizontal-alignment: left;
-                    single-line: true;
-                    wrap: no-wrap;
                     // Disable the TextInput accessibility as the widget takes care of that.
                     accessible-role: none;
                     cursor-position-changed(cpos) => {
@@ -106,9 +108,11 @@ export component UInputNumber inherits Rectangle {
         VerticalLayout {
             alignment: center;
             padding-left: UAppTheme.padding-small;
+
             Rectangle {
                 height: 100%;
                 width: UAppTheme.icon-size-base + UAppTheme.padding-horizontal / 2;
+
                 UIcon {
                     size: UAppTheme.icon-size-base;
                     colorize: UAppTheme.text-secondary;
@@ -143,9 +147,11 @@ export component UInputNumber inherits Rectangle {
         VerticalLayout {
             alignment: center;
             padding-right: 2px;
+
             Rectangle {
                 height: 100%;
                 width: UAppTheme.icon-size-base + UAppTheme.padding-horizontal / 2;
+
                 UIcon {
                     size: UAppTheme.icon-size-base;
                     colorize: UAppTheme.text-secondary;
