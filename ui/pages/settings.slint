@@ -17,14 +17,17 @@ import { AppLogic } from "../app-logic.slint";
 component ColorDisplay inherits Rectangle {
     in-out property <string> name;
     in-out property <UPrimaryColor> theme-color;
+
     VerticalLayout {
         padding: UAppTheme.padding-base;
         padding-bottom: 0;
         spacing: UAppTheme.spacing-base;
+
         Rectangle {
             HorizontalLayout {
                 spacing: UAppTheme.spacing-big;
                 cross-axis-alignment: center;
+
                 Rectangle {
                     width: 40px;
                     height: 30px;
@@ -71,11 +74,14 @@ component CompleteSlider inherits VerticalLayout {
     in-out property <float> step;
     in-out property <string> value-suffix;
     callback released <=> slider.released;
+    spacing: UAppTheme.spacing-base;
+
     HorizontalLayout {
         alignment: start;
         cross-axis-alignment: center;
         spacing: UAppTheme.spacing-big;
         padding-top: UAppTheme.padding-big;
+
         text-left := UText {
             text: "\{min-value}\{value-suffix}";
             font-weight: FontWeight.semi-bold;
@@ -95,15 +101,13 @@ component CompleteSlider inherits VerticalLayout {
         }
     }
 
-    HorizontalLayout {
-        alignment: start;
-        padding-top: UAppTheme.padding-base;
-        VerticalLayout {
-            Text {
-                x: text-left.width + slider.handle-pos;
-                text: "\{value}\{value-suffix}";
-                font-weight: FontWeight.semi-bold;
-            }
+    Rectangle {
+        height: value-text.preferred-height;
+
+        value-text := Text {
+            x: text-left.width + slider.handle-pos;
+            text: "\{value}\{value-suffix}";
+            font-weight: FontWeight.semi-bold;
         }
     }
 }
@@ -123,6 +127,7 @@ export component SettingsPage inherits PageBase {
         { name: "Golden purple", color: UAppTheme.golden-purple },
         { name: "French magenta", color: UAppTheme.french-magenta },
     ];
+
     UTitle {
         level: 3;
         text: "Settings";
@@ -136,12 +141,14 @@ export component SettingsPage inherits PageBase {
     HorizontalLayout {
         alignment: start;
         padding-top: UAppTheme.padding-base;
+
         Rectangle {
             height: 200px;
             width: 600px;
             border-width: UAppTheme.border-width-base;
             border-color: UAppTheme.border;
-            border-radius: UAppTheme.radius-base;
+            border-radius: 4px;
+
             UScrollView {
                 VerticalLayout {
                     for color[idx] in colors: ColorDisplay {
