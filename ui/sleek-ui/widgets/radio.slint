@@ -110,31 +110,29 @@ export component URadio {
     in property <length> options-spacing: UAppTheme.spacing-base;
     in property <length> inner-spacing: UAppTheme.spacing-base;
     callback selected(value: string);
-    VerticalLayout {
-        if orientation == Orientation.vertical: VerticalLayout {
-            alignment: root.alignment;
-            spacing: options-spacing;
-            for option in root.options: URadioOption {
-                enabled: root.enabled && option.enabled;
-                option: option;
-                inner-spacing: root.inner-spacing;
-                selected-value <=> root.selected-value;
-                selected(value) => {
-                    root.selected(value);
-                }
+    if orientation == Orientation.vertical: VerticalLayout {
+        alignment: root.alignment;
+        spacing: options-spacing;
+        for option in root.options: URadioOption {
+            enabled: root.enabled && option.enabled;
+            option: option;
+            inner-spacing: root.inner-spacing;
+            selected-value <=> root.selected-value;
+            selected(value) => {
+                root.selected(value);
             }
         }
-        if orientation == Orientation.horizontal: HorizontalLayout {
-            alignment: root.alignment;
-            spacing: options-spacing;
-            for option in root.options: URadioOption {
-                enabled: root.enabled && option.enabled;
-                option: option;
-                inner-spacing: root.inner-spacing;
-                selected-value <=> root.selected-value;
-                selected(value) => {
-                    root.selected(value);
-                }
+    }
+    if orientation == Orientation.horizontal: HorizontalLayout {
+        alignment: root.alignment;
+        spacing: options-spacing;
+        for option in root.options: URadioOption {
+            enabled: root.enabled && option.enabled;
+            option: option;
+            inner-spacing: root.inner-spacing;
+            selected-value <=> root.selected-value;
+            selected(value) => {
+                root.selected(value);
             }
         }
     }

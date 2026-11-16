@@ -60,16 +60,12 @@ export component UButton inherits UInteractiveBase {
     border-radius: UAppTheme.radius-base;
     border-width: self.has-tab-focus ? UAppTheme.focus-border-width : theme.border-width;
     border-color: self.has-tab-focus ? UAppTheme.focus-color : theme.border;
-    if loading: Rectangle {
-        z: 10;
-        width: parent.width;
-        height: parent.height;
-        VerticalLayout {
-            alignment: center;
-            cross-axis-alignment: center;
-            USpinner {
-                colorize: theme.text-disabled;
-            }
+    if loading: VerticalLayout {
+        alignment: center;
+        cross-axis-alignment: center;
+
+        USpinner {
+            colorize: theme.text-disabled;
         }
     }
     HorizontalLayout {
@@ -82,6 +78,7 @@ export component UButton inherits UInteractiveBase {
         padding-right: UAppTheme.padding-horizontal;
         if icon-placement == IconTextPlacement.start: VerticalLayout {
             alignment: center;
+
             icon-start := UIcon {
                 visible: !loading;
                 source: icon;
@@ -106,6 +103,7 @@ export component UButton inherits UInteractiveBase {
         }
         VerticalLayout {
             alignment: center;
+
             text-obj := UText {
                 visible: !loading;
                 color: theme.text;
@@ -132,6 +130,7 @@ export component UButton inherits UInteractiveBase {
 
         if icon-placement == IconTextPlacement.end: VerticalLayout {
             alignment: center;
+
             icon-end := UIcon {
                 visible: !loading;
                 source: icon;
