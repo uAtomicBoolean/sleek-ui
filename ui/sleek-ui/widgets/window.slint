@@ -1,0 +1,68 @@
+import { UIconButton } from "icon-button.slint";
+
+
+export component UWindow inherits Window {
+    in-out property <bool> custom-frame: true;
+    icon: @image-url("../assets/icons/eye.svg");
+    no-frame: true;
+    resize-border-width: 2px;
+    background: pink;
+    init => {
+        if !self.no-frame {
+            self.no-frame = true;
+            debug("Setting 'no-frame' to true will display the default window's decorations.");
+        }
+    }
+    changed no-frame => {
+        if !self.no-frame {
+            self.no-frame = true;
+            debug("Setting 'no-frame' to true will display the default window's decorations.");
+        }
+    }
+
+    Rectangle {
+        border-width: custom-frame ? 2px : 0;
+        border-color: custom-frame ? red : transparent;
+
+        VerticalLayout {
+            alignment: start;
+
+            // Title bar
+			if custom-frame: Rectangle {
+                background: white;
+
+                WindowMoveArea { }
+
+                HorizontalLayout {
+                    cross-axis-alignment: center;
+                    padding: 4px;
+                    spacing: 8px;
+
+                    Image {
+                        source: root.icon;
+                        width: 18px;
+                        height: 18px;
+                    }
+
+                    Text {
+                        text: root.title;
+                    }
+
+                    Rectangle {
+                        horizontal-stretch: 2;
+                    }
+
+                    UIconButton {
+                        icon: @image-url("../assets/icons/minus.svg");
+                    }
+
+                    UIconButton {
+                        icon: @image-url("../assets/icons/x.svg");
+                    }
+                }
+            }
+        }
+
+        @children
+    }
+}
