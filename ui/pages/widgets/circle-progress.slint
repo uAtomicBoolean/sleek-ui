@@ -23,7 +23,7 @@ export component CircleProgressPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: @markdown("Define the current progress with the `progress` property and change its color using the `progress-color` property.");
+        description: @markdown("Define the current progress with the `progress` property and change its colors using the `progress-color` and `track-color` properties.");
     }
 
     WidgetPresentation {
@@ -35,6 +35,7 @@ export component CircleProgressPage inherits PageBase {
 
         UCircleProgress {
             progress-color: UAppTheme.warning.base;
+            track-color: UAppTheme.warning.selected;
             progress: 60%;
         }
 
@@ -45,7 +46,7 @@ export component CircleProgressPage inherits PageBase {
     }
 
     DocCode {
-        code: "UCircleProgress {\n    progress: 40%;\n}\n\nUCircleProgress {\n    progress-color: UAppTheme.warning.base;\n    progress: 60%;\n}\n\nUCircleProgress {\n    progress-color: UAppTheme.golden-purple.base;\n    progress: 100%;\n}";
+        code: "UCircleProgress {\n    progress: 40%;\n}\n\nUCircleProgress {\n    progress-color: UAppTheme.warning.base;\n    track-color: UAppTheme.warning.selected;\n    progress: 60%;\n}\n\nUCircleProgress {\n    progress-color: UAppTheme.golden-purple.base;\n    progress: 100%;\n}";
     }
 
     DocSection {

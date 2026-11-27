@@ -11,39 +11,54 @@ export component ULineProgress inherits Rectangle {
     accessible-orientation: orientation;
     // Regular properties
     in-out property <brush> progress-color: UAppTheme.primary.base;
+    in-out property <brush> track-color: UAppTheme.color-fill-secondary;
     in property <length> default-size: 10px;
     in property <length> default-radius: UAppTheme.radius-round;
     in property <Orientation> orientation: horizontal;
     in property <UProgressDirection> direction: start;
     in-out property <percent> progress;
     in-out property <bool> indeterminate: false;
+    private property <bool> is-horizontal: orientation == Orientation.horizontal;
     // Position of the indeterminate bar's start along the track, as a ratio of the track's length.
     // The bar covers 30% of the track and goes completely out of it before coming back.
     private property <float> indeterminate-offset: indeterminate ? mod(animation-tick() / 1500ms, 1.3) - 0.3 : 0;
     private property <float> indeterminate-start: direction == UProgressDirection.end ? 0.7 - indeterminate-offset : indeterminate-offset;
-    background: UAppTheme.color-fill-secondary;
-    border-radius: default-radius;
-    clip: true;
-    height: default-size;
-    width: default-size;
-    if orientation == Orientation.horizontal: Rectangle {
-        x: indeterminate ? root.width * root.indeterminate-start : direction == end ? root.width - self.width : 0;
-        background: progress-color;
-        border-radius: default-radius;
-        width: indeterminate ? 30% : clamp(progress, 0%, 100%);
-        animate width {
-            easing: ease-in-out;
-            duration: 350ms;
+    // Only minimum and preferred sizes are used so that the progress fills its parent along its
+    // orientation and never sets a maximum size, which would prevent the window from being resized.
+    // The track keeps the `default-size` thickness and is centered when the progress gets more space.
+    min-width: is-horizontal ? 0px : default-size;
+    min-height: is-horizontal ? default-size : 0px;
+    preferred-width: is-horizontal ? 0px : default-size;
+    preferred-height: is-horizontal ? default-size : 0px;
+    horizontal-stretch: is-horizontal ? 1 : 0;
+    vertical-stretch: is-horizontal ? 0 : 1;
+
+    Rectangle {
+        width: root.is-horizontal ? parent.width : root.default-size;
+        height: root.is-horizontal ? root.default-size : parent.height;
+        background: root.track-color;
+        border-radius: root.default-radius;
+        clip: true;
+
+        if root.is-horizontal: Rectangle {
+            x: root.indeterminate ? parent.width * root.indeterminate-start : root.direction == end ? parent.width - self.width : 0;
+            background: root.progress-color;
+            border-radius: root.default-radius;
+            width: root.indeterminate ? 30% : clamp(root.progress, 0%, 100%);
+            animate width {
+                easing: ease-in-out;
+                duration: 350ms;
+            }
         }
-    }
-    if orientation == Orientation.vertical: Rectangle {
-        y: indeterminate ? root.height * root.indeterminate-start : direction == end ? root.height - self.height : 0;
-        background: progress-color;
-        border-radius: default-radius;
-        height: indeterminate ? 30% : clamp(progress, 0%, 100%);
-        animate height {
-            easing: ease-in-out;
-            duration: 350ms;
+        if !root.is-horizontal: Rectangle {
+            y: root.indeterminate ? parent.height * root.indeterminate-start : root.direction == end ? parent.height - self.height : 0;
+            background: root.progress-color;
+            border-radius: root.default-radius;
+            height: root.indeterminate ? 30% : clamp(root.progress, 0%, 100%);
+            animate height {
+                easing: ease-in-out;
+                duration: 350ms;
+            }
         }
     }
 }

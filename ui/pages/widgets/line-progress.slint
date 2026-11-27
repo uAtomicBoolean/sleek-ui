@@ -23,7 +23,7 @@ export component LineProgressPage inherits PageBase {
 
     DocSection {
         title: "Basic usage";
-        description: @markdown("Define the current progress with the `progress` property and change its color using the `progress-color` property.");
+        description: @markdown("Define the current progress with the `progress` property and change its colors using the `progress-color` and `track-color` properties.");
     }
 
     WidgetPresentation {
@@ -43,6 +43,7 @@ export component LineProgressPage inherits PageBase {
 
             ULineProgress {
                 progress-color: UAppTheme.golden-purple.base;
+                track-color: UAppTheme.golden-purple.selected;
                 width: 300px;
                 progress: 25%;
             }
@@ -50,7 +51,7 @@ export component LineProgressPage inherits PageBase {
     }
 
     DocCode {
-        code: "ULineProgress {\n    width: 300px;\n    progress: 40%;\n}\n\nULineProgress {\n    progress-color: UAppTheme.warning.base;\n    width: 300px;\n    progress: 60%;\n}\n\nULineProgress {\n    progress-color: UAppTheme.golden-purple.base;\n    width: 300px;\n    progress: 25%;\n}";
+        code: "ULineProgress {\n    width: 300px;\n    progress: 40%;\n}\n\nULineProgress {\n    progress-color: UAppTheme.warning.base;\n    width: 300px;\n    progress: 60%;\n}\n\nULineProgress {\n    progress-color: UAppTheme.golden-purple.base;\n    track-color: UAppTheme.golden-purple.selected;\n    width: 300px;\n    progress: 25%;\n}";
     }
 
     DocSection {
